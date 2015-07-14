@@ -1,0 +1,54 @@
+{
+  "name": "cirrus.react-reflux-skeleton",
+  "version": "1.0.0",
+  "description": "App, innit",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cirrus-connect/cirrus.react-reflux-skeleton.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cirrus-connect/cirrus.react-reflux-skeleton/issues"
+  },
+  "homepage": "https://github.com/cirrus-connect/cirrus.react-reflux-skeleton#readme",
+  "dependencies": {
+    "babel-runtime": "^5.6.15",
+    "babelify": "^6.1.2",
+    "bowser": "^0.7.3",
+    "browser-sync": "^2.7.13",
+    "browserify": "^10.2.4",
+    "chai": "^3.0.0",
+    "es5-shim-sham": "0.0.1",
+    "exorcist": "^0.4.0",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.2",
+    "gulp-sass": "^2.0.3",
+    "gulp-util": "^3.0.6",
+    "jquery-param": "^0.1.2",
+    "karma-browserify": "^4.2.1",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.0.2",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "karma-phantomjs-shim": "^1.0.0",
+    "lodash": "^3.9.3",
+    "mocha": "^2.2.5",
+    "npm": "^2.13.0",
+    "phantomjs": "^1.9.17",
+    "react": "^0.13.3",
+    "react-router-ie8": "^0.13.4",
+    "rewireify": "^0.2.1",
+    "rimraf": "^2.4.0",
+    "shivie8": "^1.0.0",
+    "superagent": "^1.2.0",
+    "superagent-intercept": "^0.1.1",
+    "superagent-promise": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.3",
+    "xdomain": "^0.7.3"
+  }
+}
