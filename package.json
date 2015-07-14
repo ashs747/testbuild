@@ -16,16 +16,26 @@
     "url": "https://github.com/cirrus-connect/cirrus.react-reflux-skeleton/issues"
   },
   "homepage": "https://github.com/cirrus-connect/cirrus.react-reflux-skeleton#readme",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+ },
+  "browserify-shim": {
+  },
   "dependencies": {
     "babel-runtime": "^5.6.15",
     "babelify": "^6.1.2",
+    "bower": "^1.4.1",
     "bowser": "^0.7.3",
     "browser-sync": "^2.7.13",
     "browserify": "^10.2.4",
+    "browserify-shim": "^3.8.9",
     "chai": "^3.0.0",
     "es5-shim-sham": "0.0.1",
     "exorcist": "^0.4.0",
     "gulp": "^3.9.0",
+    "gulp-install": "^0.4.0",
     "gulp-mocha": "^2.1.2",
     "gulp-sass": "^2.0.3",
     "gulp-util": "^3.0.6",
@@ -43,6 +53,7 @@
     "react-router-ie8": "^0.13.4",
     "rewireify": "^0.2.1",
     "rimraf": "^2.4.0",
+    "run-sequence": "^1.1.1",
     "shivie8": "^1.0.0",
     "superagent": "^1.2.0",
     "superagent-intercept": "^0.1.1",

@@ -1,13 +1,15 @@
 var gulp        = require('gulp');
+var runSequence = require('run-sequence');
 var gutil       = require('gulp-util');
 var source      = require('vinyl-source-stream');
-var babelify    = require('babelify');
-var watchify    = require('watchify');
 var exorcist    = require('exorcist');
 var browserify  = require('browserify');
+var babelify    = require('babelify');
+var watchify    = require('watchify');
 var browserSync = require('browser-sync').create();
 var sass        = require('gulp-sass');
 var mocha       = require('gulp-mocha');
+var install     = require("gulp-install");
 
 watchify.args.debug = true;
 var bundler = watchify(browserify('./app/src/main.js', watchify.args));
@@ -38,6 +40,11 @@ gulp.task('bundle', function() {
   return bundle();
 });
 
+gulp.task('install', function() {
+  return gulp.src(['./bower.json', './package.json'])
+    .pipe(install());
+});
+
 gulp.task('sass', function() {
   return gulp.src("./app/assets/sass/*.scss")
     .pipe(sass())
@@ -45,13 +52,17 @@ gulp.task('sass', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('default', ['sass', 'bundle'], function() {
-  browserSync.init({
-    server: "./app",
-    ghostMode: false,
-    open: false
-  });
+gulp.task('default', function(cb) {
+  runSequence('install', ['sass', 'bundle'], function() {
+    browserSync.init({
+      server: "./app",
+      ghostMode: false,
+      open: false
+    });
 
-  gulp.watch("./app/assets/sass/*.scss", ['sass']);
-  gulp.watch("./app/*.html").on('change', browserSync.reload);
+    gulp.watch("./app/assets/sass/*.scss", ['sass']);
+    gulp.watch("./app/*.html").on('change', browserSync.reload);
+
+    cb();
+  });
 });
