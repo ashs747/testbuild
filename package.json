@@ -28,7 +28,6 @@
     "babelify": "^6.1.2",
     "bower": "^1.4.1",
     "bowser": "^0.7.3",
-    "browser-sync": "^2.7.13",
     "browserify": "^10.2.4",
     "browserify-shim": "^3.8.9",
     "chai": "^3.0.0",
@@ -60,5 +59,8 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.3",
     "xdomain": "^0.7.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.7.13"
   }
 }
