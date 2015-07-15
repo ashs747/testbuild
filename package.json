@@ -52,7 +52,6 @@
     "react": "^0.13.3",
     "react-router-ie8": "^0.13.4",
     "rewireify": "^0.2.1",
-    "rimraf": "^2.4.0",
     "run-sequence": "^1.1.1",
     "shivie8": "^1.0.0",
     "superagent": "^1.2.0",
