@@ -9,7 +9,20 @@ var watchify    = require('watchify');
 var browserSync = require('browser-sync').create();
 var sass        = require('gulp-sass');
 var mocha       = require('gulp-mocha');
-var install     = require("gulp-install");
+var Promise     = require('es6-promise').Promise;
+var cirrusUtils = require('cirrus/dist/gulpUtils');
+var path        = require('path');
+
+var webPort = '3000';
+var linkModules = [];
+
+process.argv.forEach(function (val, index, array) {
+  if (val == '--link') {
+    linkModules.push(process.argv[index+1].split(':'));
+  } else if (val == '-p') {
+    webPort = process.argv[index+1];
+  }
+});
 
 watchify.args.debug = true;
 var bundler = watchify(browserify('./app/src/main.js', watchify.args));
@@ -40,11 +53,6 @@ gulp.task('bundle', function() {
   return bundle();
 });
 
-gulp.task('install', function() {
-  return gulp.src(['./bower.json', './package.json'])
-    .pipe(install());
-});
-
 gulp.task('sass', function() {
   return gulp.src("./app/assets/sass/*.scss")
     .pipe(sass())
@@ -52,10 +60,11 @@ gulp.task('sass', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('default', function(cb) {
-  runSequence('install', ['sass', 'bundle'], function() {
+gulp.task('run:development', function(cb) {
+  runSequence(['sass', 'bundle'], function() {
     browserSync.init({
       server: "./app",
+      port: webPort,
       ghostMode: false,
       open: false
     });
@@ -64,5 +73,26 @@ gulp.task('default', function(cb) {
     gulp.watch("./app/*.html").on('change', browserSync.reload);
 
     cb();
+  });
+});
+
+gulp.task('default', function (cb) {
+  cirrusUtils.hasDockerInstalled(function() {
+    var args = [
+      '-v ' + __dirname + ':/usr/src/myapp',
+      '-w /usr/src/myapp',
+      '-p ' + webPort + ':' + webPort,
+      '-p ' + '3001' + ':' + '3001',
+      '-t',
+      '-i',
+    ];
+
+    for (var i = 0; i < linkModules.length; i++) {
+      args.push('-v ' + path.resolve(linkModules[i][0]) + ':/usr/src/myapp/node_modules/' + linkModules[i][1]);
+    }
+
+    cirrusUtils.runContainer('node:0.10', null, args, './node_modules/gulp/bin/gulp.js run:development -p ' + webPort, function() {
+      cb();
+    });
   });
 });
