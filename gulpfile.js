@@ -96,3 +96,22 @@ gulp.task('default', function (cb) {
     });
   });
 });
+
+gulp.task('test', function (cb) {
+  cirrusUtils.hasDockerInstalled(function() {
+    var args = [
+      '-v ' + __dirname + ':/usr/src/myapp',
+      '-w /usr/src/myapp',
+      '-t',
+      '-i',
+    ];
+
+    for (var i = 0; i < linkModules.length; i++) {
+      args.push('-v ' + path.resolve(linkModules[i][0]) + ':/usr/src/myapp/node_modules/' + linkModules[i][1]);
+    }
+
+    cirrusUtils.runContainer('node:0.10', null, args, 'node_modules/karma/bin/karma start karma.conf.js', function() {
+      cb();
+    });
+  });
+});
