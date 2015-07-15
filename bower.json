@@ -1,0 +1,17 @@
+{
+  "name": "cirrus.react-reflux-skeleton",
+  "version": "0.0.0",
+  "homepage": "https://github.com/cirrus-connect/cirrus.react-reflux-skeleton",
+  "authors": [
+    "Cirrus Connect"
+  ],
+  "main": "app/src/main.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+  }
+}
