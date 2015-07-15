@@ -2,7 +2,7 @@ var React = require('react');
 var Router = require('react-router-ie8');
 
 var NotFound = require('./NotFound');
-var App = require('./App');
+var App = require('./App.jsx');
 var Home = require('./Home');
 var News = require('./News');
 

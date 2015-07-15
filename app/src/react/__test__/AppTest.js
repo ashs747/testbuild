@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
-var App = require('../App');
+var App = require('../App.jsx');
 
 App.__set__('RouteHandler', class App extends React.Component {
   render() { return <div />; }
@@ -14,6 +14,6 @@ describe('App component', function() {
   });
 
   it('Tets', function() {
-    
+
   });
 });
