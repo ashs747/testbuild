@@ -21,7 +21,10 @@
       "browserify-shim"
     ]
   },
-  "browserify-shim": {},
+  "browser": {
+  },
+  "browserify-shim": {
+  },
   "dependencies": {
     "babel-runtime": "^5.6.20",
     "babelify": "^6.1.3",

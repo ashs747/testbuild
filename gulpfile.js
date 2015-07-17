@@ -29,7 +29,11 @@ var bundler = watchify(browserify('./app/src/main.js', watchify.args));
 
 bundler.transform(babelify.configure({
   sourceMapRelative: './app/src',
-  optional: ['runtime', 'es7.objectRestSpread']
+  optional: ['runtime', 'es7.objectRestSpread'],
+  ignore: [
+    'node_modules/',
+    'bower_components/'
+  ]
 }));
 
 bundler.on('update', bundle);
