@@ -6,6 +6,8 @@ machine:
 dependencies:
   pre:
     - pip install awscli
+  post:
+    - rm -r ~/.npm/cirrus
 test:
   override:
     - cp app/src/localConfig.js.dist app/src/localConfig.js
