@@ -12,6 +12,12 @@
       "host": {
         "sourcePath": "/var/app/current/docker/nginx/default.conf"
       }
+    },
+    {
+      "name": "nginx-override",
+      "host": {
+        "sourcePath": "/var/app/current/docker/nginx/nginx"
+      }
     }
   ],
   "containerDefinitions": [
@@ -30,6 +36,10 @@
         {
           "sourceVolume": "app",
           "containerPath": "/var/www/html"
+        },
+        {
+          "sourceVolume": "nginx-override",
+          "containerPath": "/usr/local/sbin/nginx"
         },
         {
           "sourceVolume": "awseb-logs-nginx",
