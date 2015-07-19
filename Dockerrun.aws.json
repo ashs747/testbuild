@@ -47,7 +47,7 @@
         },
         {
           "sourceVolume": "nginx-conf",
-          "containerPath": "/etc/nginx/conf.d/default.conf",
+          "containerPath": "/etc/nginx/conf.d/tmp/default.conf",
           "readOnly": true
         }
       ]
