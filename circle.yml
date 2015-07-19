@@ -4,10 +4,8 @@ machine:
   node:
     version: 0.10.26
 dependencies:
-  pre:
-    - pip install awscli
   post:
-    - rm -r ~/.npm/cirrus
+    - rm -rf ~/.npm/cirrus
 test:
   override:
     - cp app/src/localConfig.js.dist app/src/localConfig.js
@@ -17,5 +15,6 @@ deployment:
   elasticbeanstalk:
     branch: master
     commands:
+      - pip install awscli
       - chmod +x ./docker/run.sh
       - ./docker/run.sh deployment $CIRCLE_SHA1
