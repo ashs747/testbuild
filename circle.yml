@@ -1,0 +1,17 @@
+machine:
+  python:
+    version: 2.7.3
+  node:
+    version: 0.10.26
+dependencies:
+  override:
+    - pip install awscli
+    - npm install
+test:
+  override:
+    - ./node_modules/karma/bin/karma start karma.conf.js --single-run
+deployment:
+  elasticbeanstalk:
+    branch: master
+    commands:
+      - ./docker/run.sh deployment $CIRCLE_SHA1
