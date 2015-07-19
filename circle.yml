@@ -4,11 +4,11 @@ machine:
   node:
     version: 0.10.26
 dependencies:
-  override:
+  pre:
     - pip install awscli
-    - npm install
 test:
   override:
+    - cp app/src/localConfig.js.dist app/src/localConfig.js
     - ./node_modules/karma/bin/karma start karma.conf.js --single-run
 deployment:
   elasticbeanstalk:
