@@ -1,6 +1,6 @@
 require('shivie8');
 require('es5-shim-sham');
-
+alert("ur joookin!");
 var config = require('./config');
 var xdomain = require('xdomain').xdomain;
 var slaves = {};
