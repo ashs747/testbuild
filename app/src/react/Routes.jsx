@@ -1,10 +1,10 @@
 var React = require('react');
 var Router = require('react-router-ie8');
 
-var NotFound = require('./NotFound');
+var NotFound = require('./NotFound.jsx');
 var App = require('./App.jsx');
-var Home = require('./Home');
-var News = require('./News');
+var Home = require('./Home.jsx');
+var News = require('./News.jsx');
 
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;

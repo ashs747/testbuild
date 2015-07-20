@@ -10,7 +10,7 @@ xdomain.debug = false;
 
 var React = require('react');
 var Router = require('react-router-ie8');
-var Routes = require('./react/Routes');
+var Routes = require('./react/Routes.jsx');
 
 Router.run(Routes, Router.HashLocation, function(Root) {
   React.render(React.createElement(Root), document.getElementById('app'));
