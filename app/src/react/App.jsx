@@ -2,6 +2,8 @@ var React = require('react');
 var Router = require('react-router-ie8');
 var newsModel = require('../models/newsModel');
 
+newsModel.getPosts();
+
 var RouteHandler = Router.RouteHandler;
 
 class App extends React.Component {
