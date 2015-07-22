@@ -23,6 +23,18 @@
   },
   "browser": {},
   "browserify-shim": {},
+  "jshintConfig": {
+    "esnext": true,
+    "undef": true,
+    "unused": true,
+    "node": true,
+    "shadow": true,
+    "nonew": true,
+    "noarg": true,
+    "latedef": true,
+    "freeze": true,
+    "forin": true
+  },
   "dependencies": {
     "babel-runtime": "^5.6.20",
     "babelify": "^6.1.3",
