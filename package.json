@@ -24,10 +24,11 @@
   "browser": {},
   "browserify-shim": {},
   "jshintConfig": {
+    "node": true,
+    "browser": true,
     "esnext": true,
     "undef": true,
     "unused": true,
-    "node": true,
     "shadow": true,
     "nonew": true,
     "noarg": true,
