@@ -34,7 +34,12 @@
     "noarg": true,
     "latedef": true,
     "freeze": true,
-    "forin": true
+    "forin": true,
+    "globals": {
+      "describe": true,
+      "it": true,
+      "beforeEach": true
+    }
   },
   "dependencies": {
     "babel-runtime": "^5.6.20",
