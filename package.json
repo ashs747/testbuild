@@ -44,7 +44,7 @@
     "browserify": "^10.2.6",
     "browserify-shim": "^3.8.9",
     "chai": "^3.0.0",
-    "cirrus": "https://api.github.com/repos/cirrus-connect/cirrus.js-lib/tarball/SHRD-30-refactoring-into-new-build-process?access_token=7706f03d103136de86886e0e532389bbfb81a0d4",
+    "cirrus": "https://api.github.com/repos/cirrus-connect/cirrus.js-lib/tarball/master?access_token=7706f03d103136de86886e0e532389bbfb81a0d4",
     "es5-shim-sham": "0.0.1",
     "gulp": "^3.9.0",
     "jquery-param": "^0.1.2",

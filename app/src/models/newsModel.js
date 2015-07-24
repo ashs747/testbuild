@@ -1,4 +1,4 @@
-var request = require('../services/request');
+var request = require('cirrus').services.request;
 
 module.exports = {
   getPosts(params) {
