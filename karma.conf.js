@@ -1,10 +1,10 @@
 // Karma configuration
 // Generated on Tue Jul 07 2015 16:52:49 GMT+0100 (BST)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '.',
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -12,13 +12,16 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './app/__test__/*.{js,jsx}',
-      './app/src/**/__test__/*.{js,jsx}'
+      {
+        pattern: './app/**/__tests__/*.js',
+        watched: false,
+        included: true,
+        served: true
+      }
     ],
 
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -59,7 +62,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-    autoWatch: true
-  })
-}
+    singleRun: false
+  });
+};
