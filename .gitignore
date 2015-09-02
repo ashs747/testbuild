@@ -1,8 +1,0 @@
-.idea
-*.iml
-.DS_Store
-app/dist/
-node_modules/
-bower_components/
-npm-debug.log
-app/src/localConfig.js
