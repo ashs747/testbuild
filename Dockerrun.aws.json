@@ -1,0 +1,56 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "app",
+      "host": {
+        "sourcePath": "/var/app/current"
+      }
+    },
+    {
+      "name": "nginx-conf",
+      "host": {
+        "sourcePath": "/var/app/current/docker/nginx/default.conf"
+      }
+    },
+    {
+      "name": "nginx-override",
+      "host": {
+        "sourcePath": "/var/app/current/docker/nginx/nginx"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "nginx",
+      "image": "nginx",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "app",
+          "containerPath": "/var/www/html"
+        },
+        {
+          "sourceVolume": "nginx-override",
+          "containerPath": "/usr/local/sbin/nginx"
+        },
+        {
+          "sourceVolume": "awseb-logs-nginx",
+          "containerPath": "/var/log/nginx"
+        },
+        {
+          "sourceVolume": "nginx-conf",
+          "containerPath": "/etc/nginx/conf.d/tmp/default.conf",
+          "readOnly": true
+        }
+      ]
+    }
+  ]
+}

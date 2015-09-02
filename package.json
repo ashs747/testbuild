@@ -1,0 +1,84 @@
+{
+  "name": "react-skeleton",
+  "version": "0.0.0",
+  "description": "React Skeleton",
+  "scripts": {
+    "test": "./node_modules/.bin/karma start karma.conf.js"
+  },
+  "jshintConfig": {
+    "node": true,
+    "browser": true,
+    "esnext": true,
+    "undef": true,
+    "unused": true,
+    "shadow": true,
+    "nonew": true,
+    "noarg": true,
+    "latedef": true,
+    "freeze": true,
+    "forin": true,
+    "globals": {
+      "describe": true,
+      "it": true,
+      "beforeEach": true,
+      "afterEach": true
+    }
+  },
+  "dependencies": {
+    "babel-runtime": "^5.7.0",
+    "babelify": "^6.1.3",
+    "bower": "^1.3.12",
+    "browserify": "^10.2.4",
+    "browserify-shim": "^3.8.9",
+    "cirrus": "https://api.github.com/repos/cirrus-connect/cirrus.js-lib/tarball/master?access_token=7706f03d103136de86886e0e532389bbfb81a0d4",
+    "console-shim": "^1.0.3",
+    "es5-shim-sham": "0.0.1",
+    "esformatter-jsx": "^1.3.0",
+    "gulp": "^3.8.10",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.4.2",
+    "gulp-esformatter": "^4.0.0",
+    "gulp-install": "^0.2.0",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-minify-html": "^0.1.8",
+    "gulp-preprocess": "^1.2.0",
+    "gulp-rev": "^2.0.1",
+    "gulp-sass": "^1.1.0",
+    "gulp-sourcemaps": "^1.3.0",
+    "gulp-uglify": "^1.0.2",
+    "gulp-usemin": "^0.3.8",
+    "gulp-util": "^3.0.1",
+    "gulp-watch": "^3.0.0",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "react-router-ie8": "^0.13.4",
+    "reactify": "^0.17.1",
+    "run-sequence": "^1.0.2",
+    "shivie8": "^1.0.0",
+    "watchify": "^2.1.1",
+    "xdomain": "^0.7.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.7.13",
+    "browserify-istanbul": "^0.2.1",
+    "karma": "^0.13.2",
+    "karma-browserify": "^4.2.1",
+    "karma-coverage": "^0.5.0",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.0.2",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "karma-phantomjs-shim": "^1.0.0",
+    "mocha": "^2.2.5",
+    "phantomjs": "^1.9.17",
+    "rewireify": "^0.2.2"
+  },
+  "browser": {
+  },
+  "browserify-shim": {
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  }
+}

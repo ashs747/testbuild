@@ -1,0 +1,22 @@
+machine:
+  python:
+    version: 2.7.3
+  node:
+    version: 0.10.26
+dependencies:
+  pre:
+    - rm -rf ~/.npm/cirrus
+    - rm -rf ./node_modules/cirrus
+test:
+  override:
+    - ./node_modules/karma/bin/karma start karma.conf.js --single-run
+    - cp app/src/localConfig.js.dist app/src/localConfig.js
+    - ./node_modules/bower/bin/bower install
+    - ./node_modules/gulp/bin/gulp.js build
+deployment:
+  elasticbeanstalk:
+    branch: master
+    commands:
+      - pip install awscli
+      - chmod +x ./docker/run.sh
+      - ./docker/run.sh deployment $CIRCLE_SHA1
