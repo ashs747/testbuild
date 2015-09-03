@@ -2,7 +2,7 @@ describe('main', function () {
 
   var expect;
   beforeEach(function () {
-    var utils = require('cirrus/dist/testUtils');
+    var utils = require('cirrus/testing/utils');
     expect = utils.expect;
   });
 

@@ -2,7 +2,7 @@ require('shivie8');
 require('es5-shim-sham');
 require('console-shim');
 
-var config = require('cirrus/dist/config').merge(require('./config')).merge(require('./localConfig'));
+var config = require('cirrus/configs/appConfig').merge(require('./config')).merge(require('./localConfig'));
 var App = require('./react/components/App.jsx');
 var React = require('react');
 var xdomain = require('xdomain').xdomain;
