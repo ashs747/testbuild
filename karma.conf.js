@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Tue Jul 07 2015 16:52:49 GMT+0100 (BST)
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '.',
@@ -26,15 +26,17 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './app/**/*.{js,jsx}': ['browserify']
+      './app/src/**/*.{js,jsx}': ['browserify']
     },
 
     browserify: {
       debug: true,
       transform: [
-        'rewireify',
-        ['babelify', {'optional': ['runtime', 'es7.objectRestSpread']}],
-        ['browserify-istanbul', { ignore: ['**/*Test.js'], defaultIgnore: true }]
+        ['babelify', {
+          'optional': ['runtime', 'es7.objectRestSpread'],
+          'plugins': 'babel-plugin-rewire'
+        }],
+        ['browserify-istanbul', { ignore: ['**/__tests__/**'], defaultIgnore: true }]
       ],
       extensions: ['.js', '.jsx']
     },

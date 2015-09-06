@@ -1,5 +1,6 @@
 module.exports = {
   programmeId: 0,
+  appId: 0,
   appName: 'Skeleton App',
   appSlug: 'skeleton-app',
   version: {

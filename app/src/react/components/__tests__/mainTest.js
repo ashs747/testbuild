@@ -1,3 +1,5 @@
+import Main from '../Main.jsx';
+
 describe('main', function () {
 
   var expect;
