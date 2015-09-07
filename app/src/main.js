@@ -1,15 +1,26 @@
-require('shivie8');
-require('es5-shim-sham');
-require('console-shim');
+import 'shivie8';
+import 'es5-shim-sham';
+import 'console-shim';
 
-var config = require('cirrus/configs/appConfig').merge(require('./config')).merge(require('./localConfig'));
-var App = require('./react/components/App.jsx');
-var React = require('react');
-var xdomain = require('xdomain').xdomain;
+import store from 'cirrus/redux/store';
+import {Provider} from 'react-redux';
+
+import appConfig from 'cirrus/configs/appConfig';
+import config from './config';
+import localConfig from './localConfig';
+appConfig.merge(config).merge(localConfig);
+
+import App from './react/components/App.jsx';
+import React from 'react';
+import {xdomain} from 'xdomain';
 var slaves = {};
 
-slaves[config.api.url] = "/proxy.html";
+slaves[appConfig.api.url] = "/proxy.html";
 xdomain.slaves(slaves);
 xdomain.debug = false;
 
-React.render(React.createElement(App), document.getElementById('app'));
+React.render(
+  React.createElement(Provider, {store: store}, () => {
+    return React.createElement(App, null);
+  }
+), document.getElementById('app'));

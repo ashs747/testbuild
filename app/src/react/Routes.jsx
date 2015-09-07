@@ -1,15 +1,17 @@
-var React = require('react');
-var ReactRouter = require('react-router-ie8');
+import React from 'react';
+import ReactRouter from 'react-router-ie8';
+import {connect} from 'react-redux';
+
+import Main from './components/Main.jsx';
+
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
 var NotFoundRoute = ReactRouter.NotFoundRoute;
 
-var Main = require('./components/Main.jsx');
-
 var Routes = (
-<Route handler={ReactRouter.RouteHandler}>
-  <DefaultRoute handler={Main} />
-</Route>
+  <Route handler={ReactRouter.RouteHandler}>
+    <DefaultRoute handler={connect((state) => state.auth)(Main)} />
+  </Route>
 );
 
-module.exports = Routes;
+export default Routes;
