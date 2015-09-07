@@ -8,7 +8,7 @@ class App extends React.Component {
     this.onRouteChange = this.onRouteChange.bind(this);
     this.state = {
       Handler: null
-    }
+    };
   }
 
   componentWillMount() {

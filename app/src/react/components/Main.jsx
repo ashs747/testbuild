@@ -6,11 +6,11 @@ class Main extends React.Component {
     this.tick = this.tick.bind(this);
     this.state = {
       seconds: 0
-    }
+    };
   }
 
   componentDidMount() {
-    setInterval(this.tick, 1000)
+    setInterval(this.tick, 1000);
   }
 
   render() {
