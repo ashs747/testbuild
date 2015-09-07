@@ -29,4 +29,4 @@ class Main extends React.Component {
   }
 }
 
-module.exports = Main;
+export default Main;
