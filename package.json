@@ -1,7 +1,7 @@
 {
-  "name": "react-skeleton",
+  "name": "soj.portal-ui",
   "version": "0.0.0",
-  "description": "React Skeleton",
+  "description": "States Of Jersey Portal UI",
   "scripts": {
     "test": "./node_modules/.bin/karma start karma.conf.js"
   },
