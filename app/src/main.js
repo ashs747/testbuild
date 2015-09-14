@@ -2,7 +2,7 @@ import 'shivie8';
 import 'es5-shim-sham';
 import 'console-shim';
 
-import store from 'cirrus/redux/store';
+import store from './redux/store';
 import {Provider} from 'react-redux';
 
 import appConfig from 'cirrus/configs/appConfig';

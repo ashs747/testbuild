@@ -36,7 +36,9 @@
     "react-router-ie8": "^0.13.4",
     "redux": "^2.0.0",
     "shivie8": "^1.0.0",
-    "xdomain": "^0.7.3"
+    "xdomain": "^0.7.3",
+    "redux": "^2.0.0",
+    "redux-thunk": "^0.1.0"
   },
   "browser": {},
   "browserify-shim": {},
