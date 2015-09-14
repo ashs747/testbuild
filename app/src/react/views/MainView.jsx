@@ -13,7 +13,6 @@ class MainView extends React.Component {
     return (
       <div className="main">
         <div className="container-fluid">
-          <p>This is the MainView wrapper</p>
           <RouteHandler />
         </div>
       </div>
