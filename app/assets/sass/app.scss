@@ -1,4 +1,7 @@
+$icon-font-path: '/bower_components/bootstrap-sass/assets/fonts/bootstrap/';
+@import "./app/bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "utils";
+@import "./views/mainView";
 
 html {
   height:100%;
