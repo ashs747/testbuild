@@ -10,7 +10,7 @@ import config from './config';
 import localConfig from './localConfig';
 appConfig.merge(config).merge(localConfig);
 
-import App from './react/components/App.jsx';
+import App from './react/App.jsx';
 import React from 'react';
 import {xdomain} from 'xdomain';
 var slaves = {};

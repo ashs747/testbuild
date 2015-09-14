@@ -1,6 +1,6 @@
 import React from 'react';
-import Routes from '../Routes.jsx';
-import Router from 'react-router-ie8';
+import router from './router';
+import store from '../redux/store';
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    Router.run(Routes, Router.HashLocation, this.onRouteChange);
+    router.run(this.onRouteChange);
   }
 
   render() {
