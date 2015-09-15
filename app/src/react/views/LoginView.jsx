@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'cirrus/react/components/Button';
-import {authAction} from '../../redux/actions/authActions';
+import {authAction, logoutAction} from '../../redux/actions/authActions';
 import config from 'cirrus/configs/appConfig';
 
 class LoginView extends React.Component {
@@ -14,8 +14,11 @@ class LoginView extends React.Component {
     };
   }
 
+  componentWillMount() {
+    this.props.dispatch(logoutAction());
+  }
+
   render() {
-    console.log(this.props.auth);
     return (
       <div className="login">
         <div className="login-box">

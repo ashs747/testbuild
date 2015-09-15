@@ -1,6 +1,7 @@
 import React from 'react';
 import router from './router';
 import store from '../redux/store';
+import {cookieCheckAction} from '../redux/actions/authActions';
 
 class App extends React.Component {
   constructor() {
@@ -12,6 +13,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    store.dispatch(cookieCheckAction());
     this.checkLoggedInState();
     store.subscribe(this.checkLoggedInState);
     router.run(this.onRouteChange);
@@ -43,10 +45,12 @@ class App extends React.Component {
       activeRouteName = currentRoutes[currentRoutes.length - 1].name;
     }
 
-    if (!store.getState().auth.loggedIn) {
-      router.transitionTo('login');
-    } else if (store.getState().auth.loggedIn && activeRouteName == 'login') {
-      router.transitionTo('/');
+    if (store.getState().auth.cookieChecked) {
+      if (!store.getState().auth.loggedIn) {
+        router.transitionTo('login');
+      } else if (store.getState().auth.loggedIn && activeRouteName == 'login') {
+        router.transitionTo('/');
+      }
     }
   }
 }
