@@ -2,18 +2,20 @@ $icon-font-path: '/bower_components/bootstrap-sass/assets/fonts/bootstrap/';
 @import "./app/bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "utils";
 @import "./views/mainView";
+@import "./views/loginView";
 
 html {
   height:100%;
 }
 
 body {
-  min-height:100%;
-  height: 100%;
   color: $body_color;
   font-family: $body_font;
+  position: relative;
+  min-height: 100%;
+  background-color: #E7E7E7;
 }
 
-.container-fluid {
-  max-width: $max_width;
+#app {
+  overflow:hidden;
 }
