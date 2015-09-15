@@ -1,4 +1,5 @@
 import React from 'react';
+import PersonalLearningJourney from '../components/PersonalLearningJourney.jsx';
 
 export default class extends React.Component {
 
@@ -9,7 +10,7 @@ export default class extends React.Component {
   render() {
     return (
       <div className="personal-learning-journey">
-        The personal learning journey page
+        <PersonalLearningJourney />
       </div>
     );
   }

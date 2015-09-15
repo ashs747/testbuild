@@ -1,0 +1,68 @@
+.personal-learning-journey{
+  background-color: #eee;
+  padding:20px;
+  .learning-journey-module {
+    margin-top:20px;
+    table {
+          .heading th:last-child {
+            background-color:#f6f7f8;
+            border-bottom:none;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+          }
+      thead{
+        th:first-child{
+          border:none;
+        }
+        .title {
+          font-weight:bold;
+          font-size:14px;
+        }
+        .sub-title{
+          font-weight:normal;
+        }
+        .table-headings th:nth-child(n+2) {
+          background-color:#fafbfb;
+          border-bottom:1px solid #eee;
+          border-top:1px solid #eee;
+        }
+      }
+    }
+    tbody{
+      .row-icon {
+        position:relative;
+        border:none;
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          top:15px;
+          left:19px;
+          bottom:10px;
+          border-left:2px dotted #222;
+          height:99%;
+        }
+        i {
+          width:25px;
+          height:25px;
+          border:2px solid black;
+          text-align:center;
+          line-height:25px;
+          border-radius:50%;
+          background-color:white;
+        }
+      }
+      td{
+
+        line-height: 14px;
+        vertical-align: middle;
+      }
+      .activity {
+        font-weight:bold;
+      }
+      .location {
+        font-weight:bold;
+      }
+    }
+  }
+}

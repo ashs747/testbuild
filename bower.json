@@ -2,6 +2,7 @@
   "name": "Skeleton App",
   "private": true,
   "dependencies": {
-    "bootstrap-sass": "~3.3.5"
+    "bootstrap-sass": "~3.3.5",
+    "fontawesome": "~4.4.0"
   }
 }
