@@ -1,0 +1,27 @@
+.login {
+  .login-box {
+    text-align: center;
+    margin: 200px auto;
+    width: 510px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 25px;
+    form {
+      width: 300px;
+      margin: 20px auto;
+      button {
+        background-color: #7D7D7D;
+        border-color: #707070;
+      }
+      input {
+        border-radius: 2.5px;
+        margin-bottom: 15px;
+      }
+      input:focus {
+        border-color: #B60011;
+        box-shadow: 0 1px 1px #ffffff inset, 0 0 8px #B60011;
+        outline: 0 none;
+      }
+    }
+  }
+}
