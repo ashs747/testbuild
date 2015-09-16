@@ -17,7 +17,9 @@ export default class extends React.Component {
     var learningJournies = this.props.learningJourneyModules.map((journeyModule, idx) => {
       return (
         <div>
-          <h2>Module {idx + 1}</h2>
+          <h2>
+            Module {idx + 1}
+          </h2>
           <PersonalLearningJourney journeyModule={journeyModule} />
         </div>);
     });
