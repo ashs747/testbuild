@@ -30,7 +30,7 @@ class PLJTableRow extends React.Component {
     }
 
     return (
-      <tr>
+      <tr className="plj-table-row">
         <td className="row-icon"><i className={icon}></i></td>
         <td className="activity">{title}</td>
         <td>{type}</td>
@@ -82,7 +82,7 @@ class PLJTableRow extends React.Component {
     let location = event.location;
     return {
       date, time, location
-    }
+    };
   }
 
 }
