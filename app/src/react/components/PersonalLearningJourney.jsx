@@ -5,14 +5,10 @@ export default class extends React.Component {
     super();
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
 
-    var rows = [1,2,3,4,5].map(a => {
-      return  ( <tr>
+    var rows = [1, 2, 3, 4, 5].map(a => {
+      return (<tr>
           <td className="row-icon"><i className="fa fa-users"></i></td>
           <td className="activity">Workshop Title 2nd line if needed</td>
           <td>Workshop</td>
@@ -24,17 +20,17 @@ export default class extends React.Component {
     });
     return (
       <div className="learning-journey-module">
-        <table  border-spacing="separate" className="table">
+        <table border-spacing="separate" className="table">
           <thead>
             <tr className="heading">
-              <th className="rank"></th>
+              <th className="row-icon"><i className="fa fa-lightbulb-o"></i></th>
               <th colSpan="6">
-                <div className="title">Module 1 - Leading through change</div>
-                <div className="sub-title">August 2015 - September 2015</div>
+                <div className="title">{this.props.journeyModule.name}</div>
+                <div className="sub-title">{this.props.journeyModule.startDate.format('MMMM YYYY')} - {this.props.journeyModule.endDate.format('MMMM YYYY')}</div>
               </th>
             </tr>
             <tr className="table-headings">
-              <th className="rank"></th>
+              <th className="row-icon"></th>
               <th>LEARNING ACTIVITY</th>
               <th>TYPE</th>
               <th>DATE</th>
@@ -46,6 +42,12 @@ export default class extends React.Component {
           <tbody>
               {rows}
           </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td colSpan="6">VIEW LEARNING LOG <i className="fa fa-chevron-right"></i></td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     );
