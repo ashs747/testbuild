@@ -1,13 +1,14 @@
 import React from 'react/addons';
 import LearningJourneyRow from '../LearningJourneyRow.jsx';
 import {expect} from 'cirrus/testing/utils';
-import dummyActivityData from './stubData/activity.json';
+import {getStub} from './stubData/activity';
 
 describe('LearningJourneyRow', () => {
   var component;
   var testUtils = React.addons.TestUtils;
+  var stubData = getStub()[0];
   beforeEach(function() {
-    component = testUtils.renderIntoDocument(React.createElement(LearningJourneyRow, {activity: dummyActivityData[0]}));
+    component = testUtils.renderIntoDocument(React.createElement(LearningJourneyRow, {activity: stubData}));
   });
 
   it('should render a row with class "plj-table-row"', () => {
@@ -37,7 +38,7 @@ describe('LearningJourneyRow', () => {
   });
 
   it('should return an event object with the correctly formatted data structure', () => {
-    var event = component.assignEvent(dummyActivityData[0].activityUsers[0].event);
+    var event = component.assignEvent(stubData.activityUsers[0].event);
     expect(event).to.contain.all.keys("date", "time", "location");
   });
 
