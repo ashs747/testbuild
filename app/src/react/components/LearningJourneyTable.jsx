@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default class extends React.Component {
+class LearningJourneyTable extends React.Component {
   constructor() {
     super();
   }
 
   render() {
-
+    
     var rows = [1, 2, 3, 4, 5].map(a => {
       return (<tr>
           <td className="row-icon"><i className="fa fa-users"></i></td>
@@ -53,3 +53,5 @@ export default class extends React.Component {
     );
   }
 }
+
+module.exports = LearningJourneyTable;

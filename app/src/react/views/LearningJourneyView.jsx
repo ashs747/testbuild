@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonalLearningJourney from '../components/PersonalLearningJourney.jsx';
+import LearningJourneyTable from '../components/LearningJourneyTable.jsx';
 import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
 export default class extends React.Component {
 
@@ -8,19 +8,17 @@ export default class extends React.Component {
   }
 
   componentWillMount() {
-    //console.log(this.props);
     this.props.dispatch(learningJourneyAction(1416, 1));
   }
 
   render() {
-    console.log(this.props.learningJourneyModules);
-    var learningJournies = this.props.learningJourneyModules.map((journeyModule, idx) => {
+    var learningJournies = this.props.learningJourney.learningJourneyModules.map((journeyModule, i) => {
       return (
         <div>
           <h2>
-            Module {idx + 1}
+            Module {i + 1}
           </h2>
-          <PersonalLearningJourney journeyModule={journeyModule} />
+          <LearningJourneyTable journeyModule={journeyModule} key={i} />
         </div>);
     });
     return (

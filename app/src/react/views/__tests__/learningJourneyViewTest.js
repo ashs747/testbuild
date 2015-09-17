@@ -1,4 +1,4 @@
-import PersonalLearningJourneyView from '../PersonalLearningJourney.jsx';
+import LearningJourneyView from '../LearningJourneyView.jsx';
 import {expect, sinon, getMockReactComponent} from 'cirrus/testing/utils';
 import React from 'react/addons';
 
@@ -6,10 +6,10 @@ describe('Personal Learning Journey View', function() {
 
   var component;
   var testUtils = React.addons.TestUtils;
-  PersonalLearningJourneyView.__Rewire__("PersonalLearningJourney", getMockReactComponent());
+  LearningJourneyView.__Rewire__("LearningJourneyTable", getMockReactComponent());
   beforeEach(function() {
-    component = testUtils.renderIntoDocument(React.createElement(PersonalLearningJourneyView, {
-      learningJourneyModules: [],
+    component = testUtils.renderIntoDocument(React.createElement(LearningJourneyView, {
+      learningJourney: {learningJourneyModules: []},
       dispatch: function() {
       }
     }));
