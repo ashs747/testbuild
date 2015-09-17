@@ -62,11 +62,11 @@ class LearningJourneyRow extends React.Component {
       case 'closed':
         return null;
       case 'open':
-        return <a className="btn btn-primary btn-block btn-grey">Book</a>;
+        return <a className="btn btn-primary btn-block">Book</a>;
       case 'booked':
-        return <a className="btn btn-primary btn-block btn-grey">Change</a>;
+        return <a className="btn btn-primary btn-block">Change</a>;
       case 'completed':
-        return <a className="btn btn-primary btn-block btn-grey">Rate + Log</a>;
+        return <a className="btn btn-primary btn-block">Rate + Log</a>;
       case 'rated':
         return <i className="fa fa-check-circle"></i>;
       case 'missed':
