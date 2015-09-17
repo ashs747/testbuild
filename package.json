@@ -16,7 +16,7 @@
     "browserify": "^11.0.1",
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
-    "cirrus": "https://api.github.com/repos/cirrus-connect/cirrus.js-lib/tarball/v3.2.2?access_token=7706f03d103136de86886e0e532389bbfb81a0d4",
+    "cirrus": "https://api.github.com/repos/cirrus-connect/cirrus.js-lib/tarball/v3.2.3?access_token=7706f03d103136de86886e0e532389bbfb81a0d4",
     "console-shim": "^1.0.3",
     "cookie-cutter": "^0.1.1",
     "es5-shim-sham": "0.0.1",
@@ -38,7 +38,8 @@
     "redux": "^2.0.0",
     "redux-thunk": "^0.1.0",
     "shivie8": "^1.0.0",
-    "xdomain": "^0.7.3"
+    "xdomain": "^0.7.3",
+    "moment-timezone": "^0.4.0"
   },
   "browser": {},
   "browserify-shim": {},
