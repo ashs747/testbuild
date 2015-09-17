@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment-timezone';
 
-class PLJTableRow extends React.Component {
+class LearningJourneyRow extends React.Component {
   constructor() {
     super();
     this.assignIcon = this.assignIcon.bind(this);
@@ -87,4 +87,4 @@ class PLJTableRow extends React.Component {
 
 }
 
-export default PLJTableRow;
+export default LearningJourneyRow;

@@ -1,13 +1,13 @@
 import React from 'react/addons';
-import PLJTableRow from '../PLJTableRow.jsx';
+import LearningJourneyRow from '../LearningJourneyRow.jsx';
 import {expect} from 'cirrus/testing/utils';
 import dummyActivityData from './stubData/activity.json';
 
-describe('PLJTableRow', () => {
+describe('LearningJourneyRow', () => {
   var component;
   var testUtils = React.addons.TestUtils;
   beforeEach(function() {
-    component = testUtils.renderIntoDocument(React.createElement(PLJTableRow, {activity: dummyActivityData[0]}));
+    component = testUtils.renderIntoDocument(React.createElement(LearningJourneyRow, {activity: dummyActivityData[0]}));
   });
 
   it('should render a row with class "plj-table-row"', () => {
