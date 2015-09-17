@@ -28,13 +28,13 @@ describe('LearningJourneyRow', () => {
     expect(statusMissed.type).to.equal("i");
   });
 
-  it('should return a button if status is open, booked or completed', () => {
+  it('should return an anchor if status is open, booked or completed', () => {
     var statusOpen = component.assignStatus("open");
     var statusBooked = component.assignStatus("booked");
     var statusCompleted = component.assignStatus("completed");
-    expect(statusOpen.type).to.equal("button");
-    expect(statusBooked.type).to.equal("button");
-    expect(statusCompleted.type).to.equal("button");
+    expect(statusOpen.type).to.equal("a");
+    expect(statusBooked.type).to.equal("a");
+    expect(statusCompleted.type).to.equal("a");
   });
 
   it('should return an event object with the correctly formatted data structure', () => {

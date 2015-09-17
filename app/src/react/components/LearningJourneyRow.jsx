@@ -12,11 +12,12 @@ class LearningJourneyRow extends React.Component {
     let title = a.name;
     let type = a.properties.type;
     let icon = this.assignIcon(a.properties.type);
-    let status = this.assignStatus(a.activityUsers[0].status);
+    let activityUser = a.activityUsers[0];
+    let status = this.assignStatus(activityUser.status);
     let date, time, location = "n/a";
 
-    if (a.activityUsers[0].event) {
-      let eventObj = this.assignEvent(a.activityUsers[0].event);
+    if (activityUser.event) {
+      let eventObj = this.assignEvent(activityUser.event);
       date = eventObj.date;
       time = eventObj.time;
       location = eventObj.location;
@@ -61,11 +62,11 @@ class LearningJourneyRow extends React.Component {
       case 'closed':
         return null;
       case 'open':
-        return <button className="btn">Book</button>;
+        return <a className="btn btn-primary btn-block btn-grey">Book</a>;
       case 'booked':
-        return <button className="btn">Change</button>;
+        return <a className="btn btn-primary btn-block btn-grey">Change</a>;
       case 'completed':
-        return <button className="btn">Rate + Log</button>;
+        return <a className="btn btn-primary btn-block btn-grey">Rate + Log</a>;
       case 'rated':
         return <i className="fa fa-check-circle"></i>;
       case 'missed':
