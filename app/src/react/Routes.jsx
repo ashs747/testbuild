@@ -2,7 +2,6 @@ import React from 'react';
 import ReactRouter from 'react-router-ie8';
 import {connect} from 'react-redux';
 
-import Main from './components/Main.jsx';
 import MainView from './views/MainView.jsx';
 import LoginView from './views/LoginView.jsx';
 import LearningJourneyView from './views/LearningJourneyView.jsx';

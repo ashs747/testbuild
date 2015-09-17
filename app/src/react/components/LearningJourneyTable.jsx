@@ -6,9 +6,9 @@ class LearningJourneyTable extends React.Component {
   }
 
   render() {
-    
-    var rows = [1, 2, 3, 4, 5].map(a => {
-      return (<tr>
+    var rows = [1, 2, 3, 4, 5].map((a, i) => {
+      return (
+        <tr key={i} >
           <td className="row-icon"><i className="fa fa-users"></i></td>
           <td className="activity">Workshop Title 2nd line if needed</td>
           <td>Workshop</td>
@@ -16,7 +16,8 @@ class LearningJourneyTable extends React.Component {
           <td>08:00-16:30</td>
           <td className="location">City Name ></td>
           <td><a className="btn btn-grey btn-primary btn-block btn-sm">Book</a></td>
-        </tr>);
+        </tr>
+      );
     });
     return (
       <div className="learning-journey-module">

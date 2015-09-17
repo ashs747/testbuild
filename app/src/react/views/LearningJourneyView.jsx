@@ -1,24 +1,23 @@
 import React from 'react';
 import LearningJourneyTable from '../components/LearningJourneyTable.jsx';
 import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
-export default class extends React.Component {
+
+class LearningJourneyView extends React.Component {
 
   constructor() {
     super();
   }
 
   componentWillMount() {
-    this.props.dispatch(learningJourneyAction(1416, 1));
+    this.props.dispatch(learningJourneyAction(1244, 1));
   }
 
   render() {
     var learningJournies = this.props.learningJourney.learningJourneyModules.map((journeyModule, i) => {
       return (
-        <div>
-          <h2>
-            Module {i + 1}
-          </h2>
-          <LearningJourneyTable journeyModule={journeyModule} key={i} />
+        <div key={i}>
+          <h2>Module {i + 1}</h2>
+          <LearningJourneyTable journeyModule={journeyModule} />
         </div>);
     });
     return (
@@ -28,3 +27,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default LearningJourneyView;
