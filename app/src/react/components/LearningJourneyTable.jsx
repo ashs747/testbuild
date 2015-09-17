@@ -55,4 +55,4 @@ class LearningJourneyTable extends React.Component {
   }
 }
 
-module.exports = LearningJourneyTable;
+export default LearningJourneyTable;
