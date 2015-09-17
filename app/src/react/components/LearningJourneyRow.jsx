@@ -23,7 +23,7 @@ class LearningJourneyRow extends React.Component {
       location = eventObj.location;
     }
 
-    if (type === "project") {
+    if (type === "Project") {
       date = `Deadline: ${a.properties.deadline}`;
       time = "n/a";
       location = "Project Page";
@@ -44,13 +44,13 @@ class LearningJourneyRow extends React.Component {
 
   assignIcon(type) {
     switch (type) {
-      case 'workshop':
+      case 'Workshop':
         return 'fa fa-users';
-      case 'webinar':
+      case 'Webinar':
         return 'fa fa-laptop';
-      case 'project':
+      case 'Project':
         return 'fa fa-star';
-      case 'coaching':
+      case 'Coaching':
         return 'fa fa-comments-o';
       default:
         return 'fa fa-users';
