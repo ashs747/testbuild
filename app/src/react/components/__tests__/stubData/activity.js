@@ -1,8 +1,7 @@
 import moment from 'moment-timezone';
 
 export function getStub() {
-  return [
-  {
+  return [{
     "id": 29,
     "name": "Workshop Title 2nd line if needed",
     "description": null,
@@ -56,6 +55,5 @@ export function getStub() {
         }
       }
     ]
-  }
-]
-};
+  }];
+}
