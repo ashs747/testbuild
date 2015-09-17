@@ -1,4 +1,5 @@
 import React from 'react';
+import LearningJourneyRow from './LearningJourneyRow.jsx';
 
 class LearningJourneyTable extends React.Component {
   constructor() {
@@ -6,19 +7,12 @@ class LearningJourneyTable extends React.Component {
   }
 
   render() {
-    var rows = [1, 2, 3, 4, 5].map((a, i) => {
-      return (
-        <tr key={i} >
-          <td className="row-icon"><i className="fa fa-users"></i></td>
-          <td className="activity">Workshop Title 2nd line if needed</td>
-          <td>Workshop</td>
-          <td>Mon 4th oct 2015</td>
-          <td>08:00-16:30</td>
-          <td className="location">City Name ></td>
-          <td><a className="btn btn-grey btn-primary btn-block btn-sm">Book</a></td>
-        </tr>
-      );
-    });
+    let rows = null;
+    if (this.props.journeyModule) {
+      rows = this.props.journeyModule.activities.map((a, i) => {
+        return <LearningJourneyRow key={i} activity={a} />;
+      });
+    }
     return (
       <div className="learning-journey-module">
         <table border-spacing="separate" className="table">
@@ -32,7 +26,7 @@ class LearningJourneyTable extends React.Component {
             </tr>
             <tr className="table-headings">
               <th className="row-icon"></th>
-              <th>LEARNING ACTIVITY</th>
+              <th className="learning-activity">LEARNING ACTIVITY</th>
               <th>TYPE</th>
               <th>DATE</th>
               <th>TIME</th>
@@ -41,7 +35,7 @@ class LearningJourneyTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-              {rows}
+            {rows}
           </tbody>
           <tfoot>
             <tr>

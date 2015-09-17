@@ -15,13 +15,15 @@ class LearningJourneyRow extends React.Component {
     let activityUser = a.activityUsers[0];
     let status = this.assignStatus(activityUser.status);
     let date, time, location = "n/a";
+    let eventObj = {};
 
     if (activityUser.event) {
-      let eventObj = this.assignEvent(activityUser.event);
-      date = eventObj.date;
-      time = eventObj.time;
-      location = eventObj.location;
+      eventObj = this.assignEvent(activityUser.event);
     }
+
+    date = (eventObj.date) ? eventObj.date : "n/a";
+    time = (eventObj.time) ? eventObj.time : "n/a";
+    location = (eventObj.location) ? eventObj.location : "n/a";
 
     if (type === "Project") {
       date = `Deadline: ${a.properties.deadline}`;

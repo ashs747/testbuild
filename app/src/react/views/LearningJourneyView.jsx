@@ -9,7 +9,7 @@ class LearningJourneyView extends React.Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(learningJourneyAction(1244, 1));
+    this.props.dispatch(learningJourneyAction(this.props.auth.currentUser, 1));
   }
 
   render() {

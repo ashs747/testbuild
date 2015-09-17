@@ -10,10 +10,11 @@ class MainView extends React.Component {
   }
 
   render() {
+    let content = (this.props.loggedIn) ? <RouteHandler /> : <p>Loading</p>;
     return (
       <div className="main">
         <div className="container-fluid">
-          <RouteHandler />
+          {content}
         </div>
       </div>
     );
