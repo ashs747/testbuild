@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment-timezone';
 
 class LearningJourneyRow extends React.Component {
   constructor() {
@@ -77,8 +76,8 @@ class LearningJourneyRow extends React.Component {
   }
 
   assignEvent(event) {
-    let date = moment(event.dates[0].dateFrom).format('ddd Do MMM YYYY');
-    let time = `${moment(event.dates[0].dateFrom).format('HH:mm')}-${moment(event.dates[0].dateTo).format('HH:mm')}`;
+    let date = event.dates[0].dateFrom.format('ddd Do MMM YYYY');
+    let time = `${event.dates[0].dateFrom.format('HH:mm')}-${event.dates[0].dateTo.format('HH:mm')}`;
     let location = event.location;
     return {
       date, time, location
