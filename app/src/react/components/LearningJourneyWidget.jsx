@@ -8,9 +8,9 @@ class LearningJourneyWidget extends React.Component {
 
   render() {
     let rows = this.props.journeyModules.map((module, i) => {
-      let currentModule = this.isCurrentModule(module)? 'module-overview current' : 'module-overview';
-      let moduleDatePassed = this.moduleHasPassedDate(module)? 'rank passed-date' : 'rank';
-      let notice = this.hasOutstandingActivities(module)? <div className="notice"><i className="fa fa-exclamation"></i></div> : <div className="notice complete"><i className="fa fa-check"></i></div>;
+      let currentModule = this.isCurrentModule(module) ? 'module-overview current' : 'module-overview';
+      let moduleDatePassed = this.moduleHasPassedDate(module) ? 'rank passed-date' : 'rank';
+      let notice = this.hasOutstandingActivities(module) ? <div className="notice"><i className="fa fa-exclamation"></i></div> : <div className="notice complete"><i className="fa fa-check"></i></div>;
       return (
         <tr key={i} >
           <td className="row-icon"><div className={moduleDatePassed}>{i + 1}</div></td>
@@ -55,13 +55,13 @@ class LearningJourneyWidget extends React.Component {
       var activities = module.activities;
       activities.forEach(activity => {
         var activityUser = activity.activityUsers[0];
-        if(activityUser.status !='rated') {
+        if (activityUser.status != 'rated') {
           status = true;
           return false;
         }
       });
       return status;
-  }
+    }
 }
 
 export default LearningJourneyWidget;

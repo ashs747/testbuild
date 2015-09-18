@@ -5,8 +5,8 @@ export function getStub() {
   let json = {
     "id": 1,
     "name": "Module 1",
-    "startDate": moment("2015-09-01T00:00:00+0000"),
-    "endDate": moment("2015-10-01T00:00:00+0000"),
+    "startDate": moment().subtract(1, 'd'),
+    "endDate": moment().add(1, 'M'),
     "activities": [{
       "id": 24,
       "name": "Coaching Session 1",
