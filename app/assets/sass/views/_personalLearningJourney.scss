@@ -11,14 +11,23 @@
             border-top-right-radius: 5px;
           }
       thead{
+        th {
+          text-align: center;
+        }
         th:first-child{
+          text-align: left;
           border:none;
         }
+        .learning-activity {
+          text-align:left;
+        }
         .title {
+          text-align: left;
           font-weight:bold;
           font-size:14px;
         }
         .sub-title{
+          text-align: left;
           font-weight:normal;
         }
         .table-headings th:nth-child(n+2) {
@@ -69,6 +78,7 @@
         }
       }
       .row-icon {
+        text-align:left;
         position:relative;
         border:none;
 
@@ -96,16 +106,20 @@
           position:relative;
         }
       }
-      td{
-
+      td {
+        text-align:center;
         line-height: 14px;
         vertical-align: middle;
       }
       .activity {
+        text-align:left;
         font-weight:bold;
       }
       .location {
         font-weight:bold;
+      }
+      .status {
+        font-size: 20px;
       }
     }
     tfoot{

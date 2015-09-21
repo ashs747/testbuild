@@ -24,7 +24,7 @@ export function getStub() {
           "description": null,
           "location": "Telephone",
           "properties": [],
-          "dates": [{"id": 3123, "dateFrom": "2015-08-24T08:00:00+0000", "dateTo": "2015-08-24T09:00:00+0000"}]
+          "dates": [{"id": 3123, "dateFrom": moment("2015-08-24T08:00:00+0000"), "dateTo": moment("2015-08-24T09:00:00+0000")}]
         }
       }]
     }, {
@@ -44,7 +44,7 @@ export function getStub() {
           "description": null,
           "location": "Telephone",
           "properties": [],
-          "dates": [{"id": 3125, "dateFrom": "2015-08-31T08:00:00+0000", "dateTo": "2015-08-31T09:00:00+0000"}]
+          "dates": [{"id": 3125, "dateFrom": moment("2015-08-31T08:00:00+0000"), "dateTo": moment("2015-08-31T09:00:00+0000")}]
         }
       }]
     }, {
@@ -64,7 +64,7 @@ export function getStub() {
           "description": null,
           "location": "Telephone",
           "properties": [],
-          "dates": [{"id": 3128, "dateFrom": "2015-09-07T08:00:00+0000", "dateTo": "2015-09-07T09:00:00+0000"}]
+          "dates": [{"id": 3128, "dateFrom": moment("2015-09-07T08:00:00+0000"), "dateTo": moment("2015-09-07T09:00:00+0000")}]
         }
       }]
     }, {

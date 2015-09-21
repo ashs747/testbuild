@@ -11,6 +11,9 @@ describe('Personal Learning Journey View', function() {
     component = testUtils.renderIntoDocument(React.createElement(LearningJourneyView, {
       learningJourney: {learningJourneyModules: []},
       dispatch: function() {
+      },
+      auth: {
+        currentUser: 1
       }
     }));
   });

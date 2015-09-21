@@ -14,7 +14,6 @@ class App extends React.Component {
 
   componentWillMount() {
     store.dispatch(cookieCheckAction());
-    this.checkLoggedInState();
     store.subscribe(this.checkLoggedInState);
     router.run(this.onRouteChange);
   }

@@ -15,18 +15,12 @@ class LearningJourneyRow extends React.Component {
     let activityUser = a.activityUsers[0];
     let status = this.assignStatus(activityUser.status);
     let date, time, location = "n/a";
-
-    if (activityUser.event) {
-      let eventObj = this.assignEvent(activityUser.event);
-      date = eventObj.date;
-      time = eventObj.time;
-      location = eventObj.location;
-    }
+    let eventObj = (activityUser.event) ? this.assignEvent(activityUser.event) : {date: "n/a", time: "n/a", location: ""};
 
     if (type === "Project") {
-      date = `Deadline: ${a.properties.deadline}`;
-      time = "n/a";
-      location = "Project Page";
+      eventObj.date = `Deadline: ${a.properties.deadline}`;
+      eventObj.time = "n/a";
+      eventObj.location = "Project Page";
     }
 
     return (
@@ -34,9 +28,9 @@ class LearningJourneyRow extends React.Component {
         <td className="row-icon"><i className={icon}></i></td>
         <td className="activity">{title}</td>
         <td>{type}</td>
-        <td>{date}</td>
-        <td>{time}</td>
-        <td className="location">{location}</td>
+        <td>{eventObj.date}</td>
+        <td>{eventObj.time}</td>
+        <td className="location">{eventObj.location}</td>
         <td className="status">{status}</td>
       </tr>
     );

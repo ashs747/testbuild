@@ -18,7 +18,8 @@ export function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         loggedIn: true,
         waitingForLogin: false,
-        oauth: action.oauth
+        oauth: action.oauth,
+        currentUser: parseInt(action.oauth.user_id)
       });
     case AUTH_FAIL:
       return Object.assign({}, state, {waitingForLogin: false});
