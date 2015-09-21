@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import MainView from './views/MainView.jsx';
 import LoginView from './views/LoginView.jsx';
 import LearningJourneyView from './views/LearningJourneyView.jsx';
+import ModuleView from './views/ModuleView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -17,6 +18,7 @@ var Routes = (
     </DefaultRoute>
     <Route name="home" path="/" handler={connect((state) => state.auth)(MainView)}>
       <Route name="personal-learning-journey" handler={connect((state) => state)(LearningJourneyView)} />
+      <Route name="module" path="module/:module" handler={connect((state) => state)(ModuleView)} />
     </Route>
     <Route name="login" handler={connect((state) => state)(LoginView)} />
   </Route>
