@@ -1,11 +1,12 @@
 import React from 'react/addons';
-import MembersModuleUserWrapper from '../MembersModuleUserWrapper.jsx';
+import MembersModuleWidget from '../MembersModuleWidget.jsx';
 import {expect} from 'cirrus/testing/utils';
 
-describe('MembersModuleUserWrapper', () => {
+describe('MembersModuleWidget', () => {
 
   var testUtils = React.addons.TestUtils;
   var props = {
+    title: "Test Title",
     users: [{
       image: "test",
       name: "test"
@@ -14,19 +15,24 @@ describe('MembersModuleUserWrapper', () => {
       name: "test"
     }]
   };
-  var element = React.createElement(MembersModuleUserWrapper, props);
+  var element = React.createElement(MembersModuleWidget, props);
   var component;
   var mountedComponent;
 
   beforeEach(function() {
     component = testUtils.renderIntoDocument(element);
-    mountedComponent = React.findDOMNode(component)
+    mountedComponent = React.findDOMNode(component);
   });
 
   afterEach(() => {
     component = null;
     mountedComponent = null;
-  })
+  });
+
+  it('should render a div with className: members-module', () => {
+    var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'members-module');
+    expect(components.length).to.equal(1);
+  });
 
   it('should render a div with className: user-wrapper', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'user-wrapper');
@@ -39,10 +45,13 @@ describe('MembersModuleUserWrapper', () => {
   });
 
   it('should render the wrapper with no children if no users passed', () => {
-    let component = testUtils.renderIntoDocument(React.createElement(MembersModuleUserWrapper));
+    let component = testUtils.renderIntoDocument(React.createElement(MembersModuleWidget));
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'user-display');
     expect(components.length).to.equal(0);
   });
 
-
+  it('should render a title based on a property', () => {
+    var nameSrc = mountedComponent.querySelector('h3').textContent;
+    expect(nameSrc).to.equal("Test Title");
+  });
 });

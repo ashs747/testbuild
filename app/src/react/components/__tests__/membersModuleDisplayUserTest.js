@@ -15,13 +15,13 @@ describe('MembersModuleDisplayUser', () => {
 
   beforeEach(function() {
     component = testUtils.renderIntoDocument(element);
-    mountedComponent = React.findDOMNode(component)
+    mountedComponent = React.findDOMNode(component);
   });
 
   afterEach(() => {
     component = null;
     mountedComponent = null;
-  })
+  });
 
   it('should render a div with className: user-display', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'user-display');
