@@ -35,10 +35,9 @@ describe('LI-A wrapper', () => {
     });
 
     it('Renders a list item and anchor with some text and a URL', () => {
-      expect(mountedComponent.querySelector('a').text).to.equal('AnchorText');
-
       const aHref = mountedComponent.querySelector('a').href;
       expect(aHref).to.equal('http://www.mything.com/#myLink');
+      expect(mountedComponent.querySelector('a').text).to.equal('AnchorText');
     });
 
     // eg: a defensive test
