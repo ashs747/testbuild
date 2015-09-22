@@ -1,10 +1,10 @@
 import React from 'react';
 
 export default class LiAnchor extends React.Component {
-  constuctor() {
-
+  constructor() {
+    super();
   }
-
+  
   render() {
     var subMenu;
     if (this.props.childList) {
