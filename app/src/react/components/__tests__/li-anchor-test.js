@@ -3,7 +3,7 @@ import React from 'react/addons';
 import LiAnchor from '../li-anchor.jsx';
 import {expect, sinon, getMockReactComponent} from 'cirrus/testing/utils';
 
-describe('LI-A wrapper', function(){
+describe('LI-A wrapper', () => {
   var stubProps;
   var component;
   var mountedComponent;
@@ -34,13 +34,12 @@ describe('LI-A wrapper', function(){
       mountedComponent = null;
     });
 
-
     it('Renders a list item and anchor with some text and a URL', () => {
       expect(mountedComponent.querySelector('a').text).to.equal('AnchorText');
 
       const aHref = mountedComponent.querySelector('a').href;
       expect(aHref).to.equal('http://www.mything.com/#myLink');
-     });
+    });
 
     // eg: a defensive test
     it('Does not render a child UL if there is no provided childList', () => {
