@@ -9,7 +9,7 @@ class ActionLearningZone extends React.Component {
     super();
     this.state = {
       users: []
-    }
+    };
   }
 
   componentWillMount() {
