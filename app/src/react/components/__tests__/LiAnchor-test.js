@@ -1,6 +1,6 @@
 // Simple wrapper for a list item with a link - seems we'll use it often enough
 import React from 'react/addons';
-import LiAnchor from '../li-anchor.jsx';
+import LiAnchor from '../LiAnchor.jsx';
 import {expect, sinon, getMockReactComponent} from 'cirrus/testing/utils';
 
 describe('LI-A wrapper', () => {
