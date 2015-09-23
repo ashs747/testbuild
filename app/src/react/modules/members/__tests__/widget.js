@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import MembersModuleWidget from '../MembersModuleWidget.jsx';
+import Widget from '../Widget.jsx';
 import {expect} from 'cirrus/testing/utils';
 
 describe('MembersModuleWidget', () => {
@@ -15,7 +15,7 @@ describe('MembersModuleWidget', () => {
       name: "test"
     }]
   };
-  var element = React.createElement(MembersModuleWidget, props);
+  var element = React.createElement(Widget, props);
   var component;
   var mountedComponent;
 
@@ -45,7 +45,7 @@ describe('MembersModuleWidget', () => {
   });
 
   it('should render the wrapper with no children if no users passed', () => {
-    let component = testUtils.renderIntoDocument(React.createElement(MembersModuleWidget));
+    let component = testUtils.renderIntoDocument(React.createElement(Widget));
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'user-display');
     expect(components.length).to.equal(0);
   });

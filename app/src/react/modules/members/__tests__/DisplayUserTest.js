@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import MembersModuleDisplayUser from '../MembersModuleDisplayUser.jsx';
+import DisplayUser from '../DisplayUser.jsx';
 import {expect} from 'cirrus/testing/utils';
 
 describe('MembersModuleDisplayUser', () => {
@@ -9,7 +9,7 @@ describe('MembersModuleDisplayUser', () => {
     image: "test-image-path",
     name: "Name Here"
   };
-  var element = React.createElement(MembersModuleDisplayUser, props);
+  var element = React.createElement(DisplayUser, props);
   var component;
   var mountedComponent;
 

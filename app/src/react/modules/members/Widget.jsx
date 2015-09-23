@@ -1,8 +1,8 @@
 import React from 'react';
-import DisplayUser from './MembersModuleDisplayUser.jsx';
+import UserDisplay from './UserDisplay.jsx';
 import _ from 'underscore';
 
-class MembersModuleWidget extends React.Component {
+class Widget extends React.Component {
 
   constructor() {
     super();
@@ -12,7 +12,7 @@ class MembersModuleWidget extends React.Component {
     let users = (this.props.users) ? this.props.users.map((user, i) => {
       let profilePics = _.where(user.files, {context: "profile-picture", variation: "original"});
       let profilePicReference = (profilePics.length > 0) ? profilePics[profilePics.length - 1].reference : "";
-      return <DisplayUser key={i} image={profilePicReference} name={`${user.forename} ${user.surname}`}/>;
+      return <UserDisplay key={i} image={profilePicReference} name={`${user.forename} ${user.surname}`} />;
     }) : null;
     return (
       <div className="members-module">
@@ -26,5 +26,5 @@ class MembersModuleWidget extends React.Component {
 
 }
 
-MembersModuleWidget.propTypes = { users: React.PropTypes.array };
-export default MembersModuleWidget;
+Widget.propTypes = { users: React.PropTypes.array };
+export default Widget;

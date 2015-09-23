@@ -1,5 +1,5 @@
 import React from 'react';
-import MembersModuleWidget from '../components/MembersModuleWidget.jsx';
+import MembersModuleWidget from '../modules/members/Widget.jsx';
 import userManager from 'cirrus/services/managers/userManager';
 import _ from 'underscore';
 

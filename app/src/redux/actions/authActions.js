@@ -53,7 +53,7 @@ export function getCookies() {
     access_token: cookie.get('authToken'),
     expires_in: cookie.get('expiresIn'),
     refresh_token: cookie.get('refreshToken'),
-    user_id: cookie.get('userId')
+    user_id: parseInt(cookie.get('userId'))
   };
   /*eslint-enable camelcase */
 }

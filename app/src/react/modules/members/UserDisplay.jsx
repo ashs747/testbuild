@@ -1,6 +1,6 @@
 import React from 'react';
 
-class MembersModuleDisplayUser extends React.Component {
+class UserDisplay extends React.Component {
 
   constructor() {
     super();
@@ -17,4 +17,4 @@ class MembersModuleDisplayUser extends React.Component {
 
 }
 
-export default MembersModuleDisplayUser;
+export default UserDisplay;
