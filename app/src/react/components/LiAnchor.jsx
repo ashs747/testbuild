@@ -6,10 +6,7 @@ export default class LiAnchor extends React.Component {
   }
   
   render() {
-    var subMenu;
-    if (this.props.childList) {
-      subMenu = <ul>{this.props.childList}</ul>;
-    }
+    const subMenu = this.props.childList || '';
 
     return (<li>
       <a href={this.props.url} onClick={this.props.onClick}>{this.props.text}</a>

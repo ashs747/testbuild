@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import LiAnchor from './li-anchor.jsx';
+import LiAnchor from './LiAnchor.jsx';
 
 export default class Header extends React.Component {
   constructor() {
@@ -7,9 +7,15 @@ export default class Header extends React.Component {
   }
 
   render() {
-    var moduleList = this.props.modules.map(function(module, i) {
-      return React.addons.createFragment(<LiAnchor key={'modh' + module.id} url={"/modules/" + module.id} text={module.name} />);
-    });
+    var moduleList = (
+      <ul>
+        {
+          this.props.modules.map((module, i) => {
+            return <LiAnchor key={'modh' + module.id} url={"/modules/" + module.id} text={module.name} />;
+          })
+        }
+      </ul>
+      );
 
     return (<div className="navbar navbar-default">
       <div className="container-fluid">
