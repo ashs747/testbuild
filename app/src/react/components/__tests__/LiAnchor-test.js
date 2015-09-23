@@ -15,12 +15,12 @@ describe('LI-A wrapper', () => {
   };
 
   var myComponent = React.createElement(LiAnchor, stubLiData);
-  var myChildListItem = React.addons.createFragment(myComponent);
+  var myChildList = (<ul><li><a href="/">Woo</a></li></ul>);
 
   const stubLiDataWithChildList = {
     'text': 'AnchorText',
     'url': 'http://www.mything.com/#anotherLink',
-    'childList': [myChildListItem, myChildListItem, myChildListItem]
+    'childList': myChildList,
   };
 
   describe('Without a child list', () => {
@@ -59,7 +59,7 @@ describe('LI-A wrapper', () => {
 
     it('Renders a nested list item if you provide it a component', () => {
       expect(mountedComponent.querySelector('ul')).to.exist;
-      expect(mountedComponent.querySelectorAll('ul li a').length).to.equal(3);
+      expect(mountedComponent.querySelectorAll('ul li a').length).to.equal(1);
     });
   });
 });
