@@ -105,6 +105,5 @@ class Widget extends React.Component {
 
 }
 
-Widget.defaultProps = { resources: data, title: "Resources", doubleColumn: true, order: ["document", "video", "tool", "external"] };
 Widget.propTypes = { resources: React.PropTypes.array, title: React.PropTypes.string };
 export default Widget;
