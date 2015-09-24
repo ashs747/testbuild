@@ -12,7 +12,7 @@ var NotFoundRoute = ReactRouter.NotFoundRoute;
 
 var Routes = (
   <Route handler={ReactRouter.RouteHandler}>
-    <DefaultRoute handler={connect((state) => state.auth)(MainView)}>
+    <DefaultRoute handler={connect((state) => state)(MainView)}>
       <DefaultRoute handler={connect((state) => state)(LearningJourneyView)} />
     </DefaultRoute>
     <Route name="home" path="/" handler={connect((state) => state.auth)(MainView)}>
