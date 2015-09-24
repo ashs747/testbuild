@@ -9,7 +9,7 @@ class Group extends React.Component {
 
   render() {
     let resources = this.props.resources.map((resource, i) => {
-      return <Display key={`resource-${i}`} title={resource.title} reference={resource.reference} icon={resource.type.icon} />
+      return <Display key={`resource-${i}`} title={resource.title} reference={resource.reference} icon={resource.type.icon} />;
     });
     return (
       <div className="resource-group">

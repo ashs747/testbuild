@@ -44,5 +44,4 @@ describe('ResourceDisplay', () => {
     expect(aContent).to.contain("url");
   });
 
-
 });
