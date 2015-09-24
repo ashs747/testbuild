@@ -1,7 +1,6 @@
 import React from 'react';
 import Group from './Group.jsx';
 import _ from 'underscore';
-import data from './resourceStubData.json';
 
 class Widget extends React.Component {
 
