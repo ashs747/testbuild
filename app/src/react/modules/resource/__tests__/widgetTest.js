@@ -8,18 +8,22 @@ describe('ResourceWidget', () => {
   var props = {
     resources: [{
       type: {
-        typeSlug: "video"
+        typeSlug: "video",
+        reference: "a"
       }
     }, {
       type: {
-        typeSlug: "document-pdf"
+        typeSlug: "document-pdf",
+        reference: "b"
       }
     }, {
       type: {
+        reference: "c",
         typeSlug: "tool"
       }
     }, {
       type: {
+        reference: "d",
         typeSlug: "external"
       }
     }]
@@ -66,11 +70,13 @@ describe('ResourceWidget', () => {
     let props = {
       resources: [{
         type: {
-          typeSlug: "document-pdf"
+          typeSlug: "document-pdf",
+          reference: "a"
         }
       }, {
         type: {
-          typeSlug: "document-word"
+          typeSlug: "document-word",
+          reference: "b"
         }
       }]
     };
