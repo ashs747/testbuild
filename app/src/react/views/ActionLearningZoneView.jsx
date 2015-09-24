@@ -3,7 +3,7 @@ import MembersModuleWidget from '../modules/members/Widget.jsx';
 import userManager from 'cirrus/services/managers/userManager';
 import _ from 'underscore';
 
-class ActionLearningZone extends React.Component {
+class ActionLearningZoneView extends React.Component {
 
   constructor() {
     super();
@@ -38,4 +38,4 @@ class ActionLearningZone extends React.Component {
 
 }
 
-export default ActionLearningZone;
+export default ActionLearningZoneView;
