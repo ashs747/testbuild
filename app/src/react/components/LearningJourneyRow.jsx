@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment-timezone';
 
 class LearningJourneyRow extends React.Component {
   constructor() {
@@ -13,9 +14,9 @@ class LearningJourneyRow extends React.Component {
     let type = a.properties.type;
     let icon = this.assignIcon(a.properties.type);
     let activityUser = a.activityUsers[0];
-    let status = this.assignStatus(activityUser);
-    let date, time, location = "n/a";
     let eventObj = (activityUser.event) ? this.assignEvent(activityUser.event) : {date: "n/a", time: "n/a", location: ""};
+    let status = this.assignStatus(activityUser, activityUser.event);
+    let date, time, location = "n/a";
 
     if (type === "Project") {
       eventObj.date = `Deadline: ${a.properties.deadline}`;
@@ -51,14 +52,15 @@ class LearningJourneyRow extends React.Component {
     }
   }
 
-  assignStatus(activityUser) {
+  assignStatus(activityUser, eventObj) {
     switch (activityUser.status) {
       case 'closed':
         return null;
       case 'open':
         return <a className="btn btn-primary btn-block">Book</a>;
       case 'booked':
-        return <a className="btn btn-primary btn-block">Change</a>;
+
+        return this.isAllowedToChange(activityUser, eventObj) ? <a className="btn btn-primary btn-block">Change</a> : null;
       case 'completed':
         return <a className="btn btn-primary btn-block">Rate + Log</a>;
       case 'rated':
@@ -79,6 +81,27 @@ class LearningJourneyRow extends React.Component {
     };
   }
 
-}
+  isAllowedToChange(activityUser, eventObj) {
+    var today = moment();
+    if (activityUser.properties.modifier === undefined) {
+      return true;
+    }
+    if (today.isAfter(eventObj.dates[0].dateFrom)) {
+      return false;
+    }
+    let modifier = activityUser.properties.modifier;
+    let cutOffDate = (() => {
+      switch (modifier.direction) {
+        case 'add' :
+          return eventObj.dates[0].dateFrom.add(modifier.amount, modifier.duration);
+        case 'subtract' :
+          return eventObj.dates[0].dateFrom.subtract(modifier.amount, modifier.duration);
+        default :
+          return eventObj.dates[0].dateFrom.add(modifier.amount, modifier.duration);
+      }
+    })();
+    return today.isBefore(cutOffDate.startOf('day'));
+  }
 
+}
 export default LearningJourneyRow;
