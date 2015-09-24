@@ -6,16 +6,17 @@ $icon-font-path: '/bower_components/bootstrap-sass/assets/fonts/bootstrap/';
 @import "./views/mainView";
 @import "./views/personalLearningJourney";
 @import "./views/loginView";
+@import "./views/moduleView";
 
 @font-face {
-font-family: "FontAwesome";
-src: url("../../bower_components/fontawesome/fonts/fontawesome-webfont.eot");
-src: url("../../bower_components/fontawesome/fonts/fontawesome-webfont.eot") format("embedded-opentype"),
-url("../../bower_components/fontawesome/fonts/fontawesome-webfont.woff") format("woff"),
-url("../../bower_components/fontawesome/fonts/fontawesome-webfont.ttf") format("truetype"),
-url("../../bower_components/fontawesome/fonts/fontawesome-webfont.svg") format("svg");
-font-weight: normal;
-font-style: normal;
+  font-family: "FontAwesome";
+  src: url("../../bower_components/fontawesome/fonts/fontawesome-webfont.eot?#iefix");
+  src: url("../../bower_components/fontawesome/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),
+  url("../../bower_components/fontawesome/fonts/fontawesome-webfont.woff") format("woff"),
+  url("../../bower_components/fontawesome/fonts/fontawesome-webfont.ttf") format("truetype"),
+  url("../../bower_components/fontawesome/fonts/fontawesome-webfont.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
 
 html {
@@ -36,4 +37,8 @@ body {
 
 #app {
   overflow:hidden;
+}
+
+input[type="password"] {
+  font-family: sans-serif !important;
 }

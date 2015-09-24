@@ -12,13 +12,14 @@ class MainView extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     let loggedIn = this.props.auth ? this.props.auth.loggedIn : false;
     let content = (loggedIn) ? <RouteHandler /> : <p>Loading</p>;
     let learningJourneyModules = this.props.learningJourney ? this.props.learningJourney.learningJourneyModules : [];
-    
+
     let moduleList = learningJourneyModules.map((module) => {
       return {
-        name: module.name, 
+        name: module.name,
         id: module.id
       };
     });

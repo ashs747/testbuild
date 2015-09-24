@@ -6,7 +6,8 @@ const initialState = {
   currentUser: null,
   waitingForLogin: false,
   oauth: {},
-  cookieChecked: false
+  cookieChecked: false,
+  user: null
 };
 
 export function reducer(state = initialState, action) {
@@ -19,7 +20,8 @@ export function reducer(state = initialState, action) {
         loggedIn: true,
         waitingForLogin: false,
         oauth: action.oauth,
-        currentUser: parseInt(action.oauth.user_id)
+        currentUser: parseInt(action.oauth.user_id),
+        user: action.oauth.user
       });
     case AUTH_FAIL:
       return Object.assign({}, state, {waitingForLogin: false});
@@ -32,7 +34,8 @@ export function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         loggedIn: false,
         currentUser: null,
-        oauth: {}
+        oauth: {},
+        user: null
       });
     default:
       return state;
