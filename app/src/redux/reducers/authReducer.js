@@ -15,7 +15,7 @@ export function reducer(state = initialState, action) {
     case AUTH:
       switch (action.status) {
         case 'RESOLVED':
-          setCookies(action.payload); // Side-effect (refactor this out... bit of an antiPattern Here)
+          setCookies(action.payload); // FIXME: Side-effect (refactor this out... bit of an antiPattern Here)
           return {
             ...state,
             loggedIn: true,
@@ -44,7 +44,7 @@ export function reducer(state = initialState, action) {
       });
 
     case LOGOUT:
-      eraseCookies(); // Side-effect
+      eraseCookies(); // FIXME: Side-effect
       return Object.assign({}, state, {
         loggedIn: false,
         currentUser: null,

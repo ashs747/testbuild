@@ -37,7 +37,6 @@ class App extends React.Component {
   }
 
   checkLoggedInState() {
-    console.log('State:', store.getState());
     let currentRoutes = router.getCurrentRoutes();
     let activeRouteName;
 

@@ -20,7 +20,7 @@ export function cookieCheckedAction() {
 }
 
 export function cookieCheckAction() {
-  // Rewire
+  // FIXME: Rewire to take advantage of promise middleware
   return (dispatch, getState) => {
     var cData = getCookies();
     if (cData.access_token) {
