@@ -20,5 +20,5 @@ class Group extends React.Component {
   }
 }
 
-Group.propTypes = { resources: React.PropTypes.array };
+Group.propTypes = { resources: React.PropTypes.array, title: React.PropTypes.string };
 export default Group;
