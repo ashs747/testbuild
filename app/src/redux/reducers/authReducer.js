@@ -13,24 +13,38 @@ const initialState = {
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case AUTH:
-      return Object.assign({}, state, {waitingForLogin: true});
-    case AUTH_SUCCESS:
-      setCookies(action.oauth);
-      return Object.assign({}, state, {
-        loggedIn: true,
-        waitingForLogin: false,
-        oauth: action.oauth,
-        currentUser: parseInt(action.oauth.user_id),
-        user: action.oauth.user
-      });
-    case AUTH_FAIL:
-      return Object.assign({}, state, {waitingForLogin: false});
+      switch (action.status) {
+        case 'RESOLVED':
+          setCookies(action.payload); // Side-effect (refactor this out... bit of an antiPattern Here)
+          return {
+            ...state,
+            loggedIn: true,
+            waitingForLogin: false,
+            oauth: action.payload,
+            currentUser: parseInt(action.payload.user_id),
+            user: action.payload.user
+          };
+
+        case 'REJECTED':
+          return {
+            ...state, 
+            waitingForLogin: false
+          };
+
+        default:
+          return {
+            ...state,
+            waitingForLogin: true
+          };
+      }
+
     case COOKIE_CHECKED:
       return Object.assign({}, state, {
         cookieChecked: true
       });
+
     case LOGOUT:
-      eraseCookies();
+      eraseCookies(); // Side-effect
       return Object.assign({}, state, {
         loggedIn: false,
         currentUser: null,
