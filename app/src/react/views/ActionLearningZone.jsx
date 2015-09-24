@@ -10,10 +10,14 @@ class ActionLearningZone extends React.Component {
     this.state = {
       users: []
     };
+    this.getCohortFromLabelId = this.getCohortFromLabelId.bind(this);
   }
 
   componentWillMount() {
-    this.getCohortFromUserId(this.props.currentUser);
+    let label = _.findWhere(this.props.user.labels, {context: "soj-cohort"});
+    if (label) {
+      this.getCohortFromLabelId(label.id);
+    }
   }
 
   render() {
@@ -24,16 +28,11 @@ class ActionLearningZone extends React.Component {
     );
   }
 
-  getCohortFromUserId(id) {
-    userManager.getUserById(id).then((user) => {
-      let label = _.findWhere(user.labels, {context: "soj-cohort"});
-      if (label) {
-        userManager.getUsersByCohort(label.id).then((result) => {
-          this.setState({
-            users: result._embedded.user
-          });
-        });
-      }
+  getCohortFromLabelId(id) {
+    userManager.getUsersByCohort(id).then((result) => {
+      this.setState({
+        users: result._embedded.user
+      });
     });
   }
 
