@@ -1,6 +1,7 @@
 import React from 'react';
 import LearningJourneyTable from '../components/LearningJourneyTable.jsx';
 import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
+import {moduleHubAction} from '../../redux/actions/moduleActions';
 
 class ModuleView extends React.Component {
 
@@ -10,6 +11,7 @@ class ModuleView extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(learningJourneyAction(this.props.auth.currentUser, 1));
+    this.props.dispatch(moduleHubAction('SOJ', 'module', 'resources.type'));
   }
 
   render() {
@@ -22,6 +24,7 @@ class ModuleView extends React.Component {
           </div>);
       }
     });
+    var module = this.props.modules.contentTypeData._embedded ? this.props.modules.contentTypeData._embedded.content_type_data[0] : {title: 'ipsum', 'aboutThisHub': 'ipsum', id: 1};
     return <div className="module-hub">
 
         <div className="heading grey-container">
@@ -31,8 +34,8 @@ class ModuleView extends React.Component {
               </div>
             </div>
             <div className="col-sm-10">
-              <p>Module 3</p>
-              <p>Brave Decision Maker</p>
+              <p>Module {module.id}</p>
+              <p>{module.title}</p>
             </div>
         </div>
       </div>
@@ -40,7 +43,7 @@ class ModuleView extends React.Component {
         <div className="col-sm-8">
           <div className="about-section grey-container">
             <h2>About this module</h2>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Nulla vitae elit libero, a pharetra augue. Donec ullamcorper nulla non metus auctor ue ornare sem lacinia quam venenatis vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+            <p>{module.aboutThisHub}</p>
           </div>
           <h2>Learning Journey</h2>
         <div className="personal-learning-journey">
