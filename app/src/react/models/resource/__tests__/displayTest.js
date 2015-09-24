@@ -6,7 +6,7 @@ describe('ResourceDisplay', () => {
 
   var testUtils = React.addons.TestUtils;
   var props = {
-    icon: "fa-500px",
+    icon: "500px",
     title: "Test Resource Display",
     reference: "url"
   };
