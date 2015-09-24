@@ -40,7 +40,7 @@ export function cookieCheckAction() {
             dispatch(authSuccessAction(Object.assign(cData, {scope: null, token_type: "Bearer", user: user})));
             /*eslint-enable camelcase */
             dispatch(cookieCheckedAction());
-          })
+          });
         })
         .catch((error) => dispatch(cookieCheckedAction()));
     } else {
