@@ -9,11 +9,11 @@ describe('ResourceGroup', () => {
     title: "Title",
     resources: [{
       title: "resource 1",
-      reference: "url here",
+      reference: "http://url1",
       type: {icon: "icon"}
     }, {
       title: "resource 2",
-      reference: "url here",
+      reference: "http://url2",
       type: {icon: "icon"}
     }]
   };
