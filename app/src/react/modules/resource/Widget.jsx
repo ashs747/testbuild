@@ -2,7 +2,7 @@ import React from 'react';
 import Group from './Group.jsx';
 import _ from 'underscore';
 
-class Widget extends React.Component {
+export default class Widget extends React.Component {
 
   propTypes: {
     resources: React.PropTypes.array, 
@@ -108,6 +108,3 @@ class Widget extends React.Component {
   }
 
 }
-
-Widget.propTypes = { resources: React.PropTypes.array, title: React.PropTypes.string };
-export default Widget;
