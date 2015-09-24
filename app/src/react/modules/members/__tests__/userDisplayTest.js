@@ -1,15 +1,15 @@
 import React from 'react/addons';
-import DisplayUser from '../DisplayUser.jsx';
+import UserDisplay from '../UserDisplay.jsx';
 import {expect} from 'cirrus/testing/utils';
 
-describe('MembersModuleDisplayUser', () => {
+describe('MembersModuleUserDisplay', () => {
 
   var testUtils = React.addons.TestUtils;
   var props = {
     image: "test-image-path",
     name: "Name Here"
   };
-  var element = React.createElement(DisplayUser, props);
+  var element = React.createElement(UserDisplay, props);
   var component;
   var mountedComponent;
 
