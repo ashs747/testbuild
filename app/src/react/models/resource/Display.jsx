@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ResourceDisplay extends React.Component {
+class Display extends React.Component {
 
   constructor() {
     super();
@@ -17,4 +17,4 @@ class ResourceDisplay extends React.Component {
 
 }
 
-export default ResourceDisplay;
+export default Display;

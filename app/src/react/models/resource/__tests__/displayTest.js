@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import ResourceDisplay from '../ResourceDisplay.jsx';
+import Display from '../Display.jsx';
 import {expect} from 'cirrus/testing/utils';
 
 describe('ResourceDisplay', () => {
@@ -10,7 +10,7 @@ describe('ResourceDisplay', () => {
     title: "Test Resource Display",
     reference: "url"
   };
-  var element = React.createElement(ResourceDisplay, props);
+  var element = React.createElement(Display, props);
   var component;
   var mountedComponent;
 
