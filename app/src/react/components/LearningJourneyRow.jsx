@@ -13,7 +13,7 @@ class LearningJourneyRow extends React.Component {
     let type = a.properties.type;
     let icon = this.assignIcon(a.properties.type);
     let activityUser = a.activityUsers[0];
-    let status = this.assignStatus(activityUser.status);
+    let status = this.assignStatus(activityUser);
     let date, time, location = "n/a";
     let eventObj = (activityUser.event) ? this.assignEvent(activityUser.event) : {date: "n/a", time: "n/a", location: ""};
 
@@ -51,8 +51,8 @@ class LearningJourneyRow extends React.Component {
     }
   }
 
-  assignStatus(status) {
-    switch (status) {
+  assignStatus(activityUser) {
+    switch (activityUser.status) {
       case 'closed':
         return null;
       case 'open':
