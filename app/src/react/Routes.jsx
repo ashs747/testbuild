@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import MainView from './views/MainView.jsx';
 import LoginView from './views/LoginView.jsx';
 import LearningJourneyView from './views/LearningJourneyView.jsx';
-import ActionLearningZone from './views/ActionLearningZone.jsx';
+import ActionLearningZone from './views/ActionLearningZoneView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
