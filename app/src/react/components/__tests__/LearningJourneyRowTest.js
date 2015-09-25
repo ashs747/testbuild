@@ -22,16 +22,16 @@ describe('LearningJourneyRow', () => {
   });
 
   it('should return a font-awesome italic if status is rated or missed', () => {
-    var statusRated = component.assignStatus("rated");
-    var statusMissed = component.assignStatus("missed");
+    var statusRated = component.assignStatus({status: "rated"});
+    var statusMissed = component.assignStatus({status: "missed"});
     expect(statusRated.type).to.equal("i");
     expect(statusMissed.type).to.equal("i");
   });
 
   it('should return an anchor if status is open, booked or completed', () => {
-    var statusOpen = component.assignStatus("open");
-    var statusBooked = component.assignStatus("booked");
-    var statusCompleted = component.assignStatus("completed");
+    var statusOpen = component.assignStatus({status: "open"});
+    var statusBooked = component.assignStatus({status: "booked", "properties": {"modifier": {"direction": "add", "amount": 7, "duration": "days"}}}, stubData.activityUsers[0].event);
+    var statusCompleted = component.assignStatus({status: "completed"});
     expect(statusOpen.type).to.equal("a");
     expect(statusBooked.type).to.equal("a");
     expect(statusCompleted.type).to.equal("a");
