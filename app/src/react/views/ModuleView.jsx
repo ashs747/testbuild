@@ -26,17 +26,17 @@ class ModuleView extends React.Component {
       }
     });
 
-    if(_.isUndefined(this.props.modules.contentTypeData)) {
+    if (_.isUndefined(this.props.modules.contentTypeData)) {
       throw new Error('No module data present');
     }
     let moduleId = null;
     let moduleTitle = null;
     let aboutThisHub = null;
-    if(this.props.modules.contentTypeData._embedded !== undefined) {
-      var module = _.first(_.filter(this.props.modules.contentTypeData._embedded.content_type_data, function (data){
+    if (this.props.modules.contentTypeData !== undefined) {
+      var module = _.first(_.filter(this.props.modules.contentTypeData, function(data) {
         return data.id == this.props.params.module;
       }.bind(this)));
-      if(module !== undefined) {
+      if (module !== undefined) {
         moduleId = module.id;
         moduleTitle = module.title;
         aboutThisHub = module.aboutThisHub;

@@ -13,11 +13,7 @@ export function moduleHubSuccessAction(modules) {
 
 export function moduleHubAction(context, contextType, embed) {
   return (dispatch, getState) => {
-    try{
     dispatch({type: MODULE_HUB, context, contextType, embed});
-  } catch (e) {
-    console.log(e);
-  }
     moduleManager.getContentTypeData(context, contextType, embed)
       .then((data) => dispatch(moduleHubSuccessAction(data)))
       .catch((error) => dispatch(moduleHubFailAction(error)));

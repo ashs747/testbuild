@@ -12,7 +12,7 @@ export function reducer(state = initialState, action) {
     case MODULE_HUB_SUCCESS:
       return Object.assign({}, state, {
         waitingForModules: false,
-        contentTypeData: action.modules
+        contentTypeData: action.modules._embedded.content_type_data
       });
     case MODULE_HUB_FAIL:
       return Object.assign({}, state, {waitingForModules: false});
