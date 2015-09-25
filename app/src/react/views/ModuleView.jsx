@@ -2,6 +2,7 @@ import React from 'react';
 import LearningJourneyTable from '../components/LearningJourneyTable.jsx';
 import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
 import {moduleHubAction} from '../../redux/actions/moduleActions';
+import _ from 'underscore';
 
 class ModuleView extends React.Component {
 
@@ -24,7 +25,24 @@ class ModuleView extends React.Component {
           </div>);
       }
     });
-    var module = this.props.modules.contentTypeData._embedded ? this.props.modules.contentTypeData._embedded.content_type_data[0] : {title: 'ipsum', 'aboutThisHub': 'ipsum', id: 1};
+
+    if(_.isUndefined(this.props.modules.contentTypeData)) {
+      throw new Error('No module data present');
+    }
+    let moduleId = null;
+    let moduleTitle = null;
+    let aboutThisHub = null;
+    if(this.props.modules.contentTypeData._embedded !== undefined) {
+      var module = _.first(_.filter(this.props.modules.contentTypeData._embedded.content_type_data, function (data){
+        return data.id == this.props.params.module;
+      }.bind(this)));
+      if(module !== undefined) {
+        moduleId = module.id;
+        moduleTitle = module.title;
+        aboutThisHub = module.aboutThisHub;
+      }
+    }
+
     return <div className="module-hub">
 
         <div className="heading grey-container">
@@ -34,8 +52,8 @@ class ModuleView extends React.Component {
               </div>
             </div>
             <div className="col-sm-10">
-              <p>Module {module.id}</p>
-              <p>{module.title}</p>
+              <p>Module {moduleId}</p>
+              <p>{moduleTitle}</p>
             </div>
         </div>
       </div>
@@ -43,7 +61,7 @@ class ModuleView extends React.Component {
         <div className="col-sm-8">
           <div className="about-section grey-container">
             <h2>About this module</h2>
-            <p>{module.aboutThisHub}</p>
+            <p>{aboutThisHub}</p>
           </div>
           <h2>Learning Journey</h2>
         <div className="personal-learning-journey">

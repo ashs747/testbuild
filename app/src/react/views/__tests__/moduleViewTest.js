@@ -10,6 +10,7 @@ describe('Module View', function() {
   beforeEach(function() {
     component = testUtils.renderIntoDocument(React.createElement(ModuleView, {
       params: {module: 1},
+      modules:[],
       learningJourney: {learningJourneyModules: [getStub()]},
       dispatch: function() {
       },
