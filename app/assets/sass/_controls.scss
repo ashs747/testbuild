@@ -7,3 +7,36 @@
     background: darken(#7d7d7d,2%);
   }
 }
+
+.resource-display {
+  font-size: 20px;
+  margin-bottom: 5px;
+  h6 {
+    display:inline;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-weight: bold;
+    text-decoration: underline;
+    a:link, a:visited {
+      color: black;
+    }
+  }
+}
+
+.resource-group {
+  display: block;
+  background-color: #ddd;
+  padding: 1px 15px;
+  margin: 10px 0;
+}
+
+.resource-widget {
+  .title {
+    background-color: #000;
+    color: #fff;
+    h4 {
+      margin: 0;
+      padding: 10px;
+    }
+  }
+}
