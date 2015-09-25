@@ -13,7 +13,7 @@ export function getStub() {
       {
         "id": 11,
         "status": "rated",
-        "properties": [],
+        "properties": {"modifier": {"direction": "add", "amount": 7, "duration": "days"}},
         "token": null,
         "user": {
           "id": 1244,
@@ -48,8 +48,8 @@ export function getStub() {
           "dates": [
             {
               "id": 3132,
-              "dateFrom": moment("2015-10-14T12:00:00+0000"),
-              "dateTo": moment("2015-10-14T13:00:00+0000")
+              "dateFrom": moment().add(1, 'day'),
+              "dateTo": moment().add(1, 'day')
             }
           ]
         }
