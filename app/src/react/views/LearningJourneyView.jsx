@@ -1,6 +1,7 @@
 import React from 'react';
 import LearningJourneyTable from '../components/LearningJourneyTable.jsx';
 import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
+import Widget from '../modules/resource/Widget.jsx';
 
 class LearningJourneyView extends React.Component {
 
@@ -23,6 +24,7 @@ class LearningJourneyView extends React.Component {
     return (
       <div className="personal-learning-journey">
         {learningJournies}
+        <Widget />
       </div>
     );
   }
