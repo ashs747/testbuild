@@ -84,7 +84,7 @@ class LearningJourneyRow extends React.Component {
   isAllowedToChange(activityUser, eventObj) {
     var today = moment();
 
-    if (activityUser.properties && activityUser.properties.modifier  === 'undefined') {
+    if (activityUser.properties && activityUser.properties.modifier === 'undefined') {
       return true;
     }
     if (today.isAfter(eventObj.dates[0].dateFrom)) {
