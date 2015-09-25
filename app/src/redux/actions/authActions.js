@@ -1,4 +1,5 @@
 import authManager from 'cirrus/services/managers/authManager';
+import userManager from 'cirrus/services/managers/userManager';
 import cookie from 'cookie-cutter';
 
 export const AUTH = 'AUTH';
@@ -18,7 +19,6 @@ export function authFailAction(error) {
 export function authAction(username, password, clientId) {
   return (dispatch, getState) => {
     dispatch({type: AUTH, username, password, clientId});
-
     authManager.auth(username, password, clientId)
       .then((data) => dispatch(authSuccessAction(data)))
       .catch((error) => dispatch(authFailAction(error)));
@@ -35,10 +35,12 @@ export function cookieCheckAction() {
     if (cData.access_token) {
       authManager.validateToken(cData.user_id, cData.access_token)
         .then((data) => {
-          /*eslint-disable camelcase */
-          dispatch(authSuccessAction(Object.assign(cData, {scope: null, token_type: "Bearer"})));
-          /*eslint-enable camelcase */
-          dispatch(cookieCheckedAction());
+          userManager.getUserById(cData.user_id).then((user) => {
+            /*eslint-disable camelcase */
+            dispatch(authSuccessAction(Object.assign(cData, {scope: null, token_type: "Bearer", user: user})));
+            /*eslint-enable camelcase */
+            dispatch(cookieCheckedAction());
+          });
         })
         .catch((error) => dispatch(cookieCheckedAction()));
     } else {
@@ -53,7 +55,7 @@ export function getCookies() {
     access_token: cookie.get('authToken'),
     expires_in: cookie.get('expiresIn'),
     refresh_token: cookie.get('refreshToken'),
-    user_id: cookie.get('userId')
+    user_id: parseInt(cookie.get('userId'))
   };
   /*eslint-enable camelcase */
 }

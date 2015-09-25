@@ -1,0 +1,28 @@
+.module-hub{
+  .grey-container{
+    padding:20px;
+    background:#eeeeee;
+    color:black;
+    margin-bottom:20px;
+  }
+  .heading{
+    font-size:36px;
+    font-weight:bold;
+
+    p{
+      margin:0;
+    }
+    .module-icon{
+      border:5px solid black;
+      width:100px;
+      height:100px;
+      border-radius:50%;
+      background-color:black;
+    }
+  }
+  .about-section{
+    padding:80px;
+    text-align:center;
+    font-size:18px;
+  }
+}
