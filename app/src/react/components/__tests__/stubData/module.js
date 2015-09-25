@@ -17,7 +17,7 @@ export function getStub() {
         "id": 2,
         "status": "open",
         "properties": [],
-        "token": "ea398fe0aa0e5774b489372bc7c861ffaead9b31",
+        "token": "ea398fe0aa0e5774b489272bc7c861ffaead9b31",
         "event": {
           "id": 1307,
           "name": "Coaching Session 1",
