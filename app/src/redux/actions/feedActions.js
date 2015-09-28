@@ -1,12 +1,15 @@
 //feedActions
-
 import feedService from '../services/feedService';
 import store from '../store.js';
+
+export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
+export const FEED_UPDATE_MESSAGE = 'FEED_UPDATE_MESSAGE';
+export const FEED_ALLOW_EDIT = 'FEED_ALLOW_EDIT';
 
 export const createMessage = (messageContent) => {
 	let asyncResponse = feedService.postFeedContent(messageContent);
 	return {
-		type: 'FEED_CREATEMESSAGE',
+		type: FEED_CREATE_MESSAGE,
 		payload: asyncResponse;
 	}
 }
