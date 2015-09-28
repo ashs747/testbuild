@@ -8,20 +8,10 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 export const COOKIE_CHECKED = 'COOKIE_CHECKED';
 export const LOGOUT = 'LOGOUT';
 
-export function authSuccessAction(oauth) {
-  return {type: AUTH_SUCCESS, oauth};
-};
-
-export function authFailAction(error) {
-  return {type: AUTH_FAIL, error: error};
-};
-
 export function authAction(username, password, clientId) {
-  return (dispatch, getState) => {
-    dispatch({type: AUTH, username, password, clientId});
-    authManager.auth(username, password, clientId)
-      .then((data) => dispatch(authSuccessAction(data)))
-      .catch((error) => dispatch(authFailAction(error)));
+  return {
+    type: AUTH,
+    payload: authManager.auth(username, password, clientId)
   };
 }
 
@@ -30,6 +20,7 @@ export function cookieCheckedAction() {
 }
 
 export function cookieCheckAction() {
+  // FIXME: Rewire to take advantage of promise middleware
   return (dispatch, getState) => {
     var cData = getCookies();
     if (cData.access_token) {
@@ -37,7 +28,16 @@ export function cookieCheckAction() {
         .then((data) => {
           userManager.getUserById(cData.user_id).then((user) => {
             /*eslint-disable camelcase */
-            dispatch(authSuccessAction(Object.assign(cData, {scope: null, token_type: "Bearer", user: user})));
+            dispatch({
+              type: AUTH,
+              status: "RESOLVED",
+              payload: {
+                ...cData,
+                scope: null,
+                token_type: "Bearer",
+                user: user
+              }
+            });
             /*eslint-enable camelcase */
             dispatch(cookieCheckedAction());
           });
