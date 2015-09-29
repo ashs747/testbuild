@@ -1,5 +1,5 @@
 import React from 'react';
-import LearningJourneyTable from '../components/LearningJourneyTable.jsx';
+import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
 import Widget from '../modules/resource/Widget.jsx';
 

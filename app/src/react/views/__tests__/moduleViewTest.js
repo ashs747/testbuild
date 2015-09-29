@@ -1,7 +1,7 @@
 import ModuleView from '../ModuleView.jsx';
 import {expect, sinon, getMockReactComponent} from 'cirrus/testing/utils';
 import React from 'react/addons';
-import {getStub} from '../../components/__tests__/stubData/module.js';
+import {getStub} from '../../modules/personalLearningJourney/__tests__/stubData/module.js';
 
 describe('Module View', function() {
 
