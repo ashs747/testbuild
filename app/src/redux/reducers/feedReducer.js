@@ -1,6 +1,6 @@
 import {FEED_CREATE_MESSAGE, FEED_ALLOW_EDIT} from '../actions/feedActions';
 
-export const FeedReducer = (state = {}, action) => {
+export const feedReducer = (state = {}, action) => {
 
   function editPayloadMapper(message) {
     if (message.id === action.payload.id) {
