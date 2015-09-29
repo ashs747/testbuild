@@ -19,7 +19,7 @@ import React from 'react';
   Functions
     showFulLString - changes state to fulLString: true. This will cause a render to display the full string rather than a snippet.
     formatContent  - formats a content string, to return a regexed version where web addresses are <a> tags
-    */
+*/
 
 class Comment extends React.Component {
 
