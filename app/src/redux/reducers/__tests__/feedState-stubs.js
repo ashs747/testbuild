@@ -1,4 +1,4 @@
-/* eslint disable */
+/* eslint-disable */
 export const feedStubBasic = {
   Feeds: {
     'programmeFeed1': {
@@ -81,3 +81,4 @@ export const feedStubBasic = {
     }
   }
 }
+/*eslint-enable*/

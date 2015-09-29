@@ -1,9 +1,8 @@
 import {feedStubBasic} from './feedState-stubs';
-import {FeedReducer} from '../feedReducer';
+import {feedReducer} from '../feedReducer';
 import {expect} from 'cirrus/testing/utils';
 
 var exampleState = feedStubBasic;
-
 
 describe("The Feed-Reducer - Message Board State Handler", () => {
   it("Changes a post to Allow-Editable when handling a FEED_ALLOW_EDIT action", () => {
@@ -14,9 +13,9 @@ describe("The Feed-Reducer - Message Board State Handler", () => {
         editing: true,
         id: '0'
       }
-    }
+    };
 
-    let finalState = FeedReducer(exampleState, allowEditAction);
+    let finalState = feedReducer(exampleState, allowEditAction);
     expect(finalState.Feeds.programmeFeed1.messages[0].editing).to.equal(true);
   });
 
@@ -28,9 +27,9 @@ describe("The Feed-Reducer - Message Board State Handler", () => {
         editing: true,
         id: '22'
       }
-    }
+    };
 
-    let finalState = FeedReducer(exampleState, allowEditAction);
+    let finalState = feedReducer(exampleState, allowEditAction);
     expect(finalState.Feeds.programmeFeed1.messages[0].comments[0].editing).to.equal(true);
   });
 

@@ -48,7 +48,6 @@ export const FeedReducer = (state = {}, action) => {
         default:
           // Set loading to true on this feed;
           break;
-
       }
 
       break;
