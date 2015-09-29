@@ -48,5 +48,8 @@
     "transform": [
       "browserify-shim"
     ]
+  },
+  "devDependencies": {
+    "karma-nyan-reporter": "^0.2.2"
   }
 }
