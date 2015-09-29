@@ -23,7 +23,7 @@ export const deleteMessageFromFeed = (feedID, messageID) => {
   let asyncResponse = feedService.deleteFeedContent(messageID);
   return {
     type: 'FEED_DELETE_MESSAGE',
-    feedTarget: feedID,
+    feedID: feedID,
     payload: asyncResponse
   };
 };
@@ -33,7 +33,8 @@ export const setEditable = (feedID, messageID, canEdit) => {
     type: 'FEED_ALLOW_EDIT',
     payload: {
       id: messageID,
-      editable: canEdit
+      editable: canEdit,
+      feedID: feedID
     }
   };
 };
@@ -49,7 +50,8 @@ export const updateMessage = (feedID, messageID, messageContent) => {
     type: 'FEED_UPDATE_MESSAGE',
     payload: {
       id: messageID,
-      content: messageContent
+      content: messageContent,
+      feedID: feedID
     }
   };
 };
