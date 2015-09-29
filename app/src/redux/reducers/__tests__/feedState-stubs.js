@@ -3,10 +3,13 @@ export const feedStubBasic = {
   Feeds: {
     'programmeFeed1': {
       'messages': [{
-        'guid': '0',
+        'id': '0',
         'user': {
-          'name': 'Matt C',
-          'resource': ''
+          'forename': 'Matt',
+          'surname': 'C',
+          'profilePic': {
+            'reference': 'profile-pic.jpg'
+          },
         },
         'textContent': "First Post String",
         'files': [],
@@ -15,20 +18,27 @@ export const feedStubBasic = {
         'expandComments': false,
 
         'comments': [{
-          'guid': '22',
+          'id': '22',
           'user': {
-            'name': 'Matt C',
-            'resource': ''
+            'forename': 'Matt',
+            'surname': 'C',
+            'profilePic': {
+              'reference': 'profile-pic.jpg'
+              } 
             },
           'textContent': "Comment on First Post String",
           'userCanEdit': true,
           'editing': false,
           'expandComments': false,
           }, {
-          'guid': '33',
+          'id': '33',
           'user': {
-            'name': 'Matt T',
-            'resource': ''
+            'forename': 'Matt',
+            'surname': 'T',
+
+            'profilePic': {
+              'reference': 'profile-pic.jpg'
+              } 
             }, 
           'textContent': "Optional String",
           'userCanEdit':false,
@@ -37,10 +47,13 @@ export const feedStubBasic = {
         }],
       },
       {
-        'guid': '1',
+        'id': '1',
         'user': {
-          'name': 'Matt C',
-          'resource': ''
+          'forename': 'Matt',
+          'surname': 'C',
+          'profilePic': {
+            'reference': 'profile-pic.jpg'
+            } 
           },
         'textContent': "Optional String",
         'files': [],
@@ -50,10 +63,13 @@ export const feedStubBasic = {
         'expandComments': false,
       },
       {
-        'guid': '2',
+        'id': '2',
         'user': {
-          'name': 'Matt T',
-          'resource': ''
+          'forename': 'Matt',
+          'surname': 'T',
+          'profilePic': {
+            'reference': 'profile-pic.jpg'
+            } 
         },
         'textContent': "Optional String",
         'files': [],

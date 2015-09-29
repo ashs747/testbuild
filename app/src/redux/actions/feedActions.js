@@ -23,7 +23,6 @@ export const deleteMessageFromFeed = (feedID, messageID) => {
   let asyncResponse = feedService.deleteFeedContent(messageID);
   return {
     type: 'FEED_DELETE_MESSAGE',
-    feedID: feedID,
     payload: asyncResponse
   };
 };
