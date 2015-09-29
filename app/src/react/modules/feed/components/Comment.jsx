@@ -9,8 +9,6 @@ import React from 'react';
     content     - req string (the body of the comment)
     date        - req moment object (the date the message was posted (or updated) in format: HH:mm - DD.MM.YYYY)
     profilePic  - opt string (url of the profile picture)
-    onEdit      - req function (what to do when the edit button is clicked)
-    onDelete    - req function (what to do when the delete button is clicked)
     editable    - opt bool (whether to display a textarea for editing the comment inline when clicking the edit button)
     userCanEdit - opt bool (whether the user can edit or delete the comment)
 
@@ -20,13 +18,17 @@ import React from 'react';
 
   Functions
     showFulLString - changes state to fulLString: true. This will cause a render to display the full string rather than a snippet.
-*/
+    formatContent  - formats a content string, to return a regexed version where web addresses are <a> tags
+    */
 
 class Comment extends React.Component {
 
   constructor() {
     super();
     this.showFullString = this.showFullString.bind(this);
+    this.onEdit = this.onEdit.bind(this);
+    this.onDelete = this.onDelete.bind(this);
+    this.formatContent = this.formatContent.bind(this);
     this.state = {
       fullString: true
     };
@@ -42,23 +44,24 @@ class Comment extends React.Component {
 
   render() {
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let bodyString = <p>{this.props.content}</p>;
+    let bodyString = <p>{this.formatContent(this.props.content)}</p>;
     if (!this.state.fullString) {
       //String is too long, show small one and display see more link to change to fullstring
       let subString = this.props.content.substring(0, 200);
       bodyString = (
         <p>
           {subString}
-          <a className="see-more" onClick={this.showFullString}>See more <i className="fa fa-chevron-right"></i></a>
+          <a className="see-more" onClick={this.showFullString}>... See more <i className="fa fa-chevron-right"></i></a>
         </p>
       );
     }
     let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.content} /> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">
-          <a className="btn" onClick={this.props.onEdit}><i className="fa fa-pencil"></i></a>
-          <a className="btn" onClick={this.props.onDelete}><i className="fa fa-times"></i></a>
+          <a className="btn" onClick={this.onEdit}><i className="fa fa-pencil"></i></a>
+          <a className="btn" onClick={this.onDelete}><i className="fa fa-times"></i></a>
         </div>) : null;
+
     return (
       <div className="comment">
         <div className="header">
@@ -80,6 +83,25 @@ class Comment extends React.Component {
     });
   }
 
+  formatContent(content) {
+    //TODO: REGEX STUFF
+    const regex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+    let result;
+    let indices = [];
+    while (result = regex.exec(content)) {
+      indices.push(result.index);
+    }
+    return content;
+  }
+
+  onEdit() {
+    console.log("edit");
+  }
+
+  onDelete() {
+    console.log("delete");
+  }
+
 }
 
 Comment.propTypes = {
@@ -87,8 +109,6 @@ Comment.propTypes = {
   content: React.PropTypes.string.isRequired,
   date: React.PropTypes.object.isRequired,
   profilePic: React.PropTypes.string,
-  onEdit: React.PropTypes.func.isRequired,
-  onDelete: React.PropTypes.func.isRequired,
   editable: React.PropTypes.bool
 };
 

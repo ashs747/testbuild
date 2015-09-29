@@ -31,7 +31,7 @@ class CommentList extends React.Component {
 
   render() {
     let commentList = this.mapComments(this.props.comments);
-    let displayCommentsLink = (commentList.length > 0) ? <a className="show-comments-link" onClick={this.showComments}>{`Show ${commentList.length} comments`}</a> : null;
+    let displayCommentsLink = (commentList.length > 0) ? <a className="show-comments-link" onClick={this.showComments}>{`Show ${commentList.length} comment${(commentList.length > 1) ? "s" : ""}`}</a> : null;
     let content = (this.state.showComments || this.props.showComments) ? commentList : displayCommentsLink;
     return (
       <div className="comment-list">
@@ -49,7 +49,7 @@ class CommentList extends React.Component {
       let profilePic = comment.user.profilePic.reference;
       let editable = comment.editing;
       let userCanEdit = comment.userCanEdit;
-      return <Comment key={comment.id} name={name} content={name} date={date} profilePic={profilePic} editable={editable} userCanEdit={userCanEdit} />;
+      return <Comment key={comment.id} name={name} content={content} date={date} profilePic={profilePic} editable={editable} userCanEdit={userCanEdit} />;
     });
     return commentList;
   }
