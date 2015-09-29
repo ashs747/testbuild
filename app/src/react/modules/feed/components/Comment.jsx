@@ -1,4 +1,5 @@
 import React from 'react';
+import EditableDiv from '../../../components/EditableDiv';
 
 /**
   Comment Component, used to display a comment (child of a message) on the programme feed
@@ -70,9 +71,7 @@ class Comment extends React.Component {
           <span className="date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
           {editButtons}
         </div>
-        <div className="body">
-          {bodyContent}
-        </div>
+        <editableDiv className="body" editing={isEditing} onChange={this.onEdit} content={bodyContent} />
       </div>
     );
   }
@@ -94,8 +93,8 @@ class Comment extends React.Component {
     return content;
   }
 
-  onEdit() {
-    console.log("edit");
+  onEdit(someContent) {
+    console.log(someContent);
   }
 
   onDelete() {
