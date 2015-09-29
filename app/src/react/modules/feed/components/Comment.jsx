@@ -5,13 +5,14 @@ import React from 'react';
   Dumb component, only accepts and displays props, has no sorting logic
 
   Props:
-    name       - req string (the full name of the user who posted the comment)
-    content    - req string (the body of the comment)
-    date       - req moment object (the date the message was posted (or updated) in format: HH:mm - DD.MM.YYYY)
-    profilePic - opt string (url of the profile picture)
-    onEdit     - req function (what to do when the edit button is clicked)
-    onDelete   - req function (what to do when the delete button is clicked)
-    editable   - opt bool (whether to display a textarea for editing the comment inline when clicking the edit button)
+    name        - req string (the full name of the user who posted the comment)
+    content     - req string (the body of the comment)
+    date        - req moment object (the date the message was posted (or updated) in format: HH:mm - DD.MM.YYYY)
+    profilePic  - opt string (url of the profile picture)
+    onEdit      - req function (what to do when the edit button is clicked)
+    onDelete    - req function (what to do when the delete button is clicked)
+    editable    - opt bool (whether to display a textarea for editing the comment inline when clicking the edit button)
+    userCanEdit - opt bool (whether the user can edit or delete the comment)
 
   Considerations
     1) If the content exceeds a certain length, need to show a 'show more' link to show the rest
@@ -53,14 +54,18 @@ class Comment extends React.Component {
       );
     }
     let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.content} /> : bodyString;
+    let editButtons = (this.props.userCanEdit) ? (
+        <div className="admin-buttons">
+          <a className="btn" onClick={this.props.onEdit}><i className="fa fa-pencil"></i></a>
+          <a className="btn" onClick={this.props.onDelete}><i className="fa fa-times"></i></a>
+        </div>) : null;
     return (
       <div className="comment">
         <div className="header">
           <img src={profilePic} />
           <h6>{this.props.name}</h6>
           <span className="date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
-          <a className="btn" onClick={this.props.onEdit}><i className="fa fa-pencil"></i></a>
-          <a className="btn" onClick={this.props.onDelete}><i className="fa fa-times"></i></a>
+          {editButtons}
         </div>
         <div className="body">
           {bodyContent}
