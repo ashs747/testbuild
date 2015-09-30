@@ -1,4 +1,5 @@
 import React from 'react';
+import CommentList from './CommentList.jsx';
 
 /**
   Message Component, used to display a message (top level post) on the programme feed
@@ -28,14 +29,59 @@ class Message extends React.Component {
 
   constructor() {
     super();
+    this.showFullString = this.showFullString.bind(this);
+    this.state = {
+      fullString: true
+    };
+  }
+
+  componentWillMount() {
+    if (this.props.textContent.length > 200) {
+      this.setState({
+        fullString: false
+      });
+    }
   }
 
   render() {
+    let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
+    let bodyString = <p>{this.props.textContent}</p>;
+    if (!this.state.fullString) {
+      //String is too long, show small one and display see more link to change to fullstring
+      let subString = this.props.textContent.substring(0, 200);
+      bodyString = (
+        <p>
+          {subString}
+          <a className="see-more" onClick={this.showFullString}>... See more <i className="fa fa-chevron-right"></i></a>
+        </p>
+      );
+    }
+    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.textContent} /> : bodyString;
+    let editButtons = (this.props.userCanEdit) ? (
+        <div className="admin-buttons">
+          <a className="btn" onClick={this.onEdit}><i className="fa fa-pencil"></i></a>
+          <a className="btn" onClick={this.onDelete}><i className="fa fa-times"></i></a>
+        </div>) : null;
     return (
       <div className="message">
-        Message
+        <div className="header">
+          <img src={profilePic} />
+          <h6>{this.props.name}</h6>
+          <span className="date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
+          {editButtons}
+        </div>
+        <div className="body">
+          {bodyContent}
+        </div>
+        <CommentList comments={this.props.comments} />
       </div>
     );
+  }
+
+  showFullString() {
+    this.setState({
+      fullString: true
+    });
   }
 
 }
