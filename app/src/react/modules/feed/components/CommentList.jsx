@@ -1,7 +1,10 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
+import Store from '../../../../redux/store.js';
+import {deleteMessageFromFeed, setEditable, saveMessage, updateText} from '../../../../redux/actions/feedActions.js';
 
+var dispatch = Store.dispatch;
 /**
   CommentList Component, used to display a list of comments
   Iterates over a list of Comment components, but contains logic to either display the "show x comments" link
@@ -10,6 +13,7 @@ import Comment from './Comment.jsx';
   Props:
     comments     - req array (list of comments to display in the list)
     showComments - opt bool (show the list of comments straight away)
+    feedId
 
   Considerations
     1) Need a state property which reflects whether to display the list or the "show x comments" link
@@ -30,6 +34,7 @@ class CommentList extends React.Component {
   }
 
   render() {
+    console.log('CommentsList', this.props);
     let commentList = this.mapComments(this.props.comments);
     let displayCommentsLink = (commentList.length > 0) ? <a className="show-comments-link" onClick={this.showComments}>{`Show ${commentList.length} comment${(commentList.length > 1) ? "s" : ""}`}</a> : null;
     let content = (this.state.showComments || this.props.showComments) ? commentList : displayCommentsLink;
@@ -47,9 +52,28 @@ class CommentList extends React.Component {
       let content = comment.textContent;
       let date = moment(comment.date);
       let profilePic = comment.user.profilePic.reference;
-      let editable = comment.editing;
+      let editing = comment.editing;
       let userCanEdit = comment.userCanEdit;
-      return <Comment key={comment.id} name={name} content={content} date={date} profilePic={profilePic} editable={editable} userCanEdit={userCanEdit} />;
+
+      let deleteComment = () => {
+        return dispatch(deleteMessageFromFeed(this.props.feedID, comment.id));
+      };
+
+      let editComment = () => {
+        return dispatch(setEditable(this.props.feedID, comment.id, true));
+      };
+
+      let saveMessage = () => {
+        return dispatch(saveMessage(this.props.feedID, comment.id));
+      };
+
+      let updateComment = (e) => {
+        //e.preventDefault();
+        console.log('eventdata', e);
+        return dispatch(changeText(this.props.feedID, comment.id, e));
+      };
+
+      return <Comment key={comment.id} name={name} content={content} date={date} profilePic={profilePic} editing={editing} userCanEdit={userCanEdit} dispatchDeleteAction={deleteComment} dispatchEditAction={editComment} editCommentAction={updateComment}/>;
     });
     return commentList;
   }
@@ -59,8 +83,12 @@ class CommentList extends React.Component {
       showComments: true
     });
   }
-
 }
 
-CommentList.propTypes = { comments: React.PropTypes.array.isRequired, showComments: React.PropTypes.bool };
+CommentList.propTypes = {
+  comments: React.PropTypes.array.isRequired,
+  feedID: React.PropTypes.string.isRequired,
+  showComments: React.PropTypes.bool
+};
+
 export default CommentList;

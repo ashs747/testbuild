@@ -11,3 +11,7 @@ export function fetchLatestFeedMessages(programmeID, cohortID = 0) {
   let reqURI = `/latest-feed/${programmeID}/${cohortID}`;
   return request.get(reqURI).end();
 }
+
+export function deleteFeedContent() {
+
+};

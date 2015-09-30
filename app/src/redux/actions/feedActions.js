@@ -32,7 +32,7 @@ export const setEditable = (feedID, messageID, canEdit) => {
     type: 'FEED_ALLOW_EDIT',
     payload: {
       id: messageID,
-      editable: canEdit,
+      editing: canEdit,
       feedID: feedID
     }
   };

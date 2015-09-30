@@ -1,7 +1,39 @@
-import {FEED_CREATE_MESSAGE, FEED_ALLOW_EDIT} from '../actions/feedActions';
+import {FEED_CREATE_MESSAGE, FEED_ALLOW_EDIT, FEED_UPDATE} from '../actions/feedActions';
 
-export const feedReducer = (state = {}, action) => {
+var defaultState = {
+  testTwo: {
+    messages: [{
+      id: 0,
+      user: {
+        forename: "Test",
+        surname: "User",
+        profilePic: {
+          reference: "profile-pic"
+        }
+      },
+      textContent: "This is a comment",
+      date: "2015-09-29T09:30:32",
+      editing: false,
+      userCanEdit: true,
+      comments: [{
+        id: 1,
+        user: {
+          forename: "Test",
+          surname: "User",
+          profilePic: {
+            reference: "profile-pic"
+          }
+        },
+        textContent: "This is a comment",
+        date: "2015-09-29T09:30:32",
+        editing: false,
+        userCanEdit: true
+      }]
+    }],
+  }
+};
 
+export const feedReducer = (state = defaultState, action) => {
   function editPayloadMapper(message) {
     if (message.id === action.payload.id) {
       message.editing = action.payload.editing;
@@ -14,9 +46,9 @@ export const feedReducer = (state = {}, action) => {
 
   switch (action.type) {
     case FEED_ALLOW_EDIT:
-      var Feed = state.Feeds[action.payload.feedID];
+      var feed = state[action.payload.feedID];
       var nextState = {...state};
-      nextState.Feeds[action.payload.feedID].messages = Feed.messages.map(editPayloadMapper);
+      nextState[action.payload.feedID].messages = feed.messages.map(editPayloadMapper);
       return nextState;
       break;
 

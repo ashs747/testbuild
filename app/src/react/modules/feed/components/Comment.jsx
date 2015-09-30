@@ -1,6 +1,5 @@
 import React from 'react';
-import EditableDiv from '../../../components/EditableDiv';
-
+import InlineEdit from './InlineEdit.jsx';
 /**
   Comment Component, used to display a comment (child of a message) on the programme feed
   Dumb component, only accepts and displays props, has no sorting logic
@@ -27,9 +26,11 @@ class Comment extends React.Component {
   constructor() {
     super();
     this.showFullString = this.showFullString.bind(this);
-    this.onEdit = this.onEdit.bind(this);
-    this.onDelete = this.onDelete.bind(this);
+    this.onEditClicked = this.onEditClicked.bind(this);
+    this.onDeleteClicked = this.onDeleteClicked.bind(this);
     this.formatContent = this.formatContent.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onSaveComment = this.onSaveComment.bind(this);
     this.state = {
       fullString: true
     };
@@ -56,11 +57,11 @@ class Comment extends React.Component {
         </p>
       );
     }
-    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.content} /> : bodyString;
+    let bodyContent = (this.props.editing) ? <InlineEdit content={this.props.content} save={this.onSaveComment} onChangeHandler={this.onChangeHandler}/> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">
-          <a className="btn" onClick={this.onEdit}><i className="fa fa-pencil"></i></a>
-          <a className="btn" onClick={this.onDelete}><i className="fa fa-times"></i></a>
+          <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
+          <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
 
     return (
@@ -71,7 +72,9 @@ class Comment extends React.Component {
           <span className="date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
           {editButtons}
         </div>
-        <editableDiv className="body" editing={isEditing} onChange={this.onEdit} content={bodyContent} />
+        <div className="body">
+          {bodyContent}
+        </div>
       </div>
     );
   }
@@ -95,14 +98,21 @@ class Comment extends React.Component {
     return content;
   }
 
-  onEdit(someContent) {
-    console.log(someContent);
+  onSaveComment(e) {
+    this.props.dispatchSaveAction(e);
   }
 
-  onDelete() {
-    console.log("delete");
+  onEditClicked(e) {
+    this.props.dispatchEditAction(e);
   }
 
+  onDeleteClicked(e) {
+    this.props.dispatchDeleteAction(e);
+  }
+
+  onChangeHandler(e) {
+    this.props.editCommentAction(e);
+  }
 }
 
 Comment.propTypes = {
@@ -110,7 +120,7 @@ Comment.propTypes = {
   content: React.PropTypes.string.isRequired,
   date: React.PropTypes.object.isRequired,
   profilePic: React.PropTypes.string,
-  editable: React.PropTypes.bool
+  editing: React.PropTypes.bool
 };
 
 export default Comment;
