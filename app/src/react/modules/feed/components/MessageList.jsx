@@ -17,7 +17,6 @@ class MessageList extends React.Component {
 
   constructor() {
     super();
-    this.mapMessages = this.mapMessages.bind(this);
   }
 
   render() {
