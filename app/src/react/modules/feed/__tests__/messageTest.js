@@ -10,7 +10,14 @@ describe('Message', () => {
     name: "Test User",
     textContent: "Here is a message on the feed",
     date: moment('2015-09-29T09:30:32'),
-    profilePic: 'url-of-pic'
+    profilePic: 'url-of-pic',
+    files: [{
+      id: 1,
+      reference: "url-of-image"
+    }, {
+      id: 2,
+      reference: "url-of-image"
+    }]
   };
   var element = React.createElement(Message, props);
   var component;
@@ -84,6 +91,11 @@ describe('Message', () => {
   it('should display a comment list', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'comment-list');
     expect(components.length).to.equal(1);
+  });
+
+  it('should display the images associated with the post', () => {
+    var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'post-image');
+    expect(components.length).to.equal(2);
   });
 
 });

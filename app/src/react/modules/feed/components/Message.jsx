@@ -62,6 +62,9 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEdit}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDelete}><i className="fa fa-times"></i></a>
         </div>) : null;
+    let postImages = this.props.files.map(file => {
+      return <img key={file.id} className="post-image" src={file.reference} />;
+    });
     return (
       <div className="message">
         <div className="header">
@@ -72,6 +75,9 @@ class Message extends React.Component {
         </div>
         <div className="body">
           {bodyContent}
+        </div>
+        <div className="images">
+          {postImages}
         </div>
         <CommentList comments={this.props.comments} />
       </div>
