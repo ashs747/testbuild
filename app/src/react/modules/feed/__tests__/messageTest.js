@@ -8,7 +8,7 @@ describe('Message', () => {
   var testUtils = React.addons.TestUtils;
   var props = {
     name: "Test User",
-    textContent: "Here is a message on the feed",
+    content: "Here is a message on the feed",
     date: moment('2015-09-29T09:30:32'),
     profilePic: 'url-of-pic',
     files: [{
@@ -53,7 +53,7 @@ describe('Message', () => {
     expect(date).to.equal('09:30 - 29.09.2015');
   });
 
-  it('should display the textContent from props', () => {
+  it('should display the content from props', () => {
     var bodyContent = mountedComponent.querySelector('.body p').textContent;
     expect(bodyContent).to.equal("Here is a message on the feed");
   });
@@ -81,7 +81,7 @@ describe('Message', () => {
 
   it('should limit the characters of a message to 200 and show a see-more if it exceeds', () => {
     let updatedProps = props;
-    updatedProps.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in ante volutpat, ultricies nibh nec, fringilla velit. Nunc mattis ut diam eget venenatis. Sed accumsan tortor ac dapibus venenatis. Praesent.";
+    updatedProps.content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in ante volutpat, ultricies nibh nec, fringilla velit. Nunc mattis ut diam eget venenatis. Sed accumsan tortor ac dapibus venenatis. Praesent.";
     updatedProps.editable = false;
     let updatedComponent = testUtils.renderIntoDocument(React.createElement(Message, updatedProps));
     var components = testUtils.scryRenderedDOMComponentsWithClass(updatedComponent, 'see-more');

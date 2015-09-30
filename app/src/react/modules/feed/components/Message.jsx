@@ -7,7 +7,7 @@ import CommentList from './CommentList.jsx';
 
   Props:
     name        - req string (the full name of the user who posted the message)
-    textContent - req string (the body of the message)
+    content     - req string (the body of the message)
     date        - req moment object (the date the message was posted (or updated) in format: HH:mm - DD.MM.YYYY)
     profilePic  - opt string (url of the profile picture)
     files       - opt array (an array of images uploaded with the post to display)
@@ -36,7 +36,7 @@ class Message extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.textContent.length > 200) {
+    if (this.props.content.length > 200) {
       this.setState({
         fullString: false
       });
@@ -45,10 +45,10 @@ class Message extends React.Component {
 
   render() {
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let bodyString = <p>{this.props.textContent}</p>;
+    let bodyString = <p>{this.props.content}</p>;
     if (!this.state.fullString) {
       //String is too long, show small one and display see more link to change to fullstring
-      let subString = this.props.textContent.substring(0, 200);
+      let subString = this.props.content.substring(0, 200);
       bodyString = (
         <p>
           {subString}
@@ -56,7 +56,7 @@ class Message extends React.Component {
         </p>
       );
     }
-    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.textContent} /> : bodyString;
+    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.content} /> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">
           <a className="btn" onClick={this.onEdit}><i className="fa fa-pencil"></i></a>
@@ -99,7 +99,7 @@ Message.defaultProps = {
 
 Message.propTypes = {
   name: React.PropTypes.string.isRequired,
-  textContent: React.PropTypes.string.isRequired,
+  content: React.PropTypes.string.isRequired,
   date: React.PropTypes.object.isRequired,
   profilePic: React.PropTypes.string,
   files: React.PropTypes.array,
