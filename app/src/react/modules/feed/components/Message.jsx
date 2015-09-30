@@ -40,4 +40,19 @@ class Message extends React.Component {
 
 }
 
+Message.defaultProps = {
+  files: [],
+  comments: []
+};
+
+Message.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  textContent: React.PropTypes.string.isRequired,
+  date: React.PropTypes.object.isRequired,
+  profilePic: React.PropTypes.string,
+  files: React.PropTypes.array,
+  comments: React.PropTypes.array,
+  editable: React.PropTypes.bool,
+  userCanEdit: React.PropTypes.bool
+};
 export default Message;
