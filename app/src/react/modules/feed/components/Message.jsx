@@ -22,7 +22,7 @@ import CommentList from './CommentList.jsx';
     4) Should always contain a comment list by default even if it is passed an empty array
 
   Functions
-
+    showFulLString - changes state to fulLString: true. This will cause a render to display the full string rather than a snippet.
 */
 
 class Message extends React.Component {
