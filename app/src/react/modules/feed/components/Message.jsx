@@ -1,4 +1,5 @@
 import React from 'react';
+import CommentList from './CommentList.jsx';
 
 /**
   Message Component, used to display a message (top level post) on the programme feed
@@ -6,7 +7,7 @@ import React from 'react';
 
   Props:
     name        - req string (the full name of the user who posted the message)
-    textContent - req string (the body of the message)
+    content     - req string (the body of the message)
     date        - req moment object (the date the message was posted (or updated) in format: HH:mm - DD.MM.YYYY)
     profilePic  - opt string (url of the profile picture)
     files       - opt array (an array of images uploaded with the post to display)
@@ -21,23 +22,89 @@ import React from 'react';
     4) Should always contain a comment list by default even if it is passed an empty array
 
   Functions
-
+    showFulLString - changes state to fulLString: true. This will cause a render to display the full string rather than a snippet.
 */
 
 class Message extends React.Component {
 
   constructor() {
     super();
+    this.showFullString = this.showFullString.bind(this);
+    this.state = {
+      fullString: true
+    };
+  }
+
+  componentWillMount() {
+    if (this.props.content.length > 200) {
+      this.setState({
+        fullString: false
+      });
+    }
   }
 
   render() {
+    let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
+    let bodyString = <p>{this.props.content}</p>;
+    if (!this.state.fullString) {
+      //String is too long, show small one and display see more link to change to fullstring
+      let subString = this.props.content.substring(0, 200);
+      bodyString = (
+        <p>
+          {subString}
+          <a className="see-more" onClick={this.showFullString}>... See more <i className="fa fa-chevron-right"></i></a>
+        </p>
+      );
+    }
+    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.content} /> : bodyString;
+    let editButtons = (this.props.userCanEdit) ? (
+        <div className="admin-buttons">
+          <a className="btn" onClick={this.onEdit}><i className="fa fa-pencil"></i></a>
+          <a className="btn" onClick={this.onDelete}><i className="fa fa-times"></i></a>
+        </div>) : null;
+    let postImages = this.props.files.map(file => {
+      return <img key={file.id} className="post-image" src={file.reference} />;
+    });
     return (
       <div className="message">
-        Message
+        <div className="header">
+          <img src={profilePic} />
+          <h6>{this.props.name}</h6>
+          <span className="date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
+          {editButtons}
+        </div>
+        <div className="body">
+          {bodyContent}
+        </div>
+        <div className="images">
+          {postImages}
+        </div>
+        <CommentList comments={this.props.comments} />
       </div>
     );
   }
 
+  showFullString() {
+    this.setState({
+      fullString: true
+    });
+  }
+
 }
 
+Message.defaultProps = {
+  files: [],
+  comments: []
+};
+
+Message.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  content: React.PropTypes.string.isRequired,
+  date: React.PropTypes.object.isRequired,
+  profilePic: React.PropTypes.string,
+  files: React.PropTypes.array,
+  comments: React.PropTypes.array,
+  editable: React.PropTypes.bool,
+  userCanEdit: React.PropTypes.bool
+};
 export default Message;
