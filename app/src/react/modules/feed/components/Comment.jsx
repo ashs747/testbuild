@@ -84,6 +84,8 @@ class Comment extends React.Component {
 
   formatContent(content) {
     //TODO: REGEX STUFF
+    // NOTE: (MC) - split this out into a string-split-map-join
+    // Could be useful in other places.
     const regex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
     let result;
     let indices = [];
