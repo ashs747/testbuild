@@ -1,4 +1,4 @@
-import {feedStubBasic} from './feedState-stubs';
+import {feedStubBasic} from './feedStateStubs';
 import {feedReducer} from '../feedReducer';
 import {expect} from 'cirrus/testing/utils';
 
