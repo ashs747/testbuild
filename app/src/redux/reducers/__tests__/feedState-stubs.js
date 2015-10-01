@@ -1,6 +1,5 @@
 /* eslint-disable */
 export const feedStubBasic = {
-  Feeds: {
     'programmeFeed1': {
       'messages': [{
         'id': '0',
@@ -11,12 +10,11 @@ export const feedStubBasic = {
             'reference': 'profile-pic.jpg'
           },
         },
-        'textContent': "First Post String",
+        'content': "First Post String",
         'files': [],
         'userCanEdit': true,
         'editing': false,
         'expandComments': false,
-
         'comments': [{
           'id': '22',
           'user': {
@@ -26,7 +24,7 @@ export const feedStubBasic = {
               'reference': 'profile-pic.jpg'
               } 
             },
-          'textContent': "Comment on First Post String",
+          'content': "Comment on First Post String",
           'userCanEdit': true,
           'editing': false,
           'expandComments': false,
@@ -40,7 +38,7 @@ export const feedStubBasic = {
               'reference': 'profile-pic.jpg'
               } 
             }, 
-          'textContent': "Optional String",
+          'content': "Optional String",
           'userCanEdit':false,
           'editing': false,
           'expandComments': false,
@@ -55,7 +53,7 @@ export const feedStubBasic = {
             'reference': 'profile-pic.jpg'
             } 
           },
-        'textContent': "Optional String",
+        'content': "Optional String",
         'files': [],
         'comments': [],
         'userCanEdit': true,
@@ -71,7 +69,7 @@ export const feedStubBasic = {
             'reference': 'profile-pic.jpg'
             } 
         },
-        'textContent': "Optional String",
+        'content': "Optional String",
         'files': [],
         'comments': [],
         'userCanEdit': true,
@@ -80,5 +78,5 @@ export const feedStubBasic = {
       }]
     }
   }
-}
+
 /*eslint-enable*/

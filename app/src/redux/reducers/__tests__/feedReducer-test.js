@@ -16,7 +16,7 @@ describe("The Feed-Reducer - Message Board State Handler", () => {
     };
 
     let finalState = feedReducer(exampleState, allowEditAction);
-    expect(finalState.Feeds.programmeFeed1.messages[0].editing).to.equal(true);
+    expect(finalState.programmeFeed1.messages[0].editing).to.equal(true);
   });
 
   it("Changes a comment to Allow-Editable when handling a FEED_ALLOW_EDIT action", () => {
@@ -30,14 +30,10 @@ describe("The Feed-Reducer - Message Board State Handler", () => {
     };
 
     let finalState = feedReducer(exampleState, allowEditAction);
-    expect(finalState.Feeds.programmeFeed1.messages[0].comments[0].editing).to.equal(true);
+    expect(finalState.programmeFeed1.messages[0].comments[0].editing).to.equal(true);
   });
 
-  it('Removes a comment from the list after a successful Delete call', () => {
-    let deletePostObjectAction = {
-      type: 'FEED_DELETE_MESSAGE',
-
-    };
+  xit('Removes a comment from the list after a successful Delete call', () => {
   });
 });
 
