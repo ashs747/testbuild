@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
-import Store from '../../../../redux/store.js';
 import {deleteMessageFromFeed, setEditable, saveMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
 
 var dispatch = Store.dispatch;
