@@ -110,8 +110,8 @@ class Comment extends React.Component {
     this.props.dispatchDeleteAction(e);
   }
 
-  onChangeHandler(e) {
-    this.props.editCommentAction(e);
+  onChangeHandler(text) {
+    this.props.editCommentAction(text);
   }
 }
 

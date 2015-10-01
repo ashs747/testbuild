@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
 import Store from '../../../../redux/store.js';
-import {deleteMessageFromFeed, setEditable, saveMessage, updateText} from '../../../../redux/actions/feedActions.js';
+import {deleteMessageFromFeed, setEditable, saveMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
 
 var dispatch = Store.dispatch;
 /**
@@ -49,7 +49,7 @@ class CommentList extends React.Component {
     let commentList = comments.map(comment => {
       let key = comment.id;
       let name = `${comment.user.forename} ${comment.user.surname}`;
-      let content = comment.textContent;
+      let content = comment.content;
       let date = moment(comment.date);
       let profilePic = comment.user.profilePic.reference;
       let editing = comment.editing;
@@ -67,10 +67,8 @@ class CommentList extends React.Component {
         return dispatch(saveMessage(this.props.feedID, comment.id));
       };
 
-      let updateComment = (e) => {
-        //e.preventDefault();
-        console.log('eventdata', e);
-        return dispatch(changeText(this.props.feedID, comment.id, e));
+      let updateComment = (text) => {
+        return dispatch(updateMessage(this.props.feedID, comment.id, text));
       };
 
       return <Comment key={comment.id} name={name} content={content} date={date} profilePic={profilePic} editing={editing} userCanEdit={userCanEdit} dispatchDeleteAction={deleteComment} dispatchEditAction={editComment} editCommentAction={updateComment}/>;

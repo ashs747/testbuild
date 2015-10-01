@@ -7,6 +7,7 @@ export const FEED_UPDATE_MESSAGE = 'FEED_UPDATE_MESSAGE';
 export const FEED_ALLOW_EDIT = 'FEED_ALLOW_EDIT';
 export const FEED_SAVE_MESSAGE = 'FEED_SAVE_MESSAGE';
 export const FEED_DELETE_MESSAGE = 'FEED_DELETE_MESSAGE';
+export const FEED_FETCHED = 'FEED_FETCHED';
 
 export const createMessage = (feedID, messageContent) => {
   let asyncResponse = feedService.postFeedContent(messageContent);
@@ -44,7 +45,7 @@ export const setEditable = (feedID, messageID, canEdit) => {
  */
 
 export const updateMessage = (feedID, messageID, messageContent) => {
-  let asyncResponse = feedService.deleteFeedContent(messageID);
+  //let asyncResponse = feedService.deleteFeedContent(messageID);
   return {
     type: 'FEED_UPDATE_MESSAGE',
     payload: {

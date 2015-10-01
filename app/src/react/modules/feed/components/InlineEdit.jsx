@@ -9,9 +9,24 @@ export default class InlineEdit extends React.Component {
     this.keyHandler = this.keyHandler.bind(this);
   }
 
+  render() {
+    var textAreaStyle;
+    if (this.props.state === 'error') {
+      textAreaStyle = 'warn';
+    }
+
+    return (
+      <form onSubmit={this.onSave} status={this.props.state}>
+        <textarea class={textAreaStyle || ''} rows={3} onKeyUp={this.keyHandler} onChange={this.onChangeHandler}>
+          {this.props.content}
+        </textarea>
+        <button>Save</button>
+      </form>
+    );
+  }
+
   onChangeHandler(e) {
     e.preventDefault();
-    console.log(e);
     this.props.onChangeHandler(e.target.value);
   }
 
@@ -23,24 +38,8 @@ export default class InlineEdit extends React.Component {
   keyHandler(e) {
     var keyPressed = e.which || e.keyCode;
     if (keyPressed == '13') {
+      console.warn('Enter Clicked');
       this.onSave(e);
     }
-  }
-
-  render() {
-    var textAreaStyle;
-    if (this.props.state === 'error') {
-      textAreaStyle = 'warn';
-    }
-
-    return (
-      <form onSubmit={this.onSave} status={this.props.state}>
-        <textarea class={textAreaStyle || ''} rows={3}  onKeyUp={this.keyHandler} onChange={this.onChangeHandler}>
-          {this.props.content}
-        </textarea>
-        <button>Save</button>
-        <button>Cancel</button>
-      </form>
-    );
   }
 }
