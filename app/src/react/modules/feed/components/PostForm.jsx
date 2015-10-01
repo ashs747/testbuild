@@ -18,6 +18,8 @@ class PostForm extends React.Component {
 
   constructor() {
     super();
+    this.onChange = this.onChange.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   render() {
@@ -35,13 +37,23 @@ class PostForm extends React.Component {
           <img src={profilePic} />
         </div>
         <div className="message">
-          <TextArea placeholder="What's happening?" onChange={this.props.onChange} />
+          <TextArea placeholder="What's happening?" onChange={this.onChange} />
         </div>
         <div className="post">
-          <a className="btn" onClick={this.props.onSave}>Post</a>
+          <a className="btn" onClick={this.onSave}>Post</a>
         </div>
       </div>
     );
+  }
+
+  onChange(e) {
+   e.preventDefault ? e.preventDefault() : e.returnValue = false;
+   this.props.onChange(e.target.value);
+  }
+
+  onSave() {
+    //Any saving logic goes here
+    this.props.onSave();
   }
 
 }
