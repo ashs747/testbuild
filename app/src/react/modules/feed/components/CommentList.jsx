@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
 import {deleteMessageFromFeed, setEditable, saveMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
+import Store from '../../../../redux/store';
+var dispatch = Store.dispatch;
 
 /**
   CommentList Component, used to display a list of comments
