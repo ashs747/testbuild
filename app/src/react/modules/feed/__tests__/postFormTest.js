@@ -69,6 +69,4 @@ describe('PostForm', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(updatedComponent, 'embed-video');
     expect(components.length).to.equal(0);
   });
-
-
 });
