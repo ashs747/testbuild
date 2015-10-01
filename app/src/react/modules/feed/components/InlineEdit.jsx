@@ -17,7 +17,7 @@ export default class InlineEdit extends React.Component {
 
     return (
       <form onSubmit={this.onSave} status={this.props.state}>
-        <textarea class={textAreaStyle || ''} rows={3} onKeyUp={this.keyHandler} onChange={this.onChangeHandler}>
+        <textarea className={textAreaStyle || ''} rows={3} onKeyUp={this.keyHandler} onChange={this.onChangeHandler}>
           {this.props.content}
         </textarea>
         <button>Save</button>
