@@ -45,7 +45,6 @@ export const setEditable = (feedID, messageID, canEdit) => {
  */
 
 export const updateMessage = (feedID, messageID, messageContent) => {
-  //let asyncResponse = feedService.deleteFeedContent(messageID);
   return {
     type: 'FEED_UPDATE_MESSAGE',
     payload: {
