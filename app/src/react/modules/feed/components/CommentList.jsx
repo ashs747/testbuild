@@ -12,7 +12,7 @@ var dispatch = Store.dispatch;
   Props:
     comments     - req array (list of comments to display in the list)
     showComments - opt bool (show the list of comments straight away)
-    feedId
+    feedId - the identifier of the host feed
 
   Considerations
     1) Need a state property which reflects whether to display the list or the "show x comments" link
