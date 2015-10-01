@@ -2,7 +2,7 @@ import React from 'react';
 import TextArea from 'react-textarea-autosize';
 
 /**
-  PostForm Component, posts a message to a programme feed
+  PostForm Component, posts a message (or a comment) to a programme feed
   Dumb component, accepts a bunch of event handlers to pass onto child components and invoke itself
 
   Props:
@@ -20,6 +20,8 @@ class PostForm extends React.Component {
     super();
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onUploadMedia = this.onUploadMedia.bind(this);
+    this.onEmbedVideo = this.onEmbedVideo.bind(this);
   }
 
   render() {
@@ -27,10 +29,14 @@ class PostForm extends React.Component {
       this.props.attachments.map(attachment => {
         return <Attachment props=props />
       });
-      <UploadMedia onUpload={this.props.onUploadMedia} />
-      <EmbedVideo onEmbedVideo={this.props.onEmbedVideo} />
     */
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
+    let uploadMedia = (this.props.onUploadMedia) ? (
+      <a className="btn upload-media" onClick={this.onUploadMedia} ><i className="fa fa-picture-o"> Upload Media/Video</i></a>
+    ) : null;
+    let embedVideo = (this.props.onEmbedVideo) ? (
+      <a className="btn embed-video" onClick={this.onEmbedVideo} ><i className="fa fa-video-camera"> Embed Youtube/Vimeo</i></a>
+    ) : null;
     return (
       <div className="post-form">
         <div className="profile">
@@ -38,6 +44,10 @@ class PostForm extends React.Component {
         </div>
         <div className="message">
           <TextArea placeholder="What's happening?" onChange={this.onChange} />
+        </div>
+        <div className="buttons">
+          {uploadMedia}
+          {embedVideo}
         </div>
         <div className="post">
           <a className="btn" onClick={this.onSave}>Post</a>
@@ -47,13 +57,20 @@ class PostForm extends React.Component {
   }
 
   onChange(e) {
-   e.preventDefault ? e.preventDefault() : e.returnValue = false;
-   this.props.onChange(e.target.value);
+    e.preventDefault ? e.preventDefault() : e.returnValue = false;
+    this.props.onChange(e.target.value);
   }
 
   onSave() {
-    //Any saving logic goes here
     this.props.onSave();
+  }
+
+  onUploadMedia() {
+    this.props.onUploadMedia();
+  }
+
+  onEmbedVideo() {
+    this.props.onEmbedVideo();
   }
 
 }
@@ -63,7 +80,7 @@ PostForm.propTypes = {
   attachments: React.PropTypes.array,
   onSave: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
-  onUploadMedia: React.PropTypes.func.isRequired,
-  onEmbedVideo: React.PropTypes.func.isRequired
+  onUploadMedia: React.PropTypes.func,
+  onEmbedVideo: React.PropTypes.func
 };
 export default PostForm;
