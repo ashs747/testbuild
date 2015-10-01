@@ -3,7 +3,6 @@ import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
 import {deleteMessageFromFeed, setEditable, saveMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
 
-var dispatch = Store.dispatch;
 /**
   CommentList Component, used to display a list of comments
   Iterates over a list of Comment components, but contains logic to either display the "show x comments" link
