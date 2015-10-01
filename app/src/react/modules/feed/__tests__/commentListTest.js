@@ -2,7 +2,6 @@ import React from 'react/addons';
 import CommentList from '../components/CommentList.jsx';
 import {expect, sinon} from 'cirrus/testing/utils';
 
-
 describe('CommentList', () => {
 
   var testUtils = React.addons.TestUtils;
