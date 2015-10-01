@@ -49,11 +49,17 @@ export const feedReducer = (state = defaultState, action) => {
   };
 
   switch (action.type) {
-    case FEED_ALLOW_EDIT || FEED_UPDATE_MESSAGE:
+    case FEED_ALLOW_EDIT:
       var feed = state[action.payload.feedID];
       var nextState = {...state};
-      var fieldName = (action.payload.content) ? 'content' : 'editing';
-      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName(fieldName));
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
+      return nextState;
+      break;
+      
+    case FEED_UPDATE_MESSAGE:
+      var feed = state[action.payload.feedID];
+      var nextState = {...state};
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content'));
       return nextState;
       break;
 
