@@ -2,8 +2,6 @@ import React from 'react/addons';
 import CommentList from '../components/CommentList.jsx';
 import {expect, sinon} from 'cirrus/testing/utils';
 
-var dispatchSpy = sinon.spy();
-var testGetter = CommentList.__get__('dispatch');
 
 describe('CommentList', () => {
 
