@@ -17,7 +17,8 @@ module.exports = function(config) {
         watched: false,
         included: true,
         served: true
-      }
+      },
+      'app/bower_components/plupload/js/plupload.full.min.js'
     ],
 
     // list of files to exclude
