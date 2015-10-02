@@ -62,14 +62,6 @@ describe('Comment', () => {
     expect(profilePic).to.contain("assets/img/profile-placeholder.jpg");
   });
 
-  it('should display a textarea if the editable property is true', () => {
-    let updatedProps = props;
-    updatedProps.editable = true;
-    let updatedComponent = testUtils.renderIntoDocument(React.createElement(Comment, updatedProps));
-    var components = testUtils.scryRenderedDOMComponentsWithTag(updatedComponent, 'textarea');
-    expect(components.length).to.equal(1);
-  });
-
   it('should limit the characters of a message to 200 and show a see-more if it exceeds', () => {
     let updatedProps = props;
     updatedProps.content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in ante volutpat, ultricies nibh nec, fringilla velit. Nunc mattis ut diam eget venenatis. Sed accumsan tortor ac dapibus venenatis. Praesent.";

@@ -46,9 +46,9 @@ class App extends React.Component {
 
     if (store.getState().auth.cookieChecked) {
       if (!store.getState().auth.loggedIn) {
-        router.transitionTo('login');
+        //router.transitionTo('login');
       } else if (store.getState().auth.loggedIn && activeRouteName == 'login') {
-        router.transitionTo('/');
+       // router.transitionTo('/');
       }
     }
   }

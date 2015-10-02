@@ -1,6 +1,9 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
+import {deleteMessageFromFeed, setEditable, saveMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
+import Store from '../../../../redux/store';
+var dispatch = Store.dispatch;
 
 /**
   CommentList Component, used to display a list of comments
@@ -10,6 +13,7 @@ import Comment from './Comment.jsx';
   Props:
     comments     - req array (list of comments to display in the list)
     showComments - opt bool (show the list of comments straight away)
+    feedId - the identifier of the host feed
 
   Considerations
     1) Need a state property which reflects whether to display the list or the "show x comments" link
@@ -44,12 +48,29 @@ class CommentList extends React.Component {
     let commentList = comments.map(comment => {
       let key = comment.id;
       let name = `${comment.user.forename} ${comment.user.surname}`;
-      let content = comment.textContent;
+      let content = comment.content;
       let date = moment(comment.date);
       let profilePic = comment.user.profilePic.reference;
-      let editable = comment.editing;
+      let editing = comment.editing;
       let userCanEdit = comment.userCanEdit;
-      return <Comment key={comment.id} name={name} content={content} date={date} profilePic={profilePic} editable={editable} userCanEdit={userCanEdit} />;
+
+      let deleteComment = () => {
+        return dispatch(deleteMessageFromFeed(this.props.feedID, comment.id));
+      };
+
+      let editComment = () => {
+        return dispatch(setEditable(this.props.feedID, comment.id, true));
+      };
+
+      let saveMessage = () => {
+        return dispatch(saveMessage(this.props.feedID, comment.id));
+      };
+
+      let updateComment = (text) => {
+        return dispatch(updateMessage(this.props.feedID, comment.id, text));
+      };
+
+      return <Comment key={comment.id} name={name} content={content} date={date} profilePic={profilePic} editing={editing} userCanEdit={userCanEdit} dispatchDeleteAction={deleteComment} dispatchEditAction={editComment} editCommentAction={updateComment}/>;
     });
     return commentList;
   }
@@ -59,8 +80,12 @@ class CommentList extends React.Component {
       showComments: true
     });
   }
-
 }
 
-CommentList.propTypes = { comments: React.PropTypes.array.isRequired, showComments: React.PropTypes.bool };
+CommentList.propTypes = {
+  comments: React.PropTypes.array.isRequired,
+  feedID: React.PropTypes.string.isRequired,
+  showComments: React.PropTypes.bool
+};
+
 export default CommentList;

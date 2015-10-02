@@ -1,6 +1,6 @@
 import React from 'react/addons';
 import CommentList from '../components/CommentList.jsx';
-import {expect} from 'cirrus/testing/utils';
+import {expect, sinon} from 'cirrus/testing/utils';
 
 describe('CommentList', () => {
 
@@ -32,7 +32,7 @@ describe('CommentList', () => {
     editing: false,
     userCanEdit: false
   }];
-  var props = {comments: comments};
+  var props = {feedID: 'testFeed', comments: comments};
   var element = React.createElement(CommentList, props);
   var component;
   var mountedComponent;
@@ -63,20 +63,22 @@ describe('CommentList', () => {
   });
 
   it('should display an a tag which says "Show 1 comment" if 1 object is in the comment list', () => {
-    let updatedComponent = testUtils.renderIntoDocument(React.createElement(CommentList, {comments: [{
-      id: 1,
-      user: {
-        forename: "Test",
-        surname: "User",
-        profilePic: {
-          reference: "profile-pic"
-        }
-      },
-      textContent: "This is a comment",
-      date: "2015-09-29T09:30:32",
-      editing: false,
-      userCanEdit: false
-    }]}));
+    let updatedComponent = testUtils.renderIntoDocument(React.createElement(CommentList, {
+      feedID: 'testTwo',
+      comments: [{
+        id: 1,
+        user: {
+          forename: "Test",
+          surname: "User",
+          profilePic: {
+            reference: "profile-pic"
+          }
+        },
+        textContent: "This is a comment",
+        date: "2015-09-29T09:30:32",
+        editing: false,
+        userCanEdit: false
+      }]}));
     let renderedComponent = React.findDOMNode(updatedComponent);
     var showComments = renderedComponent.querySelector('.show-comments-link').textContent;
     expect(showComments).to.equal("Show 1 comment");
@@ -88,9 +90,15 @@ describe('CommentList', () => {
   });
 
   it('shouldn\'t display anything if there are no comments', () => {
-    let updatedComponent = testUtils.renderIntoDocument(React.createElement(CommentList, {comments: []}));
+    let updatedComponent = testUtils.renderIntoDocument(React.createElement(CommentList, {feedID: 'a', comments: []}));
     let renderedComponent = React.findDOMNode(updatedComponent);
     expect(renderedComponent.children.length).to.equal(0);
+  });
+
+  describe('Action wrapping', () => {
+    beforeEach(() => {
+
+    });
   });
 
 });
