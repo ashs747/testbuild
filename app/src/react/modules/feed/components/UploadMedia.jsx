@@ -1,9 +1,12 @@
 import React from 'react';
+import {addFile} from '../../../../redux/actions/feedActions';
+import {dispatch} from '../../../../redux/store';
 
 class UploadMedia extends React.Component {
 
   constructor() {
     super();
+    this.onFileUploaded = this.onFileUploaded.bind(this);
     this.onFilesAdded = this.onFilesAdded.bind(this);
   }
 
@@ -22,7 +25,7 @@ class UploadMedia extends React.Component {
     //The function to fire when the file has been added to the queue
     this.plup.bind('FilesAdded', this.onFilesAdded);
     //The function to fire when a single file has been upload
-    this.plup.bind('FileUploaded', this.onUploaded);
+    this.plup.bind('FileUploaded', this.onFileUploaded);
     //The function to fire when an error occurs
     this.plup.bind('Error', this.onError);
   }
@@ -37,22 +40,19 @@ class UploadMedia extends React.Component {
 
   onFilesAdded(up, file) {
     this.plup.start();
-    console.log("File added", up, file);
   }
 
-  onUploaded(up, file, data) {
-    console.log((data.response));
-
-    //let fileRef =
-    //messageUploadAction(fileRef, status = SUCCESS)
+  onFileUploaded(up, file, data) {
+    let response = JSON.parse(data.response);
+    dispatch(addFile(response, {medium: {width: 400}}, this.props.feedId));
   }
 
   onError(up, args) {
-    //Error handling logic needs to go here, reducer time?
-    console.log('Error', args);
-    //messageUploadAction(fileRef, status = FAIL)
+    dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
   }
-
 }
+UploadMedia.propTypes = {
+  feedId: React.PropTypes.string.isRequired
+};
 
 export default UploadMedia;

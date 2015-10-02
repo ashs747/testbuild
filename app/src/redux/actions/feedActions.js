@@ -1,5 +1,6 @@
 //feedActions
 import feedService from '../services/feedService';
+import {generateVariations} from '../services/uploadService';
 import store from '../store.js';
 
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
@@ -66,4 +67,17 @@ export const saveUpdatedMessage = (feedID, messageID) => {
   //  type: 'FEED_SAVE_MESSAGE',
   //  payload: asyncResponse
   //}
+};
+
+export const addFile = (file, variationObj, feedId) => {
+  let payload = generateVariations(file.optimisedName, variationObj).then((response) => {
+    return {
+      item: response[0],
+      feedId
+    };
+  });
+  return {
+    type: 'FEED_ADD_FILE',
+    payload
+  };
 };
