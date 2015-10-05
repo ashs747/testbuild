@@ -21,7 +21,7 @@ var Routes = (
       <Route name="personal-learning-journey" handler={connect((state) => state)(LearningJourneyView)} />
       <Route name="module" path="module/:module" handler={connect((state) => state)(ModuleView)} />
       <Route name="action-learning-zone" handler={ActionLearningZone} />
-      </Route>
+    </Route>
     <Route name="login" handler={connect((state) => state)(LoginView)} />
   </Route>
 );

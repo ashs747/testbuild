@@ -13,7 +13,6 @@ var dispatch = Store.dispatch;
 
   Considerations
     n/a
-
 */
 
 class MessageList extends React.Component {

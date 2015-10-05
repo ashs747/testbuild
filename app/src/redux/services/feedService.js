@@ -7,6 +7,7 @@ export function getFeedMessages(programmeID, cohortID = 0, qty = 25) {
     id: "testTwo",
     messages: [{
       id: 0,
+      userCanEdit: true,
       user: {
         forename: "Test",
         surname: "User",
@@ -18,6 +19,7 @@ export function getFeedMessages(programmeID, cohortID = 0, qty = 25) {
       date: "2015-09-29T09:30:32",
       comments: [{
         id: 1,
+        userCanEdit: true,
         user: {
           forename: "Test",
           surname: "User",
