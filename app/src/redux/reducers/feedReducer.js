@@ -30,12 +30,13 @@ var defaultState = {
         userCanEdit: true
       }]
     }],
+    files: []
   }
 };
 
 export const feedReducer = (state = defaultState, action) => {
   var feed, nextState;
-  
+
   function updateMatchedByFieldName(fieldName) {
     return function updateThisMessage(message) {
       if (message.id === action.payload.id) {
@@ -52,14 +53,14 @@ export const feedReducer = (state = defaultState, action) => {
   switch (action.type) {
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
-      nextState = {...state};
+      nextState = Object.assign({}, ...state);
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
       return nextState;
       break;
-      
+
     case FEED_UPDATE_MESSAGE:
       feed = state[action.payload.feedID];
-      nextState = {...state};
+      nextState = Object.assign({}, ...state);
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content'));
       return nextState;
       break;
@@ -74,6 +75,44 @@ export const feedReducer = (state = defaultState, action) => {
           break;
         default:
 
+          break;
+      }
+      break;
+
+    case "FEED_ADD_FILE":
+      console.log(action);
+      switch (action.status) {
+        //TODO: change the localhost
+        case 'RESOLVED':
+          nextState = state;
+          let variation = action.payload.item;
+          variation.folder = "message-board";
+          variation.context = "message-board";
+          variation.status = "active";
+          variation.previewUrl = `http://localhost:8888${variation.previewUrl}`;
+          let file = {
+            reference: variation.original,
+            folder: "message-board",
+            variation: "original",
+            context: "message-board",
+            status: "active",
+            mimeType: variation.mimeType,
+            variations: [
+              variation
+            ]
+          };
+          var nextFeed = nextState[action.payload.feedId];
+          nextFeed.files.push(file);
+          return nextState;
+          break;
+        case 'REJECTED':
+          //some kind of error handling
+          console.log('called');
+          return state;
+          break;
+        default:
+          return state;
+          //show a loader
           break;
       }
       break;
