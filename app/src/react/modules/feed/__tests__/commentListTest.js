@@ -89,10 +89,13 @@ describe('CommentList', () => {
     expect(components.length).to.equal(0);
   });
 
-  it('shouldn\'t display anything if there are no comments', () => {
+  it('should display only a reply-form if there are no comments', () => {
     let updatedComponent = testUtils.renderIntoDocument(React.createElement(CommentList, {feedID: 'a', comments: []}));
     let renderedComponent = React.findDOMNode(updatedComponent);
-    expect(renderedComponent.children.length).to.equal(0);
+    
+    let commentLink = testUtils.scryRenderedDOMComponentsWithClass(updatedComponent, '.show-comments-link');
+    expect(commentLink.length).to.equal(0);
+    expect(renderedComponent.children.length).to.equal(1);
   });
 
   describe('Action wrapping', () => {
