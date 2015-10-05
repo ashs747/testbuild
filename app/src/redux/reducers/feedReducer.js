@@ -1,39 +1,6 @@
 import {FEED_CREATE_MESSAGE, FEED_ALLOW_EDIT, FEED_UPDATE_MESSAGE} from '../actions/feedActions';
 
-var defaultState = {
-  testTwo: {
-    id: "testTwo",
-    messages: [{
-      id: 0,
-      user: {
-        forename: "Test",
-        surname: "User",
-        profilePic: {
-          reference: "profile-pic"
-        }
-      },
-      content: "This is a message",
-      date: "2015-09-29T09:30:32",
-      editing: false,
-      userCanEdit: true,
-      comments: [{
-        id: 1,
-        user: {
-          forename: "Test",
-          surname: "User",
-          profilePic: {
-            reference: "profile-pic"
-          }
-        },
-        content: "This is a comment www.google.com http://www.google.com",
-        date: "2015-09-29T09:30:32",
-        editing: false,
-        userCanEdit: true
-      }]
-    }],
-    files: []
-  }
-};
+var defaultState = {};
 
 function updateMatchedByFieldName(fieldName) {
   return (action) => {
@@ -91,6 +58,23 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         case 'RESOLVED':
         // Add to state, clear editbox text
+          break;
+        case 'REJECTED':
+        // Error Handling to be discussed;
+          break;
+        default:
+
+          break;
+      }
+      break;
+
+    case "FEED_FETCHED":
+      switch (action.status) {
+        case 'RESOLVED':
+          var fullFeed = action.payload;
+          nextState = Object.assign({}, state);
+          nextState[action.payload.id] = action.payload;
+          nextState[action.payload.id].files = nextState.files || [];
           break;
         case 'REJECTED':
         // Error Handling to be discussed;

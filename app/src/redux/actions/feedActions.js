@@ -1,5 +1,5 @@
 //feedActions
-import {deleteMessage, postMessage} from '../services/feedService';
+import {deleteMessage, postMessage, getLatestFeedMessages, getFeedMessages, postUpdatedMessage} from '../services/feedService';
 import {generateVariations} from '../services/uploadService';
 import store from '../store.js';
 
@@ -62,7 +62,7 @@ export const updateMessage = (feedID, messageID, messageContent) => {
  */
 
 export const saveUpdatedMessage = (feedID, messageID) => {
-  //let payload = feedService.saveUpdatedMessage(store.);
+  //let payload = feedService.postUpdatedMessage(store.);
   let payload = Promise.resolve({
     editing: false,
     feedID,
@@ -70,6 +70,14 @@ export const saveUpdatedMessage = (feedID, messageID) => {
   });
   return {
     type: 'FEED_SAVE_MESSAGE',
+    payload
+  };
+};
+
+export const fetchLatestFeedMessages = (programmeID, cohortID) => {
+  let payload = getFeedMessages(programmeID, cohortID);
+  return {
+    type: 'FEED_FETCHED',
     payload
   };
 };
