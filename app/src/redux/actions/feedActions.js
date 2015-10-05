@@ -62,11 +62,16 @@ export const updateMessage = (feedID, messageID, messageContent) => {
  */
 
 export const saveUpdatedMessage = (feedID, messageID) => {
-  //let asyncResponse = feedService.saveUpdatedMessage(store.);
-  //return {
-  //  type: 'FEED_SAVE_MESSAGE',
-  //  payload: asyncResponse
-  //}
+  //let payload = feedService.saveUpdatedMessage(store.);
+  let payload = Promise.resolve({
+    editing: false,
+    feedID,
+    id: messageID
+  });
+  return {
+    type: 'FEED_SAVE_MESSAGE',
+    payload
+  };
 };
 
 export const addFile = (file, variationObj, feedId) => {

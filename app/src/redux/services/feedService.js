@@ -10,6 +10,10 @@ export function fetchLatestFeedMessages(programmeID, cohortID = 0, qty = 25) {
   return request.get(reqURI).end();
 }
 
-export function deleteFeedContent() {
+export function deleteMessage(programmeID, messageID) {
 
 };
+
+export function saveUpdatedMessage(programmeID, messageID, content) {
+
+}

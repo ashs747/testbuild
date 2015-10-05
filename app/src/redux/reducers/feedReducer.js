@@ -66,8 +66,27 @@ export const feedReducer = (state = defaultState, action) => {
       return nextState;
       break;
 
+    case 'FEED_SAVE_MESSAGE':
+      switch (action.status) {
+        case 'RESOLVED':
+          feed = state[action.payload.feedID];
+          nextState = Object.assign({}, state);
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
+          return nextState;
+          break;
+        case 'REJECTED':
+          // Set error flag
+          return state;
+          break;
+        default:
+          //Pending state
+          return state;
+          break;
+      }
+      break;
+
     case FEED_CREATE_MESSAGE:
-      switch (action.payload.status) {
+      switch (action.status) {
         case 'RESOLVED':
         // Add to state, clear editbox text
           break;
@@ -81,7 +100,6 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_ADD_FILE":
-      console.log(action);
       switch (action.status) {
         //TODO: change the localhost
         case 'RESOLVED':

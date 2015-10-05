@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
 import PostForm from './PostForm.jsx';
-import {deleteMessageFromFeed, setEditable, saveMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
+import {deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
 import Store from '../../../../redux/store';
 var dispatch = Store.dispatch;
 
@@ -68,14 +68,26 @@ class CommentList extends React.Component {
       };
 
       let saveMessage = () => {
-        return dispatch(saveMessage(this.props.feedID, comment.id));
+        return dispatch(saveUpdatedMessage(this.props.feedID, comment.id));
       };
 
       let updateComment = (text) => {
         return dispatch(updateMessage(this.props.feedID, comment.id, text));
       };
 
-      return <Comment key={comment.id} name={name} content={content} date={date} profilePic={profilePic} editing={editing} userCanEdit={userCanEdit} dispatchDeleteAction={deleteComment} dispatchEditAction={editComment} editCommentAction={updateComment}/>;
+      return (<Comment 
+        key={comment.id}
+        name={name}
+        content={content}
+        date={date}
+        profilePic={profilePic}
+        editing={editing}
+        userCanEdit={userCanEdit}
+        dispatchDeleteAction={deleteComment}
+        dispatchEditAction={editComment}
+        editCommentAction={updateComment}
+        dispatchSaveAction={saveMessage}/>
+      );
     });
     return commentList;
   }
