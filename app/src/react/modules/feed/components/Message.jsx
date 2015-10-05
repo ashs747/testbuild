@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import CommentList from './CommentList.jsx';
+import InlineEdit from './InlineEdit.jsx';
 
 /**
   Message Component, used to display a message (top level post) on the programme feed
@@ -30,10 +31,8 @@ class Message extends React.Component {
 
   constructor() {
     super();
-    this.onSave = this.onSave.bind(this);
     this.onEditClicked = this.onEditClicked.bind(this);
     this.onDeleteClicked = this.onDeleteClicked.bind(this);
-    this.onChangeHandler = this.onChangeHandler.bind(this);
     this.showFullString = this.showFullString.bind(this);
     this.state = {
       fullString: true
@@ -61,7 +60,7 @@ class Message extends React.Component {
         </p>
       );
     }
-    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" onChange={this.onChangeHandler} value={this.props.content} /> : bodyString;
+    let bodyContent = (this.props.editable) ? <InlineEdit onChangeHandler={this.props.dispatchUpdateAction} save={this.props.dispatchSaveAction} content={this.props.content} /> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
@@ -95,22 +94,13 @@ class Message extends React.Component {
     });
   }
 
-  onSave(e) {
-    this.props.dispatchSaveAction(e);
-  }
-
   onEditClicked(e) {
-    this.props.dispatchEditAction(e);
+    this.props.dispatchEditAction();
   }
 
   onDeleteClicked(e) {
-    this.props.dispatchDeleteAction(e);
+    this.props.dispatchDeleteAction();
   }
-
-  onChangeHandler(text) {
-    this.props.dispatchUpdateAction(text);
-  }
-
 }
 
 Message.defaultProps = {
