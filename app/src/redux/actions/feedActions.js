@@ -92,10 +92,19 @@ export const removeAttachment = (feedId, index) => {
   };
 };
 
-export const rotateAttachment = (variations) => {
-  let asyncResponse = rotate(variations);
+export const rotateAttachment = (feedId, i, variations) => {
+  let payload = rotate(variations).then((result) => {
+    let randomString = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    let variationResult = [
+      result.fileName[0].concat('?x=' + randomString),
+      result.fileName[1].concat('?x=' + randomString)
+    ];
+    return {
+      feedId, i, variationResult
+    };
+  });
   return {
     type: 'FEED_ROTATE_ATTACHMENT',
-    payload: asyncResponse
+    payload
   };
 };

@@ -62,7 +62,7 @@ class PostForm extends React.Component {
         <div key={a.thumbnail} className="item">
           <img ref={a.thumbnail} src={a.thumbnail} />
           <a onClick={this.removeAttachment.bind(this, i)}>Remove</a>
-          <a onClick={this.rotateAttachment.bind(this, fileVariations)}>Rotate</a>
+          <a onClick={this.rotateAttachment.bind(this, fileVariations, i)}>Rotate</a>
         </div>
       );
     });
@@ -82,12 +82,12 @@ class PostForm extends React.Component {
     this.props.onEmbedVideo();
   }
 
-  removeAttachment(index) {
-    this.props.dispatch(removeAttachment("testTwo", index));
+  removeAttachment(i) {
+    this.props.dispatch(removeAttachment("testTwo", i));
   }
 
-  rotateAttachment(variations) {
-    this.props.dispatch(rotateAttachment(variations));
+  rotateAttachment(variations, i) {
+    this.props.dispatch(rotateAttachment("testTwo", i, variations));
   }
 
 }

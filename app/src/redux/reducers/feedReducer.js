@@ -117,11 +117,13 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_ROTATE_ATTACHMENT":
+      console.log("payload status: ", action.payload.status);
       switch (action.payload.status) {
         case 'RESOLVED':
-          return state;
           break;
         case 'REJECTED':
+          console.log(action);
+          return state;
           //Error Handling to be discussed;
           break;
         default:
