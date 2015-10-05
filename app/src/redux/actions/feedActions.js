@@ -1,6 +1,6 @@
 //feedActions
 import feedService from '../services/feedService';
-import {generateVariations} from '../services/uploadService';
+import {generateVariations, rotate} from '../services/uploadService';
 import store from '../store.js';
 
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
@@ -89,5 +89,13 @@ export const removeAttachment = (feedId, index) => {
       feedId,
       index
     }
+  };
+};
+
+export const rotateAttachment = (variations) => {
+  let asyncResponse = rotate(variations);
+  return {
+    type: 'FEED_ROTATE_ATTACHMENT',
+    payload: asyncResponse
   };
 };

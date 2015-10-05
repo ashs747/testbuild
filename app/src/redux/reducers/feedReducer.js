@@ -100,7 +100,7 @@ export const feedReducer = (state = defaultState, action) => {
           break;
         case 'REJECTED':
           //some kind of error handling
-          console.log('error');
+          console.log(action);
           return state;
           break;
         default:
@@ -114,6 +114,21 @@ export const feedReducer = (state = defaultState, action) => {
       nextState = state;
       nextState[action.payload.feedId].files.splice(action.payload.index, 1);
       return nextState;
+      break;
+
+    case "FEED_ROTATE_ATTACHMENT":
+      switch (action.payload.status) {
+        case 'RESOLVED':
+          return state;
+          break;
+        case 'REJECTED':
+          //Error Handling to be discussed;
+          break;
+        default:
+          //show loader
+          return state;
+          break;
+      }
       break;
 
     default:
