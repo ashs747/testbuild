@@ -2,7 +2,6 @@ import React from 'react';
 import Button from 'cirrus/react/components/Button';
 import {authAction, logoutAction} from '../../redux/actions/authActions';
 import config from 'cirrus/configs/appConfig';
-import UploadMedia from '../modules/feed/components/UploadMedia.jsx';
 
 class LoginView extends React.Component {
 
@@ -23,7 +22,12 @@ class LoginView extends React.Component {
     return (
       <div className="login">
         <div className="login-box">
-          <UploadMedia feedId="testTwo" />
+          <p>Logo Here</p>
+          <form onSubmit={this.onLoginSubmit}>
+            <input id="email" type="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.changeHandler.bind(this, 'email')}/>
+            <input id="password" type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.changeHandler.bind(this, 'password')}/>
+            <Button id="submit" className="btn btn-block" type="submit">Log in</Button>
+          </form>
         </div>
       </div>
     );
