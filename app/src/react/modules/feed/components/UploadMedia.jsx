@@ -8,6 +8,7 @@ class UploadMedia extends React.Component {
     super();
     this.onFileUploaded = this.onFileUploaded.bind(this);
     this.onFilesAdded = this.onFilesAdded.bind(this);
+    this.onError = this.onError.bind(this);
   }
 
   componentDidMount() {

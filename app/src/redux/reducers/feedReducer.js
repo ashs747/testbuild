@@ -117,9 +117,13 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_ROTATE_ATTACHMENT":
-      console.log("payload status: ", action.payload.status);
-      switch (action.payload.status) {
+      switch (action.status) {
         case 'RESOLVED':
+          nextState = state;
+          let image = nextState[action.payload.feedId].files[action.payload.i];
+          let modifiedImage = action.payload.variationResult[1].split("data/");
+          image.thumbnail = `http://localhost:8888/v1/${modifiedImage[1]}`;
+          return nextState;
           break;
         case 'REJECTED':
           console.log(action);
