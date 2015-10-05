@@ -30,6 +30,10 @@ class Message extends React.Component {
 
   constructor() {
     super();
+    this.onSave = this.onSave.bind(this);
+    this.onEditClicked = this.onEditClicked.bind(this);
+    this.onDeleteClicked = this.onDeleteClicked.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
     this.showFullString = this.showFullString.bind(this);
     this.state = {
       fullString: true
@@ -57,11 +61,11 @@ class Message extends React.Component {
         </p>
       );
     }
-    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.content} /> : bodyString;
+    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" onChange={this.onChangeHandler} value={this.props.content} /> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">
-          <a className="btn" onClick={this.onEdit}><i className="fa fa-pencil"></i></a>
-          <a className="btn" onClick={this.onDelete}><i className="fa fa-times"></i></a>
+          <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
+          <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
     let postImages = this.props.files.map(file => {
       return <img key={file.id} className="post-image" src={file.reference} />;
@@ -89,6 +93,22 @@ class Message extends React.Component {
     this.setState({
       fullString: true
     });
+  }
+
+  onSave(e) {
+    this.props.dispatchSaveAction(e);
+  }
+
+  onEditClicked(e) {
+    this.props.dispatchEditAction(e);
+  }
+
+  onDeleteClicked(e) {
+    this.props.dispatchDeleteAction(e);
+  }
+
+  onChangeHandler(text) {
+    this.props.dispatchUpdateAction(text);
   }
 
 }

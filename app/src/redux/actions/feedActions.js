@@ -1,5 +1,5 @@
 //feedActions
-import feedService from '../services/feedService';
+import {deleteMessage, postMessage} from '../services/feedService';
 import {generateVariations} from '../services/uploadService';
 import store from '../store.js';
 
@@ -11,7 +11,7 @@ export const FEED_DELETE_MESSAGE = 'FEED_DELETE_MESSAGE';
 export const FEED_FETCHED = 'FEED_FETCHED';
 
 export const createMessage = (feedID, messageContent) => {
-  let asyncResponse = feedService.postFeedContent(messageContent);
+  let asyncResponse = postFeedContent(messageContent);
   return {
     type: FEED_CREATE_MESSAGE,
     payload: asyncResponse
@@ -22,7 +22,7 @@ export const createMessage = (feedID, messageContent) => {
  * Dispatches a delete handler to request a post is removed from the server
  */
 export const deleteMessageFromFeed = (feedID, messageID) => {
-  let asyncResponse = feedService.deleteFeedContent(messageID);
+  let asyncResponse = deleteMessage(messageID);
   return {
     type: 'FEED_DELETE_MESSAGE',
     payload: asyncResponse

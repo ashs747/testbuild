@@ -14,6 +14,10 @@ export function deleteMessage(programmeID, messageID) {
 
 };
 
+export function postMessage(programmeID) {
+
+};
+
 export function saveUpdatedMessage(programmeID, messageID, content) {
 
 }
