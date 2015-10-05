@@ -2,6 +2,7 @@ import {FEED_CREATE_MESSAGE, FEED_ALLOW_EDIT, FEED_UPDATE_MESSAGE} from '../acti
 
 var defaultState = {
   testTwo: {
+    id: "testTwo",
     messages: [{
       id: 0,
       user: {
@@ -53,14 +54,14 @@ export const feedReducer = (state = defaultState, action) => {
   switch (action.type) {
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
-      nextState = Object.assign({}, ...state);
+      nextState = Object.assign({}, state);
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
       return nextState;
       break;
 
     case FEED_UPDATE_MESSAGE:
       feed = state[action.payload.feedID];
-      nextState = Object.assign({}, ...state);
+      nextState = Object.assign({}, state);
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content'));
       return nextState;
       break;
@@ -84,7 +85,7 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         //TODO: change the localhost
         case 'RESOLVED':
-          nextState = state;
+          nextState = Object.assign({}, state);
           let variation = action.payload.item;
           variation.folder = "message-board";
           variation.context = "message-board";

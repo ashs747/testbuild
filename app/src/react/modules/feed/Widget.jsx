@@ -1,19 +1,21 @@
 import React from 'react';
-import MessageList from 'components/MessageList';
-import PostForm from 'components/PostForm';
+import MessageList from './components/MessageList.jsx';
+import PostForm from './components/PostForm.jsx';
 
-export default class FeedWidget extends React.component {
+export default class FeedWidget extends React.Component {
   constructor() {
-  	super();
+    super();
   }
 
   render() {
-  	let messages = this.props.feed.messages.map((message) => )
-  	return (
-  		<div>
-  			<PostForm feedID={this.props.feed.id}/>
-  			<MessageList messages={this.props.messages} feedID={this.props.feed.id} />
-  		</div>
-  	);
+    return (
+      <div>
+        <PostForm feedID={this.props.feedID} 
+          onSave={()=>{}}
+          onChange={()=>{}}
+        />
+        <MessageList messages={this.props.messages} feedID={this.props.feedID} />
+      </div>
+    );
   }
 }

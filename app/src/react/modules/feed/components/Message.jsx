@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import CommentList from './CommentList.jsx';
 
 /**
@@ -70,7 +71,7 @@ class Message extends React.Component {
         <div className="header">
           <img src={profilePic} />
           <h6>{this.props.name}</h6>
-          <span className="date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
+          <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
           {editButtons}
         </div>
         <div className="body">
@@ -79,7 +80,7 @@ class Message extends React.Component {
         <div className="images">
           {postImages}
         </div>
-        <CommentList comments={this.props.comments} />
+        <CommentList comments={this.props.comments} feedID={this.props.feedID}/>
       </div>
     );
   }
@@ -100,11 +101,12 @@ Message.defaultProps = {
 Message.propTypes = {
   name: React.PropTypes.string.isRequired,
   content: React.PropTypes.string.isRequired,
-  date: React.PropTypes.object.isRequired,
+  date: React.PropTypes.string.isRequired,
   profilePic: React.PropTypes.string,
   files: React.PropTypes.array,
   comments: React.PropTypes.array,
   editable: React.PropTypes.bool,
-  userCanEdit: React.PropTypes.bool
+  userCanEdit: React.PropTypes.bool,
+  feedID: React.PropTypes.string.isRequired
 };
 export default Message;

@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
+import PostForm from './PostForm.jsx';
 import {deleteMessageFromFeed, setEditable, saveMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
 import Store from '../../../../redux/store';
 var dispatch = Store.dispatch;
@@ -40,6 +41,10 @@ class CommentList extends React.Component {
     return (
       <div className="comment-list">
         {content}
+        <PostForm feedID={this.props.feedID} 
+          onSave={()=>{}}
+          onChange={()=>{}}
+        />
       </div>
     );
   }

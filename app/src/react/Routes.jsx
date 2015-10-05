@@ -9,18 +9,18 @@ import ActionLearningZone from './views/ActionLearningZoneView.jsx';
 import ModuleView from './views/ModuleView.jsx';
 
 /* Testing */
-import CommentList from './modules/feed/components/CommentList.jsx';
+import FeedWidget from './modules/feed/Widget.jsx';
 import {deleteMessageFromFeed, setEditable, updateMessage} from '../redux/actions/feedActions.js';
 
 function mapCommentListProps(state) {
   return {
     feedID: 'testTwo',
-    comments: state.feeds.testTwo.messages[0].comments,
+    messages: state.feeds.testTwo.messages,
     showComments: true
   };
 };
 
-var WrappedCommentList = connect(mapCommentListProps)(CommentList);
+var WrappedFeedComponent = connect(mapCommentListProps)(FeedWidget);
 //Deleteme
 
 var Route = ReactRouter.Route;
@@ -38,7 +38,7 @@ var Routes = (
       <Route name="action-learning-zone" handler={connect((state) => state.auth)(ActionLearningZone)} />
       </Route>
     <Route name="login" handler={connect((state) => state)(LoginView)} />
-    <Route name="messages" handler={WrappedCommentList} />
+    <Route name="messages" handler={WrappedFeedComponent} />
   </Route>
 );
 

@@ -39,7 +39,7 @@ class MessageList extends React.Component {
       let comments = message.comments;
       let editable = message.editing;
       let userCanEdit = message.userCanEdit;
-      return <Message key={key} name={name} content={content} date={date}
+      return <Message feedID={this.props.feedID} key={key} name={name} content={content} date={date}
         profilePic={profilePic} files={files} comments={comments}
         editable={editable} userCanEdit={userCanEdit} />;
     });
