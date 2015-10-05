@@ -80,34 +80,27 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_ADD_FILE":
-      console.log(action);
       switch (action.status) {
         //TODO: change the localhost
         case 'RESOLVED':
-          nextState = state;
           let variation = action.payload.item;
-          variation.folder = "message-board";
-          variation.context = "message-board";
-          variation.status = "active";
           variation.previewUrl = `http://localhost:8888${variation.previewUrl}`;
           let file = {
             reference: variation.original,
-            folder: "message-board",
             variation: "original",
-            context: "message-board",
-            status: "active",
             mimeType: variation.mimeType,
+            thumbnail: variation.previewUrl,
             variations: [
               variation
             ]
           };
-          var nextFeed = nextState[action.payload.feedId];
-          nextFeed.files.push(file);
+          nextState = state;
+          nextState[action.payload.feedId].files.push(file);
           return nextState;
           break;
         case 'REJECTED':
           //some kind of error handling
-          console.log('called');
+          console.log('error');
           return state;
           break;
         default:
@@ -115,6 +108,12 @@ export const feedReducer = (state = defaultState, action) => {
           //show a loader
           break;
       }
+      break;
+
+    case "FEED_REMOVE_ATTACHMENT":
+      nextState = state;
+      nextState[action.payload.feedId].files.splice(action.payload.index, 1);
+      return nextState;
       break;
 
     default:

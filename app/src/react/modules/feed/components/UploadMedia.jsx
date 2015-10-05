@@ -33,7 +33,7 @@ class UploadMedia extends React.Component {
   render() {
     return (
       <div className="upload-media">
-        <a ref="browse" href="javascript:void(0)">Browse Files</a>
+        <a ref="browse" className="btn upload-media" href="javascript:void(0)"><i className="fa fa-picture-o"> Upload Media/Video</i></a>
       </div>
     );
   }

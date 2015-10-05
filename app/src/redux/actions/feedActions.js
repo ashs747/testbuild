@@ -81,3 +81,13 @@ export const addFile = (file, variationObj, feedId) => {
     payload
   };
 };
+
+export const removeAttachment = (feedId, index) => {
+  return {
+    type: 'FEED_REMOVE_ATTACHMENT',
+    payload: {
+      feedId,
+      index
+    }
+  };
+};
