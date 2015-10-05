@@ -35,10 +35,8 @@ var defaultState = {
   }
 };
 
-export const feedReducer = (state = defaultState, action) => {
-  var feed, nextState;
-
-  function updateMatchedByFieldName(fieldName) {
+function updateMatchedByFieldName(fieldName) {
+  return (action) => {
     return function updateThisMessage(message) {
       if (message.id === action.payload.id) {
         message[fieldName] = action.payload[fieldName];
@@ -50,19 +48,23 @@ export const feedReducer = (state = defaultState, action) => {
       return message;
     };
   };
+};
+
+export const feedReducer = (state = defaultState, action) => {
+  var feed, nextState;
 
   switch (action.type) {
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
       nextState = Object.assign({}, state);
-      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
       return nextState;
       break;
 
     case FEED_UPDATE_MESSAGE:
       feed = state[action.payload.feedID];
       nextState = Object.assign({}, state);
-      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content'));
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content')(action));
       return nextState;
       break;
 
@@ -71,7 +73,7 @@ export const feedReducer = (state = defaultState, action) => {
         case 'RESOLVED':
           feed = state[action.payload.feedID];
           nextState = Object.assign({}, state);
-          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
           return nextState;
           break;
         case 'REJECTED':
