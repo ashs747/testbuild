@@ -90,7 +90,6 @@ export const feedReducer = (state = defaultState, action) => {
           variation.context = "message-board";
           variation.status = "active";
           variation.previewUrl = `http://localhost:8888${variation.previewUrl}`;
-
           let file = {
             reference: variation.original,
             folder: "message-board",

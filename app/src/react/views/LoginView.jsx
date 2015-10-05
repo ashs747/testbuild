@@ -23,7 +23,7 @@ class LoginView extends React.Component {
     return (
       <div className="login">
         <div className="login-box">
-          <UploadMedia />
+          <UploadMedia feedId="testTwo" />
         </div>
       </div>
     );
