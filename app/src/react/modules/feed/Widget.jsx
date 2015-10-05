@@ -11,8 +11,8 @@ export default class FeedWidget extends React.Component {
     return (
       <div>
         <PostForm feedID={this.props.feedID} 
-          onSave={()=>{}}
-          onChange={()=>{}}
+          onSave={() => {}}
+          onChange={() => {}}
         />
         <MessageList messages={this.props.messages} feedID={this.props.feedID} />
       </div>

@@ -12,7 +12,7 @@ var defaultState = {
           reference: "profile-pic"
         }
       },
-      content: "This is a comment",
+      content: "This is a message",
       date: "2015-09-29T09:30:32",
       editing: false,
       userCanEdit: true,
@@ -25,7 +25,7 @@ var defaultState = {
             reference: "profile-pic"
           }
         },
-        content: "This is a comment",
+        content: "This is a comment www.google.com http://www.google.com",
         date: "2015-09-29T09:30:32",
         editing: false,
         userCanEdit: true

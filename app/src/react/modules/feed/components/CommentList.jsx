@@ -42,8 +42,8 @@ class CommentList extends React.Component {
       <div className="comment-list">
         {content}
         <PostForm feedID={this.props.feedID} 
-          onSave={()=>{}}
-          onChange={()=>{}}
+          onSave={() => {}}
+          onChange={() => {}}
         />
       </div>
     );
