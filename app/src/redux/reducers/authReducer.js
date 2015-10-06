@@ -12,7 +12,9 @@ const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
+
     case AUTH:
+      console.log('auth', action);
       switch (action.status) {
         case 'RESOLVED':
           setCookies(action.payload); // FIXME: Side-effect (refactor this out... bit of an antiPattern Here)

@@ -19,6 +19,7 @@ function mapCommentListProps(state) {
 var ALZFeed = connect(mapCommentListProps)(FeedWidget);
 
 function mapMembersProps(state) {
+  console.log(state);
   return {
     users: state.users,
     title: 'Members'
@@ -33,11 +34,6 @@ export default class ActionLearningZoneView extends React.Component {
   }
 
   componentWillMount() {
-    console.log('ALZV mounting');
-    //let label = _.findWhere(this.props.user.labels, {context: "soj-cohort"});
-    //if (label) {
-    //  this.getCohortFromLabelId(label.id);
-    //}
     dispatch(fetchLatestFeedMessages(0));
   }
 
