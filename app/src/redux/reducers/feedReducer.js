@@ -126,7 +126,6 @@ export const feedReducer = (state = defaultState, action) => {
           return nextState;
           break;
         case 'REJECTED':
-          console.log(action);
           return state;
           //Error Handling to be discussed;
           break;
