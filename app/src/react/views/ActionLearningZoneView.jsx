@@ -8,7 +8,6 @@ import {fetchUsersByCohort} from '../../redux/actions/usersActions';
 import Store from '../../redux/store';
 var dispatch = Store.dispatch;
 
-console.log('Instantiated');
 function mapCommentListProps(state) {
   return {
     feedID: 'testTwo',
@@ -19,7 +18,6 @@ function mapCommentListProps(state) {
 var ALZFeed = connect(mapCommentListProps)(FeedWidget);
 
 function mapMembersProps(state) {
-  console.log(state);
   return {
     users: state.users,
     title: 'Members'

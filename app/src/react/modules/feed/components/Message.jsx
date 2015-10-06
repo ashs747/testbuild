@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment-timezone';
 import CommentList from './CommentList.jsx';
 import InlineEdit from './InlineEdit.jsx';
+import URLBuilder from '../helpers/URLBuilder';
 
 /**
   Message Component, used to display a message (top level post) on the programme feed
@@ -41,6 +42,7 @@ class Message extends React.Component {
 
   componentWillMount() {
     if (this.props.content.length > 200) {
+      console.log(this.props.content + ' ---- ' + this.props.content.length)
       this.setState({
         fullString: false
       });
@@ -49,7 +51,7 @@ class Message extends React.Component {
 
   render() {
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let bodyString = <p>{this.props.content}</p>;
+    let bodyString = <p>{this.props.content.split(' ').map(URLBuilder)}</p>;
     if (!this.state.fullString) {
       //String is too long, show small one and display see more link to change to fullstring
       let subString = this.props.content.substring(0, 200);
@@ -60,6 +62,7 @@ class Message extends React.Component {
         </p>
       );
     }
+
     let bodyContent = (this.props.editable) ? <InlineEdit onChangeHandler={this.props.dispatchUpdateAction} save={this.props.dispatchSaveAction} content={this.props.content} /> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">

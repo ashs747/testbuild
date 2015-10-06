@@ -15,7 +15,7 @@ export function getFeedMessages(programmeID, cohortID = 0, qty = 25) {
           reference: "profile-pic"
         }
       },
-      content: "This is a message",
+      content: "This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messag sdfas dfasdfawfawfea wefaefeThis is a messfas dfasdfawfawffaeh www.google.com/search ffffffesfsdf",
       date: "2015-09-29T09:30:32",
       comments: [{
         id: 1,
@@ -50,7 +50,7 @@ export function getLatestFeedMessages(programmeID, cohortID = 0, qty = 25) {
           reference: "profile-pic"
         }
       },
-      content: "This is a message",
+      content: "This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message www.google.com",
       date: "2015-09-29T09:30:32",
       comments: [{
         id: 1,
