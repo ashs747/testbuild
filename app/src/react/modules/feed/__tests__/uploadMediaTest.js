@@ -21,7 +21,7 @@ describe('UploadMedia', () => {
   });
 
   it('it should render a div with className: upload-media', () => {
-    var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'upload-media');
+    var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'upload-media-component');
     expect(components.length).to.equal(1);
   });
 

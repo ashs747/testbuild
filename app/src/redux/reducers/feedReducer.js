@@ -92,7 +92,7 @@ export const feedReducer = (state = defaultState, action) => {
         //TODO: change the localhost
         case 'RESOLVED':
           let variation = action.payload.item;
-          variation.previewUrl = `http://localhost:8888${variation.previewUrl}`;
+          variation.previewUrl = variation.previewUrl ? `http://localhost:8888${variation.previewUrl}` : null;
           let file = {
             reference: variation.original,
             variation: "original",
@@ -131,7 +131,6 @@ export const feedReducer = (state = defaultState, action) => {
           return nextState;
           break;
         case 'REJECTED':
-          console.log(action);
           return state;
           //Error Handling to be discussed;
           break;

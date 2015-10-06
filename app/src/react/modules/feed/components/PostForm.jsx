@@ -58,11 +58,17 @@ class PostForm extends React.Component {
   mapAttachments(attachments) {
     let attachmentsArray = attachments.map((a, i) => {
       let fileVariations = [a.reference, a.variations[0].reference];
+      let thumbnail = '/assets/img/thumb-default.png';
+      let rotate;
+      if (a.thumbnail) {
+        thumbnail = a.thumbnail;
+        rotate = <a onClick={this.rotateAttachment.bind(this, fileVariations, i)}>Rotate</a>;
+      }
       return (
-        <div key={a.thumbnail} className="item">
-          <img ref={a.thumbnail} src={a.thumbnail} />
+        <div key={a.reference} className="item">
+          <img src={thumbnail} />
           <a onClick={this.removeAttachment.bind(this, i)}>Remove</a>
-          <a onClick={this.rotateAttachment.bind(this, fileVariations, i)}>Rotate</a>
+          {rotate}
         </div>
       );
     });
