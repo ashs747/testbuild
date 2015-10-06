@@ -50,7 +50,7 @@ describe('Message', () => {
 
   it('should display the content from props', () => {
     var bodyContent = mountedComponent.querySelector('.body p').textContent;
-    expect(bodyContent).to.equal("Here is a message on the feed");
+    expect(bodyContent.trim()).to.equal("Here is a message on the feed");
   });
 
   it('should display the profile picture if passed through', () => {
