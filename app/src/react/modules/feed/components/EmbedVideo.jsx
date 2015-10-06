@@ -9,7 +9,7 @@ class EmbedVideo extends React.Component {
   render() {
     return (
       <div className="embed-video">
-
+        <a ref="browse" className="btn embed-video" href="javascript:void(0)"><i className="fa fa-video-camera"> Embed Youtube/Vimeo</i></a>
       </div>
     );
   }

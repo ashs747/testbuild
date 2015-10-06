@@ -1,6 +1,7 @@
 import React from 'react';
 import TextArea from 'react-textarea-autosize';
 import UploadMedia from './UploadMedia.jsx';
+import EmbedVideo from './EmbedVideo.jsx';
 import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';
 
 /**
@@ -12,7 +13,7 @@ import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feed
     onSave - req function (what fires when the save button)
     onChange - req function (whenever anything inside the component, attach to the textarea)
     showUploadMedia - opt bool (whether to show the upload component, makes the post form generic and that it can be used to post comments too)
-    onEmbedVideo - req function (passed into the embed video component)
+    showEmbedVideo - req function (passed into the embed video component)
     attachments - opt array (what files are attached, keeping in line with the looped state passing the files down as they are uploaded and set in app state)
 */
 
@@ -22,7 +23,6 @@ class PostForm extends React.Component {
     super();
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
-    this.onEmbedVideo = this.onEmbedVideo.bind(this);
     this.mapAttachments = this.mapAttachments.bind(this);
   }
 
@@ -30,9 +30,7 @@ class PostForm extends React.Component {
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId="testTwo" /> : null;
-    let embedVideo = (this.props.onEmbedVideo) ? (
-      <a className="btn embed-video" onClick={this.onEmbedVideo} ><i className="fa fa-video-camera"> Embed Youtube/Vimeo</i></a>
-    ) : null;
+    let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId="testTwo" /> : null;
     return (
       <div className="post-form">
         <div className="profile">
@@ -84,10 +82,6 @@ class PostForm extends React.Component {
     this.props.onSave();
   }
 
-  onEmbedVideo() {
-    this.props.onEmbedVideo();
-  }
-
   removeAttachment(i) {
     this.props.dispatch(removeAttachment("testTwo", i));
   }
@@ -104,6 +98,6 @@ PostForm.propTypes = {
   onSave: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
   showUploadMedia: React.PropTypes.bool,
-  onEmbedVideo: React.PropTypes.func
+  showEmbedVideo: React.PropTypes.bool
 };
 export default PostForm;
