@@ -52,7 +52,7 @@ export const feedReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case FEED_ALLOW_EDIT:
-      feed = state[action.payload.feedID];
+      feed = statert[action.payload.feedID];
       nextState = Object.assign({}, ...state);
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
       return nextState;
@@ -84,7 +84,7 @@ export const feedReducer = (state = defaultState, action) => {
         //TODO: change the localhost
         case 'RESOLVED':
           let variation = action.payload.item;
-          variation.previewUrl = `http://localhost:8888${variation.previewUrl}`;
+          variation.previewUrl = variation.previewUrl ? `http://localhost:8888${variation.previewUrl}` : null;
           let file = {
             reference: variation.original,
             variation: "original",

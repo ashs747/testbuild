@@ -9,7 +9,7 @@ describe('PostForm', () => {
     profilePic: 'url-of-pic',
     onSave: () => {},
     onChange: () => {},
-    onUploadMedia: () => {},
+    showUploadMedia: true,
     onEmbedVideo: () => {}
   };
   var element = React.createElement(PostForm, props);
@@ -44,17 +44,9 @@ describe('PostForm', () => {
     expect(profilePic).to.contain("assets/img/profile-placeholder.jpg");
   });
 
-  it('should display an upload-media button if an event handler is passed in', () => {
+  it('should display an upload-media button if an showMedia: true is passed in', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'upload-media');
     expect(components.length).to.equal(1);
-  });
-
-  it('shouldn\'t display an upload-media button if nothing is passed in', () => {
-    let updatedProps = props;
-    updatedProps.onUploadMedia = null;
-    let updatedComponent = testUtils.renderIntoDocument(React.createElement(PostForm, updatedProps));
-    var components = testUtils.scryRenderedDOMComponentsWithClass(updatedComponent, 'upload-media');
-    expect(components.length).to.equal(0);
   });
 
   it('should display an embed-video button if an event handler is passed in', () => {
