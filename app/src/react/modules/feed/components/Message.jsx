@@ -119,6 +119,10 @@ Message.propTypes = {
   comments: React.PropTypes.array,
   editable: React.PropTypes.bool,
   userCanEdit: React.PropTypes.bool,
-  feedID: React.PropTypes.string.isRequired
+  feedID: React.PropTypes.string.isRequired,
+  dispatchDeleteAction: React.PropTypes.func,
+  dispatchEditAction: React.PropTypes.func,
+  dispatchUpdateAction: React.PropTypes.func,
+  dispatchSaveAction: React.PropTypes.func
 };
 export default Message;
