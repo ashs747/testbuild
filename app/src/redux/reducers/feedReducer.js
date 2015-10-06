@@ -91,35 +91,53 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         //TODO: change the localhost
         case 'RESOLVED':
-          nextState = Object.assign({}, state);
           let variation = action.payload.item;
-          variation.folder = "message-board";
-          variation.context = "message-board";
-          variation.status = "active";
           variation.previewUrl = `http://localhost:8888${variation.previewUrl}`;
           let file = {
             reference: variation.original,
-            folder: "message-board",
             variation: "original",
-            context: "message-board",
-            status: "active",
             mimeType: variation.mimeType,
+            thumbnail: variation.previewUrl,
             variations: [
               variation
             ]
           };
-          var nextFeed = nextState[action.payload.feedId];
-          nextFeed.files.push(file);
+          nextState = state;
+          nextState[action.payload.feedId].files.push(file);
           return nextState;
           break;
         case 'REJECTED':
-          //some kind of error handling
-          console.log('called');
           return state;
           break;
         default:
           return state;
-          //show a loader
+          break;
+      }
+      break;
+
+    case "FEED_REMOVE_ATTACHMENT":
+      nextState = state;
+      nextState[action.payload.feedId].files.splice(action.payload.index, 1);
+      return nextState;
+      break;
+
+    case "FEED_ROTATE_ATTACHMENT":
+      switch (action.status) {
+        case 'RESOLVED':
+          nextState = state;
+          let image = nextState[action.payload.feedId].files[action.payload.i];
+          let modifiedImage = action.payload.variationResult[1].split("data/");
+          image.thumbnail = `http://localhost:8888/v1/${modifiedImage[1]}`;
+          return nextState;
+          break;
+        case 'REJECTED':
+          console.log(action);
+          return state;
+          //Error Handling to be discussed;
+          break;
+        default:
+          //show loader
+          return state;
           break;
       }
       break;

@@ -7,3 +7,10 @@ export function generateVariations(fileRef, variations) {
   };
   return request.post("/variation-generator", body).end();
 };
+
+export function rotate(variations) {
+  let body = {
+    variations
+  };
+  return request.post("/rotate", body).end();
+};

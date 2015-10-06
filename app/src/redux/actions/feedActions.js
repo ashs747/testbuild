@@ -1,6 +1,6 @@
 //feedActions
 import {deleteMessage, postMessage, getLatestFeedMessages, getFeedMessages, postUpdatedMessage} from '../services/feedService';
-import {generateVariations} from '../services/uploadService';
+import {generateVariations, rotate} from '../services/uploadService';
 import store from '../store.js';
 
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
@@ -91,6 +91,33 @@ export const addFile = (file, variationObj, feedId) => {
   });
   return {
     type: 'FEED_ADD_FILE',
+    payload
+  };
+};
+
+export const removeAttachment = (feedId, index) => {
+  return {
+    type: 'FEED_REMOVE_ATTACHMENT',
+    payload: {
+      feedId,
+      index
+    }
+  };
+};
+
+export const rotateAttachment = (feedId, i, variations) => {
+  let payload = rotate(variations).then((result) => {
+    let randomString = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    let variationResult = [
+      result.fileName[0].concat('?x=' + randomString),
+      result.fileName[1].concat('?x=' + randomString)
+    ];
+    return {
+      feedId, i, variationResult
+    };
+  });
+  return {
+    type: 'FEED_ROTATE_ATTACHMENT',
     payload
   };
 };
