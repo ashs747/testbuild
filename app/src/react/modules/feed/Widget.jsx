@@ -10,9 +10,11 @@ export default class FeedWidget extends React.Component {
   render() {
     return (
       <div>
-        <PostForm feedID={this.props.feedID} 
+        <PostForm feedID={this.props.feedID}
           onSave={() => {}}
           onChange={() => {}}
+          showUploadMedia={true}
+          showEmbedVideo={true}
         />
         <MessageList messages={this.props.messages} feedID={this.props.feedID} />
       </div>

@@ -140,6 +140,25 @@ export const feedReducer = (state = defaultState, action) => {
       }
       break;
 
+    case "FEED_EMBED_VIDEO":
+      console.log(action);
+      switch (action.status) {
+        case 'RESOLVED':
+          nextState = state;
+          nextState[action.payload.feedId].files.push({thumbnail: action.payload.thumbnail});
+          return nextState;
+          break;
+        case 'REJECTED':
+          return state;
+          //Error Handling to be discussed;
+          break;
+        default:
+          //show loader
+          return state;
+          break;
+      }
+      break;
+
     default:
       return state;
   }

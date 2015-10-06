@@ -1,6 +1,6 @@
 //feedActions
 import {deleteMessage, postMessage, getLatestFeedMessages, getFeedMessages, postUpdatedMessage} from '../services/feedService';
-import {generateVariations, rotate} from '../services/uploadService';
+import {generateVariations, rotate, getThumbnail} from '../services/uploadService';
 import store from '../store.js';
 
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
@@ -120,4 +120,17 @@ export const rotateAttachment = (feedId, i, variations) => {
     type: 'FEED_ROTATE_ATTACHMENT',
     payload
   };
+};
+
+export const embedVideo = (feedId, url) => {
+  let payload = getThumbnail(url).then((response) => {
+    return {
+      thumbnail: response,
+      feedId
+    }
+  });
+  return {
+    type: 'FEED_EMBED_VIDEO',
+    payload
+  }
 };
