@@ -7,7 +7,8 @@ describe('MessageList', () => {
 
   var testUtils = React.addons.TestUtils;
   var props = {
-    messages: []
+    messages: [],
+    feedID: 'a'
   };
   var element = React.createElement(MessageList, props);
   var component;
@@ -63,27 +64,6 @@ describe('MessageList', () => {
       userCanEdit: false
     }]);
     expect(mapped.length).to.equal(2);
-  });
-
-  it('should map the correct fields to the correct properties', () => {
-    var mapped = component.mapMessages([{
-      id: 1,
-      user: {
-        forename: "Test",
-        surname: "User",
-        profilePic: {
-          id: 1,
-          reference: 'profile-pic'
-        }
-      },
-      content: "This is a status",
-      date: moment(),
-      files: [],
-      comments: [],
-      editable: false,
-      userCanEdit: false
-    }]);
-    expect(mapped[0].props).to.have.all.keys(['name', 'content', 'date', 'profilePic', 'files', 'comments', 'editable', 'userCanEdit']);
   });
 
 });

@@ -1,5 +1,8 @@
 import React from 'react';
+import TextArea from 'react-textarea-autosize';
 import InlineEdit from './InlineEdit.jsx';
+import URLBuilder from '../helpers/URLBuilder';
+
 /**
   Comment Component, used to display a comment (child of a message) on the programme feed
   Dumb component, only accepts and displays props, has no sorting logic
@@ -86,16 +89,7 @@ class Comment extends React.Component {
   }
 
   formatContent(content) {
-    //TODO: REGEX STUFF
-    // NOTE: (MC) - split this out into a string-split-map-join
-    // Could be useful in other places.
-    const regex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-    let result;
-    let indices = [];
-    while (result = regex.exec(content)) {
-      indices.push(result.index);
-    }
-    return content;
+    return content.split(' ').map(URLBuilder);
   }
 
   onSaveComment(e) {

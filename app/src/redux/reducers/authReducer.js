@@ -12,6 +12,7 @@ const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
+
     case AUTH:
       switch (action.status) {
         case 'RESOLVED':
@@ -24,7 +25,6 @@ export function reducer(state = initialState, action) {
             currentUser: parseInt(action.payload.user_id),
             user: action.payload.user
           };
-
         case 'REJECTED':
           return {
             ...state, 

@@ -1,41 +1,46 @@
 import React from 'react';
 import MembersModuleWidget from '../modules/members/Widget.jsx';
-import userManager from 'cirrus/services/managers/userManager';
 import _ from 'underscore';
+import {connect} from 'react-redux';
+import FeedWidget from '../modules/feed/Widget.jsx';
+import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
+import {fetchUsersByCohort} from '../../redux/actions/usersActions';
+import Store from '../../redux/store';
+var dispatch = Store.dispatch;
 
-class ActionLearningZoneView extends React.Component {
+function mapCommentListProps(state) {
+  return {
+    feedID: 'testTwo',
+    messages: state.feeds.testTwo ? state.feeds.testTwo.messages : [],
+    showComments: true
+  };
+};
+var ALZFeed = connect(mapCommentListProps)(FeedWidget);
+
+function mapMembersProps(state) {
+  return {
+    users: state.users,
+    title: 'Members'
+  };
+};
+var MembersModule = connect(mapMembersProps)(MembersModuleWidget);
+
+export default class ActionLearningZoneView extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      users: []
-    };
-    this.getCohortFromLabelId = this.getCohortFromLabelId.bind(this);
   }
 
   componentWillMount() {
-    let label = _.findWhere(this.props.user.labels, {context: "soj-cohort"});
-    if (label) {
-      this.getCohortFromLabelId(label.id);
-    }
+    dispatch(fetchLatestFeedMessages(0));
   }
 
   render() {
     return (
       <div className="action-learning-zone">
-        <MembersModuleWidget users={this.state.users} title="Members" />
+        <ALZFeed />
+        <MembersModule />
       </div>
     );
   }
-
-  getCohortFromLabelId(id) {
-    userManager.getUsersByCohort(id).then((result) => {
-      this.setState({
-        users: result._embedded.user
-      });
-    });
-  }
-
 }
-
-export default ActionLearningZoneView;

@@ -1,5 +1,8 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import CommentList from './CommentList.jsx';
+import InlineEdit from './InlineEdit.jsx';
+import URLBuilder from '../helpers/URLBuilder';
 
 /**
   Message Component, used to display a message (top level post) on the programme feed
@@ -29,6 +32,8 @@ class Message extends React.Component {
 
   constructor() {
     super();
+    this.onEditClicked = this.onEditClicked.bind(this);
+    this.onDeleteClicked = this.onDeleteClicked.bind(this);
     this.showFullString = this.showFullString.bind(this);
     this.state = {
       fullString: true
@@ -45,7 +50,7 @@ class Message extends React.Component {
 
   render() {
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let bodyString = <p>{this.props.content}</p>;
+    let bodyString = <p>{this.props.content.split(' ').map(URLBuilder)}</p>;
     if (!this.state.fullString) {
       //String is too long, show small one and display see more link to change to fullstring
       let subString = this.props.content.substring(0, 200);
@@ -56,11 +61,12 @@ class Message extends React.Component {
         </p>
       );
     }
-    let bodyContent = (this.props.editable) ? <textarea rows={3} wrap="soft" defaultValue={this.props.content} /> : bodyString;
+
+    let bodyContent = (this.props.editable) ? <InlineEdit onChangeHandler={this.props.dispatchUpdateAction} save={this.props.dispatchSaveAction} content={this.props.content} /> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">
-          <a className="btn" onClick={this.onEdit}><i className="fa fa-pencil"></i></a>
-          <a className="btn" onClick={this.onDelete}><i className="fa fa-times"></i></a>
+          <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
+          <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
     let postImages = this.props.files.map(file => {
       return <img key={file.id} className="post-image" src={file.reference} />;
@@ -70,7 +76,7 @@ class Message extends React.Component {
         <div className="header">
           <img src={profilePic} />
           <h6>{this.props.name}</h6>
-          <span className="date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
+          <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
           {editButtons}
         </div>
         <div className="body">
@@ -79,7 +85,7 @@ class Message extends React.Component {
         <div className="images">
           {postImages}
         </div>
-        <CommentList comments={this.props.comments} />
+        <CommentList comments={this.props.comments} feedID={this.props.feedID}/>
       </div>
     );
   }
@@ -90,6 +96,13 @@ class Message extends React.Component {
     });
   }
 
+  onEditClicked(e) {
+    this.props.dispatchEditAction();
+  }
+
+  onDeleteClicked(e) {
+    this.props.dispatchDeleteAction();
+  }
 }
 
 Message.defaultProps = {
@@ -100,11 +113,16 @@ Message.defaultProps = {
 Message.propTypes = {
   name: React.PropTypes.string.isRequired,
   content: React.PropTypes.string.isRequired,
-  date: React.PropTypes.object.isRequired,
+  date: React.PropTypes.string.isRequired,
   profilePic: React.PropTypes.string,
   files: React.PropTypes.array,
   comments: React.PropTypes.array,
   editable: React.PropTypes.bool,
-  userCanEdit: React.PropTypes.bool
+  userCanEdit: React.PropTypes.bool,
+  feedID: React.PropTypes.string.isRequired,
+  dispatchDeleteAction: React.PropTypes.func,
+  dispatchEditAction: React.PropTypes.func,
+  dispatchUpdateAction: React.PropTypes.func,
+  dispatchSaveAction: React.PropTypes.func
 };
 export default Message;
