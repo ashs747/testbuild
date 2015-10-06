@@ -1,7 +1,7 @@
 /* Promise-handling-middleware */
 function isPromise(obj) {
-  return (obj instanceof Promise);
-}
+  return (obj && (obj instanceof Promise || typeof(obj.then) === 'function'));
+};
 
 export default function promiseMiddleware() {
   return next => action => {

@@ -10,8 +10,7 @@ export const LOGOUT = 'LOGOUT';
 
 export function authAction(username, password, clientId) {
   let req = authManager.auth(username, password, clientId);
-  console.log('req', req);
-  console.log(req instanceof Promise);
+
   return {
     type: AUTH,
     payload: req

@@ -18,6 +18,7 @@ class LoginView extends React.Component {
     this.props.dispatch(logoutAction());
   }
 
+
   render() {
     return (
       <div className="login">

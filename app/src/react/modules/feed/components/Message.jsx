@@ -42,7 +42,6 @@ class Message extends React.Component {
 
   componentWillMount() {
     if (this.props.content.length > 200) {
-      console.log(this.props.content + ' ---- ' + this.props.content.length)
       this.setState({
         fullString: false
       });

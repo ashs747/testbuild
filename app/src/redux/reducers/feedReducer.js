@@ -69,7 +69,6 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_FETCHED":
-      console.log(action);
       switch (action.status) {
         case 'RESOLVED':
           var fullFeed = action.payload;
