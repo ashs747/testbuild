@@ -10,6 +10,7 @@ import ModuleView from './views/ModuleView.jsx';
 
 /* Testing */
 import CommentList from './modules/feed/components/CommentList.jsx';
+import PostForm from './modules/feed/components/PostForm.jsx';
 import {deleteMessageFromFeed, setEditable, updateMessage} from '../redux/actions/feedActions.js';
 
 function mapCommentListProps(state) {
@@ -20,7 +21,17 @@ function mapCommentListProps(state) {
   };
 };
 
+function mapPostFormProps(state) {
+  return {
+    attachments: state.feeds.testTwo.files,
+    onSave: (() => {}),
+    onChange: (() => {}),
+    showUploadMedia: true
+  };
+};
+
 var WrappedCommentList = connect(mapCommentListProps)(CommentList);
+var WrappedPostForm = connect(mapPostFormProps)(PostForm);
 //Deleteme
 
 var Route = ReactRouter.Route;
@@ -38,7 +49,7 @@ var Routes = (
       <Route name="action-learning-zone" handler={connect((state) => state.auth)(ActionLearningZone)} />
       </Route>
     <Route name="login" handler={connect((state) => state)(LoginView)} />
-    <Route name="messages" handler={WrappedCommentList} />
+    <Route name="messages" handler={WrappedPostForm} />
   </Route>
 );
 

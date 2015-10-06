@@ -1,5 +1,7 @@
 import React from 'react';
 import TextArea from 'react-textarea-autosize';
+import UploadMedia from './UploadMedia.jsx';
+import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';
 
 /**
   PostForm Component, posts a message (or a comment) to a programme feed
@@ -9,7 +11,7 @@ import TextArea from 'react-textarea-autosize';
     profilePic - opt string (users profile picture url)
     onSave - req function (what fires when the save button)
     onChange - req function (whenever anything inside the component, attach to the textarea)
-    onUploadMedia - req function (passed into upload component)
+    showUploadMedia - opt bool (whether to show the upload component, makes the post form generic and that it can be used to post comments too)
     onEmbedVideo - req function (passed into the embed video component)
     attachments - opt array (what files are attached, keeping in line with the looped state passing the files down as they are uploaded and set in app state)
 */
@@ -20,20 +22,14 @@ class PostForm extends React.Component {
     super();
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
-    this.onUploadMedia = this.onUploadMedia.bind(this);
     this.onEmbedVideo = this.onEmbedVideo.bind(this);
+    this.mapAttachments = this.mapAttachments.bind(this);
   }
 
   render() {
-    /**
-      this.props.attachments.map(attachment => {
-        return <Attachment props=props />
-      });
-    */
+    let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let uploadMedia = (this.props.onUploadMedia) ? (
-      <a className="btn upload-media" onClick={this.onUploadMedia} ><i className="fa fa-picture-o"> Upload Media/Video</i></a>
-    ) : null;
+    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId="testTwo" /> : null;
     let embedVideo = (this.props.onEmbedVideo) ? (
       <a className="btn embed-video" onClick={this.onEmbedVideo} ><i className="fa fa-video-camera"> Embed Youtube/Vimeo</i></a>
     ) : null;
@@ -49,11 +45,34 @@ class PostForm extends React.Component {
           {uploadMedia}
           {embedVideo}
         </div>
+        <div className="attachments">
+          {attachments}
+        </div>
         <div className="post">
           <a className="btn" onClick={this.onSave}>Post</a>
         </div>
       </div>
     );
+  }
+
+  mapAttachments(attachments) {
+    let attachmentsArray = attachments.map((a, i) => {
+      let fileVariations = [a.reference, a.variations[0].reference];
+      let thumbnail = '/assets/img/thumb-default.png';
+      let rotate;
+      if (a.thumbnail) {
+        thumbnail = a.thumbnail;
+        rotate = <a onClick={this.rotateAttachment.bind(this, fileVariations, i)}>Rotate</a>;
+      }
+      return (
+        <div key={a.reference} className="item">
+          <img src={thumbnail} />
+          <a onClick={this.removeAttachment.bind(this, i)}>Remove</a>
+          {rotate}
+        </div>
+      );
+    });
+    return attachmentsArray;
   }
 
   onChange(e) {
@@ -65,12 +84,16 @@ class PostForm extends React.Component {
     this.props.onSave();
   }
 
-  onUploadMedia() {
-    this.props.onUploadMedia();
-  }
-
   onEmbedVideo() {
     this.props.onEmbedVideo();
+  }
+
+  removeAttachment(i) {
+    this.props.dispatch(removeAttachment("testTwo", i));
+  }
+
+  rotateAttachment(variations, i) {
+    this.props.dispatch(rotateAttachment("testTwo", i, variations));
   }
 
 }
@@ -80,7 +103,7 @@ PostForm.propTypes = {
   attachments: React.PropTypes.array,
   onSave: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
-  onUploadMedia: React.PropTypes.func,
+  showUploadMedia: React.PropTypes.bool,
   onEmbedVideo: React.PropTypes.func
 };
 export default PostForm;

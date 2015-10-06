@@ -30,12 +30,13 @@ var defaultState = {
         userCanEdit: true
       }]
     }],
+    files: []
   }
 };
 
 export const feedReducer = (state = defaultState, action) => {
   var feed, nextState;
-  
+
   function updateMatchedByFieldName(fieldName) {
     return function updateThisMessage(message) {
       if (message.id === action.payload.id) {
@@ -52,14 +53,14 @@ export const feedReducer = (state = defaultState, action) => {
   switch (action.type) {
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
-      nextState = {...state};
+      nextState = Object.assign({}, ...state);
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
       return nextState;
       break;
-      
+
     case FEED_UPDATE_MESSAGE:
       feed = state[action.payload.feedID];
-      nextState = {...state};
+      nextState = Object.assign({}, ...state);
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content'));
       return nextState;
       break;
@@ -74,6 +75,62 @@ export const feedReducer = (state = defaultState, action) => {
           break;
         default:
 
+          break;
+      }
+      break;
+
+    case "FEED_ADD_FILE":
+      switch (action.status) {
+        //TODO: change the localhost
+        case 'RESOLVED':
+          let variation = action.payload.item;
+          variation.previewUrl = variation.previewUrl ? `http://localhost:8888${variation.previewUrl}` : null;
+          let file = {
+            reference: variation.original,
+            variation: "original",
+            mimeType: variation.mimeType,
+            thumbnail: variation.previewUrl,
+            variations: [
+              variation
+            ]
+          };
+          nextState = state;
+          nextState[action.payload.feedId].files.push(file);
+          return nextState;
+          break;
+        case 'REJECTED':
+          //some kind of error handling
+          return state;
+          break;
+        default:
+          return state;
+          //show a loader
+          break;
+      }
+      break;
+
+    case "FEED_REMOVE_ATTACHMENT":
+      nextState = state;
+      nextState[action.payload.feedId].files.splice(action.payload.index, 1);
+      return nextState;
+      break;
+
+    case "FEED_ROTATE_ATTACHMENT":
+      switch (action.status) {
+        case 'RESOLVED':
+          nextState = state;
+          let image = nextState[action.payload.feedId].files[action.payload.i];
+          let modifiedImage = action.payload.variationResult[1].split("data/");
+          image.thumbnail = `http://localhost:8888/v1/${modifiedImage[1]}`;
+          return nextState;
+          break;
+        case 'REJECTED':
+          return state;
+          //Error Handling to be discussed;
+          break;
+        default:
+          //show loader
+          return state;
           break;
       }
       break;
