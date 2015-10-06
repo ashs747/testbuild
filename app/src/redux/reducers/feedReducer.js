@@ -52,7 +52,7 @@ export const feedReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case FEED_ALLOW_EDIT:
-      feed = statert[action.payload.feedID];
+      feed = state[action.payload.feedID];
       nextState = Object.assign({}, ...state);
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
       return nextState;
@@ -100,7 +100,6 @@ export const feedReducer = (state = defaultState, action) => {
           break;
         case 'REJECTED':
           //some kind of error handling
-          console.log(action);
           return state;
           break;
         default:
