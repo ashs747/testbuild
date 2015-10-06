@@ -16,7 +16,6 @@ describe("The Feed-Reducer - Message Board State Handler", () => {
     };
 
     let finalState = feedReducer(exampleState, allowEditAction);
-    console.log('thePost', finalState.programmeFeed1.messages[0]);
     expect(finalState.programmeFeed1.messages[0].editing).to.equal(true);
   });
 

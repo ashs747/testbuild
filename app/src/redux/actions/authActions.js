@@ -9,9 +9,11 @@ export const COOKIE_CHECKED = 'COOKIE_CHECKED';
 export const LOGOUT = 'LOGOUT';
 
 export function authAction(username, password, clientId) {
+  let req = authManager.auth(username, password, clientId);
+
   return {
     type: AUTH,
-    payload: authManager.auth(username, password, clientId)
+    payload: req
   };
 }
 

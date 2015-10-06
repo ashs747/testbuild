@@ -46,7 +46,7 @@ describe('Comment', () => {
 
   it('should display the content from props', () => {
     var bodyContent = mountedComponent.querySelector('.body p').textContent;
-    expect(bodyContent).to.equal("here is a comment on a message");
+    expect(bodyContent).to.equal("here is a comment on a message ");
   });
 
   it('should display the profile picture if passed through', () => {

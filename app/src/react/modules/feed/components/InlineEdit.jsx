@@ -1,4 +1,5 @@
 import React from 'react';
+import TextArea from 'react-textarea-autosize';
 
 export default class InlineEdit extends React.Component {
 
@@ -17,16 +18,14 @@ export default class InlineEdit extends React.Component {
 
     return (
       <form onSubmit={this.onSave} status={this.props.state}>
-        <textarea className={textAreaStyle || ''} rows={3} onKeyUp={this.keyHandler} onChange={this.onChangeHandler}>
-          {this.props.content}
-        </textarea>
+        <TextArea value={this.props.content} onChange={this.onChangeHandler} onKeyUp={this.keyHandler} />
         <button>Save</button>
       </form>
     );
   }
 
   onChangeHandler(e) {
-    e.preventDefault();
+   // e.preventDefault();
     this.props.onChangeHandler(e.target.value);
   }
 
@@ -38,7 +37,6 @@ export default class InlineEdit extends React.Component {
   keyHandler(e) {
     var keyPressed = e.which || e.keyCode;
     if (keyPressed == '13') {
-      console.warn('Enter Clicked');
       this.onSave(e);
     }
   }

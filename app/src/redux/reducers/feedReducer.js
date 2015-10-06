@@ -1,43 +1,9 @@
 import {FEED_CREATE_MESSAGE, FEED_ALLOW_EDIT, FEED_UPDATE_MESSAGE} from '../actions/feedActions';
 
-var defaultState = {
-  testTwo: {
-    messages: [{
-      id: 0,
-      user: {
-        forename: "Test",
-        surname: "User",
-        profilePic: {
-          reference: "profile-pic"
-        }
-      },
-      content: "This is a comment",
-      date: "2015-09-29T09:30:32",
-      editing: false,
-      userCanEdit: true,
-      comments: [{
-        id: 1,
-        user: {
-          forename: "Test",
-          surname: "User",
-          profilePic: {
-            reference: "profile-pic"
-          }
-        },
-        content: "This is a comment",
-        date: "2015-09-29T09:30:32",
-        editing: false,
-        userCanEdit: true
-      }]
-    }],
-    files: []
-  }
-};
+var defaultState = {};
 
-export const feedReducer = (state = defaultState, action) => {
-  var feed, nextState;
-
-  function updateMatchedByFieldName(fieldName) {
+function updateMatchedByFieldName(fieldName) {
+  return (action) => {
     return function updateThisMessage(message) {
       if (message.id === action.payload.id) {
         message[fieldName] = action.payload[fieldName];
@@ -49,24 +15,47 @@ export const feedReducer = (state = defaultState, action) => {
       return message;
     };
   };
+};
+
+export const feedReducer = (state = defaultState, action) => {
+  var feed, nextState;
 
   switch (action.type) {
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
-      nextState = Object.assign({}, ...state);
-      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing'));
+      nextState = Object.assign({}, state);
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
       return nextState;
       break;
 
     case FEED_UPDATE_MESSAGE:
       feed = state[action.payload.feedID];
-      nextState = Object.assign({}, ...state);
-      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content'));
+      nextState = Object.assign({}, state);
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content')(action));
       return nextState;
       break;
 
+    case 'FEED_SAVE_MESSAGE':
+      switch (action.status) {
+        case 'RESOLVED':
+          feed = state[action.payload.feedID];
+          nextState = Object.assign({}, state);
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
+          return nextState;
+          break;
+        case 'REJECTED':
+          // Set error flag
+          return state;
+          break;
+        default:
+          //Pending state
+          return state;
+          break;
+      }
+      break;
+
     case FEED_CREATE_MESSAGE:
-      switch (action.payload.status) {
+      switch (action.status) {
         case 'RESOLVED':
         // Add to state, clear editbox text
           break;
@@ -75,6 +64,24 @@ export const feedReducer = (state = defaultState, action) => {
           break;
         default:
 
+          break;
+      }
+      break;
+
+    case "FEED_FETCHED":
+      switch (action.status) {
+        case 'RESOLVED':
+          var fullFeed = action.payload;
+          nextState = Object.assign({}, state);
+          nextState[action.payload.id] = action.payload;
+          nextState[action.payload.id].files = nextState.files || [];
+          return nextState;
+          break;
+        case 'REJECTED':
+          return state;
+          break;
+        default:
+          return state;
           break;
       }
       break;
@@ -99,12 +106,10 @@ export const feedReducer = (state = defaultState, action) => {
           return nextState;
           break;
         case 'REJECTED':
-          //some kind of error handling
           return state;
           break;
         default:
           return state;
-          //show a loader
           break;
       }
       break;
