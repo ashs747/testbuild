@@ -12,7 +12,7 @@ class EmbedVideo extends React.Component {
       url: "",
       error: null,
       showUrlField: false
-    }
+    };
   }
 
   render() {

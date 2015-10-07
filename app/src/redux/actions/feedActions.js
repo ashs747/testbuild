@@ -95,17 +95,17 @@ export const addFile = (file, variationObj, feedId) => {
   };
 };
 
-export const removeAttachment = (feedId, index) => {
+export const removeAttachment = (feedId, reference) => {
   return {
     type: 'FEED_REMOVE_ATTACHMENT',
     payload: {
       feedId,
-      index
+      reference
     }
   };
 };
 
-export const rotateAttachment = (feedId, i, variations) => {
+export const rotateAttachment = (feedId, reference, variations) => {
   let payload = rotate(variations).then((result) => {
     let randomString = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     let variationResult = [
@@ -113,7 +113,7 @@ export const rotateAttachment = (feedId, i, variations) => {
       result.fileName[1].concat('?x=' + randomString)
     ];
     return {
-      feedId, i, variationResult
+      feedId, reference, variationResult
     };
   });
   return {
@@ -127,10 +127,10 @@ export const embedVideo = (feedId, url) => {
     return {
       thumbnail: response,
       feedId
-    }
+    };
   });
   return {
     type: 'FEED_EMBED_VIDEO',
     payload
-  }
+  };
 };

@@ -18,7 +18,7 @@ class Video extends React.Component {
 
     return (
       <div className="video">
-        <iframe style={{top: 0, bottom: 0, left: 0, right: 0, zIndex:1}}  width="100%" height="100%" src={formattedUrl} frameBorder="0" webkitallowfullscreen mozallowfullscreen allowFullScreen ></iframe>
+        <iframe style={{top: 0, bottom: 0, left: 0, right: 0, zIndex: 1}} width="100%" height="100%" src={formattedUrl} frameBorder="0" webkitallowfullscreen mozallowfullscreen allowFullScreen ></iframe>
       </div>
     );
   }

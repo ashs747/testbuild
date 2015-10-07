@@ -69,7 +69,11 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
     let postImages = this.props.files.map(file => {
-      return <img key={file.id} className="post-image" src={file.reference} />;
+      let key = (file.id) ? file.id : Math.random();
+      if (file.mimeType === "video/vimeo") {
+        return <Video key={key} url={file.reference} />;
+      }
+      return <img key={key} className="post-image" src={file.reference} />;
     });
     return (
       <div className="message">

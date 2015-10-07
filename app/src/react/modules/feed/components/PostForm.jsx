@@ -3,6 +3,7 @@ import TextArea from 'react-textarea-autosize';
 import UploadMedia from './UploadMedia.jsx';
 import EmbedVideo from './EmbedVideo.jsx';
 import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';
+import {dispatch} from '../../../../redux/store';
 
 /**
   PostForm Component, posts a message (or a comment) to a programme feed
@@ -60,12 +61,12 @@ class PostForm extends React.Component {
       let rotate;
       if (a.thumbnail) {
         thumbnail = a.thumbnail;
-        rotate = <a onClick={this.rotateAttachment.bind(this, fileVariations, i)}>Rotate</a>;
+        rotate = <a onClick={this.rotateAttachment.bind(this, fileVariations, a.reference)}>Rotate</a>;
       }
       return (
         <div key={a.reference} className="item">
           <img src={thumbnail} />
-          <a onClick={this.removeAttachment.bind(this, i)}>Remove</a>
+          <a onClick={this.removeAttachment.bind(this, a.reference)}>Remove</a>
           {rotate}
         </div>
       );
@@ -82,12 +83,12 @@ class PostForm extends React.Component {
     this.props.onSave();
   }
 
-  removeAttachment(i) {
-    this.props.dispatch(removeAttachment("testTwo", i));
+  removeAttachment(reference) {
+    dispatch(removeAttachment("testTwo", reference));
   }
 
-  rotateAttachment(variations, i) {
-    this.props.dispatch(rotateAttachment("testTwo", i, variations));
+  rotateAttachment(variations, reference) {
+    dispatch(rotateAttachment("testTwo", reference, variations));
   }
 
 }
