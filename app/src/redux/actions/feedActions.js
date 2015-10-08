@@ -1,6 +1,6 @@
 //feedActions
 import {deleteMessage, postMessage, getLatestFeedMessages, getFeedMessages, postUpdatedMessage} from '../services/feedService';
-import {generateVariations, rotate} from '../services/uploadService';
+import {generateVariations, rotate, getThumbnail} from '../services/uploadService';
 import store from '../store.js';
 
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
@@ -95,17 +95,17 @@ export const addFile = (file, variationObj, feedId) => {
   };
 };
 
-export const removeAttachment = (feedId, index) => {
+export const removeAttachment = (feedId, reference) => {
   return {
     type: 'FEED_REMOVE_ATTACHMENT',
     payload: {
       feedId,
-      index
+      reference
     }
   };
 };
 
-export const rotateAttachment = (feedId, i, variations) => {
+export const rotateAttachment = (feedId, reference, variations) => {
   let payload = rotate(variations).then((result) => {
     let randomString = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     let variationResult = [
@@ -113,11 +113,24 @@ export const rotateAttachment = (feedId, i, variations) => {
       result.fileName[1].concat('?x=' + randomString)
     ];
     return {
-      feedId, i, variationResult
+      feedId, reference, variationResult
     };
   });
   return {
     type: 'FEED_ROTATE_ATTACHMENT',
+    payload
+  };
+};
+
+export const embedVideo = (feedId, url) => {
+  let payload = getThumbnail(url).then((response) => {
+    return {
+      thumbnail: response,
+      feedId
+    };
+  });
+  return {
+    type: 'FEED_EMBED_VIDEO',
     payload
   };
 };

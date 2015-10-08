@@ -35,7 +35,7 @@ describe('Message', () => {
 
   it('it should render a div with className: message', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'message');
-    expect(components.length).to.be.at.least(1); 
+    expect(components.length).to.be.at.least(1);
   });
 
   it('should display the name of the user posted through props', () => {
@@ -90,7 +90,7 @@ describe('Message', () => {
 
   it('should display the images associated with the post', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'post-image');
-    expect(components.length).to.equal(2);
+    expect(components.length).to.equal(1);
   });
 
 });

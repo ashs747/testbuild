@@ -97,12 +97,10 @@ export const feedReducer = (state = defaultState, action) => {
             variation: "original",
             mimeType: variation.mimeType,
             thumbnail: variation.previewUrl,
-            variations: [
-              variation
-            ]
+            variations: [variation]
           };
-          nextState = state;
-          nextState[action.payload.feedId].files.push(file);
+          nextState = Object.assign({}, state);
+          nextState[action.payload.feedId].files = [...state[action.payload.feedId].files, file];
           return nextState;
           break;
         case 'REJECTED':
@@ -115,18 +113,55 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_REMOVE_ATTACHMENT":
-      nextState = state;
-      nextState[action.payload.feedId].files.splice(action.payload.index, 1);
+      nextState = Object.assign({}, state);
+      nextState[action.payload.feedId].files = state[action.payload.feedId].files.filter((el) => {
+        return action.payload.reference != el.reference;
+      });
       return nextState;
       break;
 
     case "FEED_ROTATE_ATTACHMENT":
       switch (action.status) {
         case 'RESOLVED':
-          nextState = state;
-          let image = nextState[action.payload.feedId].files[action.payload.i];
+          nextState = Object.assign({}, state);
           let modifiedImage = action.payload.variationResult[1].split("data/");
-          image.thumbnail = `http://localhost:8888/v1/${modifiedImage[1]}`;
+          let files = state[action.payload.feedId].files.map((el) => {
+            if (action.payload.reference === el.reference) {
+              let newEl = el;
+              newEl.thumbnail = `http://localhost:8888/v1/${modifiedImage[1]}`;
+              return newEl;
+            }
+            return el;
+          });
+          nextState[action.payload.feedId].files = files;
+          return nextState;
+          break;
+        case 'REJECTED':
+          return state;
+          //Error Handling to be discussed;
+          break;
+        default:
+          //show loader
+          return state;
+          break;
+      }
+      break;
+
+    case "FEED_EMBED_VIDEO":
+      switch (action.status) {
+        case 'RESOLVED':
+          nextState = Object.assign({}, state);
+          let file = {
+            reference: null,
+            mimeType: "video/vimeo",
+            thumbnail: action.payload.thumbnail,
+            variation: "original",
+            variations: [{
+              reference: null,
+              variation: "medium"
+            }]
+          };
+          nextState[action.payload.feedId].files = [...state[action.payload.feedId].files, file];
           return nextState;
           break;
         case 'REJECTED':

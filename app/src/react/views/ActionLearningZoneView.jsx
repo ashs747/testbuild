@@ -10,6 +10,7 @@ var dispatch = Store.dispatch;
 
 function mapCommentListProps(state) {
   return {
+    attachments: state.feeds.testTwo ? state.feeds.testTwo.files : [],
     feedID: 'testTwo',
     messages: state.feeds.testTwo ? state.feeds.testTwo.messages : [],
     showComments: true

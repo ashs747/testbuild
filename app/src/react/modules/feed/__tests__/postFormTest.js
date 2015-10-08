@@ -10,7 +10,7 @@ describe('PostForm', () => {
     onSave: () => {},
     onChange: () => {},
     showUploadMedia: true,
-    onEmbedVideo: () => {}
+    showEmbedVideo: true
   };
   var element = React.createElement(PostForm, props);
   var component;
@@ -48,15 +48,10 @@ describe('PostForm', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'upload-media');
     expect(components.length).to.equal(1);
   });
-
-  it('should display an embed-video button if an event handler is passed in', () => {
-    var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'embed-video');
-    expect(components.length).to.equal(1);
-  });
-
+  
   it('shouldn\'t display an embed-video button if nothing is passed in', () => {
     let updatedProps = props;
-    updatedProps.onEmbedVideo = null;
+    updatedProps.showEmbedVideo = null;
     let updatedComponent = testUtils.renderIntoDocument(React.createElement(PostForm, updatedProps));
     var components = testUtils.scryRenderedDOMComponentsWithClass(updatedComponent, 'embed-video');
     expect(components.length).to.equal(0);

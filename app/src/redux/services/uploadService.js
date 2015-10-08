@@ -14,3 +14,11 @@ export function rotate(variations) {
   };
   return request.post("/rotate", body).end();
 };
+
+export function getThumbnail(url) {
+  let body = {
+    url
+  };
+  return Promise.resolve(null);
+  //return request.post("/thumbnail", body).end();
+};
