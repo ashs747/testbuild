@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'cirrus/react/components/Button';
 import {authAction, logoutAction} from '../../redux/actions/authActions';
 import config from 'cirrus/configs/appConfig';
+import MediaGrid from '../components/MediaGrid.jsx';
 
 class LoginView extends React.Component {
 
@@ -19,15 +20,35 @@ class LoginView extends React.Component {
   }
 
   render() {
+    let images = [{
+      reference: 'http://ww1.prweb.com/prfiles/2014/04/10/11752526/gI_134971_best-image-web-hosting.png',
+      mimeType: 'image/jpeg',
+      variations: [{
+        reference: 'http://ww1.prweb.com/prfiles/2014/04/10/11752526/gI_134971_best-image-web-hosting.png',
+        mimeType: 'image/jpeg',
+        variation: 'medium'
+      }]
+    }, {
+      reference: 'http://ww1.prweb.com/prfiles/2014/04/10/11752526/gI_134971_best-image-web-hosting.png',
+      mimeType: 'image/jpeg',
+      variations: [{
+        reference: 'http://ww1.prweb.com/prfiles/2014/04/10/11752526/gI_134971_best-image-web-hosting.png',
+        mimeType: 'image/jpeg',
+        variation: 'medium'
+      }]
+    }, {
+      reference: 'http://ww1.prweb.com/prfiles/2014/04/10/11752526/gI_134971_best-image-web-hosting.png',
+      mimeType: 'image/jpeg',
+      variations: [{
+        reference: 'http://ww1.prweb.com/prfiles/2014/04/10/11752526/gI_134971_best-image-web-hosting.png',
+        mimeType: 'image/jpeg',
+        variation: 'medium'
+      }]
+    }];
     return (
       <div className="login">
         <div className="login-box">
-          <p>Logo Here</p>
-          <form onSubmit={this.onLoginSubmit}>
-            <input id="email" type="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.changeHandler.bind(this, 'email')}/>
-            <input id="password" type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.changeHandler.bind(this, 'password')}/>
-            <Button id="submit" className="btn btn-block" type="submit">Log in</Button>
-          </form>
+          <MediaGrid files={images} />
         </div>
       </div>
     );
