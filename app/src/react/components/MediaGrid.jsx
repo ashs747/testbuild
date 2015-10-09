@@ -1,21 +1,16 @@
 import React from 'react';
-import Video from './Video.jsx';
-import $ from 'jquery';
 import _ from 'underscore';
-import imagesLoaded from 'imagesloaded';
+import ImageGrid from './ImageGrid.jsx';
 
-
-class MediaGrid extends React.Component {
+export default class MediaGrid extends React.Component {
 
   constructor() {
     super();
-    this.resizeImages = this.resizeImages.bind(this);
     this.renderMediaList = this.renderMediaList.bind(this);
     this.onMediaClick = this.onMediaClick.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
     this.state = {
-      medialist : [],
-      index: 0
+      mediaList: {}
     };
   }
 
@@ -23,86 +18,89 @@ class MediaGrid extends React.Component {
     this.renderMediaList(this.props.files);
   }
 
-  componentDidMount() {
-    var els = [];
-    this.timer = null;
-
-    $(React.findDOMNode(this)).children().each(function(item){
-      els.push(item);
-    });
-
-    if (els.length > 0) {
-      imagesLoaded(els, function(data){
-        this.timer = setTimeout(this.resizeImages, 1000);
-        $(window).on('resize', this.resizeImages);
-      }.bind(this));
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     this.renderMediaList(nextProps.files);
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-    $(window).off('resize', this.resizeImages);
-  }
-
   render() {
-    let style = {
-      display: (this.state.medialist.length > 0) ? 'block' : 'none'
+    let videoStyle = {
+      display: (this.state.medialist.videos.length > 0) ? 'block' : 'none'
     };
+    let imageStyle = {
+      display: (this.state.medialist.images.length > 0) ? 'block' : 'none'
+    };
+
     return (
-      <div className="media-grid" ref="media" style={style}>{this.state.medialist}</div>
+      <div>
+        <div className="videos-grid" style={videoStyle}>{this.state.medialist.videos}</div>
+        <ImageGrid className="media-grid" style={imageStyle}>{this.state.medialist.images}</ImageGrid>
+      </div>
     );
   }
-
-    resizeImages() {
-      $(React.findDOMNode(this)).collagePlus({
-        'targetHeight' : this.props.height
-      });
-    }
 
   renderMediaList(files) {
     this.mediaGalleryList = [];
 
-    this.medialist = files.map(function(media, i) {
-      var thumbnail = _.where(media.variations, {variation: "medium"});
-      var boundClick = this.onMediaClick.bind(this, i);
+    var medialist = {
+      images: [],
+      videos: []
+    };
 
-      var thumbnailUrl = (thumbnail.length > 0) ? thumbnail[0].reference : "/assets/img/thumb-default.png";
+    _.each(files, file => {
+      let thumbnail;
+      let thumbnailUrl;
+      if (file.mimeType.match('image.*')) {
+        var i = medialist.images.length;
+        thumbnail = _.where(file.variations, {variation: "medium"});
+        var boundClick = this.onMediaClick.bind(this, i);
+        thumbnailUrl = (thumbnail.length > 0) ? thumbnail[0].reference : "/assets/img/thumb-default.png";
 
-      if (media.mimeType.match('video.*')) {
-        this.mediaGalleryList.push(<Video url={media.reference} key={"media-gallery-component" + i} autoPlay={false} color="#007075" thumb={thumbnailUrl} />);
-      } else if (media.mimeType.match('image.*')) {
-        this.mediaGalleryList.push(<img key={"media-gallery-component" + i} src={media.reference} thumb={thumbnailUrl} />);
+        this.mediaGalleryList.push(<img key={`file-gallery-component${i}`} src={file.reference} thumb={thumbnailUrl} />);
+        medialist.images.push(<img className="file-thumbnail" key={`file-gallery-component${i}`} src={thumbnailUrl} id={i} onClick={boundClick} />);
+      } else if (file.mimeType.match('video.*')) {
+        thumbnail = _.where(file.variations, {variation: "small"});
+        thumbnailUrl = (thumbnail.length > 0) ? thumbnail[0].reference : "/assets/img/thumb-default.png";
+        medialist.videos.push(<Video url={file.reference} key={`video-component${i}`} autoPlay={false} color="#007075" thumb={thumbnailUrl} marginBottom={5} />);
       }
-
-      return <img key={"media-gallery-component" + i} src={thumbnailUrl} className="media-thumbnail" id={i} onClick={boundClick} />
-
-    }.bind(this));
-
-    this.setState({
-      medialist: this.medialist
     });
+
+    this.setState({medialist});
   }
 
   onMediaClick(index, event) {
-    console.log("clicked media");
+    console.log("clicked image: ", index);
+    /*
+    this.mediaGallery = <div className="media-gallery-popup" key={"media-gallery-popup"}>
+    <a className="close-popup" onClick={this.onCloseClick}>Close</a>
+    <MediaGallery displayNav={true} thumbnailHeight={80} cycle={true} index={index} scaleUp={false} style={{backgroundColor: "black", height: '100%', width: '100%'}}>{this.mediaGalleryList}</MediaGallery>
+    </div>
+
+    PopUp.manager.create(
+      this.mediaGallery,
+      null,
+      {
+        modal: true,
+        closeOnOverlayClick: true,
+        position: {
+          left: '4%',
+          top: '5%',
+          right: '4%',
+          bottom: '5%'
+        }
+      }
+    );
+    */
   }
 
   onCloseClick(event) {
-    //$('iframe').hide(); // ie8 fix for removing embedded videos
-    //PopUp.manager.removeAll();
+    // $('iframe').hide(); // ie8 fix for removing embedded videos
+    // PopUp.manager.removeAll();
   }
-}
 
+}
 MediaGrid.defaultProps = {
-  height: 200,
   files: []
 };
 MediaGrid.propTypes = {
-  height: React.PropTypes.number,
   files: React.PropTypes.array.isRequired
 };
-export default MediaGrid;
