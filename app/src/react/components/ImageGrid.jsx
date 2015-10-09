@@ -85,7 +85,7 @@ export default class ImageGrid extends React.Component {
   }
 
   renderRows(images, containerWidth) {
-    var rows = ;
+    var rows = [];
 
     _.each(images, (element) => {
       var image = this.resizeImage(element);
