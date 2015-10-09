@@ -85,7 +85,7 @@ export default class ImageGrid extends React.Component {
   }
 
   renderRows(images, containerWidth) {
-    var rows = [];
+    var rows = ;
 
     _.each(images, (element) => {
       var image = this.resizeImage(element);
@@ -100,7 +100,6 @@ export default class ImageGrid extends React.Component {
       }
 
       rows[rowIndex].width += image.width;
-      console.log(`row ${rowIndex}, image width: ${image.width}, current row width: ${rows[rowIndex].width}`);
       rows[rowIndex].images.push(image);
 
     });
@@ -111,7 +110,6 @@ export default class ImageGrid extends React.Component {
   resizeRows(rows, containerWidth) {
     return rows.map((row) => {
       var percentIncrease = containerWidth / row.width;
-      console.log(containerWidth, row.width);
       row.images = row.images.map((image) => {
         image.width = Math.floor(image.width * percentIncrease);
         image.height = Math.floor(image.height * percentIncrease);
