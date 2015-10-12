@@ -15,9 +15,9 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    this.changeWidth();
     $(window).on('resize', () => {
-      var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      store.dispatch(windowResize(width));
+      this.changeWidth();
     });
     store.dispatch(cookieCheckAction());
     store.subscribe(this.checkLoggedInState);
@@ -57,6 +57,11 @@ class App extends React.Component {
         router.transitionTo('/');
       }
     }
+  }
+
+  changeWidth() {
+    var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    store.dispatch(windowResize(width));
   }
 }
 
