@@ -6,7 +6,7 @@ export const windowResize = (width) => {
     payload: {}
   };
   switch (true) {
-    case (width > 749 && width < 1023):
+    case (width > 767 && width < 1023):
       output.payload.profile = 'md';
       break;
     case (width > 1022):
