@@ -1,11 +1,12 @@
 .action-learning-zone {
+  background-color: $light_grey;
   .row {
     margin: 0;
   }
   .header {
     padding: 60px 30px;
-    background-color: #B60011;
-    color: #FFFFFF;
+    background-color: $site_red;
+    color: $white;
     select {
       height: 40px;
       border-radius: 0;
@@ -14,5 +15,15 @@
       font-weight: 800;
       margin: 0;
     }
+  }
+  .alz-message-board {
+    padding: 20px 10px;
+  }
+  .right-bar {
+    padding: 20px;
+  }
+  .left-bar {
+    border-right: 2px solid $dark_grey;
+    background-color: $white;
   }
 }

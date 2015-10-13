@@ -26,10 +26,11 @@ html {
 
 body {
   height: 100%;
-  background-color: #E7E7E7;
+  background-color: $dark_grey;
   font-family: $body_font;
   position: relative;
   color: $body_color;
+  font-size: 15.5px;
 }
 
 .container-fluid {
