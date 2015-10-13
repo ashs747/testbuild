@@ -30,7 +30,7 @@ function mapMembersProps(state) {
 
 var MembersModule = connect(mapMembersProps)(MembersModuleWidget);
 
-export default class ActionLearningZoneView extends React.Component {
+class ActionLearningZoneView extends React.Component {
 
   constructor() {
     super();
@@ -41,12 +41,26 @@ export default class ActionLearningZoneView extends React.Component {
   }
 
   render() {
+    let bodyContent = (() => {
+      switch (this.props.profile) {
+        case 'sm':
+          return <p>Small page</p>;
+          break;
+        case 'md':
+          return <p>Medium Page</p>;
+          break;
+        case 'lg':
+          return <p>Large Page</p>;
+          break;
+      }
+    })();
+    
     return (
       <div className="action-learning-zone">
         <div className="row">
           <div className="col-sm-12 header">
             <div className="col-sm-8">
-              <h1>Action Learning Zone</h1>
+              <h1>Action learning zone</h1>
             </div>
             <div className="col-sm-4">
               <select className="form-control">
@@ -55,8 +69,18 @@ export default class ActionLearningZoneView extends React.Component {
             </div>
           </div>
         </div>
-        <MembersModule />
+        {bodyContent}
       </div>
     );
   }
 }
+
+function mapALZProps(state) {
+  return {
+    profile: state.width.profile,
+  };
+};
+
+var linkedALZView = connect(mapALZProps)(ActionLearningZoneView);
+
+export default linkedALZView;

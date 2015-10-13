@@ -3,13 +3,15 @@
     margin: 0;
   }
   .header {
-    padding: 30px;
-    background-color: #EEEEEE;
+    padding: 60px 30px;
+    background-color: #B60011;
+    color: #FFFFFF;
     select {
       height: 40px;
       border-radius: 0;
     }
     h1 {
+      font-weight: 800;
       margin: 0;
     }
   }
