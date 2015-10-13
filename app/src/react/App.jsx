@@ -2,6 +2,8 @@ import React from 'react';
 import router from './router';
 import store from '../redux/store';
 import {cookieCheckAction} from '../redux/actions/authActions';
+import {windowResize} from '../redux/actions/widthActions';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor() {
@@ -13,6 +15,10 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    this.changeWidth();
+    $(window).on('resize', () => {
+      this.changeWidth();
+    });
     store.dispatch(cookieCheckAction());
     store.subscribe(this.checkLoggedInState);
     router.run(this.onRouteChange);
@@ -51,6 +57,11 @@ class App extends React.Component {
         router.transitionTo('/');
       }
     }
+  }
+
+  changeWidth() {
+    var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    store.dispatch(windowResize(width));
   }
 }
 
