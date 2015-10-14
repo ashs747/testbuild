@@ -5,8 +5,9 @@ import {connect} from 'react-redux';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import {fetchUsersByCohort} from '../../redux/actions/usersActions';
+import {getResourcesByCohort} from '../../redux/actions/contentActions';
 import Store from '../../redux/store';
-import TabSack from 'cirrus/react/components/TabStack';
+import TabStack from 'cirrus/react/components/TabStack';
 import ResourcesWidget from '../modules/resource/Widget.jsx';
 var dispatch = Store.dispatch;
 
@@ -37,21 +38,7 @@ var MembersModule = connect(mapMembersProps)(MembersModuleWidget);
 function mapResourceProps(state) {
   return {
     title: "Resouces",
-    resources: [{
-      title: "Example resource - Word",
-      reference: "http://google.com?1",
-      type: {
-        icon: "file-word-o",
-        typeSlug: "document"
-      }
-    }, {
-      title: "Example resource - Video",
-      reference: "http://google.com?2",
-      type: {
-        icon: "youtube-play",
-        typeSlug: "video"
-      }
-    }]
+    resources: state.content ? state.content.resources : []
   }
 }
 var TeamResourcesWidget = connect(mapResourceProps)(ResourcesWidget);
@@ -59,21 +46,7 @@ var TeamResourcesWidget = connect(mapResourceProps)(ResourcesWidget);
 function mapProjectProps(state) {
   return {
     title: "Project Pages",
-    resources: [{
-      title: "Project title 2nd line if needed",
-      reference: "http://google.com?",
-      type: {
-        icon: "briefcase",
-        typeSlug: "project"
-      }
-    }, {
-      title: "Project title 2nd line if needed",
-      reference: "http://google.com",
-      type: {
-        icon: "briefcase",
-        typeSlug: "project"
-      }
-    }]
+    resources: state.content ? state.content.projects : []
   }
 }
 var ProjectsWidget = connect(mapProjectProps)(ResourcesWidget);
@@ -87,7 +60,7 @@ class ActionLearningZoneView extends React.Component {
   componentWillMount() {
     dispatch(fetchLatestFeedMessages(0));
     dispatch(fetchUsersByCohort(13));
-    //dispatch(fetchResourcesByCohort(13));
+    dispatch(getResourcesByCohort(13));
   }
 
   render() {
@@ -106,6 +79,9 @@ class ActionLearningZoneView extends React.Component {
         <TeamResourcesWidget />
       </div>
     );
+    var membersModule = (
+      <MembersModule />
+    );
     let bodyContent = (() => {
       switch (this.props.profile) {
         case 'lg':
@@ -115,15 +91,21 @@ class ActionLearningZoneView extends React.Component {
                 {messageBoard}
               </div>
               <div className="col-sm-4 right-bar">
-                <MembersModule />
+                {membersModule}
                 {resoucesWidgets}
               </div>
             </div>
           );
           break;
         default:
+          let tab1 = (<div label="Message Board" tabClass="tab-btn" key="tab1">{messageBoard}</div>);
+          let tab2 = (<div label="Team" tabClass="tab-btn" key="tab2">{membersModule}</div>);
+          let tab3 = (<div label="Resources" tabClass="tab-btn" key="tab3">{resoucesWidgets}</div>);
+          let tabs = [tab1, tab2, tab3];
           return (
-            <p>Small or Medium, show the tab stack</p>
+            <TabStack ref="alzTabs" className="alz-tabs" selectedIndex={0}>
+              {tabs}
+            </TabStack>
           );
           break;
       }
