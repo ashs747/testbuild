@@ -5,6 +5,8 @@ import promiseMiddleware from './middleware/promisedActions';
 import {reducer as learningJourney} from './reducers/learningJourneyReducer';
 import {reducer as modules} from './reducers/moduleReducer';
 import {reducer as width} from './reducers/widthReducer';
+import {reducer as user} from './reducers/userReducer';
+import {reducer as content} from './reducers/contentReducer';
 import thunk from 'redux-thunk';
 
 const createStoreWithMiddleware = applyMiddleware(
@@ -12,7 +14,7 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const appReducers = combineReducers({
-  auth, learningJourney, modules, feeds, width
+  auth, learningJourney, modules, feeds, width, user, content
 });
 
 export default createStoreWithMiddleware(appReducers);
