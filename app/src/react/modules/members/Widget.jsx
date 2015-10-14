@@ -11,8 +11,8 @@ class Widget extends React.Component {
   render() {
     let users = (this.props.users) ? this.props.users.map((user, i) => {
       let profilePics = _.where(user.files, {context: "profile-picture", variation: "original"});
-      let profilePicReference = (profilePics.length > 0) ? profilePics[profilePics.length - 1].reference : "";
-      return <UserDisplay key={i} image={profilePicReference} name={`${user.forename} ${user.surname}`} />;
+      let profilePicReference = (profilePics.length > 0) ? profilePics[profilePics.length - 1].reference : "assets/img/profile-placeholder.jpg";
+      return <UserDisplay key={`${i}-${profilePicReference}`} image={profilePicReference} name={`${user.forename} ${user.surname}`} imageViewStyle={this.props.imageViewStyle} />;
     }) : null;
     return (
       <div className="members-module">

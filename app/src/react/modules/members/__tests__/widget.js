@@ -11,7 +11,7 @@ describe('MembersModuleWidget', () => {
       image: "test",
       name: "test"
     }, {
-      image: "test",
+      image: "test-1",
       name: "test"
     }]
   };

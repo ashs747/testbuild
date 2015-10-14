@@ -29,8 +29,8 @@ describe('MembersModuleUserDisplay', () => {
   });
 
   it('should display an image tag from props', () => {
-    var imgSrc = mountedComponent.querySelector('img').src;
-    expect(imgSrc).to.contain("test-image-path");
+    var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'profile-image');
+    expect(components.length).to.equal(1);
   });
 
   it('should display a user\'s name from props', () => {

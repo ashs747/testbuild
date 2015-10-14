@@ -5,10 +5,10 @@ import _ from 'underscore';
 export default class Widget extends React.Component {
 
   propTypes: {
-    resources: React.PropTypes.array, 
+    resources: React.PropTypes.array,
     title: React.PropTypes.string
   }
- 
+
   constructor() {
     super();
     this.groupResources = this.groupResources.bind(this);
