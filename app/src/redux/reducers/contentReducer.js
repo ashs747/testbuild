@@ -16,6 +16,17 @@ export const reducer = (state = defaultState, action) => {
           return state;
           break;
       }
+    case "CONTENT_GET_FAQS":
+      switch (action.status) {
+        case "RESOLVED":
+          nextState = Object.assign({}, state);
+          nextState.faq = action.payload;
+          return nextState;
+          break;
+        default:
+          return state;
+          break;
+      }
     default:
       return state;
   }

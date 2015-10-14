@@ -77,3 +77,40 @@ export function getResources(cohortId) {
     }]
   });
 };
+
+export function getFAQs() {
+  //return request.post("/variation-generator", body).end();
+  return Promise.resolve([{
+    group: "About",
+    title: "This is an example question",
+    answer: "This is an example answer"
+  }, {
+    group: "About",
+    title: "This is another example question",
+    answer: "This is an example answer"
+  },{
+    group: "About",
+    title: "This is an example question 2",
+    answer: "This is an example answer"
+  }, {
+    group: "About",
+    title: "This is another example question 2",
+    answer: "This is an example answer"
+  }, {
+    group: "About",
+    title: "This is an example question 3",
+    answer: "This is an example answer"
+  }, {
+    group: "Another-catagory",
+    title: "This is another example question",
+    answer: "This is an example answer"
+  }, {
+    group: "Final-catagory",
+    title: "This is an example question",
+    answer: "This is an example answer"
+  }, {
+    group: "Final-catagory",
+    title: "This is another example question",
+    answer: "This is an example answer"
+  }]);
+}
