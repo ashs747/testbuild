@@ -47,16 +47,37 @@
           font-size: 14px;
         }
         .arrow-container {
-          width: 100%;
+          width: 33%;
           text-align: center;
           position: relative;
           bottom: -10px;
+          left: 33%;
           .arrow {
+            cursor: pointer;
             background-color: $light_grey;
-            width: 30px;
+            width: 100%;
           }
         }
       }
+    }
+  }
+  .right-bar {
+    .faq-panel {
+      margin-left: 0;
+    }
+  }
+  .left-bar {
+    .faq-panel {
+      margin-right: 0;
+    }
+  }
+}
+
+
+@media (max-width: 991px) {
+  .faq {
+    .faq-panel {
+      margin: 20px !important;
     }
   }
 }

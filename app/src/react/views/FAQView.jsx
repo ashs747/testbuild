@@ -19,11 +19,11 @@ class FAQView extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-6 left-bar">
             <FAQPanel title="About the Programme" questions={[{title: "This is an example question", answer: "This is an example answer"}, {title: "This is another example question", answer: "This is an example answer"}]} />
             <FAQPanel title="Another Header" questions={[{title: "This is an example question", answer: "This is an example answer"}, {title: "This is another example question", answer: "This is an example answer"}]} />
         </div>
-          <div className="col-md-6">
+          <div className="col-md-6 right-bar">
             <FAQPanel title="3rd Catagory" questions={[{title: "This is an example question", answer: "This is an example answer"}, {title: "This is another example question", answer: "This is an example answer"}]} />
             <FAQPanel title="4th Catagory" questions={[{title: "This is an example question", answer: "This is an example answer"}, {title: "This is another example question", answer: "This is an example answer"}]} />
           </div>
