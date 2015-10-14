@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import FAQPanel from '../components/FAQPanel.jsx';
+import FAQPanel from '../modules/faqPanel/FAQPanel.jsx';
 
 class FAQView extends React.Component {
 
