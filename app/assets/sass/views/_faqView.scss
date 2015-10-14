@@ -1,6 +1,62 @@
 .faq {
+  background-color: $white;
   .header {
+    text-align: center;
+    padding: 40px;
     color: $white;
     background-color: $site_red;
+    .text {
+      max-width: 600px;
+      margin: 0 auto;
+      h1 {
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+  .faq-panel {
+    margin: 20px;
+    .panel-header {
+      padding: 10px;
+      background-color: $dark_blue;
+      color: $white;
+      h4 {
+        font-weight: bold;
+        i {
+          margin: 0 10px;
+          font-size: 18px;
+        }
+      }
+    }
+    .panel-questions {
+      background-color: $light_grey;
+      padding: 10px;
+      .faq-question {
+        margin: 10px 0;
+        padding: 10px;
+        background-color: $white;
+        h5 {
+          cursor: pointer;
+          font-size: 16px;
+          text-decoration: underline;
+          i {
+            font-size: 12px;
+          }
+        }
+        p {
+          font-size: 14px;
+        }
+        .arrow-container {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          bottom: -10px;
+          .arrow {
+            background-color: $light_grey;
+            width: 30px;
+          }
+        }
+      }
+    }
   }
 }
