@@ -39,7 +39,7 @@ function mapResourceProps(state) {
   return {
     title: "Resouces",
     resources: state.content ? state.content.resources : []
-  }
+  };
 }
 var TeamResourcesWidget = connect(mapResourceProps)(ResourcesWidget);
 
@@ -47,7 +47,7 @@ function mapProjectProps(state) {
   return {
     title: "Project Pages",
     resources: state.content ? state.content.projects : []
-  }
+  };
 }
 var ProjectsWidget = connect(mapProjectProps)(ResourcesWidget);
 
