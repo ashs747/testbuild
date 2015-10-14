@@ -61,8 +61,8 @@ class FAQView extends React.Component {
     }
     return (
       <div className="row">
-        <div className="col-md-6">{column1}</div>
-        <div className="col-md-6">{column2}</div>
+        <div className="col-md-6 left-bar">{column1}</div>
+        <div className="col-md-6 right-bar">{column2}</div>
       </div>
     );
   }
