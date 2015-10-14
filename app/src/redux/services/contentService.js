@@ -88,7 +88,7 @@ export function getFAQs() {
     group: "About",
     title: "This is another example question",
     answer: "This is an example answer"
-  },{
+  }, {
     group: "About",
     title: "This is an example question 2",
     answer: "This is an example answer"

@@ -33,8 +33,6 @@ class FAQView extends React.Component {
     );
   }
 
-  //<FAQPanel title="About the Programme" questions={[]} />
-
   mapQuestions(questions) {
     let groupedQuestions = _.groupBy(this.props.questions, resource => resource.group);
     let columnedQuestions = this.columnQuestions(groupedQuestions);
@@ -68,7 +66,6 @@ class FAQView extends React.Component {
       </div>
     );
   }
-
 
 }
 
