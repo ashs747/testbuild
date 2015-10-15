@@ -7,6 +7,7 @@ import LoginView from './views/LoginView.jsx';
 import LearningJourneyView from './views/LearningJourneyView.jsx';
 import ActionLearningZone from './views/ActionLearningZoneView.jsx';
 import ModuleView from './views/ModuleView.jsx';
+import FAQView from './views/FAQView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -21,6 +22,7 @@ var Routes = (
       <Route name="personal-learning-journey" handler={connect((state) => state)(LearningJourneyView)} />
       <Route name="module" path="module/:module" handler={connect((state) => state)(ModuleView)} />
       <Route name="action-learning-zone" handler={ActionLearningZone} />
+      <Route name="faq" handler={FAQView} />
     </Route>
     <Route name="login" handler={connect((state) => state)(LoginView)} />
   </Route>
