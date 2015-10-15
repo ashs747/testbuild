@@ -1,5 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {getProjectContent} from '../../redux/actions/contentActions';
+import Store from '../../redux/store';
+var dispatch = Store.dispatch;
 
 class ProjectView extends React.Component {
 
@@ -7,8 +10,12 @@ class ProjectView extends React.Component {
     super();
   }
 
+  componentWillMount() {
+    dispatch(getProjectContent(1));
+  }
+
   render() {
-    console.log(this.props);
+    console.log(this.props.content);
     let bodyContent = (() => {
       switch (this.props.profile) {
         case 'lg':
@@ -28,7 +35,7 @@ class ProjectView extends React.Component {
         <div className="header clearfix">
           <div className="col-sm-2">
             <div className="icon">
-              <span><i className="fa fa-search"></i></span>
+              <span><i className={`fa fa-${this.props.content.icon}`}></i></span>
             </div>
           </div>
           <div className="col-sm-10">
@@ -46,6 +53,7 @@ class ProjectView extends React.Component {
 function mapProjectProps(state) {
   return {
     profile: state.width.profile,
+    content: state.content.project ? state.content.project : {}
   };
 };
 
