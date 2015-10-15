@@ -1,4 +1,5 @@
 import request from 'cirrus/services/request';
+import moment from 'moment-timezone';
 
 export function getResources(cohortId) {
   //return request.post("/variation-generator", body).end();
@@ -124,6 +125,21 @@ export function getProject(id) {
     overview: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
     learningOutcomes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
     projectCopy: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+    journeyModule: {
+      name: "Module 3 - Agile decision maker",
+      activities: [{
+        name: "Project title, 2nd line if needed",
+        activityUsers: [{
+
+        }],
+        properties: {
+          type: "Project",
+          deadline: "Friday 16th October"
+        }
+      }],
+      startDate: moment("2015-10-15"),
+      endDate: moment("2015-11-20")
+    },
     steps: [{
       number: 1,
       title: "Introduction",
