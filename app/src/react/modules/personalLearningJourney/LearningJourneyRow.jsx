@@ -24,9 +24,11 @@ class LearningJourneyRow extends React.Component {
       eventObj.location = "Project Page";
     }
 
+    let iconRow = (this.props.showIcon) ? <td className="row-icon"><i className={icon}></i></td> : null;
+
     return (
       <tr className="plj-table-row">
-        <td className="row-icon"><i className={icon}></i></td>
+        {iconRow}
         <td className="activity">{title}</td>
         <td>{type}</td>
         <td>{eventObj.date}</td>

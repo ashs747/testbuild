@@ -13,19 +13,21 @@ class LearningJourneyTable extends React.Component {
         return <LearningJourneyRow key={i} activity={a} />;
       });
     }
+    let iconRow = (this.props.showIcon) ? <th className="row-icon"></th> : null;
+    let headerIcon = (this.props.showIcon) ? <th className="row-icon"><i className="fa fa-lightbulb-o"></i></th> : null;
     return (
       <div className="learning-journey-module">
         <table border-spacing="separate" className="table">
           <thead>
             <tr className="heading">
-              <th className="row-icon"><i className="fa fa-lightbulb-o"></i></th>
+              {headerIcon}
               <th colSpan="6">
                 <div className="title">{this.props.journeyModule.name}</div>
                 <div className="sub-title">{this.props.journeyModule.startDate.format('MMMM YYYY')} - {this.props.journeyModule.endDate.format('MMMM YYYY')}</div>
               </th>
             </tr>
             <tr className="table-headings">
-              <th className="row-icon"></th>
+              {iconRow}
               <th className="learning-activity">LEARNING ACTIVITY</th>
               <th>TYPE</th>
               <th>DATE</th>
