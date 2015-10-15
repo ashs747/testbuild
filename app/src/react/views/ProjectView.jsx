@@ -19,7 +19,8 @@ class ProjectView extends React.Component {
   }
 
   render() {
-    let ljt = (this.props.content.journeyModule) ? <LearningJourneyTable journeyModule={this.props.content.journeyModule} /> : null;
+    let smallTable = (this.props.profile === "sm");
+    let ljt = (this.props.content.journeyModule) ? <LearningJourneyTable journeyModule={this.props.content.journeyModule} smallTable={smallTable} /> : null;
     let overview = (
       <div className="learning-journey">
         <h3>Your learning journey</h3>

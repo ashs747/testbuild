@@ -134,7 +134,7 @@ export function getProject(id) {
         }],
         properties: {
           type: "Project",
-          deadline: "Friday 16th October"
+          deadline: "16.10.2015"
         }
       }],
       startDate: moment("2015-10-15"),
@@ -206,7 +206,7 @@ export function getProject(id) {
       reference: "http://google.com?7",
       type: {
         icon: "file-word-o",
-        typeSlug: "documennt"
+        typeSlug: "document"
       }
     }, {
       title: "Example resource - Video",
@@ -214,6 +214,20 @@ export function getProject(id) {
       type: {
         icon: "youtube-play",
         typeSlug: "video"
+      }
+    }, {
+      title: "Example resource - Link",
+      reference: "http://google.com?9",
+      type: {
+        icon: "external-link",
+        typeSlug: "external"
+      }
+    }, {
+      title: "Example resource - Link",
+      reference: "http://google.com?10",
+      type: {
+        icon: "external-link",
+        typeSlug: "external"
       }
     }]
   });

@@ -26,7 +26,13 @@ class LearningJourneyRow extends React.Component {
 
     let iconRow = (this.props.showIcon) ? <td className="row-icon"><i className={icon}></i></td> : null;
 
-    return (
+    let content = this.props.smallTable ? (
+      <div className="plj-small-row">
+        <p>{title}</p>
+        <p>{eventObj.date}</p>
+        <p>{eventObj.location}</p>
+      </div>
+    ) : (
       <tr className="plj-table-row">
         {iconRow}
         <td className="activity">{title}</td>
@@ -37,6 +43,8 @@ class LearningJourneyRow extends React.Component {
         <td className="status">{status}</td>
       </tr>
     );
+
+    return content;
   }
 
   assignIcon(type) {

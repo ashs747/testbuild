@@ -158,6 +158,10 @@
 
 .learning-journey-module {
   border-radius: 2px;
+  border: 1px solid $dark_grey;
+  .table {
+    margin-bottom: 0;
+  }
   .heading {
     background-color: $dark_blue;
     color: $white;
@@ -165,9 +169,10 @@
   .table-headings {
     background-color: $dark_grey;
   }
-  tfoot {
+  .footer {
     background-color: $dark_grey;
     text-align: right;
+    margin-bottom: 0;
   }
 }
 
@@ -194,6 +199,20 @@
     padding: 10px;
     img {
       width: 100%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .learning-journey-module {
+    .heading {
+      padding: 10px;
+    }
+    .plj-small-row {
+      padding: 10px;
+    }
+    .footer {
+      padding: 10px;
     }
   }
 }
