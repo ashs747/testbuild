@@ -5,6 +5,7 @@ import TabStack from 'cirrus/react/components/TabStack';
 import Store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
+import ProjectPanel from '../modules/projectPanel/ProjectPanel.jsx';
 var dispatch = Store.dispatch;
 
 class ProjectView extends React.Component {
@@ -26,8 +27,10 @@ class ProjectView extends React.Component {
       </div>
     );
     let project = (
-      <div className="project">
-
+      <div className="project-rows">
+        <h3>Project</h3>
+        <p>{this.props.content.projectCopy}</p>
+        <ProjectPanel steps={this.props.content.steps} />
       </div>
     );
     let timeRequired = (
@@ -57,14 +60,14 @@ class ProjectView extends React.Component {
           );
           break;
         default:
-          /*
-          let tab1 = (<div label="Overview" tabClass="tab-btn" key="tab1">{messageBoard}</div>);
-          let tab2 = (<div label="Project" tabClass="tab-btn" key="tab2">{membersModule}</div>);
-          let tab3 = (<div label="Resources" tabClass="tab-btn" key="tab3">{resoucesWidgets}</div>);
+          let tab1 = (<div label="Overview" tabClass="tab-btn" key="tab1">{overview}{timeRequired}</div>);
+          let tab2 = (<div label="Project" tabClass="tab-btn" key="tab2">{project}</div>);
+          let tab3 = (<div label="Resources" tabClass="tab-btn" key="tab3">{resources}</div>);
           let tabs = [tab1, tab2, tab3];
-          */
           return (
-            <p>Small or Medium screen, show the tab stack</p>
+            <TabStack ref="projectTabs" className="project-tabs" selectedIndex={0}>
+              {tabs}
+            </TabStack>
           );
           break;
       }

@@ -55,4 +55,18 @@
   .learning-journey {
     padding: 20px;
   }
+  .project-rows {
+    padding: 20px;
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 767px) {
+  .project {
+    .header {
+      h1, h3 {
+        text-align: center;
+      }
+    }
+  }
 }

@@ -155,3 +155,45 @@
     }
   }
 }
+
+.learning-journey-module {
+  border-radius: 2px;
+  .heading {
+    background-color: $dark_blue;
+    color: $white;
+  }
+  .table-headings {
+    background-color: $dark_grey;
+  }
+  tfoot {
+    background-color: $dark_grey;
+    text-align: right;
+  }
+}
+
+.project-rows {
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.project-step {
+  margin-bottom: 10px;
+  .step-header {
+    cursor: pointer;
+    background-color: $dark_blue;
+    color: $white;
+    padding: 15px;
+    border-radius: 5px;
+    h2 {
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+  .content {
+    padding: 10px;
+    img {
+      width: 100%;
+    }
+  }
+}
