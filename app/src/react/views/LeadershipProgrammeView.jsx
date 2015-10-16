@@ -82,22 +82,50 @@ class LeadershipProgrammeView extends React.Component {
         <div className="delivery-grid clearfix">
           <div className="col-sm-6 red-box">
             <div className="box-inner">
-              1
+              <div className="icon">
+                <i className="fa fa-users"></i>
+              </div>
+              <div className="text">
+                <h5>Workshop</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                  labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              </div>
             </div>
           </div>
           <div className="col-sm-6 white-box">
             <div className="box-inner">
-              2
+              <div className="icon">
+                <i className="fa fa-users"></i>
+              </div>
+              <div className="text">
+                <h5>Coaching</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                  labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              </div>
             </div>
           </div>
           <div className="col-sm-6 white-box">
             <div className="box-inner">
-              3
+              <div className="icon">
+                <i className="fa fa-users"></i>
+              </div>
+              <div className="text">
+                <h5>Webinar</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                  labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              </div>
             </div>
           </div>
           <div className="col-sm-6 red-box">
             <div className="box-inner">
-              4
+              <div className="icon">
+                <i className="fa fa-users"></i>
+              </div>
+              <div className="text">
+                <h5>Development Project</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                  labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+              </div>
             </div>
           </div>
         </div>
