@@ -1,4 +1,4 @@
-import {getResources, getFAQs} from '../services/contentService';
+import {getResources, getFAQs, getProject} from '../services/contentService';
 import store from '../store.js';
 
 export const getResourcesByCohort = (cohortId) => {
@@ -13,6 +13,14 @@ export const getFAQsAction = () => {
   let asyncResponse = getFAQs();
   return {
     type: "CONTENT_GET_FAQS",
+    payload: asyncResponse
+  };
+};
+
+export const getProjectContent = (projectId) => {
+  let asyncResponse = getProject(projectId);
+  return {
+    type: "CONTENT_GET_PROJECT",
     payload: asyncResponse
   };
 };

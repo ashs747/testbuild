@@ -1,0 +1,208 @@
+.resource-widget {
+  margin: 0 0 20px 0;
+  .col-sm-12 {
+    padding: 0;
+  }
+  .title {
+    background-color: $dark_blue;
+    color: #fff;
+    h4 {
+      margin: 0;
+      padding: 10px;
+    }
+  }
+  .resource-group {
+    display: block;
+    background-color: $white;
+    padding: 10px;
+    border-bottom: 1px solid $dark_grey;
+    .resource-display {
+      padding: 5px;
+      font-size: 20px;
+      i {
+        color: $site_red;
+      }
+      h6 {
+        font-size: 15px;
+        display:inline;
+        margin-left: 10px;
+        vertical-align: middle;
+        text-decoration: underline;
+        a:link, a:visited {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.members-module {
+  background-color: #FFFFFF;
+  border: 1px solid $white;
+  padding-bottom: 20px;
+  h3 {
+    margin: 20px;
+  }
+  .user-display {
+    padding: 5px 20px;
+    border-bottom: 2px solid $dark_grey;
+    .profile-image {
+      float: left;
+      width: 40px;
+      height: 40px;
+      margin-right: 25px;
+    }
+    p {
+      margin-top: 10px;
+      span {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      i {
+        font-size: 12px;
+      }
+    }
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+
+.form-control {
+  font-size: 16px;
+  color: #010101;
+}
+
+.tab-bar {
+  width: 100%;
+  background-color: $light_grey;
+  .tab-btn {
+    text-align: center;
+    width: 33.3333%;
+    padding: 20px 5px;
+    float: left;
+    background-color: #f5f6f7;
+    cursor: pointer;
+    vertical-align: middle;
+    min-height: 80px;
+    &.active {
+      height:100%;
+      background-color: $white;
+    }
+  }
+}
+
+.view-stack {
+  background-color: $white;
+}
+
+.panel-questions {
+  background-color: $light_grey;
+  padding: 10px;
+  .faq-question {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: $white;
+    h5 {
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: underline;
+    }
+    i {
+      font-size: 12px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+.arrow-container {
+  width: 33%;
+  text-align: center;
+  position: relative;
+  bottom: -10px;
+  left: 33%;
+  .arrow {
+    cursor: pointer;
+    background-color: $light_grey;
+    width: 100%;
+  }
+}
+
+.faq-panel {
+  margin: 20px;
+  .panel-header {
+    padding: 10px;
+    background-color: $dark_blue;
+    color: $white;
+    h4 {
+      font-weight: bold;
+    }
+    i {
+      margin: 0 10px;
+      font-size: 18px;
+    }
+  }
+}
+
+.learning-journey-module {
+  border-radius: 2px;
+  border: 1px solid $dark_grey;
+  .table {
+    margin-bottom: 0;
+  }
+  .heading {
+    background-color: $dark_blue;
+    color: $white;
+  }
+  .table-headings {
+    background-color: $dark_grey;
+  }
+  .footer {
+    background-color: $dark_grey;
+    text-align: right;
+    margin-bottom: 0;
+  }
+}
+
+.project-rows {
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.project-step {
+  margin-bottom: 10px;
+  .step-header {
+    cursor: pointer;
+    background-color: $dark_blue;
+    color: $white;
+    padding: 15px;
+    border-radius: 5px;
+    h2 {
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+  .content {
+    padding: 10px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .learning-journey-module {
+    .heading {
+      padding: 10px;
+    }
+    .plj-small-row {
+      padding: 10px;
+    }
+    .footer {
+      padding: 10px;
+    }
+  }
+}
