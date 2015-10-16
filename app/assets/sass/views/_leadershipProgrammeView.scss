@@ -1,20 +1,21 @@
 .leadership-programme {
   text-align: center;
+  h1 {
+    font-weight: bold;
+    font-size: 44px;
+  }
   .intro {
     background-color: $site_red;
     color: $white;
     padding: 50px;
-    .inner {
-      max-width: 750px;
-      margin: 0 auto;
-    }
+
     h1 {
-      margin-bottom: 40px;
+      margin: 60px 0;
     }
   }
   .in-it-for-me {
     background-color: $white;
-    padding: 20px;
+    padding: 40px;
     h1 {
       margin: 0;
     }
@@ -35,6 +36,53 @@
       margin-bottom: 0;
     }
   }
+  .roadmap {
+    background-color: $white;
+    padding: 50px;
+  }
+  .qualities {
+    background-color: $dark_blue;
+    color: $white;
+    padding: 50px;
+  }
+  .carousel {
+    background-color: $white;
+    padding: 30px;
+  }
+  .delivery-formats {
+    padding: 50px;
+    color: $white;
+    background-color: $site_red;
+    h1 {
+      padding: 0;
+    }
+  }
+  .white-box {
+    background-color: $white;
+    h3 {
+      color: $site_red;
+    }
+  }
+  .red-box {
+    background-color: $site_red;
+    color: $white;
+  }
+  .box-inner {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px
+  }
+  .message {
+    background-color: $dark_blue;
+    color: $white;
+    padding: 40px;
+    h1 {
+      margin: 40px 0;
+    }
+    .video {
+      height: 400px;
+    }
+  }
   .left-column {
     background-color: $dark_blue;
     color: $white;
@@ -42,5 +90,38 @@
   .right-column {
     background-color: $site_red;
     color: $white;
+  }
+  .inner {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}
+
+
+@media (max-width: 550px) {
+  .leadership-programme {
+    .message {
+      .video {
+        height: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .leadership-programme {
+    .message {
+      .video {
+        height: 200px;
+      }
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .leadership-programme {
+    h1 {
+      font-size: 30px;
+    }
   }
 }

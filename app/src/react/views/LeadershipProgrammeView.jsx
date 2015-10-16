@@ -1,4 +1,5 @@
 import React from 'react';
+import Video from '../components/Video.jsx';
 
 class LeadershipProgrammeView extends React.Component {
 
@@ -48,27 +49,49 @@ class LeadershipProgrammeView extends React.Component {
           </div>
         </div>
         <div className="qualities">
-          <h1>Introduce leadership qualities</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+          <div className="inner">
+            <h1>Introduce leadership qualities</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+          </div>
         </div>
         <div className="carousel">
           <p>Carousel here</p>
         </div>
         <div className="delivery-formats">
-          <h1>Introduce different delivery formats</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+          <div className="inner">
+            <h1>Introduce different delivery formats</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+          </div>
         </div>
         <div className="delivery-grid clearfix">
-          <div className="col-sm-6">1</div>
-          <div className="col-sm-6">2</div>
-          <div className="col-sm-6">3</div>
-          <div className="col-sm-6">4</div>
+          <div className="col-sm-6 red-box">
+            <div className="box-inner">
+              1
+            </div>
+          </div>
+          <div className="col-sm-6 white-box">
+            <div className="box-inner">
+              2
+            </div>
+          </div>
+          <div className="col-sm-6 white-box">
+            <div className="box-inner">
+              3
+            </div>
+          </div>
+          <div className="col-sm-6 red-box">
+            <div className="box-inner">
+              4
+            </div>
+          </div>
         </div>
         <div className="message">
-          <h1>A message from the executive board</h1>
-          <p>Video</p>
+          <div className="inner">
+            <h1>A message from the executive board</h1>
+            <Video url="https://www.youtube.com/watch?v=HGdQUMzRVxA" />
+          </div>
         </div>
       </div>
     );

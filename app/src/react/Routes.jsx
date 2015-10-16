@@ -26,7 +26,7 @@ var Routes = (
       <Route name="action-learning-zone" handler={ActionLearningZone} />
       <Route name="faq" handler={FAQView} />
       <Route name="project" path="project/:project" handler={ProjectView} />
-      <Route name="leadership-programme" handler={LeadershipProgrammeView} />
+      <Route name="programme" handler={LeadershipProgrammeView} />
     </Route>
     <Route name="login" handler={connect((state) => state)(LoginView)} />
   </Route>
