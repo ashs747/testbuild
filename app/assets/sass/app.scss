@@ -3,6 +3,7 @@ $icon-font-path: '/bower_components/bootstrap-sass/assets/fonts/bootstrap/';
 @import "../../bower_components/fontawesome/scss/font-awesome";
 @import "utils";
 @import "controls";
+@import "components";
 @import "./views/mainView";
 @import "./views/personalLearningJourney";
 @import "./views/loginView";
