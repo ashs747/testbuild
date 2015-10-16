@@ -1,31 +1,37 @@
-var WelcomeCarousel = React.createClass({
-  render: function() {
-    var items = "",
-      navigation = "";
+import React from 'react';
+var $ = require('jquery');
+window.jQuery = $;
+require('bootstrap');
 
-    if (this.props.items) {
-      var i = 0;
-      items = this.props.items.map(function(item) {
-        var extraClass = (i == 0) ? "active" : "";
-        i++;
+class Carousel extends React.Component {
 
-        return <div key={i} className={ "item text-center " + extraClass}>
-                 <img src={ "/assets/img/icons/carousel/"+item.properties.icon} alt="..." />
-                 <div className="row">
-                   <div className="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2">
-                     <h3>{item.name}</h3>
-                     <p>{item.properties.carousel}</p>
-                   </div>
-                 </div>
-               </div>
-      }.bind(this));
+  constructor() {
+    super();
+  }
 
-      i = 0;
-      navigation = this.props.items.map(function(item) {
-        var className = (i == 0) ? "active" : "";
-        i++;
-        return <li key={i} data-target="#welcome-carousel" data-slide-to={i - 1} className={className}></li>
-      });
+  render() {
+    var items = [];
+    var navigation = [];
+
+    for (var i in this.props.items) {
+      let className = (i == 0) ? "active" : "";
+      let item = this.props.items[i];
+      items.push(
+        <div key={i} className={`item text-center ${className}`}>
+          <div className="icon">
+            <i className={`fa fa-${item.icon}`} ></i>
+          </div>
+          <div className="row">
+            <div className="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2">
+              <h3>{item.name}</h3>
+              <p>{item.copy}</p>
+            </div>
+          </div>
+        </div>
+      );
+      navigation.push(
+        <li key={i} data-target="#welcome-carousel" data-slide-to={i} className={className}></li>
+      );
     }
 
     return (
@@ -41,4 +47,12 @@ var WelcomeCarousel = React.createClass({
       </div>
     );
   }
-});
+
+}
+Carousel.defaultProps = {
+  items: []
+};
+Carousel.propTypes = {
+  items: React.PropTypes.array.isRequired
+};
+export default Carousel;

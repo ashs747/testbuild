@@ -1,5 +1,6 @@
 import React from 'react';
 import Video from '../components/Video.jsx';
+import Carousel from '../components/Carousel.jsx';
 
 class LeadershipProgrammeView extends React.Component {
 
@@ -8,6 +9,19 @@ class LeadershipProgrammeView extends React.Component {
   }
 
   render() {
+    let carouselItems = [{
+      name: "Quality Title",
+      icon: "shield",
+      copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
+    }, {
+      name: "Quality Title 2",
+      icon: "shield",
+      copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
+    }, {
+      name: "Quality Title 2",
+      icon: "shield",
+      copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
+    }];
     return (
       <div className="leadership-programme">
         <div className="intro">
@@ -56,7 +70,7 @@ class LeadershipProgrammeView extends React.Component {
           </div>
         </div>
         <div className="carousel">
-          <p>Carousel here</p>
+          <Carousel items={carouselItems} />
         </div>
         <div className="delivery-formats">
           <div className="inner">
