@@ -10,8 +10,28 @@ class LearningJourneyWidget extends React.Component {
     let rows = this.props.journeyModules.map((module, i) => {
       let currentModule = this.isCurrentModule(module) ? 'module-overview current' : 'module-overview';
       let moduleDatePassed = this.moduleHasPassedDate(module) ? 'rank passed-date' : 'rank';
-      let notice = this.hasOutstandingActivities(module) ? <div className="notice"><i className="fa fa-exclamation"></i></div> : <div className="notice complete"><i className="fa fa-check"></i></div>;
-      return (
+      let notice = (() => {
+        if (!this.moduleHasPassedDate(module)) {
+          return null;
+        }
+        return this.hasOutstandingActivities(module) ? <div className="notice"><i className="fa fa-exclamation"></i></div> : <div className="notice complete"><i className="fa fa-check"></i></div>;
+      })();
+      let content = (this.props.smallWidget) ? (
+        <tr key={i} className="small-row">
+          <td className="activity">
+            <div  className={currentModule}>
+              <div className="icon clearfix">
+                <i className="fa fa-users"></i>
+              </div>
+              <div className="text">
+                <div className="title"><strong>{module.name}</strong></div>
+                <div className="subTitle">{module.startDate.format('MMM YYYY')} - {module.endDate.format('MMM YYYY')}</div>
+              </div>
+              {notice}
+            </div>
+          </td>
+        </tr>
+      ) : (
         <tr key={i} >
           <td className="row-icon"><div className={moduleDatePassed}>{i + 1}</div></td>
           <td className="activity">
@@ -25,13 +45,13 @@ class LearningJourneyWidget extends React.Component {
           <td><div className="right-arrow"><a ><i className="fa fa-arrow-right"></i></a></div></td>
         </tr>
       );
+
+      return content;
     });
     return (
       <div className="learning-journey-module widget">
         <table border-spacing="separate" className="table">
-          <tbody>
-              {rows}
-          </tbody>
+            {rows}
         </table>
       </div>
     );

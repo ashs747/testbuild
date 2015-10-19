@@ -13,16 +13,15 @@ class Carousel extends React.Component {
     var items = [];
     var navigation = [];
 
-    for (var i in this.props.items) {
+    this.props.items.forEach((item, i) => {
       let className = (i == 0) ? "active" : "";
-      let item = this.props.items[i];
       items.push(
         <div key={i} className={`item text-center ${className}`}>
           <div className="icon">
             <i className={`fa fa-${item.icon}`} ></i>
           </div>
           <div className="row">
-            <div className="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2">
+            <div className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
               <h3>{item.name}</h3>
               <p>{item.copy}</p>
             </div>
@@ -32,7 +31,7 @@ class Carousel extends React.Component {
       navigation.push(
         <li key={i} data-target="#welcome-carousel" data-slide-to={i} className={className}></li>
       );
-    }
+    });
 
     return (
       <div id="welcome-carousel" className="carousel slide" data-ride="carousel">

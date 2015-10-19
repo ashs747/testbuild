@@ -1,6 +1,9 @@
 import React from 'react';
 import Video from '../components/Video.jsx';
 import Carousel from '../components/Carousel.jsx';
+import LearningJourneyWidget from '../modules/personalLearningJourney/LearningJourneyWidget.jsx';
+import moment from 'moment-timezone';
+import {connect} from 'react-redux';
 
 class LeadershipProgrammeView extends React.Component {
 
@@ -22,6 +25,33 @@ class LeadershipProgrammeView extends React.Component {
       icon: "shield",
       copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
     }];
+    let modules = [{
+      name: "Module 1 - Lorem ipsum dolor sit amet",
+      startDate: moment('2015-09-01'),
+      endDate: moment('2015-10-01'),
+      activities: []
+    }, {
+      name: "Module 2 - Lorem ipsum dolor sit amet",
+      startDate: moment('2015-10-01'),
+      endDate: moment('2015-11-01'),
+      activities: []
+    }, {
+      name: "Module 3 - Lorem ipsum dolor sit amet",
+      startDate: moment('2015-11-01'),
+      endDate: moment('2015-12-01'),
+      activities: []
+    }, {
+      name: "Module 4 - Lorem ipsum dolor sit amet",
+      startDate: moment('2015-12-01'),
+      endDate: moment('2016-01-01'),
+      activities: []
+    }, {
+      name: "Module 5 - Lorem ipsum dolor sit amet",
+      startDate: moment('2016-01-01'),
+      endDate: moment('2016-02-01'),
+      activities: []
+    }];
+
     return (
       <div className="leadership-programme">
         <div className="intro">
@@ -59,7 +89,7 @@ class LeadershipProgrammeView extends React.Component {
             <h1>Roadmap with programme structure</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
               labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <p>image</p>
+            <LearningJourneyWidget journeyModules={modules} smallWidget={this.props.profile === 'sm'}/>
           </div>
         </div>
         <div className="qualities">
@@ -138,7 +168,13 @@ class LeadershipProgrammeView extends React.Component {
       </div>
     );
   }
-
 }
 
-export default LeadershipProgrammeView;
+function mapProgrammeViewProps(state) {
+  return {
+    profile: state.width.profile
+  };
+};
+var mappedView = connect(mapProgrammeViewProps)(LeadershipProgrammeView);
+
+export default mappedView;
