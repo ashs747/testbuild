@@ -51,6 +51,9 @@
     box-shadow: 0 1px 1px #ffffff inset, 0 0 8px #B60011;
     outline: 0 none;
   }
+  img {
+    opacity: 0.9;
+  }
   .links {
     text-align: center;
     margin-top: 20px;
@@ -59,6 +62,11 @@
       margin-bottom: 10px;
       display: block;
     }
+  }
+  .alert {
+    margin-top: 10px;
+    border: 1px solid $site_red;
+    padding: 5px 10px;
   }
 }
 

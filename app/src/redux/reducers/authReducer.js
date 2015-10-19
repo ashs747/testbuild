@@ -7,7 +7,8 @@ const initialState = {
   waitingForLogin: false,
   oauth: {},
   cookieChecked: false,
-  user: null
+  user: null,
+  error: null
 };
 
 export function reducer(state = initialState, action) {
@@ -23,18 +24,24 @@ export function reducer(state = initialState, action) {
             waitingForLogin: false,
             oauth: action.payload,
             currentUser: parseInt(action.payload.user_id),
-            user: action.payload.user
+            user: action.payload.user,
+            error: null
           };
         case 'REJECTED':
           return {
-            ...state, 
-            waitingForLogin: false
+            ...state,
+            waitingForLogin: false,
+            error: {
+              code: action.payload.status,
+              message: action.payload.message
+            }
           };
 
         default:
           return {
             ...state,
-            waitingForLogin: true
+            waitingForLogin: true,
+            error: null
           };
       }
 

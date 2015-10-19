@@ -28,7 +28,7 @@ var Routes = (
       <Route name="project" path="project/:project" handler={ProjectView} />
       <Route name="programme" handler={LeadershipProgrammeView} />
     </Route>
-    <Route name="login" handler={connect((state) => state)(LoginView)} />
+    <Route name="login" handler={LoginView} />
   </Route>
 );
 
