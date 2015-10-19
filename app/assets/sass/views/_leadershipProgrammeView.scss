@@ -1,0 +1,161 @@
+.leadership-programme {
+  text-align: center;
+  h1 {
+    font-weight: bold;
+    font-size: 44px;
+  }
+  .intro {
+    background-color: $site_red;
+    color: $white;
+    padding: 90px;
+
+    h1 {
+      margin: 35px 0;
+    }
+  }
+  .in-it-for-me {
+    background-color: $white;
+    padding: 40px;
+    h1 {
+      margin: 0;
+    }
+  }
+  .double-column {
+    .circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: $white;
+      margin: 0 auto;
+      margin-bottom: 40px;
+    }
+    .inner {
+      padding: 80px 45px;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .roadmap {
+    background-color: $white;
+    padding: 50px;
+  }
+  .qualities {
+    background-color: $dark_blue;
+    color: $white;
+    padding: 60px;
+    h1 {
+      margin-bottom: 20px;
+    }
+  }
+  .carousel {
+    background-color: $white;
+    padding: 30px;
+  }
+  .delivery-formats {
+    padding: 60px;
+    color: $white;
+    background-color: $site_red;
+    h1 {
+      padding: 0;
+    }
+  }
+  .delivery-grid {
+    .icon {
+      font-size: 50px;
+    }
+    h5 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+  .white-box {
+    background-color: $white;
+    h3 {
+      color: $site_red;
+    }
+  }
+  .red-box {
+    background-color: $site_red;
+    color: $white;
+  }
+  .box-inner {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px
+  }
+  .message {
+    background-color: $dark_blue;
+    color: $white;
+    padding: 40px;
+    h1 {
+      margin: 40px 0;
+    }
+    .video {
+      height: 400px;
+    }
+  }
+  .left-column {
+    background-color: $dark_blue;
+    color: $white;
+  }
+  .right-column {
+    background-color: $site_red;
+    color: $white;
+  }
+  .inner {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 550px) {
+  .leadership-programme {
+    .intro {
+      padding: 30px;
+    }
+    .double-column {
+      .inner {
+        padding: 40px 20px;
+      }
+    }
+    .qualities {
+      padding: 30px;
+    }
+    .delivery-formats {
+      padding: 20px;
+    }
+    h1 {
+      font-size: 30px;
+    }
+    .message {
+      .video {
+        height: 300px;
+      }
+    }
+    .box-inner {
+      padding: 20px;
+    }
+    .roadmap {
+      padding: 20px;
+    }
+    .message {
+      padding: 20px;
+      h1 {
+        margin:  20px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .leadership-programme {
+    .message {
+      .video {
+        height: 200px;
+      }
+    }
+  }
+}
