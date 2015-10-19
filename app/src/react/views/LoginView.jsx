@@ -105,9 +105,10 @@ class LoginView extends React.Component {
     this.setState({content: "login"});
   }
 
-  onRecoverPassword() {
+  onRecoverPassword(e) {
     //dispatch email here
     //dispatch()
+    e.preventDefault();
   }
 
   onLoginSubmit(e) {
