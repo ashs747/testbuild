@@ -10,9 +10,12 @@ class LoginView extends React.Component {
   constructor() {
     super();
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
+    this.showRecoverPassword = this.showRecoverPassword.bind(this);
+    this.showLoginForm = this.showLoginForm.bind(this);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      content: "login"
     };
   }
 
@@ -22,7 +25,47 @@ class LoginView extends React.Component {
 
   render() {
     let loginText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "Log in";
+    let recoverText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "Recover Password";
     let error = (this.props.error) ? this.mapError(this.props.error) : null;
+
+    var loginForm = (
+      <div className="login-form">
+        <form onSubmit={this.onLoginSubmit}>
+          <input id="email" reqruied type="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.changeHandler.bind(this, 'email')}/>
+          <input id="password" required type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.changeHandler.bind(this, 'password')}/>
+          <Button id="submit" className="btn btn-block" type="submit">{loginText}</Button>
+        </form>
+        {error}
+        <div className="links">
+          <a onClick={this.showRecoverPassword}>Forgotten Password?</a>
+          <a href="javascript:void(0)">Need help?</a>
+        </div>
+      </div>
+    );
+    var recoverForm = (
+      <div className="recover-form">
+        <form onSubmit={this.onRecoverPassword}>
+          <p>Please enter the email address associated with your account below.</p>
+          <input id="email" reqruied type="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.changeHandler.bind(this, 'email')}/>
+          <Button id="submit" className="btn btn-block" type="submit">{recoverText}</Button>
+          <div className="links">
+            <a onClick={this.showLoginForm}>Back</a>
+          </div>
+      </form>
+      </div>
+    );
+
+    let content = (() => {
+      switch (this.state.content) {
+        case "recover":
+          return recoverForm;
+          break;
+        case "login":
+          return loginForm;
+          break;
+      }
+    })();
+
     return (
       <div className="wrapper">
         <div className="login-wrapper">
@@ -31,16 +74,7 @@ class LoginView extends React.Component {
               <img src="assets/img/programme-logo.png" alt="logo" />
             </div>
             <div className="form">
-              <form onSubmit={this.onLoginSubmit}>
-                <input id="email" reqruied type="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.changeHandler.bind(this, 'email')}/>
-                <input id="password" required type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.changeHandler.bind(this, 'password')}/>
-                <Button id="submit" className="btn btn-block" type="submit">{loginText}</Button>
-              </form>
-              {error}
-              <div className="links">
-                <a href="javascript:void(0)">Forgotten Password?</a>
-                <a href="javascript:void(0)">Need help?</a>
-              </div>
+              {content}
             </div>
           </div>
         </div>
@@ -61,7 +95,20 @@ class LoginView extends React.Component {
     return (
       <div className="error alert alert-danger">{message}</div>
     );
-  }s
+  }
+
+  showRecoverPassword() {
+    this.setState({content: "recover"});
+  }
+
+  showLoginForm() {
+    this.setState({content: "login"});
+  }
+
+  onRecoverPassword() {
+    //dispatch email here
+    //dispatch()
+  }
 
   onLoginSubmit(e) {
     e.preventDefault();
@@ -73,7 +120,6 @@ class LoginView extends React.Component {
       [field]: event.target.value
     });
   }
-
 }
 
 function mapLoginProps(state) {
