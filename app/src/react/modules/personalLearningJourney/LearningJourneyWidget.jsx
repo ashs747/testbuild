@@ -19,7 +19,7 @@ class LearningJourneyWidget extends React.Component {
       let content = (this.props.smallWidget) ? (
         <tr key={i} className="small-row">
           <td className="activity">
-            <div  className={currentModule}>
+            <div className={currentModule}>
               <div className="icon clearfix">
                 <i className="fa fa-users"></i>
               </div>

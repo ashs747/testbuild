@@ -20,11 +20,6 @@ describe('LearningJourneyWidget', function() {
     expect(components.length).to.equal(1);
   });
 
-  it('it should display warning that there are unfinished activities', function() {
-    var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'fa-exclamation');
-    expect(components.length).to.equal(1);
-  });
-
   it('the component should show that it is the current module', function() {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'current');
     expect(components.length).to.equal(1);
