@@ -32,7 +32,7 @@ var Routes = (
       return {
         error: state.auth.error,
         loading: state.auth.waitingForLogin
-      }
+      };
     })(LoginView)} />
   </Route>
 );
