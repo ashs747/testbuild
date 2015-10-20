@@ -496,12 +496,41 @@
 }
 
 .slideshow {
+  background-color: $white;
   text-align: center;
+  .nav {
+    padding: 20px 0;
+  }
+  .dot-nav-list {
+    list-style-type: none;
+    padding: 0;
+    .dot-nav-item {
+      display: inline-block;
+    }
+  }
+  .dot {
+    height: 12px;
+    width: 12px;
+    background-color: $dark_grey;
+    border-radius: 50%;
+    margin: 0 2px;
+    cursor: pointer;
+  }
+  .active {
+    background-color: black;
+  }
+  .arrow {
+    span {
+      cursor: pointer;
+    }
+  }
   .left-arrow {
-
+    text-align: left;
+  }
+  .right-arrow {
+    text-align: right;
   }
 }
-
 
 @media (min-width : $tablet_min) {
   .carousel-control {
