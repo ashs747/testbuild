@@ -10,6 +10,7 @@ import ModuleView from './views/ModuleView.jsx';
 import FAQView from './views/FAQView.jsx';
 import ProjectView from './views/ProjectView.jsx';
 import LeadershipProgrammeView from './views/LeadershipProgrammeView.jsx';
+import Slideshow from './components/Slideshow.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -27,8 +28,10 @@ var Routes = (
       <Route name="faq" handler={FAQView} />
       <Route name="project" path="project/:project" handler={ProjectView} />
       <Route name="programme" handler={LeadershipProgrammeView} />
+      <Route name="slideshow" handler={Slideshow} />
     </Route>
     <Route name="login" handler={LoginView} />
+
   </Route>
 );
 
