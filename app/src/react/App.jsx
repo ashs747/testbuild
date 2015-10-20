@@ -1,7 +1,7 @@
 import React from 'react';
 import router from './router';
 import store from '../redux/store';
-import {cookieCheckAction} from '../redux/actions/authActions';
+import {cookieCheckedAction} from '../redux/actions/authActions';
 import {windowResize} from '../redux/actions/widthActions';
 import $ from 'jquery';
 
@@ -19,7 +19,7 @@ class App extends React.Component {
     $(window).on('resize', () => {
       this.changeWidth();
     });
-    store.dispatch(cookieCheckAction());
+    store.dispatch(cookieCheckedAction());
     store.subscribe(this.checkLoggedInState);
     router.run(this.onRouteChange);
   }
@@ -50,6 +50,7 @@ class App extends React.Component {
       activeRouteName = currentRoutes[currentRoutes.length - 1].name;
     }
 
+    //FIXME: subscribe to the piece o' state
     if (store.getState().auth.cookieChecked) {
       if (!store.getState().auth.loggedIn) {
         router.transitionTo('login');
