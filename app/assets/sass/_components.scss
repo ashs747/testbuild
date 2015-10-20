@@ -499,7 +499,13 @@
   background-color: $white;
   text-align: center;
   .nav {
-    padding: 20px 0;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding:20px;
+  }
+  .display {
+    position: relative;
   }
   .dot-nav-list {
     list-style-type: none;
@@ -556,6 +562,11 @@
     }
     .footer {
       padding: 10px;
+    }
+  }
+  .slideshow {
+    .nav {
+      z-index: 1000;
     }
   }
 }

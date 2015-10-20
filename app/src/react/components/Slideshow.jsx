@@ -68,23 +68,10 @@ class Slideshow extends React.Component {
       displaySlide: i
     });
   }
-
 }
 
 Slideshow.defaultProps = {
-  slides: [{
-    content: (<div>content</div>),
-    className: "slide-1"
-  }, {
-    content: (<div>second content</div>),
-    className: "slide-2"
-  }, {
-    content: (<div>third content</div>),
-    className: "slide-3"
-  }, {
-    content: (<div>fourth content</div>),
-    className: "slide-4"
-  }]
+  slides: []
 };
 Slideshow.propTypes = {
   slides: React.PropTypes.array.isRequired
