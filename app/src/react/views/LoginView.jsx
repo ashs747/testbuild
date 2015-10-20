@@ -89,7 +89,7 @@ class LoginView extends React.Component {
         message = "Invalid login details";
         break;
       default:
-        message = "There was an unexpecter error, please contact Cirrus support";
+        message = "There was an unexpected error, please contact Cirrus support";
         break;
     }
     return (
@@ -123,13 +123,4 @@ class LoginView extends React.Component {
   }
 }
 
-function mapLoginProps(state) {
-  return {
-    error: state.auth.error,
-    loading: state.auth.waitingForLogin
-  };
-};
-
-var mappedLoginView = connect(mapLoginProps)(LoginView);
-
-export default mappedLoginView;
+export default LoginView;

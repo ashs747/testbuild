@@ -28,7 +28,12 @@ var Routes = (
       <Route name="project" path="project/:project" handler={ProjectView} />
       <Route name="programme" handler={LeadershipProgrammeView} />
     </Route>
-    <Route name="login" handler={LoginView} />
+    <Route name="login" handler={connect((state) => {
+      return {
+        error: state.auth.error,
+        loading: state.auth.waitingForLogin
+      }
+    })(LoginView)} />
   </Route>
 );
 
