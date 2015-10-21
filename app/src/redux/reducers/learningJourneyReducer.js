@@ -8,15 +8,20 @@ const initialState = {
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case LEARNING_JOURNEY:
-      return Object.assign({}, state, {waitingForModules: true});
-    case LEARNING_JOURNEY_SUCCESS:
-      return Object.assign({}, state, {
-        waitingForModules: false,
-        learningJourneyModules: action.modules
-      });
-    case LEARNING_JOURNEY_FAIL:
-      return Object.assign({}, state, {waitingForModules: false});
-    default:
-      return state;
-  }
+      switch (action.status) {
+        case "FULFILLED":
+          return Object.assign({}, state, {
+            waitingForModules: false,
+            learningJourneyModules: action.modules
+          });
+          break;
+
+        case "REJECTED":
+          return Object.assign({}, state, {waitingForModules: false});
+          break;
+
+        default: Object.assign({}, state, {waitingForModules: true});
+      }
+    default: return state;
+  } 
 }

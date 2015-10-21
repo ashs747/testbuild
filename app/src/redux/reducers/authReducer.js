@@ -7,7 +7,8 @@ const initialState = {
   waitingForLogin: false,
   oauth: {},
   cookieChecked: false,
-  user: null
+  user: null,
+  error: null
 };
 
 export function reducer(state = initialState, action) {
@@ -16,19 +17,20 @@ export function reducer(state = initialState, action) {
     case AUTH:
       switch (action.status) {
         case 'RESOLVED':
-          setCookies(action.payload); // FIXME: Side-effect (refactor this out... bit of an antiPattern Here)
           return {
             ...state,
             loggedIn: true,
             waitingForLogin: false,
-            oauth: action.payload,
-            currentUser: parseInt(action.payload.user_id),
-            user: action.payload.user
+            oauth: action.payload.body
           };
         case 'REJECTED':
           return {
-            ...state, 
-            waitingForLogin: false
+            ...state,
+            waitingForLogin: false,
+            error: {
+              code: action.payload.status,
+              message: action.payload.message
+            }
           };
 
         default:
@@ -39,12 +41,23 @@ export function reducer(state = initialState, action) {
       }
 
     case COOKIE_CHECKED:
-      return Object.assign({}, state, {
-        cookieChecked: true
-      });
+      switch (action.status) {
+        case 'RESOLVED':
+          return Object.assign({}, state, {
+            cookieChecked: true,
+            userData: action.payload
+          });
+        case 'REJECTED':
+          return {...state,
+            cookieChecked: true,
+            userData: null,
+            loggedIn: false
+          };
+        default:
+          return state;
+      }
 
     case LOGOUT:
-      eraseCookies(); // FIXME: Side-effect
       return Object.assign({}, state, {
         loggedIn: false,
         currentUser: null,
@@ -53,27 +66,5 @@ export function reducer(state = initialState, action) {
       });
     default:
       return state;
-  }
-
-  function setCookies(data) {
-    cookie.set('userId', data.user_id);
-    cookie.set('authToken', data.access_token);
-    cookie.set('refreshToken', data.refresh_token);
-    cookie.set('expiresIn', data.expiresIn);
-  }
-
-  function eraseCookies() {
-    cookie.set('userId', '', {
-      expires: new Date(0)
-    });
-    cookie.set('authToken', '', {
-      expires: new Date(0)
-    });
-    cookie.set('refreshToken', '', {
-      expires: new Date(0)
-    });
-    cookie.set('expiresIn', '', {
-      expires: new Date(0)
-    });
   }
 }
