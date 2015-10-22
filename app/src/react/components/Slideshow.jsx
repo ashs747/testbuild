@@ -20,7 +20,7 @@ class Slideshow extends React.Component {
     let dots = this.mapDots(this.props.slides.length);
     return (
       <div className="slideshow">
-        <div className={`display ${className}`}>
+        <div className={`display slide ${className}`}>
           {content}
           <div className="nav">
             <div className="left-arrow arrow col-xs-4">

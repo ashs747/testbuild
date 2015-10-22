@@ -2,6 +2,14 @@
   position: absolute;
   height: 100%;
   width: 100%;
+  background: url('/assets/img/login-background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  h1 {
+    font-weight: bold;
+  }
   .header {
     width: 100%;
     background-color: $white;
@@ -12,6 +20,9 @@
       width: 100%;
       max-width: 355px;
     }
+  }
+  .slideshow {
+    opacity: 0.9;
   }
   .slide-container {
     width: 750px;
@@ -33,11 +44,23 @@
   .row {
     margin: 0;
   }
+  .body {
+    padding: 20px;
+  }
+  .nav {
+    i {
+      color: $site_red;
+    }
+  }
 }
 
 .welcome {
   background-color: $site_red;
   color: $white;
+  .body {
+    padding: 40px;
+    height: calc(100% - 72px);
+  }
   .title {
     margin: 60px 0;
     text-align: left;
@@ -45,11 +68,86 @@
       margin-top: 40px;
     }
   }
+  .nav {
+    i {
+      color: $white;
+    }
+  }
 }
 
-.second {
+.profile {
+  background-color: $white;
+}
+
+.message {
   background-color: $dark_blue;
   color: $white;
+  .body {
+    width: 75%;
+    margin: 0 auto
+  }
+  .video {
+    margin: 30px auto;
+    width: 350px;
+    height: 200px;
+  }
+
+}
+
+.journey {
+  .title {
+    color: $site_red;
+    margin: 40px 0;
+  }
+  .content {
+    text-align: left;
+    font-size: 16px;
+  }
+}
+
+.progress {
+  .title {
+    width: 60%;
+    color: $site_red;
+    margin: 20px auto;
+  }
+  .content {
+    text-align: left;
+    font-size: 16px;
+  }
+}
+
+.final {
+  background-color: $site_red;
+  color: $white;
+  .sub {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .nav {
+    i {
+      color: $white;
+    }
+  }
+  .circle {
+    margin: 30px auto;
+    height: 130px;
+    width: 130px;
+    background-color: $white;
+    border-radius: 50%;
+    margin-top: 50px;
+    i {
+      color: $dark_blue;
+      font-size: 74px;
+      margin-top: 28px;
+    }
+  }
+  .btn {
+    background-color: $dark_blue;
+    color: $white;
+    padding: 10px;
+    width: 90%;
+  }
 }
 
 @media (max-width: 767px) {
@@ -69,6 +167,27 @@
     }
     .slide {
       height: 100%;
+    }
+  }
+  .progress {
+    .title {
+      width: 100%;
+    }
+  }
+  .final {
+    .sub {
+      width: 100%;
+    }
+    .btn {
+      margin: 10px 0;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .welcome {
+    .body {
+      padding: 20px;
     }
   }
 }
