@@ -2,8 +2,7 @@ import authManager from 'cirrus/services/managers/authManager';
 import userManager from 'cirrus/services/managers/userManager';
 import {getOAuthToken, getUserData} from '../services/authService';
 import cookie from 'cookie-cutter';
-import store from '../store';
-import router from '../../react/router';
+import Store from '../store.js';
 
 export const AUTH = 'AUTH';
 export const COOKIE_CHECKED = 'COOKIE_CHECKED';
@@ -14,7 +13,8 @@ export function authAction(username, password) {
     let res = response.body;
     cookie.set('authToken', res.access_token, { expires: new Date() + res.expires_in});
     cookie.set('refresh_token', res.refresh_token);
-    store.dispatch(cookieCheckedAction());
+    
+    Store.dispatch(cookieCheckedAction());
     return response;
   });
 
@@ -50,6 +50,6 @@ export function logoutAction() {
   cookie.set('refresh_token', '', {
     expires: 0
   });
-  router.transitionTo('/login');
+
   return {type: LOGOUT};
 }
