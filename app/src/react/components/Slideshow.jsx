@@ -16,7 +16,7 @@ class Slideshow extends React.Component {
     let className = this.props.slides[this.state.displaySlide].className;
     let totalSlides = this.props.slides.length;
     let next = (this.props.slides.length > this.state.displaySlide + 1) ? <span onClick={this.nextSlide}>Next <i className="fa fa-chevron-right"></i></span> : null;
-    let prev = (this.state.displaySlide > 0) ? <span onClick={this.prevSlide}><i className="fa fa-chevron-left"></i> Prev</span> : null;
+    let prev = (this.state.displaySlide > 0) ? <span onClick={this.prevSlide}><i className="fa fa-chevron-left"></i> Back</span> : null;
     let dots = this.mapDots(this.props.slides.length);
     return (
       <div className="slideshow">
