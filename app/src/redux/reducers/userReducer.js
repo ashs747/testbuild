@@ -1,29 +1,30 @@
 var initialState = {};
 
 export function reducer(state = initialState, action) {
+
   switch (action.type) {
     case 'FETCH_COHORT':
-      let newState = Object.assign({}, state);
-      newState.users = action.payload.users;
-      return newState;
+      switch (action.status) {
+        case 'RESOLVED':
+          return {...state,
+            cohortMembers: action.payload.users
+          };
+      }
 
     case 'COOKIE_CHECKED':
-      console.log('Cookiechecked', action);
       switch (action.status) {
         case 'RESOLVED':
           var user = action.payload.user;
-          console.log('the fing user', user);
           var feeds = action.payload.feeds;
           return {
             ...state,
             ...user,
-            feeds
+            feeds,
+            loggedIn: true
           };
 
         case 'REJECTED':
-          return {...state,
-            cookieChecked: true,
-            userData: null,
+          return {cookieChecked: true,
             loggedIn: false
           };
         default:
