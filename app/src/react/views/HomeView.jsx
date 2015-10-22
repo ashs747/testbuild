@@ -4,6 +4,7 @@ import TabStack from 'cirrus/react/components/TabStack';
 import {connect} from 'react-redux';
 import moment from 'moment-timezone';
 import LearningJourneyWidget from '../modules/personalLearningJourney/LearningJourneyWidget.jsx';
+import Carousel from '../components/Carousel.jsx';
 
 class HomeView extends React.Component {
 
@@ -12,6 +13,19 @@ class HomeView extends React.Component {
   }
 
   render() {
+    let carouselItems = [{
+      icon: "",
+      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }, {
+      icon: "",
+      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }, {
+      icon: "",
+      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }, {
+      icon: "",
+      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }];
     let modules = [{
       name: "Module 1 - Lorem ipsum dolor sit amet",
       startDate: moment('2015-09-01'),
@@ -51,8 +65,7 @@ class HomeView extends React.Component {
           <div className="col-sm-6 grid-panel featured">
             <div className="inner">
               <h5>Featured tools</h5>
-              <div className="circle"></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae justo mauris. Lorem ipsum dolor.</p>
+              <Carousel items={carouselItems} hideArrows={true} defineWidthClass="col-xs-10 col-xs-offset-1" />
             </div>
           </div>
           <div className="col-sm-6 grid-panel programme">

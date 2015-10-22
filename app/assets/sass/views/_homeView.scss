@@ -5,7 +5,7 @@
   .header {
     background-color: $site_red;
     color: $white;
-    padding: 100px 0px;
+    padding: 60px 0px;
     text-align: center;
     h1 {
       font-weight: bold;
@@ -120,6 +120,27 @@
   .tab-bar {
     .tab-btn {
       width: 50%;
+    }
+  }
+}
+
+.slide {
+  height: auto;
+}
+
+.carousel {
+  .icon {
+    color: $white;
+    border: 2px solid $white;
+    height: 90px;
+    width: 90px;
+  }
+  .carousel-indicators {
+    .active {
+      background-color: $white;
+    }
+    li {
+      border: 1px solid $white;
     }
   }
 }
