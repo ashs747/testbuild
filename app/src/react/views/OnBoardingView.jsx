@@ -122,7 +122,7 @@ class OnBoarding extends React.Component {
         </div>
         <div className="main">
           <div className="slide-container">
-            <Slideshow slides={slides}/>
+            <Slideshow slides={slides} hideBackOnSlide={[1, 2]}/>
           </div>
         </div>
         <div className="footer" />

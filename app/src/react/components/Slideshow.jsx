@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'underscore';
 
 class Slideshow extends React.Component {
 
@@ -16,7 +17,7 @@ class Slideshow extends React.Component {
     let className = this.props.slides[this.state.displaySlide].className;
     let totalSlides = this.props.slides.length;
     let next = (this.props.slides.length > this.state.displaySlide + 1) ? <span onClick={this.nextSlide}>Next <i className="fa fa-chevron-right"></i></span> : null;
-    let prev = (this.state.displaySlide > 0) ? <span onClick={this.prevSlide}><i className="fa fa-chevron-left"></i> Back</span> : null;
+    let prev = (this.state.displaySlide > 0 && this.hideBackButton(this.state.displaySlide)) ? <span onClick={this.prevSlide}><i className="fa fa-chevron-left"></i> Back</span> : null;
     let dots = this.mapDots(this.props.slides.length);
     return (
       <div className="slideshow">
@@ -55,7 +56,7 @@ class Slideshow extends React.Component {
     for (var i = 0; i < length; i++) {
       let className = (i === this.state.displaySlide) ? "active" : "";
       dots.push(
-        <li key={i} className="dot-nav-item"><div className={`dot ${className}`} onClick={this.changeSlide.bind(this, i)}></div></li>
+        <li key={i} className="dot-nav-item"><div className={`dot ${className}`}></div></li>
       );
     }
     return (
@@ -63,10 +64,11 @@ class Slideshow extends React.Component {
     );
   }
 
-  changeSlide(i) {
-    this.setState({
-      displaySlide: i
-    });
+  hideBackButton(i) {
+    if (this.props.hideBackOnSlide) {
+      return !_.find(this.props.hideBackOnSlide, x => i === x);
+    }
+    return true;
   }
 }
 
@@ -74,6 +76,7 @@ Slideshow.defaultProps = {
   slides: []
 };
 Slideshow.propTypes = {
-  slides: React.PropTypes.array.isRequired
+  slides: React.PropTypes.array.isRequired,
+  hideBackOnSlide: React.PropTypes.array
 };
 export default Slideshow;
