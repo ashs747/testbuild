@@ -10,6 +10,7 @@ import ModuleView from './views/ModuleView.jsx';
 import FAQView from './views/FAQView.jsx';
 import ProjectView from './views/ProjectView.jsx';
 import LeadershipProgrammeView from './views/LeadershipProgrammeView.jsx';
+import OnBoardingView from './views/OnBoardingView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -34,6 +35,7 @@ var Routes = (
         loading: state.auth.waitingForLogin
       };
     })(LoginView)} />
+    <Route name="on-boarding" handler={OnBoardingView} />
   </Route>
 );
 
