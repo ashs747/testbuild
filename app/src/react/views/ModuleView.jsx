@@ -43,8 +43,8 @@ class ModuleView extends React.Component {
       }
     }
 
-    return <div className="module-hub">
-
+    return (
+      <div className="module-hub">
         <div className="heading grey-container">
           <div className="row">
             <div className="col-sm-2">
@@ -77,7 +77,7 @@ class ModuleView extends React.Component {
           </div>
         </div>
       </div>
-    </div>;
+    </div>);
   }
 }
 
