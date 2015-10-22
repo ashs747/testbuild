@@ -8,8 +8,26 @@ function oAuth(params) {
   return request.post(apiRoot + 'oauth/v2/token', params);
 }
 
+function getResponseBody(response) {
+  return Promise.resolve(response.body);
+}
+
+function formatUserData(userData) {
+  var user = userData.user[0] || userData.user;
+  // var feeds = userData.feeds; //TODO: UncommentMe when FeedIDs come in
+  var feeds = [{'programme': 1}, {'cohortMessageFeed': 2}];
+  var out = {
+    user,
+    feeds
+  };
+
+  return Promise.resolve(out);
+}
+
 export function getUserData() {
-  return request.get(apiRoot + 'api/user/bootstrap');
+  return request.get(apiRoot + 'api/user/bootstrap')
+    .then(getResponseBody)
+    .then(formatUserData);
 }
 
 export const getOAuthToken = (username, password) => {

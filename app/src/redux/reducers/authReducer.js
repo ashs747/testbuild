@@ -40,23 +40,6 @@ export function reducer(state = initialState, action) {
           };
       }
 
-    case COOKIE_CHECKED:
-      switch (action.status) {
-        case 'RESOLVED':
-          return Object.assign({}, state, {
-            cookieChecked: true,
-            userData: action.payload
-          });
-        case 'REJECTED':
-          return {...state,
-            cookieChecked: true,
-            userData: null,
-            loggedIn: false
-          };
-        default:
-          return state;
-      }
-
     case LOGOUT:
       return Object.assign({}, state, {
         loggedIn: false,

@@ -24,12 +24,12 @@ export function authAction(username, password) {
 
 export function cookieCheckedAction() {
   var req = getUserData();
-  // req=authManager.validateToken('', cData.access_token)};
   return { 
     type: COOKIE_CHECKED,
     payload: req
   };
 }
+
 export function getCookies() {
   /*eslint-disable camelcase */
   return {
