@@ -58,9 +58,9 @@ class ActionLearningZoneView extends React.Component {
   }
 
   componentWillMount() {
-    dispatch(fetchLatestFeedMessages(0));
-    dispatch(fetchUsersByCohort(13));
-    dispatch(getResourcesByCohort(13));
+    dispatch(fetchLatestFeedMessages(1));
+    dispatch(fetchUsersByCohort(1));
+    dispatch(getResourcesByCohort(1));
   }
 
   render() {

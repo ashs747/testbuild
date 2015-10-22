@@ -15,7 +15,7 @@ function getResponseBody(response) {
 function formatUserData(userData) {
   var user = userData.user[0] || userData.user;
   // var feeds = userData.feeds; //TODO: UncommentMe when FeedIDs come in
-  var feeds = [{'programme': 1}, {'cohortMessageFeed': 2}];
+  var feeds = [{'programme': 1}, {'cohort': 2}];
   var out = {
     user,
     feeds

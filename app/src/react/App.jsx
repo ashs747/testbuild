@@ -55,9 +55,14 @@ class App extends React.Component {
     if (loggedIn && activeRouteName == 'login') {
       router.transitionTo('/');
     }
+    if (loggedIn) {
+      console.log('LoggedIn', store.getState());
+    }
     if (!loggedIn) {
-        router.transitionTo('login');
-     }
+      console.log('Not Logged In');
+      console.dir(store.getState());
+      router.transitionTo('login');
+    }
   }
 
   changeWidth() {

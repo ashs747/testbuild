@@ -30,7 +30,7 @@ export default class Header extends React.Component {
           <LiAnchor text="Programme" action="" url="/#/programme"/>
           <LiAnchor text="Learning journey"url="/#/learning-journey" childList={moduleList}/>
           <LiAnchor text="Action Learning Zone" url="/#/action-learning-zone"/>
-          <LiAnchor text="Learning Log" action="/#/programme" url=""/>
+          <LiAnchor text="Learning Log" action="" url="/#/"/>
           <LiAnchor text="Toolkit" action="" url="/#/tools"/>
           <LiAnchor text="FAQs" action="" url="/#/faq"/>
         </ul>
