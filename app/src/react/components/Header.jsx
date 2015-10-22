@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import LiAnchor from './LiAnchor.jsx';
+import {logoutAction} from '../../redux/actions/authActions';
 
 export default class Header extends React.Component {
   constructor() {
@@ -33,6 +34,7 @@ export default class Header extends React.Component {
           <LiAnchor text="Learning Log" action="" url="/#/"/>
           <LiAnchor text="Toolkit" action="" url="/#/tools"/>
           <LiAnchor text="FAQs" action="" url="/#/faq"/>
+          <LiAnchor text="Logout" action={logoutAction}/>
         </ul>
       </div>
     </div>);
