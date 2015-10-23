@@ -20,7 +20,7 @@ class Header extends React.Component {
     let tabbedNav = (
       <div className="tabbed-nav">
         <ul>
-          <LiAnchor text="My details" action="" url="/#/profile"/>
+          <LiAnchor text="Profile" action="" url="/#/profile"/>
           <LiAnchor text="Need Help?" action="" url="/#/help"/>
           <LiAnchor text="Log Out" action="" url="/#/login"/>
           <img src="assets/img/cirrus-logo.png" />
@@ -48,7 +48,7 @@ class Header extends React.Component {
           <LiAnchor text="Learning Journey" onClick={this.toggleMobileNav} url="/#/personal-learning-journey"/>
           <LiAnchor text="Action Learning Zone" onClick={this.toggleMobileNav} url="/#/action-learning-zone"/>
           <LiAnchor text="Toolkit" onClick={this.toggleMobileNav} url="/#/tools"/>
-          <LiAnchor text="My details" onClick={this.toggleMobileNav} url="/#/profile"/>
+          <LiAnchor text="Profile" onClick={this.toggleMobileNav} url="/#/profile"/>
           <LiAnchor text="Need Help?" onClick={this.toggleMobileNav} url="/#/help"/>
           <LiAnchor text="Log Out" onClick={this.toggleMobileNav} url="/#/login"/>
         </ul>
