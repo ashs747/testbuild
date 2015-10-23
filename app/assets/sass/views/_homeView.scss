@@ -1,0 +1,170 @@
+.home {
+  .row {
+    margin: 0;
+  }
+  .header {
+    background-color: $site_red;
+    color: $white;
+    padding: 60px 0px;
+    text-align: center;
+    h1 {
+      font-weight: bold;
+    }
+    .inner {
+      padding: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  .go-to-alz {
+    border: 2px solid $white;
+    border-radius: 5px;
+    padding: 10px;
+    width: 55%;
+    margin: 0 auto;
+    cursor: pointer;
+    p {
+      margin: 0;
+    }
+  }
+  .left-bar {
+    background-color: $white;
+    padding: 0;
+  }
+  .right-bar {
+    background-color: $light_grey;
+    height: 1400px;
+  }
+  .home-learning {
+    h5 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    h6 {
+      color: $site_red;
+      font-size: 14px;
+      text-align: right;
+      font-weight: bold;
+    }
+  }
+  .learning-journey {
+    padding: 40px;
+  }
+  .grid-links {
+    text-align: center;
+    .grid-panel {
+      height: 300px;
+    }
+    .featured {
+      background-color: $site_red;
+      color: $white;
+    }
+    .programme {
+      background-color: $dark_blue;
+      color: $white;
+      padding: 20px;
+    }
+    .help {
+      background-color: $dark_blue;
+      color: $white;
+      padding: 20px;
+    }
+    .log {
+      background-color: $white;
+      padding: 20px;
+    }
+    .inner {
+      padding: 20px;
+    }
+    .circle {
+      margin: 30px auto;
+      height: 90px;
+      width: 90px;
+      border: 2px solid $white;
+      border-radius: 50%;
+    }
+    .find-out-more {
+      cursor: pointer;
+      border: 2px solid $white;
+      width: 60%;
+      display: block;
+      margin: 25px auto;
+      h6 {
+        color: $white;
+        text-align: center;
+      }
+    }
+    .find-out-more-red {
+      cursor: pointer;
+      border: 2px solid $site_red;
+      width: 60%;
+      display: block;
+      margin: 25px auto;
+      h6 {
+        color: $site_red;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.home-tabs {
+  .tab-bar {
+    .tab-btn {
+      width: 50%;
+    }
+  }
+}
+
+.slide {
+  height: auto;
+}
+
+.carousel {
+  .icon {
+    color: $white;
+    border: 2px solid $white;
+    height: 90px;
+    width: 90px;
+  }
+  .carousel-indicators {
+    .active {
+      background-color: $white;
+    }
+    li {
+      border: 1px solid $white;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .home {
+    .header {
+      padding: 50px 0;
+    }
+    .go-to-alz {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .home {
+    .header {
+      padding: 30px 0;
+    }
+    .grid-links {
+      .grid-panel {
+        height: auto;
+      }
+    }
+  }
+}
