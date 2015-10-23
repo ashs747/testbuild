@@ -27,7 +27,7 @@ class Footer extends React.Component {
                 <LiAnchor text="Toolkit" url="/#/tools"/>
                 <LiAnchor text="My details" url="/#/profile"/>
                 <LiAnchor text="Need Help?" url="/#/help"/>
-                <LiAnchor text="Log Out" url="/#/logout"/>
+                <LiAnchor text="Log Out" url="/#/login"/>
               </ul>
               <img src="assets/img/cirrus-logo.png" />
             </div>
