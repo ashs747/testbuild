@@ -1,0 +1,28 @@
+.footer {
+  background-color: $dark_blue;
+}
+.padding {
+  height: 100px;
+  width: 100%;
+  padding: 50px;
+  img {
+    float: right;
+  }
+}
+.full {
+  padding: 50px;
+  img {
+    float: right;
+    margin-top: 50px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+    margin: 0 80px;
+  }
+  a {
+    color: $light_grey;
+  }
+}
