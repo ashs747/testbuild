@@ -5,7 +5,7 @@ export default class LiAnchor extends React.Component {
     super();
     this.doAction = this.doAction.bind(this);
   }
-  
+
   render() {
     const subMenu = this.props.childList || '';
 

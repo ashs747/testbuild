@@ -11,6 +11,7 @@ import FAQView from './views/FAQView.jsx';
 import ProjectView from './views/ProjectView.jsx';
 import LeadershipProgrammeView from './views/LeadershipProgrammeView.jsx';
 import OnBoardingView from './views/OnBoardingView.jsx';
+import HomeView from './views/HomeView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -19,15 +20,16 @@ var NotFoundRoute = ReactRouter.NotFoundRoute;
 var Routes = (
   <Route handler={ReactRouter.RouteHandler}>
     <DefaultRoute handler={connect((state) => state)(MainView)}>
-      <DefaultRoute handler={connect((state) => state)(LearningJourneyView)} />
+      <DefaultRoute handler={connect((state) => state)(HomeView)} />
     </DefaultRoute>
-    <Route name="home" path="/" handler={connect((state) => state)(MainView)}>
+    <Route name="main" path="/" handler={connect((state) => state)(MainView)}>
       <Route name="personal-learning-journey" handler={connect((state) => state)(LearningJourneyView)} />
       <Route name="module" path="module/:module" handler={connect((state) => state)(ModuleView)} />
       <Route name="action-learning-zone" handler={ActionLearningZone} />
       <Route name="faq" handler={FAQView} />
       <Route name="project" path="project/:project" handler={ProjectView} />
       <Route name="programme" handler={LeadershipProgrammeView} />
+      <Route name="home" handler={HomeView} />
     </Route>
     <Route name="login" handler={connect((state) => {
       return {
