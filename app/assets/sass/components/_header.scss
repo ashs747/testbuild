@@ -1,5 +1,118 @@
 /* The SOJ Header */
+.header {
+  background-color: $white;
+  .header-logo {
+    padding: 20px;
+    img {
+      width: 100%;
+    }
+  }
+  li {
+    display: inline;
+  }
+  ul {
+    padding: 0;
+    float: right;
+  }
+  .tabbed-nav {
+    img {
+      padding: 15px;
+    }
+    li {
+      background-color: $site_red;
+      padding: 20px 20px 15px 20px;
+      margin: 0 5px;
+      border-radius: 5px;
+    }
+    a {
+      color: $white;
+    }
+  }
+  .nav-buttons {
+    ul {
+      text-align: right;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    li {
+      display: inline-block;
+      text-align: center;
+      padding: 0 10px;
+    }
+    a {
+      font-size: 14px;
+      color: $site_red;
+      font-weight: bold;
+    }
+  }
+}
+.small-nav {
+  .top-logo {
+    img {
+      display: block;
+      margin: 0 auto;
+      padding: 10px;
+      width: 100%;
+      max-width: 325px;
+    }
+  }
+  .dark-blue {
+    background-color: $dark_blue;
+    img {
+      padding: 10px;
+      float: left;
+    }
+    .nav-icon {
+      float: right;
+      color: $white;
+      font-size: 36px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+  }
+}
 
-.navtop {
+.mobile-nav {
+  position: absolute;
+  width: calc(100% - 30px);
+  z-index: 1000;
+  background-color: $light_grey;
+  ul {
+    width: 100%;
+  }
+  li {
+    cursor: pointer;
+    background-color: $white;
+    padding: 10px;
+    float: left;
+    display: block;
+    width: calc(100% - 10px);
+    margin: 2.5px 5px;
+  }
+}
 
+@media (max-width: 1125px) {
+  .header {
+    .header-logo {
+      padding: 10px 5px;
+    }
+    .tabbed-nav {
+      li {
+        padding: 15px 10px 5px 10px;
+        margin: 0 2px;
+      }
+      img {
+        padding: 10px;
+      }
+    }
+    .nav-buttons {
+      li {
+        width: 16.667%;
+        padding: 0;
+      }
+      a {
+        font-size:14px;
+      }
+    }
+  }
 }

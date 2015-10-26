@@ -11,7 +11,7 @@ describe('Main Screen', function() {
     component = testUtils.renderIntoDocument(React.createElement(MainView));
   });
 
-  it('should render a div with class: main', function() {
+  xit('should render a div with class: main', function() {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'main');
     expect(components.length).to.equal(1);
   });
