@@ -11,9 +11,10 @@ export const LOGOUT = 'LOGOUT';
 export function authAction(username, password) {
   let req = getOAuthToken(username, password).then((response) => {
     let res = response.body;
-    cookie.set('authToken', res.access_token, { expires: new Date() + res.expires_in});
+    /* Expiry date is a new DateObject, set to 'Today in Milliseconds add the expiry time in seconds' */
+    let expiryDate = new Date(new Date().valueOf() + res.expires_in * 1000);
+    cookie.set('authToken', res.access_token, {expires: expiryDate});
     cookie.set('refresh_token', res.refresh_token);
-    
     Store.dispatch(cookieCheckedAction());
     return response;
   });
