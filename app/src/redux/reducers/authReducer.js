@@ -6,7 +6,10 @@ const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-
+    case 'LOGOUT':
+      return {};
+      break;
+    
     case 'COOKIE_CHECKED':
       if (action.status === 'REJECTED') {
         return {};
@@ -39,10 +42,6 @@ export function reducer(state = initialState, action) {
           };
       }
 
-    case LOGOUT:
-      return {};
-      break;
-    
     default:
       return state;
   }

@@ -21,6 +21,9 @@ export const feedReducer = (state = defaultState, action) => {
   var feed, nextState;
 
   switch (action.type) {
+    case 'LOGOUT': 
+      return {};
+    
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
       nextState = Object.assign({}, state);

@@ -5,6 +5,7 @@ import {logoutAction} from '../../redux/actions/authActions';
 export default class Header extends React.Component {
   constructor() {
     super();
+    this.logout = this.logout.bind(this);
   }
 
   render() {
@@ -34,9 +35,13 @@ export default class Header extends React.Component {
           <LiAnchor text="Learning Log" action="" url="/#/"/>
           <LiAnchor text="Toolkit" action="" url="/#/tools"/>
           <LiAnchor text="FAQs" action="" url="/#/faq"/>
-          <LiAnchor text="Logout" action={logoutAction}/>
+          <LiAnchor text="Logout" action={this.logout} url="#"/>
         </ul>
       </div>
     </div>);
+  }
+
+  logout() {
+    this.props.dispatch(logoutAction());
   }
 }

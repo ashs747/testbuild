@@ -3,6 +3,9 @@ var initialState = {};
 export function reducer(state = initialState, action) {
 
   switch (action.type) {
+    case 'LOGOUT': 
+      return {};
+
     case 'FETCH_COHORT':
       switch (action.status) {
         case 'RESOLVED':

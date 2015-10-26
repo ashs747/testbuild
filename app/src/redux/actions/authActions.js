@@ -52,5 +52,5 @@ export function logoutAction() {
     expires: 0
   });
 
-  return {type: LOGOUT};
+  return {type: 'LOGOUT', payload: ''};
 }

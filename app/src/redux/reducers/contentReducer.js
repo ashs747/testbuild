@@ -4,6 +4,9 @@ export const reducer = (state = defaultState, action) => {
   var feed, nextState;
 
   switch (action.type) {
+    case 'LOGOUT': 
+      return {};
+    
     case "CONTENT_GET_RESOURCES":
       switch (action.status) {
         case "RESOLVED":
