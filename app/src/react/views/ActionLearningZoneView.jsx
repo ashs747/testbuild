@@ -4,24 +4,28 @@ import _ from 'underscore';
 import {connect} from 'react-redux';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
+import {getFeedIdForContext} from '../../redux/services/feedService';
 import {fetchUsersByCohort} from '../../redux/actions/usersActions';
 import {getResourcesByCohort} from '../../redux/actions/contentActions';
 import Store from '../../redux/store';
 import TabStack from 'cirrus/react/components/TabStack';
 import ResourcesWidget from '../modules/resource/Widget.jsx';
 var dispatch = Store.dispatch;
+var feedID;
 
-/*
 function mapCommentListProps(state) {
-  return {
-    attachments: state.feeds.testTwo ? state.feeds.testTwo.files : [],
-    feedID: 'testTwo',
-    messages: state.feeds.testTwo ? state.feeds.testTwo.messages : [],
+  console.log('mapping commentlistprops', state);
+  var out = {
+    feedID,
+    attachments: state.feeds[feedID] ? state.feeds[feedID].files : [],    
+    messages: state.feeds[feedID] ? state.feeds[feedID].messages : [],
     showComments: true
   };
+  console.log('MappedProps', out);
+  return out;
 };
+
 var ALZFeed = connect(mapCommentListProps)(FeedWidget);
-*/
 
 function mapMembersProps(state) {
   return {
@@ -57,8 +61,12 @@ class ActionLearningZoneView extends React.Component {
     super();
   }
 
-  componentWillMount() {
-    dispatch(fetchLatestFeedMessages(1));
+  componentDidMount() {
+    var context = "cohort";
+    console.log('Feeds:', Store.getState().feeds);
+    feedID = getFeedIdForContext(Store.getState().feeds, context);
+    console.log('feedid', feedID);
+    dispatch(fetchLatestFeedMessages(feedID));
     dispatch(fetchUsersByCohort(1));
     dispatch(getResourcesByCohort(1));
   }
@@ -69,7 +77,7 @@ class ActionLearningZoneView extends React.Component {
         <h3>Cohort 1 message board</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
         <div style={{height: "800px", width: "100%"}} >
-          <p>ALZ feed goes here once styled :)</p>
+          <ALZFeed />
         </div>
       </div>
     );

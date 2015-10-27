@@ -18,16 +18,6 @@ export const createMessage = (feedID, messageContent) => {
   };
 };
 
-function getFeedIdForContext(feedID) {
-  for (let key in feeds) {
-    if (feeds.hasOwnProperty(key)) {
-      if (feeds[key].context === feedContext) {
-        return key;
-      }
-    }
-  }
-}
-
 /**
  * Dispatches a delete handler to request a post is removed from the server
  */
@@ -126,6 +116,7 @@ export const rotateAttachment = (feedId, reference, variations) => {
       feedId, reference, variationResult
     };
   });
+
   return {
     type: 'FEED_ROTATE_ATTACHMENT',
     payload

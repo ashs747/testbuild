@@ -18,6 +18,7 @@ function updateMatchedByFieldName(fieldName) {
 };
 
 export const feedReducer = (state = defaultState, action) => {
+  console.log(action);
   var feed, nextState;
 
   switch (action.type) {

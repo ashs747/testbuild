@@ -4,7 +4,7 @@ export function getFeedMessages(feedID, qty = 60) {
   // let reqURI = `/feed/${programmeID}/${cohortID}/?qty=${qty}`;
   // return request.get(reqURI).end();
   return Promise.resolve({
-    id: "1",
+    id: feedID,
     messages: [{
       id: 0,
       userCanEdit: true,
@@ -32,6 +32,16 @@ export function getFeedMessages(feedID, qty = 60) {
       }]
     }],
   });
+}
+
+export function getFeedIdForContext(feeds, feedContext) {
+  for (let key in feeds) {
+    if (feeds.hasOwnProperty(key)) {
+      if (feeds[key].context === feedContext) {
+        return key;
+      }
+    }
+  }
 }
 
 export function getLatestFeedMessages(programmeID, cohortID = 0, qty = 25) {
