@@ -18,6 +18,16 @@ export const createMessage = (feedID, messageContent) => {
   };
 };
 
+function getFeedIdForContext(feedID) {
+  for (let key in feeds) {
+    if (feeds.hasOwnProperty(key)) {
+      if (feeds[key].context === feedContext) {
+        return key;
+      }
+    }
+  }
+}
+
 /**
  * Dispatches a delete handler to request a post is removed from the server
  */
@@ -74,8 +84,8 @@ export const saveUpdatedMessage = (feedID, messageID) => {
   };
 };
 
-export const fetchLatestFeedMessages = (programmeID, cohortID) => {
-  let payload = getFeedMessages(programmeID, cohortID);
+export const fetchLatestFeedMessages = (feedID) => {
+  let payload = getFeedMessages(feedID);
   return {
     type: 'FEED_FETCHED',
     payload

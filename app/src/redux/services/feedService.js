@@ -1,10 +1,10 @@
 import request from 'cirrus/services/request';
 
-export function getFeedMessages(programmeID, cohortID = 0, qty = 25) {
+export function getFeedMessages(feedID, qty = 60) {
   // let reqURI = `/feed/${programmeID}/${cohortID}/?qty=${qty}`;
   // return request.get(reqURI).end();
   return Promise.resolve({
-    id: "testTwo",
+    id: "1",
     messages: [{
       id: 0,
       userCanEdit: true,
