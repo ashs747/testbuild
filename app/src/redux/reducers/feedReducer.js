@@ -18,7 +18,7 @@ function updateMatchedByFieldName(fieldName) {
 };
 
 export const feedReducer = (state = defaultState, action) => {
-  console.log(action);
+
   var feed, nextState;
 
   switch (action.type) {
@@ -27,11 +27,13 @@ export const feedReducer = (state = defaultState, action) => {
 
     case 'COOKIE_CHECKED':
       if (action.status === 'RESOLVED') {
-        return {
-          ...state,
-          ...action.payload.feeds
-        };
-      };
+        if (Object.keys(state).length < 1) {
+          return {
+            ...state,
+            ...action.payload.feeds
+          };
+        } 
+      }
       return state;
       break;
     
@@ -83,6 +85,7 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_FETCHED":
+      console.log('fetched', action);
       switch (action.status) {
         case 'RESOLVED':
           var fullFeed = action.payload;

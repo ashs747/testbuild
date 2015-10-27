@@ -8,18 +8,22 @@ export default class FeedWidget extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <PostForm
-          feedID={this.props.feedID}
-          onSave={() => {}}
-          onChange={() => {}}
-          showUploadMedia={true}
-          showEmbedVideo={true}
-          attachments={this.props.attachments}
-        />
-        <MessageList messages={this.props.messages} feedID={this.props.feedID} />
-      </div>
-    );
+    if (this.props.messages && this.props.messages.length > 0) {
+      return (
+        <div className="message-board">
+          <PostForm
+            feedID={this.props.feedID}
+            onSave={() => {}}
+            onChange={() => {}}
+            showUploadMedia={true}
+            showEmbedVideo={true}
+            attachments={this.props.attachments}
+          />
+          <MessageList messages={this.props.messages} feedID={this.props.feedID} />
+        </div>
+      );
+    }
+    return (<p>Loading</p>);
   }
 }
+

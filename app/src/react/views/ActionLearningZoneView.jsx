@@ -14,15 +14,14 @@ var dispatch = Store.dispatch;
 var feedID;
 
 function mapCommentListProps(state) {
-  console.log('mapping commentlistprops', state);
-  var out = {
+  console.log('state is', state);
+  console.log('we pass', state.feeds[feedID] ? state.feeds[feedID].messages : []);
+  return {
     feedID,
     attachments: state.feeds[feedID] ? state.feeds[feedID].files : [],    
     messages: state.feeds[feedID] ? state.feeds[feedID].messages : [],
     showComments: true
   };
-  console.log('MappedProps', out);
-  return out;
 };
 
 var ALZFeed = connect(mapCommentListProps)(FeedWidget);
@@ -63,9 +62,8 @@ class ActionLearningZoneView extends React.Component {
 
   componentDidMount() {
     var context = "cohort";
-    console.log('Feeds:', Store.getState().feeds);
     feedID = getFeedIdForContext(Store.getState().feeds, context);
-    console.log('feedid', feedID);
+    
     dispatch(fetchLatestFeedMessages(feedID));
     dispatch(fetchUsersByCohort(1));
     dispatch(getResourcesByCohort(1));
@@ -76,9 +74,7 @@ class ActionLearningZoneView extends React.Component {
       <div className="alz-message-board">
         <h3>Cohort 1 message board</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-        <div style={{height: "800px", width: "100%"}} >
-          <ALZFeed />
-        </div>
+        <ALZFeed />
       </div>
     );
     var resoucesWidgets = (
