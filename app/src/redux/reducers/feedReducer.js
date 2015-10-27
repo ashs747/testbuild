@@ -23,6 +23,16 @@ export const feedReducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'LOGOUT': 
       return {};
+
+    case 'COOKIE_CHECKED':
+      if (action.status === 'RESOLVED') {
+        return {
+          ...state,
+          ...action.payload.feeds
+        };
+      };
+      return state;
+      break;
     
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];

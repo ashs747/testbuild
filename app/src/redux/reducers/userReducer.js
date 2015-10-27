@@ -17,17 +17,17 @@ export function reducer(state = initialState, action) {
     case 'COOKIE_CHECKED':
       switch (action.status) {
         case 'RESOLVED':
-          var user = action.payload.user;
-          var feeds = action.payload.feeds;
+          var user = action.payload.user,
+            feeds = action.payload.feeds;
           return {
             ...state,
             ...user,
-            feeds,
             loggedIn: true
           };
 
         case 'REJECTED':
-          return {cookieChecked: true,
+          return {
+            cookieChecked: true,
             loggedIn: false
           };
         default:
