@@ -84,6 +84,13 @@ export const feedReducer = (state = defaultState, action) => {
       }
       break;
 
+    case 'FEED_UPDATE_NEW_POST':
+      console.log('UNP', action);
+      nextState = Object.assign({}, state);
+      nextState[action.payload.feedID].newMessageContent = action.payload.content;
+      return nextState;
+      break;
+
     case "FEED_FETCHED":
       console.log('fetched', action);
       switch (action.status) {

@@ -29,7 +29,7 @@ The file path is sent, along with an object, {medium: {width: 400}
 
 Post made to {url}/variation-generator with a stringified response made up of the following
 <pre>
-{original: "filepath", variations: {variationsObject}}
+	{original: "filepath", variations: {variationsObject}}
 </pre>
 Invokes a callback: onGenerateVariations
 

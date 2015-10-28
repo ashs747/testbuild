@@ -13,11 +13,11 @@ export default class FeedWidget extends React.Component {
         <div className="message-board">
           <PostForm
             feedID={this.props.feedID}
-            onSave={() => {}}
-            onChange={() => {}}
             showUploadMedia={true}
             showEmbedVideo={true}
             attachments={this.props.attachments}
+            dispatch={this.props.dispatch}
+            content={this.props.content}
           />
           <MessageList messages={this.props.messages} feedID={this.props.feedID} />
         </div>

@@ -1,5 +1,5 @@
 //feedActions
-import {deleteMessage, postMessage, getLatestFeedMessages, getFeedMessages, postUpdatedMessage} from '../services/feedService';
+import {postMessage, postComment, deleteMessage, patchMessage, getFeedMessages} from '../services/feedService';
 import {generateVariations, rotate, getThumbnail} from '../services/uploadService';
 import store from '../store.js';
 
@@ -11,7 +11,9 @@ export const FEED_DELETE_MESSAGE = 'FEED_DELETE_MESSAGE';
 export const FEED_FETCHED = 'FEED_FETCHED';
 
 export const createMessage = (feedID, messageContent) => {
-  let asyncResponse = postFeedContent(messageContent);
+  console.log('creating for: ' + feedID);
+  console.log('With:', messageContent);
+  let asyncResponse = postMessage(feedID, messageContent);
   return {
     type: FEED_CREATE_MESSAGE,
     payload: asyncResponse
@@ -39,6 +41,22 @@ export const setEditable = (feedID, messageID, canEdit) => {
     }
   };
 };
+
+/**
+ *
+ * OnChange Action dispatched when a new post is being
+ * written-out
+ */
+
+export const updateNewMessage = (feedID, messageContent) => {
+  return {
+    type: 'FEED_UPDATE_NEW_POST',
+    payload: {
+      feedID: feedID,
+      content: messageContent
+    }
+  }
+}
 
 /**
  * OnChange action dispatched when an editable field has its contents changed;
@@ -83,12 +101,15 @@ export const fetchLatestFeedMessages = (feedID) => {
 };
 
 export const addFile = (file, variationObj, feedId) => {
-  let payload = generateVariations(file.optimisedName, variationObj).then((response) => {
-    return {
-      item: response[0],
-      feedId
-    };
-  });
+  let payload = generateVariations(file.optimisedName, variationObj)
+    .then((response) => {
+      console.log(response);
+      return {
+        item: response[0],
+        feedId
+      };
+    });
+
   return {
     type: 'FEED_ADD_FILE',
     payload

@@ -2,7 +2,7 @@ import React from 'react';
 import TextArea from 'react-textarea-autosize';
 import UploadMedia from './UploadMedia.jsx';
 import EmbedVideo from './EmbedVideo.jsx';
-import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';
+import {removeAttachment, rotateAttachment, createMessage, updateNewMessage} from '../../../../redux/actions/feedActions';
 import {dispatch} from '../../../../redux/store';
 
 /**
@@ -10,6 +10,7 @@ import {dispatch} from '../../../../redux/store';
   Dumb component, accepts a bunch of event handlers to pass onto child components and invoke itself
 
   Props:
+    feedID - required: the ID against which to post
     profilePic - opt string (users profile picture url)
     onSave - req function (what fires when the save button)
     onChange - req function (whenever anything inside the component, attach to the textarea)
@@ -28,6 +29,7 @@ class PostForm extends React.Component {
   }
 
   render() {
+    console.log('Render', this.props);
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId="testTwo" /> : null;
@@ -38,7 +40,7 @@ class PostForm extends React.Component {
           <img src={profilePic} />
         </div>
         <div className="message">
-          <TextArea placeholder="What's happening?" onChange={this.onChange} />
+          <TextArea value={this.props.content} placeholder={this.props.content ? '' : "What's happening?"} onChange={this.onChange} />
         </div>
         <div className="buttons">
           {uploadMedia}
@@ -76,11 +78,11 @@ class PostForm extends React.Component {
 
   onChange(e) {
     e.preventDefault ? e.preventDefault() : e.returnValue = false;
-    this.props.onChange(e.target.value);
+    dispatch(updateNewMessage(this.props.feedID, e.target.value));
   }
 
   onSave() {
-    this.props.onSave();
+    dispatch(postMessage(this.props.feedID, this.props));
   }
 
   removeAttachment(reference) {
@@ -96,8 +98,7 @@ PostForm.defaultProps = { attachments: [] };
 PostForm.propTypes = {
   profilePic: React.PropTypes.string,
   attachments: React.PropTypes.array,
-  onSave: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func.isRequired,
+  feedID: React.PropTypes.string,
   showUploadMedia: React.PropTypes.bool,
   showEmbedVideo: React.PropTypes.bool
 };

@@ -18,6 +18,7 @@ function mapCommentListProps(state) {
   console.log('we pass', state.feeds[feedID] ? state.feeds[feedID].messages : []);
   return {
     feedID,
+    content: state.feeds[feedID] ? state.feeds[feedID].newMessageContent : [],
     attachments: state.feeds[feedID] ? state.feeds[feedID].files : [],    
     messages: state.feeds[feedID] ? state.feeds[feedID].messages : [],
     showComments: true
