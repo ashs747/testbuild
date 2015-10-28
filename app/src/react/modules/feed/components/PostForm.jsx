@@ -2,7 +2,7 @@ import React from 'react';
 import TextArea from 'react-textarea-autosize';
 import UploadMedia from './UploadMedia.jsx';
 import EmbedVideo from './EmbedVideo.jsx';
-import {removeAttachment, rotateAttachment, createMessage, updateNewMessage} from '../../../../redux/actions/feedActions';
+import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';;
 import {dispatch} from '../../../../redux/store';
 
 /**
@@ -29,7 +29,7 @@ class PostForm extends React.Component {
   }
 
   render() {
-    console.log('Render', this.props);
+    console.log('PostFormPropsAtRender', this.props);
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId="testTwo" /> : null;
@@ -40,7 +40,7 @@ class PostForm extends React.Component {
           <img src={profilePic} />
         </div>
         <div className="message">
-          <TextArea value={this.props.content} placeholder={this.props.content ? '' : "What's happening?"} onChange={this.onChange} />
+          <TextArea value={this.props.content} placeholder={this.props.placeholder || this.props.content ? '' : "What's happening?"} onChange={this.onChange} />
         </div>
         <div className="buttons">
           {uploadMedia}
@@ -78,19 +78,20 @@ class PostForm extends React.Component {
 
   onChange(e) {
     e.preventDefault ? e.preventDefault() : e.returnValue = false;
-    dispatch(updateNewMessage(this.props.feedID, e.target.value));
+    this.props.onEdit(this.props.feedID, e.target.value, this.props.messageID);
   }
 
-  onSave() {
-    dispatch(postMessage(this.props.feedID, this.props));
+  onSave(e) {
+    e.preventDefault();
+    this.props.onSave(this.props.feedID, this.props);
   }
 
   removeAttachment(reference) {
-    dispatch(removeAttachment("testTwo", reference));
+    removeAttachment("testTwo", reference);
   }
 
   rotateAttachment(variations, reference) {
-    dispatch(rotateAttachment("testTwo", reference, variations));
+    rotateAttachment("testTwo", reference, variations);
   }
 
 }

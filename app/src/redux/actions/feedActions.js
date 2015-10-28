@@ -48,15 +48,17 @@ export const setEditable = (feedID, messageID, canEdit) => {
  * written-out
  */
 
-export const updateNewMessage = (feedID, messageContent) => {
+export const updateNewMessage = (feedID, messageContent, messageID) => {
   return {
     type: 'FEED_UPDATE_NEW_POST',
     payload: {
       feedID: feedID,
-      content: messageContent
+      content: messageContent,
+      parent: messageID || ''
     }
-  }
-}
+  };
+};
+
 
 /**
  * OnChange action dispatched when an editable field has its contents changed;

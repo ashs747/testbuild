@@ -86,8 +86,28 @@ export const feedReducer = (state = defaultState, action) => {
 
     case 'FEED_UPDATE_NEW_POST':
       console.log('UNP', action);
+      var parentID = action.payload.parent;
+      var feedID = action.payload.feedID;
+      var content = action.payload.content;
       nextState = Object.assign({}, state);
-      nextState[action.payload.feedID].newMessageContent = action.payload.content;
+
+      /* Do we have a parent message? */
+      if (parentID) {
+        console.log('parentID found');
+        nextState[feedID].messages = state[feedID].messages.map((message) => {
+          if (message.id === parentID) {
+            return {
+              ...message,
+              newComment: content
+            };
+          }
+          return message;
+        });
+      } else {
+        nextState[feedID].newMessageContent = action.payload.content;
+      }
+
+      console.log('nextstate', nextState);
       return nextState;
       break;
 

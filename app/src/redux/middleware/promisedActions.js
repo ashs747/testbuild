@@ -5,7 +5,7 @@ function isPromise(obj) {
 
 export default function promiseMiddleware() {
   return next => action => {
-    if (!action.payload || !isPromise(action.payload)) {
+    if (action && !action.payload || !isPromise(action.payload)) {
       return next(action);
     }
 

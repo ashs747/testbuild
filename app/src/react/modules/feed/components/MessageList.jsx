@@ -1,6 +1,6 @@
 import React from 'react';
 import Message from './Message.jsx';
-import {deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
+import {deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage, updateNewMessage, saveNewMessage} from '../../../../redux/actions/feedActions.js';
 import Store from '../../../../redux/store';
 var dispatch = Store.dispatch;
 
@@ -24,10 +24,10 @@ class MessageList extends React.Component {
     this.updateMessage = this.updateMessage.bind(this);
     this.saveMessage = this.saveMessage.bind(this);
     this.mapMessages = this.mapMessages.bind(this);
+    this.updateCommentAction = this.updateCommentAction.bind(this);
   }
 
   render() {
-    console.log('messages passed:', this.props.messages);
     let messages = (this.props.messages && this.props.messages.length > 0) ? this.mapMessages(this.props.messages) : '';
     return (
       <div className="message-list">
@@ -47,22 +47,38 @@ class MessageList extends React.Component {
       let comments = message.comments;
       let editable = message.editing;
       let userCanEdit = message.userCanEdit;
+      let newComment = message.newComment;
       return <Message 
         feedID={this.props.feedID}
         key={key} name={name}
         content={content}
-        date={date}
+        date={date.format()}
         profilePic={profilePic} 
         files={files}
         comments={comments}
         editable={editable}
         userCanEdit={userCanEdit}
+        commentText={newComment}
+        dispatchUpdateCommentAction={this.updateCommentAction(key)}
+        dispatchSaveCommentAction={this.saveCommentAction(key)}
         dispatchDeleteAction={this.deleteMessage(key)}
         dispatchEditAction={this.editMessage(key)}
         dispatchUpdateAction={this.updateMessage(key)}
         dispatchSaveAction={this.saveMessage(key)}/>;
     });
   }
+
+  updateCommentAction(messageID) {
+    return (feedID, text) => {
+      dispatch(updateNewMessage(this.props.feedID, text, messageID));
+    };
+  };
+
+  saveCommentAction(messageID) {
+    return () => {
+      dispatch(saveNewMessage(this.props.feedID, messageID));
+    };
+  };
 
   deleteMessage(messageID) {
     return () => {
