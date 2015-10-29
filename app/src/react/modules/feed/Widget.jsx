@@ -6,6 +6,8 @@ import {createMessage, updateNewMessage} from '../../../redux/actions/feedAction
 export default class FeedWidget extends React.Component {
   constructor() {
     super();
+    this.dispatchUpdateNewMessage = this.dispatchUpdateNewMessage.bind(this);
+    this.dispatchCreateMessage = this.dispatchCreateMessage.bind(this);
   }
 
   render() {
@@ -16,8 +18,8 @@ export default class FeedWidget extends React.Component {
             feedID={this.props.feedID}
             showUploadMedia={true}
             showEmbedVideo={true}
-            onEdit={updateNewMessage}
-            onSave={createMessage}
+            onEdit={this.dispatchUpdateNewMessage}
+            onSave={this.dispatchCreateMessage}
             attachments={this.props.attachments}
             dispatch={this.props.dispatch}
             content={this.props.content}
@@ -28,6 +30,14 @@ export default class FeedWidget extends React.Component {
       );
     }
     return (<p>Loading</p>);
+  }
+
+  dispatchCreateMessage() {
+    this.props.dispatch(createMessage(...arguments));
+  }
+
+  dispatchUpdateNewMessage() {
+    this.props.dispatch(updateNewMessage(...arguments));
   }
 }
 

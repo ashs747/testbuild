@@ -79,7 +79,7 @@ class Message extends React.Component {
       }
       return <img key={key} className="post-image" src={file.reference} />;
     });
-    console.log('thisprops', this.props);
+
     return (
       <div className="message">
         <div className="header">

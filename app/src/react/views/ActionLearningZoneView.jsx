@@ -14,8 +14,6 @@ var dispatch = Store.dispatch;
 var feedID;
 
 function mapCommentListProps(state) {
-  console.log('state is', state);
-  console.log('we pass', state.feeds[feedID] ? state.feeds[feedID].messages : []);
   return {
     feedID,
     content: state.feeds[feedID] ? state.feeds[feedID].newMessageContent : [],

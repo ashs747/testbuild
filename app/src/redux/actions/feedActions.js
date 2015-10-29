@@ -11,8 +11,6 @@ export const FEED_DELETE_MESSAGE = 'FEED_DELETE_MESSAGE';
 export const FEED_FETCHED = 'FEED_FETCHED';
 
 export const createMessage = (feedID, messageContent) => {
-  console.log('creating for: ' + feedID);
-  console.log('With:', messageContent);
   let asyncResponse = postMessage(feedID, messageContent);
   return {
     type: FEED_CREATE_MESSAGE,
@@ -105,7 +103,6 @@ export const fetchLatestFeedMessages = (feedID) => {
 export const addFile = (file, variationObj, feedId) => {
   let payload = generateVariations(file.optimisedName, variationObj)
     .then((response) => {
-      console.log(response);
       return {
         item: response[0],
         feedId

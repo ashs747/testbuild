@@ -29,7 +29,6 @@ class PostForm extends React.Component {
   }
 
   render() {
-    console.log('PostFormPropsAtRender', this.props);
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId="testTwo" /> : null;

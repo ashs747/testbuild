@@ -74,18 +74,25 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         case 'RESOLVED':
         // Add to state, clear editbox text
+          return {
+            ...state,
+          }
           break;
         case 'REJECTED':
         // Error Handling to be discussed;
+          return {
+            ...state,
+            error: 'Could not post new message'
+          }
           break;
         default:
-
+          return state;
           break;
       }
       break;
 
     case 'FEED_UPDATE_NEW_POST':
-      console.log('UNP', action);
+
       var parentID = action.payload.parent;
       var feedID = action.payload.feedID;
       var content = action.payload.content;
@@ -93,7 +100,6 @@ export const feedReducer = (state = defaultState, action) => {
 
       /* Do we have a parent message? */
       if (parentID) {
-        console.log('parentID found');
         nextState[feedID].messages = state[feedID].messages.map((message) => {
           if (message.id === parentID) {
             return {
@@ -107,12 +113,10 @@ export const feedReducer = (state = defaultState, action) => {
         nextState[feedID].newMessageContent = action.payload.content;
       }
 
-      console.log('nextstate', nextState);
       return nextState;
       break;
 
     case "FEED_FETCHED":
-      console.log('fetched', action);
       switch (action.status) {
         case 'RESOLVED':
           var fullFeed = action.payload;
