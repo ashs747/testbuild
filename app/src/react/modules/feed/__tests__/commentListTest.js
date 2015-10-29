@@ -119,11 +119,4 @@ let key = comment.id;
     expect(commentLink.length).to.equal(0);
     expect(renderedComponent.children.length).to.equal(0);
   });
-
-  describe('Action wrapping', () => {
-    beforeEach(() => {
-
-    });
-  });
-
 });
