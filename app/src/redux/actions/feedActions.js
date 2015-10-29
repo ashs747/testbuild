@@ -57,7 +57,6 @@ export const updateNewMessage = (feedID, messageContent, messageID) => {
   };
 };
 
-
 /**
  * OnChange action dispatched when an editable field has its contents changed;
  * this is how the state gets updates to messageContent

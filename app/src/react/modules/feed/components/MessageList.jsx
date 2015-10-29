@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import Message from './Message.jsx';
 import {deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage, updateNewMessage, saveNewMessage} from '../../../../redux/actions/feedActions.js';
 import Store from '../../../../redux/store';
@@ -41,7 +42,7 @@ class MessageList extends React.Component {
       let key = message.id;
       let name = `${message.user.forename} ${message.user.surname}`;
       let content = message.content;
-      let date = message.updatedOn;
+      let date = moment(message.updatedOn);
       let profilePic = message.user.profilePic ? message.user.profilePic.reference : '';
       let files = message.files;
       let comments = message.comments;

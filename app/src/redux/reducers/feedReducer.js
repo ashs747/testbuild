@@ -76,14 +76,14 @@ export const feedReducer = (state = defaultState, action) => {
         // Add to state, clear editbox text
           return {
             ...state,
-          }
+          };
           break;
         case 'REJECTED':
         // Error Handling to be discussed;
           return {
             ...state,
             error: 'Could not post new message'
-          }
+          };
           break;
         default:
           return state;

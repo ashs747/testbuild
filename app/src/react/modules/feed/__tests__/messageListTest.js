@@ -41,7 +41,8 @@ describe('MessageList', () => {
         }
       },
       content: "This is a status",
-      date: moment(),
+      updatedOn: "2015-09-29T09:30:32",
+      createdOn: "2015-09-29T09:30:32",
       files: [],
       comments: [],
       editable: false,
@@ -57,7 +58,8 @@ describe('MessageList', () => {
         }
       },
       content: "This is a status",
-      date: moment(),
+      updatedOn: "2015-09-29T09:30:32",
+      createdOn: "2015-09-29T09:30:32",
       files: [],
       comments: [],
       editable: false,
