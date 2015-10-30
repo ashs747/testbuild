@@ -1,4 +1,4 @@
-// use this file to add your own local config. Don't add anything to this dist file!
+// use this file to add your own local config.
 module.exports = {
   api: {
     url: "http://localapi:8888/app_dev.php/",

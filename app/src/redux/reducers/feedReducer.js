@@ -18,9 +18,25 @@ function updateMatchedByFieldName(fieldName) {
 };
 
 export const feedReducer = (state = defaultState, action) => {
+
   var feed, nextState;
 
   switch (action.type) {
+    case 'LOGOUT': 
+      return {};
+
+    case 'COOKIE_CHECKED':
+      if (action.status === 'RESOLVED') {
+        if (Object.keys(state).length < 1) {
+          return {
+            ...state,
+            ...action.payload.feeds
+          };
+        } 
+      }
+      return state;
+      break;
+    
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
       nextState = Object.assign({}, state);
@@ -58,14 +74,46 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         case 'RESOLVED':
         // Add to state, clear editbox text
+          return {
+            ...state,
+          };
           break;
         case 'REJECTED':
         // Error Handling to be discussed;
+          return {
+            ...state,
+            error: 'Could not post new message'
+          };
           break;
         default:
-
+          return state;
           break;
       }
+      break;
+
+    case 'FEED_UPDATE_NEW_POST':
+
+      var parentID = action.payload.parent;
+      var feedID = action.payload.feedID;
+      var content = action.payload.content;
+      nextState = Object.assign({}, state);
+
+      /* Do we have a parent message? */
+      if (parentID) {
+        nextState[feedID].messages = state[feedID].messages.map((message) => {
+          if (message.id === parentID) {
+            return {
+              ...message,
+              newComment: content
+            };
+          }
+          return message;
+        });
+      } else {
+        nextState[feedID].newMessageContent = action.payload.content;
+      }
+
+      return nextState;
       break;
 
     case "FEED_FETCHED":

@@ -3,6 +3,7 @@ import moment from 'moment-timezone';
 import CommentList from './CommentList.jsx';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
+import PostForm from './PostForm.jsx';
 
 /**
   Message Component, used to display a message (top level post) on the programme feed
@@ -35,6 +36,9 @@ class Message extends React.Component {
     this.onEditClicked = this.onEditClicked.bind(this);
     this.onDeleteClicked = this.onDeleteClicked.bind(this);
     this.showFullString = this.showFullString.bind(this);
+    this.createComment = this.createComment.bind(this);
+    this.editNewComment = this.editNewComment.bind(this);
+
     this.state = {
       fullString: true
     };
@@ -75,6 +79,7 @@ class Message extends React.Component {
       }
       return <img key={key} className="post-image" src={file.reference} />;
     });
+
     return (
       <div className="message">
         <div className="header">
@@ -90,8 +95,22 @@ class Message extends React.Component {
           {postImages}
         </div>
         <CommentList comments={this.props.comments} feedID={this.props.feedID}/>
+        <PostForm feedID={this.props.feedID}
+          placeholder={this.props.content ? '' : 'Add a reply'} 
+          content={this.props.commentText}
+          onSave={this.createComment}
+          onEdit={this.editNewComment}
+        />
       </div>
     );
+  }
+
+  createComment() {
+
+  }
+
+  editNewComment(feedID, text) {
+    this.props.dispatchUpdateCommentAction(feedID, text);    
   }
 
   showFullString() {

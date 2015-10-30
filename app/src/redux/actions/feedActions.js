@@ -1,5 +1,5 @@
 //feedActions
-import {deleteMessage, postMessage, getLatestFeedMessages, getFeedMessages, postUpdatedMessage} from '../services/feedService';
+import {postMessage, postComment, deleteMessage, patchMessage, getFeedMessages} from '../services/feedService';
 import {generateVariations, rotate, getThumbnail} from '../services/uploadService';
 import store from '../store.js';
 
@@ -11,7 +11,7 @@ export const FEED_DELETE_MESSAGE = 'FEED_DELETE_MESSAGE';
 export const FEED_FETCHED = 'FEED_FETCHED';
 
 export const createMessage = (feedID, messageContent) => {
-  let asyncResponse = postFeedContent(messageContent);
+  let asyncResponse = postMessage(feedID, messageContent);
   return {
     type: FEED_CREATE_MESSAGE,
     payload: asyncResponse
@@ -36,6 +36,23 @@ export const setEditable = (feedID, messageID, canEdit) => {
       id: messageID,
       editing: canEdit,
       feedID: feedID
+    }
+  };
+};
+
+/**
+ *
+ * OnChange Action dispatched when a new post is being
+ * written-out
+ */
+
+export const updateNewMessage = (feedID, messageContent, messageID) => {
+  return {
+    type: 'FEED_UPDATE_NEW_POST',
+    payload: {
+      feedID: feedID,
+      content: messageContent,
+      parent: messageID || ''
     }
   };
 };
@@ -74,8 +91,8 @@ export const saveUpdatedMessage = (feedID, messageID) => {
   };
 };
 
-export const fetchLatestFeedMessages = (programmeID, cohortID) => {
-  let payload = getFeedMessages(programmeID, cohortID);
+export const fetchLatestFeedMessages = (feedID) => {
+  let payload = getFeedMessages(feedID);
   return {
     type: 'FEED_FETCHED',
     payload
@@ -83,12 +100,14 @@ export const fetchLatestFeedMessages = (programmeID, cohortID) => {
 };
 
 export const addFile = (file, variationObj, feedId) => {
-  let payload = generateVariations(file.optimisedName, variationObj).then((response) => {
-    return {
-      item: response[0],
-      feedId
-    };
-  });
+  let payload = generateVariations(file.optimisedName, variationObj)
+    .then((response) => {
+      return {
+        item: response[0],
+        feedId
+      };
+    });
+
   return {
     type: 'FEED_ADD_FILE',
     payload
@@ -116,6 +135,7 @@ export const rotateAttachment = (feedId, reference, variations) => {
       feedId, reference, variationResult
     };
   });
+
   return {
     type: 'FEED_ROTATE_ATTACHMENT',
     payload

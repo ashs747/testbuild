@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Comment from './Comment.jsx';
-import PostForm from './PostForm.jsx';
 import {deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
 import Store from '../../../../redux/store';
 var dispatch = Store.dispatch;
@@ -35,16 +34,13 @@ class CommentList extends React.Component {
   }
 
   render() {
+
     let commentList = this.mapComments(this.props.comments);
     let displayCommentsLink = (commentList.length > 0) ? <a className="show-comments-link" onClick={this.showComments}>{`Show ${commentList.length} comment${(commentList.length > 1) ? "s" : ""}`}</a> : null;
     let content = (this.state.showComments || this.props.showComments) ? commentList : displayCommentsLink;
     return (
       <div className="comment-list">
         {content}
-        <PostForm feedID={this.props.feedID} 
-          onSave={() => {}}
-          onChange={() => {}}
-        />
       </div>
     );
   }
@@ -55,7 +51,7 @@ class CommentList extends React.Component {
       let name = `${comment.user.forename} ${comment.user.surname}`;
       let content = comment.content;
       let date = moment(comment.date);
-      let profilePic = comment.user.profilePic.reference;
+      let profilePic = comment.user.profilePic ? comment.user.profilePic.reference : '';
       let editing = comment.editing;
       let userCanEdit = comment.userCanEdit;
 
@@ -82,7 +78,7 @@ class CommentList extends React.Component {
         date={date}
         profilePic={profilePic}
         editing={editing}
-        userCanEdit={userCanEdit}
+        userCanEdit={true}
         dispatchDeleteAction={deleteComment}
         dispatchEditAction={editComment}
         editCommentAction={updateComment}

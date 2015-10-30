@@ -12,7 +12,7 @@ class MainView extends React.Component {
   }
 
   render() {
-    let loggedIn = this.props.auth ? this.props.auth.loggedIn : false;
+    let loggedIn = this.props.user.loggedIn;
     let learningJourneyModules = this.props.learningJourney ? this.props.learningJourney.learningJourneyModules : [];
 
     let moduleList = learningJourneyModules.map((module) => {
@@ -25,7 +25,7 @@ class MainView extends React.Component {
     return (
       <div className="main">
         <div className="container-fluid">
-          <Header display={loggedIn} modules={moduleList}/>
+          <Header display={loggedIn} modules={moduleList} dispatch={this.props.dispatch}/>
           <RouteHandler />
           <Footer display={loggedIn} />
         </div>

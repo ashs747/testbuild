@@ -2,7 +2,8 @@ import authManager from 'cirrus/services/managers/authManager';
 import userManager from 'cirrus/services/managers/userManager';
 import {getOAuthToken, getUserData} from '../services/authService';
 import cookie from 'cookie-cutter';
-import store from '../store.js';
+import Store from '../store.js';
+
 export const AUTH = 'AUTH';
 export const COOKIE_CHECKED = 'COOKIE_CHECKED';
 export const LOGOUT = 'LOGOUT';
@@ -10,9 +11,11 @@ export const LOGOUT = 'LOGOUT';
 export function authAction(username, password) {
   let req = getOAuthToken(username, password).then((response) => {
     let res = response.body;
-    cookie.set('authToken', res.access_token, { expires: new Date() + res.expires_in});
+    /* Expiry date is a new DateObject, set to 'Today in Milliseconds add the expiry time in seconds' */
+    let expiryDate = new Date(new Date().valueOf() + res.expires_in * 1000);
+    cookie.set('authToken', res.access_token, {expires: expiryDate});
     cookie.set('refresh_token', res.refresh_token);
-    store.dispatch(cookieCheckedAction());
+    Store.dispatch(cookieCheckedAction());
     return response;
   });
 
@@ -24,12 +27,12 @@ export function authAction(username, password) {
 
 export function cookieCheckedAction() {
   var req = getUserData();
-  // req=authManager.validateToken('', cData.access_token)};
   return { 
     type: COOKIE_CHECKED,
     payload: req
   };
 }
+
 export function getCookies() {
   /*eslint-disable camelcase */
   return {
@@ -48,8 +51,6 @@ export function logoutAction() {
   cookie.set('refresh_token', '', {
     expires: 0
   });
-  cookie.set('expires_in', '', {
-    expires: 0
-  });
-  return {type: LOGOUT};
+
+  return {type: 'LOGOUT', payload: ''};
 }

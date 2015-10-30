@@ -7,6 +7,9 @@ const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
+    case 'LOGOUT': 
+      return {};
+    
     case MODULE_HUB:
       return Object.assign({}, state, {waitingForModules: true});
     case MODULE_HUB_SUCCESS:

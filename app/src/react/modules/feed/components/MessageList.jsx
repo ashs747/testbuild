@@ -1,6 +1,7 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import Message from './Message.jsx';
-import {deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage} from '../../../../redux/actions/feedActions.js';
+import {deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage, updateNewMessage, saveNewMessage} from '../../../../redux/actions/feedActions.js';
 import Store from '../../../../redux/store';
 var dispatch = Store.dispatch;
 
@@ -24,10 +25,11 @@ class MessageList extends React.Component {
     this.updateMessage = this.updateMessage.bind(this);
     this.saveMessage = this.saveMessage.bind(this);
     this.mapMessages = this.mapMessages.bind(this);
+    this.updateCommentAction = this.updateCommentAction.bind(this);
   }
 
   render() {
-    let messages = this.mapMessages(this.props.messages);
+    let messages = (this.props.messages && this.props.messages.length > 0) ? this.mapMessages(this.props.messages) : '';
     return (
       <div className="message-list">
         {messages}
@@ -36,33 +38,48 @@ class MessageList extends React.Component {
   }
 
   mapMessages(messages) {
-    let mappedMessages = messages.map(message => {
+    return messages.map(message => {
       let key = message.id;
       let name = `${message.user.forename} ${message.user.surname}`;
       let content = message.content;
-      let date = message.date;
-      let profilePic = message.user.profilePic.reference;
+      let date = moment(message.updatedOn);
+      let profilePic = message.user.profilePic ? message.user.profilePic.reference : '';
       let files = message.files;
       let comments = message.comments;
       let editable = message.editing;
       let userCanEdit = message.userCanEdit;
+      let newComment = message.newComment;
       return <Message 
         feedID={this.props.feedID}
         key={key} name={name}
         content={content}
-        date={date}
-        profilePic={profilePic}
+        date={date.format()}
+        profilePic={profilePic} 
         files={files}
         comments={comments}
         editable={editable}
         userCanEdit={userCanEdit}
+        commentText={newComment}
+        dispatchUpdateCommentAction={this.updateCommentAction(key)}
+        dispatchSaveCommentAction={this.saveCommentAction(key)}
         dispatchDeleteAction={this.deleteMessage(key)}
         dispatchEditAction={this.editMessage(key)}
         dispatchUpdateAction={this.updateMessage(key)}
         dispatchSaveAction={this.saveMessage(key)}/>;
     });
-    return mappedMessages;
   }
+
+  updateCommentAction(messageID) {
+    return (feedID, text) => {
+      dispatch(updateNewMessage(this.props.feedID, text, messageID));
+    };
+  };
+
+  saveCommentAction(messageID) {
+    return () => {
+      dispatch(saveNewMessage(this.props.feedID, messageID));
+    };
+  };
 
   deleteMessage(messageID) {
     return () => {
@@ -91,5 +108,4 @@ class MessageList extends React.Component {
   };
 }
 
-MessageList.propTypes = { messages: React.PropTypes.array.isRequired };
 export default MessageList;

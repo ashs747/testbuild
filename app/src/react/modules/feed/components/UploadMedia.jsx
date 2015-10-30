@@ -1,6 +1,7 @@
 import React from 'react';
 import {addFile} from '../../../../redux/actions/feedActions';
 import {dispatch} from '../../../../redux/store';
+import config from '../../../../localConfig';
 
 class UploadMedia extends React.Component {
 
@@ -15,7 +16,7 @@ class UploadMedia extends React.Component {
     this.plup = new window.plupload.Uploader({
       /* eslint-disable */
       browse_button: React.findDOMNode(this.refs.browse),
-      url: 'http://localhost:8888/upload',
+      url: `${config.api.url}api/upload`,
       multi_selection: false,
       runtimes: 'html5,flash',
       flash_swf_url: '/app/bower_components/plupload/js/Movie.swf',

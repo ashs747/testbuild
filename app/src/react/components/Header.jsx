@@ -1,10 +1,12 @@
 import React from 'react/addons';
 import LiAnchor from './LiAnchor.jsx';
+import {logoutAction} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
 
 class Header extends React.Component {
   constructor() {
     super();
+    this.logout = this.logout.bind(this);
     this.toggleMobileNav = this.toggleMobileNav.bind(this);
     this.state = {
       showMobileNav: false
@@ -34,8 +36,9 @@ class Header extends React.Component {
           <LiAnchor text="Programme" action="" url="/#/programme"/>
           <LiAnchor text="Learning Journey" action="" url="/#/personal-learning-journey"/>
           <LiAnchor text="Action Learning Zone" url="/#/action-learning-zone"/>
-          <LiAnchor text="Learning Log" action="/#/programme" url=""/>
+          <LiAnchor text="Learning Log" action="" url="/#/"/>
           <LiAnchor text="Toolkit" action="" url="/#/tools"/>
+          <LiAnchor text="Logout" action={this.logout} url="#"/>
         </ul>
       </div>
     );
@@ -119,6 +122,10 @@ class Header extends React.Component {
         {headerContent}
       </div>
     );
+  }
+
+  logout() {
+    this.props.dispatch(logoutAction());
   }
 
   toggleMobileNav() {

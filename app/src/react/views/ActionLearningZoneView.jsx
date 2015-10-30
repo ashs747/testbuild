@@ -4,24 +4,26 @@ import _ from 'underscore';
 import {connect} from 'react-redux';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
+import {getFeedIdForContext} from '../../redux/services/feedService';
 import {fetchUsersByCohort} from '../../redux/actions/usersActions';
 import {getResourcesByCohort} from '../../redux/actions/contentActions';
 import Store from '../../redux/store';
 import TabStack from 'cirrus/react/components/TabStack';
 import ResourcesWidget from '../modules/resource/Widget.jsx';
 var dispatch = Store.dispatch;
+var feedID;
 
-/*
 function mapCommentListProps(state) {
   return {
-    attachments: state.feeds.testTwo ? state.feeds.testTwo.files : [],
-    feedID: 'testTwo',
-    messages: state.feeds.testTwo ? state.feeds.testTwo.messages : [],
+    feedID,
+    content: state.feeds[feedID] ? state.feeds[feedID].newMessageContent : [],
+    attachments: state.feeds[feedID] ? state.feeds[feedID].files : [],    
+    messages: state.feeds[feedID] ? state.feeds[feedID].messages : [],
     showComments: true
   };
 };
+
 var ALZFeed = connect(mapCommentListProps)(FeedWidget);
-*/
 
 function mapMembersProps(state) {
   return {
@@ -57,10 +59,13 @@ class ActionLearningZoneView extends React.Component {
     super();
   }
 
-  componentWillMount() {
-    dispatch(fetchLatestFeedMessages(0));
-    dispatch(fetchUsersByCohort(13));
-    dispatch(getResourcesByCohort(13));
+  componentDidMount() {
+    var context = "cohort";
+    feedID = getFeedIdForContext(Store.getState().feeds, context);
+    
+    dispatch(fetchLatestFeedMessages(feedID));
+    dispatch(fetchUsersByCohort(1));
+    dispatch(getResourcesByCohort(1));
   }
 
   render() {
@@ -68,9 +73,7 @@ class ActionLearningZoneView extends React.Component {
       <div className="alz-message-board">
         <h3>Cohort 1 message board</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-        <div style={{height: "800px", width: "100%"}} >
-          <p>ALZ feed goes here once styled :)</p>
-        </div>
+        <ALZFeed />
       </div>
     );
     var resoucesWidgets = (

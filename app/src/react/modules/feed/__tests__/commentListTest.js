@@ -2,9 +2,30 @@ import React from 'react/addons';
 import CommentList from '../components/CommentList.jsx';
 import {expect, sinon} from 'cirrus/testing/utils';
 
+// Mock Deps
+CommentList.__set__('dispatch', () => {});
+CommentList.__set__('deleteMessageFromFeed', () => {});
+CommentList.__set__('setEditable', () => {});
+CommentList.__set__('saveUpdatedMessage', () => {});
+CommentList.__set__('updateMessage', () => {});
+
 describe('CommentList', () => {
 
   var testUtils = React.addons.TestUtils;
+
+  /*
+let key = comment.id;
+      let name = `${comment.user.forename} ${comment.user.surname}`;
+      let content = comment.content;
+      let date = moment(comment.date);
+      let profilePic = comment.user.profilePic ? comment.user.profilePic.reference : '';
+      let editing = comment.editing;
+      let userCanEdit = comment.userCanEdit;
+      let deleteComment = () => {
+        return dispatch(deleteMessageFromFeed(this.props.feedID, comment.id));
+      };
+       */
+ 
   var comments = [{
     id: 1,
     user: {
@@ -14,8 +35,9 @@ describe('CommentList', () => {
         reference: "profile-pic"
       }
     },
-    textContent: "This is a comment",
-    date: "2015-09-29T09:30:32",
+    content: "This is a comment",
+    updatedOn: "2015-09-29T09:30:32",
+    createdOn: "2015-09-29T09:30:32",
     editing: false,
     userCanEdit: false
   }, {
@@ -27,8 +49,9 @@ describe('CommentList', () => {
         reference: "profile-pic"
       }
     },
-    textContent: "This is another comment",
-    date: "2015-09-29T09:30:32",
+    content: "This is another comment",
+    updatedOn: "2015-09-29T09:30:32",
+    createdOn: "2015-09-29T09:30:32",
     editing: false,
     userCanEdit: false
   }];
@@ -89,19 +112,11 @@ describe('CommentList', () => {
     expect(components.length).to.equal(0);
   });
 
-  it('should display only a reply-form if there are no comments', () => {
+  it('should not display a show-comments link if there are no comments', () => {
     let updatedComponent = testUtils.renderIntoDocument(React.createElement(CommentList, {feedID: 'a', comments: []}));
     let renderedComponent = React.findDOMNode(updatedComponent);
-    
     let commentLink = testUtils.scryRenderedDOMComponentsWithClass(updatedComponent, '.show-comments-link');
     expect(commentLink.length).to.equal(0);
-    expect(renderedComponent.children.length).to.equal(1);
+    expect(renderedComponent.children.length).to.equal(0);
   });
-
-  describe('Action wrapping', () => {
-    beforeEach(() => {
-
-    });
-  });
-
 });

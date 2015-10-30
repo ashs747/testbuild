@@ -9,6 +9,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.onRouteChange = this.onRouteChange.bind(this);
+    this.checkLoggedInState = this.checkLoggedInState.bind(this);
     this.state = {
       Handler: null
     };
@@ -43,6 +44,7 @@ class App extends React.Component {
   }
 
   checkLoggedInState() {
+    var loggedIn = store.getState().user.loggedIn;
     let currentRoutes = router.getCurrentRoutes();
     let activeRouteName;
 
@@ -50,13 +52,12 @@ class App extends React.Component {
       activeRouteName = currentRoutes[currentRoutes.length - 1].name;
     }
 
-    //FIXME: subscribe to the piece o' state
-    if (store.getState().auth.cookieChecked) {
-      if (!store.getState().auth.loggedIn) {
-        router.transitionTo('login');
-      } else if (store.getState().auth.loggedIn && activeRouteName == 'login') {
-        router.transitionTo('/');
-      }
+    if (loggedIn && activeRouteName == 'login') {
+      router.transitionTo('/');
+    }
+    
+    if (!loggedIn) {
+      router.transitionTo('login');
     }
   }
 
