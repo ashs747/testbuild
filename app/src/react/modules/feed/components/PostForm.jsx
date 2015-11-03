@@ -33,24 +33,28 @@ class PostForm extends React.Component {
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId="testTwo" /> : null;
     let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId="testTwo" /> : null;
+    let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
+    let postButton = (this.props.commentForm) ? null : (
+      <div className="post">
+        <a className="btn" onClick={this.onSave}>Post</a>
+      </div>
+    );
     return (
-      <div className="post-form">
-        <div className="profile">
+      <div className="post-form clearfix">
+        <div className="post-profile">
           <img src={profilePic} />
         </div>
-        <div className="message">
-          <TextArea value={this.props.content} placeholder={this.props.placeholder || this.props.content ? '' : "What's happening?"} onChange={this.onChange} />
+        <div className="post-message">
+          <TextArea value={this.props.content} placeholder={placeholder} onChange={this.onChange} />
         </div>
-        <div className="buttons">
+        <div className="post-admin-buttons">
           {uploadMedia}
           {embedVideo}
         </div>
-        <div className="attachments">
+        <div className="post-attachments">
           {attachments}
         </div>
-        <div className="post">
-          <a className="btn" onClick={this.onSave}>Post</a>
-        </div>
+        {postButton}
       </div>
     );
   }

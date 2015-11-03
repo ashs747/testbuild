@@ -61,7 +61,7 @@ class Message extends React.Component {
       bodyString = (
         <p>
           {subString}
-          <a className="see-more" onClick={this.showFullString}>... See more <i className="fa fa-chevron-right"></i></a>
+          <a className="see-more" onClick={this.showFullString}> See more <i className="fa fa-chevron-right"></i></a>
         </p>
       );
     }
@@ -82,10 +82,12 @@ class Message extends React.Component {
 
     return (
       <div className="message">
-        <div className="header">
+        <div className="header clearfix">
           <img src={profilePic} />
-          <h6>{this.props.name}</h6>
-          <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
+          <div className="header-text">
+            <h6>{this.props.name}</h6>
+            <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
+          </div>
           {editButtons}
         </div>
         <div className="body">
@@ -96,10 +98,10 @@ class Message extends React.Component {
         </div>
         <CommentList comments={this.props.comments} feedID={this.props.feedID}/>
         <PostForm feedID={this.props.feedID}
-          placeholder={this.props.content ? '' : 'Add a reply'} 
           content={this.props.commentText}
           onSave={this.createComment}
           onEdit={this.editNewComment}
+          commentForm={true}
         />
       </div>
     );
@@ -110,7 +112,7 @@ class Message extends React.Component {
   }
 
   editNewComment(feedID, text) {
-    this.props.dispatchUpdateCommentAction(feedID, text);    
+    this.props.dispatchUpdateCommentAction(feedID, text);
   }
 
   showFullString() {

@@ -1,5 +1,101 @@
 .message-board {
-	textarea {
-		color: black;
+
+}
+
+.message-list {
+
+}
+
+.message {
+	border: 1.5px solid $dark_grey;
+	margin: 10px 0;
+	background-color: $white;
+	color: $body_color;
+	.header {
+		background-color: $white;
+		padding: 15px;
+		img {
+			height: 40px;
+			width: 40px;
+			border-radius: 50%;
+			display: block;
+			float: left;
+		}
 	}
+	.header-text {
+		margin-left: 10px;
+		margin-top: 5px;
+		float: left;
+		h6 {
+			margin: 0;
+			font-size: 18px;
+			font-weight: bold;
+			color: $site_red;
+			text-decoration: underline;
+		}
+		span {
+			color: #999;
+			font-size: 14px;
+		}
+	}
+	.body {
+		padding: 0 15px;
+		margin: 0;
+		width: auto;
+		border-bottom: 1px solid $dark_grey;
+		textarea {
+			width: 100%;
+		}
+	}
+	.admin-buttons {
+		float: right;
+		a {
+			background-color: $dark_grey;
+			padding: 2px;
+			margin: 0 5px;
+			height: 25px;
+			width: 25px;
+			font-size: 14px;
+			color: $body_color;
+		}
+	}
+	.see-more {
+		cursor: pointer;
+		text-decoration: underline;
+		color: $site_red;
+		span {
+			color: $site_red;
+		}
+		i {
+			color: $site_red;
+			font-size: 12px;
+		}
+	}
+}
+.post-form {
+	background-color: $light_grey;
+	padding: 15px;
+	img {
+		float: left;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+	.post-message {
+		float: left;
+		margin-left: 10px;
+		margin-top: 5px;
+		width: 90%;
+	}
+	textarea {
+		resize: none;
+		width: 100%;
+		padding: 2px 5px;
+	}
+}
+
+textarea:focus {
+	border-color: $site_red;
+	box-shadow: 0 1px 0px $white inset, 0 0 6px $site_red;
+	outline: 0 none;
 }
