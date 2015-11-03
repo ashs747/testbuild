@@ -1,11 +1,3 @@
-.message-board {
-
-}
-
-.message-list {
-
-}
-
 .message {
 	border: 1.5px solid $dark_grey;
 	margin: 10px 0;
@@ -98,4 +90,79 @@ textarea:focus {
 	border-color: $site_red;
 	box-shadow: 0 1px 0px $white inset, 0 0 6px $site_red;
 	outline: 0 none;
+}
+
+.comment-list {
+	background-color: $light_grey;
+	border-bottom: 1px solid $dark_grey;
+	.show-comments-link {
+		padding: 15px;
+		a {
+			cursor: pointer;
+			color: $body_color;
+		}
+		i {
+			font-size: 14px;
+		}
+	}
+}
+
+.comment {
+	color: $body_color;
+	padding: 15px;
+	border-bottom: 1px solid $dark_grey;
+	img {
+		float: left;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+	h6 {
+		margin: 0;
+		font-size: 18px;
+		font-weight: bold;
+		color: $site_red;
+		text-decoration: underline;
+	}
+	.comment-content {
+		float: left;
+		margin-left: 10px;
+		width: 80%;
+		h6 {
+			float: left;
+			margin-right: 5px;
+		}
+		p {
+			font-size: 14px;
+			color: $body_color;
+			margin: 0;
+		}
+	}
+	.comment-date-display {
+		position: relative;
+		display: block;
+		float: left;
+		font-size: 14px;
+		color: #999;
+	}
+	textarea {
+		width: 100%;
+		margin-top: 5px;
+		resize: none;
+	}
+}
+
+.save-button {
+	background-color: $site_red;
+	color: $white;
+}
+
+.media-grid {
+	background-color: $light_grey;
+}
+
+.grid-row {
+	img {
+		padding: 0 2px;
+	}
 }

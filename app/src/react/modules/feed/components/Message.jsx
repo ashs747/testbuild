@@ -4,6 +4,7 @@ import CommentList from './CommentList.jsx';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
 import PostForm from './PostForm.jsx';
+import MediaGrid from '../../../components/MediaGrid.jsx';
 
 /**
   Message Component, used to display a message (top level post) on the programme feed
@@ -72,13 +73,6 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
-    let postImages = this.props.files.map(file => {
-      let key = file.reference;
-      if (file.mimeType === "video/vimeo") {
-        return <Video key={key} url={file.reference} />;
-      }
-      return <img key={key} className="post-image" src={file.reference} />;
-    });
 
     return (
       <div className="message">
@@ -94,7 +88,7 @@ class Message extends React.Component {
           {bodyContent}
         </div>
         <div className="images">
-          {postImages}
+          <MediaGrid files={this.props.files} />
         </div>
         <CommentList comments={this.props.comments} feedID={this.props.feedID}/>
         <PostForm feedID={this.props.feedID}
