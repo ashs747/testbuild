@@ -49,6 +49,12 @@ export default class MediaGrid extends React.Component {
     _.each(files, file => {
       let thumbnail;
       let thumbnailUrl;
+      file.mimeType = "image/jpeg";
+      file.variations = [{
+        reference: file.reference,
+        variation: "medium"
+      }];
+      
       if (file.mimeType.match('image.*')) {
         var i = medialist.images.length;
         thumbnail = _.where(file.variations, {variation: "medium"});

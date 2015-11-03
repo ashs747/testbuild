@@ -25,7 +25,7 @@ let key = comment.id;
         return dispatch(deleteMessageFromFeed(this.props.feedID, comment.id));
       };
        */
- 
+
   var comments = [{
     id: 1,
     user: {
@@ -78,33 +78,6 @@ let key = comment.id;
   it('should map 2 comments if 2 are passed in to the mapper', () => {
     let commentList = component.mapComments(comments);
     expect(commentList.length).to.equal(2);
-  });
-
-  it('should display an a tag which says "Show 2 comments" if 2 objects are in the comment list', () => {
-    var showComments = mountedComponent.querySelector('.show-comments-link').textContent;
-    expect(showComments).to.equal("Show 2 comments");
-  });
-
-  it('should display an a tag which says "Show 1 comment" if 1 object is in the comment list', () => {
-    let updatedComponent = testUtils.renderIntoDocument(React.createElement(CommentList, {
-      feedID: 'testTwo',
-      comments: [{
-        id: 1,
-        user: {
-          forename: "Test",
-          surname: "User",
-          profilePic: {
-            reference: "profile-pic"
-          }
-        },
-        textContent: "This is a comment",
-        date: "2015-09-29T09:30:32",
-        editing: false,
-        userCanEdit: false
-      }]}));
-    let renderedComponent = React.findDOMNode(updatedComponent);
-    var showComments = renderedComponent.querySelector('.show-comments-link').textContent;
-    expect(showComments).to.equal("Show 1 comment");
   });
 
   it('shouldn\'t display the comments list by default', () => {

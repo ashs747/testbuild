@@ -40,17 +40,12 @@ describe('Comment', () => {
   });
 
   it('should display the date in the correct format', () => {
-    var date = mountedComponent.querySelector('.date-display').textContent;
+    var date = mountedComponent.querySelector('.comment-date-display').textContent;
     expect(date).to.equal('09:30 - 29.09.2015');
   });
 
-  it('should display the content from props', () => {
-    var bodyContent = mountedComponent.querySelector('.body p').textContent;
-    expect(bodyContent).to.equal("here is a comment on a message ");
-  });
-
   it('should display the profile picture if passed through', () => {
-    var profilePic = mountedComponent.querySelector('.header img').src;
+    var profilePic = mountedComponent.querySelector('img').src;
     expect(profilePic).to.contain("url-of-pic");
   });
 
@@ -58,7 +53,7 @@ describe('Comment', () => {
     let updatedProps = props;
     updatedProps.profilePic = null;
     let updatedComponent = testUtils.renderIntoDocument(React.createElement(Comment, updatedProps));
-    var profilePic = React.findDOMNode(updatedComponent).querySelector('.header img').src;
+    var profilePic = React.findDOMNode(updatedComponent).querySelector('img').src;
     expect(profilePic).to.contain("assets/img/profile-placeholder.jpg");
   });
 

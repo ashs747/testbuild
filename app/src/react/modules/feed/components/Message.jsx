@@ -4,6 +4,7 @@ import CommentList from './CommentList.jsx';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
 import PostForm from './PostForm.jsx';
+import MediaGrid from '../../../components/MediaGrid.jsx';
 
 /**
   Message Component, used to display a message (top level post) on the programme feed
@@ -61,7 +62,7 @@ class Message extends React.Component {
       bodyString = (
         <p>
           {subString}
-          <a className="see-more" onClick={this.showFullString}>... See more <i className="fa fa-chevron-right"></i></a>
+          <a className="see-more" onClick={this.showFullString}> See more <i className="fa fa-chevron-right"></i></a>
         </p>
       );
     }
@@ -72,34 +73,29 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
-    let postImages = this.props.files.map(file => {
-      let key = file.reference;
-      if (file.mimeType === "video/vimeo") {
-        return <Video key={key} url={file.reference} />;
-      }
-      return <img key={key} className="post-image" src={file.reference} />;
-    });
 
     return (
       <div className="message">
-        <div className="header">
+        <div className="header clearfix">
           <img src={profilePic} />
-          <h6>{this.props.name}</h6>
-          <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
+          <div className="header-text">
+            <h6>{this.props.name}</h6>
+            <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
+          </div>
           {editButtons}
         </div>
         <div className="body">
           {bodyContent}
         </div>
         <div className="images">
-          {postImages}
+          <MediaGrid files={this.props.files} />
         </div>
         <CommentList comments={this.props.comments} feedID={this.props.feedID}/>
         <PostForm feedID={this.props.feedID}
-          placeholder={this.props.content ? '' : 'Add a reply'} 
           content={this.props.commentText}
           onSave={this.createComment}
           onEdit={this.editNewComment}
+          commentForm={true}
         />
       </div>
     );
@@ -110,7 +106,7 @@ class Message extends React.Component {
   }
 
   editNewComment(feedID, text) {
-    this.props.dispatchUpdateCommentAction(feedID, text);    
+    this.props.dispatchUpdateCommentAction(feedID, text);
   }
 
   showFullString() {
