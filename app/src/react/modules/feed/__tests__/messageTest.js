@@ -88,9 +88,4 @@ describe('Message', () => {
     expect(components.length).to.equal(1);
   });
 
-  it('should display the images associated with the post', () => {
-    var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'post-image');
-    expect(components.length).to.equal(1);
-  });
-
 });

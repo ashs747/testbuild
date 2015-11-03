@@ -32,7 +32,7 @@ describe('PostForm', () => {
   });
 
   it('should display the profile picture if passed through', () => {
-    var profilePic = mountedComponent.querySelector('.profile img').src;
+    var profilePic = mountedComponent.querySelector('.post-profile img').src;
     expect(profilePic).to.contain("url-of-pic");
   });
 
@@ -40,7 +40,7 @@ describe('PostForm', () => {
     let updatedProps = props;
     updatedProps.profilePic = null;
     let updatedComponent = testUtils.renderIntoDocument(React.createElement(PostForm, updatedProps));
-    var profilePic = React.findDOMNode(updatedComponent).querySelector('.profile img').src;
+    var profilePic = React.findDOMNode(updatedComponent).querySelector('.post-profile img').src;
     expect(profilePic).to.contain("assets/img/profile-placeholder.jpg");
   });
 
@@ -48,7 +48,7 @@ describe('PostForm', () => {
     var components = testUtils.scryRenderedDOMComponentsWithClass(component, 'upload-media');
     expect(components.length).to.equal(1);
   });
-  
+
   it('shouldn\'t display an embed-video button if nothing is passed in', () => {
     let updatedProps = props;
     updatedProps.showEmbedVideo = null;
