@@ -34,7 +34,6 @@
 		padding: 0 15px;
 		margin: 0;
 		width: auto;
-		border-bottom: 1px solid $dark_grey;
 		textarea {
 			width: 100%;
 		}
@@ -158,11 +157,66 @@ textarea:focus {
 }
 
 .media-grid {
-	background-color: $light_grey;
+	background-color: $white;
+	margin: 2px 0;
 }
 
 .grid-row {
 	img {
 		padding: 0 2px;
+	}
+}
+
+.post-form-status {
+	border: 1px solid $dark_grey;
+	background-color: $light_grey;
+	padding: 15px;
+	.post-profile {
+		float: left;
+		img {
+			height: 40px;
+			width: 40px;
+			border-radius: 50%;
+		}
+	}
+	.post-message {
+		float: left;
+		width: calc(100% - 50px);
+		margin-left: 10px;
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+	textarea {
+		width: 100%;
+		resize: none;
+		padding: 2px 5px;
+		min-height: 50px;
+	}
+	.post-admin-buttons {
+		float: left;
+		margin-left: 10px;
+		width: 55%;
+		div {
+			display: inline-block;
+			background-color: $dark_grey;
+			margin: 0 2px 0 0;
+			border-radius: 2px;
+			a {
+				color: $body_color;
+			}
+			i {
+				font-size: 14px;
+			}
+		}
+	}
+	.post {
+		float: right;
+		width: 80px;
+		a {
+			width: 100%;
+			background-color: $site_red;
+			color: $white;
+			font-weight: bold;
+		}
 	}
 }

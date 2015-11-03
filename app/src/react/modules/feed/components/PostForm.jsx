@@ -39,8 +39,9 @@ class PostForm extends React.Component {
         <a className="btn" onClick={this.onSave}>Post</a>
       </div>
     );
+    let className = (this.props.postStatus) ? "post-form-status" : "post-form";
     return (
-      <div className="post-form clearfix">
+      <div className={`${className} clearfix`}>
         <div className="post-profile">
           <img src={profilePic} />
         </div>

@@ -24,6 +24,7 @@ export default class FeedWidget extends React.Component {
             dispatch={this.props.dispatch}
             content={this.props.content}
             newComment={this.props.newComment}
+            postStatus={true}
           />
           <MessageList messages={this.props.messages} feedID={this.props.feedID} />
         </div>
@@ -40,4 +41,3 @@ export default class FeedWidget extends React.Component {
     this.props.dispatch(updateNewMessage(...arguments));
   }
 }
-
