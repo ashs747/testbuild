@@ -220,3 +220,25 @@ textarea:focus {
 		}
 	}
 }
+
+.post-attachments {
+	float: left;
+	width: 100%;
+	padding: 10px;
+	.item {
+		position: relative;
+		display: inline-block;
+		margin: 5px 15px;
+	}
+	.image-icon {
+		position: absolute;
+		top: -5px;
+		cursor: pointer;
+	}
+	.remove {
+		right: -12.5px;
+	}
+	.rotate {
+		left: -12.5px;
+	}
+}

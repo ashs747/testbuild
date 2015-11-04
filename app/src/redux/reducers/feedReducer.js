@@ -22,7 +22,7 @@ export const feedReducer = (state = defaultState, action) => {
   var feed, nextState;
 
   switch (action.type) {
-    case 'LOGOUT': 
+    case 'LOGOUT':
       return {};
 
     case 'COOKIE_CHECKED':
@@ -32,11 +32,11 @@ export const feedReducer = (state = defaultState, action) => {
             ...state,
             ...action.payload.feeds
           };
-        } 
+        }
       }
       return state;
       break;
-    
+
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
       nextState = Object.assign({}, state);
@@ -136,19 +136,13 @@ export const feedReducer = (state = defaultState, action) => {
 
     case "FEED_ADD_FILE":
       switch (action.status) {
-        //TODO: change the localhost
         case 'RESOLVED':
-          let variation = action.payload.item;
-          variation.previewUrl = variation.previewUrl ? `http://localhost:8888${variation.previewUrl}` : null;
-          let file = {
-            reference: variation.original,
-            variation: "original",
-            mimeType: variation.mimeType,
-            thumbnail: variation.previewUrl,
-            variations: [variation]
-          };
+          let payload = action.payload.file;
+          payload.previewUrl = payload.metadata[12].metaValue;
+          let splitUrl = payload.previewUrl.split("/upload/");
+          payload.thumbnail = `${splitUrl[0]}/upload/c_limit,h_200,w_200/${splitUrl[1]}`;
           nextState = Object.assign({}, state);
-          nextState[action.payload.feedId].files = [...state[action.payload.feedId].files, file];
+          nextState[action.payload.feedId].files = [...state[action.payload.feedId].files, payload];
           return nextState;
           break;
         case 'REJECTED':
@@ -161,38 +155,12 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_REMOVE_ATTACHMENT":
+      console.log(action);
       nextState = Object.assign({}, state);
       nextState[action.payload.feedId].files = state[action.payload.feedId].files.filter((el) => {
-        return action.payload.reference != el.reference;
+        return action.payload.id != el.id;
       });
       return nextState;
-      break;
-
-    case "FEED_ROTATE_ATTACHMENT":
-      switch (action.status) {
-        case 'RESOLVED':
-          nextState = Object.assign({}, state);
-          let modifiedImage = action.payload.variationResult[1].split("data/");
-          let files = state[action.payload.feedId].files.map((el) => {
-            if (action.payload.reference === el.reference) {
-              let newEl = el;
-              newEl.thumbnail = `http://localhost:8888/v1/${modifiedImage[1]}`;
-              return newEl;
-            }
-            return el;
-          });
-          nextState[action.payload.feedId].files = files;
-          return nextState;
-          break;
-        case 'REJECTED':
-          return state;
-          //Error Handling to be discussed;
-          break;
-        default:
-          //show loader
-          return state;
-          break;
-      }
       break;
 
     case "FEED_EMBED_VIDEO":

@@ -4,6 +4,7 @@ import UploadMedia from './UploadMedia.jsx';
 import EmbedVideo from './EmbedVideo.jsx';
 import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';;
 import {dispatch} from '../../../../redux/store';
+import ImageView from '../../../components/ImageView.jsx';
 
 /**
   PostForm Component, posts a message (or a comment) to a programme feed
@@ -31,8 +32,8 @@ class PostForm extends React.Component {
   render() {
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId="testTwo" /> : null;
-    let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId="testTwo" /> : null;
+    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} /> : null;
+    let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId={this.props.feedID} /> : null;
     let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
     let postButton = (this.props.commentForm) ? null : (
       <div className="post">
@@ -62,17 +63,16 @@ class PostForm extends React.Component {
 
   mapAttachments(attachments) {
     let attachmentsArray = attachments.map((a, i) => {
-      let fileVariations = [a.reference, a.variations[0].reference];
       let thumbnail = '/assets/img/thumb-default.png';
       let rotate;
       if (a.thumbnail) {
         thumbnail = a.thumbnail;
-        rotate = <a onClick={this.rotateAttachment.bind(this, fileVariations, a.reference)}>Rotate</a>;
+        rotate = <a onClick={this.rotateAttachment.bind(this, a.id)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
       }
       return (
-        <div key={a.reference} className="item">
-          <img src={thumbnail} />
-          <a onClick={this.removeAttachment.bind(this, a.reference)}>Remove</a>
+        <div key={a.id} className="item">
+          <ImageView src={thumbnail} style={{backgroundColor: "white", height: "140px", width: "140px"}} />
+          <a onClick={this.removeAttachment.bind(this, a.id)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
           {rotate}
         </div>
       );
@@ -90,12 +90,12 @@ class PostForm extends React.Component {
     this.props.onSave(this.props.feedID, this.props);
   }
 
-  removeAttachment(reference) {
-    removeAttachment("testTwo", reference);
+  removeAttachment(id) {
+    removeAttachment(this.props.feedID, id);
   }
 
-  rotateAttachment(variations, reference) {
-    rotateAttachment("testTwo", reference, variations);
+  rotateAttachment(id) {
+    rotateAttachment(this.props.feedID, id);
   }
 
 }

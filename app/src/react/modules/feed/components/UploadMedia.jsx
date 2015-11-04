@@ -2,6 +2,7 @@ import React from 'react';
 import {addFile} from '../../../../redux/actions/feedActions';
 import {dispatch} from '../../../../redux/store';
 import config from '../../../../localConfig';
+import cookie from 'cookie-cutter';
 
 class UploadMedia extends React.Component {
 
@@ -20,7 +21,10 @@ class UploadMedia extends React.Component {
       multi_selection: false,
       runtimes: 'html5,flash',
       flash_swf_url: '/app/bower_components/plupload/js/Movie.swf',
-      file_data_name: 'file'
+      file_data_name: 'file',
+      headers: {
+        Authorization: `Bearer ${cookie.get('authToken')}`
+      }
       /* eslint-enable */
     });
     this.plup.init();
@@ -46,7 +50,7 @@ class UploadMedia extends React.Component {
 
   onFileUploaded(up, file, data) {
     let response = JSON.parse(data.response);
-    dispatch(addFile(response, {medium: {width: 400}}, this.props.feedId));
+    dispatch(addFile(response, this.props.feedId));
   }
 
   onError(up, args) {
