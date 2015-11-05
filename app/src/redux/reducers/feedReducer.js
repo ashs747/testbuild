@@ -164,8 +164,6 @@ export const feedReducer = (state = defaultState, action) => {
 
     case "FEED_ROTATE_ATTACHMENT":
       nextState = Object.assign({}, state);
-      console.log(nextState[action.payload.feedId].files);
-
       return nextState;
       break;
 
