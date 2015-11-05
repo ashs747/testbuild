@@ -86,7 +86,8 @@ class CommentList extends React.Component {
         dispatchDeleteAction={deleteComment}
         dispatchEditAction={editComment}
         editCommentAction={updateComment}
-        dispatchSaveAction={saveMessage}/>
+        dispatchSaveAction={saveMessage}
+        profile={this.props.profile} />
       );
     });
     return commentList;

@@ -75,8 +75,8 @@
 	.post-message {
 		float: left;
 		margin-left: 10px;
-		margin-top: 5px;
-		width: 90%;
+		margin-top: 10px;
+		width: calc(100% - 50px);
 	}
 	textarea {
 		resize: none;
@@ -126,7 +126,7 @@ textarea:focus {
 	.comment-content {
 		float: left;
 		margin-left: 10px;
-		width: 80%;
+		width: calc(100% - 50px);
 		h6 {
 			float: left;
 			margin-right: 5px;
@@ -202,7 +202,7 @@ textarea:focus {
 			.upload-media {
 				background-color: $dark_grey;
 			}
-			.embed-video {
+			.embed-video-button {
 				background-color: $dark_grey;
 			}
 			a {
@@ -254,5 +254,48 @@ textarea:focus {
 	}
 	.rotate {
 		left: -12.5px;
+	}
+}
+
+.mobile-form {
+	padding: 5px;
+	.post-admin-buttons {
+		.btn {
+			width: 100%;
+		}
+		.upload-media-component {
+			width: 100%;
+		}
+	}
+	.post-attachments {
+		padding: 10px;
+	}
+}
+
+.mobile-message {
+	.header {
+		padding: 7.5px;
+	}
+	.body {
+		padding: 0 7.5px;
+	}
+}
+
+.comment-form .mobile-form {
+	.post-message {
+		margin: 0;
+	}
+}
+
+.mobile-comment {
+	padding: 7.5px;
+	.admin-buttons {
+		.btn {
+			display: block;
+			margin: 10px 2px;
+		}
+	}
+	.with-buttons {
+		width: calc(100% - 80px);
 	}
 }

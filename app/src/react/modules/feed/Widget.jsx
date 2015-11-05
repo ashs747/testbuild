@@ -25,8 +25,9 @@ export default class FeedWidget extends React.Component {
             content={this.props.content}
             newComment={this.props.newComment}
             postStatus={true}
+            profile={this.props.profile}
           />
-          <MessageList messages={this.props.messages} feedID={this.props.feedID} />
+          <MessageList messages={this.props.messages} feedID={this.props.feedID} profile={this.props.profile} />
         </div>
       );
     }

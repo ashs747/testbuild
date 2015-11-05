@@ -49,12 +49,12 @@ class MessageList extends React.Component {
       let editable = message.editing;
       let userCanEdit = message.userCanEdit;
       let newComment = message.newComment;
-      return <Message 
+      return <Message
         feedID={this.props.feedID}
         key={key} name={name}
         content={content}
         date={date.format()}
-        profilePic={profilePic} 
+        profilePic={profilePic}
         files={files}
         comments={comments}
         editable={editable}
@@ -65,7 +65,8 @@ class MessageList extends React.Component {
         dispatchDeleteAction={this.deleteMessage(key)}
         dispatchEditAction={this.editMessage(key)}
         dispatchUpdateAction={this.updateMessage(key)}
-        dispatchSaveAction={this.saveMessage(key)}/>;
+        dispatchSaveAction={this.saveMessage(key)}
+        profile={this.props.profile} />;
     });
   }
 

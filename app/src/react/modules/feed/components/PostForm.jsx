@@ -33,7 +33,7 @@ class PostForm extends React.Component {
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} /> : null;
-    let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId={this.props.feedID} /> : null;
+    let embedVideo = (this.props.showEmbedVideo && this.props.profile !== "sm") ? <EmbedVideo feedId={this.props.feedID} /> : null;
     let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
     let postButton = (this.props.commentForm) ? null : (
       <div className="post">
@@ -41,6 +41,12 @@ class PostForm extends React.Component {
       </div>
     );
     let className = (this.props.postStatus) ? "post-form-status" : "post-form";
+    if (this.props.profile === "sm") {
+      className += " mobile-form";
+    }
+    if (this.props.commentForm) {
+      className += " comment-form";
+    }
     return (
       <div className={`${className} clearfix`}>
         <div className="post-profile">
@@ -71,9 +77,14 @@ class PostForm extends React.Component {
           rotate = <a onClick={this.rotateAttachment.bind(this, a.id)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
         }
       }
+      let imageViewStyle = {
+        backgroundColor: "white",
+        height: (this.props.profile === "sm") ? "90px" : "150px",
+        width: (this.props.profile === "sm") ? "90px" : "150px",
+      };
       return (
         <div key={a.id} className="item">
-          <ImageView src={thumbnail} style={{backgroundColor: "white", height: "140px", width: "140px"}} />
+          <ImageView src={thumbnail} style={imageViewStyle} />
           <a onClick={this.removeAttachment.bind(this, a.id)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
           {rotate}
         </div>
