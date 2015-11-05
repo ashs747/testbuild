@@ -41,8 +41,12 @@ class PostForm extends React.Component {
       </div>
     );
     let className = (this.props.postStatus) ? "post-form-status" : "post-form";
-    if (this.props.profile === "sm") className += " mobile-form";
-    if (this.props.commentForm) className += " comment-form";
+    if (this.props.profile === "sm") {
+      className += " mobile-form";
+    }
+    if (this.props.commentForm) {
+      className += " comment-form";
+    }
     return (
       <div className={`${className} clearfix`}>
         <div className="post-profile">

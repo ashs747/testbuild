@@ -75,7 +75,7 @@ class Message extends React.Component {
         </div>) : null;
 
     return (
-      <div className={`message ${(this.props.profile == "sm")  ? "mobile-message" : ""}`}>
+      <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
           <img src={profilePic} />
           <div className="header-text">

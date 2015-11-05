@@ -68,7 +68,9 @@ class Comment extends React.Component {
         </div>
       ) : null;
     let contentClass = "comment-content";
-    if (this.props.userCanEdit) contentClass += " with-buttons";
+    if (this.props.userCanEdit) {
+      contentClass += " with-buttons";
+    }
     return (
       <div className={`comment clearfix ${(this.props.profile === "sm") ? "mobile-comment" : "" }`}>
         <img src={profilePic} />
