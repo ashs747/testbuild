@@ -194,19 +194,33 @@ textarea:focus {
 	}
 	.post-admin-buttons {
 		float: left;
-		margin-left: 10px;
-		width: 55%;
+		width: 100%;
 		div {
 			display: inline-block;
-			background-color: $dark_grey;
 			margin: 0 2px 0 0;
 			border-radius: 2px;
+			.upload-media {
+				background-color: $dark_grey;
+			}
+			.embed-video {
+				background-color: $dark_grey;
+			}
 			a {
 				color: $body_color;
 			}
 			i {
 				font-size: 14px;
 			}
+		}
+		.url-field {
+			margin-left: 10px;
+		}
+		.go {
+			margin-left: 5px;
+			color: $white;
+			background-color: $site_red;
+			font-weight: bold;
+			padding: 4px 12px;
 		}
 	}
 	.post {

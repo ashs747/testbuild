@@ -118,15 +118,21 @@ export const removeAttachment = (feedId, imageId) => {
 };
 
 export const rotateAttachment = (feedId, imageId) => {
-  console.log("rotate attachment: ", feedId, imageId);
+  return {
+    type: 'FEED_ROTATE_ATTACHMENT',
+    payload: {
+      feedId, imageId
+    }
+  };
 };
 
 export const embedVideo = (feedId, url) => {
-  let payload = getThumbnail(url).then((response) => {
-    return {
-      thumbnail: response,
-      feedId
-    };
+  let videoCode = url.split("?v=");
+  videoCode = videoCode[1].split("&");
+  let thumbnail = `http://img.youtube.com/vi/${videoCode[0]}/0.jpg`;
+  let payload = Promise.resolve({
+    thumbnail,
+    feedId
   });
   return {
     type: 'FEED_EMBED_VIDEO',

@@ -1,4 +1,5 @@
 import {FEED_CREATE_MESSAGE, FEED_ALLOW_EDIT, FEED_UPDATE_MESSAGE} from '../actions/feedActions';
+import _ from 'underscore';
 
 var defaultState = {};
 
@@ -18,7 +19,6 @@ function updateMatchedByFieldName(fieldName) {
 };
 
 export const feedReducer = (state = defaultState, action) => {
-
   var feed, nextState;
 
   switch (action.type) {
@@ -138,7 +138,7 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         case 'RESOLVED':
           let payload = action.payload.file;
-          payload.previewUrl = payload.metadata[12].metaValue;
+          payload.previewUrl = _.findWhere(payload.metadata, {metaKey: "url"}).metaValue;
           let splitUrl = payload.previewUrl.split("/upload/");
           payload.thumbnail = `${splitUrl[0]}/upload/c_limit,h_200,w_200/${splitUrl[1]}`;
           nextState = Object.assign({}, state);
@@ -155,11 +155,17 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_REMOVE_ATTACHMENT":
-      console.log(action);
       nextState = Object.assign({}, state);
       nextState[action.payload.feedId].files = state[action.payload.feedId].files.filter((el) => {
-        return action.payload.id != el.id;
+        return action.payload.imageId != el.id;
       });
+      return nextState;
+      break;
+
+    case "FEED_ROTATE_ATTACHMENT":
+      nextState = Object.assign({}, state);
+      console.log(nextState[action.payload.feedId].files);
+
       return nextState;
       break;
 
@@ -168,14 +174,10 @@ export const feedReducer = (state = defaultState, action) => {
         case 'RESOLVED':
           nextState = Object.assign({}, state);
           let file = {
-            reference: null,
+            previewUrl: null,
+            reference: "vimeo",
             mimeType: "video/vimeo",
-            thumbnail: action.payload.thumbnail,
-            variation: "original",
-            variations: [{
-              reference: null,
-              variation: "medium"
-            }]
+            thumbnail: action.payload.thumbnail
           };
           nextState[action.payload.feedId].files = [...state[action.payload.feedId].files, file];
           return nextState;

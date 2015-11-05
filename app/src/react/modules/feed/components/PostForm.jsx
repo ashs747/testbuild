@@ -67,7 +67,9 @@ class PostForm extends React.Component {
       let rotate;
       if (a.thumbnail) {
         thumbnail = a.thumbnail;
-        rotate = <a onClick={this.rotateAttachment.bind(this, a.id)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
+        if (a.previewUrl) {
+          rotate = <a onClick={this.rotateAttachment.bind(this, a.id)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
+        }
       }
       return (
         <div key={a.id} className="item">
@@ -91,11 +93,11 @@ class PostForm extends React.Component {
   }
 
   removeAttachment(id) {
-    removeAttachment(this.props.feedID, id);
+    dispatch(removeAttachment(this.props.feedID, id));
   }
 
   rotateAttachment(id) {
-    rotateAttachment(this.props.feedID, id);
+    dispatch(rotateAttachment(this.props.feedID, id));
   }
 
 }
