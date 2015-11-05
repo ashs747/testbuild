@@ -34,7 +34,6 @@
 		padding: 0 15px;
 		margin: 0;
 		width: auto;
-		border-bottom: 1px solid $dark_grey;
 		textarea {
 			width: 100%;
 		}
@@ -158,11 +157,102 @@ textarea:focus {
 }
 
 .media-grid {
-	background-color: $light_grey;
+	background-color: $white;
+	margin: 2px 0;
 }
 
 .grid-row {
 	img {
 		padding: 0 2px;
+	}
+}
+
+.post-form-status {
+	border: 1px solid $dark_grey;
+	background-color: $light_grey;
+	padding: 15px;
+	.post-profile {
+		float: left;
+		img {
+			height: 40px;
+			width: 40px;
+			border-radius: 50%;
+		}
+	}
+	.post-message {
+		float: left;
+		width: calc(100% - 50px);
+		margin-left: 10px;
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+	textarea {
+		width: 100%;
+		resize: none;
+		padding: 2px 5px;
+		min-height: 50px;
+	}
+	.post-admin-buttons {
+		float: left;
+		width: 100%;
+		div {
+			display: inline-block;
+			margin: 0 2px 0 0;
+			border-radius: 2px;
+			.upload-media {
+				background-color: $dark_grey;
+			}
+			.embed-video {
+				background-color: $dark_grey;
+			}
+			a {
+				color: $body_color;
+			}
+			i {
+				font-size: 14px;
+			}
+		}
+		.url-field {
+			margin-left: 10px;
+		}
+		.go {
+			margin-left: 5px;
+			color: $white;
+			background-color: $site_red;
+			font-weight: bold;
+			padding: 4px 12px;
+		}
+	}
+	.post {
+		float: right;
+		width: 80px;
+		a {
+			width: 100%;
+			background-color: $site_red;
+			color: $white;
+			font-weight: bold;
+		}
+	}
+}
+
+.post-attachments {
+	float: left;
+	width: 100%;
+	padding: 10px;
+	.item {
+		position: relative;
+		display: inline-block;
+		margin: 5px 15px;
+	}
+	.image-icon {
+		position: absolute;
+		top: -5px;
+		cursor: pointer;
+	}
+	.remove {
+		right: -12.5px;
+	}
+	.rotate {
+		left: -12.5px;
 	}
 }
