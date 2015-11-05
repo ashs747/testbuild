@@ -67,11 +67,12 @@ class Comment extends React.Component {
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>
       ) : null;
-
+    let contentClass = "comment-content";
+    if (this.props.userCanEdit) contentClass += " with-buttons";
     return (
       <div className={`comment clearfix ${(this.props.profile === "sm") ? "mobile-comment" : "" }`}>
         <img src={profilePic} />
-        <div className="comment-content">
+        <div className={contentClass}>
           <h6>{this.props.name}</h6>
           {bodyContent}
           <span className="comment-date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
