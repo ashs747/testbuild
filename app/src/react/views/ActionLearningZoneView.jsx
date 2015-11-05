@@ -3,7 +3,6 @@ import MembersModuleWidget from '../modules/members/Widget.jsx';
 import _ from 'underscore';
 import {connect} from 'react-redux';
 import FeedWidget from '../modules/feed/Widget.jsx';
-import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import {getFeedIdForContext} from '../../redux/services/feedService';
 import {fetchUsersByCohort} from '../../redux/actions/usersActions';
 import {getResourcesByCohort} from '../../redux/actions/contentActions';
@@ -13,12 +12,14 @@ import ResourcesWidget from '../modules/resource/Widget.jsx';
 var dispatch = Store.dispatch;
 var feedID;
 
+
 function mapCommentListProps(state) {
   return {
     feedID,
     content: state.feeds[feedID] ? state.feeds[feedID].newMessageContent : [],
-    attachments: state.feeds[feedID] ? state.feeds[feedID].files : [],    
+    attachments: state.feeds[feedID] ? state.feeds[feedID].files : [],
     messages: state.feeds[feedID] ? state.feeds[feedID].messages : [],
+    profile: state.width.profile,
     showComments: true
   };
 };
@@ -61,9 +62,7 @@ class ActionLearningZoneView extends React.Component {
 
   componentDidMount() {
     var context = "cohort";
-    feedID = getFeedIdForContext(Store.getState().feeds, context);
-    
-    dispatch(fetchLatestFeedMessages(feedID));
+
     dispatch(fetchUsersByCohort(1));
     dispatch(getResourcesByCohort(1));
   }
