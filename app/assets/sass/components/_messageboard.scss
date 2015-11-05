@@ -202,7 +202,7 @@ textarea:focus {
 			.upload-media {
 				background-color: $dark_grey;
 			}
-			.embed-video {
+			.embed-video-button {
 				background-color: $dark_grey;
 			}
 			a {
@@ -254,5 +254,35 @@ textarea:focus {
 	}
 	.rotate {
 		left: -12.5px;
+	}
+}
+
+.mobile-form {
+	padding: 5px;
+	.post-admin-buttons {
+		.btn {
+			width: 100%;
+		}
+		.upload-media-component {
+			width: 100%;
+		}
+	}
+	.post-attachments {
+		padding: 10px;
+	}
+}
+
+.mobile-message {
+	.header {
+		padding: 7.5px;
+	}
+	.body {
+		padding: 0 7.5px;
+	}
+}
+
+.comment-form .mobile-form {
+	.post-message {
+		margin: 0;
 	}
 }

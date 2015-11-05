@@ -69,7 +69,7 @@ class Comment extends React.Component {
       ) : null;
 
     return (
-      <div className="comment clearfix">
+      <div className={`comment clearfix ${(this.props.profile === "sm") ? "mobile-comment" : "" }`}>
         <img src={profilePic} />
         <div className="comment-content">
           <h6>{this.props.name}</h6>

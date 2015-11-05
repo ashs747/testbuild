@@ -75,7 +75,7 @@ class Message extends React.Component {
         </div>) : null;
 
     return (
-      <div className="message">
+      <div className={`message ${(this.props.profile == "sm")  ? "mobile-message" : ""}`}>
         <div className="header clearfix">
           <img src={profilePic} />
           <div className="header-text">
@@ -90,12 +90,13 @@ class Message extends React.Component {
         <div className="images">
           <MediaGrid files={this.props.files} />
         </div>
-        <CommentList comments={this.props.comments} feedID={this.props.feedID}/>
+        <CommentList comments={this.props.comments} feedID={this.props.feedID} profile={this.props.profile} />
         <PostForm feedID={this.props.feedID}
           content={this.props.commentText}
           onSave={this.createComment}
           onEdit={this.editNewComment}
           commentForm={true}
+          profile={this.props.profile}
         />
       </div>
     );

@@ -24,7 +24,7 @@ class MainView extends React.Component {
 
     return (
       <div className="main">
-        <div className="container-fluid">
+        <div className={`${(this.props.width.profile !== "sm") ? "container-fluid" : ""}`}>
           <Header display={loggedIn} modules={moduleList} dispatch={this.props.dispatch}/>
           <RouteHandler />
           <Footer display={loggedIn} />
