@@ -12,7 +12,6 @@ import ResourcesWidget from '../modules/resource/Widget.jsx';
 var dispatch = Store.dispatch;
 var feedID;
 
-
 function mapALZFeed(state) {
   return {
     context: 'cohort',

@@ -4,7 +4,6 @@ import 'console-shim';
 
 import store from './redux/store';
 import {Provider} from 'react-redux';
-
 import appConfig from 'cirrus/configs/appConfig';
 import config from './config';
 import localConfig from './localConfig';
