@@ -2,6 +2,7 @@
 if [ "$1" == "deployment" ]
 then
   cp -f app/src/localConfig.js.nightly app/src/localConfig.js
+  ./node_modules/gulp/bin/gulp.js build
   zip -r $2.zip ./ -x "*.git*" -x "venv/*" -x "node_modules/*"
   aws s3 cp $2.zip s3://cirrus-deployments/soj-portal/$2.zip
   rm $2.zip
