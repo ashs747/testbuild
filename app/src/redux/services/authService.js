@@ -24,8 +24,7 @@ function feedsArrayToObject(feedsArray) {
 
 function formatUserData(userData) {
   var user = userData.user[0] || userData.user;
-  //var feeds = feedsArrayToObject(userData.feeds); //TODO: UncommentMe when FeedIDs come in
-  var feeds = feedsArrayToObject([{"id": "1", "context": "programme"}, {"context": "cohort", "id": "2"}]);
+  var feeds = feedsArrayToObject(userData.feeds);
   var out = {
     user,
     feeds

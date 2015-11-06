@@ -3,10 +3,11 @@ import userManager from 'cirrus/services/managers/userManager';
 import {getOAuthToken, getUserData} from '../services/authService';
 import cookie from 'cookie-cutter';
 import Store from '../store.js';
-
 export const AUTH = 'AUTH';
 export const COOKIE_CHECKED = 'COOKIE_CHECKED';
 export const LOGOUT = 'LOGOUT';
+
+import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 
 export function authAction(username, password) {
   let req = getOAuthToken(username, password).then((response) => {
@@ -26,8 +27,16 @@ export function authAction(username, password) {
 };
 
 export function cookieCheckedAction() {
-  var req = getUserData();
-  return { 
+  var req = getUserData().then((userData) => {
+    for (let feed in userData.feeds) {
+      if (userData.feeds.hasOwnProperty(feed)) {
+        Store.dispatch(fetchLatestFeedMessages(feed));
+      }
+    };
+
+    return userData;
+  });
+  return {
     type: COOKIE_CHECKED,
     payload: req
   };

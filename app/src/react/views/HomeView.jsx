@@ -5,6 +5,21 @@ import {connect} from 'react-redux';
 import moment from 'moment-timezone';
 import LearningJourneyWidget from '../modules/personalLearningJourney/LearningJourneyWidget.jsx';
 import Carousel from '../components/Carousel.jsx';
+import {getFeedIdForContext} from '../../redux/services/feedService';
+import Store from '../../redux/store';
+import FeedWidget from '../modules/feed/Widget.jsx';
+import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
+var feedID;
+
+function mapHomeFeedProps(state) {
+  return {
+    context: 'programme',
+    feeds: state.feeds,
+    profile: "sm",
+    showComments: true
+  };
+};
+var HomeFeed = connect(mapHomeFeedProps)(FeedWidget);
 
 class HomeView extends React.Component {
 
@@ -99,7 +114,6 @@ class HomeView extends React.Component {
       </div>
 
     );
-    let feed = (<p>Feed goes here when styled</p>);
     let bodyContent = (() => {
       switch (this.props.profile) {
         case 'lg':
@@ -109,14 +123,14 @@ class HomeView extends React.Component {
                 {learningJourney}
               </div>
               <div className="col-sm-4 right-bar">
-                {feed}
+                <HomeFeed />
               </div>
             </div>
           );
           break;
         default:
           let tab1 = (<div label="Learning Journey" tabClass="tab-btn" key="tab1">{learningJourney}</div>);
-          let tab2 = (<div label="Feed" tabClass="tab-btn" key="tab2">{feed}</div>);
+          let tab2 = (<div label="Feed" tabClass="tab-btn" key="tab2"><HomeFeed /></div>);
           let tabs = [tab1, tab2];
           return (
             <TabStack ref="homeTabs" className="home-tabs" selectedIndex={0}>
