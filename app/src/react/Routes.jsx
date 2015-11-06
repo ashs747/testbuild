@@ -12,6 +12,8 @@ import ProjectView from './views/ProjectView.jsx';
 import LeadershipProgrammeView from './views/LeadershipProgrammeView.jsx';
 import OnBoardingView from './views/OnBoardingView.jsx';
 import HomeView from './views/HomeView.jsx';
+import ToolkitView from './views/ToolkitView.jsx';
+import ToolkitPageView from './views/ToolkitPageView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -30,6 +32,8 @@ var Routes = (
       <Route name="project" path="project/:project" handler={ProjectView} />
       <Route name="programme" handler={LeadershipProgrammeView} />
       <Route name="home" handler={HomeView} />
+      <Route name="toolkits" handler={ToolkitView} />
+      <Route name="toolkit" path="toolkit/:slug" handler={ToolkitPageView} />
     </Route>
     <Route name="login" handler={connect((state) => {
       return {
