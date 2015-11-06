@@ -8,14 +8,13 @@ import Carousel from '../components/Carousel.jsx';
 import {getFeedIdForContext} from '../../redux/services/feedService';
 import Store from '../../redux/store';
 import FeedWidget from '../modules/feed/Widget.jsx';
+import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 var feedID;
 
 function mapHomeFeedProps(state) {
   return {
-    feedID,
-    content: state.feeds[feedID] ? state.feeds[feedID].newMessageContent : [],
-    attachments: state.feeds[feedID] ? state.feeds[feedID].files : [],
-    messages: state.feeds[feedID] ? state.feeds[feedID].messages : [],
+    context: 'programme',
+    feeds: state.feeds,
     profile: "sm",
     showComments: true
   };
@@ -26,12 +25,6 @@ class HomeView extends React.Component {
 
   constructor() {
     super();
-  }
-
-  componentDidMount() {
-    var context = "programme";
-    feedID = getFeedIdForContext(Store.getState().feeds, context);
-    console.log(Store.getState());
   }
 
   render() {

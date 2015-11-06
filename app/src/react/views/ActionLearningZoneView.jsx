@@ -13,18 +13,15 @@ var dispatch = Store.dispatch;
 var feedID;
 
 
-function mapCommentListProps(state) {
+function mapALZFeed(state) {
   return {
-    feedID,
-    content: state.feeds[feedID] ? state.feeds[feedID].newMessageContent : [],
-    attachments: state.feeds[feedID] ? state.feeds[feedID].files : [],
-    messages: state.feeds[feedID] ? state.feeds[feedID].messages : [],
+    context: 'cohort',
+    feeds: state.feeds,
     profile: state.width.profile,
     showComments: true
   };
 };
-
-var ALZFeed = connect(mapCommentListProps)(FeedWidget);
+var ALZFeed = connect(mapALZFeed)(FeedWidget);
 
 function mapMembersProps(state) {
   return {
@@ -61,8 +58,6 @@ class ActionLearningZoneView extends React.Component {
   }
 
   componentDidMount() {
-    var context = "cohort";
-
     dispatch(fetchUsersByCohort(1));
     dispatch(getResourcesByCohort(1));
   }
@@ -135,6 +130,7 @@ class ActionLearningZoneView extends React.Component {
 function mapALZProps(state) {
   return {
     profile: state.width.profile,
+    feeds: state.feeds
   };
 };
 

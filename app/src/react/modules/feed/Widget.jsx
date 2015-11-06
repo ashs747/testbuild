@@ -2,6 +2,7 @@ import React from 'react';
 import MessageList from './components/MessageList.jsx';
 import PostForm from './components/PostForm.jsx';
 import {createMessage, updateNewMessage} from '../../../redux/actions/feedActions';
+import {getFeedIdForContext} from '../../../redux/services/feedService';
 
 export default class FeedWidget extends React.Component {
   constructor() {
@@ -11,23 +12,26 @@ export default class FeedWidget extends React.Component {
   }
 
   render() {
-    if (this.props.messages && this.props.messages.length > 0) {
+    var context = this.props.context;
+    var feeds = this.props.feeds || {};
+    if (Object.keys(feeds).length > 0) {
+      //We have feeds
+      var feedID = getFeedIdForContext(feeds, context);
       return (
         <div className="message-board">
           <PostForm
-            feedID={this.props.feedID}
+            feedID={feedID}
             showUploadMedia={true}
             showEmbedVideo={true}
             onEdit={this.dispatchUpdateNewMessage}
             onSave={this.dispatchCreateMessage}
-            attachments={this.props.attachments}
+            attachments={feeds[feedID].files}
             dispatch={this.props.dispatch}
-            content={this.props.content}
-            newComment={this.props.newComment}
+            content={feeds[feedID].newMessageContent}
             postStatus={true}
             profile={this.props.profile}
           />
-          <MessageList messages={this.props.messages} feedID={this.props.feedID} profile={this.props.profile} />
+          <MessageList messages={feeds[feedID].messages} feedID={feedID} profile={this.props.profile} />
         </div>
       );
     }
