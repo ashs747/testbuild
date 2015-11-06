@@ -17,7 +17,7 @@ function mapALZFeed(state) {
     context: 'cohort',
     feeds: state.feeds,
     profile: state.width.profile,
-    showComments: true
+    showComments: true,
   };
 };
 var ALZFeed = connect(mapALZFeed)(FeedWidget);
