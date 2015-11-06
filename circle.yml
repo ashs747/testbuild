@@ -17,8 +17,15 @@ test:
     - ./node_modules/gulp/bin/gulp.js build
 deployment:
   elasticbeanstalk:
+    branch: develop
+    commands:
+      - pip install awscli
+      - chmod +x ./docker/run.sh
+      - ./docker/run.sh deployment $CIRCLE_SHA1 edge
+
+  staging:
     branch: master
     commands:
       - pip install awscli
       - chmod +x ./docker/run.sh
-      - ./docker/run.sh deployment $CIRCLE_SHA1
+      - ./docker/run.sh deployment $CIRCLE_SHA1 staging
