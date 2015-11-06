@@ -1,0 +1,66 @@
+.toolkit-page {
+  background-color: $white;
+  .header {
+    padding: 50px;
+    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $white;
+    text-align: left;
+    .header-icon {
+      float: left;
+      text-align: center;
+      background-color: $light_grey;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 1px solid $dark_grey;
+      color: $body_color;
+      font-size: 60px;
+    }
+    h1 {
+      float: left;
+      width: calc(100% - 425px);
+      text-align: left;
+      margin: 0 30px;
+      vertical-align: middle;
+      margin-top: 5px;
+    }
+    .pdf {
+      width: 225px;
+      text-align: center;
+      border: 2px solid $white;
+      padding: 10px 30px;
+      color: $white;
+      cursor: pointer;
+      margin-top: 15px;
+      float: right;
+    }
+  }
+  .left-bar {
+    float: left;
+    width: 70%;
+    padding: 40px;
+  }
+  .right-bar {
+    padding: 10px;
+    float: left;
+    width: 30%;
+    height: 400px;
+    background-color: $light_grey;
+  }
+  .hints-and-tips {
+    background-color: $white;
+    h3 {
+      color: $white;
+      background-color: $dark_blue;
+      padding: 15px;
+      font-size: 20px;
+    }
+    .list {
+      padding: 10px;
+    }
+  }
+}
