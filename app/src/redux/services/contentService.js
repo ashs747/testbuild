@@ -232,3 +232,49 @@ export function getProject(id) {
     }]
   });
 }
+
+export function getToolkits() {
+  return Promise.resolve(
+    [{
+      id: 1,
+      icon: "wrench",
+      title: "Aenean lacinia bibendum nulla sed consectetur",
+      slug: "test-toolkit"
+    }, {
+      id: 2,
+      icon: "wrench",
+      title: "Aenean lacinia bibendum nulla sed consectetur",
+      slug: "test-toolkit"
+    }, {
+      id: 3,
+      icon: "wrench",
+      title: "Aenean lacinia bibendum nulla sed consectetur",
+      slug: "test-toolkit"
+    }, {
+      id: 4,
+      icon: "wrench",
+      title: "Aenean lacinia bibendum nulla sed consectetur",
+      slug: "test-toolkit"
+    }, {
+      id: 5,
+      icon: "wrench",
+      title: "Aenean lacinia bibendum nulla sed consectetur",
+      slug: "test-toolkit"
+    }, {
+      id: 6,
+      icon: "wrench",
+      title: "Aenean lacinia bibendum nulla sed consectetur",
+      slug: "test-toolkit"
+    }, {
+      id: 7,
+      icon: "wrench",
+      title: "Aenean lacinia bibendum nulla sed consectetur",
+      slug: "test-toolkit"
+    }, {
+      id: 8,
+      icon: "wrench",
+      title: "Aenean lacinia bibendum nulla sed consectetur",
+      slug: "test-toolkit"
+    }]
+  );
+}

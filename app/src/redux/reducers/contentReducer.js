@@ -4,9 +4,9 @@ export const reducer = (state = defaultState, action) => {
   var feed, nextState;
 
   switch (action.type) {
-    case 'LOGOUT': 
+    case 'LOGOUT':
       return {};
-    
+
     case "CONTENT_GET_RESOURCES":
       switch (action.status) {
         case "RESOLVED":
@@ -41,6 +41,18 @@ export const reducer = (state = defaultState, action) => {
           return state;
           break;
       }
+    case "CONTENT_GET_ALL_TOOLKITS":
+      switch(action.status) {
+        case "RESOLVED":
+          nextState = Object.assign({}, state);
+          nextState.toolkits = action.payload;
+          return nextState;
+          break;
+        default:
+          return state;
+          break;
+      }
+    break;
     default:
       return state;
   }

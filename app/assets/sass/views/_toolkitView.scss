@@ -1,11 +1,71 @@
 .toolkits {
-
+  background-color: $white;
+  .header {
+    padding: 50px;
+    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $white;
+    text-align: center;
+    h1 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+    h6 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .header-text {
+      max-width: 700px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .body {
+    padding: 20px;
+  }
 }
 .toolkit-widget {
   display: inline-block;
+  background-color: $light_grey;
+  padding: 25px;
+  border: 1px solid $dark_grey;
+  border-radius: 5px;
+  text-align: center;
+  .widget-icon {
+    height: 90px;
+    width: 90px;
+    display: block;
+    margin: 0 auto;
+    background-color: $white;
+    border-radius: 50%;
+    border: 1px solid $dark_grey;
+    text-align: center;
+    i {
+      font-size: 60px;
+      margin-top: 12.5px;
+    }
+  }
+  h3 {
+    min-height: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .btn {
+    background-color: $site_red;
+    color: $white;
+    width: 75px;
+    padding: 3px 12px;
+    font-weight: bold;
+  }
 }
 .sm-item {
-
+  width: 97.5%;
+  margin: 10px 1.25%;
 }
 .md-item {
   width: 30%;
@@ -14,4 +74,18 @@
 .lg-item {
   width: 17.5%;
   margin: 10px 1.25%;
+}
+
+@media (max-width: 767px) {
+  .toolkits {
+    .header {
+      padding: 30px;
+    }
+  }
+  .toolkit-widget {
+    padding: 15px;
+    h3 {
+      min-height: inherit;
+    }
+  }
 }
