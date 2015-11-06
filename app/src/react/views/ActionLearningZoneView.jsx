@@ -12,13 +12,12 @@ import ResourcesWidget from '../modules/resource/Widget.jsx';
 var dispatch = Store.dispatch;
 var feedID;
 
-
 function mapALZFeed(state) {
   return {
     context: 'cohort',
     feeds: state.feeds,
     profile: state.width.profile,
-    showComments: true
+    showComments: true,
   };
 };
 var ALZFeed = connect(mapALZFeed)(FeedWidget);

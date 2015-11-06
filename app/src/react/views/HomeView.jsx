@@ -16,7 +16,8 @@ function mapHomeFeedProps(state) {
     context: 'programme',
     feeds: state.feeds,
     profile: "sm",
-    showComments: true
+    showComments: true,
+    showEmbedVideo: true
   };
 };
 var HomeFeed = connect(mapHomeFeedProps)(FeedWidget);

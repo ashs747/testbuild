@@ -1,3 +1,6 @@
+.message-board {
+	padding: 5px;
+}
 .message {
 	border: 1.5px solid $dark_grey;
 	margin: 10px 0;
@@ -28,6 +31,7 @@
 		span {
 			color: #999;
 			font-size: 14px;
+			float: left;
 		}
 	}
 	.body {
@@ -260,11 +264,34 @@ textarea:focus {
 .mobile-form {
 	padding: 5px;
 	.post-admin-buttons {
+		position: relative;
 		.btn {
 			width: 100%;
+			padding: 2px;
+			i {
+				font-size: 10px;
+			}
 		}
 		.upload-media-component {
-			width: 100%;
+			width: 49%;
+			float: left;
+		}
+		.embed-video {
+			width: 49%;
+			float:right;
+		}
+		.url-field {
+			position: relative;
+			right: 100%;
+			top: 10px;
+			width: 200%;
+			margin: 0;
+			.go {
+				width: 50px;
+				margin: 0;
+				margin-bottom: 3px;
+				margin-left: 1px;
+			}
 		}
 	}
 	.post-attachments {

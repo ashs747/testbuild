@@ -74,7 +74,7 @@
 
 .mobile-nav {
   position: absolute;
-  width: calc(100% - 30px);
+  width: 100%;
   z-index: 1000;
   background-color: $light_grey;
   ul {

@@ -33,7 +33,7 @@ class PostForm extends React.Component {
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} /> : null;
-    let embedVideo = (this.props.showEmbedVideo && this.props.profile !== "sm") ? <EmbedVideo feedId={this.props.feedID} /> : null;
+    let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId={this.props.feedID} /> : null;
     let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
     let postButton = (this.props.commentForm) ? null : (
       <div className="post">
