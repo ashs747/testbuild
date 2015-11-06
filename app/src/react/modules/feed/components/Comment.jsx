@@ -56,7 +56,7 @@ class Comment extends React.Component {
       bodyString = (
         <p>
           {subString}
-          <a className="see-more" onClick={this.showFullString}>... See more <i className="fa fa-chevron-right"></i></a>
+          <a className="see-more" onClick={this.showFullString}> See more <i className="fa fa-chevron-right"></i></a>
         </p>
       );
     }
@@ -65,19 +65,21 @@ class Comment extends React.Component {
         <div className="admin-buttons">
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
-        </div>) : null;
-
+        </div>
+      ) : null;
+    let contentClass = "comment-content";
+    if (this.props.userCanEdit) {
+      contentClass += " with-buttons";
+    }
     return (
-      <div className="comment">
-        <div className="header">
-          <img src={profilePic} />
+      <div className={`comment clearfix ${(this.props.profile === "sm") ? "mobile-comment" : "" }`}>
+        <img src={profilePic} />
+        <div className={contentClass}>
           <h6>{this.props.name}</h6>
-          <span className="date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
-          {editButtons}
-        </div>
-        <div className="body">
           {bodyContent}
+          <span className="comment-date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
         </div>
+        {editButtons}
       </div>
     );
   }

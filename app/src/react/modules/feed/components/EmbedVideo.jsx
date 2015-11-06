@@ -25,14 +25,14 @@ class EmbedVideo extends React.Component {
       urlField = (
         <div className="url-field">
           <input ref="urlField" type="text" placeholder="Paste your url here" />
-          <a className="btn" onClick={this.saveVideo}>Go</a>
+          <a className="btn go" onClick={this.saveVideo}>Go</a>
           {error}
         </div>
       );
     }
     return (
       <div className="embed-video">
-        <a className="btn embed-video" onClick={this.showUrlField}><i className="fa fa-video-camera"> Embed Youtube/Vimeo</i></a>
+        <a className="btn embed-video-button" onClick={this.showUrlField}><i className="fa fa-video-camera"> Embed Youtube/Vimeo</i></a>
         {urlField}
       </div>
     );
@@ -74,9 +74,9 @@ class EmbedVideo extends React.Component {
     this.saveVideo(url);
   }
 
-  saveVideo(url) {
+  saveVideo() {
     /* Saves the video into app state against the message via a reducer */
-    dispatch(embedVideo(this.props.feedId, url));
+    dispatch(embedVideo(this.props.feedId, React.findDOMNode(this.refs.urlField).value));
     this.setState({showUrlField: false});
   }
 

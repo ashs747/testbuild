@@ -1,5 +1,301 @@
-.message-board {
+.message {
+	border: 1.5px solid $dark_grey;
+	margin: 10px 0;
+	background-color: $white;
+	color: $body_color;
+	.header {
+		background-color: $white;
+		padding: 15px;
+		img {
+			height: 40px;
+			width: 40px;
+			border-radius: 50%;
+			display: block;
+			float: left;
+		}
+	}
+	.header-text {
+		margin-left: 10px;
+		margin-top: 5px;
+		float: left;
+		h6 {
+			margin: 0;
+			font-size: 18px;
+			font-weight: bold;
+			color: $site_red;
+			text-decoration: underline;
+		}
+		span {
+			color: #999;
+			font-size: 14px;
+		}
+	}
+	.body {
+		padding: 0 15px;
+		margin: 0;
+		width: auto;
+		textarea {
+			width: 100%;
+		}
+	}
+	.admin-buttons {
+		float: right;
+		a {
+			background-color: $dark_grey;
+			padding: 2px;
+			margin: 0 5px;
+			height: 25px;
+			width: 25px;
+			font-size: 14px;
+			color: $body_color;
+		}
+	}
+	.see-more {
+		cursor: pointer;
+		text-decoration: underline;
+		color: $site_red;
+		span {
+			color: $site_red;
+		}
+		i {
+			color: $site_red;
+			font-size: 12px;
+		}
+	}
+}
+.post-form {
+	background-color: $light_grey;
+	padding: 15px;
+	img {
+		float: left;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+	.post-message {
+		float: left;
+		margin-left: 10px;
+		margin-top: 10px;
+		width: calc(100% - 50px);
+	}
 	textarea {
-		color: black;
+		resize: none;
+		width: 100%;
+		padding: 2px 5px;
+	}
+}
+
+textarea:focus {
+	border-color: $site_red;
+	box-shadow: 0 1px 0px $white inset, 0 0 6px $site_red;
+	outline: 0 none;
+}
+
+.comment-list {
+	background-color: $light_grey;
+	border-bottom: 1px solid $dark_grey;
+	.show-comments-link {
+		padding: 15px;
+		a {
+			cursor: pointer;
+			color: $body_color;
+		}
+		i {
+			font-size: 14px;
+		}
+	}
+}
+
+.comment {
+	color: $body_color;
+	padding: 15px;
+	border-bottom: 1px solid $dark_grey;
+	img {
+		float: left;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+	h6 {
+		margin: 0;
+		font-size: 18px;
+		font-weight: bold;
+		color: $site_red;
+		text-decoration: underline;
+	}
+	.comment-content {
+		float: left;
+		margin-left: 10px;
+		width: calc(100% - 50px);
+		h6 {
+			float: left;
+			margin-right: 5px;
+		}
+		p {
+			font-size: 14px;
+			color: $body_color;
+			margin: 0;
+		}
+	}
+	.comment-date-display {
+		position: relative;
+		display: block;
+		float: left;
+		font-size: 14px;
+		color: #999;
+	}
+	textarea {
+		width: 100%;
+		margin-top: 5px;
+		resize: none;
+	}
+}
+
+.save-button {
+	background-color: $site_red;
+	color: $white;
+}
+
+.media-grid {
+	background-color: $white;
+	margin: 2px 0;
+}
+
+.grid-row {
+	img {
+		padding: 0 2px;
+	}
+}
+
+.post-form-status {
+	border: 1px solid $dark_grey;
+	background-color: $light_grey;
+	padding: 15px;
+	.post-profile {
+		float: left;
+		img {
+			height: 40px;
+			width: 40px;
+			border-radius: 50%;
+		}
+	}
+	.post-message {
+		float: left;
+		width: calc(100% - 50px);
+		margin-left: 10px;
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+	textarea {
+		width: 100%;
+		resize: none;
+		padding: 2px 5px;
+		min-height: 50px;
+	}
+	.post-admin-buttons {
+		float: left;
+		width: 100%;
+		div {
+			display: inline-block;
+			margin: 0 2px 0 0;
+			border-radius: 2px;
+			.upload-media {
+				background-color: $dark_grey;
+			}
+			.embed-video-button {
+				background-color: $dark_grey;
+			}
+			a {
+				color: $body_color;
+			}
+			i {
+				font-size: 14px;
+			}
+		}
+		.url-field {
+			margin-left: 10px;
+		}
+		.go {
+			margin-left: 5px;
+			color: $white;
+			background-color: $site_red;
+			font-weight: bold;
+			padding: 4px 12px;
+		}
+	}
+	.post {
+		float: right;
+		width: 80px;
+		a {
+			width: 100%;
+			background-color: $site_red;
+			color: $white;
+			font-weight: bold;
+		}
+	}
+}
+
+.post-attachments {
+	float: left;
+	width: 100%;
+	padding: 10px;
+	.item {
+		position: relative;
+		display: inline-block;
+		margin: 5px 15px;
+	}
+	.image-icon {
+		position: absolute;
+		top: -5px;
+		cursor: pointer;
+	}
+	.remove {
+		right: -12.5px;
+	}
+	.rotate {
+		left: -12.5px;
+	}
+}
+
+.mobile-form {
+	padding: 5px;
+	.post-admin-buttons {
+		.btn {
+			width: 100%;
+		}
+		.upload-media-component {
+			width: 100%;
+		}
+	}
+	.post-attachments {
+		padding: 10px;
+	}
+}
+
+.mobile-message {
+	.header {
+		padding: 7.5px;
+	}
+	.body {
+		padding: 0 7.5px;
+	}
+}
+
+.comment-form .mobile-form {
+	.post-message {
+		margin: 0;
+	}
+}
+
+.mobile-comment {
+	padding: 7.5px;
+	.admin-buttons {
+		.btn {
+			display: block;
+			margin: 10px 2px;
+		}
+	}
+	.with-buttons {
+		width: calc(100% - 80px);
 	}
 }

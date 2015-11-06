@@ -1,6 +1,5 @@
 //feedActions
 import {postMessage, postComment, deleteMessage, patchMessage, getFeedMessages} from '../services/feedService';
-import {generateVariations, rotate, getThumbnail} from '../services/uploadService';
 import store from '../store.js';
 
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
@@ -99,55 +98,41 @@ export const fetchLatestFeedMessages = (feedID) => {
   };
 };
 
-export const addFile = (file, variationObj, feedId) => {
-  let payload = generateVariations(file.optimisedName, variationObj)
-    .then((response) => {
-      return {
-        item: response[0],
-        feedId
-      };
-    });
-
+export const addFile = (file, feedId) => {
+  let payload = Promise.resolve({
+    file, feedId
+  });
   return {
     type: 'FEED_ADD_FILE',
     payload
   };
 };
 
-export const removeAttachment = (feedId, reference) => {
+export const removeAttachment = (feedId, imageId) => {
   return {
     type: 'FEED_REMOVE_ATTACHMENT',
     payload: {
-      feedId,
-      reference
+      feedId, imageId
     }
   };
 };
 
-export const rotateAttachment = (feedId, reference, variations) => {
-  let payload = rotate(variations).then((result) => {
-    let randomString = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-    let variationResult = [
-      result.fileName[0].concat('?x=' + randomString),
-      result.fileName[1].concat('?x=' + randomString)
-    ];
-    return {
-      feedId, reference, variationResult
-    };
-  });
-
+export const rotateAttachment = (feedId, imageId) => {
   return {
     type: 'FEED_ROTATE_ATTACHMENT',
-    payload
+    payload: {
+      feedId, imageId
+    }
   };
 };
 
 export const embedVideo = (feedId, url) => {
-  let payload = getThumbnail(url).then((response) => {
-    return {
-      thumbnail: response,
-      feedId
-    };
+  let videoCode = url.split("?v=");
+  videoCode = videoCode[1].split("&");
+  let thumbnail = `http://img.youtube.com/vi/${videoCode[0]}/0.jpg`;
+  let payload = Promise.resolve({
+    thumbnail,
+    feedId
   });
   return {
     type: 'FEED_EMBED_VIDEO',

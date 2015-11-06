@@ -36,7 +36,11 @@ class CommentList extends React.Component {
   render() {
 
     let commentList = this.mapComments(this.props.comments);
-    let displayCommentsLink = (commentList.length > 0) ? <a className="show-comments-link" onClick={this.showComments}>{`Show ${commentList.length} comment${(commentList.length > 1) ? "s" : ""}`}</a> : null;
+    let displayCommentsLink = (commentList.length > 0) ? (
+      <div className="show-comments-link">
+        <a onClick={this.showComments}>{`View ${commentList.length} comment${(commentList.length > 1) ? "s" : ""}`} <i className="fa fa-chevron-right"></i></a>
+      </div>
+    ) : null;
     let content = (this.state.showComments || this.props.showComments) ? commentList : displayCommentsLink;
     return (
       <div className="comment-list">
@@ -71,7 +75,7 @@ class CommentList extends React.Component {
         return dispatch(updateMessage(this.props.feedID, comment.id, text));
       };
 
-      return (<Comment 
+      return (<Comment
         key={comment.id}
         name={name}
         content={content}
@@ -82,7 +86,8 @@ class CommentList extends React.Component {
         dispatchDeleteAction={deleteComment}
         dispatchEditAction={editComment}
         editCommentAction={updateComment}
-        dispatchSaveAction={saveMessage}/>
+        dispatchSaveAction={saveMessage}
+        profile={this.props.profile} />
       );
     });
     return commentList;

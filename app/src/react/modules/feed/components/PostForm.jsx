@@ -4,6 +4,7 @@ import UploadMedia from './UploadMedia.jsx';
 import EmbedVideo from './EmbedVideo.jsx';
 import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';;
 import {dispatch} from '../../../../redux/store';
+import ImageView from '../../../components/ImageView.jsx';
 
 /**
   PostForm Component, posts a message (or a comment) to a programme feed
@@ -31,43 +32,60 @@ class PostForm extends React.Component {
   render() {
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId="testTwo" /> : null;
-    let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId="testTwo" /> : null;
+    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} /> : null;
+    let embedVideo = (this.props.showEmbedVideo && this.props.profile !== "sm") ? <EmbedVideo feedId={this.props.feedID} /> : null;
+    let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
+    let postButton = (this.props.commentForm) ? null : (
+      <div className="post">
+        <a className="btn" onClick={this.onSave}>Post</a>
+      </div>
+    );
+    let className = (this.props.postStatus) ? "post-form-status" : "post-form";
+    if (this.props.profile === "sm") {
+      className += " mobile-form";
+    }
+    if (this.props.commentForm) {
+      className += " comment-form";
+    }
     return (
-      <div className="post-form">
-        <div className="profile">
+      <div className={`${className} clearfix`}>
+        <div className="post-profile">
           <img src={profilePic} />
         </div>
-        <div className="message">
-          <TextArea value={this.props.content} placeholder={this.props.placeholder || this.props.content ? '' : "What's happening?"} onChange={this.onChange} />
+        <div className="post-message">
+          <TextArea value={this.props.content} placeholder={placeholder} onChange={this.onChange} />
         </div>
-        <div className="buttons">
+        <div className="post-admin-buttons">
           {uploadMedia}
           {embedVideo}
         </div>
-        <div className="attachments">
+        <div className="post-attachments">
           {attachments}
         </div>
-        <div className="post">
-          <a className="btn" onClick={this.onSave}>Post</a>
-        </div>
+        {postButton}
       </div>
     );
   }
 
   mapAttachments(attachments) {
     let attachmentsArray = attachments.map((a, i) => {
-      let fileVariations = [a.reference, a.variations[0].reference];
       let thumbnail = '/assets/img/thumb-default.png';
       let rotate;
       if (a.thumbnail) {
         thumbnail = a.thumbnail;
-        rotate = <a onClick={this.rotateAttachment.bind(this, fileVariations, a.reference)}>Rotate</a>;
+        if (a.previewUrl) {
+          rotate = <a onClick={this.rotateAttachment.bind(this, a.id)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
+        }
       }
+      let imageViewStyle = {
+        backgroundColor: "white",
+        height: (this.props.profile === "sm") ? "90px" : "150px",
+        width: (this.props.profile === "sm") ? "90px" : "150px",
+      };
       return (
-        <div key={a.reference} className="item">
-          <img src={thumbnail} />
-          <a onClick={this.removeAttachment.bind(this, a.reference)}>Remove</a>
+        <div key={a.id} className="item">
+          <ImageView src={thumbnail} style={imageViewStyle} />
+          <a onClick={this.removeAttachment.bind(this, a.id)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
           {rotate}
         </div>
       );
@@ -85,12 +103,12 @@ class PostForm extends React.Component {
     this.props.onSave(this.props.feedID, this.props);
   }
 
-  removeAttachment(reference) {
-    removeAttachment("testTwo", reference);
+  removeAttachment(id) {
+    dispatch(removeAttachment(this.props.feedID, id));
   }
 
-  rotateAttachment(variations, reference) {
-    rotateAttachment("testTwo", reference, variations);
+  rotateAttachment(id) {
+    dispatch(rotateAttachment(this.props.feedID, id));
   }
 
 }
