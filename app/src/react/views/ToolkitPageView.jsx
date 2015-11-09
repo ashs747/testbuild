@@ -20,14 +20,14 @@ class ToolkitPageView extends React.Component {
         <div className="header">
           <div className="row">
             <div className="col-md-1 col-sm-2">
-              <div className="header-icon"><i className={`fa fa-wrench`}></i></div>
+              <div className="header-icon"><i className={`fa fa-${this.props.toolkitContent.icon}`}></i></div>
             </div>
             <div className="col-md-8 col-sm-10">
-              <h1>Linking actions to purpose and outcomes using SMART</h1>
+              <h1>{this.props.toolkitContent.title}</h1>
             </div>
             <div className="col-md-3 visible-lg visible-md">
               <div className="pdf">
-                <a>Download PDF</a>
+                <a href={this.props.toolkitContent.pdfLink} target="_blank">Download PDF</a>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@ class ToolkitPageView extends React.Component {
               </div>
             </div>
             <div className="col-md-12 hidden-lg hidden-md second-pdf">
-              <a>Download as PDF <i className="fa fa-chevron-right"></i></a>
+              <a href={this.props.toolkitContent.pdfLink} target="_blank">Download as PDF <i className="fa fa-chevron-right"></i></a>
             </div>
             <div className="col-md-3 right-bar">
               <div className="hints-and-tips">
