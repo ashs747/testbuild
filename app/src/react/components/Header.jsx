@@ -38,7 +38,6 @@ class Header extends React.Component {
           <LiAnchor text="Action Learning Zone" url="/#/action-learning-zone"/>
           <LiAnchor text="Learning Log" action="" url="/#/"/>
           <LiAnchor text="Toolkit" action="" url="/#/toolkits"/>
-          <LiAnchor text="Logout" action={this.logout} url="#"/>
         </ul>
       </div>
     );
@@ -53,7 +52,7 @@ class Header extends React.Component {
           <LiAnchor text="Toolkit" onClick={this.toggleMobileNav} url="/#/tools"/>
           <LiAnchor text="Profile" onClick={this.toggleMobileNav} url="/#/profile"/>
           <LiAnchor text="Need Help?" onClick={this.toggleMobileNav} url="/#/help"/>
-          <LiAnchor text="Log Out" onClick={this.toggleMobileNav} url="/#/login"/>
+          <LiAnchor text="Logout" action={this.logout} url="/#/login"/>
         </ul>
       </div>
     ) : null;

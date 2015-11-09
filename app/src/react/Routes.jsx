@@ -33,7 +33,7 @@ var Routes = (
       <Route name="programme" handler={LeadershipProgrammeView} />
       <Route name="home" handler={HomeView} />
       <Route name="toolkits" handler={ToolkitView} />
-      <Route name="toolkit" path="toolkit/:slug" handler={ToolkitPageView} />
+      <Route name="toolkit" path="toolkit/:toolkit" handler={ToolkitPageView} />
     </Route>
     <Route name="login" handler={connect((state) => {
       return {

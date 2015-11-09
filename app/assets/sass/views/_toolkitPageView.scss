@@ -1,0 +1,129 @@
+.toolkit-page {
+  background-color: $white;
+  .header {
+    padding: 50px;
+    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $white;
+    text-align: left;
+    .header-icon {
+      text-align: center;
+      background-color: $light_grey;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 1px solid $dark_grey;
+      color: $body_color;
+      font-size: 60px;
+    }
+    h1 {
+      text-align: left;
+      margin: 0 30px;
+      vertical-align: middle;
+      margin-top: 5px;
+    }
+    .pdf {
+      text-align: center;
+      border: 2px solid $white;
+      padding: 10px 30px;
+      color: $white;
+      cursor: pointer;
+      margin-top: 20px;
+      a {
+        color: $white;
+      }
+    }
+  }
+  .row {
+    margin: 0;
+  }
+  .body {
+    background-color: $light_grey;
+  }
+  .left-bar {
+    background-color: $white;
+    padding: 30px;
+    h4 {
+      font-weight: bold;
+      font-size: 24px;
+    }
+    h5 {
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+    }
+  }
+  .right-bar {
+    padding: 10px;
+    background-color: $light_grey;
+  }
+  .hints-and-tips {
+    background-color: $white;
+    h3 {
+      color: $white;
+      background-color: $dark_blue;
+      padding: 15px;
+      font-size: 20px;
+    }
+    .list {
+      padding: 10px;
+    }
+    ul {
+      padding: 0;
+    }
+    li {
+      background: url('/assets/img/red_tick.jpg') no-repeat left top;
+      padding: 0px 0px 10px 30px;
+      /* reset styles (optional): */
+      list-style: none;
+      margin: 0;
+    }
+  }
+  .second-pdf {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: $dark_blue;
+    text-align: right;
+    a {
+      color: $white;
+      cursor: pointer;
+    }
+    i {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 1022px) {
+  .toolkit-page {
+    .header {
+      padding: 30px;
+    }
+    .right-bar {
+      padding: 10px 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .toolkit-page {
+    .header {
+      h1 {
+        text-align: center;
+        margin: 0;
+      }
+      .header-icon {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+}
