@@ -17,9 +17,12 @@ var slaves = {};
 slaves[appConfig.api.url] = "/proxy.html";
 xdomain.slaves(slaves);
 xdomain.debug = false;
-
-React.render(
-  React.createElement(Provider, {store: store}, () => {
-    return React.createElement(App, null);
-  }
-), document.getElementById('app'));
+try {
+  React.render(
+    React.createElement(Provider, {store: store}, () => {
+      return React.createElement(App, null);
+    }
+  ), document.getElementById('app'));
+} catch (e) {
+	// Squelched
+}
