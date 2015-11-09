@@ -53,11 +53,11 @@ class App extends React.Component {
     }
 
     if (loggedIn && activeRouteName == 'login') {
-      router.transitionTo('/');
+      //router.transitionTo('/');
     }
-    
+
     if (!loggedIn) {
-      router.transitionTo('login');
+      //router.transitionTo('login');
     }
   }
 
