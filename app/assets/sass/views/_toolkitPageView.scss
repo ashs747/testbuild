@@ -10,7 +10,6 @@
     color: $white;
     text-align: left;
     .header-icon {
-      float: left;
       text-align: center;
       background-color: $light_grey;
       width: 90px;
@@ -21,34 +20,49 @@
       font-size: 60px;
     }
     h1 {
-      float: left;
-      width: calc(100% - 425px);
       text-align: left;
       margin: 0 30px;
       vertical-align: middle;
       margin-top: 5px;
     }
     .pdf {
-      width: 225px;
       text-align: center;
       border: 2px solid $white;
       padding: 10px 30px;
       color: $white;
       cursor: pointer;
-      margin-top: 15px;
-      float: right;
+      margin-top: 20px;
+      a {
+        color: $white;
+      }
     }
   }
+  .row {
+    margin: 0;
+  }
+  .body {
+    background-color: $light_grey;
+  }
   .left-bar {
-    float: left;
-    width: 70%;
-    padding: 40px;
+    background-color: $white;
+    padding: 30px;
+    h4 {
+      font-weight: bold;
+      font-size: 24px;
+    }
+    h5 {
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+    }
   }
   .right-bar {
     padding: 10px;
-    float: left;
-    width: 30%;
-    height: 400px;
     background-color: $light_grey;
   }
   .hints-and-tips {
@@ -61,6 +75,55 @@
     }
     .list {
       padding: 10px;
+    }
+    ul {
+      padding: 0;
+    }
+    li {
+      background: url('/assets/img/red_tick.jpg') no-repeat left top;
+      padding: 0px 0px 10px 30px;
+      /* reset styles (optional): */
+      list-style: none;
+      margin: 0;
+    }
+  }
+  .second-pdf {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: $dark_blue;
+    text-align: right;
+    a {
+      color: $white;
+      cursor: pointer;
+    }
+    i {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 1022px) {
+  .toolkit-page {
+    .header {
+      padding: 30px;
+    }
+    .right-bar {
+      padding: 10px 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .toolkit-page {
+    .header {
+      h1 {
+        text-align: center;
+        margin: 0;
+      }
+      .header-icon {
+        display: block;
+        margin: 0 auto;
+      }
     }
   }
 }

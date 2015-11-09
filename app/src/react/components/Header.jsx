@@ -53,7 +53,6 @@ class Header extends React.Component {
           <LiAnchor text="Toolkit" onClick={this.toggleMobileNav} url="/#/tools"/>
           <LiAnchor text="Profile" onClick={this.toggleMobileNav} url="/#/profile"/>
           <LiAnchor text="Need Help?" onClick={this.toggleMobileNav} url="/#/help"/>
-          <LiAnchor text="Log Out" onClick={this.toggleMobileNav} url="/#/login"/>
         </ul>
       </div>
     ) : null;
