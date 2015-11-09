@@ -1,0 +1,19 @@
+{
+  "env": {
+    "test": {
+      "presets": ["es2015", "react"],
+      "comments": true,
+      "retainLines": true
+    },
+    "production": {
+      "presets": ["es2015", "react"],
+      "comments": false
+    },
+    "development": {
+      "plugins": ["rewire"],
+      "presets": ["es2015", "react"],
+      "comments": true,
+      "retainLines": true
+    }
+  }
+}
