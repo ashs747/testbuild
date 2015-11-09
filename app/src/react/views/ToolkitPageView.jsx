@@ -11,7 +11,13 @@ class ToolkitPageView extends React.Component {
   }
 
   componentWillMount() {
-    dispatch(getToolkitContentFromSlug('test-toolkit'));
+    dispatch(getToolkitContentFromSlug(this.props.params.toolkit));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.toolkit !== nextProps.params.toolkit) {
+      dispatch(getToolkitContentFromSlug(this.props.params.toolkit));
+    }
   }
 
   render() {
