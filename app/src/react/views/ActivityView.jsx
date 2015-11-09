@@ -14,7 +14,13 @@ class ActivityView extends React.Component {
   }
 
   componentDidMount() {
-    dispatch(getActivityContent(1));
+    dispatch(getActivityContent(this.props.params.activity));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.activity !== this.props.params.activity) {
+      dispatch(getActivityContent(this.props.params.activity));
+    }
   }
 
   render() {
