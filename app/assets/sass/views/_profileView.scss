@@ -1,0 +1,59 @@
+.profile {
+  background-color: $white;
+  .header {
+    padding: 50px;
+    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $white;
+    text-align: center;
+    h1 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+    h6 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .header-text {
+      max-width: 700px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .main {
+    padding: 60px;
+  }
+  .main-inner {
+    background-color: $light_grey;
+    padding: 40px;
+  }
+  .upload-profile {
+    margin-bottom: 20px;
+  }
+  .panel-inner {
+    text-align: center;
+  }
+  h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  .small-text {
+    margin: 20px 0;
+    font-size: 12px;
+    line-height: 14px;
+    a {
+      color: $site_red;
+    }
+    i {
+      font-size: 10px;
+    }
+  }
+}
