@@ -5,14 +5,14 @@ import {connect} from 'react-redux';
 
 function mapCaptureFormProps(state) {
   return {
-    title: "Mr",
-    forename: "Matthew",
-    surname: "Tsinontas",
-    telephone: "07805063052",
-    jobTitle: "Web Developer",
-    businessArea: "Digital",
-    skype: "matthew.tsinontas",
-    timezone: "Europe/London"
+    title: "",
+    forename: "",
+    surname: "",
+    telephone: "",
+    jobTitle: "",
+    businessArea: "",
+    skype: "",
+    timezone: ""
     //action: updateUserObject
   };
 };
