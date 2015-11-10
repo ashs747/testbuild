@@ -6,7 +6,7 @@
     "test": "./node_modules/.bin/karma start karma.conf.js"
   },
   "dependencies": {
-    "babel-core": "^5.8.23",
+    "babel-core": "^5.8.33",
     "babel-eslint": "^4.1.1",
     "babel-plugin-rewire": "^0.1.21",
     "babel-polyfill": "^6.0.16",

@@ -8,12 +8,9 @@ appConfig.merge(config).merge(localConfig);
 
 import App from './react/App.jsx';
 import React from 'react';
-import {xdomain} from 'xdomain';
+
 var slaves = {};
 
-slaves[appConfig.api.url] = "/proxy.html";
-xdomain.slaves(slaves);
-xdomain.debug = false;
 try {
   React.render(
     React.createElement(Provider, {store: store}, () => {
