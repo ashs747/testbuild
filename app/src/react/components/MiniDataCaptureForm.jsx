@@ -8,10 +8,7 @@ class MiniDataCaptureForm extends React.Component {
 
   render() {
     return (
-      <div className="mini-data-capture-form clearfix">
-        <div className="upload-image">
-          Upload image component goes here
-        </div>
+      <div className="mini-data-capture-form">
         <div className="form-inputs">
           <form>
             <input className="form-control" type="text" placeholder="First Name" value={this.props.forename} onChange={this.onChange.bind(this, "forename")}/>

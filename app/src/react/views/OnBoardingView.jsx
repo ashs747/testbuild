@@ -3,6 +3,7 @@ import Slideshow from '../components/Slideshow.jsx';
 import Video from '../components/Video.jsx';
 import DataCaptureForm from '../components/MiniDataCaptureForm.jsx';
 import {connect} from 'react-redux';
+import UploadProfile from '../components/UploadProfile.jsx';
 
 function mapCaptureFormProps(state) {
   return {
@@ -38,10 +39,17 @@ class OnBoarding extends React.Component {
       content: (
         <div className="inner">
           <h1>Upload a photo and choose a password</h1>
-          <MappedDataCaptureForm />
+          <div className="row">
+            <div className="upload-image col-sm-6">
+              <UploadProfile buttonText="UPLOAD" />
+            </div>
+            <div className="col-sm-6">
+              <MappedDataCaptureForm />
+            </div>
+          </div>
         </div>
       ),
-      className: "profile"
+      className: "profile-slide"
     };
     let messageSlide = {
       content: (

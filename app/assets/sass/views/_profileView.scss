@@ -57,3 +57,36 @@
     }
   }
 }
+
+@media (max-width: 1023px) {
+  .profile {
+    .main {
+      padding: 20px;
+    }
+    .main-inner {
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .profile {
+    .header {
+      padding: 20px;
+    }
+    .main {
+      padding: 0;
+    }
+    .main-inner {
+      padding: 5px 0;
+    }
+    .details-panel {
+      .panel-inner {
+        padding: 5px;
+      }
+    }
+  }
+  label {
+    font-size: 14px;
+  }
+}

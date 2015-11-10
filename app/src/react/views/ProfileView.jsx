@@ -23,8 +23,7 @@ class ProfileView extends React.Component {
   constructor() {
     super();
   }
-  //Just a dummy implementation to display to Paul, will refactor into proper classes in my next branch!
-  //Just keeping the pull request small for ya son ;)
+
   render() {
     return (
       <div className="profile">
@@ -38,8 +37,8 @@ class ProfileView extends React.Component {
         </div>
         <div className="main">
           <div className="main-inner clearfix">
-            <div className="col-sm-4">
-              <UploadProfile />
+            <div className="col-md-4 col-sm-5">
+              <UploadProfile buttonText="UPLOAD / CHANGE" />
               <div className="details-panel">
                 <div className="panel-header">
                   <h3>My information</h3>
@@ -53,7 +52,7 @@ class ProfileView extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-sm-7 col-sm-offset-1">
+            <div className="col-md-7 col-md-offset-1 col-sm-7">
               <MappedDataCaptureForm />
             </div>
           </div>
