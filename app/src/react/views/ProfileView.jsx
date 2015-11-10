@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 function mapCaptureFormProps(state) {
   return {
     title: "",
-    forename: "", 
+    forename: "",
     surname: "",
     telephone: "",
-    jobTitle: "Web ",
+    jobTitle: "",
     businessArea: "",
     skype: "",
     timezone: ""
