@@ -1,6 +1,19 @@
 import React from 'react';
 import Slideshow from '../components/Slideshow.jsx';
 import Video from '../components/Video.jsx';
+import DataCaptureForm from '../components/MiniDataCaptureForm.jsx';
+import {connect} from 'react-redux';
+
+function mapCaptureFormProps(state) {
+  return {
+    forename: "",
+    surname: "",
+    telephone: "",
+    password: "",
+    //action: updateUserObject
+  };
+};
+var MappedDataCaptureForm = connect(mapCaptureFormProps)(DataCaptureForm);
 
 class OnBoarding extends React.Component {
 
@@ -18,13 +31,15 @@ class OnBoarding extends React.Component {
           </div>
           <div className="col-sm-4" />
         </div>
-
       ),
       className: "welcome"
     };
     let profileSlide = {
       content: (
-        <p>Profile slide goes here</p>
+        <div className="inner">
+          <h1>Upload a photo and choose a password</h1>
+          <MappedDataCaptureForm />
+        </div>
       ),
       className: "profile"
     };

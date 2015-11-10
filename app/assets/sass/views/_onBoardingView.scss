@@ -76,7 +76,16 @@
 }
 
 .profile {
-  background-color: $white;
+  background-color: $light_grey;
+  .inner {
+    padding: 40px;
+    h1 {
+      margin: 0 auto;
+      max-width: 400px;
+      color: $site_red;
+      font-size: 40px;
+    }
+  }
 }
 
 .message {
