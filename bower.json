@@ -4,6 +4,8 @@
   "dependencies": {
     "plupload": "moxiecode/plupload",
     "bootstrap-sass": "~3.3.5",
-    "fontawesome": "~4.4.0"
+    "fontawesome": "~4.4.0",
+    "shivie8": "~1.0.0",
+    "es5-shim": "~4.3.0"
   }
 }
