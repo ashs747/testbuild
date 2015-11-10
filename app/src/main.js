@@ -1,3 +1,4 @@
+import 'core-js';
 import store from './redux/store';
 import {Provider} from 'react-redux';
 import appConfig from 'cirrus/configs/appConfig';
