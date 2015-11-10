@@ -6,6 +6,7 @@
     "bootstrap-sass": "~3.3.5",
     "fontawesome": "~4.4.0",
     "shivie8": "~1.0.0",
-    "es5-shim": "~4.3.0"
+    "es5-shim": "~4.3.0",
+    "core.js": "~1.2.6"
   }
 }
