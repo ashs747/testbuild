@@ -20,7 +20,7 @@ class MiniDataCaptureForm extends React.Component {
             <input className="form-control" type="password" placeholder="Password" value={this.props.password} onChange={this.onChange.bind(this, "password")}/>
             <input className="form-control" type="password" placeholder="Confirm Password" value="" onChange={this.onChange.bind(this, "confirm")}/>
           </form>
-      </div>
+        </div>
       </div>
     );
   }
