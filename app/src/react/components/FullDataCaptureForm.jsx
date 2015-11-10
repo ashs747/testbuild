@@ -18,6 +18,7 @@ class FullDataCaptureForm extends React.Component {
               <div className="panel-row clearfix">
                 <label>Title</label>
                 <select className="form-control" value={this.props.title} onChange={this.onChange.bind(this, "title")}>
+                  <option value="">- Please Select -</option>
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
                   <option value="Miss">Miss</option>
