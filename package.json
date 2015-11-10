@@ -9,6 +9,7 @@
     "babel-core": "^5.8.23",
     "babel-eslint": "^4.1.1",
     "babel-plugin-rewire": "^0.1.21",
+    "babel-polyfill": "^6.0.16",
     "babel-runtime": "^5.8.20",
     "babelify": "^6.3.0",
     "bootstrap": "^3.3.5",

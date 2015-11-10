@@ -1,5 +1,6 @@
 import 'shivie8';
-import 'es5-shim-sham';
+
+import 'babel-polyfill';
 import 'console-shim';
 
 import store from './redux/store';
