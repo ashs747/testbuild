@@ -25,8 +25,9 @@ class Slideshow extends React.Component {
         this.props.dispatch({type: "SLIDE_PREV_SLIDE", payload: {slideID: this.props.slideID}});
       };
     }
+    let className = `slideshow-module ${slide.className ? slide.className : ""}`;
     return (
-      <div className="slideshow-module">
+      <div className={className}>
         {slide.content}
         <SlideshowNav currentSlide={this.props.index} length={this.props.slides.length} showNext={this.showNext()} showPrev={this.showPrev()} onNextClick={slide.onNextClick} onPrevClick={slide.onPrevClick} />
       </div>
