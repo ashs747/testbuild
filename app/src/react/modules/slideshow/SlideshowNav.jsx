@@ -9,7 +9,7 @@ class SlideshowNav extends React.Component {
   }
 
   render() {
-    let showNext = (this.props.showNext) ? <SlideshowNext onClick={this.props.onNextClick} />: null;
+    let showNext = (this.props.showNext) ? <SlideshowNext onClick={this.props.onNextClick} /> : null;
     let showPrev = (this.props.showPrev) ? <SlideshowPrev onClick={this.props.onPrevClick} /> : null;
     let dots = this.mapNavigationDots(this.props.length, this.props.currentSlide);
     return (
