@@ -13,5 +13,4 @@ class SlideshowNext extends React.Component {
   }
 
 }
-
 export default SlideshowNext;

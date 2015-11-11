@@ -13,5 +13,4 @@ class SlideshowPrev extends React.Component {
   }
 
 }
-
 export default SlideshowPrev;

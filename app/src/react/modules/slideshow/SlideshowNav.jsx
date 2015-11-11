@@ -34,8 +34,4 @@ class SlideshowNav extends React.Component {
   }
 
 }
-SlideshowNav.defaultProps = {
-  showNext: true,
-  showPrev: true
-};
 export default SlideshowNav;

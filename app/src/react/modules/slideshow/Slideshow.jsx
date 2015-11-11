@@ -9,8 +9,22 @@ class Slideshow extends React.Component {
     this.showPrev = this.showPrev.bind(this);
   }
 
+  /*
+    Pulls the slide through via index. If there isnt a function bound to the click of next or prev
+    a default is attached which will simply increment the index
+  */
   render() {
     let slide = this.props.slides[this.props.index];
+    if (!slide.onNextClick) {
+      slide.onNextClick = () => {
+        this.props.dispatch({type: "SLIDE_NEXT_SLIDE", payload: {slideID: this.props.slideID}});
+      };
+    }
+    if (!slide.onPrevClick) {
+      slide.onPrevClick = () => {
+        this.props.dispatch({type: "SLIDE_PREV_SLIDE", payload: {slideID: this.props.slideID}});
+      };
+    }
     return (
       <div className="slideshow-module">
         {slide.content}
@@ -19,11 +33,11 @@ class Slideshow extends React.Component {
     );
   }
 
+  /*
+    If a value has been passed to showNext, either call the function or evaluate it
+    If no value has been passed, default to standard behaviour (only show next if there is a slide to show)
+  */
   showNext() {
-    /*
-      If a value has been passed to showNext, either call the function or evaluate it
-      If no value has been passed, default to standard behaviour (only show next if there is a slide to show)
-    */
     let showNext = this.props.slides[this.props.index].showNext;
     if (typeof showNext !== 'undefined') {
       if (typeof showNext === 'function') {
@@ -34,11 +48,11 @@ class Slideshow extends React.Component {
     return (this.props.index < this.props.slides.length - 1);
   }
 
+  /*
+    If a value has been passed to showPrev, either call the function or evaluate it
+    If no value has been passed, default to standard behaviour (only show prev if not first slide)
+  */
   showPrev() {
-    /*
-      If a value has been passed to showPrev, either call the function or evaluate it
-      If no value has been passed, default to standard behaviour (only show prev if not first slide)
-    */
     let showPrev = this.props.slides[this.props.index].showPrev;
     if (typeof showPrev !== 'undefined') {
       if (typeof showPrev === 'function') {
