@@ -75,8 +75,11 @@
   }
 }
 
-.profile {
+.profile-slide {
   background-color: $light_grey;
+  .row {
+    padding: 20px;
+  }
   .inner {
     padding: 40px;
     h1 {
@@ -84,6 +87,15 @@
       max-width: 400px;
       color: $site_red;
       font-size: 40px;
+    }
+  }
+  .upload-profile {
+    background-color: $light_grey;
+    padding: 10px;
+    border: none;
+    .circle-image {
+      height: 100px;
+      width: 100px;
     }
   }
 }
@@ -176,6 +188,14 @@
     }
     .slide {
       height: 100%;
+    }
+  }
+  .profile-slide {
+    .inner {
+      padding: 10px;
+    }
+    .row {
+      padding: 0;
     }
   }
   .progress {
