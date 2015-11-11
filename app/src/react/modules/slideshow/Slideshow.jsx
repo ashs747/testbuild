@@ -28,7 +28,7 @@ class Slideshow extends React.Component {
     return (
       <div className="slideshow-module">
         {slide.content}
-        <SlideshowNav length={this.props.slides.length} showNext={this.showNext()} showPrev={this.showPrev()} onNextClick={slide.onNextClick} onPrevClick={slide.onPrevClick} />
+        <SlideshowNav currentSlide={this.props.index} length={this.props.slides.length} showNext={this.showNext()} showPrev={this.showPrev()} onNextClick={slide.onNextClick} onPrevClick={slide.onPrevClick} />
       </div>
     );
   }
