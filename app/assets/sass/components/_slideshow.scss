@@ -1,0 +1,109 @@
+.slideshow-module {
+  background-color: $white;
+  padding: 20px;
+}
+
+.slideshow-arrows {
+  .slideshow-prev-arrow {
+    float: left;
+    width: 50%;
+  }
+  .slideshow-next-arrow {
+    float: right;
+    width: 50%;
+    text-align: right;
+  }
+}
+
+.slideshow-nav-items {
+  display: inline-block;
+  width: 100%;
+  height:70px;
+  .block-nav {
+    height:100%;
+    display: inline-block;
+    width: 33.333%;
+    background-color: #c7cacd;
+    .main-block {
+      padding: 5px 15px;
+      width: calc(100% - 40px);
+      float: left;
+      height:100%;
+      color: $white;
+      background-color: #c7cacd;
+    }
+    .right-block {
+      width: 20px;
+      float: left;
+      border-top: 35px solid transparent;
+      border-bottom: 35px solid transparent;
+      border-left: 20px solid #c7cacd;
+    }
+    .left-block {
+      width: 20px;
+      float: left;
+      height: 70px;
+    }
+    .circle {
+      width: 30px;
+      height: 30px;
+      background-color: $white;
+      border-radius: 50%;
+      color: $site_red;
+      text-align: center;
+      margin-top: 15px;
+      float: left;
+      h5 {
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+    .text {
+      margin-left: 10px;
+      float: left;
+      margin-top: 10px;
+      h4 {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+  .active {
+    background-color: $dark_blue !important;
+    .main-block {
+      background-color: $dark_blue !important;
+    }
+    .right-block {
+      background-color: $white;
+      border-left: 20px solid $dark_blue !important;
+    }
+  }
+  .first-item {
+    .right-block {
+      background-color: $white;
+    }
+  }
+  .second-item {
+    background-color: #c7cacd;
+    .right-block {
+      border-left: 20px solid #c7cacd;
+      background-color: $white;
+    }
+    .left-block {
+      border-top: 35px solid transparent;
+      border-bottom: 35px solid transparent;
+      border-left: 20px solid $white;
+    }
+  }
+  .last-item {
+    .right-block {
+      background-color: $white;
+    }
+    .left-block {
+      border-top: 35px solid transparent;
+      border-bottom: 35px solid transparent;
+      border-left: 20px solid $white;
+    }
+  }
+}
