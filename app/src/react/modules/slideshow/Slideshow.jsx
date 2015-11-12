@@ -29,7 +29,14 @@ class Slideshow extends React.Component {
     return (
       <div className={className}>
         {slide.content}
-        <SlideshowNav currentSlide={this.props.index} length={this.props.slides.length} showNext={this.showNext()} showPrev={this.showPrev()} onNextClick={slide.onNextClick} onPrevClick={slide.onPrevClick} />
+        <SlideshowNav
+          currentSlide={this.props.index}
+          length={this.props.slides.length}
+          showNext={this.showNext()}
+          showPrev={this.showPrev()}
+          onNextClick={slide.onNextClick}
+          onPrevClick={slide.onPrevClick}
+          nav={this.props.nav} />
       </div>
     );
   }
