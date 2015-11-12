@@ -38,11 +38,12 @@
       border-top: 35px solid transparent;
       border-bottom: 35px solid transparent;
       border-left: 20px solid #c7cacd;
+      height:100%;
     }
     .left-block {
+      height:100%;
       width: 20px;
       float: left;
-      height: 70px;
     }
     .circle {
       width: 30px;
@@ -75,7 +76,7 @@
       background-color: $dark_blue !important;
     }
     .right-block {
-      background-color: $white;
+      background-color: $white !important;
       border-left: 20px solid $dark_blue !important;
     }
   }
@@ -104,6 +105,79 @@
       border-top: 35px solid transparent;
       border-bottom: 35px solid transparent;
       border-left: 20px solid $white;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .slideshow-nav-items {
+    height:50px;
+    .block-nav {
+      width: 20%;
+      .main-block {
+        width: calc(100% - 20px);
+        padding: 0;
+        .text {
+          display: none;
+        }
+        .circle {
+          margin: 10px 5px;
+        }
+      }
+      .left-block {
+        width:10px;
+      }
+      .right-block {
+        width:10px;
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 10px solid #c7cacd;
+      }
+    }
+    .active {
+      width: 60%;
+      background-color: $dark_blue;
+      .main-block {
+        background-color: $dark_blue;
+        .text {
+          display: block;
+          margin-top: 5px;
+        }
+      }
+      .right-block {
+        background-color: $white !important;
+        border-left: 10px solid $dark_blue !important;
+      }
+      .left-block {
+        background-color: $dark_blue;
+      }
+    }
+    .first-item {
+      .right-block {
+        background-color: $white;
+      }
+    }
+    .second-item {
+      background-color: #c7cacd;
+      .right-block {
+        border-left: 10px solid #c7cacd;
+        background-color: $white;
+      }
+      .left-block {
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 10px solid $white;
+      }
+    }
+    .last-item {
+      .right-block {
+        background-color: $white;
+      }
+      .left-block {
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 10px solid $white;
+      }
     }
   }
 }
