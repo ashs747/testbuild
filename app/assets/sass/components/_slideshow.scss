@@ -18,14 +18,14 @@
 .slideshow-nav-items {
   display: inline-block;
   width: 100%;
-  height:70px;
+  height:50px;
   .block-nav {
     height:100%;
     display: inline-block;
     width: 33.333%;
     background-color: #c7cacd;
     .main-block {
-      padding: 5px 15px;
+      padding: 0 15px;
       width: calc(100% - 40px);
       float: left;
       height:100%;
@@ -35,8 +35,8 @@
     .right-block {
       width: 20px;
       float: left;
-      border-top: 35px solid transparent;
-      border-bottom: 35px solid transparent;
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
       border-left: 20px solid #c7cacd;
       height:100%;
     }
@@ -52,7 +52,7 @@
       border-radius: 50%;
       color: $site_red;
       text-align: center;
-      margin-top: 15px;
+      margin-top: 10px;
       float: left;
       h5 {
         margin-top: 5px;
@@ -63,7 +63,7 @@
     .text {
       margin-left: 10px;
       float: left;
-      margin-top: 10px;
+      margin-top: 5px;
       h4 {
         font-size: 18px;
         font-weight: bold;
@@ -92,8 +92,8 @@
       background-color: $white;
     }
     .left-block {
-      border-top: 35px solid transparent;
-      border-bottom: 35px solid transparent;
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
       border-left: 20px solid $white;
     }
   }
@@ -102,8 +102,8 @@
       background-color: $white;
     }
     .left-block {
-      border-top: 35px solid transparent;
-      border-bottom: 35px solid transparent;
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
       border-left: 20px solid $white;
     }
   }
