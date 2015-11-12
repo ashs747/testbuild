@@ -29,7 +29,8 @@ export const createMessage = (feedID) => {
   let asyncResponse = postMessage(feedID, wrapMessageContentInJSON(messageContent))
     .then((res) => {
       dispatch(fetchLatestFeedMessages(feedID));
-      return JSON.parse(res.response);
+      var out = JSON.parse(res.text);
+      return {feedID, message: out};
     });
   return {
     type: FEED_CREATE_MESSAGE,
@@ -43,6 +44,8 @@ export const createMessage = (feedID) => {
 export const deleteMessageFromFeed = (feedID, messageID) => {
   let asyncResponse = deleteMessage(messageID).then((result) => {
     store.dispatch(fetchLatestFeedMessages(feedID));
+    var resultText = JSON.parse(result.text);
+    return {...resultText, feedID, messageID};
   });
 
   return {
@@ -115,7 +118,6 @@ export const saveUpdatedMessage = (feedID, messageID, commentID) => {
       return JSON.parse(res.text);
     })
     .then((resParsed) => {
-      console.log('fetching latest');
       dispatch(fetchLatestFeedMessages(feedID));
       return {...resParsed,
         feedID};

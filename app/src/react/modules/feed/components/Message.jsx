@@ -63,12 +63,12 @@ class Message extends React.Component {
     for (let i = 0; i < nextProps.comments.length; i += 1) {
       let thisComment = this.props.comments[i],
         nextComment = nextProps.comments[i];
-        for (let key in nextProps) {
-          if (nextComment.hasOwnProperty(key) && changeableKeys.indexOf(key) > -1 && thisComment[key] !== nextComment[key]) {
-            return true;
-          }
+      for (let key in nextProps) {
+        if (nextComment.hasOwnProperty(key) && changeableKeys.indexOf(key) > -1 && thisComment[key] !== nextComment[key]) {
+          return true;
         }
       }
+    }
     return false; 
   }
 

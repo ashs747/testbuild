@@ -45,12 +45,14 @@ class MessageList extends React.Component {
       let date = moment(message.updatedOn);
       let profilePic = message.user.profilePic ? message.user.profilePic.reference : '';
       let files = message.files;
+      var comments;
+      
       if (message.comments) {
-        var comments = message.comments.map((comment) => {
+        comments = message.comments.map((comment) => {
           return {...comment};
         });
       } else {
-        var comments = [];
+        comments = [];
       }
       
       let editable = message.editable;
