@@ -40,7 +40,7 @@ export const feedReducer = (state = defaultState, action) => {
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
       nextState = Object.assign({}, state);
-      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
       return nextState;
       break;
 
@@ -56,7 +56,7 @@ export const feedReducer = (state = defaultState, action) => {
         case 'RESOLVED':
           feed = state[action.payload.feedID];
           nextState = Object.assign({}, state);
-          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
           return nextState;
           break;
         case 'REJECTED':

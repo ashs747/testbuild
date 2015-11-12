@@ -1,7 +1,6 @@
 //feedActions
-import {postMessage, postComment, deleteMessage, patchMessage, getFeedMessages} from '../services/feedService';
+import {postUpdatedMessage, postMessage, postComment, deleteMessage, patchMessage, getFeedMessages} from '../services/feedService';
 import store from '../store.js';
-
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
 export const FEED_UPDATE_MESSAGE = 'FEED_UPDATE_MESSAGE';
 export const FEED_ALLOW_EDIT = 'FEED_ALLOW_EDIT';
@@ -9,8 +8,29 @@ export const FEED_SAVE_MESSAGE = 'FEED_SAVE_MESSAGE';
 export const FEED_DELETE_MESSAGE = 'FEED_DELETE_MESSAGE';
 export const FEED_FETCHED = 'FEED_FETCHED';
 
-export const createMessage = (feedID, messageContent) => {
-  let asyncResponse = postMessage(feedID, messageContent);
+function wrapMessageContentInJSON(messageContent) {
+  return `{"content": "${messageContent}"}`;
+}
+
+function findMessageByID(messages, messageID) {
+  var targetMessage;
+  for (let i = 0; i < messages.length; i += 1) {
+    if (messages[i].id === messageID) {
+      targetMessage = messages[i];
+    }
+  }
+  return targetMessage;
+}
+
+export const createMessage = (feedID) => {
+  var dispatch = store.dispatch;
+
+  var messageContent = store.getState().feeds[feedID].newMessageContent;
+  let asyncResponse = postMessage(feedID, wrapMessageContentInJSON(messageContent))
+    .then((res) => {
+      dispatch(fetchLatestFeedMessages(feedID));
+      return JSON.parse(res.response);
+    });
   return {
     type: FEED_CREATE_MESSAGE,
     payload: asyncResponse
@@ -21,7 +41,10 @@ export const createMessage = (feedID, messageContent) => {
  * Dispatches a delete handler to request a post is removed from the server
  */
 export const deleteMessageFromFeed = (feedID, messageID) => {
-  let asyncResponse = deleteMessage(messageID);
+  let asyncResponse = deleteMessage(messageID).then((result) => {
+    store.dispatch(fetchLatestFeedMessages(feedID));
+  });
+
   return {
     type: 'FEED_DELETE_MESSAGE',
     payload: asyncResponse
@@ -33,7 +56,7 @@ export const setEditable = (feedID, messageID, canEdit) => {
     type: 'FEED_ALLOW_EDIT',
     payload: {
       id: messageID,
-      editing: canEdit,
+      editable: canEdit,
       feedID: feedID
     }
   };
@@ -77,13 +100,27 @@ export const updateMessage = (feedID, messageID, messageContent) => {
  * accepts a messageID:String
  */
 
-export const saveUpdatedMessage = (feedID, messageID) => {
-  //let payload = feedService.postUpdatedMessage(store.);
-  let payload = Promise.resolve({
-    editing: false,
-    feedID,
-    id: messageID
-  });
+export const saveUpdatedMessage = (feedID, messageID, commentID) => {
+  var messages = store.getState().feeds[feedID].messages;
+  var message = findMessageByID(messages, messageID);
+  var dispatch = store.dispatch;
+  if (commentID) {
+    message = findMessageByID(message.comments, commentID);
+    messageID = commentID;
+  }
+
+  var payload = postUpdatedMessage(feedID, messageID, wrapMessageContentInJSON(message.content))
+    .then((res) => {
+      dispatch(setEditable(feedID, messageID, false));
+      return JSON.parse(res.text);
+    })
+    .then((resParsed) => {
+      console.log('fetching latest');
+      dispatch(fetchLatestFeedMessages(feedID));
+      return {...resParsed,
+        feedID};
+    });
+
   return {
     type: 'FEED_SAVE_MESSAGE',
     payload

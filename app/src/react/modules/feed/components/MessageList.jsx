@@ -45,9 +45,16 @@ class MessageList extends React.Component {
       let date = moment(message.updatedOn);
       let profilePic = message.user.profilePic ? message.user.profilePic.reference : '';
       let files = message.files;
-      let comments = message.comments;
-      let editable = message.editing;
-      let userCanEdit = message.userCanEdit;
+      if (message.comments) {
+        var comments = message.comments.map((comment) => {
+          return {...comment};
+        });
+      } else {
+        var comments = [];
+      }
+      
+      let editable = message.editable;
+      let userCanEdit = message.can_edit;
       let newComment = message.newComment;
       return <Message
         feedID={this.props.feedID}
@@ -61,7 +68,7 @@ class MessageList extends React.Component {
         userCanEdit={userCanEdit}
         commentText={newComment}
         dispatchUpdateCommentAction={this.updateCommentAction(key)}
-        dispatchSaveCommentAction={this.saveCommentAction(key)}
+        dispatchSaveCommentAction={this.saveMessage(key)}
         dispatchDeleteAction={this.deleteMessage(key)}
         dispatchEditAction={this.editMessage(key)}
         dispatchUpdateAction={this.updateMessage(key)}
@@ -73,12 +80,6 @@ class MessageList extends React.Component {
   updateCommentAction(messageID) {
     return (feedID, text) => {
       dispatch(updateNewMessage(this.props.feedID, text, messageID));
-    };
-  };
-
-  saveCommentAction(messageID) {
-    return () => {
-      dispatch(saveNewMessage(this.props.feedID, messageID));
     };
   };
 
@@ -95,8 +96,10 @@ class MessageList extends React.Component {
   };
 
   saveMessage(messageID) {
-    return () => {
-      return dispatch(saveUpdatedMessage(this.props.feedID, messageID));
+    return (commentID) => {
+      return () => {
+        dispatch(saveUpdatedMessage(this.props.feedID, messageID, commentID));
+      };
     };
   };
 
