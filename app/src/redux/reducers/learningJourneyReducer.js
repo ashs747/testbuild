@@ -6,10 +6,11 @@ const initialState = {
 };
 
 export function reducer(state = initialState, action) {
+  var nextState;
   switch (action.type) {
-    case 'LOGOUT': 
+    case 'LOGOUT':
       return {};
-    
+
     case LEARNING_JOURNEY:
       switch (action.status) {
         case "FULFILLED":
@@ -25,6 +26,12 @@ export function reducer(state = initialState, action) {
 
         default: Object.assign({}, state, {waitingForModules: true});
       }
+
+    case "LEARNING_JOURNEY_USER_SELECTED_DATE":
+      nextState = Object.assign({}, state);
+      nextState.currentSelectedDate = action.payload.date;
+      return nextState;
+
     default: return state;
-  } 
+  }
 }

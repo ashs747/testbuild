@@ -1,3 +1,109 @@
 .booking {
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  .header {
+    padding: 40px;
+    color: $white;
+    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .body {
+    background-color: $white;
+    padding: 30px;
+    border: 1px solid $dark_grey;
+    .body-inner {
+      padding: 40px;
+      background-color: $light_grey;
+      border: 1px solid $dark_grey;
+    }
+  }
+}
 
+.slideshow-module {
+  border: 1px solid $dark_grey;
+}
+
+.choose-slide {
+  .event-date-rows {
+    width: 100%;
+    border: 1px solid $dark_grey;
+    height: 354px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 40px;
+    .date-row {
+      background-color: $light_grey;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid $dark_grey;
+      cursor: pointer;
+    }
+    .radio {
+      margin: 0;
+      float: left;
+      height: 20px;
+      width: 20px;
+      background-color: $white;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 1px solid $dark_grey;
+    }
+    .date-row.selected-date {
+      background-color: #def0d7 !important;
+      .radio-inner {
+        background-color: $body_color;
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        margin: 5px;
+      }
+    }
+    .date-row.booked-date {
+      background-color: #fcf8e3;
+    }
+  }
+  .key {
+    margin-top: 20px;
+    display: inline-block;
+    .key-item {
+      display: inline-block;
+      margin-right: 15px;
+      .colour-green {
+        float: left;
+        display: inline-block;
+        height: 25px;
+        width: 25px;
+        border-radius: 5px;
+        border: 1px solid $dark_grey;
+        background-color: #def0d7;
+      }
+      .colour-yellow {
+        float: left;
+        display: inline-block;
+        height: 25px;
+        width: 25px;
+        border-radius: 5px;
+        border: 1px solid $dark_grey;
+        background-color: #fcf8e3;
+      }
+      p {
+        float: left;
+        margin-left: 10px;
+        margin-top: 2.5px;
+      }
+    }
+  }
 }

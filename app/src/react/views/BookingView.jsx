@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Slideshow from '../modules/slideshow/Slideshow.jsx';
-import {slides} from './booking/bookingSlides.js';
+import {bookingScreenSlides} from './booking/bookingSlides.js';
 import {nav} from './booking/customBookingNav.js';
 
 function mapProps(state) {
   var slideID = "onBoarding";
   return {
-    slides,
+    slides: bookingScreenSlides,
     topNav: true,
     index: state.slide[slideID] ? state.slide[slideID].index : 0,
     slideID,
@@ -39,7 +39,15 @@ class BookingView extends React.Component {
   render() {
     return (
       <div className="booking">
-        <MappedSlideshow />  
+        <div className="header">
+          <h1>Make a booking</h1>
+          <h3>Activity Name Here</h3>
+        </div>
+        <div className="body">
+          <div className="body-inner">
+            <MappedSlideshow />
+          </div>
+        </div>
       </div>
     );
   }

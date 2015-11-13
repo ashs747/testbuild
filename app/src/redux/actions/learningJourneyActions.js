@@ -10,3 +10,10 @@ export function learningJourney(userId, programmeId) {
     payload: learningJourneyService.getlearningModules(programmeId)
   };
 };
+
+export function userSelectedDate(date) {
+  return {
+    type: "LEARNING_JOURNEY_USER_SELECTED_DATE",
+    payload: {date}
+  };
+};
