@@ -107,3 +107,44 @@
     }
   }
 }
+
+.facilitator-slots {
+  .facilitator-block {
+    border: 1px solid $dark_grey;
+    border-radius: 2px;
+  }
+  table {
+    width: 100%;
+  }
+  .block-header {
+    background-color: $dark_blue;
+    color: $white;
+    padding: 5px 15px;
+    h5 {
+      font-size: 20px;
+    }
+  }
+  thead {
+    tr {
+      background-color: $light_grey;
+    }
+    th {
+      padding: 10px;
+    }
+  }
+  tbody {
+    tr {
+      border: 1px solid $dark_grey;
+    }
+    td {
+      padding: 10px;
+    }
+    .btn {
+      background-color: $site_red;
+      color: $white;
+    }
+  }
+  .odd {
+    background-color: $light_grey;
+  }
+}

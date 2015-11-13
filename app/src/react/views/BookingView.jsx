@@ -5,7 +5,7 @@ import {bookingScreenSlides} from './booking/bookingSlides.js';
 import {nav} from './booking/customBookingNav.js';
 
 function mapProps(state) {
-  var slideID = "onBoarding";
+  var slideID = "booking";
   return {
     slides: bookingScreenSlides,
     topNav: true,
@@ -15,20 +15,6 @@ function mapProps(state) {
   };
 };
 let MappedSlideshow = connect(mapProps)(Slideshow);
-
-/*
-{
-  event: {
-    slots: [],
-    facilitator: {
-      firstname, surname, bio, profilepic
-    },
-    properties: {
-      cancelationTerms,
-    }
-  }
-}
-*/
 
 class BookingView extends React.Component {
 

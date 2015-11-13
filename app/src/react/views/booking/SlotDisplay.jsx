@@ -1,4 +1,6 @@
 import React from 'react';
+import {userSelectedSlot} from '../../../redux/actions/learningJourneyActions';
+import {nextSlide} from '../../../redux/actions/slideActions';
 
 class SlotDisplay extends React.Component {
 
@@ -32,11 +34,11 @@ class SlotDisplay extends React.Component {
 
   mapFacilitatorObjs(events) {
     let mappedEvents = events.map((event, i) => {
-      let mappedSlots = this.mapSlots(event.slots);
+      let mappedSlots = this.mapSlots(event.slots, event.facilitator);
       return (
-        <div className="facilitator-block">
+        <div key={i} className="facilitator-block">
           <div className="block-header">
-            <h5>{`${event.facilitator.forename} ${event.facilitator.surname}`}</h5>
+            <h5>{`Coach: ${event.facilitator.forename} ${event.facilitator.surname}`}</h5>
           </div>
           <table>
             <thead>
@@ -55,18 +57,19 @@ class SlotDisplay extends React.Component {
     return mappedEvents;
   }
 
-  mapSlots(slots) {
+  mapSlots(slots, facilitator) {
+    console.log(slots);
     let mappedSlots = slots.map((slot, i) => {
       let className = "slot";
-      if (i % 2 === 0) {
-        className += " even";
+      if (i % 2 !== 0) {
+        className += " odd";
       }
       return (
         <tr key={slot.id} className={className}>
           <td>{slot.startDate}</td>
           <td>{slot.endDate}</td>
           <td>{slot.location}</td>
-          <td><a className="btn" onClick={this.clickedBook.bind(this, slot.id)}>BOOK</a></td>
+          <td><a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a></td>
         </tr>
       );
     });
@@ -77,8 +80,10 @@ class SlotDisplay extends React.Component {
     );
   }
 
-  clickedBook(e, slotID) {
-    console.log(slotID);
+  clickedBook(slot, facilitator, e) {
+    e.preventDefault();
+    this.props.dispatch(userSelectedSlot(slot, facilitator));
+    this.props.dispatch(nextSlide('booking'));
   }
 }
 

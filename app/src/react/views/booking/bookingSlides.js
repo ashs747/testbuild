@@ -5,6 +5,9 @@ import BookingDateDisplay from './BookingDateDisplay.jsx';
 import SlotDisplay from './SlotDisplay.jsx';
 import {connect, Provider} from 'react-redux';
 import {events} from './testEvents.js';
+import {bookUserOnToSlot} from '../../../redux/actions/learningJourneyActions';
+import FacilitatorBio from './FacilitatorBio.jsx';
+import Confirmation from './Confirmation.jsx';
 
 function mapBookingDateDisplayProps(state) {
   return {
@@ -21,9 +24,30 @@ function mapSlotDisplayProps(state) {
   return {
     events,
     selectedDate: state.learningJourney.currentSelectedDate
-  }
+  };
 }
 var MappedSlotDisplay = connect(mapSlotDisplayProps)(SlotDisplay);
+
+function mapFacilitatorBioProps(state) {
+  let facilitator = state.learningJourney.currentSelectedSlot.facilitator;
+  return {
+    bio: facilitator.properties.bio,
+    name: `${facilitator.forename} ${facilitator.surname}`
+  };
+}
+var MappedFacilitatorBio = connect(mapFacilitatorBioProps)(FacilitatorBio);
+
+function mapConfirmationProps(state) {
+  let facilitator = state.learningJourney.currentSelectedSlot.facilitator;
+  return {
+    facilitator: `${facilitator.forename} ${facilitator.surname}`,
+    slot: state.learningJourney.currentSelectedSlot.slot,
+    error: state.learningJourney.error,
+    cancellationTerms: "Cancellation terms go here when we have them"
+  };
+}
+var MappedConfirmation = connect(mapConfirmationProps)(Confirmation);
+
 
 
 export const bookingScreenSlides = [{
@@ -60,7 +84,40 @@ export const bookingScreenSlides = [{
   ),
   showNext: false
 }, {
-  content: <p>Slide 2</p>
+  content: (
+    <Provider store={store}>
+      {function() {
+        return (
+          <div className="confirm-slide clearfix">
+            <h2>Name of learning activity</h2>
+            <div className="col-md-6">
+              <MappedFacilitatorBio />
+            </div>
+            <div className="col-md-6">
+              <MappedConfirmation />
+            </div>
+          </div>
+        );
+      }}
+    </Provider>
+  ),
+  showPrev: false,
+  showNext: false
 }, {
-  content: <p>Slide 3</p>
+  content: (
+    <Provider store={store}>
+      {function() {
+        return (
+          <div className="complete-slide clearfix">
+
+          </div>
+        );
+      }}
+    </Provider>
+  ),
+  showPrev: false,
+  showNext: false
 }];
+() => {
+  store.dispatch(bookUserOnToSlot(store.getState().user.id));
+};

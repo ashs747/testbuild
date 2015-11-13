@@ -11,7 +11,6 @@ var initialState = {
 
 export function reducer(state = initialState, action) {
   var nextState;
-
   switch (action.type) {
     case 'SLIDE_NEXT_SLIDE':
       nextState = Object.assign({}, state);

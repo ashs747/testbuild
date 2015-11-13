@@ -11,221 +11,23 @@ export const events = [{
     id: 1,
     forename: "Jenny",
     surname: "Perkins",
-    email: "email@email.com"
+    email: "email@email.com",
+    properties: {
+      bio: "Cum sociis natoque penatibus et magnis dis Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa snon commodo luctus, nisi erat porttitor"
+    }
   },
   slots: [{
     id: 1,
-    startDate: "watever",
-    endDate: "watever",
+    startDate: "10:00am",
+    endDate: "11:00am",
     user: 1,
-    location: "telephone"
+    location: "Telephone"
+  }, {
+    id: 2,
+    startDate: "1:00pm",
+    endDate: "2:00pm",
+    user: null,
+    location: "Telephone"
   }],
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 20th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 21th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 22th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 23th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 24th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 25th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 27th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 28th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
-  properties: {}
-}, {
-  id: 2,
-  name: "Example Event",
-  description: "Example Description",
-  date: "Friday 29th November 2015",
-  activity: {
-    name: "Name of activity",
-    type: "Workshop"
-  },
-  slots: [{
-    id: 1,
-    startDate: "watever",
-    endDate: "watever",
-    user: 1,
-    location: "telephone"
-  }],
-  facilitator: {
-    id: 1,
-    forename: "Jenny",
-    surname: "Perkins",
-    email: "email@email.com"
-  },
   properties: {}
 }];

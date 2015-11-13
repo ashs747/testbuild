@@ -32,6 +32,27 @@ export function reducer(state = initialState, action) {
       nextState.currentSelectedDate = action.payload.date;
       return nextState;
 
+    case "LEARNING_JOURNEY_USER_SELECTED_SLOT":
+      nextState = Object.assign({}, state);
+      nextState.currentSelectedSlot = {
+        slot: action.payload.slot,
+        facilitator: action.payload.facilitator
+      };
+      return nextState;
+
+    case "LEARNING_JOURNEY_BOOKED_SLOT":
+      switch (action.status) {
+        case "RESOLVED":
+          nextState = Object.assign({}, state);
+          if (action.payload !== true) {
+            nextState.error = action.payload;
+          }
+          return nextState;
+
+        default:
+          return state;
+      }
+
     default: return state;
   }
 }
