@@ -11,7 +11,8 @@ class BookingDateDisplay extends React.Component {
   }
 
   render() {
-    let stringDateArray = this.momentToString(this.props.events);
+    let availableDays = this.props.events.filter(this.removeBookedDays);
+    let stringDateArray = this.momentToString(availableDays);
     let bookedDate = this.props.events.filter(this.findUsersBookedSlot)[0];
     let uniqueDateArray = this.reduceEventDates(stringDateArray);
     let eventDateRows = this.mapDateToJsx(uniqueDateArray);
@@ -93,6 +94,19 @@ class BookingDateDisplay extends React.Component {
       }
     }
     return false;
+  }
+
+  /*
+    Array filter function to determine if an event has at least 1 open slot
+  */
+  removeBookedDays(event) {
+    let emptySlot = false;
+    event.slots.forEach((slot) => {
+      if (slot.user === null) {
+        emptySlot = true;
+      }
+    });
+    return emptySlot;
   }
 
   eventDateClicked(eventDate) {

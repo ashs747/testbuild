@@ -47,3 +47,9 @@ export function getSlotsForActivity(activityID) {
     payload
   };
 };
+
+export function removeBookingError() {
+  return {
+    type: "LEARNING_JOURNEY_REMOVE_ERROR"
+  };
+}

@@ -7,6 +7,7 @@ class CoachBio extends React.Component {
   }
 
   render() {
+    //TODO: normalize the facilitator bio and profile pic (through properties)
     let profilePic = (this.props.profilePic) ? this.props.profilePic : "/assets/img/profile-placeholder.jpg";
     return (
       <div className="coach-bio">

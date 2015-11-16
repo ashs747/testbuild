@@ -1,6 +1,7 @@
 import React from 'react';
 import {prevSlide} from '../../../redux/actions/slideActions';
-import {bookUserOnToSlot} from '../../../redux/actions/learningJourneyActions';
+import {bookUserOnToSlot, getSlotsForActivity, removeBookingError} from '../../../redux/actions/learningJourneyActions';
+import Router from 'react-router';
 
 class Confirmation extends React.Component {
 
@@ -26,10 +27,10 @@ class Confirmation extends React.Component {
             <p><strong>Coach: </strong>{this.props.facilitator}</p>
           </div>
           <div className="selection-row">
-            <p><strong>Date: </strong>{this.props.slot.startDate}</p>
+            <p><strong>Date: </strong>{this.props.slot.startDate.format('Do MMMM YYYY')}</p>
           </div>
           <div className="selection-row grey">
-            <p><strong>Time: </strong>{`${this.props.slot.startDate} ${this.props.slot.endDate}`}</p>
+            <p><strong>Time: </strong>{`${this.props.slot.startDate.format('HH:mm')} - ${this.props.slot.endDate.format('HH:mm')}`}</p>
           </div>
         </div>
         <h6><strong>Cancellation Terms</strong><br />{this.props.cancellationTerms}</h6>
@@ -59,7 +60,8 @@ class Confirmation extends React.Component {
   }
 
   prevSlide() {
-    //TODO: need to dispatch the get slots action from here and then return to the booking slide on confirmation to avoid displaying the newly booked event
+    this.props.dispatch(getSlotsForActivity(window.location.href.split('booking/')[1]));
+    this.props.dispatch(removeBookingError());
     this.props.dispatch(prevSlide("booking"));
   }
 

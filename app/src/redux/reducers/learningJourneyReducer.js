@@ -64,6 +64,11 @@ export function reducer(state = initialState, action) {
           return state;
       }
 
+    case "LEARNING_JOURNEY_REMOVE_ERROR":
+      nextState = Object.assign({}, state);
+      nextState.error = null;
+      return nextState;
+
     default: return state;
   }
 }

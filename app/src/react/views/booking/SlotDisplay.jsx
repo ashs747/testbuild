@@ -35,8 +35,9 @@ class SlotDisplay extends React.Component {
 
   mapFacilitatorObjs(events) {
     let mappedEvents = events.map((event, i) => {
-      if (event.slots.length > 0) {
-        let reducedSlots = this.reduceSlots(event.slots);
+      let availableSlots = event.slots.filter(slot => slot.user === null);
+      if (availableSlots.length > 0) {
+        let reducedSlots = this.reduceSlots(availableSlots);
         let mappedSlots = this.mapSlots(reducedSlots, event.facilitator);
         return (
           <div key={i} className="facilitator-block">
@@ -87,7 +88,7 @@ class SlotDisplay extends React.Component {
     let reducedSlots = [];
     slots.forEach((slot) => {
       if (!_.find(reducedSlots, (reducedSlot) => {
-        return reducedSlot.startDate.format('HH:mm') === slot.startDate.format('HH:mm') && reducedSlot.endDate.format('HH:mm') === slot.endDate.format('HH:mm')
+        return reducedSlot.startDate.format('HH:mm') === slot.startDate.format('HH:mm') && reducedSlot.endDate.format('HH:mm') === slot.endDate.format('HH:mm');
       })) {
         reducedSlots.push(slot);
       }

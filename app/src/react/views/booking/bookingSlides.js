@@ -28,8 +28,9 @@ var MappedSlotDisplay = connect(mapSlotDisplayProps)(SlotDisplay);
 
 function mapFacilitatorBioProps(state) {
   let facilitator = state.learningJourney.currentSelectedSlot.facilitator;
+  let bio = (facilitator.properties && facilitator.properties.bio) ? facilitator.properties.bio : "";
   return {
-    bio: facilitator.properties.bio,
+    bio,
     name: `${facilitator.forename} ${facilitator.surname}`
   };
 }
