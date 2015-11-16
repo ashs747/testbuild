@@ -55,7 +55,7 @@ let key = comment.id;
     editable: false,
     userCanEdit: false
   }];
-  var props = {feedID: 'testFeed', comments: comments, saveMessage: function(){}};
+  var props = {feedID: 'testFeed', comments: comments, saveMessage: function() {}};
   var element = React.createElement(CommentList, props);
   var component;
   var mountedComponent;

@@ -180,8 +180,7 @@ export const feedReducer = (state = defaultState, action) => {
         
         default: 
           return {...state};
-        }
-
+      }
 
     case "FEED_EMBED_VIDEO":
       switch (action.status) {
