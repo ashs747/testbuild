@@ -138,7 +138,7 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         case 'RESOLVED':
           let payload = action.payload.file;
-          payload.previewUrl = _.findWhere(payload.metadata, {metaKey: "url"}).metaValue;
+          payload.previewUrl = _.findWhere(payload.metadata, {key: "url"}).value;
           let splitUrl = payload.previewUrl.split("/upload/");
           payload.thumbnail = `${splitUrl[0]}/upload/c_limit,h_200,w_200/${splitUrl[1]}`;
           nextState = Object.assign({}, state);
