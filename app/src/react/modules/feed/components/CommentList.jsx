@@ -34,7 +34,6 @@ class CommentList extends React.Component {
   }
 
   render() {
-
     let commentList = this.mapComments(this.props.comments);
     let displayCommentsLink = (commentList.length > 0) ? (
       <div className="show-comments-link">
@@ -56,8 +55,8 @@ class CommentList extends React.Component {
       let content = comment.content;
       let date = moment(comment.date);
       let profilePic = comment.user.profilePic ? comment.user.profilePic.reference : '';
-      let editing = comment.editing;
-      let userCanEdit = comment.userCanEdit;
+      let editable = comment.editable;
+      let userCanEdit = comment.can_edit;
 
       let deleteComment = () => {
         return dispatch(deleteMessageFromFeed(this.props.feedID, comment.id));
@@ -67,9 +66,7 @@ class CommentList extends React.Component {
         return dispatch(setEditable(this.props.feedID, comment.id, true));
       };
 
-      let saveMessage = () => {
-        return dispatch(saveUpdatedMessage(this.props.feedID, comment.id));
-      };
+      let saveMessage = this.props.saveMessage(comment.id);
 
       let updateComment = (text) => {
         return dispatch(updateMessage(this.props.feedID, comment.id, text));
@@ -81,7 +78,7 @@ class CommentList extends React.Component {
         content={content}
         date={date}
         profilePic={profilePic}
-        editing={editing}
+        editable={editable}
         userCanEdit={true}
         dispatchDeleteAction={deleteComment}
         dispatchEditAction={editComment}

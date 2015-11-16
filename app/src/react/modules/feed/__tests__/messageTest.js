@@ -8,6 +8,7 @@ describe('Message', () => {
   var testUtils = React.addons.TestUtils;
   var props = {
     name: "Test User",
+    dispatchSaveAction: function() {},
     content: "Here is a message on the feed",
     date: moment('2015-09-29T09:30:32'),
     profilePic: 'url-of-pic',

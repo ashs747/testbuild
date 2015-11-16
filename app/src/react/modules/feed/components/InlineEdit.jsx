@@ -16,18 +16,18 @@ export default class InlineEdit extends React.Component {
       textAreaStyle = 'warn';
     }
 
-    let saveButton = (this.props.showSaveButton) ? <a className="save-button btn">Save</a> : null;
+    let saveButton = (this.props.showSaveButton) ? <a className="save-button btn" onClick={this.onSave}>Save</a> : null;
 
     return (
       <form onSubmit={this.onSave} status={this.props.state}>
-        <TextArea value={this.props.content} onChange={this.onChangeHandler} onKeyUp={this.keyHandler} />
+        <TextArea value={this.props.content} onChange={this.onChangeHandler} onKeyUp={this.keyHandler} onBlur={this.onSave}/>
         {saveButton}
       </form>
     );
   }
 
   onChangeHandler(e) {
-   // e.preventDefault();
+    e.preventDefault();
     this.props.onChangeHandler(e.target.value);
   }
 
