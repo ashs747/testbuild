@@ -53,6 +53,17 @@ export function reducer(state = initialState, action) {
           return state;
       }
 
+    case "LEARNING_JOURNEY_GET_SLOTS":
+      switch (action.status) {
+        case "RESOLVED":
+          nextState = Object.assign({}, state);
+          nextState.events = action.payload.body.events;
+          return nextState;
+
+        default:
+          return state;
+      }
+
     default: return state;
   }
 }

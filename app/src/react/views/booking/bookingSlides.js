@@ -4,25 +4,23 @@ import {nextSlide} from '../../../redux/actions/slideActions';
 import BookingDateDisplay from './BookingDateDisplay.jsx';
 import SlotDisplay from './SlotDisplay.jsx';
 import {connect, Provider} from 'react-redux';
-import {events} from './testEvents.js';
 import {bookUserOnToSlot} from '../../../redux/actions/learningJourneyActions';
 import FacilitatorBio from './FacilitatorBio.jsx';
 import Confirmation from './Confirmation.jsx';
+import Complete from './Complete.jsx';
 
 function mapBookingDateDisplayProps(state) {
   return {
-    events,
+    events: state.learningJourney.events ? state.learningJourney.events : [],
     selectedDate: state.learningJourney.currentSelectedDate,
-    user: {
-      id: 1
-    }
+    user: state.user
   };
 };
 var MappedBookingDateDisplay = connect(mapBookingDateDisplayProps)(BookingDateDisplay);
 
 function mapSlotDisplayProps(state) {
   return {
-    events,
+    events: state.learningJourney.events ? state.learningJourney.events : [],
     selectedDate: state.learningJourney.currentSelectedDate
   };
 }
@@ -48,7 +46,15 @@ function mapConfirmationProps(state) {
 }
 var MappedConfirmation = connect(mapConfirmationProps)(Confirmation);
 
-
+function mapCompleteProps(state) {
+  let facilitator = state.learningJourney.currentSelectedSlot.facilitator;
+  return {
+    facilitator: `${facilitator.forename} ${facilitator.surname}`,
+    slot: state.learningJourney.currentSelectedSlot.slot,
+    cancellationTerms: "Cancellation terms go here when we have them"
+  };
+}
+var MappedComplete = connect(mapCompleteProps)(Complete);
 
 export const bookingScreenSlides = [{
   content: (
@@ -58,18 +64,7 @@ export const bookingScreenSlides = [{
             <div className="choose-slide clearfix">
               <h2>Name of activity here</h2>
               <div className="col-md-6">
-                <h3>Choose a date</h3>
                 <MappedBookingDateDisplay />
-                <div className="key">
-                  <div className="key-item">
-                    <div className="colour-yellow"></div>
-                    <p>Booked</p>
-                  </div>
-                  <div className="key-item">
-                    <div className="colour-green"></div>
-                    <p>Selected</p>
-                  </div>
-                </div>
               </div>
               <div className="col-md-6">
                 <h3>Choose a time</h3>
@@ -90,10 +85,10 @@ export const bookingScreenSlides = [{
         return (
           <div className="confirm-slide clearfix">
             <h2>Name of learning activity</h2>
-            <div className="col-md-6">
+            <div className="col-md-5">
               <MappedFacilitatorBio />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 col-md-offset-1">
               <MappedConfirmation />
             </div>
           </div>
@@ -109,7 +104,7 @@ export const bookingScreenSlides = [{
       {function() {
         return (
           <div className="complete-slide clearfix">
-
+            <MappedComplete />
           </div>
         );
       }}

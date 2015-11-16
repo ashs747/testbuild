@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Slideshow from '../modules/slideshow/Slideshow.jsx';
 import {bookingScreenSlides} from './booking/bookingSlides.js';
 import {nav} from './booking/customBookingNav.js';
+import {getSlotsForActivity} from '../../redux/actions/learningJourneyActions';
+import {dispatch} from '../../redux/store.js';
 
 function mapProps(state) {
   var slideID = "booking";
@@ -20,6 +22,10 @@ class BookingView extends React.Component {
 
   constructor() {
     super();
+  }
+
+  componentWillMount() {
+    dispatch(getSlotsForActivity(this.props.params.activity));
   }
 
   render() {

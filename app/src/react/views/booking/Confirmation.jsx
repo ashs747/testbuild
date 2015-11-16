@@ -13,7 +13,7 @@ class Confirmation extends React.Component {
   render() {
     let error;
     if (this.props.error) {
-       error = this.mapError(this.props.error);
+      error = this.mapError(this.props.error);
     }
     return (
       <div className="confirm-selection">
@@ -22,13 +22,13 @@ class Confirmation extends React.Component {
           <div className="selection-header">
             <h4>Your selection</h4>
           </div>
-          <div className="selection-row">
-            <p><strong>Coach: </strong>{this.props.coach}</p>
+          <div className="selection-row grey">
+            <p><strong>Coach: </strong>{this.props.facilitator}</p>
           </div>
           <div className="selection-row">
             <p><strong>Date: </strong>{this.props.slot.startDate}</p>
           </div>
-          <div className="selection-row">
+          <div className="selection-row grey">
             <p><strong>Time: </strong>{`${this.props.slot.startDate} ${this.props.slot.endDate}`}</p>
           </div>
         </div>
@@ -48,7 +48,7 @@ class Confirmation extends React.Component {
       errorText = "It appears there was an error, please contact Cirrus support";
     }
     return (
-      <div className="booking-error">
+      <div className="booking-error alert alert-danger">
         <p>{errorText}</p>
       </div>
     );
@@ -59,9 +59,9 @@ class Confirmation extends React.Component {
   }
 
   prevSlide() {
+    //TODO: need to dispatch the get slots action from here and then return to the booking slide on confirmation to avoid displaying the newly booked event
     this.props.dispatch(prevSlide("booking"));
   }
-
 
 }
 

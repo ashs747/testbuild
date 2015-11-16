@@ -39,7 +39,7 @@ var Routes = (
       <Route name="toolkit" path="toolkit/:toolkit" handler={ToolkitPageView} />
       <Route name="activity" path="activity/:slug" handler={ActivityView} />
       <Route name="profile" handler={ProfileView} />
-      <Route name="booking" handler={BookingView} />
+      <Route name="booking" path="booking/:activity" handler={BookingView} />
     </Route>
     <Route name="login" handler={connect((state) => {
       return {

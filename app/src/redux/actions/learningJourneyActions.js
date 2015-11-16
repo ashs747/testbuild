@@ -1,4 +1,4 @@
-import {learningJourneyService, bookSlot} from '../services/learningJourneyService';
+import {learningJourneyService, bookSlot, getSlots} from '../services/learningJourneyService';
 import {nextSlide} from './slideActions';
 import Store from '../store.js';
 
@@ -36,6 +36,14 @@ export function bookUserOnToSlot(slotID) {
   });
   return {
     type: "LEARNING_JOURNEY_BOOKED_SLOT",
+    payload
+  };
+};
+
+export function getSlotsForActivity(activityID) {
+  let payload = getSlots(activityID);
+  return {
+    type: "LEARNING_JOURNEY_GET_SLOTS",
     payload
   };
 };

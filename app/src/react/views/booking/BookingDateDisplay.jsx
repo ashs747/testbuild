@@ -12,12 +12,27 @@ class BookingDateDisplay extends React.Component {
 
   render() {
     let stringDateArray = this.momentToString(this.props.events);
-    let bookedDate = this.props.events.filter(this.findUsersBookedSlot);
+    let bookedDate = this.props.events.filter(this.findUsersBookedSlot)[0];
     let uniqueDateArray = this.reduceEventDates(stringDateArray);
-    let eventDateRows = this.mapDateToJsx(uniqueDateArray, bookedDate[0]);
+    let eventDateRows = this.mapDateToJsx(uniqueDateArray);
+    let bookingMessage;
+    if (bookedDate) {
+      var startDate = bookedDate.slots[0].startDate;
+      var endDate = bookedDate.slots[0].endDate;
+      bookingMessage = (
+        <div className="alert alert-warning">
+          <p>You have a booking on <strong>{startDate.format('dddd Do MMMM YYYY')}</strong> at <strong>{`${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`}</strong>.
+            Select a new date or to cancel please click here to raise a support ticket</p>
+        </div>
+      );
+    }
     return (
-      <div className="event-date-rows">
-        {eventDateRows}
+      <div className="select-date">
+        <h3>Select a date</h3>
+        {bookingMessage}
+        <div className="event-date-rows">
+          {eventDateRows}
+        </div>
       </div>
     );
   }
@@ -28,8 +43,7 @@ class BookingDateDisplay extends React.Component {
   */
   momentToString(eventsArray) {
     let stringEventDates = eventsArray.map(eventObj => {
-      return eventObj.date;
-      //return moment(eventObj.date).format('yyyy-mm-dd');
+      return moment(eventObj.eventDate).format('MMMM Do YYYY');
     });
     return stringEventDates;
   }
@@ -52,12 +66,9 @@ class BookingDateDisplay extends React.Component {
   Loops through a list of unique events, maps them to JSX with
   an onClick handler to dispatch an event to store the selectedDate
 */
-  mapDateToJsx(uniqueEventDates, bookedEventDate) {
+  mapDateToJsx(uniqueEventDates) {
     let mappedItems = uniqueEventDates.map((eventDate, i) => {
       let className = "date-row";
-      if (bookedEventDate && bookedEventDate.date === eventDate) {
-        className += " booked-date";
-      }
       if (this.props.selectedDate === eventDate) {
         className += " selected-date";
       }
@@ -77,8 +88,8 @@ class BookingDateDisplay extends React.Component {
   */
   findUsersBookedSlot(event) {
     for (var i in event.slots) {
-      if (event.slots[i].user === this.props.user.id) {
-        return event.date;
+      if (event.slots[i].user && event.slots[i].user.id == this.props.user.id) {
+        return true;
       }
     }
     return false;

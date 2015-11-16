@@ -11,3 +11,7 @@ export const getlearningModules = () => {
 export const bookSlot = (slotID) => {
   return request.get(apiRoot + 'api/plj/booking/book/' + slotID);
 };
+
+export const getSlots = (activityID) => {
+  return request.get(`${apiRoot}api/plj/booking/get-slots/${activityID}`);
+};

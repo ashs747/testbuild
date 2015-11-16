@@ -43,7 +43,7 @@
     height: 354px;
     overflow: hidden;
     overflow-y: scroll;
-    margin-top: 40px;
+    margin-top: 20px;
     .date-row {
       background-color: $light_grey;
       width: 100%;
@@ -75,35 +75,75 @@
       background-color: #fcf8e3;
     }
   }
-  .key {
-    margin-top: 20px;
-    display: inline-block;
-    .key-item {
-      display: inline-block;
-      margin-right: 15px;
-      .colour-green {
-        float: left;
-        display: inline-block;
-        height: 25px;
-        width: 25px;
-        border-radius: 5px;
-        border: 1px solid $dark_grey;
-        background-color: #def0d7;
+}
+
+.confirm-slide {
+  h2 {
+    margin: 20px 15px;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .coach-bio {
+    border: 1px solid $dark_grey;
+    border-radius: 2px;
+    background-color: $light_grey;
+    padding: 30px;
+    text-align: center;
+    h4 {
+      margin: 20px 0;
+      font-weight: bold;
+      font-size: 22px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+  .selection-item {
+    border: 1px solid $dark_grey;
+    .selection-header {
+      padding: 10px 20px;
+      background-color: $dark_blue;
+      color: $white;
+      h4 {
+        font-weight: bold;
       }
-      .colour-yellow {
-        float: left;
-        display: inline-block;
-        height: 25px;
-        width: 25px;
-        border-radius: 5px;
-        border: 1px solid $dark_grey;
-        background-color: #fcf8e3;
-      }
+    }
+    .selection-row {
+      padding: 15px 20px;
+      border: 1px solid $dark_grey;
       p {
-        float: left;
-        margin-left: 10px;
-        margin-top: 2.5px;
+        margin: 0;
       }
+    }
+    .grey {
+      background-color: $light_grey;
+    }
+  }
+  .back {
+    background-color: $dark_blue;
+    color: $white;
+    width: 100px;
+    padding: 4px 12px;
+  }
+  .confirm {
+    background-color: $site_red;
+    color: $white;
+    width: 100px;
+    padding: 4px 12px;
+    float: right;
+  }
+  .booking-error {
+    padding: 10px;
+    margin-top: 10px;
+    p {
+      margin: 0;
     }
   }
 }
@@ -112,6 +152,7 @@
   .facilitator-block {
     border: 1px solid $dark_grey;
     border-radius: 2px;
+    margin-bottom: 10px;
   }
   table {
     width: 100%;
@@ -146,5 +187,22 @@
   }
   .odd {
     background-color: $light_grey;
+  }
+}
+
+.complete-slide {
+  h3 {
+    font-weight: bold;
+    margin: 30px 0;
+  }
+  p {
+    font-size: 16px;
+    margin: 0;
+  }
+  .booking-details {
+    margin: 20px 0;
+  }
+  .small {
+    font-size: 14px;
   }
 }
