@@ -239,7 +239,7 @@ class SlotDisplay extends React.Component {
     Event fired when the facilitator select is changed. Sets the new values into local component state
   */
   onFacilitatorChange(e) {
-    this.setState({mobileEventId: e.target.value, slot: null})
+    this.setState({mobileEventId: e.target.value, slot: null});
   }
 
   /*

@@ -125,7 +125,7 @@ class BookingDateDisplay extends React.Component {
   eventDateClicked(eventDate) {
     let value = eventDate;
     if (eventDate.target) {
-      value = eventDate.target.value
+      value = eventDate.target.value;
     }
     this.props.dispatch(userSelectedDate(value));
   }
