@@ -27,13 +27,23 @@ class BookingDateDisplay extends React.Component {
         </div>
       );
     }
+    let dateSelection = (this.props.width === "sm") ? (
+      <div className="event-date-dropdown">
+        <select className="form-control" onChange={this.eventDateClicked.bind(this)}>
+          <option value={0}>- Please Select -</option>
+          {eventDateRows}
+        </select>
+      </div>
+    ) : (
+      <div className="event-date-rows">
+        {eventDateRows}
+      </div>
+    );
     return (
       <div className="select-date">
-        <h3>Select a date</h3>
         {bookingMessage}
-        <div className="event-date-rows">
-          {eventDateRows}
-        </div>
+        <h3>Select a date</h3>
+        {dateSelection}
       </div>
     );
   }
@@ -73,12 +83,15 @@ class BookingDateDisplay extends React.Component {
       if (this.props.selectedDate === eventDate) {
         className += " selected-date";
       }
-      return (
+      let dateItem = (this.props.width === "sm") ? (
+        <option key={i} value={eventDate}>{eventDate}</option>
+      ) : (
         <div key={i} className={className} onClick={this.eventDateClicked.bind(this, eventDate)}>
           <div className="radio"><div className="radio-inner" /></div>
           {eventDate}
         </div>
       );
+      return dateItem;
     });
     return mappedItems;
   }
@@ -110,7 +123,11 @@ class BookingDateDisplay extends React.Component {
   }
 
   eventDateClicked(eventDate) {
-    this.props.dispatch(userSelectedDate(eventDate));
+    let value = eventDate;
+    if (eventDate.target) {
+      value = eventDate.target.value
+    }
+    this.props.dispatch(userSelectedDate(value));
   }
 }
 

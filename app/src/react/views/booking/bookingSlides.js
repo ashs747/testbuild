@@ -13,7 +13,8 @@ function mapBookingDateDisplayProps(state) {
   return {
     events: state.learningJourney.events ? state.learningJourney.events : [],
     selectedDate: state.learningJourney.currentSelectedDate,
-    user: state.user
+    user: state.user,
+    width: state.width.profile
   };
 };
 var MappedBookingDateDisplay = connect(mapBookingDateDisplayProps)(BookingDateDisplay);
@@ -21,7 +22,8 @@ var MappedBookingDateDisplay = connect(mapBookingDateDisplayProps)(BookingDateDi
 function mapSlotDisplayProps(state) {
   return {
     events: state.learningJourney.events ? state.learningJourney.events : [],
-    selectedDate: state.learningJourney.currentSelectedDate
+    selectedDate: state.learningJourney.currentSelectedDate,
+    width: state.width.profile
   };
 }
 var MappedSlotDisplay = connect(mapSlotDisplayProps)(SlotDisplay);
@@ -68,8 +70,6 @@ export const bookingScreenSlides = [{
                 <MappedBookingDateDisplay />
               </div>
               <div className="col-md-6">
-                <h3>Choose a time</h3>
-                <p>Your timezone is set to <strong>GMT</strong>. <a href="/#/profile">Edit <i className="fa fa-right-chevron"></i></a></p>
                 <MappedSlotDisplay />
               </div>
             </div>
@@ -86,11 +86,11 @@ export const bookingScreenSlides = [{
         return (
           <div className="confirm-slide clearfix">
             <h2>Name of learning activity</h2>
-            <div className="col-md-5">
-              <MappedFacilitatorBio />
-            </div>
-            <div className="col-md-6 col-md-offset-1">
+            <div className="col-md-6 col-md-push-6">
               <MappedConfirmation />
+            </div>
+            <div className="col-md-6 col-md-pull-6">
+              <MappedFacilitatorBio />
             </div>
           </div>
         );

@@ -75,6 +75,16 @@
       background-color: #fcf8e3;
     }
   }
+  .form-control {
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 1px;
+  }
+  .confirm-btn {
+    background-color: $site_red;
+    color: $white;
+    width: 100%;
+  }
 }
 
 .confirm-slide {
@@ -204,5 +214,50 @@
   }
   .small {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .booking {
+    .body {
+      padding: 10px;
+      .body-inner {
+        padding: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .col-md-6, .col-md-5 {
+    padding: 0;
+  }
+  .booking {
+    h3 {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+    .header {
+      padding: 20px;
+      text-align: center;
+      h1 {
+        font-size: 34px;
+      }
+    }
+    .body {
+      padding: 0;
+      border: none;
+      .body-inner {
+        padding: 0;
+        border: none;
+      }
+    }
+    .slideshow-module {
+      border: 0;
+      padding: 15px;
+    }
+  }
+  .confirm-selection {
+    margin-bottom: 10px;
   }
 }
