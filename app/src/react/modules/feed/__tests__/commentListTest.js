@@ -38,7 +38,7 @@ let key = comment.id;
     content: "This is a comment",
     updatedOn: "2015-09-29T09:30:32",
     createdOn: "2015-09-29T09:30:32",
-    editing: false,
+    editable: false,
     userCanEdit: false
   }, {
     id: 2,
@@ -52,10 +52,10 @@ let key = comment.id;
     content: "This is another comment",
     updatedOn: "2015-09-29T09:30:32",
     createdOn: "2015-09-29T09:30:32",
-    editing: false,
+    editable: false,
     userCanEdit: false
   }];
-  var props = {feedID: 'testFeed', comments: comments};
+  var props = {feedID: 'testFeed', comments: comments, saveMessage: function() {}};
   var element = React.createElement(CommentList, props);
   var component;
   var mountedComponent;

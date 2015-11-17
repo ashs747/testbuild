@@ -2,7 +2,7 @@ import React from 'react';
 import TextArea from 'react-textarea-autosize';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
-
+import moment from 'moment-timezone';
 /**
   Comment Component, used to display a comment (child of a message) on the programme feed
   Dumb component, only accepts and displays props, has no sorting logic
@@ -34,11 +34,25 @@ class Comment extends React.Component {
     this.formatContent = this.formatContent.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSaveComment = this.onSaveComment.bind(this);
+    this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
     this.state = {
       fullString: true
     };
   }
 
+  shouldComponentUpdate(nextProps) {
+    let changeableKeys = ['editable', 'content'];
+    let nextComment = nextProps;
+    let lastComment = this.props;
+
+    for (let key in nextComment) {
+      if (nextComment.hasOwnProperty(key) && changeableKeys.indexOf(key) > -1 && nextComment[key] !== lastComment[key]) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   componentWillMount() {
     if (this.props.content.length > 200) {
       this.setState({
@@ -60,7 +74,7 @@ class Comment extends React.Component {
         </p>
       );
     }
-    let bodyContent = (this.props.editing) ? <InlineEdit content={this.props.content} save={this.onSaveComment} onChangeHandler={this.onChangeHandler}/> : bodyString;
+    let bodyContent = (this.props.editable) ? <InlineEdit content={this.props.content} save={this.onSaveComment} onChangeHandler={this.onChangeHandler}/> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
@@ -77,7 +91,7 @@ class Comment extends React.Component {
         <div className={contentClass}>
           <h6>{this.props.name}</h6>
           {bodyContent}
-          <span className="comment-date-display">{this.props.date.format('HH:mm - DD.MM.YYYY')}</span>
+          <span className="comment-date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
         </div>
         {editButtons}
       </div>
@@ -95,7 +109,7 @@ class Comment extends React.Component {
   }
 
   onSaveComment(e) {
-    this.props.dispatchSaveAction(e);
+    this.props.dispatchSaveAction();
   }
 
   onEditClicked(e) {

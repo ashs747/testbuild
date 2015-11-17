@@ -26,6 +26,7 @@ class App extends React.Component {
   }
 
   render() {
+    this.checkLoggedInState();
     if (!this.state.Handler) {
       return <div />;
     }

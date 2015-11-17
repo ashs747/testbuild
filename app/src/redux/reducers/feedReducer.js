@@ -40,7 +40,7 @@ export const feedReducer = (state = defaultState, action) => {
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
       nextState = Object.assign({}, state);
-      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
       return nextState;
       break;
 
@@ -56,7 +56,7 @@ export const feedReducer = (state = defaultState, action) => {
         case 'RESOLVED':
           feed = state[action.payload.feedID];
           nextState = Object.assign({}, state);
-          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
           return nextState;
           break;
         case 'REJECTED':
@@ -73,10 +73,10 @@ export const feedReducer = (state = defaultState, action) => {
     case FEED_CREATE_MESSAGE:
       switch (action.status) {
         case 'RESOLVED':
-        // Add to state, clear editbox text
-          return {
-            ...state,
-          };
+          nextState = {...state};
+          nextState[action.payload.feedID].messages.unshift(action.payload.message);
+          nextState[action.payload.feedID].newMessageContent = '';
+          return nextState;
           break;
         case 'REJECTED':
         // Error Handling to be discussed;
@@ -166,6 +166,21 @@ export const feedReducer = (state = defaultState, action) => {
       nextState = Object.assign({}, state);
       return nextState;
       break;
+
+    case "FEED_DELETE_MESSAGE":
+      switch (action.status) {
+        case 'RESOLVED':
+          nextState = {...state};
+          var messages = state[action.payload.feedID].messages.filter((el) => {
+            return action.payload.messageID !== el.id;
+          });
+
+          nextState[action.payload.feedID].messages = messages;
+          return nextState;
+        
+        default: 
+          return {...state};
+      }
 
     case "FEED_EMBED_VIDEO":
       switch (action.status) {
