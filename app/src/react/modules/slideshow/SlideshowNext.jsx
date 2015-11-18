@@ -8,7 +8,9 @@ class SlideshowNext extends React.Component {
 
   render() {
     return (
-      <div onClick={this.props.onClick}>Next</div>
+      <div className="slideshow-next-arrow" onClick={this.props.onClick}>
+        Next <i className="fa fa-chevron-right"></i>
+      </div>
     );
   }
 

@@ -8,7 +8,9 @@ class SlideshowPrev extends React.Component {
 
   render() {
     return (
-      <div onClick={this.props.onClick}>Prev</div>
+      <div className="slideshow-prev-arrow" onClick={this.props.onClick}>
+        <i className="fa fa-chevron-left"></i> Prev
+      </div>
     );
   }
 
