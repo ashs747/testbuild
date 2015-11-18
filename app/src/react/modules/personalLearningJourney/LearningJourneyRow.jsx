@@ -11,12 +11,10 @@ class LearningJourneyRow extends React.Component {
   render() {
     let a = this.props.activity;
     let title = a.name;
-    let type = a.properties.type;
-    let icon = this.assignIcon(a.properties.type);
-    let activityUser = a.activityUsers[0];
-    let eventObj = (activityUser.event) ? this.assignEvent(activityUser.event) : {date: "n/a", time: "n/a", location: ""};
-    let status = this.assignStatus(activityUser, activityUser.event);
-    let date, time, location = "n/a";
+    let type = a.type;
+    let icon = this.assignIcon(type);
+    let eventObj = (a.myBookedEventAndSlot) ? this.assignEvent(a.myBookedEventAndSlot) : {date: "n/a", time: "n/a", location: ""};
+    let status = this.mapStatus(a.status);
 
     if (type === "Project") {
       eventObj.date = `Deadline: ${a.properties.deadline}`;
@@ -45,6 +43,15 @@ class LearningJourneyRow extends React.Component {
     );
 
     return content;
+  }
+
+  mapStatus(status) {
+    console.log(status);
+    switch (status) {
+      case "completed": return (<i className="fa fa-check"></i>);
+      case "rated-coaching": return (<a className="btn">LOG</a>);
+      default: return null;
+    }
   }
 
   assignIcon(type) {
@@ -83,8 +90,8 @@ class LearningJourneyRow extends React.Component {
   }
 
   assignEvent(event) {
-    let date = event.dates[0].dateFrom.format('ddd Do MMM YYYY');
-    let time = `${event.dates[0].dateFrom.format('HH:mm')}-${event.dates[0].dateTo.format('HH:mm')}`;
+    let date = moment(event.startDate).format('ddd Do MMM YYYY');
+    let time = `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}`;
     let location = event.location;
     return {
       date, time, location

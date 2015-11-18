@@ -1,5 +1,7 @@
 import React from 'react';
 import LearningJourneyRow from './LearningJourneyRow.jsx';
+import _ from 'underscore';
+import moment from 'moment-timezone';
 
 class LearningJourneyTable extends React.Component {
   constructor() {
@@ -9,8 +11,8 @@ class LearningJourneyTable extends React.Component {
   render() {
     let rows = null;
     if (this.props.journeyModule) {
-      rows = this.props.journeyModule.activities.map((a, i) => {
-        return <LearningJourneyRow key={i} activity={a} smallTable={this.props.smallTable} />;
+      rows = _.mapObject(this.props.journeyModule.activities, (activity, key) => {
+        return <LearningJourneyRow key={key} activity={activity} smallTable={this.props.smallTable} />;
       });
     }
     let iconRow = (this.props.showIcon) ? <th className="row-icon"></th> : null;
@@ -19,7 +21,7 @@ class LearningJourneyTable extends React.Component {
       <div className="table">
         <div className="heading">
           <div className="title">{this.props.journeyModule.name}</div>
-          <div className="sub-title">{this.props.journeyModule.startDate.format('MMMM YYYY')} - {this.props.journeyModule.endDate.format('MMMM YYYY')}</div>
+          <div className="sub-title">{moment(this.props.journeyModule.startDate).format('MMMM YYYY')} - {moment(this.props.journeyModule.endDate).format('MMMM YYYY')}</div>
         </div>
         {rows}
         <div className="footer">
@@ -33,7 +35,7 @@ class LearningJourneyTable extends React.Component {
             {headerIcon}
             <th colSpan="6">
               <div className="title">{this.props.journeyModule.name}</div>
-              <div className="sub-title">{this.props.journeyModule.startDate.format('MMMM YYYY')} - {this.props.journeyModule.endDate.format('MMMM YYYY')}</div>
+              <div className="sub-title">{moment(this.props.journeyModule.startDate).format('MMMM YYYY')} - {moment(this.props.journeyModule.endDate).format('MMMM YYYY')}</div>
             </th>
           </tr>
           <tr className="table-headings">

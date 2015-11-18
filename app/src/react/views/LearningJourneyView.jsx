@@ -2,6 +2,8 @@ import React from 'react';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
 import Widget from '../modules/resource/Widget.jsx';
+import {connect} from 'react-redux';
+import _ from 'underscore';
 
 class LearningJourneyView extends React.Component {
 
@@ -9,17 +11,16 @@ class LearningJourneyView extends React.Component {
     super();
   }
 
-  componentWillMount() {
-    //this.props.dispatch(learningJourneyAction(this.props.auth.currentUser, 1));
-  }
-
   render() {
-    var learningJournies = this.props.learningJourney.learningJourneyModules.map((journeyModule, i) => {
+    let i = 0;
+    let learningJournies = _.mapObject(this.props.modules, (module, key) => {
+      i++;
       return (
-        <div key={i}>
-          <h2>Module {i + 1}</h2>
-          <LearningJourneyTable journeyModule={journeyModule} />
-        </div>);
+        <div key={key}>
+          <h2>Module {i}</h2>
+          <LearningJourneyTable journeyModule={module} />
+        </div>
+      );
     });
     return (
       <div className="personal-learning-journey">
@@ -30,4 +31,11 @@ class LearningJourneyView extends React.Component {
   }
 }
 
-export default LearningJourneyView;
+function maplearningJourneyViewProps(state) {
+  return {
+    modules: state.learningJourney
+  };
+}
+let mappedLearningJourneyView = connect(maplearningJourneyViewProps)(LearningJourneyView);
+
+export default mappedLearningJourneyView;

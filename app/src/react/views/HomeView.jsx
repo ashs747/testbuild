@@ -42,39 +42,13 @@ class HomeView extends React.Component {
       icon: "",
       copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }];
-    let modules = [{
-      name: "Module 1 - Lorem ipsum dolor sit amet",
-      startDate: moment('2015-09-01'),
-      endDate: moment('2015-10-01'),
-      activities: []
-    }, {
-      name: "Module 2 - Lorem ipsum dolor sit amet",
-      startDate: moment('2015-10-01'),
-      endDate: moment('2015-11-01'),
-      activities: []
-    }, {
-      name: "Module 3 - Lorem ipsum dolor sit amet",
-      startDate: moment('2015-11-01'),
-      endDate: moment('2015-12-01'),
-      activities: []
-    }, {
-      name: "Module 4 - Lorem ipsum dolor sit amet",
-      startDate: moment('2015-12-01'),
-      endDate: moment('2016-01-01'),
-      activities: []
-    }, {
-      name: "Module 5 - Lorem ipsum dolor sit amet",
-      startDate: moment('2016-01-01'),
-      endDate: moment('2016-02-01'),
-      activities: []
-    }];
 
     let learningJourney = (
       <div className="home-learning">
         <div className="learning-journey">
           <h5>Your learning journey</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <LearningJourneyWidget journeyModules={modules} smallWidget={this.props.profile === 'sm'}/>
+          <LearningJourneyWidget journeyModules={this.props.modules} smallWidget={this.props.profile === 'sm'}/>
           <h6>VIEW DETAILED LEARNING JOURNEY <i className="fa fa-chevron-right"></i></h6>
         </div>
         <div className="grid-links">
@@ -163,6 +137,7 @@ class HomeView extends React.Component {
 function mapHomeProps(state) {
   return {
     profile: state.width.profile,
+    modules: state.learningJourney
   };
 };
 

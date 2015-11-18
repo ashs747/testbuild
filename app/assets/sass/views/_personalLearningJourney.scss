@@ -1,4 +1,9 @@
 .personal-learning-journey{
   background-color: #eee;
   padding:20px;
+  .btn {
+    color: $white;
+    background-color: $site_red;
+    padding: 4px 16px;
+  }
 }
