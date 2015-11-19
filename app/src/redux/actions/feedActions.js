@@ -21,8 +21,9 @@ function findMessageByID(messages, messageID) {
 export const createMessage = (feedID) => {
   var dispatch = store.dispatch;
   var message = {};
+  var files = store.getState().feeds[feedID].files || [];
   message.content = store.getState().feeds[feedID].newMessageContent;
-  message.files = store.getState().feeds[feedID].files.reduce((file) => {
+  message.files = files.map((file) => {
     return file.id;
   });
   console.log('message', message);
