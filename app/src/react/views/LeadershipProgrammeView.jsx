@@ -25,31 +25,19 @@ class LeadershipProgrammeView extends React.Component {
       icon: "shield",
       copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
     }];
-    let modules = [{
-      name: "Module 1 - Lorem ipsum dolor sit amet",
-      startDate: moment('2015-09-01'),
-      endDate: moment('2015-10-01'),
-      activities: []
+
+    let values = [{
+      name: "Value",
+      icon: "heart",
+      copy: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
     }, {
-      name: "Module 2 - Lorem ipsum dolor sit amet",
-      startDate: moment('2015-10-01'),
-      endDate: moment('2015-11-01'),
-      activities: []
+      name: "Value",
+      icon: "heart",
+      copy: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
     }, {
-      name: "Module 3 - Lorem ipsum dolor sit amet",
-      startDate: moment('2015-11-01'),
-      endDate: moment('2015-12-01'),
-      activities: []
-    }, {
-      name: "Module 4 - Lorem ipsum dolor sit amet",
-      startDate: moment('2015-12-01'),
-      endDate: moment('2016-01-01'),
-      activities: []
-    }, {
-      name: "Module 5 - Lorem ipsum dolor sit amet",
-      startDate: moment('2016-01-01'),
-      endDate: moment('2016-02-01'),
-      activities: []
+      name: "Value",
+      icon: "heart",
+      copy: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
     }];
 
     return (
@@ -63,13 +51,25 @@ class LeadershipProgrammeView extends React.Component {
               esse.</p>
           </div>
         </div>
-        <div className="in-it-for-me">
-          <h1>What's in it for me?</h1>
+        <div className="our-values">
+          <div className="inner">
+            <h1>What's in it for me?</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+          </div>
+        </div>
+        <div className="value-carousel">
+          <div className="inner">
+            <Carousel context="values" items={values} />
+          </div>
         </div>
         <div className="double-column clearfix">
           <div className="col-sm-6 left-column">
             <div className="inner">
-              <div className="circle" />
+              <div className="circle">
+                <p><i className="fa fa-paint-brush"></i></p>
+              </div>
+              <h3>Designed just for you</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
                 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex dolor in reprehenderit.</p>
@@ -77,19 +77,14 @@ class LeadershipProgrammeView extends React.Component {
           </div>
           <div className="col-sm-6 right-column">
             <div className="inner">
-              <div className="circle" />
+              <div className="circle">
+                <p><i className="fa fa-question"></i></p>
+              </div>
+              <h3>What's in it for me?</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
                 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex dolor in reprehenderit.</p>
             </div>
-          </div>
-        </div>
-        <div className="roadmap">
-          <div className="inner">
-            <h1>Roadmap with programme structure</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <LearningJourneyWidget journeyModules={modules} smallWidget={this.props.profile === 'sm'}/>
           </div>
         </div>
         <div className="qualities">
@@ -99,18 +94,20 @@ class LeadershipProgrammeView extends React.Component {
               labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
           </div>
         </div>
-        <div className="carousel">
-          <Carousel items={carouselItems} />
-        </div>
-        <div className="delivery-formats">
+        <div className="title-carousel">
           <div className="inner">
-            <h1>Introduce different delivery formats</h1>
+            <Carousel context="title" items={carouselItems} />
+          </div>
+        </div>
+        <div className="blended-learning">
+          <div className="inner">
+            <h1>A blended learning approach</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
               labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
           </div>
         </div>
         <div className="delivery-grid clearfix">
-          <div className="col-sm-6 red-box">
+          <div className="col-sm-6 workshop">
             <div className="box-inner">
               <div className="icon">
                 <i className="fa fa-users"></i>
@@ -122,10 +119,10 @@ class LeadershipProgrammeView extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-6 white-box">
+          <div className="col-sm-6 coaching">
             <div className="box-inner">
               <div className="icon">
-                <i className="fa fa-users"></i>
+                <i className="fa fa-user"></i>
               </div>
               <div className="text">
                 <h5>Coaching</h5>
@@ -134,10 +131,10 @@ class LeadershipProgrammeView extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-6 white-box">
+          <div className="col-sm-6 webinar">
             <div className="box-inner">
               <div className="icon">
-                <i className="fa fa-users"></i>
+                <i className="fa fa-laptop"></i>
               </div>
               <div className="text">
                 <h5>Webinar</h5>
@@ -146,10 +143,10 @@ class LeadershipProgrammeView extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-6 red-box">
+          <div className="col-sm-6 development">
             <div className="box-inner">
               <div className="icon">
-                <i className="fa fa-users"></i>
+                <i className="fa fa-briefcase"></i>
               </div>
               <div className="text">
                 <h5>Development Project</h5>
@@ -159,7 +156,15 @@ class LeadershipProgrammeView extends React.Component {
             </div>
           </div>
         </div>
-        <div className="message">
+        <div className="roadmap">
+          <div className="inner">
+            <h1>Roadmap with programme structure</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <LearningJourneyWidget journeyModules={this.props.modules} smallWidget={this.props.profile === 'sm'}/>
+          </div>
+        </div>
+        <div className="message-from">
           <div className="inner">
             <h1>A message from the executive board</h1>
             <Video url="https://www.youtube.com/watch?v=HGdQUMzRVxA" />
@@ -172,7 +177,8 @@ class LeadershipProgrammeView extends React.Component {
 
 function mapProgrammeViewProps(state) {
   return {
-    profile: state.width.profile
+    profile: state.width.profile,
+    modules: state.learningJourney
   };
 };
 var mappedView = connect(mapProgrammeViewProps)(LeadershipProgrammeView);

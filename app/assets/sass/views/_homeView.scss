@@ -2,11 +2,18 @@
   .row {
     margin: 0;
   }
-  .header {
-    background-color: $site_red;
+  .header-page {
+    background: url('/assets/img/home-introduction.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     color: $white;
     padding: 60px 0px;
     text-align: center;
+    a {
+      color: $white;
+    }
     h1 {
       font-weight: bold;
     }
@@ -19,6 +26,7 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
+      border: 2px solid $white;
       margin: 0 auto;
       display: block;
     }
@@ -37,10 +45,11 @@
   .left-bar {
     background-color: $white;
     padding: 0;
+    height: 1059px;
   }
   .right-bar {
     background-color: $light_grey;
-    height: 1400px;
+    height: 1059px;
     padding-left: 5px;
     padding-right: 5px;
   }
@@ -70,12 +79,20 @@
       color: $white;
     }
     .programme {
-      background-color: $dark_blue;
+      background: url('/assets/img/home-programme.png');
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
       color: $white;
       padding: 20px;
     }
     .help {
-      background-color: $dark_blue;
+      background: url('/assets/img/home-help.png');
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
       color: $white;
       padding: 20px;
     }
@@ -160,6 +177,9 @@
 
 @media (max-width: 767px) {
   .home {
+    .learning-journey {
+      padding: 20px;
+    }
     .header {
       padding: 30px 0;
     }

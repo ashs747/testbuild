@@ -9,6 +9,7 @@ import {getFeedIdForContext} from '../../redux/services/feedService';
 import Store from '../../redux/store';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
+import _ from 'underscore';
 var feedID;
 
 function mapHomeFeedProps(state) {
@@ -55,7 +56,7 @@ class HomeView extends React.Component {
           <div className="col-sm-6 grid-panel featured">
             <div className="inner">
               <h5>Featured tools</h5>
-              <Carousel items={carouselItems} hideArrows={true} defineWidthClass="col-xs-10 col-xs-offset-1" />
+              <Carousel context="tools" items={carouselItems} hideArrows={true} defineWidthClass="col-xs-10 col-xs-offset-1" />
             </div>
           </div>
           <div className="col-sm-6 grid-panel programme">
@@ -115,15 +116,24 @@ class HomeView extends React.Component {
           break;
       }
     })();
+    let profilePic = "assets/img/profile-placeholder.jpg";
+    if (this.props.user.files) {
+      _.mapObject(this.props.user.files, (file, val) => {
+        if (file.context === "profile-picture") {
+          profilePic = file.reference;
+        }
+      });
+    }
+
     return (
       <div className="home">
-        <div className="header">
+        <div className="header-page">
           <div className="inner">
-            <img src="assets/img/profile-placeholder.jpg" />
-            <h1>Welcome back John</h1>
+            <img src={profilePic} />
+            <h1>Welcome back {this.props.user.forename}</h1>
             <p>Join the discussion, collaborate with people in your group</p>
             <div className="go-to-alz">
-              <p>GO TO ACTION LEARNING ZONE</p>
+              <a href="/#/action-learning-zone">GO TO ACTION LEARNING ZONE</a>
             </div>
           </div>
         </div>
@@ -137,7 +147,8 @@ class HomeView extends React.Component {
 function mapHomeProps(state) {
   return {
     profile: state.width.profile,
-    modules: state.learningJourney
+    modules: state.learningJourney,
+    user: state.user
   };
 };
 

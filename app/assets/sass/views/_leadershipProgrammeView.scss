@@ -4,26 +4,77 @@
     font-weight: bold;
     font-size: 44px;
   }
+  h3 {
+    font-weight: bold;
+    font-size: 35px;
+  }
   .intro {
-    background-color: $site_red;
     color: $white;
     padding: 90px;
-
+    background: url('/assets/img/programme-introduction.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     h1 {
       margin: 35px 0;
     }
   }
-  .in-it-for-me {
+  .our-values {
     background-color: $white;
     padding: 40px;
-    h1 {
-      margin: 0;
+  }
+  .value-carousel {
+    background-color: $site_red;
+    .carousel {
+      background-color: $site_red;
+      color: $white;
+      .icon {
+        height: 160px;
+        width: 160px;
+        background-color: $white;
+        color: $dark_blue;
+        p {
+          font-size: 115px;
+        }
+      }
+      i {
+        font-size: 100px;
+      }
+    }
+  }
+  .title-carousel {
+    background-color: $white;
+    .carousel {
+      h3 {
+        color: $site_red;
+      }
+      .icon {
+        height: 160px;
+        width: 160px;
+        background-color: $site_red;
+        color: $white;
+        p {
+          font-size: 115px;
+        }
+      }
+      i {
+        font-size: 100px;
+      }
+      .carousel-indicators {
+        li {
+          border: 1px solid $site_red;
+        }
+        .active {
+          background-color: $site_red;
+        }
+      }
     }
   }
   .double-column {
     .circle {
-      width: 100px;
-      height: 100px;
+      width: 125px;
+      height: 125px;
       border-radius: 50%;
       background-color: $white;
       margin: 0 auto;
@@ -41,7 +92,11 @@
     padding: 50px;
   }
   .qualities {
-    background-color: $dark_blue;
+    background: url('/assets/img/programme-leadership-qualities.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     color: $white;
     padding: 60px;
     h1 {
@@ -52,10 +107,10 @@
     background-color: $white;
     padding: 30px;
   }
-  .delivery-formats {
+  .blended-learning {
     padding: 60px;
     color: $white;
-    background-color: $site_red;
+    background-color: $dark_blue;
     h1 {
       padding: 0;
     }
@@ -66,47 +121,130 @@
     }
     h5 {
       font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
     }
     p {
       font-size: 14px;
     }
   }
-  .white-box {
-    background-color: $white;
-    h3 {
-      color: $site_red;
+  .workshop {
+    background: url('/assets/img/programme-workshop.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $white;
+    .icon {
+      border: 2px solid $white;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+      i {
+        font-size: 36px;
+      }
     }
   }
-  .red-box {
+  .coaching {
+    background-color: $white;
+    h5 {
+      color: $site_red;
+    }
+    .icon {
+      background-color: $dark_grey;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+      i {
+        font-size: 36px;
+      }
+    }
+  }
+  .webinar {
     background-color: $site_red;
     color: $white;
+    .icon {
+      border: 2px solid $white;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+      i {
+        font-size: 36px;
+      }
+    }
+  }
+  .development {
+    background: url('/assets/img/programme-development.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $white;
+    .icon {
+      border: 2px solid $white;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+      i {
+        font-size: 36px;
+      }
+    }
   }
   .box-inner {
     max-width: 400px;
     margin: 0 auto;
-    padding: 40px
+    padding: 50px
   }
-  .message {
-    background-color: $dark_blue;
+  .message-from {
+    background-color: $site_red;
     color: $white;
-    padding: 40px;
+    padding: 60px;
     h1 {
-      margin: 40px 0;
+      margin: 0 0 40px 0;
     }
     .video {
-      height: 400px;
+      height: 300px;
+      width: 600px;
+      margin: 0 auto;
     }
   }
   .left-column {
-    background-color: $dark_blue;
-    color: $white;
+    background-color: $white;
+    .circle {
+      color: $white;
+      background-color: $site_red;
+      p {
+        font-size: 85px;
+      }
+      i {
+        font-size: 70px;
+      }
+    }
   }
   .right-column {
-    background-color: $site_red;
+    background: url('/assets/img/programme-what-in-it.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     color: $white;
+    .circle {
+      color: $dark_blue;
+      background-color: $white;
+      p {
+        font-size: 90px;
+      }
+      i {
+        font-size: 80px;
+      }
+    }
   }
   .inner {
-    max-width: 750px;
+    max-width: 740px;
     margin: 0 auto;
   }
 }
@@ -124,7 +262,7 @@
     .qualities {
       padding: 30px;
     }
-    .delivery-formats {
+    .blended-learning {
       padding: 20px;
     }
     h1 {
