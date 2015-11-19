@@ -5,7 +5,6 @@ class LearningJourneyRow extends React.Component {
   constructor() {
     super();
     this.assignIcon = this.assignIcon.bind(this);
-    this.assignStatus = this.assignStatus.bind(this);
   }
 
   render() {
@@ -14,7 +13,7 @@ class LearningJourneyRow extends React.Component {
     let type = a.type;
     let icon = this.assignIcon(type);
     let eventObj = (a.myBookedEventAndSlot) ? this.assignEvent(a.myBookedEventAndSlot) : {date: "n/a", time: "n/a", location: ""};
-    let status = this.mapStatus(a.status);
+    let status = (type !== "Project") ? this.mapStatus(a) : null;
 
     if (type === "Project") {
       eventObj.date = `Deadline: ${a.properties.deadline}`;
@@ -45,11 +44,16 @@ class LearningJourneyRow extends React.Component {
     return content;
   }
 
-  mapStatus(status) {
-    console.log(status);
-    switch (status) {
-      case "completed": return (<i className="fa fa-check"></i>);
-      case "rated-coaching": return (<a className="btn">LOG</a>);
+  mapStatus(activity) {
+    switch (activity.status) {
+      case "dates-tbc": return (<span>Dates TBC</span>);
+      case "book": return (<a className="btn">BOOK</a>);
+      case "booked-can-change": return (<a className="btn">CHANGE</a>);
+      case "booked-cannot-change": return (<i className="fa fa-info-circle"></i>);
+      case "log": return (<a className="btn">LOG</a>);
+      case "missed": return (<div className="icon red"><i className="fa fa-times"></i></div>);
+      case "no-attendance-marked": return null;
+      case "completed": return (<div className="icon green"><i className="fa fa-check"></i></div>);
       default: return null;
     }
   }
@@ -69,26 +73,6 @@ class LearningJourneyRow extends React.Component {
     }
   }
 
-  assignStatus(activityUser, eventObj) {
-    switch (activityUser.status) {
-      case 'closed':
-        return null;
-      case 'open':
-        return <a className="btn btn-primary btn-block">Book</a>;
-      case 'booked':
-
-        return this.isAllowedToChange(activityUser, eventObj) ? <a className="btn btn-primary btn-block">Change</a> : null;
-      case 'completed':
-        return <a className="btn btn-primary btn-block">Rate + Log</a>;
-      case 'rated':
-        return <i className="fa fa-check-circle"></i>;
-      case 'missed':
-        return <i className="fa fa-times-circle"></i>;
-      default:
-        return null;
-    }
-  }
-
   assignEvent(event) {
     let date = moment(event.startDate).format('ddd Do MMM YYYY');
     let time = `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}`;
@@ -96,29 +80,6 @@ class LearningJourneyRow extends React.Component {
     return {
       date, time, location
     };
-  }
-
-  isAllowedToChange(activityUser, eventObj) {
-    var today = moment();
-
-    if (activityUser.properties && activityUser.properties.modifier === 'undefined') {
-      return true;
-    }
-    if (today.isAfter(eventObj.dates[0].dateFrom)) {
-      return false;
-    }
-    let modifier = activityUser.properties.modifier;
-    let cutOffDate = (() => {
-      switch (modifier.direction) {
-        case 'add' :
-          return eventObj.dates[0].dateFrom.add(modifier.amount, modifier.duration);
-        case 'subtract' :
-          return eventObj.dates[0].dateFrom.subtract(modifier.amount, modifier.duration);
-        default :
-          return eventObj.dates[0].dateFrom.add(modifier.amount, modifier.duration);
-      }
-    })();
-    return today.isBefore(cutOffDate.startOf('day'));
   }
 
 }

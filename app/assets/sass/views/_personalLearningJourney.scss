@@ -1,9 +1,75 @@
 .personal-learning-journey{
-  background-color: #eee;
-  padding:20px;
+  background-color: $white;
+  .header {
+    padding: 50px;
+    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $white;
+    text-align: center;
+    h1 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+    h6 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .text {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+  .body {
+    padding: 20px;
+    .title {
+      font-size: 20px;
+    }
+  }
+}
+
+.plj-table {
+  h2 {
+    font-size: 26px;
+  }
+}
+
+.plj-table-row {
   .btn {
     color: $white;
     background-color: $site_red;
-    padding: 4px 16px;
+    padding: 2px 16px;
+    width: 90px;
+  }
+  .icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+    i {
+      position: relative;
+      top: -2px;
+      font-size: 14px;
+      color: $white;
+      margin-bottom: 1px;
+    }
+  }
+  .red {
+    background-color: $site_red;
+  }
+  .green {
+    background-color: #7EAC0E;
+  }
+  .fa-info-circle {
+    font-size: 22px;
+  }
+  .status {
+    span {
+      font-size: 15px;
+    }
   }
 }

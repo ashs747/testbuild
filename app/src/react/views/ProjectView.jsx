@@ -6,6 +6,7 @@ import Store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
 import ProjectPanel from '../modules/projectPanel/ProjectPanel.jsx';
+import _ from 'underscore';
 var dispatch = Store.dispatch;
 
 class ProjectView extends React.Component {
@@ -20,7 +21,8 @@ class ProjectView extends React.Component {
 
   render() {
     let smallTable = (this.props.profile === "sm");
-    let ljt = (this.props.content.journeyModule) ? <LearningJourneyTable journeyModule={this.props.content.journeyModule} smallTable={smallTable} /> : null;
+    let moduleWithActivity = this.getModuleWithOnlySingleActivity(this.props.modules, this.props.params.project);
+    let ljt = (this.props.content.journeyModule) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
     let overview = (
       <div className="learning-journey">
         <h3>Your learning journey</h3>
@@ -92,12 +94,29 @@ class ProjectView extends React.Component {
     );
   }
 
+  getModuleWithOnlySingleActivity(modules, activityID) {
+    let singleModuleSingleActivity = {};
+    let newObj = _.mapObject(modules, (mod, key) => {
+      var selectedActivity;
+      var activities = _.mapObject(mod.activities, (act, key) => {
+        if (act.id == activityID) {
+          selectedActivity = {[key]: act};
+        }
+      });
+      if (selectedActivity) {
+        singleModuleSingleActivity = {...mod, activities: selectedActivity};
+      }
+    });
+    return singleModuleSingleActivity;
+  }
+
 }
 
 function mapProjectProps(state) {
   return {
     profile: state.width.profile,
-    content: state.content.project ? state.content.project : {}
+    content: state.content.project ? state.content.project : {},
+    modules: state.learningJourney
   };
 };
 let mappedProjectView = connect(mapProjectProps)(ProjectView);

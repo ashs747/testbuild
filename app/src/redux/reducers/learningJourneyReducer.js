@@ -67,50 +67,36 @@ export function reducer(state = initialState, action) {
               }
               if (!availableSlots) {
                 status = "dates-tbc";
-              }
-              //If we have a booked event, proceed to calculate status
-              if (activity.myBookedEventAndSlot) {
-                var bookedEvent = activity.myBookedEventAndSlot;
-                //Checking if we can change the booking or not, by checking todays date vs cancellation date
-                if (moment().isBefore(bookedEvent.cancelBy)) {
-                  status = "booked-can-change";
-                } else {
-                  status = "booked-cannot-change";
-                }
-                //If the event has passed, start to check attendance and rating
-                if (moment().isAfter(bookedEvent.endDate)) {
-                  //If the event has been attended, check logging and rating
-                  if (bookedEvent.attendance === "attended") {
-                    //If the activity is a coaching call then need to check for both rating and log
-                    if (activity.type === "Coaching") {
-                      //If rated, or rated + logged or nothing, then show appropriate statuses
-                      if (bookedEvent.rating) {
-                        status = "rated-coaching";
-                        if (activity.log) {
-                          status = "completed";
-                        }
-                      } else {
-                        status = "attended-coaching";
-                      }
-                    }
-                    //If the activity is a webinar/workshop, only need to check for log
-                    if (activity.type === "Webinar" || activity.type === "Workshop") {
+              } else {
+                //If we have a booked event, proceed to calculate status
+                if (activity.myBookedEventAndSlot) {
+                  var bookedEvent = activity.myBookedEventAndSlot;
+                  //Checking if we can change the booking or not, by checking todays date vs cancellation date
+                  if (moment().isBefore(bookedEvent.cancelBy)) {
+                    status = "booked-can-change";
+                  } else {
+                    status = "booked-cannot-change";
+                  }
+                  //If the event has passed, start to check attendance and rating
+                  if (moment().isAfter(bookedEvent.endDate)) {
+                    //If the event has been attended, check logging and rating
+                    if (bookedEvent.attendance === "attended") {
                       if (activity.log) {
                         status = "completed";
                       } else {
-                        status = "attended-activity";
+                        status = "log";
                       }
+                    //If event is missed
+                    } else if (bookedEvent.attendance === "missed") {
+                      status = "missed";
+                    } else {
+                      status = "no-attendance-marked";
                     }
-                  //IF event is missed or not yet recorded attendance, set accordingly
-                  } else if (bookedEvent.attendance === "missed") {
-                    status = "missed";
-                  } else {
-                    status = "awaiting";
                   }
+                  //If we dont have a status, then the user can book
+                } else {
+                  status = "book";
                 }
-                //If we dont have a status, then the user can book
-              } else {
-                status = "book";
               }
               return {...activity, status};
             });
