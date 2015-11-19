@@ -20,7 +20,6 @@ function updateMatchedByFieldName(fieldName) {
 
 export const feedReducer = (state = defaultState, action) => {
   var feed, nextState;
-  console.log(action);
   switch (action.type) {
     case 'LOGOUT':
       return {};
@@ -136,24 +135,17 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_ADD_FILE":
-      console.log(action.payload);
       switch (action.status) {
         case 'RESOLVED':
           let payload = action.payload;
           let metaPreviewURL = _.findWhere(payload.metadata, {key: "url"});
-          console.log('mpu', metaPreviewURL);
-
           payload.previewUrl = metaPreviewURL.value;
 
           let splitUrl = payload.previewUrl.split("/upload/");
-          console.log('spliturl', splitUrl);
 
           payload.thumbnail = `${splitUrl[0]}/upload/c_fill,h_200,w_200/${splitUrl[1]}`;
-          console.log(payload.thumbnail);
           nextState = Object.assign({}, state);
-          console.log(nextState);
           nextState[action.payload.feedId].files = [...state[action.payload.feedId].files || [], payload];
-          console.log(nextState);
           return nextState;
           break;
         case 'REJECTED':

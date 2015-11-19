@@ -8,7 +8,6 @@ function formatFeedObject(feedObject) {
 }
 
 function decorateEditableFalse(item) {
-  console.log(item);
   if (item.comments) {
     item.comments = item.comments.map(decorateEditableFalse);
   }
