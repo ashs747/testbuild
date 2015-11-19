@@ -26,7 +26,6 @@ export const createMessage = (feedID) => {
   message.files = files.map((file) => {
     return file.id;
   });
-  console.log('message', message);
   let asyncResponse = postMessage(feedID, JSON.stringify(message))
     .then((res) => {
       dispatch(fetchLatestFeedMessages(feedID));

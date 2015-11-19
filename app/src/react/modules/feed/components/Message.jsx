@@ -50,10 +50,14 @@ class Message extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     let oldCommentsArray = this.props.comments[0];
     let changeableKeys = ['content', 'editable', 'files', 'commentText'];
 
+    if (this.state.fullString != nextState.fullString) {
+      return true;
+    }
+    
     for (let key in nextProps) {
       if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) > -1 && this.props[key] !== nextProps[key]) {
         return true;
