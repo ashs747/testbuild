@@ -20,7 +20,7 @@ function updateMatchedByFieldName(fieldName) {
 
 export const feedReducer = (state = defaultState, action) => {
   var feed, nextState;
-
+  console.log(action);
   switch (action.type) {
     case 'LOGOUT':
       return {};
@@ -120,10 +120,11 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         case 'RESOLVED':
           var fullFeed = action.payload;
-          nextState = Object.assign({}, state);
-          nextState[action.payload.id] = action.payload;
-          nextState[action.payload.id].files = nextState.files || [];
-          return nextState;
+          var ns = {...state};
+          ns[action.payload.id] = {...action.payload};
+          ns[action.payload.id].messages = [...action.payload.messages];
+          ns[action.payload.id].files = action.payload.files || [];
+          return ns;
           break;
         case 'REJECTED':
           return state;

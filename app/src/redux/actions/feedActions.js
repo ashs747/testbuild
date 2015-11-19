@@ -18,6 +18,32 @@ function findMessageByID(messages, messageID) {
   return targetMessage;
 }
 
+export const createComment = (feedID, messageID) => {
+  let message = {};
+  var dispatch = store.dispatch;
+  message.parent = messageID;
+  message.content = store.getState().feeds[feedID].messages.reduce((prev, cur) => {
+    if (cur.id === messageID) {
+      return prev + cur.newComment;
+    }
+    return prev;
+  }, '');
+ 
+  let asyncResponse = postMessage(feedID, JSON.stringify(message), messageID)
+    .then((res) => {
+      //window.setTimeout(() => {
+      dispatch(fetchLatestFeedMessages(feedID));
+      //}, 600);
+      var out = JSON.parse(res.text);
+      return {feedID, message: out};
+    });
+
+  return {
+    type: 'FEED_CREATE_COMMENT',
+    payload: asyncResponse
+  };
+};
+
 export const createMessage = (feedID) => {
   var dispatch = store.dispatch;
   var message = {};
@@ -112,7 +138,7 @@ export const saveUpdatedMessage = (feedID, messageID, commentID) => {
     messageID = commentID;
   }
 
-  var payload = postUpdatedMessage(feedID, messageID, JSON.parse(message))
+  var payload = postUpdatedMessage(feedID, messageID, JSON.stringify(message))
     .then((res) => {
       dispatch(setEditable(feedID, messageID, false));
       return JSON.parse(res.text);

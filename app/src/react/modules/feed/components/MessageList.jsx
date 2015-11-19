@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Message from './Message.jsx';
-import {deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage, updateNewMessage, saveNewMessage} from '../../../../redux/actions/feedActions.js';
+import {createComment, deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage, updateNewMessage, saveNewMessage} from '../../../../redux/actions/feedActions.js';
 import Store from '../../../../redux/store';
 var dispatch = Store.dispatch;
 
@@ -26,6 +26,7 @@ class MessageList extends React.Component {
     this.saveMessage = this.saveMessage.bind(this);
     this.mapMessages = this.mapMessages.bind(this);
     this.updateCommentAction = this.updateCommentAction.bind(this);
+    this.createComment = this.createComment.bind(this);
   }
 
   render() {
@@ -69,6 +70,7 @@ class MessageList extends React.Component {
         editable={editable}
         userCanEdit={userCanEdit}
         commentText={newComment}
+        dispatchPostNewCommentAction={this.createComment(key)}
         dispatchUpdateCommentAction={this.updateCommentAction(key)}
         dispatchSaveCommentAction={this.saveMessage(key)}
         dispatchDeleteAction={this.deleteMessage(key)}
@@ -84,6 +86,12 @@ class MessageList extends React.Component {
       dispatch(updateNewMessage(this.props.feedID, text, messageID));
     };
   };
+
+  createComment(messageID) {
+    return (feedID) => {
+      dispatch(createComment(this.props.feedID, messageID));
+    };
+  }
 
   deleteMessage(messageID) {
     return () => {
