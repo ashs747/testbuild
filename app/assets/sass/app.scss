@@ -18,12 +18,14 @@ $icon-font-path: '/bower_components/bootstrap-sass/assets/fonts/bootstrap/';
 @import "./views/toolkitPageView";
 @import "./views/activityView";
 @import "./views/profileView";
+@import "./views/bookingView";
 @import "./components/header";
 @import "./components/footer";
 @import "./components/messageboard";
 @import "./components/miniDataCaptureForm";
 @import "./components/dataCaptureForm";
 @import "./components/upload";
+@import "./components/slideshow";
 
 @font-face {
   font-family: "FontAwesome";
