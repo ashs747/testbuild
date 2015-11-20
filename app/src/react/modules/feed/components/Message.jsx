@@ -37,6 +37,7 @@ class Message extends React.Component {
     this.onDeleteClicked = this.onDeleteClicked.bind(this);
     this.showFullString = this.showFullString.bind(this);
     this.editNewComment = this.editNewComment.bind(this);
+    this.createComment = this.createComment.bind(this);
     this.state = {
       fullString: true
     };
@@ -50,16 +51,22 @@ class Message extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    let oldCommentsArray = this.props.comments[0];
-    let changeableKeys = ['content', 'editable', 'files', 'commentText'];
+  shouldComponentUpdate(nextProps, nextState) {
+    let changeableKeys = ['content', 'editable', 'commentText'];
+
+    if (this.state.fullString != nextState.fullString) {
+      return true;
+    }
 
     for (let key in nextProps) {
-      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) > -1 && this.props[key] !== nextProps[key]) {
+      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) > -1 && this.props[key] != nextProps[key]) {
         return true;
       }
     }
-
+    
+    if (nextProps.comments.length != this.props.comments.length) {
+      return true;
+    }
     for (let i = 0; i < nextProps.comments.length; i += 1) {
       let thisComment = this.props.comments[i],
         nextComment = nextProps.comments[i];
@@ -116,6 +123,7 @@ class Message extends React.Component {
           onEdit={this.editNewComment}
           commentForm={true}
           profile={this.props.profile}
+          saveOnEnter={true}
         />
       </div>
     );
@@ -123,6 +131,10 @@ class Message extends React.Component {
 
   editNewComment(feedID, text) {
     this.props.dispatchUpdateCommentAction(feedID, text);
+  }
+
+  createComment() {
+    this.props.dispatchPostNewCommentAction(this.props.feedID);
   }
 
   showFullString() {

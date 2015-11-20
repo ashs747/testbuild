@@ -50,6 +50,7 @@ class Comment extends React.Component {
         return true;
       }
     }
+
     return false;
   }
   

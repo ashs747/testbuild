@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import moment from 'moment-timezone';
 import LearningJourneyWidget from '../modules/personalLearningJourney/LearningJourneyWidget.jsx';
 import Carousel from '../components/Carousel.jsx';
-import {getFeedIdForContext} from '../../redux/services/feedService';
 import Store from '../../redux/store';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
@@ -21,15 +20,16 @@ function mapHomeFeedProps(state) {
     showEmbedVideo: true
   };
 };
-var HomeFeed = connect(mapHomeFeedProps)(FeedWidget);
 
 class HomeView extends React.Component {
 
   constructor() {
     super();
+    this.HomeFeed = connect(mapHomeFeedProps)(FeedWidget);
   }
 
   render() {
+
     let carouselItems = [{
       icon: "",
       copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -99,7 +99,7 @@ class HomeView extends React.Component {
                 {learningJourney}
               </div>
               <div className="col-sm-4 right-bar">
-                <HomeFeed />
+                <this.HomeFeed />
               </div>
             </div>
           );
