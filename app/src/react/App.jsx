@@ -46,19 +46,21 @@ class App extends React.Component {
 
   checkLoggedInState() {
     var loggedIn = store.getState().user.loggedIn;
+
     let currentRoutes = router.getCurrentRoutes();
     let activeRouteName;
 
     if (currentRoutes && currentRoutes.length > 0) {
       activeRouteName = currentRoutes[currentRoutes.length - 1].name;
     }
-
-    if (loggedIn && activeRouteName == 'login') {
-      router.transitionTo('/');
-    }
-
-    if (!loggedIn) {
-      router.transitionTo('login');
+    
+    if (activeRouteName !== undefined) {
+      if (loggedIn && activeRouteName === 'login') {
+        router.transitionTo('/');
+      }
+      if (loggedIn === false && (activeRouteName !== 'on-boarding')) {
+        router.transitionTo('login');
+      }
     }
   }
 
