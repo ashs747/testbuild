@@ -45,7 +45,6 @@
   .left-bar {
     background-color: $white;
     padding: 0;
-    height: 1059px;
   }
   .right-bar {
     background-color: $light_grey;
@@ -68,6 +67,9 @@
   }
   .learning-journey {
     padding: 40px;
+    a {
+      color: $site_red;
+    }
   }
   .grid-links {
     text-align: center;
@@ -86,6 +88,9 @@
       background-size: cover;
       color: $white;
       padding: 20px;
+      a {
+        color: $white;
+      }
     }
     .help {
       background: url('/assets/img/home-help.png');
@@ -95,10 +100,16 @@
       background-size: cover;
       color: $white;
       padding: 20px;
+      a {
+        color: $white;
+      }
     }
     .log {
       background-color: $white;
       padding: 20px;
+      a {
+        color: $site_red;
+      }
     }
     .inner {
       padding: 20px;

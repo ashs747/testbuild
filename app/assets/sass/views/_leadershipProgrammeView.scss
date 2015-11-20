@@ -207,9 +207,9 @@
       margin: 0 0 40px 0;
     }
     .video {
-      height: 300px;
-      width: 600px;
+      width: 100%;
       margin: 0 auto;
+      height: 400px;
     }
   }
   .left-column {
@@ -268,7 +268,7 @@
     h1 {
       font-size: 30px;
     }
-    .message {
+    .message-from {
       .video {
         height: 300px;
       }
@@ -279,7 +279,7 @@
     .roadmap {
       padding: 20px;
     }
-    .message {
+    .message-from {
       padding: 20px;
       h1 {
         margin:  20px 0;
@@ -290,7 +290,7 @@
 
 @media (max-width: 400px) {
   .leadership-programme {
-    .message {
+    .message-from {
       .video {
         height: 200px;
       }

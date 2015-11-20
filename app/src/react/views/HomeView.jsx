@@ -50,7 +50,7 @@ class HomeView extends React.Component {
           <h5>Your learning journey</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <LearningJourneyWidget journeyModules={this.props.modules} smallWidget={this.props.profile === 'sm'}/>
-          <h6>VIEW DETAILED LEARNING JOURNEY <i className="fa fa-chevron-right"></i></h6>
+          <h6><a href="/#/personal-learning-journey">VIEW DETAILED LEARNING JOURNEY</a><i className="fa fa-chevron-right"></i></h6>
         </div>
         <div className="grid-links">
           <div className="col-sm-6 grid-panel featured">
@@ -64,7 +64,7 @@ class HomeView extends React.Component {
               <h5>Programme</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nisl diam, tincidunt venenatis ante aliquam, vestibulum feugiat lectus. Curabitur ac.</p>
               <div className="find-out-more">
-                <h6>FIND OUT MORE</h6>
+                <h6><a href="/#/programme">FIND OUT MORE</a></h6>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@ class HomeView extends React.Component {
               <h5>Need help?</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nisl diam, tincidunt venenatis ante aliquam, vestibulum feugiat lectus. Curabitur ac.</p>
               <div className="find-out-more">
-                <h6>FIND OUT MORE</h6>
+                <h6><a href="/#/help">FIND OUT MORE</a></h6>
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@ class HomeView extends React.Component {
               <h5>Your learning log</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nisl diam, tincidunt venenatis ante aliquam, vestibulum feugiat lectus. Curabitur ac.</p>
               <div className="find-out-more-red">
-                <h6>FIND OUT MORE</h6>
+                <h6><a href="#">FIND OUT MORE</a></h6>
               </div>
             </div>
           </div>

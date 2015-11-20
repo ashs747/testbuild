@@ -17,7 +17,7 @@ class LearningJourneyView extends React.Component {
       return (
         <div className="plj-table" key={key}>
           <h2>Module {i}</h2>
-          <LearningJourneyTable journeyModule={module} />
+          <LearningJourneyTable journeyModule={module} smallTable={this.props.width === "sm"}/>
         </div>
       );
     });
@@ -39,7 +39,8 @@ class LearningJourneyView extends React.Component {
 
 function maplearningJourneyViewProps(state) {
   return {
-    modules: state.learningJourney
+    modules: state.learningJourney,
+    width: state.width.profile
   };
 }
 let mappedLearningJourneyView = connect(maplearningJourneyViewProps)(LearningJourneyView);

@@ -12,7 +12,7 @@ class LearningJourneyRow extends React.Component {
     let title = a.name;
     let type = a.type;
     let icon = this.assignIcon(type);
-    let eventObj = (a.myBookedEventAndSlot) ? this.assignEvent(a.myBookedEventAndSlot) : {date: "n/a", time: "n/a", location: ""};
+    let eventObj = (a.myBookedEventAndSlot) ? this.assignEvent(a.myBookedEventAndSlot) : {date: "n/a", time: "n/a", location: "n/a"};
     let status = (type !== "Project") ? this.mapStatus(a) : null;
 
     if (type === "Project") {
@@ -23,11 +23,18 @@ class LearningJourneyRow extends React.Component {
 
     let iconRow = (this.props.showIcon) ? <td className="row-icon"><i className={icon}></i></td> : null;
 
+    if (type !== "Coaching") {
+      var pageLink = (type === "Project") ? "project" : "activity";
+      title = <a href={`/#/${pageLink}/${a.id}`}>{title}</a>;
+    }
+
+
     let content = this.props.smallTable ? (
       <div className="plj-small-row">
-        <p>{title}</p>
-        <p>{eventObj.date}</p>
-        <p>{eventObj.location}</p>
+        <p>Title: {title}</p>
+        <p>Date: {eventObj.date}</p>
+        <p>Location: {eventObj.location}</p>
+        {status}
       </div>
     ) : (
       <tr className="plj-table-row">
