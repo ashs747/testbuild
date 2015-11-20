@@ -5,18 +5,6 @@ import moment from 'moment-timezone';
 
 let apiRoot = config.api ? config.api.url : '';
 
-export const getlearningModules = () => {
-  return Promise.resolve({stub: 'data'});
-};
-
-export const bookSlot = (slotID) => {
-  return request.get(apiRoot + 'api/plj/booking/book/' + slotID);
-};
-
-export const getSlots = (activityID) => {
-  return request.get(`${apiRoot}api/plj/booking/get-slots/${activityID}`);
-};
-
 export const getPLJDataByProgramme = (programmeID) => {
   //service call goes here
   return Promise.resolve({
@@ -50,20 +38,23 @@ export const getPLJDataByProgramme = (programmeID) => {
           myBookedEventAndSlot: null,
           //Custom key, populate with events + available slots, this will be used by the booking system
           availableEvents: [{
+            id: 1,
             name: "Webinar 1",
             description: "Joining instructions",
             eventDate: "2015-11-05T00:00:00",
             facilitator: {
               id: 1,
-              forname: "Jenny Perkins",
-              surname: ""
+              forename: "Jenny",
+              surname: "Perkins"
             },
             slots: [{
+              id: 1,
               startDate: "2015-11-05T09:00:00",
               endDate: "2015-11-05T10:00:00",
               location: "Telephone",
               cancelBy: "2015-11-05T10:00:00"
             }, {
+              id: 2,
               startDate: "2015-11-05T11:00:00",
               endDate: "2015-11-05T12:00:00",
               location: "Telephone",

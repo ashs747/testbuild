@@ -1,7 +1,8 @@
 import React from 'react';
-import {userSelectedSlot} from '../../../redux/actions/learningJourneyActions';
+import {userSelectedSlot} from '../../../redux/actions/bookingActions';
 import {nextSlide} from '../../../redux/actions/slideActions';
 import _ from 'underscore';
+import moment from 'moment-timezone';
 
 class SlotDisplay extends React.Component {
 
@@ -65,7 +66,7 @@ class SlotDisplay extends React.Component {
   reduceEventDates(events, selectedDate) {
     let reducedEventDates = [];
     for (var i in events) {
-      if (events[i].eventDate.format('MMMM Do YYYY') === this.props.selectedDate) {
+      if (moment(events[i].eventDate).format('MMMM Do YYYY') === this.props.selectedDate) {
         reducedEventDates.push(events[i]);
       }
     }
@@ -77,29 +78,26 @@ class SlotDisplay extends React.Component {
   */
   mapFacilitatorObjs(events) {
     let mappedEvents = events.map((event, i) => {
-      let availableSlots = event.slots.filter(slot => slot.user === null);
-      if (availableSlots.length > 0) {
-        let reducedSlots = this.reduceSlots(availableSlots);
-        let mappedSlots = this.mapSlots(reducedSlots, event.facilitator);
-        return (
-          <div key={i} className="facilitator-block">
-            <div className="block-header">
-              <h5>{`Coach: ${event.facilitator.forename} ${event.facilitator.surname}`}</h5>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>START</th>
-                  <th>END</th>
-                  <th>DETAILS</th>
-                  <th></th>
-                </tr>
-              </thead>
-              {mappedSlots}
-            </table>
+      let reducedSlots = this.reduceSlots(event.slots);
+      let mappedSlots = this.mapSlots(reducedSlots, event.facilitator);
+      return (
+        <div key={i} className="facilitator-block">
+          <div className="block-header">
+            <h5>{`Coach: ${event.facilitator.forename} ${event.facilitator.surname}`}</h5>
           </div>
-        );
-      }
+          <table>
+            <thead>
+              <tr>
+                <th>START</th>
+                <th>END</th>
+                <th>DETAILS</th>
+                <th></th>
+              </tr>
+            </thead>
+            {mappedSlots}
+          </table>
+        </div>
+      );
     });
     return mappedEvents;
   }
@@ -112,7 +110,7 @@ class SlotDisplay extends React.Component {
     let reducedSlots = [];
     slots.forEach((slot) => {
       if (!_.find(reducedSlots, (reducedSlot) => {
-        return reducedSlot.startDate.format('HH:mm') === slot.startDate.format('HH:mm') && reducedSlot.endDate.format('HH:mm') === slot.endDate.format('HH:mm');
+        return moment(reducedSlot.startDate).format('HH:mm') === moment(slot.startDate).format('HH:mm') && moment(reducedSlot.endDate).format('HH:mm') === moment(slot.endDate).format('HH:mm');
       })) {
         reducedSlots.push(slot);
       }
@@ -132,8 +130,8 @@ class SlotDisplay extends React.Component {
       }
       return (
         <tr key={slot.id} className={className}>
-          <td>{slot.startDate.format('HH:mm')}</td>
-          <td>{slot.endDate.format('HH:mm')}</td>
+          <td>{moment(slot.startDate).format('HH:mm')}</td>
+          <td>{moment(slot.endDate).format('HH:mm')}</td>
           <td>{slot.location}</td>
           <td><a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a></td>
         </tr>
@@ -184,7 +182,7 @@ class SlotDisplay extends React.Component {
     let slots = reducedSlots.map(slot => {
       return (
         <option key={slot.id} value={slot.id}>
-          {`${slot.startDate.format('HH:mm')} - ${slot.endDate.format('HH:mm')}`}
+          {`${moment(slot.startDate).format('HH:mm')} - ${moment(slot.endDate).format('HH:mm')}`}
         </option>
       );
     });

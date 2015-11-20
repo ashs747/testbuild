@@ -1,25 +1,29 @@
 import React from 'react';
 import moment from 'moment-timezone';
-import {userSelectedDate} from '../../../redux/actions/learningJourneyActions';
+import {userSelectedDate} from '../../../redux/actions/bookingActions';
 
 class BookingDateDisplay extends React.Component {
 
   constructor() {
     super();
     this.mapDateToJsx = this.mapDateToJsx.bind(this);
-    this.findUsersBookedSlot = this.findUsersBookedSlot.bind(this);
   }
 
   render() {
-    let availableDays = this.props.events.filter(this.removeBookedDays);
-    let stringDateArray = this.momentToString(availableDays);
-    let bookedDate = this.props.events.filter(this.findUsersBookedSlot)[0];
+    if (!this.props.activity) {
+      return <div />;
+    }
+    let activity = this.props.activity;
+    let events = activity.availableEvents;
+    let stringDateArray = this.momentToString(activity.availableEvents);
     let uniqueDateArray = this.reduceEventDates(stringDateArray);
     let eventDateRows = this.mapDateToJsx(uniqueDateArray);
     let bookingMessage;
-    if (bookedDate) {
-      var startDate = bookedDate.slots[0].startDate;
-      var endDate = bookedDate.slots[0].endDate;
+
+    if (activity.myBookedEventAndSlot) {
+      let booked = activity.myBookedEventAndSlot;
+      var startDate = moment(booked.startDate);
+      var endDate = moment(booked.endDate);
       bookingMessage = (
         <div className="alert alert-warning">
           <p>You have a booking on <strong>{startDate.format('dddd Do MMMM YYYY')}</strong> at <strong>{`${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`}</strong>.
@@ -27,6 +31,7 @@ class BookingDateDisplay extends React.Component {
         </div>
       );
     }
+
     let dateSelection = (this.props.width === "sm") ? (
       <div className="event-date-dropdown">
         <select className="form-control" onChange={this.eventDateClicked.bind(this)}>
@@ -39,6 +44,7 @@ class BookingDateDisplay extends React.Component {
         {eventDateRows}
       </div>
     );
+
     return (
       <div className="select-date">
         {bookingMessage}
@@ -94,32 +100,6 @@ class BookingDateDisplay extends React.Component {
       return dateItem;
     });
     return mappedItems;
-  }
-
-  /*
-    Array filter function to return a users slot if they have booked
-    an event for the list that has been passed
-  */
-  findUsersBookedSlot(event) {
-    for (var i in event.slots) {
-      if (event.slots[i].user && event.slots[i].user.id == this.props.user.id) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /*
-    Array filter function to determine if an event has at least 1 open slot
-  */
-  removeBookedDays(event) {
-    let emptySlot = false;
-    event.slots.forEach((slot) => {
-      if (slot.user === null) {
-        emptySlot = true;
-      }
-    });
-    return emptySlot;
   }
 
   eventDateClicked(eventDate) {
