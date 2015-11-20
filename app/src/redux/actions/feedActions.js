@@ -8,10 +8,6 @@ export const FEED_SAVE_MESSAGE = 'FEED_SAVE_MESSAGE';
 export const FEED_DELETE_MESSAGE = 'FEED_DELETE_MESSAGE';
 export const FEED_FETCHED = 'FEED_FETCHED';
 
-function wrapMessageContentInJSON(messageContent) {
-  return `{"content": "${messageContent}"}`;
-}
-
 function findMessageByID(messages, messageID) {
   var targetMessage;
   for (let i = 0; i < messages.length; i += 1) {
@@ -22,11 +18,41 @@ function findMessageByID(messages, messageID) {
   return targetMessage;
 }
 
+export const createComment = (feedID, messageID) => {
+  let message = {};
+  var dispatch = store.dispatch;
+  message.parent = messageID;
+  message.content = store.getState().feeds[feedID].messages.reduce((prev, cur) => {
+    if (cur.id === messageID) {
+      return prev + cur.newComment;
+    }
+    return prev;
+  }, '');
+ 
+  let asyncResponse = postMessage(feedID, JSON.stringify(message), messageID)
+    .then((res) => {
+      //window.setTimeout(() => {
+      dispatch(fetchLatestFeedMessages(feedID));
+      //}, 600);
+      var out = JSON.parse(res.text);
+      return {feedID, message: out};
+    });
+
+  return {
+    type: 'FEED_CREATE_COMMENT',
+    payload: asyncResponse
+  };
+};
+
 export const createMessage = (feedID) => {
   var dispatch = store.dispatch;
-
-  var messageContent = store.getState().feeds[feedID].newMessageContent;
-  let asyncResponse = postMessage(feedID, wrapMessageContentInJSON(messageContent))
+  var message = {};
+  var files = store.getState().feeds[feedID].files || [];
+  message.content = store.getState().feeds[feedID].newMessageContent;
+  message.files = files.map((file) => {
+    return file.id;
+  });
+  let asyncResponse = postMessage(feedID, JSON.stringify(message))
     .then((res) => {
       dispatch(fetchLatestFeedMessages(feedID));
       var out = JSON.parse(res.text);
@@ -112,7 +138,7 @@ export const saveUpdatedMessage = (feedID, messageID, commentID) => {
     messageID = commentID;
   }
 
-  var payload = postUpdatedMessage(feedID, messageID, wrapMessageContentInJSON(message.content))
+  var payload = postUpdatedMessage(feedID, messageID, JSON.stringify(message))
     .then((res) => {
       dispatch(setEditable(feedID, messageID, false));
       return JSON.parse(res.text);
@@ -139,7 +165,7 @@ export const fetchLatestFeedMessages = (feedID) => {
 
 export const addFile = (file, feedId) => {
   let payload = Promise.resolve({
-    file, feedId
+    ...file.file, feedId
   });
   return {
     type: 'FEED_ADD_FILE',

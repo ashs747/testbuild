@@ -1,7 +1,8 @@
 import React from 'react';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
-import Widget from '../modules/resource/Widget.jsx';
+import {connect} from 'react-redux';
+import _ from 'underscore';
 
 class LearningJourneyView extends React.Component {
 
@@ -9,25 +10,39 @@ class LearningJourneyView extends React.Component {
     super();
   }
 
-  componentWillMount() {
-    //this.props.dispatch(learningJourneyAction(this.props.auth.currentUser, 1));
-  }
-
   render() {
-    var learningJournies = this.props.learningJourney.learningJourneyModules.map((journeyModule, i) => {
+    let i = 0;
+    let learningJournies = _.mapObject(this.props.modules, (module, key) => {
+      i++;
       return (
-        <div key={i}>
-          <h2>Module {i + 1}</h2>
-          <LearningJourneyTable journeyModule={journeyModule} />
-        </div>);
+        <div className="plj-table" key={key}>
+          <h2>Module {i}</h2>
+          <LearningJourneyTable journeyModule={module} smallTable={this.props.width === "sm"}/>
+        </div>
+      );
     });
     return (
       <div className="personal-learning-journey">
-        {learningJournies}
-        <Widget />
+        <div className="header">
+          <div className="text">
+            <h1>Your learning journey</h1>
+            <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
+          </div>
+        </div>
+        <div className="body">
+          {learningJournies}
+        </div>
       </div>
     );
   }
 }
 
-export default LearningJourneyView;
+function maplearningJourneyViewProps(state) {
+  return {
+    modules: state.learningJourney,
+    width: state.width.profile
+  };
+}
+let mappedLearningJourneyView = connect(maplearningJourneyViewProps)(LearningJourneyView);
+
+export default mappedLearningJourneyView;

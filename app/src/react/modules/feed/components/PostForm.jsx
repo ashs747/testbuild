@@ -26,6 +26,7 @@ class PostForm extends React.Component {
     super();
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.keyPress = this.keyPress.bind(this);
     this.mapAttachments = this.mapAttachments.bind(this);
   }
 
@@ -53,7 +54,7 @@ class PostForm extends React.Component {
           <img src={profilePic} />
         </div>
         <div className="post-message">
-          <TextArea value={this.props.content} placeholder={placeholder} onChange={this.onChange} />
+          <TextArea value={this.props.content} placeholder={placeholder} onKeyDown={this.props.saveOnEnter ? this.keyPress : () => {}} onChange={this.onChange} />
         </div>
         <div className="post-admin-buttons">
           {uploadMedia}
@@ -101,6 +102,13 @@ class PostForm extends React.Component {
   onSave(e) {
     e.preventDefault();
     this.props.onSave(this.props.feedID, this.props);
+  }
+
+  keyPress(e) {
+    var keyPressed = e.which || e.keyCode;
+    if (keyPressed == '13') {
+      this.onSave(e);
+    }
   }
 
   removeAttachment(id) {

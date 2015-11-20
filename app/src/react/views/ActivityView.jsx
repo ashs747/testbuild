@@ -6,6 +6,7 @@ import LearningJourneyTable from '../modules/personalLearningJourney/LearningJou
 import ResourceWidget from '../modules/resource/Widget.jsx';
 import TabStack from 'cirrus/react/components/TabStack';
 import Markdown from 'react-remarkable';
+import _ from 'underscore';
 
 class ActivityView extends React.Component {
 
@@ -27,8 +28,9 @@ class ActivityView extends React.Component {
     if (!this.props.content) {
       return <div />;
     }
+    let moduleWithActivity = this.getModuleWithOnlySingleActivity(this.props.modules, this.props.params.activity);
     let smallTable = (this.props.profile === "sm");
-    let ljt = (this.props.content.journeyModule) ? <LearningJourneyTable journeyModule={this.props.content.journeyModule} smallTable={smallTable} /> : null;
+    let ljt = (this.props.content.journeyModule) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
     let resources = (
       <div>
         <ResourceWidget title="Pre-work" resources={this.props.content.preWork} />
@@ -91,12 +93,29 @@ class ActivityView extends React.Component {
     );
   }
 
+  getModuleWithOnlySingleActivity(modules, activityID) {
+    let singleModuleSingleActivity = {};
+    let newObj = _.mapObject(modules, (mod, key) => {
+      var selectedActivity;
+      var activities = _.mapObject(mod.activities, (act, key) => {
+        if (act.id == activityID) {
+          selectedActivity = {[key]: act};
+        }
+      });
+      if (selectedActivity) {
+        singleModuleSingleActivity = {...mod, activities: selectedActivity};
+      }
+    });
+    return singleModuleSingleActivity;
+  }
+
 }
 
 function mapActivityViewProps(state) {
   return {
     profile: state.width.profile,
-    content: state.content.activity ? state.content.activity : null
+    content: state.content.activity ? state.content.activity : null,
+    modules: state.learningJourney
   };
 };
 let mappedActivityView = connect(mapActivityViewProps)(ActivityView);

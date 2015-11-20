@@ -1,10 +1,6 @@
-import {learningJourneyService, bookSlot, getSlots} from '../services/learningJourneyService';
+import {learningJourneyService, bookSlot, getSlots, getPLJDataByProgramme} from '../services/learningJourneyService';
 import {nextSlide} from './slideActions';
 import Store from '../store.js';
-
-export const LEARNING_JOURNEY = 'LEARNING_JOURNEY';
-export const LEARNING_JOURNEY_SUCCESS = 'LEARNING_JOURNEY_SUCCESS';
-export const LEARNING_JOURNEY_FAIL = 'LEARNING_JOURNEY_FAIL';
 
 export function learningJourney(userId, programmeId) {
   return {
@@ -51,5 +47,13 @@ export function getSlotsForActivity(activityID) {
 export function removeBookingError() {
   return {
     type: "LEARNING_JOURNEY_REMOVE_ERROR"
+  };
+}
+
+export function getPLJData(programmeID) {
+  let payload = getPLJDataByProgramme(programmeID);
+  return {
+    type: "LEARNING_JOURNEY_FETCHED",
+    payload
   };
 }

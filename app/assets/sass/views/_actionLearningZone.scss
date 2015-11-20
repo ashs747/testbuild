@@ -3,9 +3,13 @@
   .row {
     margin: 0;
   }
-  .header {
+  .header-page {
     padding: 60px 30px;
-    background-color: $site_red;
+    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     color: $white;
     select {
       height: 40px;
