@@ -114,6 +114,7 @@ class ActionLearningZoneView extends React.Component {
               <h1>Action learning zone</h1>
             </div>
             <div className="col-sm-4">
+            /* This needs to be implemented along with a User-Role check */
               <select className="form-control">
                 <option>Cohort 1</option>
               </select>
