@@ -106,7 +106,7 @@ class HomeView extends React.Component {
           break;
         default:
           let tab1 = (<div label="Learning Journey" tabClass="tab-btn" key="tab1">{learningJourney}</div>);
-          let tab2 = (<div label="Feed" tabClass="tab-btn" key="tab2"><HomeFeed /></div>);
+          let tab2 = (<div label="Feed" tabClass="tab-btn" key="tab2"><this.HomeFeed /></div>);
           let tabs = [tab1, tab2];
           return (
             <TabStack ref="homeTabs" className="home-tabs" selectedIndex={0}>
