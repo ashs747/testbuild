@@ -13,19 +13,11 @@ class MainView extends React.Component {
 
   render() {
     let loggedIn = this.props.user.loggedIn;
-    let learningJourneyModules = this.props.learningJourney ? this.props.learningJourney.learningJourneyModules : [];
-
-    let moduleList = learningJourneyModules.map((module) => {
-      return {
-        name: module.name,
-        id: module.id
-      };
-    });
 
     return (
       <div className="main">
         <div className={`${(this.props.width.profile !== "sm") ? "container-fluid" : ""}`}>
-          <Header display={loggedIn} modules={moduleList} dispatch={this.props.dispatch}/>
+          <Header display={loggedIn} dispatch={this.props.dispatch}/>
           <RouteHandler />
           <Footer display={loggedIn} />
         </div>

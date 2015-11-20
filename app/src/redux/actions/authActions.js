@@ -6,8 +6,10 @@ import Store from '../store.js';
 export const AUTH = 'AUTH';
 export const COOKIE_CHECKED = 'COOKIE_CHECKED';
 export const LOGOUT = 'LOGOUT';
+import config from '../../localConfig';
 
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
+import {getPLJData} from '../../redux/actions/learningJourneyActions';
 
 export function authAction(username, password) {
   let req = getOAuthToken(username, password).then((response) => {
@@ -32,8 +34,8 @@ export function cookieCheckedAction() {
       if (userData.feeds.hasOwnProperty(feed)) {
         Store.dispatch(fetchLatestFeedMessages(feed));
       }
-    };
-
+    }
+    Store.dispatch(getPLJData(config.programmeId));
     return userData;
   });
   return {
