@@ -60,9 +60,11 @@ export function reducer(state = initialState, action) {
               let slots;
               var availableSlots = false;
               //Checking if we have slots, if not, status is TBC
-              for (var i in activity.availableEvents) {
-                if (activity.availableEvents[i].slots.length > 0) {
-                  availableSlots = true;
+              for (var activityKey in activity.availableEvents) {
+                if (activity.availableEvents.hasOwnProperty(activityKey)) {
+                  if (activity.availableEvents[activityKey].slots.length > 0) {
+                    availableSlots = true;
+                  }
                 }
               }
               if (!availableSlots) {

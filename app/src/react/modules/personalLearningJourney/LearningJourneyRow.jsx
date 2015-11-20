@@ -28,7 +28,6 @@ class LearningJourneyRow extends React.Component {
       title = <a href={`/#/${pageLink}/${a.id}`}>{title}</a>;
     }
 
-
     let content = this.props.smallTable ? (
       <div className="plj-small-row">
         <p>Title: {title}</p>
