@@ -18,7 +18,11 @@ function decorateEditableFalse(item) {
 }
 
 function setNoneEditable(feed) {
-  return feed.messages.map(decorateEditableFalse(message));
+  if (feed && feed.messages) {
+    return {...feed,
+      messages: feed.messages.map(decorateEditableFalse)
+    };
+  }
 }
 
 export function getFeedIdForContext(feeds, feedContext) {
@@ -43,7 +47,7 @@ export function deleteMessage(messageID) {
 
 export function postMessage(feedID, message, messageID) {
   if (messageID) {
-    return request.post(`${apiRoot}api/feeds/${feedID}/message/${messageID}`, message);
+    return request.post(`${apiRoot}api/feeds/${feedID}/message/${messageID}/comment`, message);
   }
   return request.post(`${apiRoot}api/feeds/${feedID}/message`, message);
 };
