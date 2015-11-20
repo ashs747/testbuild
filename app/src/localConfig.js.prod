@@ -1,7 +1,7 @@
 // use this file to add your own local config. Don't add anything to this dist file!
 module.exports = {
   api: {
-    url: "http://http://strata-nightly.elasticbeanstalk.com/app_dev.php/",
+    url: "http://strata-nightly.elasticbeanstalk.com/app_dev.php/",
     clientId: '1_2iga6pm7vlgkcsocowk88s00k4gooo8k0swck0ss008cwkw44w',
     appSecret: '36cnv0fmtl0k8k44kcw0w0sw4kg0wg0gk48cosoog4c88ow4k4'
   }
