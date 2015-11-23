@@ -18,9 +18,7 @@ let MappedSlideshow = connect(mapProps)(Slideshow);
 class OnBoarding extends React.Component {
 
   componentWillMount() {
-    console.log('component mounting', this.props);
     let userToken = this.props.params.userToken;
-    console.log(this.context);
     this.props.dispatch(fetchInitialUserData(userToken));
   }
 
@@ -40,7 +38,7 @@ class OnBoarding extends React.Component {
             <MappedSlideshow />
           </div>
         </div>
-        <div className="footer" />
+        <div className="footer"/>
       </div>
     );
   }

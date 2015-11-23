@@ -5,18 +5,15 @@ import {connect, Provider} from 'react-redux';
 import Video from '../../components/Video.jsx';
 import DataCaptureForm from '../../components/MiniDataCaptureForm.jsx';
 import UploadProfile from '../../components/UploadProfile.jsx';
-import {updateUserObject} from '../../../redux/actions/onboardingActions';
+import {updateUserObject, saveUserData} from '../../../redux/actions/usersActions';
 
 function mapCaptureFormProps(state) {
+  console.log('state is at the mapper', state);
   // FixMe: Not done (mappings);
   return {
-    forename: state.auth.initialUser.firstName,
-    surname: state.auth.initialUser.surname,
-    telephone: state.auth.initialUser.phone,
-    password: state.auth.initialUser.password,
-    verifyPassword: state.auth.initialUser.verifyPassword,
+    ...state.auth.initialUser,
     updateAction: updateUserObject,
-    nextSlideAction: submitNewUserData
+    nextSlideAction: saveUserData
   };
 };
 var MappedDataCaptureForm = connect(mapCaptureFormProps)(DataCaptureForm);

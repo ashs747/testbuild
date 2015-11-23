@@ -5,7 +5,13 @@ const initialState = {
 };
 
 export function reducer(state = initialState, action) {
+
   switch (action.type) {
+    case 'INITIAL_DATA_UPDATED':
+      var newState = {...state};
+      newState.initialUser[action.payload.field] = action.payload.value;
+      return newState;
+      break;
 
     case 'FETCHED_INITIAL_USER':
       switch (action.status) {
@@ -13,7 +19,6 @@ export function reducer(state = initialState, action) {
           let newState = {...state,
             initialUser: {...action.payload}
           };
-          console.log('initial user fetch is resolved', newState);
           return newState;
 
         case 'REJECTED':

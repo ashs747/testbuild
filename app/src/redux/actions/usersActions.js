@@ -6,17 +6,21 @@ export function fetchUsersByCohort(id) {
   };
 };
 
-export const updateUserObject = (newUserObj) => {
+export const updateUserObject = (field, value) => {
+  console.log(field + ' ' + value);
   return {
     type: 'INITIAL_DATA_UPDATED',
-    payload: {...newUserObj}
+    payload: {
+      field,
+      value
+    }
   };
 };
 
-export const saveUpdatedUserDetails = () => {
-	let req = Promise.resolve({'status': 'ok'});
+export const saveUserData = () => {
+  let req = Promise.resolve({'status': 'ok'});
   return {
-  	type: 'SAVE_USER_DETAILS',
-  	payload: req
+    type: 'SAVE_USER_DETAILS',
+    payload: req
   };
 };
