@@ -59,7 +59,7 @@ class Message extends React.Component {
     }
 
     for (let key in nextProps) {
-      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) > -1 && this.props[key] != nextProps[key]) {
+      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) >= 0 && (this.props[key] != nextProps[key])) {
         return true;
       }
     }
