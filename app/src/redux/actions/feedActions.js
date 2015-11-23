@@ -139,22 +139,25 @@ export const saveUpdatedMessage = (feedID, messageID, commentID) => {
     message = findMessageByID(message.comments, commentID);
     messageID = commentID;
   }
+  if (message.length < 1) {
+    alert("You can't post a blank message, please enter some text");
+  } else {
+    var payload = postUpdatedMessage(feedID, messageID, JSON.stringify(message))
+      .then((res) => {
+        dispatch(setEditable(feedID, messageID, false));
+        return JSON.parse(res.text);
+      })
+      .then((resParsed) => {
+        dispatch(fetchLatestFeedMessages(feedID));
+        return {...resParsed,
+          feedID};
+      });
 
-  var payload = postUpdatedMessage(feedID, messageID, JSON.stringify(message))
-    .then((res) => {
-      dispatch(setEditable(feedID, messageID, false));
-      return JSON.parse(res.text);
-    })
-    .then((resParsed) => {
-      dispatch(fetchLatestFeedMessages(feedID));
-      return {...resParsed,
-        feedID};
-    });
-
-  return {
-    type: 'FEED_SAVE_MESSAGE',
-    payload
-  };
+    return {
+      type: 'FEED_SAVE_MESSAGE',
+      payload
+    };
+  }
 };
 
 export const fetchLatestFeedMessages = (feedID) => {

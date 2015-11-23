@@ -115,9 +115,7 @@ class MessageList extends React.Component {
 
   updateMessage(messageID) {
     return (text) => {
-      if (text) {
-        return dispatch(updateMessage(this.props.feedID, messageID, text));
-      }
+      return dispatch(updateMessage(this.props.feedID, messageID, text));
     };
   };
 }
