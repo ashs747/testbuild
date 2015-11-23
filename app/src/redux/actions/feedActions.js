@@ -31,9 +31,7 @@ export const createComment = (feedID, messageID) => {
  
   let asyncResponse = postMessage(feedID, JSON.stringify(message), messageID)
     .then((res) => {
-      //window.setTimeout(() => {
       dispatch(fetchLatestFeedMessages(feedID));
-      //}, 600);
       var out = JSON.parse(res.text);
       return {feedID, message: out};
     });
@@ -49,10 +47,14 @@ export const createMessage = (feedID) => {
   var message = {};
   var files = store.getState().feeds[feedID].files || [];
   message.content = store.getState().feeds[feedID].newMessageContent;
-  message.files = files.map((file) => {
+  
+  message.files = files.length > 0 ? files.map((file) => {
     return file.id;
-  });
-  let asyncResponse = postMessage(feedID, JSON.stringify(message))
+  }) : undefined;
+
+  var messageAsJSONString = JSON.stringify(message);
+
+  let asyncResponse = postMessage(feedID, messageAsJSONString)
     .then((res) => {
       dispatch(fetchLatestFeedMessages(feedID));
       var out = JSON.parse(res.text);
