@@ -7,7 +7,6 @@ export function fetchUsersByCohort(id) {
 };
 
 export const updateUserObject = (field, value) => {
-  console.log(field + ' ' + value);
   return {
     type: 'INITIAL_DATA_UPDATED',
     payload: {
@@ -17,10 +16,26 @@ export const updateUserObject = (field, value) => {
   };
 };
 
-export const saveUserData = () => {
-  let req = Promise.resolve({'status': 'ok'});
-  return {
-    type: 'SAVE_USER_DETAILS',
-    payload: req
-  };
+export const saveUserData = (slideID) => {
+  return Promise.resolve({'status': 'ok'})
+    .then((status) => {
+      if (slideID) {
+        store.dispatch({type: "SLIDE_NEXT_SLIDE", payload: {slideID: slideID}});
+      }
+      return {
+        type: 'SAVE_USER_DETAILS',
+        status: 'RESOLVED',
+        payload: {
+          'fromSlide': slideID
+        }
+      };
+    }, (err) => {
+      return {
+        type: 'SAVE_USER_DETAILS',
+        status: 'REJECTED',
+        error: {
+          'validation': 'Bad password etc'
+        }
+      };
+    });
 };

@@ -40,9 +40,13 @@ class Slideshow extends React.Component {
   }
 
   nextSlide() {
-    this.setState({
-      displaySlide: this.state.displaySlide + 1
-    });
+    if (this.props.nextSlideAction) {
+      nextSlideAction.call(this);
+    } else {
+      this.setState({
+        displaySlide: this.state.displaySlide + 1
+      });
+    }
   }
 
   prevSlide() {

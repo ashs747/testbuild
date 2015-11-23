@@ -19,12 +19,17 @@ class Slideshow extends React.Component {
       slide.onNextClick = () => {
         this.props.dispatch({type: "SLIDE_NEXT_SLIDE", payload: {slideID: this.props.slideID}});
       };
+    } else {
+      slide.onNextClick = slide.onNextClick.bind(this);
     }
     if (!slide.onPrevClick) {
       slide.onPrevClick = () => {
         this.props.dispatch({type: "SLIDE_PREV_SLIDE", payload: {slideID: this.props.slideID}});
       };
+    } else {
+      slide.onPrevClick = slide.onPrevClick.bind(this);
     }
+    
     let className = `slideshow-module ${slide.className ? slide.className : ""}`;
     return (
       <div className={className}>

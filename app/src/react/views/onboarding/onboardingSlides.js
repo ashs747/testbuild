@@ -11,9 +11,8 @@ function mapCaptureFormProps(state) {
   console.log('state is at the mapper', state);
   // FixMe: Not done (mappings);
   return {
-    ...state.auth.initialUser,
-    updateAction: updateUserObject,
-    nextSlideAction: saveUserData
+    ...state.user,
+    updateAction: updateUserObject
   };
 };
 var MappedDataCaptureForm = connect(mapCaptureFormProps)(DataCaptureForm);
@@ -34,7 +33,7 @@ class WelcomeBlock extends React.Component {
 function mapWelcomePage(state) {
   var forename;
   if (state.auth.initialUser) {
-    forename = state.auth.initialUser.firstName;
+    forename = state.auth.initialUser.forename;
   }
   return {
     forename
@@ -75,7 +74,10 @@ export const onboardingSlides = [{
     </Provider>
   ),
   showPrev: false,
-  showNext: true
+  showNext: true,
+  onNextClick: () => {
+    store.dispatch(saveUserData(this.props.slideID));
+  }
 }, {
   content: (
     <Provider store={store}>
