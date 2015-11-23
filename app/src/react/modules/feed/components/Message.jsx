@@ -1,11 +1,10 @@
 import React from 'react';
-import moment from 'moment-timezone';
 import CommentList from './CommentList.jsx';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
 import PostForm from './PostForm.jsx';
 import MediaGrid from '../../../components/MediaGrid.jsx';
-
+import moment from 'moment-timezone';
 /**
   Message Component, used to display a message (top level post) on the programme feed
   Dumb component, only accepts and displays props, has no sorting logic
@@ -37,9 +36,8 @@ class Message extends React.Component {
     this.onEditClicked = this.onEditClicked.bind(this);
     this.onDeleteClicked = this.onDeleteClicked.bind(this);
     this.showFullString = this.showFullString.bind(this);
-    this.createComment = this.createComment.bind(this);
     this.editNewComment = this.editNewComment.bind(this);
-
+    this.createComment = this.createComment.bind(this);
     this.state = {
       fullString: true
     };
@@ -51,6 +49,34 @@ class Message extends React.Component {
         fullString: false
       });
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    let changeableKeys = ['content', 'editable', 'commentText'];
+
+    if (this.state.fullString != nextState.fullString) {
+      return true;
+    }
+
+    for (let key in nextProps) {
+      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) >= 0 && (this.props[key] != nextProps[key])) {
+        return true;
+      }
+    }
+    
+    if (nextProps.comments.length != this.props.comments.length) {
+      return true;
+    }
+    for (let i = 0; i < nextProps.comments.length; i += 1) {
+      let thisComment = this.props.comments[i],
+        nextComment = nextProps.comments[i];
+      for (let key in nextProps) {
+        if (nextComment.hasOwnProperty(key) && changeableKeys.indexOf(key) > -1 && thisComment[key] !== nextComment[key]) {
+          return true;
+        }
+      }
+    }
+    return false; 
   }
 
   render() {
@@ -67,7 +93,7 @@ class Message extends React.Component {
       );
     }
 
-    let bodyContent = (this.props.editable) ? <InlineEdit onChangeHandler={this.props.dispatchUpdateAction} save={this.props.dispatchSaveAction} content={this.props.content} /> : bodyString;
+    let bodyContent = (this.props.editable) ? <InlineEdit onChangeHandler={this.props.dispatchUpdateAction} save={this.props.dispatchSaveAction()} content={this.props.content} /> : bodyString;
     let editButtons = (this.props.userCanEdit) ? (
         <div className="admin-buttons">
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
@@ -90,24 +116,25 @@ class Message extends React.Component {
         <div className="images">
           <MediaGrid files={this.props.files} />
         </div>
-        <CommentList comments={this.props.comments} feedID={this.props.feedID} profile={this.props.profile} />
+        <CommentList comments={this.props.comments} feedID={this.props.feedID} profile={this.props.profile} saveMessage={this.props.dispatchSaveCommentAction}/>
         <PostForm feedID={this.props.feedID}
           content={this.props.commentText}
           onSave={this.createComment}
           onEdit={this.editNewComment}
           commentForm={true}
           profile={this.props.profile}
+          saveOnEnter={true}
         />
       </div>
     );
   }
 
-  createComment() {
-
-  }
-
   editNewComment(feedID, text) {
     this.props.dispatchUpdateCommentAction(feedID, text);
+  }
+
+  createComment() {
+    this.props.dispatchPostNewCommentAction(this.props.feedID);
   }
 
   showFullString() {

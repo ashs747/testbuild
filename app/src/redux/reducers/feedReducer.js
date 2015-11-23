@@ -20,7 +20,6 @@ function updateMatchedByFieldName(fieldName) {
 
 export const feedReducer = (state = defaultState, action) => {
   var feed, nextState;
-
   switch (action.type) {
     case 'LOGOUT':
       return {};
@@ -40,7 +39,7 @@ export const feedReducer = (state = defaultState, action) => {
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
       nextState = Object.assign({}, state);
-      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
+      nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
       return nextState;
       break;
 
@@ -56,7 +55,7 @@ export const feedReducer = (state = defaultState, action) => {
         case 'RESOLVED':
           feed = state[action.payload.feedID];
           nextState = Object.assign({}, state);
-          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editing')(action));
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
           return nextState;
           break;
         case 'REJECTED':
@@ -73,10 +72,10 @@ export const feedReducer = (state = defaultState, action) => {
     case FEED_CREATE_MESSAGE:
       switch (action.status) {
         case 'RESOLVED':
-        // Add to state, clear editbox text
-          return {
-            ...state,
-          };
+          nextState = {...state};
+          nextState[action.payload.feedID].messages.unshift(action.payload.message);
+          nextState[action.payload.feedID].newMessageContent = '';
+          return nextState;
           break;
         case 'REJECTED':
         // Error Handling to be discussed;
@@ -120,10 +119,11 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         case 'RESOLVED':
           var fullFeed = action.payload;
-          nextState = Object.assign({}, state);
-          nextState[action.payload.id] = action.payload;
-          nextState[action.payload.id].files = nextState.files || [];
-          return nextState;
+          var ns = {...state};
+          ns[action.payload.id] = {...action.payload};
+          ns[action.payload.id].messages = [...action.payload.messages];
+          ns[action.payload.id].files = action.payload.files || [];
+          return ns;
           break;
         case 'REJECTED':
           return state;
@@ -137,12 +137,15 @@ export const feedReducer = (state = defaultState, action) => {
     case "FEED_ADD_FILE":
       switch (action.status) {
         case 'RESOLVED':
-          let payload = action.payload.file;
-          payload.previewUrl = _.findWhere(payload.metadata, {metaKey: "url"}).metaValue;
+          let payload = action.payload;
+          let metaPreviewURL = _.findWhere(payload.metadata, {key: "url"});
+          payload.previewUrl = metaPreviewURL.value;
+
           let splitUrl = payload.previewUrl.split("/upload/");
-          payload.thumbnail = `${splitUrl[0]}/upload/c_limit,h_200,w_200/${splitUrl[1]}`;
+
+          payload.thumbnail = `${splitUrl[0]}/upload/c_fill,h_200,w_200/${splitUrl[1]}`;
           nextState = Object.assign({}, state);
-          nextState[action.payload.feedId].files = [...state[action.payload.feedId].files, payload];
+          nextState[action.payload.feedId].files = [...state[action.payload.feedId].files || [], payload];
           return nextState;
           break;
         case 'REJECTED':
@@ -166,6 +169,21 @@ export const feedReducer = (state = defaultState, action) => {
       nextState = Object.assign({}, state);
       return nextState;
       break;
+
+    case "FEED_DELETE_MESSAGE":
+      switch (action.status) {
+        case 'RESOLVED':
+          nextState = {...state};
+          var messages = state[action.payload.feedID].messages.filter((el) => {
+            return action.payload.messageID !== el.id;
+          });
+
+          nextState[action.payload.feedID].messages = messages;
+          return nextState;
+        
+        default: 
+          return {...state};
+      }
 
     case "FEED_EMBED_VIDEO":
       switch (action.status) {

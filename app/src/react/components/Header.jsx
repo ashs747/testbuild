@@ -36,7 +36,7 @@ class Header extends React.Component {
           <LiAnchor text="Programme" action="" url="/#/programme"/>
           <LiAnchor text="Learning Journey" action="" url="/#/personal-learning-journey"/>
           <LiAnchor text="Action Learning Zone" url="/#/action-learning-zone"/>
-          <LiAnchor text="Learning Log" action="" url="/#/"/>
+          <LiAnchor text="Learning Log" action=""/>
           <LiAnchor text="Toolkit" action="" url="/#/toolkits"/>
         </ul>
       </div>

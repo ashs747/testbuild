@@ -1,0 +1,263 @@
+.booking {
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  .header {
+    padding: 40px;
+    color: $white;
+    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .body {
+    background-color: $white;
+    padding: 30px;
+    border: 1px solid $dark_grey;
+    .body-inner {
+      padding: 40px;
+      background-color: $light_grey;
+      border: 1px solid $dark_grey;
+    }
+  }
+}
+
+.slideshow-module {
+  border: 1px solid $dark_grey;
+}
+
+.choose-slide {
+  .event-date-rows {
+    width: 100%;
+    border: 1px solid $dark_grey;
+    height: 354px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 20px;
+    .date-row {
+      background-color: $light_grey;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid $dark_grey;
+      cursor: pointer;
+    }
+    .radio {
+      margin: 0;
+      float: left;
+      height: 20px;
+      width: 20px;
+      background-color: $white;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 1px solid $dark_grey;
+    }
+    .date-row.selected-date {
+      background-color: #def0d7 !important;
+      .radio-inner {
+        background-color: $body_color;
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        margin: 5px;
+      }
+    }
+    .date-row.booked-date {
+      background-color: #fcf8e3;
+    }
+  }
+  .form-control {
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 1px;
+  }
+  .confirm-btn {
+    background-color: $site_red;
+    color: $white;
+    width: 100%;
+  }
+}
+
+.confirm-slide {
+  h2 {
+    margin: 20px 15px;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .coach-bio {
+    border: 1px solid $dark_grey;
+    border-radius: 2px;
+    background-color: $light_grey;
+    padding: 30px;
+    text-align: center;
+    h4 {
+      margin: 20px 0;
+      font-weight: bold;
+      font-size: 22px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+  .selection-item {
+    border: 1px solid $dark_grey;
+    .selection-header {
+      padding: 10px 20px;
+      background-color: $dark_blue;
+      color: $white;
+      h4 {
+        font-weight: bold;
+      }
+    }
+    .selection-row {
+      padding: 15px 20px;
+      border: 1px solid $dark_grey;
+      p {
+        margin: 0;
+      }
+    }
+    .grey {
+      background-color: $light_grey;
+    }
+  }
+  .back {
+    background-color: $dark_blue;
+    color: $white;
+    width: 100px;
+    padding: 4px 12px;
+  }
+  .confirm {
+    background-color: $site_red;
+    color: $white;
+    width: 100px;
+    padding: 4px 12px;
+    float: right;
+  }
+  .booking-error {
+    padding: 10px;
+    margin-top: 10px;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.facilitator-slots {
+  .facilitator-block {
+    border: 1px solid $dark_grey;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  table {
+    width: 100%;
+  }
+  .block-header {
+    background-color: $dark_blue;
+    color: $white;
+    padding: 5px 15px;
+    h5 {
+      font-size: 20px;
+    }
+  }
+  thead {
+    tr {
+      background-color: $light_grey;
+    }
+    th {
+      padding: 10px;
+    }
+  }
+  tbody {
+    tr {
+      border: 1px solid $dark_grey;
+    }
+    td {
+      padding: 10px;
+    }
+    .btn {
+      background-color: $site_red;
+      color: $white;
+    }
+  }
+  .odd {
+    background-color: $light_grey;
+  }
+}
+
+.complete-slide {
+  h3 {
+    font-weight: bold;
+    margin: 30px 0;
+  }
+  p {
+    font-size: 16px;
+    margin: 0;
+  }
+  .booking-details {
+    margin: 20px 0;
+  }
+  .small {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .booking {
+    .body {
+      padding: 10px;
+      .body-inner {
+        padding: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .col-md-6, .col-md-5 {
+    padding: 0;
+  }
+  .booking {
+    h3 {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+    .header {
+      padding: 20px;
+      text-align: center;
+      h1 {
+        font-size: 34px;
+      }
+    }
+    .body {
+      padding: 0;
+      border: none;
+      .body-inner {
+        padding: 0;
+        border: none;
+      }
+    }
+    .slideshow-module {
+      border: 0;
+      padding: 15px;
+    }
+  }
+  .confirm-selection {
+    margin-bottom: 10px;
+  }
+}

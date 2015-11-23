@@ -16,6 +16,7 @@ import ToolkitView from './views/ToolkitView.jsx';
 import ToolkitPageView from './views/ToolkitPageView.jsx';
 import ActivityView from './views/ActivityView.jsx';
 import ProfileView from './views/ProfileView.jsx';
+import BookingView from './views/BookingView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -36,8 +37,9 @@ var Routes = (
       <Route name="home" handler={HomeView} />
       <Route name="toolkits" handler={ToolkitView} />
       <Route name="toolkit" path="toolkit/:toolkit" handler={ToolkitPageView} />
-      <Route name="activity" path="activity/:slug" handler={ActivityView} />
+      <Route name="activity" path="activity/:activity" handler={ActivityView} />
       <Route name="profile" handler={ProfileView} />
+      <Route name="booking" path="booking/:activity" handler={BookingView} />
     </Route>
     <Route name="login" handler={connect((state) => {
       return {

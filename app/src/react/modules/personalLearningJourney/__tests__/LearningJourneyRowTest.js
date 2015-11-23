@@ -16,27 +16,6 @@ describe('LearningJourneyRow', () => {
     expect(components.length).to.equal(1);
   });
 
-  it('should return a font-awesome icon string from assign icon', () => {
-    var icon = component.assignIcon("test");
-    expect(icon).to.contain('fa fa-');
-  });
-
-  it('should return a font-awesome italic if status is rated or missed', () => {
-    var statusRated = component.assignStatus({status: "rated"});
-    var statusMissed = component.assignStatus({status: "missed"});
-    expect(statusRated.type).to.equal("i");
-    expect(statusMissed.type).to.equal("i");
-  });
-
-  it('should return an anchor if status is open, booked or completed', () => {
-    var statusOpen = component.assignStatus({status: "open"});
-    var statusBooked = component.assignStatus({status: "booked", "properties": {"modifier": {"direction": "add", "amount": 7, "duration": "days"}}}, stubData.activityUsers[0].event);
-    var statusCompleted = component.assignStatus({status: "completed"});
-    expect(statusOpen.type).to.equal("a");
-    expect(statusBooked.type).to.equal("a");
-    expect(statusCompleted.type).to.equal("a");
-  });
-
   it('should return an event object with the correctly formatted data structure', () => {
     var event = component.assignEvent(stubData.activityUsers[0].event);
     expect(event).to.contain.all.keys("date", "time", "location");
