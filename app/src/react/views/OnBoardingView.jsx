@@ -1,6 +1,7 @@
 import React from 'react';
 import Slideshow from '../modules/slideshow/Slideshow.jsx';
 import {onboardingSlides} from './onboarding/onboardingSlides.js';
+import {fetchInitialUserData} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
 
 function mapProps(state) {
@@ -16,12 +17,19 @@ let MappedSlideshow = connect(mapProps)(Slideshow);
 
 class OnBoarding extends React.Component {
 
+  componentWillMount() {
+    console.log('component mounting', this.props);
+    let userToken = this.props.params.userToken;
+    console.log(this.context);
+    this.props.dispatch(fetchInitialUserData(userToken));
+  }
+
   constructor() {
     super();
   }
 
   render() {
-    console.log(MappedSlideshow);
+    console.log('Onboarding Props', this.props);
     return (
       <div className="on-boarding">
         <div className="header clearfix">
@@ -38,4 +46,10 @@ class OnBoarding extends React.Component {
   }
 }
 
-export default OnBoarding;
+function mapOnboarding(state) {
+  return state;
+}
+
+let connectedOnboarding = connect(mapOnboarding)(OnBoarding);
+
+export default connectedOnboarding;

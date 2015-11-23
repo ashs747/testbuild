@@ -6,6 +6,23 @@ const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
+
+    case 'FETCHED_INITIAL_USER':
+      switch (action.status) {
+        case 'RESOLVED':
+          let newState = {...state,
+            initialUser: {...action.payload}
+          };
+          console.log('initial user fetch is resolved', newState);
+          return newState;
+
+        case 'REJECTED':
+          return {...state};
+
+        default: 
+          return {...state};
+      }
+
     case 'LOGOUT':
       return {};
       break;

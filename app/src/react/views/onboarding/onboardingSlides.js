@@ -5,34 +5,55 @@ import {connect, Provider} from 'react-redux';
 import Video from '../../components/Video.jsx';
 import DataCaptureForm from '../../components/MiniDataCaptureForm.jsx';
 import UploadProfile from '../../components/UploadProfile.jsx';
+import {updateUserObject} from '../../../redux/actions/onboardingActions';
 
 function mapCaptureFormProps(state) {
   // FixMe: Not done (mappings);
   return {
-    forename: "",
-    surname: "",
-    telephone: "",
-    password: "",
-    //action: updateUserObject
+    forename: state.auth.initialUser.firstName,
+    surname: state.auth.initialUser.surname,
+    telephone: state.auth.initialUser.phone,
+    password: state.auth.initialUser.password,
+    verifyPassword: state.auth.initialUser.verifyPassword,
+    updateAction: updateUserObject,
+    nextSlideAction: submitNewUserData
   };
 };
 var MappedDataCaptureForm = connect(mapCaptureFormProps)(DataCaptureForm);
 
+class WelcomeBlock extends React.Component {
+  render() {
+    return (
+      <div className="row body">
+        <div className="title col-sm-8">
+          <h1>Hi {this.props.forename}<br /><br />Welcome to your leadership programme</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
+        </div>
+      </div>
+    );
+  };
+};
+
+function mapWelcomePage(state) {
+  var forename;
+  if (state.auth.initialUser) {
+    forename = state.auth.initialUser.firstName;
+  }
+  return {
+    forename
+  };
+};
+
+var ConnectedWelcomeBlock = connect(mapWelcomePage)(WelcomeBlock);
+
 export const onboardingSlides = [{
   content: (
-      <Provider store={store}>
-        {function() {
-          return (
-            <div className="row body">
-              <div className="title col-sm-8">
-                <h1>Hi Steve<br /><br />Welcome to your leadership programme</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
-            </div>
-            <div className="col-sm-4" />
-          </div>
-          );
-        }
-      }
+    <Provider store={store}>
+    {function() {
+      return (
+        <ConnectedWelcomeBlock />
+      );
+    }}
     </Provider>
   ),
   showNext: true
@@ -96,6 +117,7 @@ export const onboardingSlides = [{
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. </p>
             </div>
+            <div className="clearfix"/>
           </div>
         </div>
         );
@@ -124,6 +146,7 @@ export const onboardingSlides = [{
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. </p>
             </div>
+            <div className="clearfix"/>
           </div>
         </div>
         );

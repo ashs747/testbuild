@@ -11,6 +11,26 @@ import config from '../../localConfig';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import {getPLJData} from '../../redux/actions/learningJourneyActions';
 
+export function fetchInitialUserData(token) {
+  // let request = getUserDataFromOneTimeKey(token)
+  let request = Promise.resolve({
+    'firstName': 'Matt',
+    'surname': 'Cavanagh',
+    'email': 'matt.c@darkynt.co.uk',
+    'phone': '',
+    'profilePicture': {
+      'id': 123,
+      'url': 'http://www.baconmockup.com/200/200'
+    },
+    token
+  });
+
+  return {
+    type: 'FETCHED_INITIAL_USER',
+    payload: request
+  };
+};
+
 export function authAction(username, password) {
   let req = getOAuthToken(username, password).then((response) => {
     let res = response.body;
