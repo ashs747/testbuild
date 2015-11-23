@@ -180,6 +180,7 @@ export const onboardingSlides = [{
               <a className="btn">LEARN MORE</a>
             </div>
             <div className="col-sm-2"></div>
+          <div className="clearfix"/>
           </div>
         </div>
         );

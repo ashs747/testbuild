@@ -54,7 +54,7 @@ class App extends React.Component {
     let currentRoutes = router.getCurrentRoutes();
     // grab just the base, ignoring all params and sub-pages
     if (currentRoutes && currentRoutes.length > 0) {
-      let arb = currentRoutes[currentRoutes.length - 1].name.split('/')[0];
+      let arb = currentRoutes[currentRoutes.length - 1].name ? currentRoutes[currentRoutes.length - 1].name.split('/')[0] : 'home';
       return arb;
     }
   }
@@ -66,7 +66,7 @@ class App extends React.Component {
     let activeRouteBase = this.getActiveRouteBase();
     
     if (activeRouteBase !== undefined) {
-      if (loggedIn && activeRouteName === 'login') {
+      if (loggedIn && activeRouteBase === 'login') {
         router.transitionTo('/');
       }
       if (loggedIn === false && (activeRouteBase !== 'on-boarding')) {
