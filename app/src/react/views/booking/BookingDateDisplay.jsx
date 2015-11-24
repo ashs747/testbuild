@@ -14,11 +14,18 @@ class BookingDateDisplay extends React.Component {
       return <div />;
     }
     let activity = this.props.activity;
-    let events = activity.availableEvents;
     let stringDateArray = this.momentToString(activity.availableEvents);
     let uniqueDateArray = this.reduceEventDates(stringDateArray);
     let eventDateRows = this.mapDateToJsx(uniqueDateArray);
     let bookingMessage;
+
+    if (eventDateRows.length < 1) {
+      eventDateRows = (
+        <p className="no-dates">There are currently no alternative dates or times available for this activity.
+        Select “cancel” at the bottom of the page to keep your existing booking .
+        You can contact the [link]programme support team if you need further assistance.</p>
+      );
+    }
 
     if (activity.myBookedEventAndSlot) {
       let booked = activity.myBookedEventAndSlot;
@@ -50,6 +57,8 @@ class BookingDateDisplay extends React.Component {
         {bookingMessage}
         <h3>Select a date</h3>
         {dateSelection}
+        <br />
+        <a href="/#/personal-learning-journey" className="btn back">CANCEL</a>
       </div>
     );
   }

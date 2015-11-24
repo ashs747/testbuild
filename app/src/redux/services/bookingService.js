@@ -10,3 +10,7 @@ export const bookSlot = (slotID) => {
 export const getSlots = (activityID) => {
   return request.get(`${apiRoot}api/plj/booking/get-slots/${activityID}`);
 };
+
+export const deleteSlot = (slotID) => {
+  return request.del(`${apiRoot}api/plj/booking/book/${slotID}`);
+};

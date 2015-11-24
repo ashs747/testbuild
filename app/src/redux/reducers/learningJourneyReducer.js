@@ -10,7 +10,7 @@ export function reducer(state = initialState, action) {
     case "LEARNING_JOURNEY_FETCHED":
       switch (action.status) {
         case "RESOLVED":
-          return _.mapObject(action.payload, (module, key) => {
+          return _.mapObject(action.payload.body[0].modules, (module, key) => {
             let activities = _.mapObject(module.activities, (activity, key) => {
               let status;
               let slots;
@@ -23,7 +23,7 @@ export function reducer(state = initialState, action) {
                   }
                 }
               }
-              if (!availableSlots) {
+              if (!availableSlots && !activity.myBookedEventAndSlot) {
                 status = "dates-tbc";
               } else {
                 //If we have a booked event, proceed to calculate status
@@ -38,14 +38,14 @@ export function reducer(state = initialState, action) {
                   //If the event has passed, start to check attendance and rating
                   if (moment().isAfter(bookedEvent.endDate)) {
                     //If the event has been attended, check logging and rating
-                    if (bookedEvent.attendance === "attended") {
+                    if (bookedEvent.attendance === true) {
                       if (activity.log) {
                         status = "completed";
                       } else {
                         status = "log";
                       }
                     //If event is missed
-                    } else if (bookedEvent.attendance === "missed") {
+                    } else if (bookedEvent.attendance === false) {
                       status = "missed";
                     } else {
                       status = "no-attendance-marked";

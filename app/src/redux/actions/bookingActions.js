@@ -1,4 +1,5 @@
-import {bookSlot, getSlots} from '../services/bookingService';
+import {bookSlot, getSlots, deleteSlot} from '../services/bookingService';
+import {getPLJData} from './learningJourneyActions';
 import {nextSlide} from './slideActions';
 import Store from '../store.js';
 
@@ -18,6 +19,7 @@ export function userSelectedSlot(slot, facilitator) {
 
 export function bookUserOnToSlot(slotID) {
   let payload = bookSlot(slotID).then((res) => {
+    Store.dispatch(getPLJData());
     Store.dispatch(nextSlide("booking"));
     return true;
   }, (res) => {
@@ -28,6 +30,16 @@ export function bookUserOnToSlot(slotID) {
     payload
   };
 };
+
+export function deleteSlotForUser(slotID) {
+  let payload = deleteSlot(slotID).then(() => {
+    Store.dispatch(getPLJData());
+  });
+  return {
+    type: "BOOKING_DELETED_SLOT",
+    payload
+  };
+}
 
 export function getSlotsForActivity(activityID) {
   let payload = getSlots(activityID);

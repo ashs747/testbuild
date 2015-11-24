@@ -15,3 +15,11 @@ export const prevSlide = (slideID) => {
     payload
   };
 };
+
+export const moveToSlide = (slideID, idx) => {
+  let payload = {slideID, idx};
+  return {
+    type: 'SLIDE_MOVE_SLIDE',
+    payload
+  };
+};

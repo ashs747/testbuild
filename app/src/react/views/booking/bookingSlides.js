@@ -43,7 +43,9 @@ var MappedFacilitatorBio = connect(mapFacilitatorBioProps)(FacilitatorBio);
 
 function mapConfirmationProps(state) {
   let facilitator = state.booking.currentSelectedSlot.facilitator;
+  let activity = getActivityFromLearningJourneyByUrl(state.learningJourney);
   return {
+    bookedSlot: (activity.myBookedEventAndSlot),
     facilitator,
     slot: state.booking.currentSelectedSlot.slot,
     error: state.booking.error,
@@ -53,11 +55,13 @@ function mapConfirmationProps(state) {
 var MappedConfirmation = connect(mapConfirmationProps)(Confirmation);
 
 function mapCompleteProps(state) {
+  let activity = getActivityFromLearningJourneyByUrl(state.learningJourney);
   let facilitator = state.booking.currentSelectedSlot.facilitator;
   return {
-    facilitator,
+    facilitator: `${facilitator.forename} ${facilitator.surname}`,
     slot: state.booking.currentSelectedSlot.slot,
-    cancellationTerms: "Cancellation terms go here when we have them"
+    cancellationTerms: "Cancellation terms go here when we have them",
+    activity
   };
 }
 var MappedComplete = connect(mapCompleteProps)(Complete);
@@ -78,7 +82,6 @@ export const bookingScreenSlides = [{
         {function() {
           return (
             <div className="choose-slide clearfix">
-              <h2>Name of activity here</h2>
               <div className="col-md-6">
                 <MappedBookingDateDisplay />
               </div>
@@ -98,8 +101,7 @@ export const bookingScreenSlides = [{
       {function() {
         return (
           <div className="confirm-slide clearfix">
-            <h2>Name of learning activity</h2>
-            <div className="col-md-6 col-md-push-6">
+           <div className="col-md-6 col-md-push-6">
               <MappedConfirmation />
             </div>
             <div className="col-md-6 col-md-pull-6">

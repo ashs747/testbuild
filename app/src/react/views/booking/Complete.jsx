@@ -10,7 +10,7 @@ class Complete extends React.Component {
   render() {
     return (
       <div className="complete-slide">
-        <h3>Name of learning activity</h3>
+        <h3>{this.props.activity.name}</h3>
         <p><strong>We have sent you a confirmation email with an outlook calendar invite. You can change your selected session time by visiting the coaching zone up to 48 hours before your appointment.</strong></p>
         <div className="booking-details">
           <p><strong>Coach:</strong> {this.props.facilitator}</p>

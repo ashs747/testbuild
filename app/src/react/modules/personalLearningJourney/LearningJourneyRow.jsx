@@ -13,7 +13,7 @@ class LearningJourneyRow extends React.Component {
     let type = a.type;
     let icon = this.assignIcon(type);
     let eventObj = (a.myBookedEventAndSlot) ? this.assignEvent(a.myBookedEventAndSlot) : {date: "n/a", time: "n/a", location: "n/a"};
-    let status = (type !== "Project") ? this.mapStatus(a) : null;
+    let status = (type !== "Project") ? this.mapStatus(a, this.props.moduleId) : null;
 
     if (type === "Project") {
       eventObj.date = `Deadline: ${a.properties.deadline}`;
@@ -50,11 +50,11 @@ class LearningJourneyRow extends React.Component {
     return content;
   }
 
-  mapStatus(activity) {
+  mapStatus(activity, moduleId) {
     switch (activity.status) {
       case "dates-tbc": return (<span>Dates TBC</span>);
-      case "book": return (<a className="btn">BOOK</a>);
-      case "booked-can-change": return (<a className="btn">CHANGE</a>);
+      case "book": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>BOOK</a>);
+      case "booked-can-change": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>CHANGE</a>);
       case "booked-cannot-change": return (<i className="fa fa-info-circle"></i>);
       case "log": return (<a className="btn">LOG</a>);
       case "missed": return (<div className="icon red"><i className="fa fa-times"></i></div>);

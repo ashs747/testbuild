@@ -45,6 +45,9 @@ export function reducer(state = initialState, action) {
       nextState.error = null;
       return nextState;
 
+    case "BOOKING_DELETED_SLOT":
+      return state;
+
     default: return state;
   }
 }
