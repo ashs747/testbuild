@@ -30,7 +30,7 @@ class BookingView extends React.Component {
 
   render() {
     if (!this.props.activity) {
-      return <div />
+      return <div />;
     }
     return (
       <div className="booking">
@@ -55,7 +55,7 @@ function mapBookingViewprops(state) {
     activity
   };
 }
-let mappedBookingView = connect(mapBookingViewprops)(BookingView)
+let mappedBookingView = connect(mapBookingViewprops)(BookingView);
 
 function getActivityFromLearningJourneyByUrl(learningJourney) {
   let moduleAndActivityIds = window.location.href.split("booking/")[1];
