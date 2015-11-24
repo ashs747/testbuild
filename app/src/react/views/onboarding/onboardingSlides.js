@@ -32,8 +32,8 @@ class WelcomeBlock extends React.Component {
 
 function mapWelcomePage(state) {
   var forename;
-  if (state.auth.initialUser) {
-    forename = state.auth.initialUser.forename;
+  if (state.user) {
+    forename = state.user.forename;
   }
   return {
     forename
@@ -75,8 +75,11 @@ export const onboardingSlides = [{
   ),
   showPrev: false,
   showNext: true,
-  onNextClick: () => {
-    store.dispatch(saveUserData(this.props.slideID));
+  onNextClick: function() {
+    console.log('this', this);
+    var slideID = this.props.slideID;
+    console.log(this);
+    store.dispatch(saveUserData(slideID));
   }
 }, {
   content: (
