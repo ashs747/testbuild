@@ -10,7 +10,6 @@ function getResponseBody(response) {
 
 export function updateUserData() {
   var params = store.getState().user;
-  console.log('Current User:', params);
-  return request.post(apiRoot + `user/${params.id}/update`, params)
+  return request.put(apiRoot + `api/user/profile`, params)
     .then(getResponseBody);
 }
