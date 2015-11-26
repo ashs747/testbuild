@@ -138,7 +138,7 @@
   }
 }
 
-.final {
+.slideshow-module.final {
   background-color: $site_red;
   color: $white;
   .sub {
@@ -190,7 +190,7 @@
       height: 100%;
     }
   }
-  .profile-slide {
+  .slideshow-module.profile {
     .inner {
       padding: 10px;
     }
@@ -198,12 +198,12 @@
       padding: 0;
     }
   }
-  .progress {
+  .slideshow-module.progress {
     .title {
       width: 100%;
     }
   }
-  .final {
+  .slideshow-module.final {
     .sub {
       width: 100%;
     }
@@ -214,7 +214,7 @@
 }
 
 @media (max-width: 420px) {
-  .welcome {
+  .slideshow-module.welcome {
     .body {
       padding: 20px;
     }
