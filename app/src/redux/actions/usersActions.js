@@ -1,3 +1,5 @@
+import store from '../store.js';
+import {updateUserData} from '../services/userService';
 // Update a users Cohorts
 export function fetchUsersByCohort(id) {
 
@@ -17,7 +19,8 @@ export const updateUserObject = (field, value) => {
 };
 
 export const saveUserData = (slideID) => {
-  return Promise.resolve({'status': 'ok'})
+  /**** TODO - import the service *****/
+  let asyncAction = updateUserData()
     .then((status) => {
       if (slideID) {
         store.dispatch({type: "SLIDE_NEXT_SLIDE", payload: {slideID: slideID}});
@@ -38,4 +41,8 @@ export const saveUserData = (slideID) => {
         }
       };
     });
+  return {
+    type: 'SAVING_USER_DETAILS_STARTED',
+    status: 'PENDING'
+  };
 };

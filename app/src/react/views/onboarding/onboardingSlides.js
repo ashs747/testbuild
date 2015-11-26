@@ -62,7 +62,7 @@ export const onboardingSlides = [{
           <h1>Upload a photo and choose a password</h1>
           <div className="row">
             <div className="upload-image col-sm-6">
-              <UploadProfile buttonText="UPLOAD" />
+              <UploadProfile buttonText="UPLOAD" uploadURL="/" />
             </div>
             <div className="col-sm-6">
               <MappedDataCaptureForm />

@@ -14,6 +14,7 @@ import {getPLJData} from '../../redux/actions/learningJourneyActions';
 export function fetchInitialUserData(token) {
   // let request = getUserDataFromOneTimeKey(token)
   let request = Promise.resolve({
+    'id': 1,
     'forename': 'Matt',
     'surname': 'Cavanagh',
     'email': 'matt.c@darkynt.co.uk',
