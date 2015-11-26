@@ -1,6 +1,6 @@
 import authManager from 'cirrus/services/managers/authManager';
 import userManager from 'cirrus/services/managers/userManager';
-import {getOAuthToken, getUserData} from '../services/authService';
+import {getOAuthToken, getUserData, setCookieCredentials} from '../services/authService';
 import cookie from 'cookie-cutter';
 import Store from '../store.js';
 export const AUTH = 'AUTH';
@@ -12,9 +12,11 @@ import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import {getPLJData} from '../../redux/actions/learningJourneyActions';
 
 export function fetchInitialUserData(token) {
+  setCookieCredentials(token);
   // let request = getUserDataFromOneTimeKey(token)
   let request = Promise.resolve({
     'id': 1,
+    'title': 'Mr',
     'forename': 'Matt',
     'surname': 'Cavanagh',
     'email': 'matt.c@darkynt.co.uk',

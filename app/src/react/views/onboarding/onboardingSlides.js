@@ -45,13 +45,14 @@ var ConnectedWelcomeBlock = connect(mapWelcomePage)(WelcomeBlock);
 export const onboardingSlides = [{
   content: (
     <Provider store={store}>
-    {function() {
+    {function() { 
       return (
         <ConnectedWelcomeBlock />
       );
     }}
     </Provider>
   ),
+  className: 'welcome',
   showNext: true
 }, {
   content: (
@@ -73,6 +74,7 @@ export const onboardingSlides = [{
       }}
     </Provider>
   ),
+  className: 'profile',
   showPrev: false,
   showNext: true,
   onNextClick: function() {
@@ -97,6 +99,7 @@ export const onboardingSlides = [{
       }}
     </Provider>
   ),
+  className: 'message',
   showPrev: false,
   showNext: true
 }, {
@@ -126,6 +129,7 @@ export const onboardingSlides = [{
       }}
     </Provider>
   ),
+  className: 'journey',
   showPrev: false,
   showNext: true
 }, {
@@ -155,6 +159,7 @@ export const onboardingSlides = [{
       }}
     </Provider>
   ),
+  className: 'progress',
   showPrev: false,
   showNext: true
 }, {
@@ -192,6 +197,7 @@ export const onboardingSlides = [{
       }}
     </Provider>
   ),
+  className: 'final',
   showPrev: false,
   showNext: false
 }];
