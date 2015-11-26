@@ -12,7 +12,7 @@ class LearningJourneyTable extends React.Component {
     let rows = null;
     if (this.props.journeyModule) {
       rows = _.mapObject(this.props.journeyModule.activities, (activity, key) => {
-        return <LearningJourneyRow key={key} activity={activity} smallTable={this.props.smallTable} moduleID={this.props.journeyModule.id}/>;
+        return <LearningJourneyRow key={key} activity={activity} smallTable={this.props.smallTable} moduleId={this.props.journeyModule.id}/>;
       });
     }
     let iconRow = (this.props.showIcon) ? <th className="row-icon"></th> : null;
