@@ -160,7 +160,6 @@ export const feedReducer = (state = defaultState, action) => {
           payload.previewUrl = metaPreviewURL.value;
 
           let splitUrl = payload.previewUrl.split("/upload/");
-
           payload.thumbnail = `${splitUrl[0]}/upload/c_fill,h_200,w_200/${splitUrl[1]}`;
           nextState[action.payload.feedId].files = [...state[action.payload.feedId].files || [], payload];
           return nextState;
