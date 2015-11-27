@@ -100,9 +100,7 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
-    if (this.props.commentText) {
-      console.log('messageProps', this.props);
-    }
+    
     return (
       <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">

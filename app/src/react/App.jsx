@@ -70,7 +70,6 @@ class App extends React.Component {
         router.transitionTo('/');
       }
       if (loggedIn === false && (activeRouteBase !== 'on-boarding')) {
-        console.log("Redirecting: ", activeRouteBase);
         router.transitionTo('login');
       }
     }
