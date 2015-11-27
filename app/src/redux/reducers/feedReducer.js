@@ -6,11 +6,12 @@ var defaultState = {};
 function updateMatchedByFieldName(fieldName, value) {
   return (action) => {
     return function updateThisMessage(message) {
-      if (message.id === action.payload.id) {
+      var polymorphicId = action.payload.id || action.payload.messageID || action.payload.parent;
+      if (message.id === polymorphicId) {
         message[fieldName] = (typeof(value) !== 'undefined') ? value : action.payload[fieldName];
       }
       if (message.comments && (message.comments.length > 0)) {
-        // Recurse
+        // Recursion
         message.comments = message.comments.map(updateThisMessage);
       }
       return message;
@@ -74,19 +75,15 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case 'FEED_CREATE_COMMENT':
-      console.log('action', action);
       switch (action.status) {
         case 'RESOLVED':
-          nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newComment', '')(action));
           nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newCommentPending', false)(action));
-          console.log('new state post resolution', nextState[action.payload.feedID].messages);
           return nextState;
         case 'REJECTED':
           nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newCommentPending', false)(action));
           nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newCommentErr', 'Failed to post to server, please try logging out and back in again'));
           return nextState;
         default:
-          console.log('Pending');
           nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newCommentPending', true)(action));
           return nextState;
       }
@@ -114,7 +111,6 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case 'FEED_UPDATE_NEW_POST':
-
       var parentID = action.payload.parent;
       var feedID = action.payload.feedID;
       var content = action.payload.content;

@@ -67,6 +67,7 @@ class Message extends React.Component {
     if (nextProps.comments.length != this.props.comments.length) {
       return true;
     }
+
     for (let i = 0; i < nextProps.comments.length; i += 1) {
       let thisComment = this.props.comments[i],
         nextComment = nextProps.comments[i];
@@ -80,7 +81,6 @@ class Message extends React.Component {
   }
 
   render() {
-    console.log('rerendering', this.props);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let bodyString = <p>{this.props.content.split(' ').map(URLBuilder)}</p>;
     if (!this.state.fullString) {
