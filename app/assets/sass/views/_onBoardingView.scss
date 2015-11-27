@@ -21,10 +21,10 @@
       max-width: 355px;
     }
   }
-  .slideshow {
+  .slide-container {
     opacity: 0.9;
   }
-  .slide-container {
+  .slideshow-module  {
     width: 750px;
     height: 570px;
     margin: 50px auto;
@@ -54,7 +54,7 @@
   }
 }
 
-.welcome {
+.slideshow-module.welcome {
   background-color: $site_red;
   color: $white;
   .body {
@@ -75,7 +75,7 @@
   }
 }
 
-.profile-slide {
+.slideshow-module.profile{
   background-color: $light_grey;
   .row {
     padding: 20px;
@@ -100,7 +100,7 @@
   }
 }
 
-.message {
+.slideshow-module.message {
   background-color: $dark_blue;
   color: $white;
   .body {
@@ -115,7 +115,7 @@
 
 }
 
-.journey {
+.slideshow-module.journey {
   .title {
     color: $site_red;
     margin: 40px 0;
@@ -126,7 +126,7 @@
   }
 }
 
-.progress {
+.slideshow-module.progress {
   .title {
     width: 60%;
     color: $site_red;
@@ -138,7 +138,7 @@
   }
 }
 
-.final {
+.slideshow-module.final {
   background-color: $site_red;
   color: $white;
   .sub {
@@ -190,7 +190,7 @@
       height: 100%;
     }
   }
-  .profile-slide {
+  .slideshow-module.profile {
     .inner {
       padding: 10px;
     }
@@ -198,12 +198,12 @@
       padding: 0;
     }
   }
-  .progress {
+  .slideshow-module.progress {
     .title {
       width: 100%;
     }
   }
-  .final {
+  .slideshow-module.final {
     .sub {
       width: 100%;
     }
@@ -214,7 +214,7 @@
 }
 
 @media (max-width: 420px) {
-  .welcome {
+  .slideshow-module.welcome {
     .body {
       padding: 20px;
     }

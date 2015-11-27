@@ -47,7 +47,7 @@ var Routes = (
         loading: state.auth.waitingForLogin
       };
     })(LoginView)} />
-    <Route name="on-boarding" handler={OnBoardingView} />
+    <Route name="on-boarding/:userToken" handler={OnBoardingView} />
   </Route>
 );
 

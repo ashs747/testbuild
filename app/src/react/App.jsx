@@ -10,6 +10,7 @@ class App extends React.Component {
     super();
     this.onRouteChange = this.onRouteChange.bind(this);
     this.checkLoggedInState = this.checkLoggedInState.bind(this);
+    this.getActiveRouteBase = this.getActiveRouteBase.bind(this);
     this.state = {
       Handler: null
     };
@@ -20,7 +21,12 @@ class App extends React.Component {
     $(window).on('resize', () => {
       this.changeWidth();
     });
-    store.dispatch(cookieCheckedAction());
+
+    if (this.getActiveRouteBase() && this.getActiveRouteBase() !== 'on-boarding') {
+      /* we check to see if the router's instantiated and then that its not equal to on-boarding before triggering an auth */
+      store.dispatch(cookieCheckedAction());
+    }
+    
     store.subscribe(this.checkLoggedInState);
     router.run(this.onRouteChange);
   }
@@ -44,21 +50,27 @@ class App extends React.Component {
     });
   }
 
+  getActiveRouteBase() {
+    let currentRoutes = router.getCurrentRoutes();
+    // grab just the base, ignoring all params and sub-pages
+    if (currentRoutes && currentRoutes.length > 0) {
+      let arb = currentRoutes[currentRoutes.length - 1].name ? currentRoutes[currentRoutes.length - 1].name.split('/')[0] : 'home';
+      return arb;
+    }
+  }
+
   checkLoggedInState() {
     var loggedIn = store.getState().user.loggedIn;
 
     let currentRoutes = router.getCurrentRoutes();
-    let activeRouteName;
-
-    if (currentRoutes && currentRoutes.length > 0) {
-      activeRouteName = currentRoutes[currentRoutes.length - 1].name;
-    }
+    let activeRouteBase = this.getActiveRouteBase();
     
-    if (activeRouteName !== undefined) {
-      if (loggedIn && activeRouteName === 'login') {
+    if (activeRouteBase !== undefined) {
+      if (loggedIn && activeRouteBase === 'login') {
         router.transitionTo('/');
       }
-      if (loggedIn === false && (activeRouteName !== 'on-boarding')) {
+      if (loggedIn === false && (activeRouteBase !== 'on-boarding')) {
+        console.log("Redirecting: ", activeRouteBase);
         router.transitionTo('login');
       }
     }

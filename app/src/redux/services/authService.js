@@ -1,7 +1,7 @@
 // AuthService: Deals with OAuth.
 import config from '../../localConfig';
 import request from 'cirrus/services/request';
-
+import cookie from 'cookie-cutter';
 let apiRoot = config.api ? config.api.url : '';
 
 function oAuth(params) {
@@ -31,6 +31,10 @@ function formatUserData(userData) {
   };
 
   return Promise.resolve(out);
+}
+
+export function setCookieCredentials(authToken) {
+  cookie.set('authToken', authToken);
 }
 
 export function getUserData() {
