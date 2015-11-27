@@ -52,14 +52,14 @@ class Message extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    let changeableKeys = ['content', 'editable', 'commentText'];
+    let changeableKeys = ['content', 'editable', 'commentText', 'newCommentPending', 'err', 'newCommentErr'];
 
     if (this.state.fullString != nextState.fullString) {
       return true;
     }
 
     for (let key in nextProps) {
-      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) >= 0 && (this.props[key] != nextProps[key])) {
+      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) >= 0 && (this.props[key] !== nextProps[key])) {
         return true;
       }
     }
@@ -80,6 +80,7 @@ class Message extends React.Component {
   }
 
   render() {
+    console.log('rerendering', this.props);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let bodyString = <p>{this.props.content.split(' ').map(URLBuilder)}</p>;
     if (!this.state.fullString) {
@@ -99,7 +100,9 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
-
+    if (this.props.commentText) {
+      console.log('messageProps', this.props);
+    }
     return (
       <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
@@ -121,6 +124,8 @@ class Message extends React.Component {
           content={this.props.commentText}
           onSave={this.createComment}
           onEdit={this.editNewComment}
+          err={this.props.newCommentErr}
+          pending={this.props.newCommentPending}
           commentForm={true}
           profile={this.props.profile}
           saveOnEnter={true}

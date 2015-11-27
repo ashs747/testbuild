@@ -3,11 +3,11 @@ import _ from 'underscore';
 
 var defaultState = {};
 
-function updateMatchedByFieldName(fieldName) {
+function updateMatchedByFieldName(fieldName, value) {
   return (action) => {
     return function updateThisMessage(message) {
       if (message.id === action.payload.id) {
-        message[fieldName] = action.payload[fieldName];
+        message[fieldName] = (typeof(value) !== 'undefined') ? value : action.payload[fieldName];
       }
       if (message.comments && (message.comments.length > 0)) {
         // Recurse
@@ -19,7 +19,9 @@ function updateMatchedByFieldName(fieldName) {
 };
 
 export const feedReducer = (state = defaultState, action) => {
-  var feed, nextState;
+  var feed;
+  var nextState = {...state};
+
   switch (action.type) {
     case 'LOGOUT':
       return {};
@@ -38,55 +40,76 @@ export const feedReducer = (state = defaultState, action) => {
 
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
-      nextState = Object.assign({}, state);
+      
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
       return nextState;
       break;
 
     case FEED_UPDATE_MESSAGE:
       feed = state[action.payload.feedID];
-      nextState = Object.assign({}, state);
+      
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content')(action));
       return nextState;
       break;
 
     case 'FEED_SAVE_MESSAGE':
+      feed = state[action.payload.feedID];
       switch (action.status) {
         case 'RESOLVED':
-          feed = state[action.payload.feedID];
-          nextState = Object.assign({}, state);
           nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('pending', false)(action));
           return nextState;
           break;
         case 'REJECTED':
           // Set error flag
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('pending', false)(action));
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('err', 'Cannot post message to the server, please restart your browser and try again')(action));
           return state;
           break;
         default:
-          //Pending state
+          nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('pending', true)(action));
           return state;
           break;
       }
       break;
 
+    case 'FEED_CREATE_COMMENT':
+      console.log('action', action);
+      switch (action.status) {
+        case 'RESOLVED':
+          nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newComment', '')(action));
+          nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newCommentPending', false)(action));
+          console.log('new state post resolution', nextState[action.payload.feedID].messages);
+          return nextState;
+        case 'REJECTED':
+          nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newCommentPending', false)(action));
+          nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newCommentErr', 'Failed to post to server, please try logging out and back in again'));
+          return nextState;
+        default:
+          console.log('Pending');
+          nextState[action.payload.feedID].messages = state[action.payload.feedID].messages.map(updateMatchedByFieldName('newCommentPending', true)(action));
+          return nextState;
+      }
+
     case FEED_CREATE_MESSAGE:
       switch (action.status) {
         case 'RESOLVED':
-          nextState = {...state};
-          nextState[action.payload.feedID].messages.unshift(action.payload.message);
+          nextState[action.payload.feedID].newMessagePending = false;
           nextState[action.payload.feedID].newMessageContent = '';
           return nextState;
           break;
         case 'REJECTED':
         // Error Handling to be discussed;
+          nextState[action.payload.feedID].newMessagePending = false;
+          nextState[action.payload.feedID].newMessageErr = 'Could not post your message.';
           return {
             ...state,
             error: 'Could not post new message'
           };
           break;
         default:
-          return state;
-          break;
+          nextState[action.payload.feedID].newMessagePending = true;
+          return nextState;
       }
       break;
 
@@ -119,11 +142,10 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.status) {
         case 'RESOLVED':
           var fullFeed = action.payload;
-          var ns = {...state};
-          ns[action.payload.id] = {...action.payload};
-          ns[action.payload.id].messages = [...action.payload.messages];
-          ns[action.payload.id].files = action.payload.files || [];
-          return ns;
+          nextState[action.payload.id] = {...action.payload};
+          nextState[action.payload.id].messages = [...action.payload.messages];
+          nextState[action.payload.id].files = action.payload.files || [];
+          return nextState;
           break;
         case 'REJECTED':
           return state;
@@ -144,7 +166,6 @@ export const feedReducer = (state = defaultState, action) => {
           let splitUrl = payload.previewUrl.split("/upload/");
 
           payload.thumbnail = `${splitUrl[0]}/upload/c_fill,h_200,w_200/${splitUrl[1]}`;
-          nextState = Object.assign({}, state);
           nextState[action.payload.feedId].files = [...state[action.payload.feedId].files || [], payload];
           return nextState;
           break;

@@ -38,7 +38,9 @@ export const createComment = (feedID, messageID) => {
         var out = JSON.parse(res.text);
         return {feedID, message: out};
       });
-
+    response.feedID = feedID;
+    response.id = messageID;
+    
     return {
       type: 'FEED_CREATE_COMMENT',
       payload: response
@@ -69,6 +71,7 @@ export const createMessage = (feedID) => {
         var out = JSON.parse(res.text);
         return {feedID, message: out};
       });
+    asyncResponse.feedID = feedID;
     return {
       type: FEED_CREATE_MESSAGE,
       payload: asyncResponse
@@ -167,6 +170,10 @@ export const saveUpdatedMessage = (feedID, messageID, commentID) => {
         return {...resParsed,
           feedID};
       });
+    payload = {...payload,
+      feedID,
+      messageID,
+      commentID};
 
     return {
       type: 'FEED_SAVE_MESSAGE',
