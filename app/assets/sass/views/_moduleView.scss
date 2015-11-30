@@ -61,6 +61,18 @@
       text-align: center;
       font-weight: bold;
     }
+    h5 {
+      font-weight: bold;
+    }
+    ul {
+      padding: 0;
+    }
+    li {
+      background: url('/assets/img/red_tick.jpg') no-repeat left top;
+      padding: 0px 0px 10px 30px;
+      /* reset styles (optional): */
+      list-style: none;
+    }
   }
   .module-tabs {
     background-color: $white;
@@ -108,6 +120,11 @@
     }
     .message-board {
       padding: 0px;
+    }
+    .module-carousel {
+      .row {
+        padding-top: 30px;
+      }
     }
   }
 }

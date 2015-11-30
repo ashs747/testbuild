@@ -5,6 +5,7 @@ import FeedWidget from '../modules/feed/Widget.jsx';
 import TabStack from 'cirrus/react/components/TabStack';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import Carousel from '../components/Carousel.jsx';
+import Markdown from 'react-remarkable';
 
 function mapHomeFeedProps(state) {
   return {
@@ -37,7 +38,14 @@ class ModuleView extends React.Component {
       name: '"Collaborates with others across the organisation; takes a proactive and organisaed approach"',
       backgroundImage: "https://placehold.it/810x250?text=."
     }];
-    let carousel = <Carousel context={`module-${module.id}`} items={items} defineWidthClass="col-sm-8 col-sm-offset-2"/>;
+    let carousel = <Carousel context={`module-${module.id}`} items={items} defineWidthClass="col-xs-8 col-xs-offset-2"/>;
+    let exampleMarkdown = `
+##### Engaging
+
++ Communicates in an inspirational and motivational manner, achieves other's buy-in
++ Actively listens to others including customers and colleagues at all levels
++ Effectively communicates the organisation's vision; gives a sense of purpose and pride
+    `;
     let leftbar = (
       <div>
         <div className="module-carousel">
@@ -48,7 +56,7 @@ class ModuleView extends React.Component {
           {ljt}
           <div className="module-content">
             <h2>{module.name}</h2>
-            <p>Markdown here</p>
+            <Markdown source={exampleMarkdown} options={{html: true}}/>
           </div>
         </div>
       </div>

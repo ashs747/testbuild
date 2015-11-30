@@ -8,7 +8,7 @@ class LearningJourneyWidget extends React.Component {
   }
 
   render() {
-    if (!this.props.journeyModules.m1) {
+    if (Object.keys(this.props.journeyModules).length === 0) {
       return <div />;
     }
     let i = 1;
@@ -24,16 +24,18 @@ class LearningJourneyWidget extends React.Component {
       let content = (this.props.smallWidget) ? (
         <tr key={key} className="small-row">
           <td className="activity">
-            <div className={currentModule}>
-              <div className="icon clearfix">
-                <i className="fa fa-users"></i>
+            <a href={`/#/module/${module.id}`}>
+              <div className={currentModule}>
+                <div className="icon clearfix">
+                  <i className="fa fa-users"></i>
+                </div>
+                <div className="text">
+                  <div className="title"><strong>{module.name}</strong></div>
+                  <div className="subTitle">{moment(module.startDate).format('MMM YYYY')} - {moment(module.endDate).format('MMM YYYY')}</div>
+                </div>
+                {notice}
               </div>
-              <div className="text">
-                <div className="title"><strong>{module.name}</strong></div>
-                <div className="subTitle">{moment(module.startDate).format('MMM YYYY')} - {moment(module.endDate).format('MMM YYYY')}</div>
-              </div>
-              {notice}
-            </div>
+            </a>
           </td>
         </tr>
       ) : (

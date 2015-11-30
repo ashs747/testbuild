@@ -71,3 +71,9 @@
     padding: 5px 10px;
   }
 }
+
+@media (max-width: 767px) {
+  .login-wrapper {
+    top: 50px;
+  }
+}
