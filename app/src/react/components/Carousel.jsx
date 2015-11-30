@@ -15,8 +15,12 @@ class Carousel extends React.Component {
     let width = (this.props.defineWidthClass) ? this.props.defineWidthClass : "col-sm-10 col-sm-offset-1";
     this.props.items.forEach((item, i) => {
       let className = (i == 0) ? "active" : "";
+      let style = {};
+      if (item.backgroundImage) {
+        style.backgroundImage = `url('${item.backgroundImage}')`;
+      }
       items.push(
-        <div key={i} className={`item text-center ${className}`}>
+        <div key={i} className={`item text-center ${className}`} style={style}>
           <div className="icon">
             <p><i className={`fa fa-${item.icon}`} ></i></p>
           </div>

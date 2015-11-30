@@ -1,84 +1,119 @@
 import React from 'react';
-import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
-import {learningJourneyAction} from '../../redux/actions/learningJourneyActions';
-import {moduleHubAction} from '../../redux/actions/moduleActions';
+import {connect} from 'react-redux';
 import _ from 'underscore';
+import FeedWidget from '../modules/feed/Widget.jsx';
+import TabStack from 'cirrus/react/components/TabStack';
+import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
+import Carousel from '../components/Carousel.jsx';
+
+function mapHomeFeedProps(state) {
+  return {
+    context: 'programme',
+    feeds: state.feeds,
+    profile: "sm",
+    showComments: true,
+    showEmbedVideo: true,
+    title: "Programme feed"
+  };
+};
 
 class ModuleView extends React.Component {
 
   constructor() {
     super();
-  }
-
-  componentWillMount() {
-    this.props.dispatch(learningJourneyAction(this.props.auth.currentUser, 1));
-    this.props.dispatch(moduleHubAction('SOJ', 'module', 'resources.type'));
+    this.HomeFeed = connect(mapHomeFeedProps)(FeedWidget);
   }
 
   render() {
-    var learningJournies = this.props.learningJourney.learningJourneyModules.map((journeyModule, i) => {
-      if (journeyModule.id == this.props.params.module) {
-        return (
-          <div key={i}>
-            <h2>Module {i + 1}</h2>
-            <LearningJourneyTable journeyModule={journeyModule} />
-          </div>);
-      }
-    });
-
-    if (_.isUndefined(this.props.modules.contentTypeData)) {
-      throw new Error('No module data present');
+    let module = this.getModuleFromRouteId(this.props.modules, this.props.params.module);
+    if (!module) {
+      return <div />;
     }
-    let moduleId = null;
-    let moduleTitle = null;
-    let aboutThisHub = null;
-    if (this.props.modules.contentTypeData !== undefined) {
-      var module = _.first(_.filter(this.props.modules.contentTypeData, function(data) {
-        return data.id == this.props.params.module;
-      }.bind(this)));
-      if (module !== undefined) {
-        moduleId = module.id;
-        moduleTitle = module.title;
-        aboutThisHub = module.aboutThisHub;
-      }
-    }
-
-    return (
-      <div className="module-hub">
-        <div className="heading grey-container">
-          <div className="row">
-            <div className="col-sm-2">
-              <div className="module-icon">
+    let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} />;
+    let items = (module.properties && module.properties.carousel) ? [] : [{
+      name: '"Collaborates with others across the organisation; takes a proactive and organisaed approach"',
+      backgroundImage: "https://placehold.it/810x250?text=."
+    }, {
+      name: '"Collaborates with others across the organisation; takes a proactive and organisaed approach"',
+      backgroundImage: "https://placehold.it/810x250?text=."
+    }];
+    let carousel = <Carousel context={`module-${module.id}`} items={items} defineWidthClass="col-sm-8 col-sm-offset-2"/>;
+    let leftbar = (
+      <div>
+        <div className="module-carousel">
+          {carousel}
+        </div>
+        <div className="left-content">
+          <h3>Your learning journey</h3>
+          {ljt}
+          <div className="module-content">
+            <h2>{module.name}</h2>
+            <p>Markdown here</p>
+          </div>
+        </div>
+      </div>
+    );
+    let bodyContent = (() => {
+      switch (this.props.profile) {
+        case 'lg':
+          return (
+            <div className="main clearfix">
+              <div className="col-sm-8 left-bar">
+                {leftbar}
+              </div>
+              <div className="col-sm-4 right-bar">
+                <this.HomeFeed />
               </div>
             </div>
-            <div className="col-sm-10">
-              <p>Module {moduleId}</p>
-              <p>{moduleTitle}</p>
+          );
+          break;
+        default:
+          let tab1 = (<div label="Overview" tabClass="tab-btn" key="tab1">{leftbar}</div>);
+          let tab2 = (<div label="Feed" tabClass="tab-btn" key="tab2"><this.HomeFeed /></div>);
+          let tabs = [tab1, tab2];
+          return (
+            <TabStack ref="moduleTabs" className="module-tabs" selectedIndex={0}>
+              {tabs}
+            </TabStack>
+          );
+          break;
+      }
+    })();
+    return (
+      <div className="module-view">
+        <div className="header-top clearfix">
+          <div className="col-sm-2">
+            <div className="icon">
+              <span><i className={`fa fa-${module.icon}`}></i></span>
             </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-sm-8">
-          <div className="about-section grey-container">
-            <h2>About this module</h2>
-            <p>{aboutThisHub}</p>
           </div>
-          <h2>Learning Journey</h2>
-        <div className="personal-learning-journey">
-          {learningJournies}
-        </div>
-        <div className="resources-section grey-container">
-          RESOURCES SECTION WILL BE GOING IN HERE
-        </div>
-        </div>
-        <div className="col-sm-4">
-          <div className="programme-feed grey-container">
-          <h2>Programme Feed</h2>
+          <div className="col-sm-10">
+            <h1>{`Module ${this.props.params.module} - ${module.name}`}</h1>
           </div>
         </div>
+        {bodyContent}
       </div>
-    </div>);
+    );
+  }
+
+  getModuleFromRouteId(modules, moduleID) {
+    let module = null;
+    _.mapObject(modules, (mod, key) => {
+      if (mod.id == moduleID) {
+        module = mod;
+      }
+    });
+    return module;
   }
 }
 
-export default ModuleView;
+function mapModuleProps(state) {
+  return {
+    modules: state.learningJourney,
+    profile: state.width.profile
+  };
+}
+
+let mappedModuleView = connect(mapModuleProps)(ModuleView);
+
+export default mappedModuleView;
