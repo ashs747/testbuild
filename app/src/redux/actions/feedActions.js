@@ -34,11 +34,14 @@ export const createComment = (feedID, messageID) => {
   if (message.content && message.content.trim().length >= 1) {
     let response = postMessage(feedID, JSON.stringify(message), messageID)
       .then((res) => {
+        dispatch(updateNewMessage(feedID, '', messageID));
         dispatch(fetchLatestFeedMessages(feedID));
         var out = JSON.parse(res.text);
         return {feedID, message: out};
       });
-
+    response.feedID = feedID;
+    response.id = messageID;
+    
     return {
       type: 'FEED_CREATE_COMMENT',
       payload: response
@@ -47,36 +50,6 @@ export const createComment = (feedID, messageID) => {
     alert("Sorry, blank replies aren't allowed");
     return {
       type: "NO_OP"
-    };
-  }
-};
-
-export const createMessage = (feedID) => {
-  var dispatch = store.dispatch;
-  var message = {};
-  var files = store.getState().feeds[feedID].files || [];
-  message.content = store.getState().feeds[feedID].newMessageContent;
-  
-  message.files = files.length > 0 ? files.map((file) => {
-    return file.id;
-  }) : undefined;
-
-  if (message.content && (message.content.trim().length > 0)) {
-    var messageAsJSONString = JSON.stringify(message);
-    let asyncResponse = postMessage(feedID, messageAsJSONString)
-      .then((res) => {
-        dispatch(fetchLatestFeedMessages(feedID));
-        var out = JSON.parse(res.text);
-        return {feedID, message: out};
-      });
-    return {
-      type: FEED_CREATE_MESSAGE,
-      payload: asyncResponse
-    };
-  } else {
-    alert("Cannot save a blank message!");
-    return {
-      type: 'NO_OP'
     };
   }
 };
@@ -114,7 +87,7 @@ export const setEditable = (feedID, messageID, canEdit) => {
  * written-out
  */
 
-export const updateNewMessage = (feedID, messageContent, messageID) => {
+export function updateNewMessage(feedID, messageContent, messageID) {
   return {
     type: 'FEED_UPDATE_NEW_POST',
     payload: {
@@ -167,6 +140,10 @@ export const saveUpdatedMessage = (feedID, messageID, commentID) => {
         return {...resParsed,
           feedID};
       });
+    payload = {...payload,
+      feedID,
+      messageID,
+      commentID};
 
     return {
       type: 'FEED_SAVE_MESSAGE',
@@ -223,4 +200,36 @@ export const embedVideo = (feedId, url) => {
     type: 'FEED_EMBED_VIDEO',
     payload
   };
+};
+
+export const createMessage = (feedID) => {
+  var dispatch = store.dispatch;
+  var message = {};
+  var files = store.getState().feeds[feedID].files || [];
+  message.content = store.getState().feeds[feedID].newMessageContent;
+  
+  message.files = files.length > 0 ? files.map((file) => {
+    return file.id;
+  }) : undefined;
+
+  if (message.content && (message.content.trim().length > 0)) {
+    var messageAsJSONString = JSON.stringify(message);
+    let asyncResponse = postMessage(feedID, messageAsJSONString)
+      .then((res) => {
+        dispatch(fetchLatestFeedMessages(feedID));
+        var out = JSON.parse(res.text);
+        return {feedID, message: out};
+      });
+
+    asyncResponse.feedID = feedID;
+    return {
+      type: FEED_CREATE_MESSAGE,
+      payload: asyncResponse
+    };
+  } else {
+    alert("Cannot save a blank message!");
+    return {
+      type: 'NO_OP'
+    };
+  }
 };

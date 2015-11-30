@@ -41,10 +41,10 @@ class MessageList extends React.Component {
   mapMessages(messages) {
     return messages.map(message => {
       let key = message.id;
-      let name = `${message.user.forename} ${message.user.surname}`;
+      let name = message.user ? `${message.user.forename} ${message.user.surname}` : '';
       let content = message.content;
       let date = moment(message.updatedOn);
-      let profilePic = message.user.profilePic ? message.user.profilePic.reference : '';
+      let profilePic = (message.user && message.user.profilePic) ? message.user.profilePic.reference : '';
       let files = message.files;
       var comments;
       
@@ -70,6 +70,8 @@ class MessageList extends React.Component {
         editable={editable}
         userCanEdit={userCanEdit}
         commentText={newComment}
+        newCommentErr={message.newCommentErr}
+        newCommentPending={message.newCommentPending}
         dispatchPostNewCommentAction={this.createComment(key)}
         dispatchUpdateCommentAction={this.updateCommentAction(key)}
         dispatchSaveCommentAction={this.saveMessage(key)}

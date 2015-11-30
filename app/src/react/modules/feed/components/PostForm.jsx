@@ -36,17 +36,27 @@ class PostForm extends React.Component {
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} /> : null;
     let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId={this.props.feedID} /> : null;
     let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
-    let postButton = (this.props.commentForm) ? null : (
-      <div className="post">
-        <a className="btn" onClick={this.onSave}>Post</a>
-      </div>
-    );
+    let postButton;
+    if (!this.props.commentForm) {
+      postButton = (this.props.pending) ? null : (
+        <div className="post">
+          <a className="btn" onClick={this.onSave}>Post</a>
+        </div>
+      );
+    }
     let className = (this.props.postStatus) ? "post-form-status" : "post-form";
+    
     if (this.props.profile === "sm") {
       className += " mobile-form";
     }
     if (this.props.commentForm) {
       className += " comment-form";
+    }
+    if (this.props.err) {
+      className += " validation-error";
+    }
+    if (this.props.pending) {
+      className += " pending";
     }
     return (
       <div className={`${className} clearfix`}>
@@ -54,7 +64,7 @@ class PostForm extends React.Component {
           <img src={profilePic} />
         </div>
         <div className="post-message">
-          <TextArea value={this.props.content} placeholder={placeholder} onKeyDown={this.props.saveOnEnter ? this.keyPress : () => {}} onChange={this.onChange} />
+          <TextArea disabled={this.props.pending} value={this.props.content} placeholder={placeholder} onKeyDown={this.props.saveOnEnter ? this.keyPress : () => {}} onChange={this.onChange} />
         </div>
         <div className="post-admin-buttons">
           {uploadMedia}
@@ -126,6 +136,7 @@ PostForm.propTypes = {
   attachments: React.PropTypes.array,
   feedID: React.PropTypes.string,
   showUploadMedia: React.PropTypes.bool,
-  showEmbedVideo: React.PropTypes.bool
+  showEmbedVideo: React.PropTypes.bool,
+  pending: React.PropTypes.bool
 };
 export default PostForm;

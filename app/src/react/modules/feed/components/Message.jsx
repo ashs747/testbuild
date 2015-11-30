@@ -52,14 +52,14 @@ class Message extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    let changeableKeys = ['content', 'editable', 'commentText'];
+    let changeableKeys = ['content', 'editable', 'commentText', 'newCommentPending', 'err', 'newCommentErr'];
 
     if (this.state.fullString != nextState.fullString) {
       return true;
     }
 
     for (let key in nextProps) {
-      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) >= 0 && (this.props[key] != nextProps[key])) {
+      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) >= 0 && (this.props[key] !== nextProps[key])) {
         return true;
       }
     }
@@ -67,6 +67,7 @@ class Message extends React.Component {
     if (nextProps.comments.length != this.props.comments.length) {
       return true;
     }
+
     for (let i = 0; i < nextProps.comments.length; i += 1) {
       let thisComment = this.props.comments[i],
         nextComment = nextProps.comments[i];
@@ -99,7 +100,7 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
-
+    
     return (
       <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
@@ -121,6 +122,8 @@ class Message extends React.Component {
           content={this.props.commentText}
           onSave={this.createComment}
           onEdit={this.editNewComment}
+          err={this.props.newCommentErr}
+          pending={this.props.newCommentPending}
           commentForm={true}
           profile={this.props.profile}
           saveOnEnter={true}
