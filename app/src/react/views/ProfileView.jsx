@@ -66,7 +66,7 @@ class ProfileView extends React.Component {
 function mapProfileView(state) {
   return {
     profilePic: state.user.profilePic
-  }
+  };
 }
 let mappedProfileView = connect(mapProfileView)(ProfileView);
 export default mappedProfileView;
