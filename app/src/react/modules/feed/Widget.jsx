@@ -18,8 +18,10 @@ export default class FeedWidget extends React.Component {
       //We have feeds
       var feedID = getFeedIdForContext(feeds, context);
       var feed = this.props.feeds[feedID];
+      let title = (this.props.title) ? <h3>{this.props.title}</h3> : null;
       return (
         <div className="message-board">
+          {title}
           <PostForm
             feedID={feedID}
             showUploadMedia={true}

@@ -29,7 +29,7 @@ var Routes = (
     </DefaultRoute>
     <Route name="main" path="/" handler={connect((state) => state)(MainView)}>
       <Route name="personal-learning-journey" handler={connect((state) => state)(LearningJourneyView)} />
-      <Route name="module" path="module/:module" handler={connect((state) => state)(ModuleView)} />
+      <Route name="module" path="module/:module" handler={ModuleView} />
       <Route name="action-learning-zone" handler={ActionLearningZone} />
       <Route name="faq" handler={FAQView} />
       <Route name="project" path="project/:project" handler={ProjectView} />

@@ -56,6 +56,9 @@
     margin: 0;
   }
   .learning-journey-module {
+    border: 1px solid $dark_grey;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     .heading {
       th {
         background-color: $dark_blue;
