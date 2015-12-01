@@ -78,16 +78,12 @@ class LearningJourneyWidget extends React.Component {
   }
 
   hasOutstandingActivities(module) {
-    let status = false;
-    var activities = module.activities;
-    activities.forEach(activity => {
-      var activityUser = activity.activityUsers[0];
-      if (activityUser.status != 'rated') {
-        status = true;
+    _.mapObject(module.activities, (act, key) => {
+      if (act.status != "completed") {
         return false;
       }
     });
-    return status;
+    return true;
   }
 }
 
