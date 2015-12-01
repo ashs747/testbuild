@@ -38,7 +38,7 @@ class ProfileView extends React.Component {
         <div className="main">
           <div className="main-inner clearfix">
             <div className="col-md-4 col-sm-5">
-              <UploadProfile buttonText="UPLOAD / CHANGE" />
+              <UploadProfile buttonText="UPLOAD / CHANGE" pictureURL={this.props.profilePic} />
               <div className="details-panel">
                 <div className="panel-header">
                   <h3>My information</h3>
@@ -63,4 +63,10 @@ class ProfileView extends React.Component {
 
 }
 
-export default ProfileView;
+function mapProfileView(state) {
+  return {
+    profilePic: state.user.profilePic
+  }
+}
+let mappedProfileView = connect(mapProfileView)(ProfileView);
+export default mappedProfileView;

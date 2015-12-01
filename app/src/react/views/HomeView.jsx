@@ -17,7 +17,8 @@ function mapHomeFeedProps(state) {
     feeds: state.feeds,
     profile: "sm",
     showComments: true,
-    showEmbedVideo: true
+    showEmbedVideo: true,
+    profilePic: state.user.profilePic
   };
 };
 
@@ -116,15 +117,7 @@ class HomeView extends React.Component {
           break;
       }
     })();
-    let profilePic = "assets/img/profile-placeholder.jpg";
-    if (this.props.user.files) {
-      _.mapObject(this.props.user.files, (file, val) => {
-        if (file.context === "profile-picture") {
-          profilePic = file.reference;
-        }
-      });
-    }
-
+    let profilePic = (this.props.user.profilePic) ? this.props.user.profilePic : "assets/img/profile-placeholder.jpg";
     return (
       <div className="home">
         <div className="header-page">
