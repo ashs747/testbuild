@@ -47,7 +47,7 @@ class ProfileView extends React.Component {
                   <h5>Managers to Leaders Leadership Programme</h5>
                   <p>{this.props.cohort.name}</p>
                   <p>Organisation: States of Jersey</p>
-                  <p><b>name@email.co.uk</b></p>
+                  <p><b>{this.props.userEmail}</b></p>
                   <p className="small-text">If these details are incorrect please contact <a href="mailto:">email@email.com <i className="fa fa-chevron-right"></i></a></p>
                 </div>
               </div>
@@ -65,6 +65,7 @@ class ProfileView extends React.Component {
 function mapProfileView(state) {
   return {
     profilePic: state.user.profilePic,
+    userEmail: state.user.email,
     cohort: state.cohort,
   };
 }
