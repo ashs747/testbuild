@@ -45,7 +45,7 @@ class PostForm extends React.Component {
       );
     }
     let className = (this.props.postStatus) ? "post-form-status" : "post-form";
-    
+
     if (this.props.profile === "sm") {
       className += " mobile-form";
     }

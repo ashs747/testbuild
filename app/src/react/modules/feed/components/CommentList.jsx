@@ -54,7 +54,7 @@ class CommentList extends React.Component {
       let name = `${comment.user.forename} ${comment.user.surname}`;
       let content = comment.content;
       let date = moment(comment.date);
-      let profilePic = comment.user.profilePic ? comment.user.profilePic.reference : '';
+      let profilePic = comment.user.profilePic ? comment.user.profilePic : '';
       let editable = comment.editable;
       let userCanEdit = comment.can_edit;
 

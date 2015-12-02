@@ -18,6 +18,7 @@ function mapALZFeed(state) {
     feeds: state.feeds,
     profile: state.width.profile,
     showComments: true,
+    profilePic: state.user.profilePic
   };
 };
 var ALZFeed = connect(mapALZFeed)(FeedWidget);
