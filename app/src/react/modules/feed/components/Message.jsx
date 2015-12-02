@@ -63,7 +63,7 @@ class Message extends React.Component {
         return true;
       }
     }
-    
+
     if (nextProps.comments.length != this.props.comments.length) {
       return true;
     }
@@ -77,7 +77,7 @@ class Message extends React.Component {
         }
       }
     }
-    return false; 
+    return false;
   }
 
   render() {
@@ -100,7 +100,7 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
-    
+
     return (
       <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
@@ -127,6 +127,7 @@ class Message extends React.Component {
           commentForm={true}
           profile={this.props.profile}
           saveOnEnter={true}
+          profilePic={profilePic}
         />
       </div>
     );

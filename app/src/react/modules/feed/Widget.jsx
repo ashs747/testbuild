@@ -35,6 +35,7 @@ export default class FeedWidget extends React.Component {
             content={feed.newMessageContent}
             postStatus={true}
             profile={this.props.profile}
+            profilePic={this.props.profilePic}
           />
           <MessageList messages={feed.messages.map((message) => {
             return message;
