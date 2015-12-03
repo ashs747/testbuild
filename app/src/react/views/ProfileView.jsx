@@ -44,10 +44,10 @@ class ProfileView extends React.Component {
                   <h3>My information</h3>
                 </div>
                 <div className="panel-inner">
-                  <h5>Leadership Programme Name 2nd line if needed</h5>
-                  <p>Cohort: 1 Team: 2</p>
-                  <p>Organisation: Organisation name</p>
-                  <p><b>name@email.co.uk</b></p>
+                  <h5>Managers to Leaders Leadership Programme</h5>
+                  <p>{this.props.cohort.name}</p>
+                  <p>Organisation: States of Jersey</p>
+                  <p><b>{this.props.userEmail}</b></p>
                   <p className="small-text">If these details are incorrect please contact <a href="mailto:">email@email.com <i className="fa fa-chevron-right"></i></a></p>
                 </div>
               </div>
@@ -60,12 +60,13 @@ class ProfileView extends React.Component {
       </div>
     );
   }
-
 }
 
 function mapProfileView(state) {
   return {
-    profilePic: state.user.profilePic
+    profilePic: state.user.profilePic,
+    userEmail: state.user.email,
+    cohort: state.cohort,
   };
 }
 let mappedProfileView = connect(mapProfileView)(ProfileView);

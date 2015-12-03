@@ -18,14 +18,13 @@ function mapALZFeed(state) {
     feeds: state.feeds,
     profile: state.width.profile,
     showComments: true,
-    profilePic: state.user.profilePic
   };
 };
 var ALZFeed = connect(mapALZFeed)(FeedWidget);
 
 function mapMembersProps(state) {
   return {
-    users: state.user.users,
+    users: state.cohort.users,
     title: 'Team',
     imageViewStyle: {
       height: "40px",
@@ -65,7 +64,7 @@ class ActionLearningZoneView extends React.Component {
   render() {
     var messageBoard = (
       <div className="alz-message-board">
-        <h3>Cohort 1 message board</h3>
+        <h3>{this.props.cohort.name} message board</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
         <ALZFeed />
       </div>
@@ -131,7 +130,8 @@ class ActionLearningZoneView extends React.Component {
 function mapALZProps(state) {
   return {
     profile: state.width.profile,
-    feeds: state.feeds
+    feeds: state.feeds,
+    cohort: state.cohort
   };
 };
 

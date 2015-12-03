@@ -25,9 +25,11 @@ function feedsArrayToObject(feedsArray) {
 function formatUserData(userData) {
   var user = userData.user[0] || userData.user;
   var feeds = feedsArrayToObject(userData.feeds);
+  var cohort = userData.cohort;
   var out = {
     user,
-    feeds
+    feeds,
+    cohort
   };
 
   return Promise.resolve(out);

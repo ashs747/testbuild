@@ -10,6 +10,7 @@ import config from '../../localConfig';
 
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import {getPLJData} from '../../redux/actions/learningJourneyActions';
+import {gotUsersCohort} from '../../redux/actions/cohortActions';
 
 export function fetchInitialUserData(token) {
   setCookieCredentials(token);
@@ -59,6 +60,7 @@ export function cookieCheckedAction() {
       }
     }
     Store.dispatch(getPLJData(config.programmeId));
+    Store.dispatch(gotUsersCohort(userData.cohort));
     return userData;
   });
   return {
