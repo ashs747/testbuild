@@ -106,7 +106,7 @@ class Message extends React.Component {
     return (
       <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
-          <CloudinaryImg file={profilePic} alt={this.props.name}/>
+          <CloudinaryImg file={profilePic} alt={this.props.name} default="assets/img/profile-placeholder.jpg"/>
           <div className="header-text">
             <h6>{this.props.name}</h6>
             <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>

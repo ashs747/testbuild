@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import moment from 'moment-timezone';
 import LearningJourneyWidget from '../modules/personalLearningJourney/LearningJourneyWidget.jsx';
 import Carousel from '../components/Carousel.jsx';
+import CloudinaryImg from '../components/CloudinaryImg.jsx';
 import Store from '../../redux/store';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
@@ -23,7 +24,6 @@ function mapHomeFeedProps(state) {
 };
 
 class HomeView extends React.Component {
-
   constructor() {
     super();
     this.HomeFeed = connect(mapHomeFeedProps)(FeedWidget);
@@ -117,12 +117,12 @@ class HomeView extends React.Component {
           break;
       }
     })();
-    let profilePic = (this.props.user.profilePic) ? this.props.user.profilePic : "assets/img/profile-placeholder.jpg";
+
     return (
       <div className="home">
         <div className="header-page">
           <div className="inner">
-            <img src={profilePic} />
+            <CloudinaryImg file={profilePic} default="assets/img/profile-placeholder.jpg"/>
             <h1>Welcome back {this.props.user.forename}</h1>
             <p>Join the discussion, collaborate with people in your group</p>
             <div className="go-to-alz">
