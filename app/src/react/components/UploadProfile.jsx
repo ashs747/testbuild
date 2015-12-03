@@ -1,4 +1,6 @@
 import React from 'react';
+import CloudinaryImg from './CloudinaryImg.jsx';
+
 var profilePicUpdated = {type: 'PROFILE_PIC_UPDATED', payload: ''}; //TODO - serviceWork
 var dispatch = () => {};
 
@@ -38,7 +40,7 @@ class UploadProfile extends React.Component {
     return (
       <div className="upload-profile">
         <div className="circle-image">
-          <img src={this.props.pictureURL || "/assets/img/profile-placeholder.jpg"} alt="profile" />
+          <CloudinaryImg file={this.props.profilePic}/>
         </div>
         <button className="btn" ref="uploadbtn">{this.props.buttonText}</button>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>

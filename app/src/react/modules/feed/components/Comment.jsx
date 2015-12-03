@@ -3,6 +3,7 @@ import TextArea from 'react-textarea-autosize';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
 import moment from 'moment-timezone';
+import CloudinaryImg from '../../../components/CloudinaryImg.jsx';
 /**
   Comment Component, used to display a comment (child of a message) on the programme feed
   Dumb component, only accepts and displays props, has no sorting logic
@@ -88,7 +89,7 @@ class Comment extends React.Component {
     }
     return (
       <div className={`comment clearfix ${(this.props.profile === "sm") ? "mobile-comment" : "" }`}>
-        <img src={profilePic} />
+        <CloudinaryImg file={profilePic} />
         <div className={contentClass}>
           <h6>{this.props.name}</h6>
           {bodyContent}

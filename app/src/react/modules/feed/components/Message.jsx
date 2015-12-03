@@ -3,6 +3,7 @@ import CommentList from './CommentList.jsx';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
 import PostForm from './PostForm.jsx';
+import CloudinaryImg from '../../../components/CloudinaryImg.jsx';
 import MediaGrid from '../../../components/MediaGrid.jsx';
 import moment from 'moment-timezone';
 /**
@@ -81,7 +82,8 @@ class Message extends React.Component {
   }
 
   render() {
-    let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
+    let profilePic = this.props.profilePic;
+    console.log(profilePic);
     let bodyString = <p>{this.props.content.split(' ').map(URLBuilder)}</p>;
     if (!this.state.fullString) {
       //String is too long, show small one and display see more link to change to fullstring
@@ -104,7 +106,7 @@ class Message extends React.Component {
     return (
       <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
-          <img src={profilePic} />
+          <CloudinaryImg file={profilePic} alt={this.props.name}/>
           <div className="header-text">
             <h6>{this.props.name}</h6>
             <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
