@@ -6,11 +6,12 @@ import Video from '../../components/Video.jsx';
 import DataCaptureForm from '../../components/MiniDataCaptureForm.jsx';
 import UploadProfile from '../../components/UploadProfile.jsx';
 import {updateUserObject, saveUserData} from '../../../redux/actions/usersActions';
+import config from '../../../localConfig';
 
 function mapUploadForm(state) {
   return {
     buttonText: "UPLOAD",
-    uploadURL: "/",
+    uploadURL: `${config.api.url}api/upload`,
     userImage: state.user.profilePic
   };
 };
