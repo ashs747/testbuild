@@ -6,7 +6,7 @@ class CloudinaryImg extends React.Component {
   }
 
   render() {
-    var metadata = this.props.file.metadata;
+    var metadata = this.props.file.metadata || [];
     var modStr;
     var file = this.props.file;
     if (file) {
@@ -15,7 +15,7 @@ class CloudinaryImg extends React.Component {
         file[metadata[i].key] = metadata[i].value;
       }
 
-      var outStr = this.props.secure ? file.secure_url : file.url;
+      var outStr = (this.props.secure ? file.secure_url : file.url) || '';
 
       if (file.context === "profile-picture") {
         modStr = 'w_200,h_200,c_thumb,g_face/';

@@ -117,23 +117,26 @@ class HomeView extends React.Component {
           break;
       }
     })();
-
-    return (
-      <div className="home">
-        <div className="header-page">
-          <div className="inner">
-            <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
-            <h1>Welcome back {this.props.user.forename}</h1>
-            <p>Join the discussion, collaborate with people in your group</p>
-            <div className="go-to-alz">
-              <a href="/#/action-learning-zone">GO TO ACTION LEARNING ZONE</a>
+    if (this.props.user) {
+      return (
+        <div className="home">
+          <div className="header-page">
+            <div className="inner">
+              <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
+              <h1>Welcome back {this.props.user.forename}</h1>
+              <p>Join the discussion, collaborate with people in your group</p>
+              <div className="go-to-alz">
+                <a href="/#/action-learning-zone">GO TO ACTION LEARNING ZONE</a>
+              </div>
             </div>
           </div>
+          {bodyContent}
         </div>
-        {bodyContent}
-      </div>
-    );
-  }
+      );
+    }
+    return <div/>;
+  } 
+  
 }
 
 function mapHomeProps(state) {
