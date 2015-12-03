@@ -122,7 +122,7 @@ class HomeView extends React.Component {
       <div className="home">
         <div className="header-page">
           <div className="inner">
-            <CloudinaryImg file={profilePic} default="assets/img/profile-placeholder.jpg"/>
+            <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
             <h1>Welcome back {this.props.user.forename}</h1>
             <p>Join the discussion, collaborate with people in your group</p>
             <div className="go-to-alz">

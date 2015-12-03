@@ -62,7 +62,7 @@ class PostForm extends React.Component {
     return (
       <div className={`${className} clearfix`}>
         <div className="post-profile">
-          <CloudinaryImg file={profilePic} />
+          <CloudinaryImg file={profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
         </div>
         <div className="post-message">
           <TextArea disabled={this.props.pending} value={this.props.content} placeholder={placeholder} onKeyDown={this.props.saveOnEnter ? this.keyPress : () => {}} onChange={this.onChange} />
