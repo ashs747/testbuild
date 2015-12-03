@@ -29,8 +29,8 @@ class CloudinaryImg extends React.Component {
       file.secure_url = outStr;
       file.url = outStr;
     }
-
-    return (<a href={this.props.secure ? file.secure_url : file.url}><img src={outStr} alt={this.props.alt}/></a>);
+    var out = outStr ? (<a href={this.props.secure ? file.secure_url : file.url}><img src={outStr} alt={this.props.alt}/></a>) : '';
+    return out;
   }
 }
 

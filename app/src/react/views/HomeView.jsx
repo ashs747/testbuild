@@ -134,7 +134,6 @@ class HomeView extends React.Component {
       </div>
     );
   }
-
 }
 
 function mapHomeProps(state) {
