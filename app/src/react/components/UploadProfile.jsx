@@ -1,7 +1,6 @@
 import React from 'react';
-var profilePicUpdated = {type: 'PROFILE_PIC_UPDATED'};
+var profilePicUpdated = {type: 'PROFILE_PIC_UPDATED', payload: ''}; //TODO - serviceWork
 var dispatch = () => {};
-
 
 /*eslint-disable camelcase */
 
@@ -23,7 +22,7 @@ class UploadProfile extends React.Component {
       flash_swf_url: '/assets/flash/Moxie.swf',
       file_data_name: 'file',
       headers: {
-        Authorization: `Bearer MGYxNmEzZjJhZTNjYmU1NjkzOTE0OGI0MGQxNDZhYzdkYjJlMDM3YjcyNzc5Nzg0YTQ1ZWZmMzA3MWU3NDA3Mg` //todo: authToken work
+        Authorization: `Bearer ${this.props.authToken}`
       }
     });
 

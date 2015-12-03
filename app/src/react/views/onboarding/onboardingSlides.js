@@ -12,7 +12,8 @@ function mapUploadForm(state) {
   return {
     buttonText: "UPLOAD",
     uploadURL: `${config.api.url}api/upload`,
-    userImage: state.user.profilePic
+    userImage: state.user.profilePic,
+    authToken: 'MGYxNmEzZjJhZTNjYmU1NjkzOTE0OGI0MGQxNDZhYzdkYjJlMDM3YjcyNzc5Nzg0YTQ1ZWZmMzA3MWU3NDA3Mg' //TODO: one-time-key-to-token-exchange - server + services
   };
 };
 
@@ -23,6 +24,7 @@ function mapCaptureFormProps(state) {
   // FixMe: Not finished (mappings);
   return {
     ...state.user,
+    ...state.user.properties,
     updateAction: updateUserObject
   };
 };

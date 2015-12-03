@@ -27,7 +27,6 @@ class OnBoarding extends React.Component {
   }
 
   render() {
-    console.log('Onboarding Props', this.props);
     return (
       <div className="on-boarding">
         <div className="header clearfix">
