@@ -7,9 +7,19 @@ import DataCaptureForm from '../../components/MiniDataCaptureForm.jsx';
 import UploadProfile from '../../components/UploadProfile.jsx';
 import {updateUserObject, saveUserData} from '../../../redux/actions/usersActions';
 
+function mapUploadForm(state) {
+  return {
+    buttonText: "UPLOAD",
+    uploadURL: "/",
+    userImage: state.user.profilePic
+  };
+};
+
+var MappedUploadProfile = connect(mapUploadForm)(UploadProfile);
+
 function mapCaptureFormProps(state) {
-  console.log('state is at the mapper', state);
-  // FixMe: Not done (mappings);
+  
+  // FixMe: Not finished (mappings);
   return {
     ...state.user,
     updateAction: updateUserObject
@@ -63,7 +73,7 @@ export const onboardingSlides = [{
           <h1>Upload a photo and choose a password</h1>
           <div className="row">
             <div className="upload-image col-sm-6">
-              <UploadProfile buttonText="UPLOAD" uploadURL="/" />
+              <MappedUploadProfile />
             </div>
             <div className="col-sm-6">
               <MappedDataCaptureForm />
