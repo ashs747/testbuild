@@ -1,4 +1,6 @@
 import React from 'react';
+var profilePicUpdated = {type: 'PROFILE_PIC_UPDATED', payload: ''}; //TODO - serviceWork
+var dispatch = () => {};
 
 /*eslint-disable camelcase */
 
@@ -6,7 +8,7 @@ class UploadProfile extends React.Component {
 
   constructor() {
     super();
-    this.addProfile = this.addProfile.bind(this);
+    this.onFilesAdded = this.onFilesAdded.bind(this);
     this.onFileUploaded = this.onFileUploaded.bind(this);
   }
 
@@ -15,20 +17,21 @@ class UploadProfile extends React.Component {
       browse_button: this.refs.uploadbtn.getDOMNode(),
       url: this.props.uploadURL,
       multi_selection: false,
+      multipart_params: {'context': 'profile-picture'},
       runtimes: 'html5,flash',
       flash_swf_url: '/assets/flash/Moxie.swf',
-      file_data_name: 'file'
+      file_data_name: 'file',
+      headers: {
+        Authorization: `Bearer ${this.props.authToken}`
+      }
     });
 
     this.uploader.init();
-    this.uploader.bind('FilesAdded', this.addProfile);
+    this.uploader.bind('FilesAdded', this.onFilesAdded);
     // this.uploader.bind('UploadProgress', this.onProgress);
     this.uploader.bind('FileUploaded', this.onFileUploaded);
     this.uploader.bind('UploadComplete', this.onUploadComplete);
     this.uploader.bind('Error', this.onError);
-    this.uploader.bind('Init', function(c) {
-      console.log(c.runtime);
-    });
   }
 
   render() {
@@ -43,16 +46,13 @@ class UploadProfile extends React.Component {
     );
   }
 
-  onFileUploaded() {
-    // dispatch a 'fetch data' call
+  onFilesAdded(up, file) {
+    this.uploader.start();
   }
 
-  addProfile(e) {
-    if (this.props.dispatchUpload) {
-      e.preventDefault();
-      this.props.dispatchUpload();
-    }
-    // console.log("Uploading image");
+  onFileUploaded(up, file, data) {
+    let response = JSON.parse(data.response);
+    dispatch(profilePicUpdated);
   }
 
 }

@@ -12,26 +12,18 @@ import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import {getPLJData} from '../../redux/actions/learningJourneyActions';
 import {gotUsersCohort} from '../../redux/actions/cohortActions';
 
-export function fetchInitialUserData(token) {
-  setCookieCredentials(token);
-  // let request = getUserDataFromOneTimeKey(token)
-  let request = Promise.resolve({
-    'id': 1,
-    'title': 'Mr',
-    'forename': 'Matt',
-    'surname': 'Cavanagh',
-    'email': 'matt.c@darkynt.co.uk',
-    'phone': '',
-    'profilePicture': {
-      'id': 123,
-      'url': 'http://www.baconmockup.com/200/200'
-    },
-    token
+export function fetchInitialUserData(key) {
+  let authByOneTimeKey = (key) => {
+    return Promise.resolve('MGYxNmEzZjJhZTNjYmU1NjkzOTE0OGI0MGQxNDZhYzdkYjJlMDM3YjcyNzc5Nzg0YTQ1ZWZmMzA3MWU3NDA3Mg'); //TODO: OneTimeKeyExchange Service
+  };
+  let req = authByOneTimeKey(key).then((token) => {
+    setCookieCredentials(token);
+    return getUserData();
   });
 
   return {
-    type: 'FETCHED_INITIAL_USER',
-    payload: request
+    type: COOKIE_CHECKED,
+    payload: req
   };
 };
 

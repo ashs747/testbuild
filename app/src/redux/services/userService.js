@@ -10,6 +10,13 @@ function getResponseBody(response) {
 
 export function updateUserData() {
   var params = store.getState().user;
-  return request.put(apiRoot + `api/user/profile`, params)
+  var filteredParams = {
+    password: params.password,
+    passwordConfirm: params.passwordConfirm,
+    forename: params.forename,
+    surname: params.surname,
+    properties: JSON.stringify(params.properties)
+  };
+  return request.put(apiRoot + `api/user/profile`, filteredParams)
     .then(getResponseBody);
 }

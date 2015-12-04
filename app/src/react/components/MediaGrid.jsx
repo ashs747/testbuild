@@ -74,7 +74,6 @@ export default class MediaGrid extends React.Component {
   }
 
   onMediaClick(index, event) {
-    console.log("clicked image: ", index);
     /*
     this.mediaGallery = <div className="media-gallery-popup" key={"media-gallery-popup"}>
     <a className="close-popup" onClick={this.onCloseClick}>Close</a>

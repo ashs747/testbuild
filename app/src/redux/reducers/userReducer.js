@@ -6,8 +6,16 @@ export function reducer(state = initialState, action) {
 
     case 'INITIAL_DATA_UPDATED':
       var newState = {...state};
-      newState[action.payload.field] = action.payload.value;
-      console.log('new', newState);
+      var field = action.payload.field;
+      var value = action.payload.value;
+
+      if (field.indexOf("properties.") > -1) {
+        var propsField = field.split('.')[1];
+        newState.properties[propsField] = value;
+        return newState;
+      }
+      
+      newState[field] = value;
       return newState;
       break;
 
@@ -15,7 +23,6 @@ export function reducer(state = initialState, action) {
       switch (action.status) {
         case 'RESOLVED':
           let newState = {...state, ...action.payload};
-          console.log('initial', newState);
           return newState;
 
         case 'REJECTED':
