@@ -32,11 +32,11 @@ export const createComment = (feedID, messageID) => {
   }, '');
 
   if (message.content && message.content.trim().length >= 1) {
-    let response = postMessage(feedID, JSON.stringify(message), messageID)
+    let response = postMessage(feedID, message, messageID)
       .then((res) => {
         dispatch(updateNewMessage(feedID, '', messageID));
         dispatch(fetchLatestFeedMessages(feedID));
-        var out = JSON.parse(res.text);
+        var out = res.text;
         return {feedID, message: out};
       });
     response.feedID = feedID;
@@ -130,10 +130,10 @@ export const saveUpdatedMessage = (feedID, messageID, commentID) => {
   if (message.content.trim().length < 1) {
     alert("You can't post a blank message, please enter some text");
   } else {
-    var payload = postUpdatedMessage(feedID, messageID, JSON.stringify(message))
+    var payload = postUpdatedMessage(feedID, messageID, message)
       .then((res) => {
         dispatch(setEditable(feedID, messageID, false));
-        return JSON.parse(res.text);
+        return res.text;
       })
       .then((resParsed) => {
         dispatch(fetchLatestFeedMessages(feedID));
@@ -213,7 +213,6 @@ export const createMessage = (feedID) => {
   }) : undefined;
 
   if (message.content && (message.content.trim().length > 0)) {
-   // var messageAsJSONString = JSON.stringify(message);
     let asyncResponse = postMessage(feedID, message)
       .then((res) => {
         dispatch(fetchLatestFeedMessages(feedID));

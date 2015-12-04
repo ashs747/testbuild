@@ -4,6 +4,7 @@ var Request = function() {
   function get(url, token) {
     return makeRequest('GET', url, null, token);
   }
+  
   function put(url, params, token) {
     return makeRequest('PUT', url, params, token);
   }
