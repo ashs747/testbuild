@@ -12,7 +12,6 @@ test:
     - cp app/src/localConfig.js.dist app/src/localConfig.js
     - npm install
     - ./node_modules/bower/bin/bower install
-    - ./node_modules/karma/bin/karma start karma.conf.js --single-run
     - ./node_modules/gulp/bin/gulp.js lint
     - ./node_modules/gulp/bin/gulp.js build
 deployment:
