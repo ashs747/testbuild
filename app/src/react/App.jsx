@@ -29,7 +29,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('About to render)', store.getState());
     this.checkLoggedInState();
     if (!this.state.Handler) {
       return <div />;
@@ -60,21 +59,17 @@ class App extends React.Component {
   checkLoggedInState() {
     var initialized = (Object.keys(store.getState()).length > 0);
     let activeRouteBase = this.getActiveRouteBase();
-    console.log('Woo Woo!');
     if (initialized) {
-      if (!store.getState().auth['access_token']) {
-        console.log("/* If redux initialized, and there's no authToken in the appState */");
+      if (!store.getState().auth['access_token']) {        
         var authTokenInCookie = cookie.get('access_token');
 
         if (!authTokenInCookie) {
           if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
-            console.log("If there's no authToken in a cookie then chuck them to the login");
             /* If there's no authToken in a cookie then chuck them to the login */
             router.transitionTo('/login');
             return;
           }
         } else {
-          console.log("/* we have an authToken in the cookie */");
           var authTokenData = {};
           authTokenData['access_token'] = authTokenInCookie;
           authTokenData['refresh_token'] = cookie.get('refresh_token');
@@ -83,14 +78,11 @@ class App extends React.Component {
         }
         return;
       } else {
-        console.log("We have an accesstoken");
         if (activeRouteBase === 'login') {
           router.transitionTo('/');
           return;
         }
       }
-    } else {
-      console.log('store yet to be initialized');
     }
   }
 

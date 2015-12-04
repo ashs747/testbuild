@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export function reducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case 'LOGOUT':
       return {};
@@ -14,7 +13,6 @@ export function reducer(state = initialState, action) {
 
     case 'COOKIE_AUTH_LOADED':
       var cookieData = action.payload;
-      console.log(action.payload);
       return {
         ...state,
         ...cookieData,
@@ -23,7 +21,6 @@ export function reducer(state = initialState, action) {
       };
 
     case 'TOKEN_CHECKED':
-      console.log('tokenChecked action', action);
       switch (action.status) {
         case 'REJECTED':
           return {
