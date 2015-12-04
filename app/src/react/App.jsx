@@ -4,7 +4,6 @@ import store from '../redux/store';
 import {cookieCheckedAction} from '../redux/actions/authActions';
 import {windowResize} from '../redux/actions/widthActions';
 import $ from 'jquery';
-
 class App extends React.Component {
   constructor() {
     super();
