@@ -5,15 +5,15 @@ var Request = function() {
     return makeRequest('GET', url, null, token);
   }
   function put(url, params, token) {
-    console.log(url);
-    console.log(params);
     return makeRequest('PUT', url, params, token);
   }
 
   function post(url, params, token) {
-    console.log(url);
-    console.log(params);
     return makeRequest('POST', url, params, token);
+  }
+
+  function del(url, token) {
+     return makeRequest('DELETE', url, null, token);
   }
 
   function makeRequest(method, url, params, token) {
@@ -81,9 +81,10 @@ var Request = function() {
   };
 
   return {
-    get: get,
-    post: post,
-    put: put,
+    get,
+    post,
+    put,
+    delete: del,
     request: makeRequest
   };
 };
