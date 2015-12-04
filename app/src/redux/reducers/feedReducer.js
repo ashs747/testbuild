@@ -22,7 +22,7 @@ function updateMatchedByFieldName(fieldName, value) {
 export const feedReducer = (state = defaultState, action) => {
   var feed;
   var nextState = {...state};
-
+  console.log(action);
   switch (action.type) {
     case 'LOGOUT':
       return {};

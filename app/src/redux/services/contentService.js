@@ -1,5 +1,6 @@
-import request from 'cirrus/services/request';
 import moment from 'moment-timezone';
+import requesty from '../../request';
+var request = requesty();
 
 export function getResources(cohortId) {
   //return request.post("/variation-generator", body).end();

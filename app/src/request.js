@@ -4,6 +4,11 @@ var Request = function() {
   function get(url, token) {
     return makeRequest('GET', url, null, token);
   }
+  function put(url, params, token) {
+    console.log(url);
+    console.log(params);
+    return makeRequest('PUT', url, params, token);
+  }
 
   function post(url, params, token) {
     console.log(url);
@@ -78,6 +83,7 @@ var Request = function() {
   return {
     get: get,
     post: post,
+    put: put,
     request: makeRequest
   };
 };

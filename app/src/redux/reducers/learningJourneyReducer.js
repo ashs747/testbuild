@@ -10,7 +10,7 @@ export function reducer(state = initialState, action) {
     case "LEARNING_JOURNEY_FETCHED":
       switch (action.status) {
         case "RESOLVED":
-          return _.mapObject(action.payload.body[0].modules, (module, key) => {
+          return _.mapObject(action.payload[0].modules, (module, key) => {
             let activities = _.mapObject(module.activities, (activity, key) => {
               let status;
               let slots;

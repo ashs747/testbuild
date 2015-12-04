@@ -1,12 +1,10 @@
-// AuthService: Deals with OAuth.
+// UserService: Deals with users.
 import config from '../../localConfig';
-import request from 'cirrus/services/request';
 import store from '../store';
-let apiRoot = config.api ? config.api.url : '';
+import requesty from '../../request';
+var request = requesty();
 
-function getResponseBody(response) {
-  return Promise.resolve(response.body);
-}
+let apiRoot = config.api ? config.api.url : '';
 
 export function updateUserData() {
   var params = store.getState().user;
@@ -17,6 +15,5 @@ export function updateUserData() {
     surname: params.surname,
     properties: JSON.stringify(params.properties)
   };
-  return request.put(apiRoot + `api/user/profile`, filteredParams)
-    .then(getResponseBody);
+  return request.put(apiRoot + `api/user/profile`, filteredParams);
 }

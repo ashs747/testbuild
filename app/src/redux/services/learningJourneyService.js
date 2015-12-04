@@ -1,8 +1,9 @@
 //learningJourneyServices.js
 import config from '../../localConfig';
 import appConfig from '../../config';
-import request from 'cirrus/services/request';
 import moment from 'moment-timezone';
+import requesty from '../../request';
+var request = requesty();
 
 let apiRoot = config.api ? config.api.url : '';
 
