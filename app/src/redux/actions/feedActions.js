@@ -60,8 +60,8 @@ export const createComment = (feedID, messageID) => {
 export const deleteMessageFromFeed = (feedID, messageID) => {
   let asyncResponse = deleteMessage(messageID).then((result) => {
     store.dispatch(fetchLatestFeedMessages(feedID));
-    var resultText = JSON.parse(result.text);
-    return {...resultText, feedID, messageID};
+    
+    return {...result, feedID, messageID};
   });
 
   return {
@@ -213,11 +213,11 @@ export const createMessage = (feedID) => {
   }) : undefined;
 
   if (message.content && (message.content.trim().length > 0)) {
-    var messageAsJSONString = JSON.stringify(message);
-    let asyncResponse = postMessage(feedID, messageAsJSONString)
+   // var messageAsJSONString = JSON.stringify(message);
+    let asyncResponse = postMessage(feedID, message)
       .then((res) => {
         dispatch(fetchLatestFeedMessages(feedID));
-        var out = JSON.parse(res.text);
+        var out = res.text;
         return {feedID, message: out};
       });
 

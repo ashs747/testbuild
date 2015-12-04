@@ -1,5 +1,6 @@
-import request from 'cirrus/services/request';
 import config from '../../localConfig';
+import requesty from '../../request';
+var request = requesty();
 
 let apiRoot = config.api ? config.api.url : '';
 
@@ -37,7 +38,6 @@ export function getFeedIdForContext(feeds, feedContext) {
 
 export function getFeedMessages(feedID, qty = 60) {
   return request.get(apiRoot + 'api/feeds/' + feedID)
-    .end()
     .then(formatFeedObject);
 }
 

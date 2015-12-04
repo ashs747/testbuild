@@ -89,7 +89,7 @@ class Comment extends React.Component {
     }
     return (
       <div className={`comment clearfix ${(this.props.profile === "sm") ? "mobile-comment" : "" }`}>
-        <CloudinaryImg file={profilePic} default="assets/img/profile-placeholder.jpg" />
+        <CloudinaryImg file={profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
         <div className={contentClass}>
           <h6>{this.props.name}</h6>
           {bodyContent}

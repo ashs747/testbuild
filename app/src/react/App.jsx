@@ -4,7 +4,6 @@ import store from '../redux/store';
 import {cookieCheckedAction} from '../redux/actions/authActions';
 import {windowResize} from '../redux/actions/widthActions';
 import $ from 'jquery';
-
 class App extends React.Component {
   constructor() {
     super();
@@ -22,11 +21,6 @@ class App extends React.Component {
       this.changeWidth();
     });
 
-    if (this.getActiveRouteBase() && this.getActiveRouteBase() !== 'on-boarding') {
-      /* we check to see if the router's instantiated and then that its not equal to on-boarding before triggering an auth */
-      store.dispatch(cookieCheckedAction());
-    }
-    
     store.subscribe(this.checkLoggedInState);
     router.run(this.onRouteChange);
   }

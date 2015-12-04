@@ -1,5 +1,6 @@
 import config from '../../localConfig';
-import request from 'cirrus/services/request';
+import requesty from '../../request';
+var request = requesty();
 
 let apiRoot = config.api ? config.api.url : '';
 

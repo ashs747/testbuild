@@ -29,12 +29,12 @@ export function fetchInitialUserData(key) {
 
 export function authAction(username, password) {
   let req = getOAuthToken(username, password).then((response) => {
-    let res = response.body;
+    let res = response;
     /* Expiry date is a new DateObject, set to 'Today in Milliseconds add the expiry time in seconds' */
     let expiryDate = new Date(new Date().valueOf() + res.expires_in * 1000);
     cookie.set('authToken', res.access_token, {expires: expiryDate});
     cookie.set('refresh_token', res.refresh_token);
-    Store.dispatch(cookieCheckedAction());
+    Store.dispatch(cookieCheckedAction(res.access_token));
     return response;
   });
 
@@ -44,8 +44,8 @@ export function authAction(username, password) {
   };
 };
 
-export function cookieCheckedAction() {
-  var req = getUserData().then((userData) => {
+export function cookieCheckedAction(accessToken) {
+  var req = getUserData(accessToken).then((userData) => {
     for (let feed in userData.feeds) {
       if (userData.feeds.hasOwnProperty(feed)) {
         Store.dispatch(fetchLatestFeedMessages(feed));
