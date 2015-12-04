@@ -5,6 +5,7 @@ import EmbedVideo from './EmbedVideo.jsx';
 import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';;
 import {dispatch} from '../../../../redux/store';
 import ImageView from '../../../components/ImageView.jsx';
+import CloudinaryImg from '../../../components/CloudinaryImg.jsx';
 
 /**
   PostForm Component, posts a message (or a comment) to a programme feed
@@ -61,7 +62,7 @@ class PostForm extends React.Component {
     return (
       <div className={`${className} clearfix`}>
         <div className="post-profile">
-          <img src={profilePic} />
+          <CloudinaryImg file={profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
         </div>
         <div className="post-message">
           <TextArea disabled={this.props.pending} value={this.props.content} placeholder={placeholder} onKeyDown={this.props.saveOnEnter ? this.keyPress : () => {}} onChange={this.onChange} />
