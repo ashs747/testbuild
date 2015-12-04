@@ -60,8 +60,8 @@ export const createComment = (feedID, messageID) => {
 export const deleteMessageFromFeed = (feedID, messageID) => {
   let asyncResponse = deleteMessage(messageID).then((result) => {
     store.dispatch(fetchLatestFeedMessages(feedID));
-    var resultText = JSON.parse(result.text);
-    return {...resultText, feedID, messageID};
+    
+    return {...result, feedID, messageID};
   });
 
   return {

@@ -76,7 +76,7 @@ var Request = function() {
     get,
     post,
     put,
-    delete: del,
+    del,
     request: makeRequest
   };
 };
