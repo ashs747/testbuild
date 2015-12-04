@@ -13,7 +13,7 @@ var Request = function() {
   }
 
   function del(url, token) {
-     return makeRequest('DELETE', url, null, token);
+    return makeRequest('DELETE', url, null, token);
   }
 
   function makeRequest(method, url, params, token) {
