@@ -83,7 +83,6 @@ class Message extends React.Component {
 
   render() {
     let profilePic = this.props.profilePic;
-    console.log(profilePic);
     let bodyString = <p>{this.props.content.split(' ').map(URLBuilder)}</p>;
     if (!this.state.fullString) {
       //String is too long, show small one and display see more link to change to fullstring
