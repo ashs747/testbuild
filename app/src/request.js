@@ -17,15 +17,10 @@ var Request = function() {
   }
 
   function makeRequest(method, url, params, token) {
-
     token = token || (Store ? Store.getState().auth.access_token : null);
-    console.log('making request to: ' + url + ' with this token ' + token);
 
     return new Promise(function(resolve, reject) {
-      console.log('making ' + method + ' request');
-
       var xhr = (function() { 
-        console.log('getting xhr');
         if (window.XMLHttpRequest) {
           // Chrome, Firefox, IE7+, Opera, Safari
           return new XMLHttpRequest(); 
@@ -52,14 +47,11 @@ var Request = function() {
       var strParams;
 
       if (params) {
-        console.log('got params');
         strParams = JSON.stringify(params);
-        console.log(strParams);
         xhr.setRequestHeader('Content-type', 'application/json');
       }
 
       if (token) {
-        console.log('using token');
         xhr.setRequestHeader('Authorization', `Bearer ${token}`);
       }
 
