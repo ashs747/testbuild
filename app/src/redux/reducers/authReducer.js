@@ -12,19 +12,23 @@ export function reducer(state = initialState, action) {
 
     case 'COOKIE_CHECKED':
       if (action.status === 'REJECTED') {
-        return {};
+        //return {};
       }
       return state;
       break;
 
     case AUTH:
+      console.log(action);
       switch (action.status) {
         case 'RESOLVED':
-          return {
+          console.log('woo?');
+          var ns = {
             ...state,
-            ...action.payload.body,
+            ...action.payload,
             waitingForLogin: false
           };
+          console.log('ns', ns);
+          return ns;
 
         case 'REJECTED':
           return {
