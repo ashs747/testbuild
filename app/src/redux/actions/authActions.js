@@ -3,14 +3,14 @@ import userManager from 'cirrus/services/managers/userManager';
 import {getOAuthToken, getUserData, setCookieCredentials} from '../services/authService';
 import cookie from 'cookie-cutter';
 import Store from '../store.js';
-export const AUTH = 'AUTH';
-export const COOKIE_CHECKED = 'COOKIE_CHECKED';
-export const LOGOUT = 'LOGOUT';
-import config from '../../localConfig';
 
-import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
+import config from '../../localConfig';
 import {getPLJData} from '../../redux/actions/learningJourneyActions';
 import {gotUsersCohort} from '../../redux/actions/cohortActions';
+
+export const AUTH = 'AUTH';
+export const TOKEN_CHECKED = 'TOKEN_CHECKED';
+export const LOGOUT = 'LOGOUT';
 
 export function fetchInitialUserData(key) {
   let authByOneTimeKey = (key) => {
@@ -22,7 +22,7 @@ export function fetchInitialUserData(key) {
   });
 
   return {
-    type: COOKIE_CHECKED,
+    type: TOKEN_CHECKED,
     payload: req
   };
 };
@@ -44,20 +44,27 @@ export function authAction(username, password) {
   };
 };
 
-export function cookieCheckedAction(accessToken) {
-  var req = getUserData(accessToken).then((userData) => {
-    for (let feed in userData.feeds) {
-      if (userData.feeds.hasOwnProperty(feed)) {
-        Store.dispatch(fetchLatestFeedMessages(feed));
-      }
-    }
-    Store.dispatch(getPLJData(config.programmeId));
+export function loadAuthFromCookie(cookieData) {
+  return {
+    type: 'COOKIE_AUTH_LOADED',
+    payload: cookieData
+  };
+}
+
+export function authTokenCheck() {
+  console.log('authTokenChecking for', accessToken);
+  return getUserData().then((userData) => {
+    Store.dispatch(getPLJData());
     Store.dispatch(gotUsersCohort(userData.cohort));
     return userData;
   });
+}
+
+export function tokenCheckAction() {
+  var out = getUserData();
   return {
-    type: COOKIE_CHECKED,
-    payload: req
+    type: 'TOKEN_CHECKED',
+    payload: out
   };
 }
 

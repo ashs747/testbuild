@@ -43,11 +43,13 @@ export function reducer(state = initialState, action) {
           };
       }
 
-    case 'COOKIE_CHECKED':
+    case 'TOKEN_CHECKED':
       switch (action.status) {
         case 'RESOLVED':
           var user = action.payload.user,
             feeds = action.payload.feeds;
+          user.cohort = action.payload.cohort;
+
           return {
             ...state,
             ...user,
@@ -56,7 +58,6 @@ export function reducer(state = initialState, action) {
 
         case 'REJECTED':
           return {
-            cookieChecked: true,
             loggedIn: false
           };
         default:

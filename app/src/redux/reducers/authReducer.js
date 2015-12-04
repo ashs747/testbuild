@@ -2,6 +2,7 @@ import {AUTH, AUTH_SUCCESS, AUTH_FAIL, COOKIE_CHECKED, LOGOUT} from '../actions/
 import cookie from 'cookie-cutter';
 
 const initialState = {
+  waitingForLogin: false
 };
 
 export function reducer(state = initialState, action) {
@@ -10,24 +11,48 @@ export function reducer(state = initialState, action) {
       return {};
       break;
 
-    case 'COOKIE_CHECKED':
-      if (action.status === 'REJECTED') {
-        //return {};
+    case 'COOKIE_AUTH_LOADED':
+      var cookieData = action.payload;
+      console.log(action.payload);
+      return {
+        ...state,
+        ...cookieData,
+        tokenChecked: false,
+        waitingForLogin: false
+      };
+
+    case 'TOKEN_CHECKED':
+      console.log('tokenChecked action', action);
+      switch (action.status) {
+        case 'REJECTED':
+          return {
+            waitingForLogin: false,
+            tokenChecked: true
+          };
+
+        case 'RESOLVED':
+          return {
+            ...state,
+            waitingForLogin: false,
+            tokenChecked: true
+          };
+
+        default:
+          return {
+            ...state,
+            waitingForLogin: true
+          };
       }
-      return state;
       break;
 
     case AUTH:
-      console.log(action);
       switch (action.status) {
         case 'RESOLVED':
-          console.log('woo?');
           var ns = {
             ...state,
             ...action.payload,
             waitingForLogin: false
           };
-          console.log('ns', ns);
           return ns;
 
         case 'REJECTED':
