@@ -46,9 +46,7 @@ export function reducer(state = initialState, action) {
     case 'TOKEN_CHECKED':
       switch (action.status) {
         case 'RESOLVED':
-          var user = action.payload.user,
-            feeds = action.payload.feeds;
-          user.cohort = action.payload.cohort;
+          var user = action.payload.user;
 
           return {
             ...state,

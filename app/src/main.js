@@ -11,12 +11,8 @@ import React from 'react';
 
 var slaves = {};
 
-try {
-  React.render(
-    React.createElement(Provider, {store: store}, () => {
-      return React.createElement(App, null);
-    }
-  ), document.getElementById('app'));
-} catch (e) {
-	// Squelched
-}
+React.render(
+  React.createElement(Provider, {store: store}, () => {
+    return React.createElement(App, null);
+  }
+), document.getElementById('app'));

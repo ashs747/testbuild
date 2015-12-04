@@ -32,9 +32,9 @@ export function authAction(username, password) {
     let res = response;
     /* Expiry date is a new DateObject, set to 'Today in Milliseconds add the expiry time in seconds' */
     let expiryDate = new Date(new Date().valueOf() + res.expires_in * 1000);
-    cookie.set('authToken', res.access_token, {expires: expiryDate});
+    cookie.set('access_token', res.access_token, {expires: expiryDate});
     cookie.set('refresh_token', res.refresh_token);
-    Store.dispatch(cookieCheckedAction(res.access_token));
+    Store.dispatch(authTokenCheck());
     return response;
   });
 
@@ -52,16 +52,19 @@ export function loadAuthFromCookie(cookieData) {
 }
 
 export function authTokenCheck() {
-  console.log('authTokenChecking for', accessToken);
+  console.log('authTokenChecking for');
   return getUserData().then((userData) => {
+    console.log('meanwhile... in the authtoken check success', userData);
     Store.dispatch(getPLJData());
     Store.dispatch(gotUsersCohort(userData.cohort));
+    return userData;
+  }, (userData) => {
     return userData;
   });
 }
 
 export function tokenCheckAction() {
-  var out = getUserData();
+  var out = authTokenCheck();
   return {
     type: 'TOKEN_CHECKED',
     payload: out

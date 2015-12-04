@@ -22,19 +22,16 @@ function updateMatchedByFieldName(fieldName, value) {
 export const feedReducer = (state = defaultState, action) => {
   var feed;
   var nextState = {...state};
-  console.log(action);
   switch (action.type) {
     case 'LOGOUT':
       return {};
 
-    case 'COOKIE_CHECKED':
+    case 'TOKEN_CHECKED':
       if (action.status === 'RESOLVED') {
-        if (Object.keys(state).length < 1) {
-          return {
-            ...state,
-            ...action.payload.feeds
-          };
-        }
+        return {
+          ...state,
+          ...action.payload.feeds
+        };
       }
       return state;
       break;

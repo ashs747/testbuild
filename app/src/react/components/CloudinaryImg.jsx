@@ -6,10 +6,15 @@ class CloudinaryImg extends React.Component {
   }
 
   render() {
-    var metadata = this.props.file.metadata || [];
+    var metadata = [];
+
+    if (this.props.file) {
+      metadata = this.props.file.metadata;
+    }
+    
     var modStr;
     var file = this.props.file;
-    if (file) {
+    if (file && file.metadata) {
       /*eslint-disable camelcase */
       for (let i = 0; i < metadata.length; i += 1) {
         file[metadata[i].key] = metadata[i].value;
