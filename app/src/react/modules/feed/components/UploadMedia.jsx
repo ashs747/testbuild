@@ -23,7 +23,7 @@ class UploadMedia extends React.Component {
       flash_swf_url: '/app/bower_components/plupload/js/Movie.swf',
       file_data_name: 'file',
       headers: {
-        Authorization: `Bearer ${cookie.get('authToken')}`
+        Authorization: `Bearer ${this.props.authToken}`
       }
       /* eslint-enable */
     });

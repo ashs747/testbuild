@@ -17,6 +17,7 @@ function mapHomeFeedProps(state) {
     context: 'programme',
     feeds: state.feeds,
     profile: "sm",
+    authToken: state.auth.access_token,
     showComments: true,
     showEmbedVideo: true,
     profilePic: state.user.profilePic
