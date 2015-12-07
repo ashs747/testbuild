@@ -60,28 +60,33 @@ class App extends React.Component {
     var initialized = (Object.keys(store.getState()).length > 0);
     let activeRouteBase = this.getActiveRouteBase();
     if (initialized) {
-      if (!store.getState().auth['access_token']) {        
-        var authTokenInCookie = cookie.get('access_token');
 
-        if (!authTokenInCookie) {
-          if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
-            /* If there's no authToken in a cookie then chuck them to the login */
-            router.transitionTo('/login');
-            return;
-          }
-        } else {
-          var authTokenData = {};
-          authTokenData['access_token'] = authTokenInCookie;
-          authTokenData['refresh_token'] = cookie.get('refresh_token');
-          store.dispatch(loadAuthFromCookie(authTokenData));
-          store.dispatch(tokenCheckAction());
-        }
-        return;
-      } else {
+      if (store.getState().auth['access_token']) {
+        /* If a user is on the login screen, but already has an access token get them to the home */
         if (activeRouteBase === 'login') {
           router.transitionTo('/');
           return;
+        } 
+      }
+
+      var authTokenInCookie = cookie.get('access_token');
+      var refreshToken = cookie.get('refresh_token');
+
+      if (!authTokenInCookie && !refreshToken) {
+        if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
+          /* If there's no authToken and nothing in a cookie then they're not auth'd
+          so we need to chuck them to the login... but only if they're not already doing so */
+          router.transitionTo('/login');
+          return;
         }
+      } else {
+        var authTokenData = {};
+        authTokenData['access_token'] = authTokenInCookie;
+        authTokenData['refresh_token'] = refreshToken;
+        /* Throw the tokens from the cookie up to state */
+        store.dispatch(loadAuthFromCookie(authTokenData));
+        /* Check em */
+        store.dispatch(tokenCheckAction());
       }
     }
   }
