@@ -16,7 +16,7 @@ class Wrapper extends React.Component {
     let clonedElement = React.cloneElement(this.props.trigger, {
       onMouseOver: this.showTooltip,
       onMouseLeave: this.hideTooltip
-    })
+    });
     return (
       <div style={{position: "relative"}}>
         {clonedElement}
