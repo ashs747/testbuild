@@ -25,7 +25,7 @@ export function reducer(state = initialState, action) {
         case 'REJECTED':
           return {
             waitingForLogin: false,
-            tokenChecked: true
+            tokenChecked: false
           };
 
         case 'RESOLVED':

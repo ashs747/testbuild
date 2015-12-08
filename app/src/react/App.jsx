@@ -57,31 +57,46 @@ class App extends React.Component {
   }
 
   checkLoggedInState() {
-    var initialized = (Object.keys(store.getState()).length > 0);
+    let initialized = (Object.keys(store.getState()).length > 0);
     let activeRouteBase = this.getActiveRouteBase();
-    if (initialized) {
-      if (!store.getState().auth['access_token']) {        
-        var authTokenInCookie = cookie.get('access_token');
+    let loginPending = initialized ? store.getState().auth.waitingForLogin : false;
+    let userLoggedIn = initialized ? store.getState().auth.tokenChecked : false;
 
-        if (!authTokenInCookie) {
-          if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
-            /* If there's no authToken in a cookie then chuck them to the login */
-            router.transitionTo('/login');
-            return;
-          }
-        } else {
-          var authTokenData = {};
-          authTokenData['access_token'] = authTokenInCookie;
-          authTokenData['refresh_token'] = cookie.get('refresh_token');
-          store.dispatch(loadAuthFromCookie(authTokenData));
-          store.dispatch(tokenCheckAction());
-        }
-        return;
-      } else {
+    if (initialized && !loginPending) {
+
+      if (userLoggedIn) {
         if (activeRouteBase === 'login') {
-          router.transitionTo('/');
+          router.transitionTo('/'); // Login Success - Go to home page
+          return;
+        } 
+        return; // LoggedIn - Nothing to do
+      }
+
+      if (store.getState().auth['access_token']) {
+        if (userLoggedIn === false) {
+          store.dispatch(tokenCheckAction());
           return;
         }
+        
+        return;
+      }
+
+      var authTokenInCookie = cookie.get('access_token');
+      var refreshToken = cookie.get('refresh_token');
+
+      if (!authTokenInCookie && !refreshToken) {
+        // TODO: Mop up invalid token in cookie
+        if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
+          router.transitionTo('/login');
+          return;
+        }
+      } else {
+        var authTokenData = {};
+        authTokenData['access_token'] = authTokenInCookie;
+        authTokenData['refresh_token'] = refreshToken;
+        /* Throw the tokens from the cookie up to state */
+        store.dispatch(loadAuthFromCookie(authTokenData));
+        return;
       }
     }
   }
