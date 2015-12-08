@@ -61,7 +61,6 @@ class App extends React.Component {
     let activeRouteBase = this.getActiveRouteBase();
     let loginPending = initialized ? store.getState().auth.waitingForLogin : false;
     let userLoggedIn = initialized ? store.getState().auth.tokenChecked : false;
-    console.log(activeRouteBase);
 
     if (initialized && !loginPending) {
 
