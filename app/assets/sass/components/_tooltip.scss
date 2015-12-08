@@ -1,0 +1,21 @@
+.custom-tooltip {
+  position: absolute;
+  background-color: $white;
+  border: 1px solid $dark_grey;
+  bottom: 50px;
+  width: 200px;
+  box-shadow: 0px 0px 5px 1px #555;
+  border-radius: 3px;
+  /*
+  .down-arrow {
+    position: absolute;
+    bottom: -10px;
+    left: calc(50% - 10px);
+  	width: 0;
+  	height: 0;
+  	border-left: 10px solid transparent;
+  	border-right: 10px solid transparent;
+  	border-top: 10px solid $light_grey;
+  }
+  */
+}
