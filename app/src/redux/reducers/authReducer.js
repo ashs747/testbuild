@@ -12,6 +12,7 @@ export function reducer(state = initialState, action) {
       break;
 
     case 'COOKIE_AUTH_LOADED':
+      console.log(action);
       var cookieData = action.payload;
       return {
         ...state,
@@ -21,11 +22,12 @@ export function reducer(state = initialState, action) {
       };
 
     case 'TOKEN_CHECKED':
+      console.log(action);
       switch (action.status) {
         case 'REJECTED':
           return {
             waitingForLogin: false,
-            tokenChecked: true
+            tokenChecked: false
           };
 
         case 'RESOLVED':

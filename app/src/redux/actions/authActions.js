@@ -27,6 +27,10 @@ export function fetchInitialUserData(key) {
   };
 };
 
+export function refreshAction(token) {
+
+}
+
 export function authAction(username, password) {
   let req = getOAuthToken(username, password).then((response) => {
     let res = response;
@@ -34,7 +38,7 @@ export function authAction(username, password) {
     let expiryDate = new Date(new Date().valueOf() + res.expires_in * 1000);
     cookie.set('access_token', res.access_token, {expires: expiryDate});
     cookie.set('refresh_token', res.refresh_token);
-    Store.dispatch(authTokenCheck());
+    Store.dispatch(tokenCheckAction());
     return response;
   });
 
@@ -52,9 +56,7 @@ export function loadAuthFromCookie(cookieData) {
 }
 
 export function authTokenCheck() {
-  console.log('authTokenChecking for');
   return getUserData().then((userData) => {
-    console.log('meanwhile... in the authtoken check success', userData);
     Store.dispatch(getPLJData());
     Store.dispatch(gotUsersCohort(userData.cohort));
     return userData;

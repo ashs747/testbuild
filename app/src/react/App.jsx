@@ -57,25 +57,37 @@ class App extends React.Component {
   }
 
   checkLoggedInState() {
-    var initialized = (Object.keys(store.getState()).length > 0);
+    let initialized = (Object.keys(store.getState()).length > 0);
     let activeRouteBase = this.getActiveRouteBase();
-    if (initialized) {
+    let loginPending = initialized ? store.getState().auth.waitingForLogin : false;
+    let userLoggedIn = initialized ? store.getState().auth.tokenChecked : false;
+    console.log(activeRouteBase);
 
-      if (store.getState().auth['access_token']) {
-        /* If a user is on the login screen, but already has an access token get them to the home */
+    if (initialized && !loginPending) {
+
+      if (userLoggedIn) {
         if (activeRouteBase === 'login') {
-          router.transitionTo('/');
+          router.transitionTo('/'); // Login Success - Go to home page
           return;
         } 
+        return; // LoggedIn - Nothing to do
+      }
+
+      if (store.getState().auth['access_token']) {
+        if (userLoggedIn === false) {
+          store.dispatch(tokenCheckAction());
+          return;
+        }
+        
+        return;
       }
 
       var authTokenInCookie = cookie.get('access_token');
       var refreshToken = cookie.get('refresh_token');
 
       if (!authTokenInCookie && !refreshToken) {
+        // TODO: Mop up invalid token in cookie
         if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
-          /* If there's no authToken and nothing in a cookie then they're not auth'd
-          so we need to chuck them to the login... but only if they're not already doing so */
           router.transitionTo('/login');
           return;
         }
@@ -85,8 +97,7 @@ class App extends React.Component {
         authTokenData['refresh_token'] = refreshToken;
         /* Throw the tokens from the cookie up to state */
         store.dispatch(loadAuthFromCookie(authTokenData));
-        /* Check em */
-        store.dispatch(tokenCheckAction());
+        return;
       }
     }
   }
