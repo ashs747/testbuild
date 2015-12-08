@@ -3,6 +3,7 @@ import {addFile} from '../../../../redux/actions/feedActions';
 import {dispatch} from '../../../../redux/store';
 import config from '../../../../localConfig';
 import cookie from 'cookie-cutter';
+import store from '../../../../redux/store.js';
 
 class UploadMedia extends React.Component {
 
@@ -23,7 +24,7 @@ class UploadMedia extends React.Component {
       flash_swf_url: '/app/bower_components/plupload/js/Movie.swf',
       file_data_name: 'file',
       headers: {
-        Authorization: `Bearer ${this.props.authToken}`
+        Authorization: `Bearer ${store.getState().auth.access_token}`
       }
       /* eslint-enable */
     });
