@@ -28,7 +28,8 @@ export function fetchInitialUserData(key) {
 };
 
 export function refreshAction(token) {
-
+ // dispatch a call to the oAuth endpoint to exchange the refresh token for an access_token
+ // TODO: this, Reducer and thin service work
 }
 
 export function authAction(username, password) {
