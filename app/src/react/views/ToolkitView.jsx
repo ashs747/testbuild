@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getAllToolkits} from '../../redux/actions/contentActions';
 import {dispatch} from '../../redux/store';
 
 class ToolkitView extends React.Component {
@@ -8,10 +7,6 @@ class ToolkitView extends React.Component {
   constructor() {
     super();
     this.mapToolkitWidgets = this.mapToolkitWidgets.bind(this);
-  }
-
-  componentDidMount() {
-    dispatch(getAllToolkits());
   }
 
   render() {
@@ -35,10 +30,11 @@ class ToolkitView extends React.Component {
   }
 
   mapToolkitWidgets(toolkits) {
+    console.log(toolkits);
     let mappedWidgets = toolkits.map(toolkit => (
       <div key={toolkit.id} className={`toolkit-widget ${this.props.profile}-item`}>
         <div className="widget-icon">
-          <i className={`fa fa-${toolkit.icon}`}></i>
+          <i className={`fa fa-${toolkit.icons}`}></i>
         </div>
         <h3>Tool title:<br />{toolkit.title}</h3>
         <a className="btn" href={`/#/toolkit/${toolkit.slug}`}>View</a>

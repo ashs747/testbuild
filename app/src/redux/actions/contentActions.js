@@ -1,4 +1,4 @@
-import {getResources, getFAQs, getProject, getToolkits, getToolkitContent, getActivity} from '../services/contentService';
+import {getResources, getFAQs, getProject, getActivity} from '../services/contentService';
 import store from '../store.js';
 
 export const getResourcesByCohort = (cohortId) => {
@@ -25,19 +25,10 @@ export const getProjectContent = (projectId) => {
   };
 };
 
-export const getAllToolkits = () => {
-  let asyncResponse = getToolkits();
+export const gotToolkits = (toolkits) => {
   return {
     type: "CONTENT_GET_ALL_TOOLKITS",
-    payload: asyncResponse
-  };
-};
-
-export const getToolkitContentFromSlug = (slug) => {
-  let asyncResponse = getToolkitContent(slug);
-  return {
-    type: "CONTENT_GET_TOOLKIT_CONTENT",
-    payload: asyncResponse
+    payload: toolkits
   };
 };
 
