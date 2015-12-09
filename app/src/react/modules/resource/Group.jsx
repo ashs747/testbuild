@@ -9,7 +9,14 @@ class Group extends React.Component {
 
   render() {
     let resources = this.props.resources.map((resource) => {
-      return <Display key={`res-${resource.reference}`} title={resource.title} reference={resource.reference} icon={resource.type.icon} />;
+      let ref = "#";
+      if (resource.file) {
+        //Put more sorting logic in here to interpolate references uploaded to s3
+        if (resource.file.reference) {
+          ref = resource.file.reference;
+        }
+      }
+      return <Display key={`res-${ref}`} title={resource.name} reference={ref} icon={resource.type.icon} />;
     });
     let title = this.props.title ? <h4>{this.props.title}</h4> : null;
     return (
