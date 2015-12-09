@@ -85,12 +85,10 @@ class PostForm extends React.Component {
     let attachmentsArray = attachments.map((a, i) => {
       let thumbnail = '/assets/img/thumb-default.png';
       let rotate;
-      if (a.thumbnail) {
-        thumbnail = a.thumbnail;
-        if (a) {
-          rotate = <a onClick={this.rotateAttachment(a)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
-        }
+      if (a) {
+        rotate = <a onClick={this.rotateAttachment(a)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
       }
+      
       let imageViewStyle = {
         backgroundColor: "white",
         height: (this.props.profile === "sm") ? "90px" : "150px",
@@ -126,11 +124,10 @@ class PostForm extends React.Component {
   }
 
   getFileRotation(fileMeta) {
-    console.log('fileMeta is', fileMeta);
     return fileMeta.filter((metaEntry) => {
-      return (metaEntry['rotate']);
+      return (metaEntry.key === 'rotate');
     }).reduce((p, c) => {
-      return p + c;
+      return p + c.value;
     }, 0);
   }
 
@@ -143,7 +140,9 @@ class PostForm extends React.Component {
   rotateAttachment(file) {
     return (e) => {
       let rotation = this.getFileRotation(file.metadata);
-      dispatch(rotateAttachment(this.props.feedID, file.id, rotation));
+      console.log('filemeta:', file.metadata);
+      console.log('rotation', rotation);
+      dispatch(rotateAttachment(this.props.feedID, file, rotation));
     };
   }
 

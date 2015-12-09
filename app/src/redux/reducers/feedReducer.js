@@ -172,6 +172,23 @@ export const feedReducer = (state = defaultState, action) => {
           break;
       }
       break;
+    case "FEED_UPDATE_FILE":
+      switch (action.status) {
+        case "RESOLVED":
+          nextState[action.payload.feedId].files = state[action.payload.feedId].files.map((file) => {
+            if (file.id === action.payload.file.id) {
+              return action.payload.file;
+            } else {
+              return file;
+            };
+          });
+          console.log(nextState);
+          return nextState;
+
+        default:
+          return state;
+          break;
+      }
 
     case "FEED_REMOVE_ATTACHMENT":
       nextState = Object.assign({}, state);

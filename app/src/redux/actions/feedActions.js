@@ -179,20 +179,23 @@ export const removeAttachment = (feedId, imageId) => {
   };
 };
 
-export const rotateAttachment = (feedId, imageId, imageRotation) => {
+export const rotateAttachment = (feedId, imageFile, imageRotation) => {
+  console.log('filerotat', imageRotation);
   imageRotation = imageRotation || 0;
+  console.log('filerotat', imageRotation);
   let newImageRotation = (imageRotation === 270) ? 0 : imageRotation + 90;
   let updatedMeta = {
     metaData: {
-      rotate: imageRotation
+      rotate: newImageRotation
     }
   };
-  let returnedFile = updateMeta(imageId, updatedMeta).then((file) =>{
+  let returnedFile = updateMeta(imageFile.id, updatedMeta).then((res) =>{
     return {
-      file,
+      ...res,
       feedId
     };
   });
+
   return {
     type: 'FEED_UPDATE_FILE',
     payload: returnedFile
