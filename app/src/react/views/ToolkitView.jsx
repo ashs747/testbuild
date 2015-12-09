@@ -30,7 +30,6 @@ class ToolkitView extends React.Component {
   }
 
   mapToolkitWidgets(toolkits) {
-    console.log(toolkits);
     let mappedWidgets = toolkits.map(toolkit => (
       <div key={toolkit.id} className={`toolkit-widget ${this.props.profile}-item`}>
         <div className="widget-icon">
