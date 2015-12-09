@@ -12,8 +12,10 @@ class CloudinaryImg extends React.Component {
       metadata = this.props.file.metadata;
     }
     
-    var modStr = [];
+    var imgParams = [];
+    var modStr = '';
     var file = this.props.file;
+
     if (file && file.metadata) {
       /*eslint-disable camelcase */
       for (let i = 0; i < metadata.length; i += 1) {
@@ -33,10 +35,10 @@ class CloudinaryImg extends React.Component {
 
       if (file.rotate || this.props.rotate) {
         if (!this.props.rotate) {
-          modStr = `a_${file.rotate},${modStr}`;
+          imgParams = `a_${file.rotate},${imgParams}`;
         } else {
           let calculateRotate = (file.rotate + this.props.rotate) % 360;
-          modStr = `a_${calculateRotate}`;
+          imgParams = `a_${calculateRotate}`;
         }
       }
 
@@ -44,21 +46,17 @@ class CloudinaryImg extends React.Component {
         if (this.props.hasOwnProperty(key)) {
           switch (key) {
             case 'width':
-              modStr.push(`w_${this.props[key]}`);
+              imgParams.push(`w_${this.props[key]}`);
               break;
             case 'height':
-              modStr.push(`h_${this.props[key]}`);
+              imgParams.push(`h_${this.props[key]}`);
               break;
             case 'crop':
-              modStr.push(`c_${this.props[key]}`);
+              imgParams.push(`c_${this.props[key]}`);
           }
         }
       }
-
-      if (modStr) {
-        modStr = `${modStr}/`;
-      }
-
+      modStr = modStr || imgParams.join(',');
       outStr = outStr.split('upload/').join(`upload/${modStr}`);
 
     } else {
