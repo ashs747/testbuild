@@ -8,6 +8,9 @@ class FileDownload extends React.Component {
   }
 
   render() {
+    if (!file) {
+      return <a href="#" target="_blank">{this.props.buttonText}</a>
+    }
     var file = {...this.props.file};
     for (let i = 0; i < file.metadata.length; i += 1) {
       file[file.metadata[i].key] = file.metadata[i].value;
