@@ -2,6 +2,7 @@ import React from 'react';
 import Markdown from 'react-remarkable';
 import {connect} from 'react-redux';
 import {dispatch} from '../../redux/store';
+import FileDownload from '../components/FileDownload.jsx';
 
 class ToolkitPageView extends React.Component {
 
@@ -17,9 +18,6 @@ class ToolkitPageView extends React.Component {
     if (!toolkit) {
       return (<div />);
     }
-    //TODO: Need the component that takes an s3 with metadata and spits out a url
-    //let toolkitRef = (toolkit.pdfLink) ? toolkit.pdfLink.reference : null;
-    let toolkitRef = "#";
     return (
       <div className="toolkit-page">
         <div className="header">
@@ -32,7 +30,7 @@ class ToolkitPageView extends React.Component {
             </div>
             <div className="col-md-3 visible-lg visible-md">
               <div className="pdf">
-                <a href={toolkitRef} target="_blank">Download PDF</a>
+                <FileDownload file={toolkit.pdfLink} buttonText="DOWNLOAD PDF"/>
               </div>
             </div>
           </div>
@@ -46,7 +44,7 @@ class ToolkitPageView extends React.Component {
               </div>
             </div>
             <div className="col-md-12 hidden-lg hidden-md second-pdf">
-              <a href={toolkitRef} target="_blank">Download as PDF <i className="fa fa-chevron-right"></i></a>
+              <FileDownload file={toolkit.pdfLink} buttonText="DOWNLOAD PDF"/>
             </div>
             <div className="col-md-3 right-bar">
               <div className="hints-and-tips">
