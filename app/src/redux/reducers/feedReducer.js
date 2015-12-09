@@ -150,25 +150,40 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_ADD_FILE":
-      switch (action.status) {
-        case 'RESOLVED':
+      switch (action.error) {
+        case undefined:
           let payload = action.payload;
           let metaPreviewURL = _.findWhere(payload.metadata, {key: "url"});
           payload.previewUrl = metaPreviewURL.value;
 
           let splitUrl = payload.previewUrl.split("/upload/");
           payload.thumbnail = `${splitUrl[0]}/upload/c_fill,h_200,w_200/${splitUrl[1]}`;
-          nextState[action.payload.feedId].files = [...state[action.payload.feedId].files || [], payload];
+          nextState[action.payload.feedId].files = nextState[action.payload.feedId].files || [];
+          nextState[action.payload.feedId].files.push(payload);
           return nextState;
-          break;
-        case 'REJECTED':
-          return state;
+          
           break;
         default:
           return state;
           break;
       }
       break;
+    case "FEED_UPDATE_FILE":
+      switch (action.status) {
+        case "RESOLVED":
+          nextState[action.payload.feedId].files = state[action.payload.feedId].files.map((file) => {
+            if (file.id === action.payload.file.id) {
+              return action.payload.file;
+            } else {
+              return file;
+            };
+          });
+          return nextState;
+
+        default:
+          return state;
+          break;
+      }
 
     case "FEED_REMOVE_ATTACHMENT":
       nextState = Object.assign({}, state);

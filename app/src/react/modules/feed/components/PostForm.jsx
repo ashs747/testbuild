@@ -29,12 +29,14 @@ class PostForm extends React.Component {
     this.onSave = this.onSave.bind(this);
     this.keyPress = this.keyPress.bind(this);
     this.mapAttachments = this.mapAttachments.bind(this);
+    this.rotateAttachment = this.rotateAttachment.bind(this);
+    this.removeAttachment = this.removeAttachment.bind(this);
   }
 
   render() {
     let attachments = this.mapAttachments(this.props.attachments);
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} /> : null;
+    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} authToken={this.props.authToken}/> : null;
     let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId={this.props.feedID} /> : null;
     let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
     let postButton;
@@ -83,12 +85,10 @@ class PostForm extends React.Component {
     let attachmentsArray = attachments.map((a, i) => {
       let thumbnail = '/assets/img/thumb-default.png';
       let rotate;
-      if (a.thumbnail) {
-        thumbnail = a.thumbnail;
-        if (a.previewUrl) {
-          rotate = <a onClick={this.rotateAttachment.bind(this, a.id)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
-        }
+      if (a) {
+        rotate = <a onClick={this.rotateAttachment(a)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
       }
+      
       let imageViewStyle = {
         backgroundColor: "white",
         height: (this.props.profile === "sm") ? "90px" : "150px",
@@ -96,8 +96,8 @@ class PostForm extends React.Component {
       };
       return (
         <div key={a.id} className="item">
-          <ImageView src={thumbnail} style={imageViewStyle} />
-          <a onClick={this.removeAttachment.bind(this, a.id)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
+          <CloudinaryImg file={a} defaultImg={thumbnail} style={imageViewStyle} />
+          <a onClick={this.removeAttachment(a)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
           {rotate}
         </div>
       );
@@ -122,12 +122,25 @@ class PostForm extends React.Component {
     }
   }
 
-  removeAttachment(id) {
-    dispatch(removeAttachment(this.props.feedID, id));
+  getFileRotation(fileMeta) {
+    return fileMeta.filter((metaEntry) => {
+      return (metaEntry.key === 'rotate');
+    }).reduce((p, c) => {
+      return p + c.value;
+    }, 0);
   }
 
-  rotateAttachment(id) {
-    dispatch(rotateAttachment(this.props.feedID, id));
+  removeAttachment(file) {
+    return (e) => {
+      dispatch(removeAttachment(this.props.feedID, file.id));
+    };
+  }
+
+  rotateAttachment(file) {
+    return (e) => {
+      let rotation = this.getFileRotation(file.metadata);
+      dispatch(rotateAttachment(this.props.feedID, file, rotation));
+    };
   }
 
 }

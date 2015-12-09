@@ -4,6 +4,10 @@ var request = requesty();
 
 let apiRoot = config.api ? config.api.url : '';
 
+export function updateMeta(fileID, metaData) {
+  return request.post(`${apiRoot}api/files/${fileID}/meta-data`, metaData);
+}
+
 function formatFeedObject(feedObject) {
   return setNoneEditable(feedObject['message-boards'][0]);
 }

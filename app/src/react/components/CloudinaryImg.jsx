@@ -12,7 +12,7 @@ class CloudinaryImg extends React.Component {
       metadata = this.props.file.metadata;
     }
     
-    var modStr;
+    var modStr = '';
     var file = this.props.file;
     if (file && file.metadata) {
       /*eslint-disable camelcase */
@@ -23,7 +23,15 @@ class CloudinaryImg extends React.Component {
       var outStr = (this.props.secure ? file.secure_url : file.url) || '';
 
       if (file.context === "profile-picture") {
-        modStr = 'w_200,h_200,c_thumb,g_face/';
+        modStr = 'w_200,h_200,c_thumb,g_face,';
+      }
+
+      if (file.rotate) {
+        modStr = `a_${file.rotate},${modStr}`;
+      }
+
+      if (modStr) {
+        modStr = `${modStr}/`;
       }
 
       outStr = outStr.split('upload/').join(`upload/${modStr}`);

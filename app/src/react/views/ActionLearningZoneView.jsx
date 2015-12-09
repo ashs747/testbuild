@@ -18,7 +18,6 @@ function mapALZFeed(state) {
     feeds: state.feeds,
     profile: state.width.profile,
     showComments: true,
-    authToken: state.auth.access_token,
     profilePic: state.user.profilePic
   };
 };

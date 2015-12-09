@@ -1,5 +1,5 @@
 //feedActions
-import {postUpdatedMessage, postMessage, postComment, deleteMessage, patchMessage, getFeedMessages} from '../services/feedService';
+import {postUpdatedMessage, postMessage, postComment, deleteMessage, patchMessage, getFeedMessages, updateMeta} from '../services/feedService';
 import store from '../store.js';
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
 export const FEED_UPDATE_MESSAGE = 'FEED_UPDATE_MESSAGE';
@@ -161,12 +161,12 @@ export const fetchLatestFeedMessages = (feedID) => {
 };
 
 export const addFile = (file, feedId) => {
-  let payload = Promise.resolve({
-    ...file.file, feedId
-  });
   return {
     type: 'FEED_ADD_FILE',
-    payload
+    payload: {
+      ...file.file,
+      feedId
+    }
   };
 };
 
@@ -179,12 +179,24 @@ export const removeAttachment = (feedId, imageId) => {
   };
 };
 
-export const rotateAttachment = (feedId, imageId) => {
-  return {
-    type: 'FEED_ROTATE_ATTACHMENT',
-    payload: {
-      feedId, imageId
+export const rotateAttachment = (feedId, imageFile, imageRotation) => {
+  imageRotation = imageRotation || 0;
+  let newImageRotation = (imageRotation === 270) ? 0 : imageRotation + 90;
+  let updatedMeta = {
+    metaData: {
+      rotate: newImageRotation
     }
+  };
+  let returnedFile = updateMeta(imageFile.id, updatedMeta).then((res) =>{
+    return {
+      ...res,
+      feedId
+    };
+  });
+
+  return {
+    type: 'FEED_UPDATE_FILE',
+    payload: returnedFile
   };
 };
 
