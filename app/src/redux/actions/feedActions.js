@@ -161,12 +161,12 @@ export const fetchLatestFeedMessages = (feedID) => {
 };
 
 export const addFile = (file, feedId) => {
-  let payload = Promise.resolve({
-    ...file.file, feedId
-  });
   return {
     type: 'FEED_ADD_FILE',
-    payload
+    payload: {
+      ...file.file,
+      feedId
+    }
   };
 };
 

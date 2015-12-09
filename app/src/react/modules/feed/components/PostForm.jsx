@@ -87,7 +87,7 @@ class PostForm extends React.Component {
       let rotate;
       if (a.thumbnail) {
         thumbnail = a.thumbnail;
-        if (a.previewUrl) {
+        if (a) {
           rotate = <a onClick={this.rotateAttachment(a)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
         }
       }
@@ -99,7 +99,7 @@ class PostForm extends React.Component {
       console.log('File (a):', a);
       return (
         <div key={a.id} className="item">
-          <CloudinaryImg file="a" defaultImg={thumbnail} style={imageViewStyle} />
+          <CloudinaryImg file={a} defaultImg={thumbnail} style={imageViewStyle} />
           <a onClick={this.removeAttachment(a)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
           {rotate}
         </div>
@@ -126,20 +126,25 @@ class PostForm extends React.Component {
   }
 
   getFileRotation(fileMeta) {
+    console.log('fileMeta is', fileMeta);
     return fileMeta.filter((metaEntry) => {
       return (metaEntry['rotate']);
-    }).reduce((p,c)=>{
+    }).reduce((p, c) => {
       return p + c;
-   }, 0);
+    }, 0);
   }
 
   removeAttachment(file) {
-    dispatch(removeAttachment(this.props.feedID, file.id));
+    return (e) => {
+      dispatch(removeAttachment(this.props.feedID, file.id));
+    };
   }
 
   rotateAttachment(file) {
-    let rotation = this.getFileRotation(file);
-    dispatch(rotateAttachment(this.props.feedID, file.id, rotation));
+    return (e) => {
+      let rotation = this.getFileRotation(file.metadata);
+      dispatch(rotateAttachment(this.props.feedID, file.id, rotation));
+    };
   }
 
 }
