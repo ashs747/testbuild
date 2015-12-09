@@ -29,6 +29,10 @@ class ActivityView extends React.Component {
       return <div />;
     }
     let moduleWithActivity = this.getModuleWithOnlySingleActivity(this.props.modules, this.props.params.activity);
+    let activity = _.values(moduleWithActivity.activities);
+    if (activity.length === 0) {
+      return <div />;
+    }
     let smallTable = (this.props.profile === "sm");
     let ljt = (this.props.content.journeyModule) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
     let resources = (
@@ -80,12 +84,12 @@ class ActivityView extends React.Component {
         <div className="header clearfix">
           <div className="col-sm-2">
             <div className="icon">
-              <span><i className={`fa fa-${this.props.content.icon}`}></i></span>
+              <span><i className={`fa fa-${moduleWithActivity.icon}`}></i></span>
             </div>
           </div>
           <div className="col-sm-10">
-            <h3>{this.props.content.journeyModule.name}</h3>
-            <h1>{this.props.content.title}</h1>
+            <h3>{`Module ${moduleWithActivity.id} - ${moduleWithActivity.name}`}</h3>
+            <h1>{activity[0].name}</h1>
           </div>
         </div>
         {bodyContent}

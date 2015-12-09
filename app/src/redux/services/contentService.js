@@ -80,43 +80,6 @@ export function getResources(cohortId) {
   });
 };
 
-export function getFAQs() {
-  //return request.post("/variation-generator", body).end();
-  return Promise.resolve([{
-    group: "About",
-    title: "This is an example question",
-    answer: "This is an example answer"
-  }, {
-    group: "About",
-    title: "This is another example question",
-    answer: "This is an example answer"
-  }, {
-    group: "About",
-    title: "This is an example question 2",
-    answer: "This is an example answer"
-  }, {
-    group: "About",
-    title: "This is another example question 2",
-    answer: "This is an example answer"
-  }, {
-    group: "About",
-    title: "This is an example question 3",
-    answer: "This is an example answer"
-  }, {
-    group: "Another-catagory",
-    title: "This is another example question",
-    answer: "This is an example answer"
-  }, {
-    group: "Final-catagory",
-    title: "This is an example question",
-    answer: "This is an example answer"
-  }, {
-    group: "Final-catagory",
-    title: "This is another example question",
-    answer: "This is an example answer"
-  }]);
-}
-
 export function getProject(id) {
   //return request.post("/variation-generator", body).end();
   return Promise.resolve({
@@ -232,74 +195,6 @@ export function getProject(id) {
       }
     }]
   });
-}
-
-export function getToolkits() {
-  return Promise.resolve(
-    [{
-      id: 1,
-      icon: "wrench",
-      title: "Aenean lacinia bibendum nulla sed consectetur",
-      slug: "test-toolkit"
-    }, {
-      id: 2,
-      icon: "wrench",
-      title: "Aenean lacinia bibendum nulla sed consectetur",
-      slug: "test-toolkit"
-    }, {
-      id: 3,
-      icon: "wrench",
-      title: "Aenean lacinia bibendum nulla sed consectetur",
-      slug: "test-toolkit"
-    }, {
-      id: 4,
-      icon: "wrench",
-      title: "Aenean lacinia bibendum nulla sed consectetur",
-      slug: "test-toolkit"
-    }, {
-      id: 5,
-      icon: "wrench",
-      title: "Aenean lacinia bibendum nulla sed consectetur",
-      slug: "test-toolkit"
-    }, {
-      id: 6,
-      icon: "wrench",
-      title: "Aenean lacinia bibendum nulla sed consectetur",
-      slug: "test-toolkit"
-    }, {
-      id: 7,
-      icon: "wrench",
-      title: "Aenean lacinia bibendum nulla sed consectetur",
-      slug: "test-toolkit"
-    }, {
-      id: 8,
-      icon: "wrench",
-      title: "Aenean lacinia bibendum nulla sed consectetur",
-      slug: "test-toolkit"
-    }]
-  );
-}
-
-export function getToolkitContent(slug) {
-  //call with the slug to get the right content;
-  /*eslint-disable */
-  return Promise.resolve({
-    title: "Linking actions to purpose and outcomes using SMART",
-    icon: "wrench",
-    pdfLink: "#",
-    content: `Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus.
-
-##### Sub Heading
-Nullam quis risus eget urna mollis ornare vel eu leo. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Donec id elit non mi porta gravida at eget metus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
-
-![Graph](/assets/img/toolkit-graph.jpg)
-Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean lacinia bibendum nulla sed consectetur.`,
-  hints: `+ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-+ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-+ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-+ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam`
-  });
-  /*eslint-enable */
 }
 
 export function getActivity(slug) {

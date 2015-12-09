@@ -25,10 +25,12 @@ function formatUserData(userData) {
   var user = userData.user[0] || userData.user;
   var feeds = feedsArrayToObject(userData.feeds);
   var cohort = userData.cohort;
+  var toolkits = userData.toolkits;
   var out = {
     user,
     feeds,
-    cohort
+    cohort,
+    toolkits
   };
 
   return Promise.resolve(out);

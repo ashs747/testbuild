@@ -42,28 +42,10 @@ export const reducer = (state = defaultState, action) => {
           break;
       }
     case "CONTENT_GET_ALL_TOOLKITS":
-      switch (action.status) {
-        case "RESOLVED":
-          nextState = Object.assign({}, state);
-          nextState.toolkits = action.payload;
-          return nextState;
-          break;
-        default:
-          return state;
-          break;
-      }
+      nextState = Object.assign({}, state);
+      nextState.toolkits = action.payload;
+      return nextState;
       break;
-    case "CONTENT_GET_TOOLKIT_CONTENT":
-      switch (action.status) {
-        case "RESOLVED":
-          nextState = Object.assign({}, state);
-          nextState.toolkitContent = action.payload;
-          return nextState;
-          break;
-        default:
-          return state;
-          break;
-      }
       break;
     case "CONTENT_GET_ACTIVITY":
       switch (action.status) {

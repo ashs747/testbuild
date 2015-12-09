@@ -8,5 +8,6 @@ module.exports = {
     minor: 0,
     patch: 0
   },
-  analyticsId: ''
+  analyticsId: '',
+  amazonBucket: "//s3-eu-west-1.amazonaws.com/strata-shared-files/"
 };

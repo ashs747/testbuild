@@ -133,7 +133,7 @@ class PostForm extends React.Component {
 }
 PostForm.defaultProps = { attachments: [] };
 PostForm.propTypes = {
-  profilePic: React.PropTypes.string,
+  profilePic: React.PropTypes.object,
   attachments: React.PropTypes.array,
   feedID: React.PropTypes.string,
   showUploadMedia: React.PropTypes.bool,

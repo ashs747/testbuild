@@ -7,6 +7,7 @@ import Store from '../store.js';
 import config from '../../localConfig';
 import {getPLJData} from '../../redux/actions/learningJourneyActions';
 import {gotUsersCohort} from '../../redux/actions/cohortActions';
+import {gotToolkits} from '../../redux/actions/contentActions';
 
 export const AUTH = 'AUTH';
 export const TOKEN_CHECKED = 'TOKEN_CHECKED';
@@ -60,6 +61,7 @@ export function authTokenCheck() {
   return getUserData().then((userData) => {
     Store.dispatch(getPLJData());
     Store.dispatch(gotUsersCohort(userData.cohort));
+    Store.dispatch(gotToolkits(userData.toolkits));
     return userData;
   }, (userData) => {
     return userData;

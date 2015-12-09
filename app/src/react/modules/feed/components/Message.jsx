@@ -166,7 +166,7 @@ Message.propTypes = {
   name: React.PropTypes.string.isRequired,
   content: React.PropTypes.string.isRequired,
   date: React.PropTypes.string.isRequired,
-  profilePic: React.PropTypes.string,
+  profilePic: React.PropTypes.object,
   files: React.PropTypes.array,
   comments: React.PropTypes.array,
   editable: React.PropTypes.bool,
