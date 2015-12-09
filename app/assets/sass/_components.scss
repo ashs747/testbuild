@@ -39,6 +39,7 @@
 .members-module {
   background-color: #FFFFFF;
   margin-bottom: 20px;
+  border-bottom: 2px solid $dark_grey;
   h3 {
     padding: 20px;
     margin: 0;
@@ -46,11 +47,11 @@
   .user-display {
     padding: 5px 20px;
     border-bottom: 2px solid $dark_grey;
-    .profile-image {
+    img {
       float: left;
       width: 40px;
       height: 40px;
-      margin-right: 25px;
+      margin-right: 20px;
     }
     p {
       margin-top: 10px;
@@ -65,6 +66,9 @@
     img {
       border-radius: 50%;
     }
+  }
+  .user-display:last-child {
+    border-bottom: none;
   }
 }
 

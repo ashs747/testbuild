@@ -54,7 +54,7 @@ class Comment extends React.Component {
 
     return false;
   }
-  
+
   componentWillMount() {
     if (this.props.content.length > 200) {
       this.setState({
@@ -131,7 +131,7 @@ Comment.propTypes = {
   name: React.PropTypes.string.isRequired,
   content: React.PropTypes.string.isRequired,
   date: React.PropTypes.object.isRequired,
-  profilePic: React.PropTypes.string,
+  profilePic: React.PropTypes.object,
   editing: React.PropTypes.bool
 };
 
