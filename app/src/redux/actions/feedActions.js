@@ -180,9 +180,7 @@ export const removeAttachment = (feedId, imageId) => {
 };
 
 export const rotateAttachment = (feedId, imageFile, imageRotation) => {
-  console.log('filerotat', imageRotation);
   imageRotation = imageRotation || 0;
-  console.log('filerotat', imageRotation);
   let newImageRotation = (imageRotation === 270) ? 0 : imageRotation + 90;
   let updatedMeta = {
     metaData: {

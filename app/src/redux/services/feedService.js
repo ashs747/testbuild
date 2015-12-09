@@ -5,7 +5,6 @@ var request = requesty();
 let apiRoot = config.api ? config.api.url : '';
 
 export function updateMeta(fileID, metaData) {
-  console.log(fileID, metaData);
   return request.post(`${apiRoot}api/files/${fileID}/meta-data`, metaData);
 }
 

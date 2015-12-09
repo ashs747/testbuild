@@ -23,7 +23,6 @@ class CloudinaryImg extends React.Component {
       var outStr = (this.props.secure ? file.secure_url : file.url) || '';
 
       if (file.context === "profile-picture") {
-        console.log('Profile picture type', file.context);
         modStr = 'w_200,h_200,c_thumb,g_face,';
       }
 

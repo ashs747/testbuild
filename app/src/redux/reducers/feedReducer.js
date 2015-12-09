@@ -152,18 +152,14 @@ export const feedReducer = (state = defaultState, action) => {
     case "FEED_ADD_FILE":
       switch (action.error) {
         case undefined:
-          console.log('resolvedAddFile with:', action);
           let payload = action.payload;
           let metaPreviewURL = _.findWhere(payload.metadata, {key: "url"});
           payload.previewUrl = metaPreviewURL.value;
 
           let splitUrl = payload.previewUrl.split("/upload/");
           payload.thumbnail = `${splitUrl[0]}/upload/c_fill,h_200,w_200/${splitUrl[1]}`;
-          console.log('still not broken here)');
           nextState[action.payload.feedId].files = nextState[action.payload.feedId].files || [];
           nextState[action.payload.feedId].files.push(payload);
-
-          console.log('woo', nextState[action.payload.feedId]);
           return nextState;
           
           break;
@@ -182,7 +178,6 @@ export const feedReducer = (state = defaultState, action) => {
               return file;
             };
           });
-          console.log(nextState);
           return nextState;
 
         default:

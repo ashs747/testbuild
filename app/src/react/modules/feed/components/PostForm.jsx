@@ -94,7 +94,6 @@ class PostForm extends React.Component {
         height: (this.props.profile === "sm") ? "90px" : "150px",
         width: (this.props.profile === "sm") ? "90px" : "150px",
       };
-      console.log('File (a):', a);
       return (
         <div key={a.id} className="item">
           <CloudinaryImg file={a} defaultImg={thumbnail} style={imageViewStyle} />
@@ -140,8 +139,6 @@ class PostForm extends React.Component {
   rotateAttachment(file) {
     return (e) => {
       let rotation = this.getFileRotation(file.metadata);
-      console.log('filemeta:', file.metadata);
-      console.log('rotation', rotation);
       dispatch(rotateAttachment(this.props.feedID, file, rotation));
     };
   }
