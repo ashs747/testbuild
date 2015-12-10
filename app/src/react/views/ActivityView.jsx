@@ -25,21 +25,19 @@ class ActivityView extends React.Component {
   }
 
   render() {
-    if (!this.props.content) {
-      return <div />;
-    }
     let moduleWithActivity = this.getModuleWithOnlySingleActivity(this.props.modules, this.props.params.activity);
-    let activity = _.values(moduleWithActivity.activities);
+    var activity = _.values(moduleWithActivity.activities);
     if (activity.length === 0) {
       return <div />;
     }
+    activity = activity[0];
     let smallTable = (this.props.profile === "sm");
-    let ljt = (this.props.content.journeyModule) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
+    let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
     let resources = (
       <div>
-        <ResourceWidget title="Pre-work" resources={this.props.content.preWork} />
-        <ResourceWidget title="Resources" resources={this.props.content.resources} />
-        <ResourceWidget title="Course notes and recordings" resources={this.props.content.courseNotes} />
+        <ResourceWidget title="Pre-work" resources={activity.resources} />
+        <ResourceWidget title="Resources" resources={activity.resources} />
+        <ResourceWidget title="Course notes and recordings" resources={activity.resources} />
       </div>
     );
     let overview = (
@@ -48,7 +46,7 @@ class ActivityView extends React.Component {
         {ljt}
         <div className="overview-inner">
           <h3>Overview and objectives</h3>
-          <Markdown source={this.props.content.content} />
+          <Markdown source={activity.content} />
         </div>
       </div>
     );
@@ -89,7 +87,7 @@ class ActivityView extends React.Component {
           </div>
           <div className="col-sm-10">
             <h3>{`Module ${moduleWithActivity.id} - ${moduleWithActivity.name}`}</h3>
-            <h1>{activity[0].name}</h1>
+            <h1>{activity.name}</h1>
           </div>
         </div>
         {bodyContent}
@@ -118,7 +116,6 @@ class ActivityView extends React.Component {
 function mapActivityViewProps(state) {
   return {
     profile: state.width.profile,
-    content: state.content.activity ? state.content.activity : null,
     modules: state.learningJourney
   };
 };

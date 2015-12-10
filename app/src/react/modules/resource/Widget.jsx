@@ -39,7 +39,7 @@ export default class Widget extends React.Component {
 
   groupResources() {
     return _.groupBy(this.props.resources, (resource) => {
-      let type = resource.type.typeSlug;
+      let type = resource.type.type;
       if (type.indexOf("document-") > -1) {
         return "document";
       } else {
