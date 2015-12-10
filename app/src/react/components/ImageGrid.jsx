@@ -23,14 +23,20 @@ export default class ImageGrid extends React.Component {
   }
 
   componentWillMount() {
+    
   }
 
   componentWillUnmount() {
-   // $(window).off('resize', this.renderGrid);
+    this.$refToComponent.off('resize', (e) => {
+      this.setState({rowWidth: this.$refToComponent.width()});
+    });
   }
   componentDidMount() {
-    let w = $(React.findDOMNode(this)).width();
-    this.setState({rowWidth: w});
+    this.$refToComponent = $(React.findDOMNode(this));
+    this.$refToComponent.on('resize', (e) => {
+      this.setState({rowWidth: this.$refToComponent.width()});
+    });
+    this.setState({rowWidth: $(React.findDOMNode(this)).width()});
   }
   render() {
     // var grid = (!this.state.loading) ? this.state.grid.map((row, i) => {
@@ -51,20 +57,16 @@ export default class ImageGrid extends React.Component {
         row[j] = (row[j] instanceof Array) ? row[j] : [];
         let file = files[i];
         let remainingWidth = width;
-
         if (row[j].length > 0) {
           remainingWidth = row[j].reduce((prev, cur) => {
             return prev - cur.dispWidth;
           }, width);
-          console.log(`thisRowHeight for ${j}`, row[j][0].dispHeight);
-          console.log('this much left', remainingWidth);
         }
-
         file.oDimensions = this.getOriginalDimensions(file);
-       
         if (row[j].length === 0) {
-          file.dispWidth = Math.ceil(width / 3);
-          file.dispHeight =  Math.ceil(file.dispWidth * file.oDimensions.aspect);
+          let maxTargetInRow = (width > 321) ? 3 : 2;
+          file.dispWidth = Math.ceil(width / maxTargetInRow);
+          file.dispHeight = Math.ceil(file.dispWidth * file.oDimensions.aspect);
           row[j].push(file); // first file in row
         } else {
           
@@ -72,24 +74,17 @@ export default class ImageGrid extends React.Component {
           file.dispWidth = Math.ceil(file.dispHeight * file.oDimensions.aspect);
        
           if (remainingWidth >= file.dispWidth) {
-            console.log('Adding to row', remainingWidth);
             row[j].push(file);
-            console.log('added to row', file);
           } else {
             //make the last file fill the space
-            console.log('about to push, and we need to set the last one', row[j].length);
             row[j][(row[j].length - 1)].dispWidth += remainingWidth;
             row[j][(row[j].length - 1)].cropMode = 'fill';
             grid.push(row[j]);
-            console.log('Pushed new row');
             j += 1;
             row[j] = [];
             row[j].push(file);
-            console.log('rowJ is', row[j]);
-            console.log('adding row to grid', grid);
           }
         }
-
       } // end for
       return row;
     };
@@ -135,13 +130,28 @@ export default class ImageGrid extends React.Component {
 
   getOriginalDimensions(file) {
     var dimensions = {};
+
     file.metadata.forEach((meta) => {
       if (meta.key === "height" || meta.key === "width") {
         dimensions[meta.key] = meta.value;
       }
     });
-    
+    let rotation = file.metadata.filter((meta) => {
+      return (meta.key === 'rotate'); 
+    });
     dimensions.aspect = (dimensions.width / dimensions.height);
+    if (rotation.length === 1 ) {
+      let swapWH = (rotation[0].value) % 180;
+      if (swapWH % 90 === 0) {
+        let width, height;
+        width = dimensions.height;
+        height = dimensions.width;
+        dimensions.aspect = (dimensions.width / dimensions.height);
+        return {...dimensions,
+          width,
+          height}
+      }
+    }
     return dimensions;
   }
 
