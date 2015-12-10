@@ -17,15 +17,18 @@ class Footer extends React.Component {
         default:
           return (
             <div className="footer clearfix full">
+              <h3>Quick Links</h3>
               <ul className="list-one">
-                <LiAnchor text="Home" url="/#/home"/>
                 <LiAnchor text="Programme" url="/#/programme"/>
                 <LiAnchor text="Learning Journey" url="/#/personal-learning-journey"/>
                 <LiAnchor text="Action Learning Zone" url="/#/action-learning-zone"/>
               </ul>
               <ul className="list-two">
-                <LiAnchor text="Toolkit" url="/#/tools"/>
-                <LiAnchor text="My details" url="/#/profile"/>
+                <LiAnchor text="Learning Log" url="#"/>
+                <LiAnchor text="Profile" url="/#/profile"/>
+                <LiAnchor text="Toolkit" url="/#/toolkits"/>
+              </ul>
+              <ul className="list-three">
                 <LiAnchor text="Need Help?" url="/#/help"/>
                 <LiAnchor text="Log Out" url="/#/login"/>
               </ul>
