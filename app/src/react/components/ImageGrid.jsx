@@ -41,46 +41,61 @@ export default class ImageGrid extends React.Component {
     //   );
     //   return <div key={i} className="grid-row">{gridRow}</div>;
     // }) : null;
-    var grid = [];
     var rowWidth = this.state.rowWidth || 300;
 
     const buildRowsToGrid = (files, width) => {
+      let grid = [];
+      let j = 0;
       let row = [];
-      let thisRowHeight;
-
       for (let i = 0; i < files.length; i++) {
+        row[j] = (row[j] instanceof Array) ? row[j] : [];
         let file = files[i];
         let remainingWidth = width;
 
-        if (row.length > 0) {
-          remainingWidth = row.reduce((prev, cur) => {
-            return prev - cur;
+        if (row[j].length > 0) {
+          remainingWidth = row[j].reduce((prev, cur) => {
+            return prev - cur.dispWidth;
           }, width);
-          thisRowHeight = row[0].dispHeight;
+          console.log(`thisRowHeight for ${j}`, row[j][0].dispHeight);
+          console.log('this much left', remainingWidth);
         }
 
         file.oDimensions = this.getOriginalDimensions(file);
-        
-        if (row.length === 0) {
+       
+        if (row[j].length === 0) {
           file.dispWidth = Math.ceil(width / 3);
-          file.dispHeight = file.oDimensions.aspect * file.dispWidth;
+          file.dispHeight =  Math.ceil(file.dispWidth * file.oDimensions.aspect);
+          row[j].push(file); // first file in row
         } else {
-          file.dispHeight = thisRowHeight;
-          file.dispWidth = file.dispHeight * file.oDimensions.aspect;
+          
+          file.dispHeight = Math.ceil(row[j][0].dispHeight);
+          file.dispWidth = Math.ceil(file.dispHeight * file.oDimensions.aspect);
+       
+          if (remainingWidth >= file.dispWidth) {
+            console.log('Adding to row', remainingWidth);
+            row[j].push(file);
+            console.log('added to row', file);
+          } else {
+            //make the last file fill the space
+            console.log('about to push, and we need to set the last one', row[j].length);
+            row[j][(row[j].length - 1)].dispWidth += remainingWidth;
+            row[j][(row[j].length - 1)].cropMode = 'fill';
+            grid.push(row[j]);
+            console.log('Pushed new row');
+            j += 1;
+            row[j] = [];
+            row[j].push(file);
+            console.log('rowJ is', row[j]);
+            console.log('adding row to grid', grid);
+          }
         }
-        
-        if (file.dispWidth < remainingWidth) {
-          console.log('Adding to row', remainingWidth);
-          console.log('items in row', row.length);
-          row.push(file);
-        } else {
-          grid.push([...row]);
-          console.log('adding row to grid', grid);
-        }
-      }
+
+      } // end for
+      return row;
     };
 
-    buildRowsToGrid(this.props.files, rowWidth);
+    let grid = buildRowsToGrid(this.props.files, rowWidth);
+
     console.log(grid);
     // this.props.files.forEach((file) => {
     //   let dimensions = this.getOriginalDimensions(file);
@@ -104,7 +119,7 @@ export default class ImageGrid extends React.Component {
     // }
     var cloudinaryGrid = grid.map((row) => {
       let rowObj = row.map((file) => {
-        return <CloudinaryImg file={file} width={file.dispWidth} height={file.dispHeight} />;
+        return <CloudinaryImg file={file} width={file.dispWidth} height={file.dispHeight} crop="fill" />;
       });
       return (<div className="imageRow">
         {rowObj}
@@ -126,7 +141,7 @@ export default class ImageGrid extends React.Component {
       }
     });
     
-    dimensions.aspect = Math.ceil(dimensions.width / dimensions.height);
+    dimensions.aspect = (dimensions.width / dimensions.height);
     return dimensions;
   }
 

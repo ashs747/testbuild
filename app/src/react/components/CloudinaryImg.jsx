@@ -43,7 +43,7 @@ class CloudinaryImg extends React.Component {
       }
 
       for (let key in this.props) {
-        if (this.props.hasOwnProperty(key)) {
+        if (this.props.hasOwnProperty(key) && !!key) {
           switch (key) {
             case 'width':
               imgParams.push(`w_${this.props[key]}`);
