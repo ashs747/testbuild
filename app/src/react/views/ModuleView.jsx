@@ -31,13 +31,11 @@ class ModuleView extends React.Component {
       return <div />;
     }
     let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} />;
-    let items = (module.properties && module.properties.carousel) ? [] : [{
-      name: '"Collaborates with others across the organisation; takes a proactive and organisaed approach"',
-      backgroundImage: "https://placehold.it/810x250?text=."
-    }, {
-      name: '"Collaborates with others across the organisation; takes a proactive and organisaed approach"',
-      backgroundImage: "https://placehold.it/810x250?text=."
-    }];
+    let items = module.files.map(file => {
+      return {
+        backgroundImage: file.reference
+      };
+    });
     let carousel = <Carousel context={`module-${module.id}`} items={items} defineWidthClass="col-xs-8 col-xs-offset-2"/>;
     let exampleMarkdown = `
 ##### Engaging
