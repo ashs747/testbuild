@@ -28,17 +28,17 @@ class CloudinaryImg extends React.Component {
         //defaults
         switch (file.context) {
           case "profile-picture":
-            modStr = 'w_200,h_200,c_thumb,g_face,';
+            modStr = 'w_200,h_200,c_thumb,g_face/';
             break;
         }
       }
 
       if (file.rotate || this.props.rotate) {
         if (!this.props.rotate) {
-          imgParams = `a_${file.rotate},${imgParams}`;
+          imgParams.push(`a_${file.rotate},${imgParams}`);
         } else {
           let calculateRotate = (file.rotate + this.props.rotate) % 360;
-          imgParams = `a_${calculateRotate}`;
+          imgParams.push(`a_${calculateRotate}`);
         }
       }
 
@@ -56,7 +56,7 @@ class CloudinaryImg extends React.Component {
           }
         }
       }
-      modStr = modStr || imgParams.join(',');
+      modStr = modStr || `${imgParams.join(',')}/`;
       outStr = outStr.split('upload/').join(`upload/${modStr}`);
 
     } else {
@@ -68,7 +68,7 @@ class CloudinaryImg extends React.Component {
     }
     /*eslint-enable camelcase */
     var outputImageWithAnchor = (<a href={this.props.secure ? file.secure_url : file.url}>
-      <img src={outStr} alt={this.props.alt}/>
+      <img style={this.props.style} src={outStr} alt={this.props.alt}/>
     </a>);
 
     return (this.props.outputTextOnly) ? outStr : outputImageWithAnchor;
