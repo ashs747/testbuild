@@ -4,8 +4,6 @@ import _ from 'underscore';
 import {connect} from 'react-redux';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {getFeedIdForContext} from '../../redux/services/feedService';
-import {fetchUsersByCohort} from '../../redux/actions/usersActions';
-import {getResourcesByCohort} from '../../redux/actions/contentActions';
 import Store from '../../redux/store';
 import TabStack from 'cirrus/react/components/TabStack';
 import ResourcesWidget from '../modules/resource/Widget.jsx';
@@ -38,7 +36,7 @@ var MembersModule = connect(mapMembersProps)(MembersModuleWidget);
 function mapResourceProps(state) {
   return {
     title: "Resouces",
-    resources: state.content ? state.content.resources : []
+    resources: state.cohort ? state.cohort.resources : []
   };
 }
 var TeamResourcesWidget = connect(mapResourceProps)(ResourcesWidget);
@@ -55,11 +53,6 @@ class ActionLearningZoneView extends React.Component {
 
   constructor() {
     super();
-  }
-
-  componentDidMount() {
-    dispatch(fetchUsersByCohort(1));
-    dispatch(getResourcesByCohort(1));
   }
 
   render() {
