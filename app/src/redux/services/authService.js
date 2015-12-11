@@ -44,6 +44,14 @@ export function getUserData(token) {
   return request.get(apiRoot + 'api/user/bootstrap', token)
     .then(formatUserData);
 }
+export const getOAuthTokenFromRefreshToken = (token) => {
+   return oAuth({
+    refresh_token: token,
+    client_id: config.api.clientId,
+    client_secret: config.api.appSecret,
+    grant_type: 'refresh_token'
+  });
+}
 
 export const getOAuthToken = (username, password) => {
   if (arguments.length < 2) {

@@ -29,6 +29,7 @@ export function reducer(state = initialState, action) {
           };
 
         case 'RESOLVED':
+          console.log('Token check success');
           return {
             ...state,
             waitingForLogin: false,
@@ -46,6 +47,7 @@ export function reducer(state = initialState, action) {
     case AUTH:
       switch (action.status) {
         case 'RESOLVED':
+          console.log('Auth completed');
           var ns = {
             ...state,
             ...action.payload,
@@ -55,7 +57,6 @@ export function reducer(state = initialState, action) {
 
         case 'REJECTED':
           return {
-            ...state,
             waitingForLogin: false,
             error: {
               code: action.payload.status,
@@ -64,7 +65,8 @@ export function reducer(state = initialState, action) {
           };
 
         default:
-          return {...state,
+          console.log('Pending', state);
+          return {
             waitingForLogin: true
           };
       }
