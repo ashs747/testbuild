@@ -104,7 +104,7 @@ export default class ImageGrid extends React.Component {
       return (meta.key === 'rotate'); 
     });
     dimensions.aspect = (dimensions.width / dimensions.height);
-    if (rotation.length === 1 ) {
+    if (rotation.length === 1) {
       let swapWH = (rotation[0].value) % 180;
       if (swapWH % 90 === 0) {
         let width, height;
@@ -113,7 +113,8 @@ export default class ImageGrid extends React.Component {
         dimensions.aspect = (dimensions.width / dimensions.height);
         return {...dimensions,
           width,
-          height}
+          height
+        }
       }
     }
     return dimensions;
