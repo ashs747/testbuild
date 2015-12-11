@@ -111,9 +111,11 @@ export default class ImageGrid extends React.Component {
         width = dimensions.height;
         height = dimensions.width;
         dimensions.aspect = (dimensions.width / dimensions.height);
-        return {...dimensions,
+        return {
+          ...dimensions,
           width,
-          height}
+          height
+        };
       }
     }
     return dimensions;
