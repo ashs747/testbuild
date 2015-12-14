@@ -38,7 +38,7 @@ function saveToCookie(res) {
 
 function updateStateFromNewToken(res) {
   Store.dispatch(tokenCheckAction(res.access_token));
- return res;
+  return res;
 }
 
 export function refreshTokenAction(token) {
