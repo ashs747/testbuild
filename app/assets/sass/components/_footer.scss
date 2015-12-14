@@ -1,5 +1,8 @@
 .footer {
   background-color: $dark_blue;
+  h3 {
+    color: $white;
+  }
 }
 .padding {
   height: 100px;
@@ -8,9 +11,6 @@
   img {
     float: right;
   }
-}
-h3 {
-  color: $white;
 }
 .full {
   padding: 50px;
