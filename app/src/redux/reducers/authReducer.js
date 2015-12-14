@@ -29,7 +29,6 @@ export function reducer(state = initialState, action) {
           };
 
         case 'RESOLVED':
-          console.log('Token check success');
           return {
             ...state,
             waitingForLogin: false,
@@ -65,7 +64,6 @@ export function reducer(state = initialState, action) {
           };
 
         default:
-          console.log('Pending', state);
           return {
             waitingForLogin: true
           };
