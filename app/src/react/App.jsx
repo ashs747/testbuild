@@ -28,10 +28,6 @@ class App extends React.Component {
     router.run(this.onRouteChange);
   }
 
-  componentWillReceiveProps() {
-
-  }
-
   render() {
     this.checkLoggedInState();
     if (!this.state.Handler) {
@@ -76,7 +72,7 @@ class App extends React.Component {
         return;
       }
     }
-    
+
     if (initialized && !loginPending) {
       if (!stAccToken && stRefreshToken) {
         if (this.waitForLogin !== true) {
@@ -91,7 +87,7 @@ class App extends React.Component {
         if (activeRouteBase === 'login') {
           router.transitionTo('/'); // Login Success - Go to home page
           return;
-        } 
+        }
         return; // LoggedIn - Nothing to do
       }
 
