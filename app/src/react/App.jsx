@@ -1,7 +1,7 @@
 import React from 'react';
 import router from './router';
 import store from '../redux/store';
-import {loadAuthFromCookie, tokenCheckAction, authTokenCheck} from '../redux/actions/authActions';
+import {refreshTokenAction, loadAuthFromCookie, tokenCheckAction, authTokenCheck} from '../redux/actions/authActions';
 import {windowResize} from '../redux/actions/widthActions';
 import $ from 'jquery';
 import cookie from 'cookie-cutter';
@@ -57,28 +57,38 @@ class App extends React.Component {
   }
 
   checkLoggedInState() {
-    let initialized = (Object.keys(store.getState()).length > 0);
+
+    let state = store.getState();
+    let initialized = (Object.keys(state).length > 0);
     let activeRouteBase = this.getActiveRouteBase();
-    let loginPending = initialized ? store.getState().auth.waitingForLogin : false;
-    let userLoggedIn = initialized ? store.getState().auth.tokenChecked : false;
+    let loginPending = initialized ? state.auth.waitingForLogin : false || this.waitForLogin;
+    let userLoggedIn = initialized ? state.auth.tokenChecked : false;
+    let stRefreshToken = initialized ? state.auth.refresh_token : false;
+    let stAccToken = initialized ? state.auth.access_token : false;
+
+    if (stAccToken && state.auth.waitingForLogin === false) {
+      if (userLoggedIn === false) {
+        store.dispatch(tokenCheckAction());
+        return;
+      }
+    }
 
     if (initialized && !loginPending) {
+      if (!stAccToken && stRefreshToken) {
+        if (this.waitForLogin !== true) {
+          this.waitForLogin = true;
+          store.dispatch(refreshTokenAction(stRefreshToken));
+          return;
+        }
+      }
 
       if (userLoggedIn) {
+        this.waitForLogin = false;
         if (activeRouteBase === 'login') {
           router.transitionTo('/'); // Login Success - Go to home page
           return;
-        } 
-        return; // LoggedIn - Nothing to do
-      }
-
-      if (store.getState().auth['access_token']) {
-        if (userLoggedIn === false) {
-          store.dispatch(tokenCheckAction());
-          return;
         }
-        
-        return;
+        return; // LoggedIn - Nothing to do
       }
 
       var authTokenInCookie = cookie.get('access_token');

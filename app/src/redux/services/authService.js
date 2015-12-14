@@ -45,6 +45,17 @@ export function getUserData(token) {
     .then(formatUserData);
 }
 
+export const getOAuthTokenFromRefreshToken = (token) => {
+  /*eslint-disable camelcase */
+  return oAuth({
+    refresh_token: token,
+    client_id: config.api.clientId,
+    client_secret: config.api.appSecret,
+    grant_type: 'refresh_token'
+  });
+  /*eslint-enable camelcase */
+};
+
 export const getOAuthToken = (username, password) => {
   if (arguments.length < 2) {
     throw new Error(
