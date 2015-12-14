@@ -42,7 +42,6 @@ function updateStateFromNewToken(res) {
 }
 
 export function refreshTokenAction(token) {
-  console.log('executing refreshtoken workflow');
   // dispatch a call to the oAuth endpoint to exchange the refresh token for an access_token
   let req = getOAuthTokenFromRefreshToken(token)
     .then(saveToCookie);
@@ -71,7 +70,6 @@ export function loadAuthFromCookie(cookieData) {
 }
 
 export function authTokenCheck() {
-  console.log('checking auth token :)');
   return getUserData().then((userData) => {
     Store.dispatch(getPLJData());
     Store.dispatch(gotUsersCohort(userData.cohort));
