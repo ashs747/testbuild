@@ -44,14 +44,17 @@ export function getUserData(token) {
   return request.get(apiRoot + 'api/user/bootstrap', token)
     .then(formatUserData);
 }
+
 export const getOAuthTokenFromRefreshToken = (token) => {
-   return oAuth({
+  /*eslint-disable camelcase */
+  return oAuth({
     refresh_token: token,
     client_id: config.api.clientId,
     client_secret: config.api.appSecret,
     grant_type: 'refresh_token'
   });
-}
+  /*eslint-enable camelcase */
+};
 
 export const getOAuthToken = (username, password) => {
   if (arguments.length < 2) {

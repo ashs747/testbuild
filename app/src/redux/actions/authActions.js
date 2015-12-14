@@ -54,7 +54,7 @@ export function refreshTokenAction(token) {
 
 export function authAction(username, password) {
   let req = getOAuthToken(username, password)
-  .then(saveToCookie)
+  .then(saveToCookie);
 
   return {
     type: AUTH,
