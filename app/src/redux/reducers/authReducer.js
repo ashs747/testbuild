@@ -46,7 +46,6 @@ export function reducer(state = initialState, action) {
     case AUTH:
       switch (action.status) {
         case 'RESOLVED':
-          console.log('Auth completed');
           var ns = {
             ...state,
             ...action.payload,
