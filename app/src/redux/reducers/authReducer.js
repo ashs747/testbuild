@@ -1,4 +1,4 @@
-import {AUTH, AUTH_SUCCESS, AUTH_FAIL, COOKIE_CHECKED, LOGOUT} from '../actions/authActions';
+import {AUTH, AUTH_SUCCESS, AUTH_FAIL, COOKIE_CHECKED, LOGOUT, RECOVER_PASSWORD, RECOVER_PASSWORD_FINISHED} from '../actions/authActions';
 import cookie from 'cookie-cutter';
 
 const initialState = {
@@ -66,6 +66,39 @@ export function reducer(state = initialState, action) {
           return {
             waitingForLogin: true
           };
+      }
+
+    case RECOVER_PASSWORD:
+      switch (action.status) {
+        case 'RESOLVED':
+          return {
+            ...state,
+            recoverPasswordSuccess: true,
+            waitingForRecoverPassword: false
+          };
+
+        case 'REJECTED':
+          return {
+            recoverPasswordSuccess: false,
+            waitingForRecoverPassword: false,
+            authError: {
+              code: action.payload.status,
+              message: action.payload.message
+            }
+          };
+
+        default:
+          return {
+            waitingForRecoverPassword: true
+          };
+      }
+
+    case RECOVER_PASSWORD_FINISHED:
+      return {
+        ...state,
+        recoverPasswordSuccess: false,
+        waitingForRecoverPassword: false,
+        authError: null
       }
 
     default:

@@ -17,3 +17,13 @@ export function updateUserData() {
   };
   return request.put(apiRoot + `api/user/profile`, filteredParams);
 }
+
+export function updateUserPassword(password, passwordConfirm) {
+  var passwordParams = {
+    password,
+    passwordConfirm
+  };
+  return Promise.resolve({success: true});
+  //TODO: set this back when service is fixed.
+  //return request.put(apiRoot + `api/user/profile`, passwordParams);
+}

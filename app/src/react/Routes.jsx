@@ -17,6 +17,7 @@ import ToolkitPageView from './views/ToolkitPageView.jsx';
 import ActivityView from './views/ActivityView.jsx';
 import ProfileView from './views/ProfileView.jsx';
 import BookingView from './views/BookingView.jsx';
+import ResetPasswordView from './views/ResetPasswordView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -48,6 +49,7 @@ var Routes = (
       };
     })(LoginView)} />
     <Route name="on-boarding/:userToken" handler={OnBoardingView} />
+    <Route name="recover-password/:userToken" handler={ResetPasswordView} />
   </Route>
 );
 
