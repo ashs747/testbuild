@@ -35,14 +35,16 @@ class ActivityView extends React.Component {
     let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
     let preWorkResources = activity.resources;
     var preWork;
-    if (activity.myBookedEventAndSlot && activity.myBookedEventAndSlot.content && activity.myBookedEventAndSlot.content.length > 0) {
+    if (activity.myBookedEventAndSlot) {
       preWorkResources = preWorkResources.concat(activity.myBookedEventAndSlot.resources);
-      preWork = (
-        <div>
-          <h3>Pre Work</h3>
-          <Markdown source={activity.myBookedEventAndSlot.content} />
-        </div>
-      );
+      if (activity.myBookedEventAndSlot.content && activity.myBookedEventAndSlot.content.length > 0) {
+        preWork = (
+          <div>
+            <h3>Pre Work</h3>
+            <Markdown source={activity.myBookedEventAndSlot.content} />
+          </div>
+        );
+      }
     }
     let resources = (
       <div>
