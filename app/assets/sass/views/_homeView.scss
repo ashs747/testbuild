@@ -144,6 +144,10 @@
       }
     }
   }
+  .message-list {
+  	height: 1241px;
+  	overflow-y: scroll;
+  }
 }
 
 .home-tabs {
@@ -183,6 +187,9 @@
     .go-to-alz {
       display: none;
     }
+    .message-list {
+  		height: auto
+  	}
   }
 }
 
