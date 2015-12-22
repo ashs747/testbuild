@@ -25,3 +25,10 @@ export function updateUserPassword(password, passwordConfirm) {
   };
   return request.put(apiRoot + `api/user/profile/password`, passwordParams);
 }
+
+export function sendRecoverPasswordEmail(email) {
+  var params = {
+    email
+  };
+  return request.post(apiRoot + `user/password/reset`, params);
+};

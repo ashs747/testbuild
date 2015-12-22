@@ -1,7 +1,7 @@
 import authManager from 'cirrus/services/managers/authManager';
 import userManager from 'cirrus/services/managers/userManager';
 import {getOAuthToken, getOAuthTokenFromRefreshToken, getUserData, setCookieCredentials} from '../services/authService';
-import {updateUserPassword} from '../services/userService';
+import {updateUserPassword, sendRecoverPasswordEmail} from '../services/userService';
 import cookie from 'cookie-cutter';
 import Store from '../store.js';
 
@@ -15,6 +15,8 @@ export const TOKEN_CHECKED = 'TOKEN_CHECKED';
 export const LOGOUT = 'LOGOUT';
 export const RECOVER_PASSWORD = 'RECOVER_PASSWORD';
 export const RECOVER_PASSWORD_FINISHED = 'RECOVER_PASSWORD_FINISHED';
+export const RECOVER_PASSWORD_EMAIL = 'RECOVER_PASSWORD_EMAIL';
+export const RECOVER_PASSWORD_EMAIL_HIDE = 'RECOVER_PASSWORD_EMAIL_HIDE';
 
 export function fetchInitialUserData(key) {
   let authByOneTimeKey = (key) => {
@@ -124,6 +126,21 @@ export function updatePassword(password, confirmPassword) {
 export function finishedRecoverPassword() {
   return {
     type: RECOVER_PASSWORD_FINISHED,
+    payload: {}
+  };
+}
+
+export function recoverPassword(email) {
+  var payload = sendRecoverPasswordEmail(email);
+  return {
+    type: RECOVER_PASSWORD_EMAIL,
+    payload
+  };
+}
+
+export function hideRecoverPassword() {
+  return {
+    type: RECOVER_PASSWORD_EMAIL_HIDE,
     payload: {}
   };
 }

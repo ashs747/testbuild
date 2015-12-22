@@ -45,7 +45,8 @@ var Routes = (
     <Route name="login" handler={connect((state) => {
       return {
         error: state.auth.error,
-        loading: state.auth.waitingForLogin
+        loading: state.auth.waitingForLogin,
+        success: state.auth.sentRecoveryEmail
       };
     })(LoginView)} />
     <Route name="on-boarding/:userToken" handler={OnBoardingView} />
