@@ -67,8 +67,15 @@
   .alert {
     text-align: center;
     margin-top: 10px;
-    border: 1px solid $site_red;
     padding: 5px 10px;
+  }
+}
+
+.recover-form {
+  .form {
+    .alert {
+      border: none;
+    }
   }
 }
 
