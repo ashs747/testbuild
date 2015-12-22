@@ -57,7 +57,6 @@ export function reducer(state = initialState, action) {
           return {
             waitingForLogin: false,
             error: {
-              code: action.payload.status,
               message: action.payload.message
             }
           };

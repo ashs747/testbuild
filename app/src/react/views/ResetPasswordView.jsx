@@ -22,7 +22,7 @@ class ResetPasswordView extends React.Component {
       </div>
     ) : null;
     let serverError = (this.props.serverError) ? (
-      <div className="alert-alert-danger">
+      <div className="alert alert-danger">
         <p>There has been an error on the server, please contact Cirrus support</p>
       </div>
     ) : null;
@@ -34,7 +34,7 @@ class ResetPasswordView extends React.Component {
           <form onSubmit={this.onSubmit} >
             <input required className="form-control" id="password" type="password" placeholder="Password" value={this.state.password} onChange={this.onChange.bind(this, "password")}/>
             <input required className="form-control" id="confirmPassword" type="password" placeholder="Confirm Password" value={this.state.confirmPassword} onChange={this.onChange.bind(this, "confirmPassword")}/>
-            <input type="submit" className="btn btn-block" value={btnText}></input>
+            <button type="submit" className="btn btn-block submit" style={{color: "white"}}>{btnText}</button>
           </form>
         </div>
         {passwordsDontMatchError}

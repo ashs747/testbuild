@@ -79,14 +79,9 @@ class LoginView extends React.Component {
   }
 
   mapError(error) {
-    let message = "";
-    switch (error.code) {
-      case 401:
-        message = "Invalid login details";
-        break;
-      default:
-        message = "There was an unexpected error, please contact Cirrus support";
-        break;
+    let message = "There was an unexpected server error. Please contact Cirrus support";
+    if (error.message.includes("Bad Request")) {
+      message = "Invalid Login Details";
     }
     return (
       <div className="error alert alert-danger">{message}</div>

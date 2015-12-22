@@ -23,7 +23,5 @@ export function updateUserPassword(password, passwordConfirm) {
     password,
     passwordConfirm
   };
-  return Promise.resolve({success: true});
-  //TODO: set this back when service is fixed.
-  //return request.put(apiRoot + `api/user/profile`, passwordParams);
+  return request.put(apiRoot + `api/user/profile/password`, passwordParams);
 }
