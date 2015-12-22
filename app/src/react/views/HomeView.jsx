@@ -19,7 +19,8 @@ function mapHomeFeedProps(state) {
     profile: "sm",
     showComments: true,
     showEmbedVideo: true,
-    profilePic: state.user.profilePic
+    profilePic: state.user.profilePic,
+    title: "Programme Feed"
   };
 };
 
@@ -135,8 +136,8 @@ class HomeView extends React.Component {
       );
     }
     return <div/>;
-  } 
-  
+  }
+
 }
 
 function mapHomeProps(state) {

@@ -45,12 +45,14 @@
   .left-bar {
     background-color: $white;
     padding: 0;
+    width: 70%;
   }
   .right-bar {
     background-color: $light_grey;
     height: 1413px;
     padding-left: 5px;
     padding-right: 5px;
+    width: 30%;
   }
   .home-learning {
     h5 {
@@ -147,6 +149,10 @@
   .message-list {
   	height: 1241px;
   	overflow-y: auto;
+  }
+  .message-board {
+    background-color: $white;
+    padding: 10px;
   }
 }
 
