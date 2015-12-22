@@ -31,10 +31,10 @@ class ResetPasswordView extends React.Component {
       <div className="form">
         <div className="recover-password">
           <p>Please enter a new password below</p>
-          <form>
-            <input className="form-control" id="password" type="password" placeholder="Password" value={this.state.password} onChange={this.onChange.bind(this, "password")}/>
-            <input className="form-control" id="confirmPassword" type="password" placeholder="Confirm Password" value={this.state.confirmPassword} onChange={this.onChange.bind(this, "confirmPassword")}/>
-            <a onClick={this.onSubmit} className="btn btn-block">{btnText}</a>
+          <form onSubmit={this.onSubmit} >
+            <input required className="form-control" id="password" type="password" placeholder="Password" value={this.state.password} onChange={this.onChange.bind(this, "password")}/>
+            <input required className="form-control" id="confirmPassword" type="password" placeholder="Confirm Password" value={this.state.confirmPassword} onChange={this.onChange.bind(this, "confirmPassword")}/>
+            <input type="submit" className="btn btn-block" value={btnText}></input>
           </form>
         </div>
         {passwordsDontMatchError}
@@ -65,7 +65,8 @@ class ResetPasswordView extends React.Component {
     this.props.dispatch(finishedRecoverPassword());
   }
 
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault();
     if (this.state.password === this.state.confirmPassword) {
       this.setState({passwordsDontMatchError: false});
       this.props.dispatch(updatePassword(this.state.password, this.state.confirmPassword));
