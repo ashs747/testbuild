@@ -26,11 +26,13 @@ function formatUserData(userData) {
   var feeds = feedsArrayToObject(userData.feeds);
   var cohort = userData.cohort;
   var toolkits = userData.toolkits;
+  var programme = userData.programme;
   var out = {
     user,
     feeds,
     cohort,
-    toolkits
+    toolkits,
+    programme
   };
 
   return Promise.resolve(out);
