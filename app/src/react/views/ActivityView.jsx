@@ -33,9 +33,22 @@ class ActivityView extends React.Component {
     activity = activity[0];
     let smallTable = (this.props.profile === "sm");
     let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
+    let preWorkResources = activity.resources;
+    var preWork;
+    if (activity.myBookedEventAndSlot) {
+      preWorkResources = preWorkResources.concat(activity.myBookedEventAndSlot.resources);
+      if (activity.myBookedEventAndSlot.content && activity.myBookedEventAndSlot.content.length > 0) {
+        preWork = (
+          <div>
+            <h3>Pre Work</h3>
+            <Markdown source={activity.myBookedEventAndSlot.content} />
+          </div>
+        );
+      }
+    }
     let resources = (
       <div>
-        <ResourceWidget title="Pre-work" resources={activity.resources} />
+        <ResourceWidget title="Pre-work" resources={preWorkResources} />
         <ResourceWidget title="Resources" resources={activity.resources} />
         <ResourceWidget title="Course notes and recordings" resources={activity.resources} />
       </div>
@@ -45,6 +58,7 @@ class ActivityView extends React.Component {
         <h3>Your learning journey</h3>
         {ljt}
         <div className="overview-inner">
+          {preWork}
           <h3>Overview and objectives</h3>
           <Markdown source={activity.content} />
         </div>
