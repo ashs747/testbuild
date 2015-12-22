@@ -18,7 +18,7 @@ export default class FeedWidget extends React.Component {
       //We have feeds
       var feedID = getFeedIdForContext(feeds, context);
       var feed = this.props.feeds[feedID];
-      let title = (this.props.title) ? <h3>{this.props.title}</h3> : null;
+      let title = (this.props.title) ? <h4 className="semi-bold">{this.props.title}</h4> : null;
       return (
         <div className="message-board">
           {title}

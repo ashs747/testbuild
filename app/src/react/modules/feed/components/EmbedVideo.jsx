@@ -32,7 +32,7 @@ class EmbedVideo extends React.Component {
     }
     return (
       <div className="embed-video">
-        <a className="btn embed-video-button" onClick={this.showUrlField}><i className="fa fa-video-camera"> Embed Youtube/Vimeo</i></a>
+        <a className="btn embed-video-button" onClick={this.showUrlField}><i className="fa fa-video-camera"></i></a>
         {urlField}
       </div>
     );

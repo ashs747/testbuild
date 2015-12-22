@@ -35,6 +35,11 @@ class PostForm extends React.Component {
 
   render() {
     let attachments = this.mapAttachments(this.props.attachments);
+    let attachmentsjsx = attachments.length > 0 ? (
+      <div className="post-attachments">
+        {attachments}
+      </div>
+    ) : null;
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
     let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} authToken={this.props.authToken}/> : null;
     let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId={this.props.feedID} /> : null;
@@ -43,7 +48,7 @@ class PostForm extends React.Component {
     if (!this.props.commentForm) {
       postButton = (this.props.pending) ? null : (
         <div className="post">
-          <a className="btn" onClick={this.onSave}>Post</a>
+          <a className="btn" onClick={this.onSave}>POST</a>
         </div>
       );
     }
@@ -73,10 +78,8 @@ class PostForm extends React.Component {
           {uploadMedia}
           {embedVideo}
         </div>
-        <div className="post-attachments">
-          {attachments}
-        </div>
         {postButton}
+        {attachmentsjsx}
       </div>
     );
   }
@@ -88,7 +91,7 @@ class PostForm extends React.Component {
       if (a) {
         rotate = <a onClick={this.rotateAttachment(a)}><img className="image-icon rotate" src="/assets/img/rotate.png" /></a>;
       }
-      
+
       let imageViewStyle = {
         backgroundColor: "white",
         height: (this.props.profile === "sm") ? "90px" : "150px",

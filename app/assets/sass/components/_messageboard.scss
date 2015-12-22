@@ -26,12 +26,17 @@ textarea[disabled="true"] {
 		margin-left: 10px;
 		margin-top: 5px;
 		float: left;
-		h6 {
+		p {
 			margin: 0;
-			font-size: 18px;
-			font-weight: bold;
 			color: $site_red;
-			text-decoration: underline;
+		}
+		.date-display {
+			position: relative;
+			display: block;
+			float: left;
+			font-size: 11px;
+			font-weight: 600;
+			color: #999;
 		}
 		span {
 			color: #999;
@@ -45,6 +50,12 @@ textarea[disabled="true"] {
 		width: auto;
 		textarea {
 			width: 100%;
+		}
+		p {
+			margin-top: 0;
+		}
+		a {
+			color: $site_red;
 		}
 	}
 	.admin-buttons {
@@ -88,6 +99,7 @@ textarea[disabled="true"] {
 		width: calc(100% - 50px);
 	}
 	textarea {
+		border: 1px solid $dark_grey;
 		resize: none;
 		width: 100%;
 		padding: 2px 5px;
@@ -150,7 +162,8 @@ textarea:focus {
 		position: relative;
 		display: block;
 		float: left;
-		font-size: 14px;
+		font-size: 11px;
+		font-weight: 600;
 		color: #999;
 	}
 	textarea {
@@ -183,6 +196,7 @@ textarea:focus {
 	margin-bottom: 5px;
 	.post-profile {
 		float: left;
+		margin-top: 8px;
 		img {
 			height: 40px;
 			width: 40px;
@@ -201,13 +215,13 @@ textarea:focus {
 		resize: none;
 		padding: 2px 5px;
 		min-height: 50px;
+		border: 1px solid $dark_grey;
 	}
 	.post-admin-buttons {
 		float: left;
-		width: 100%;
+		width: 50%;
 		div {
 			display: inline-block;
-			margin: 0 2px 0 0;
 			border-radius: 2px;
 			.upload-media {
 				background-color: $dark_grey;
@@ -235,12 +249,14 @@ textarea:focus {
 	}
 	.post {
 		float: right;
-		width: 80px;
+		width: 30%;
 		a {
 			width: 100%;
 			background-color: $site_red;
 			color: $white;
 			font-weight: bold;
+			padding: 3px 6px;
+			font-size: 12px;
 		}
 	}
 }
@@ -268,14 +284,15 @@ textarea:focus {
 }
 
 .mobile-form {
-	padding: 5px;
+	padding: 15px 10px;
 	.post-admin-buttons {
 		position: relative;
 		.btn {
 			width: 100%;
 			padding: 2px;
 			i {
-				font-size: 10px;
+				color: $dark_blue;
+				font-size: 16px;
 			}
 		}
 		.upload-media-component {

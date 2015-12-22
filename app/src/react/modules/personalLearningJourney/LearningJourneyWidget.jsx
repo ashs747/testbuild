@@ -13,7 +13,7 @@ class LearningJourneyWidget extends React.Component {
     }
     let i = 1;
     let rows = _.mapObject(this.props.journeyModules, (module, key) => {
-      let currentModule = this.isCurrentModule(module) ? 'module-overview current' : 'module-overview';
+      let currentModule = this.isCurrentModule(module) ? 'module-overview current clearfix' : 'module-overview clearfix';
       let moduleDatePassed = this.moduleHasPassedDate(module) ? 'rank passed-date' : 'rank';
       let notice = (() => {
         if (!this.moduleHasPassedDate(module)) {
@@ -27,10 +27,10 @@ class LearningJourneyWidget extends React.Component {
             <a href={`/#/module/${module.id}`}>
               <div className={currentModule}>
                 <div className="icon clearfix">
-                  <i className="fa fa-users"></i>
+                  <i className="fa fa-cogs"></i>
                 </div>
                 <div className="text">
-                  <div className="title"><strong>{module.name}</strong></div>
+                  <h5>{`Module ${module.id} - ${module.name}`}</h5>
                   <div className="subTitle">{moment(module.startDate).format('MMM YYYY')} - {moment(module.endDate).format('MMM YYYY')}</div>
                 </div>
                 {notice}
@@ -44,9 +44,11 @@ class LearningJourneyWidget extends React.Component {
           <td className="activity">
             <div className={currentModule}>
               {notice}
-              <i className="fa fa-users"></i>
-              <div className="title"><strong>{module.name}</strong></div>
-              <div className="subTitle">{moment(module.startDate).format('MMMM YYYY')} - {moment(module.endDate).format('MMMM YYYY')}</div>
+              <i className="fa fa-cogs"></i>
+              <div className="module-text">
+                <h5><b>Module {module.id} - {module.name}</b></h5>
+                <h5 style={{fontSize: "16px"}}>{moment(module.startDate).format('MMMM YYYY')} - {moment(module.endDate).format('MMMM YYYY')}</h5>
+              </div>
             </div>
           </td>
           <td><div className="right-arrow"><a href={`/#/module/${module.id}`}><i className="fa fa-arrow-right"></i></a></div></td>
