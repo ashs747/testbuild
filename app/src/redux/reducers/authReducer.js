@@ -99,7 +99,7 @@ export function reducer(state = initialState, action) {
         recoverPasswordSuccess: false,
         waitingForRecoverPassword: false,
         authError: null
-      }
+      };
 
     default:
       return state;
