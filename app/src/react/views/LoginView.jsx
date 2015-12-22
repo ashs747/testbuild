@@ -23,7 +23,7 @@ class LoginView extends React.Component {
     let loginText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "Log in";
     let recoverText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "Recover Password";
     let error = (this.props.error) ? this.mapError(this.props.error) : null;
-    let success = (this.props.success) ? (
+    let success = (this.props.sentRecoveryEmailSuccess) ? (
       <div className="alert alert-success">
         <p>Email sent. Please check your inbox</p>
       </div>
