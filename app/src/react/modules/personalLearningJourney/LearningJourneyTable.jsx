@@ -34,7 +34,7 @@ class LearningJourneyTable extends React.Component {
           <tr className="heading">
             {headerIcon}
             <th colSpan="6">
-              <div className="title">{this.props.journeyModule.name}</div>
+              <div className="title"><a href={`/#/module/${this.props.journeyModule.id}`}>{`Module ${this.props.journeyModule.id} - ${this.props.journeyModule.name}`}</a></div>
               <div className="sub-title">{moment(this.props.journeyModule.startDate).format('MMMM YYYY')} - {moment(this.props.journeyModule.endDate).format('MMMM YYYY')}</div>
             </th>
           </tr>
