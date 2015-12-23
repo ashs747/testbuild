@@ -30,7 +30,7 @@ class ResetPasswordView extends React.Component {
     let content = (!this.props.success) ? (
       <div className="form">
         <div className="recover-password">
-          <p>Please enter a new password below</p>
+          <p style={{textAlign: "center"}}>Please enter a new password below</p>
           <form onSubmit={this.onSubmit} >
             <input required className="form-control" id="password" type="password" placeholder="Password" value={this.state.password} onChange={this.onChange.bind(this, "password")}/>
             <input required className="form-control" id="confirmPassword" type="password" placeholder="Confirm Password" value={this.state.confirmPassword} onChange={this.onChange.bind(this, "confirmPassword")}/>
