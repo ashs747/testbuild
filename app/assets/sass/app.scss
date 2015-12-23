@@ -53,7 +53,10 @@ body {
 }
 
 .container-fluid {
-  max-width: $max_width;
+  max-width: 1214px;
+  border-left: 1px solid $border_grey;
+  border-right: 1px solid $border_grey;
+  padding: 0;
 }
 
 #app {

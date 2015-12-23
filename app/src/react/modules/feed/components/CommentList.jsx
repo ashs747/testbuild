@@ -37,15 +37,16 @@ class CommentList extends React.Component {
     let commentList = this.mapComments(this.props.comments);
     let displayCommentsLink = (commentList.length > 0) ? (
       <div className="show-comments-link">
-        <a onClick={this.showComments}>{`View ${commentList.length} comment${(commentList.length > 1) ? "s" : ""}`} <i className="fa fa-chevron-right"></i></a>
+        <u><a className="semi-bold" onClick={this.showComments}>{`View ${commentList.length} Comment${(commentList.length > 1) ? "s" : ""} >`}</a></u>
       </div>
     ) : null;
     let content = (this.state.showComments || this.props.showComments) ? commentList : displayCommentsLink;
-    return (
+    let finalContent = content ? (
       <div className="comment-list">
         {content}
       </div>
-    );
+    ) : null;
+    return finalContent;
   }
 
   mapComments(comments = []) {

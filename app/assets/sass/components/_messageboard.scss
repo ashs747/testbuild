@@ -7,8 +7,8 @@ textarea[disabled="true"] {
 	padding: 5px;
 }
 .message {
-	border: 1.5px solid $dark_grey;
-	margin: 10px 0;
+	border: 1.5px solid $border_grey;
+	margin: 8px 0;
 	background-color: $white;
 	color: $body_color;
 	.header {
@@ -61,7 +61,7 @@ textarea[disabled="true"] {
 	.admin-buttons {
 		float: right;
 		a {
-			background-color: $dark_grey;
+			background-color: $border_grey;
 			padding: 2px;
 			margin: 0 5px;
 			height: 25px;
@@ -86,6 +86,7 @@ textarea[disabled="true"] {
 .post-form {
 	background-color: $light_grey;
 	padding: 15px;
+	border-top: 1px solid $border_grey;
 	img {
 		float: left;
 		width: 40px;
@@ -99,7 +100,6 @@ textarea[disabled="true"] {
 		width: calc(100% - 50px);
 	}
 	textarea {
-		border: 1px solid $dark_grey;
 		resize: none;
 		width: 100%;
 		padding: 2px 5px;
@@ -114,7 +114,7 @@ textarea:focus {
 
 .comment-list {
 	background-color: $light_grey;
-	border-bottom: 1px solid $dark_grey;
+	border-top: 1px solid $border_grey;
 	.show-comments-link {
 		padding: 15px;
 		a {
@@ -130,7 +130,7 @@ textarea:focus {
 .comment {
 	color: $body_color;
 	padding: 15px;
-	border-bottom: 1px solid $dark_grey;
+	border-bottom: 1px solid $border_grey;
 	img {
 		float: left;
 		width: 40px;
@@ -148,17 +148,26 @@ textarea:focus {
 		float: left;
 		margin-left: 10px;
 		width: calc(100% - 50px);
+		line-height: 15px;
 		h6 {
 			float: left;
 			margin-right: 5px;
 		}
+		.red-bold {
+			text-decoration: underline;
+			font-weight: bold;
+			color: $site_red;
+			margin-right: 5px;
+		}
 		p {
+			display: inline;
 			font-size: 14px;
 			color: $body_color;
 			margin: 0;
 		}
 	}
 	.comment-date-display {
+		margin-top: 2px;
 		position: relative;
 		display: block;
 		float: left;
@@ -171,6 +180,9 @@ textarea:focus {
 		margin-top: 5px;
 		resize: none;
 	}
+}
+.comment:last-child {
+	border-bottom: none;
 }
 
 .save-button {
@@ -190,10 +202,9 @@ textarea:focus {
 }
 
 .post-form-status {
-	border: 1px solid $dark_grey;
+	border: 1px solid $border_grey;
 	background-color: $light_grey;
 	padding: 15px;
-	margin-bottom: 5px;
 	.post-profile {
 		float: left;
 		margin-top: 8px;
@@ -215,7 +226,6 @@ textarea:focus {
 		resize: none;
 		padding: 2px 5px;
 		min-height: 50px;
-		border: 1px solid $dark_grey;
 	}
 	.post-admin-buttons {
 		float: left;
@@ -289,7 +299,7 @@ textarea:focus {
 		position: relative;
 		.btn {
 			width: 100%;
-			padding: 2px;
+			padding: 5px;
 			i {
 				color: $dark_blue;
 				font-size: 16px;
@@ -340,9 +350,10 @@ textarea:focus {
 .mobile-comment {
 	padding: 7.5px;
 	.admin-buttons {
+		float:none;
+		text-align:right;
 		.btn {
-			display: block;
-			margin: 10px 2px;
+			margin: 2px;
 		}
 	}
 	.with-buttons {
