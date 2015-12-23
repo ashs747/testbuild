@@ -187,20 +187,12 @@ export const onboardingSlides = [{
             </div>
           </div>
           <div className="content">
-            <div className="col-sm-2"></div>
-            <div className="col-sm-4">
+            <div className="final-button">
               <div className="circle hidden-xs">
-                <i className="fa fa-home"></i>
+                <i className="fa fa-sign-in"></i>
               </div>
-              <a className="btn">GO TO THE HOMEPAGE</a>
+              <a className="btn" href="/#/login">GO TO THE LOGIN PAGE</a>
             </div>
-            <div className="col-sm-4">
-              <div className="circle hidden-xs">
-                <i className="fa fa-question-circle"></i>
-              </div>
-              <a className="btn">LEARN MORE</a>
-            </div>
-            <div className="col-sm-2"></div>
           <div className="clearfix"/>
           </div>
         </div>
