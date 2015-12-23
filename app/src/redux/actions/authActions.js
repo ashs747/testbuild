@@ -9,6 +9,7 @@ import config from '../../localConfig';
 import {getPLJData} from '../../redux/actions/learningJourneyActions';
 import {gotUsersCohort} from '../../redux/actions/cohortActions';
 import {gotToolkits} from '../../redux/actions/contentActions';
+import {gotProgramme} from '../../redux/actions/programmeActions';
 
 export const AUTH = 'AUTH';
 export const TOKEN_CHECKED = 'TOKEN_CHECKED';
@@ -79,6 +80,7 @@ export function authTokenCheck() {
     Store.dispatch(getPLJData());
     Store.dispatch(gotUsersCohort(userData.cohort));
     Store.dispatch(gotToolkits(userData.toolkits));
+    Store.dispatch(gotProgramme(userData.programme));
     return userData;
   }, (userData) => {
     return userData;

@@ -10,6 +10,7 @@ import {reducer as content} from './reducers/contentReducer';
 import {reducer as slide} from './reducers/slideReducer';
 import {reducer as booking} from './reducers/bookingReducer';
 import {reducer as cohort} from './reducers/cohortReducer';
+import {reducer as programme} from './reducers/programmeReducer';
 import thunk from 'redux-thunk';
 
 const createStoreWithMiddleware = applyMiddleware(
@@ -17,7 +18,7 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const appReducers = combineReducers({
-  auth, learningJourney, modules, feeds, width, user, content, slide, booking, cohort
+  auth, learningJourney, modules, feeds, width, user, content, slide, booking, cohort, programme
 });
 
 export default createStoreWithMiddleware(appReducers);

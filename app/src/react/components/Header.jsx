@@ -23,7 +23,7 @@ class Header extends React.Component {
       <div className="tabbed-nav">
         <ul>
           <LiAnchor text="Profile" action="" url="/#/profile"/>
-          <LiAnchor text="Need Help?" action="" url="/#/help"/>
+          <LiAnchor text="Need Help?" action="" url={this.props.supportUrl}/>
           <LiAnchor text="Log Out" action="" url="/#/login"/>
           <img src="assets/img/cirrus-logo.png" />
         </ul>
@@ -51,7 +51,7 @@ class Header extends React.Component {
           <LiAnchor text="Action Learning Zone" onClick={this.toggleMobileNav} url="/#/action-learning-zone"/>
           <LiAnchor text="Toolkit" onClick={this.toggleMobileNav} url="/#/tools"/>
           <LiAnchor text="Profile" onClick={this.toggleMobileNav} url="/#/profile"/>
-          <LiAnchor text="Need Help?" onClick={this.toggleMobileNav} url="/#/help"/>
+          <LiAnchor text="Need Help?" onClick={this.toggleMobileNav} url={this.props.supportUrl}/>
           <LiAnchor text="Logout" action={this.logout} url="/#/login"/>
         </ul>
       </div>
@@ -136,7 +136,8 @@ class Header extends React.Component {
 
 function mapHeaderProps(state) {
   return {
-    profile: state.width.profile
+    profile: state.width.profile,
+    supportUrl: state.programme.supportUrl
   };
 };
 
