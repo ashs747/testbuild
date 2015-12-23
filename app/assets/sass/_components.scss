@@ -168,11 +168,26 @@
     margin-bottom: 0;
     border-top: 2px solid $dark_grey;
   }
+  .custom-tooltip {
+    bottom: 30px;
+    p {
+      font-weight: normal;
+      padding: 5px;
+      padding-bottom: 0;
+    }
+  }
 }
 
 .plj-small-row {
   border: 1px solid $dark_grey;
   text-align: center;
+  .tooltip-trigger {
+    display: inline-block;
+    position: relative;
+    .custom-tooltip {
+      left: -50%;
+    }
+  }
   .btn {
     width: 100%;
     max-width: 90px;

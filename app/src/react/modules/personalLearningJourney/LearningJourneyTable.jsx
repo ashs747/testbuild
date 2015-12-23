@@ -44,7 +44,7 @@ class LearningJourneyTable extends React.Component {
             <th>TYPE</th>
             <th>DATE</th>
             <th>TIME</th>
-            <th>LOCATION</th>
+            <th>DETAILS</th>
             <th></th>
           </tr>
         </thead>
