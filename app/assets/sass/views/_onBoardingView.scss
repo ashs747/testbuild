@@ -25,8 +25,9 @@
     opacity: 0.9;
   }
   .slideshow-module  {
+    position: relative;
     width: 750px;
-    height: 570px;
+    height: 520px;
     margin: 50px auto;
   }
   .footer {
@@ -51,6 +52,13 @@
     i {
       color: $site_red;
     }
+  }
+}
+
+.body {
+  img {
+    display: block;
+    margin: 0 auto;
   }
 }
 
@@ -104,19 +112,25 @@
   background-color: $dark_blue;
   color: $white;
   .body {
-    width: 75%;
-    margin: 0 auto
+    text-align: center;
+    width: 480px;
+    margin: 0 auto;
+    h1 {
+      max-width: 370px;
+      margin: 0 auto;
+    }
   }
   .video {
     margin: 30px auto;
-    width: 350px;
-    height: 200px;
+    width: 100%;
+    height: 250px;
   }
 
 }
 
 .slideshow-module.journey {
   .title {
+    text-align: center;
     color: $site_red;
     margin: 40px 0;
   }
@@ -128,6 +142,7 @@
 
 .slideshow-module.progress {
   .title {
+    text-align: center;
     width: 60%;
     color: $site_red;
     margin: 20px auto;

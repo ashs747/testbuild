@@ -7,12 +7,20 @@
   .slideshow-prev-arrow {
     float: left;
     width: 50%;
+    cursor: pointer;
   }
   .slideshow-next-arrow {
     float: right;
     width: 50%;
     text-align: right;
+    cursor: pointer;
   }
+}
+
+.slideshow-nav {
+  position: absolute;
+  width: calc(100% - 60px);
+  bottom: 30px;
 }
 
 .slideshow-nav-items {

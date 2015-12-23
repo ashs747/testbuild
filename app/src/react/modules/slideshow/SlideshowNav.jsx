@@ -21,9 +21,6 @@ class SlideshowNav extends React.Component {
           {showPrev}
           {showNext}
         </div>
-        <div className="slideshow-nav-items">
-          {nav}
-        </div>
       </div>
     );
   }
