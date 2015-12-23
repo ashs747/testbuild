@@ -20,8 +20,8 @@ class LoginView extends React.Component {
   }
 
   render() {
-    let loginText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "Log in";
-    let recoverText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "Recover Password";
+    let loginText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "LOG IN";
+    let recoverText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "RECOVER PASSWORD";
     let error = (this.props.error) ? this.mapError(this.props.error) : null;
     let success = (this.props.sentRecoveryEmailSuccess) ? (
       <div className="alert alert-success">
@@ -37,8 +37,9 @@ class LoginView extends React.Component {
         </form>
         {error}
         <div className="links">
+          <p className="bookmark">Remember to bookmark this page so you can view it later.</p>
           <a onClick={this.showRecoverPassword}>Forgotten Password?</a>
-          <a href="javascript:void(0)">Need help?</a>
+          <a href="http://soj-support.cirrus-connect.com/support/home" target="_blank">Need help?</a>
         </div>
       </div>
     );
