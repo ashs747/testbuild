@@ -74,7 +74,7 @@ class HomeView extends React.Component {
               <h5>Need help?</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nisl diam, tincidunt venenatis ante aliquam, vestibulum feugiat lectus. Curabitur ac.</p>
               <div className="find-out-more">
-                <h6><a href="/#/help">FIND OUT MORE</a></h6>
+                <h6><a href={this.props.supportUrl}>FIND OUT MORE</a></h6>
               </div>
             </div>
           </div>
@@ -135,15 +135,16 @@ class HomeView extends React.Component {
       );
     }
     return <div/>;
-  } 
-  
+  }
+
 }
 
 function mapHomeProps(state) {
   return {
     profile: state.width.profile,
     modules: state.learningJourney,
-    user: state.user
+    user: state.user,
+    supportUrl: state.programme.supportUrl
   };
 };
 
