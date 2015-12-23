@@ -35,7 +35,9 @@ class ActivityView extends React.Component {
     let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
     let groupedResources = this.groupResources(activity.resources);
     let preWorkResources = groupedResources["pre-work"];
-
+    if (!preWorkResources) {
+      preWorkResources = [];
+    }
     var preWork;
     if (activity.myBookedEventAndSlot) {
       preWorkResources = preWorkResources.concat(activity.myBookedEventAndSlot.resources);
