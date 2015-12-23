@@ -4,16 +4,17 @@
 }
 
 .slideshow-arrows {
+  span {
+    cursor: pointer;
+  }
   .slideshow-prev-arrow {
     float: left;
     width: 50%;
-    cursor: pointer;
   }
   .slideshow-next-arrow {
     float: right;
     width: 50%;
     text-align: right;
-    cursor: pointer;
   }
 }
 
