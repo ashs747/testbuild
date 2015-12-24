@@ -26,7 +26,7 @@
   .body {
     padding: 20px;
     .title {
-      font-size: 20px;
+      font-size: 19px;
     }
   }
 }
@@ -34,53 +34,6 @@
 .plj-table {
   h2 {
     font-size: 26px;
-  }
-  .table {
-    border: 1px solid $dark_grey;
-  }
-}
-
-.plj-table-row {
-  .btn {
-    color: $white;
-    background-color: $site_red;
-    padding: 2px 16px;
-    max-width: 90px;
-    width: 100%;
-  }
-  .icon {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    text-align: center;
-    margin: 0 auto;
-    i {
-      position: relative;
-      top: -2px;
-      font-size: 14px;
-      color: $white;
-      margin-bottom: 1px;
-    }
-  }
-  .activity {
-    text-decoration: underline;
-    a {
-      color: $body_color;
-    }
-  }
-  .red {
-    background-color: $site_red;
-  }
-  .green {
-    background-color: #7EAC0E;
-  }
-  .fa-info-circle {
-    font-size: 22px;
-  }
-  .status {
-    span {
-      font-size: 15px;
-    }
   }
 }
 
