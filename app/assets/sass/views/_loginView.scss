@@ -13,7 +13,7 @@
   position: relative;
   margin: 0 auto;
   max-width: 530px;
-  top: 200px;
+  top: calc((100% - 510px) / 2);
   padding: 10px;
 }
 
@@ -42,7 +42,7 @@
     background-color: $dark_blue;
     border-color: $dark_blue;
     border-radius: 2px;
-    width: 360px;
+    max-width: 360px;
     margin: 0 auto;
     height: 45px;
     font-weight: bold;
@@ -52,7 +52,7 @@
     border-color: $dark_blue;
   }
   input {
-    width: 360px;
+    max-width: 360px;
     height: 45px;
     border-radius: 2.5px;
     margin: 15px auto;
@@ -99,6 +99,9 @@
 
 @media (max-width: 767px) {
   .login-wrapper {
-    top: 50px;
+    top: 0;
+    .login {
+      padding: 40px 20px;
+    }
   }
 }

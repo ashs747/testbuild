@@ -192,50 +192,93 @@
 
 @media (max-width: 767px) {
   .on-boarding {
-    .slide-container {
-      width: 100%;
-      margin: 0;
+    .slideshow-nav {
+      width: calc(100% - 10px);
+      bottom: 10px;
+    }
+    .header {
+      padding: 5px;
+      height: 55px;
+      .logo {
+        height: 100%;
+        width: unset;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+    .footer {
+      height: 50px;
     }
     .main {
-      height: calc(100% - 200px);
+      height: calc(100% - 105px);
     }
     .slide-container {
       height: 100%;
-    }
-    .slideshow {
-      height: 100%;
-    }
-    .slide {
-      height: 100%;
-    }
-  }
-  .slideshow-module.profile {
-    .inner {
-      padding: 10px;
-    }
-    .row {
-      padding: 0;
-    }
-  }
-  .slideshow-module.progress {
-    .title {
-      width: 100%;
-    }
-  }
-  .slideshow-module.final {
-    .sub {
-      width: 100%;
-    }
-    .btn {
-      margin: 10px 0;
+      .slideshow-module {
+        overflow: hidden;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        border: none;
+        padding: 0;
+        img {
+          height: 100px;
+        }
+        h1 {
+          text-align: center;
+          font-size: 24px;
+          margin: 10px 0;
+        }
+        .body {
+          overflow: hidden;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          height: unset;
+        }
+        .title {
+          margin: 0 auto;
+        }
+        .video {
+          margin: 10px auto;
+          width: 90%;
+          height: unset;
+        }
+        .inner {
+          padding: 0;
+          h1 {
+            display: none;
+          }
+          .row {
+            padding: 0 5px;
+          }
+          .btn {
+            margin: 5px;
+          }
+          .upload-profile {
+            margin-bottom: 5px;
+            padding: 5px 0;
+          }
+          p {
+            margin-bottom: 0;
+          }
+          .form-inputs {
+            padding: 5px;
+          }
+          .form-control {
+            margin-bottom: 2px;
+            height: 35px;
+          }
+        }
+      }
     }
   }
 }
 
-@media (max-width: 420px) {
-  .slideshow-module.welcome {
-    .body {
-      padding: 20px;
+@media (max-width: 1050px) {
+  .on-boarding {
+    .slideshow-module {
+      margin: 25px auto;
     }
   }
 }
