@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment-timezone';
+import Tooltip from '../tooltip/Wrapper.jsx';
+import Markdown from 'react-remarkable';
 
 class LearningJourneyRow extends React.Component {
   constructor() {
@@ -8,31 +10,37 @@ class LearningJourneyRow extends React.Component {
   }
 
   render() {
-    let a = this.props.activity;
-    let title = a.name;
-    let type = a.type;
+    let activity = this.props.activity;
+    let title = activity.name;
+    let type = activity.type;
+    let event = activity.myBookedEventAndSlot;
     let icon = this.assignIcon(type);
-    let eventObj = (a.myBookedEventAndSlot) ? this.assignEvent(a.myBookedEventAndSlot) : {date: "n/a", time: "n/a", location: "n/a"};
-    let status = (type !== "Project") ? this.mapStatus(a, this.props.moduleId) : null;
+    let status = (type !== "Project") ? this.mapStatus(activity, this.props.moduleId) : null;
 
-    if (type === "Project") {
-      eventObj.date = `Deadline: ${a.properties.deadline}`;
-      eventObj.time = "n/a";
-      eventObj.location = "Project Page";
-    }
+    let date = (event) ? moment(event.startDate).format('ddd Do MMM YYYY') : "n/a";
+    let time = (event) ? `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}` : "n/a";
+    let location = "n/a";
 
     let iconRow = (this.props.showIcon) ? <td className="row-icon"><i className={icon}></i></td> : null;
 
     if (type !== "Coaching") {
       var pageLink = (type === "Project") ? "project" : "activity";
-      title = <a href={`/#/${pageLink}/${a.id}`}>{title}</a>;
+      title = <a href={`/#/${pageLink}/${activity.id}`}>{title}</a>;
+    }
+
+    if (event) {
+      let trigger = (type === "Workshop") ? <p><u>{event.tooltipTitle}</u></p> : <p><u>View Details</u></p>;
+      location = <Tooltip trigger={trigger} content={<Markdown source={event.tooltipBody} />} />;
+      if (type === "Project") {
+        location = <p><a href={`/#/project/${activity.id}`}>Project Page</a></p>;
+      }
     }
 
     let content = this.props.smallTable ? (
       <div className="plj-small-row">
         <p>Title: {title}</p>
-        <p>Date: {eventObj.date}</p>
-        <p>Location: {eventObj.location}</p>
+        <p>Date: {date}</p>
+        <p>Location: {location}</p>
         {status}
       </div>
     ) : (
@@ -40,9 +48,9 @@ class LearningJourneyRow extends React.Component {
         {iconRow}
         <td className="activity">{title}</td>
         <td>{type}</td>
-        <td>{eventObj.date}</td>
-        <td>{eventObj.time}</td>
-        <td className="location">{eventObj.location}</td>
+        <td>{date}</td>
+        <td>{time}</td>
+        <td className="location">{location}</td>
         <td className="status">{status}</td>
       </tr>
     );
@@ -77,15 +85,6 @@ class LearningJourneyRow extends React.Component {
       default:
         return 'fa fa-users';
     }
-  }
-
-  assignEvent(event) {
-    let date = moment(event.startDate).format('ddd Do MMM YYYY');
-    let time = `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}`;
-    let location = event.location;
-    return {
-      date, time, location
-    };
   }
 
 }

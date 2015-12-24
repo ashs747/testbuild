@@ -1,9 +1,8 @@
 import React from 'react';
 import Button from 'cirrus/react/components/Button';
-import {authAction, logoutAction} from '../../redux/actions/authActions';
+import {authAction, logoutAction, recoverPassword, hideRecoverPassword} from '../../redux/actions/authActions';
 import config from 'cirrus/configs/appConfig';
 import {connect} from 'react-redux';
-import {dispatch} from '../../redux/store';
 
 class LoginView extends React.Component {
 
@@ -12,6 +11,7 @@ class LoginView extends React.Component {
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.showRecoverPassword = this.showRecoverPassword.bind(this);
     this.showLoginForm = this.showLoginForm.bind(this);
+    this.onRecoverPassword = this.onRecoverPassword.bind(this);
     this.state = {
       email: '',
       password: '',
@@ -20,10 +20,14 @@ class LoginView extends React.Component {
   }
 
   render() {
-    let loginText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "Log in";
-    let recoverText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "Recover Password";
+    let loginText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "LOG IN";
+    let recoverText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "RECOVER PASSWORD";
     let error = (this.props.error) ? this.mapError(this.props.error) : null;
-
+    let success = (this.props.sentRecoveryEmailSuccess) ? (
+      <div className="alert alert-success">
+        <p>Email sent. Please check your inbox</p>
+      </div>
+    ) : null;
     var loginForm = (
       <div className="login-form">
         <form onSubmit={this.onLoginSubmit}>
@@ -33,8 +37,9 @@ class LoginView extends React.Component {
         </form>
         {error}
         <div className="links">
+          <p className="bookmark">Remember to bookmark this page so you can view it later.</p>
           <a onClick={this.showRecoverPassword}>Forgotten Password?</a>
-          <a href="javascript:void(0)">Need help?</a>
+          <a href="http://soj-support.cirrus-connect.com/support/home" target="_blank">Need help?</a>
         </div>
       </div>
     );
@@ -44,6 +49,7 @@ class LoginView extends React.Component {
           <p>Please enter the email address associated with your account below.</p>
           <input id="email" reqruied type="email" className="form-control" placeholder="Email" value={this.state.email} onChange={this.changeHandler.bind(this, 'email')}/>
           <Button id="submit" className="btn btn-block" type="submit">{recoverText}</Button>
+          {success}
           <div className="links">
             <a onClick={this.showLoginForm}>Back</a>
           </div>
@@ -79,14 +85,9 @@ class LoginView extends React.Component {
   }
 
   mapError(error) {
-    let message = "";
-    switch (error.code) {
-      case 401:
-        message = "Invalid login details";
-        break;
-      default:
-        message = "There was an unexpected error, please contact Cirrus support";
-        break;
+    let message = "There was an unexpected server error. Please contact Cirrus support";
+    if (error.message.includes("Bad Request")) {
+      message = "Invalid Login Details";
     }
     return (
       <div className="error alert alert-danger">{message}</div>
@@ -98,18 +99,18 @@ class LoginView extends React.Component {
   }
 
   showLoginForm() {
+    this.props.dispatch(hideRecoverPassword());
     this.setState({content: "login"});
   }
 
   onRecoverPassword(e) {
-    //dispatch email here
-    //dispatch()
     e.preventDefault();
+    this.props.dispatch(recoverPassword(this.state.email));
   }
 
   onLoginSubmit(e) {
     e.preventDefault();
-    dispatch(authAction(this.state.email, this.state.password, config.appSlug));
+    this.props.dispatch(authAction(this.state.email, this.state.password, config.appSlug));
   }
 
   changeHandler(field, event) {

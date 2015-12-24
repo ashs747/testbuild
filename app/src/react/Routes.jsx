@@ -17,6 +17,7 @@ import ToolkitPageView from './views/ToolkitPageView.jsx';
 import ActivityView from './views/ActivityView.jsx';
 import ProfileView from './views/ProfileView.jsx';
 import BookingView from './views/BookingView.jsx';
+import ResetPasswordView from './views/ResetPasswordView.jsx';
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.Route;
@@ -44,10 +45,12 @@ var Routes = (
     <Route name="login" handler={connect((state) => {
       return {
         error: state.auth.error,
-        loading: state.auth.waitingForLogin
+        loading: state.auth.waitingForLogin,
+        sentRecoveryEmailSuccess: state.auth.sentRecoveryEmail
       };
     })(LoginView)} />
     <Route name="on-boarding/:userToken" handler={OnBoardingView} />
+    <Route name="recover-password/:userToken" handler={ResetPasswordView} />
   </Route>
 );
 

@@ -1,6 +1,7 @@
 import authManager from 'cirrus/services/managers/authManager';
 import userManager from 'cirrus/services/managers/userManager';
 import {getOAuthToken, getOAuthTokenFromRefreshToken, getUserData, setCookieCredentials} from '../services/authService';
+import {updateUserPassword, sendRecoverPasswordEmail} from '../services/userService';
 import cookie from 'cookie-cutter';
 import Store from '../store.js';
 
@@ -8,10 +9,15 @@ import config from '../../localConfig';
 import {getPLJData} from '../../redux/actions/learningJourneyActions';
 import {gotUsersCohort} from '../../redux/actions/cohortActions';
 import {gotToolkits} from '../../redux/actions/contentActions';
+import {gotProgramme} from '../../redux/actions/programmeActions';
 
 export const AUTH = 'AUTH';
 export const TOKEN_CHECKED = 'TOKEN_CHECKED';
 export const LOGOUT = 'LOGOUT';
+export const RECOVER_PASSWORD = 'RECOVER_PASSWORD';
+export const RECOVER_PASSWORD_FINISHED = 'RECOVER_PASSWORD_FINISHED';
+export const RECOVER_PASSWORD_EMAIL = 'RECOVER_PASSWORD_EMAIL';
+export const RECOVER_PASSWORD_EMAIL_HIDE = 'RECOVER_PASSWORD_EMAIL_HIDE';
 
 export function fetchInitialUserData(key) {
   let authByOneTimeKey = (key) => {
@@ -74,6 +80,7 @@ export function authTokenCheck() {
     Store.dispatch(getPLJData());
     Store.dispatch(gotUsersCohort(userData.cohort));
     Store.dispatch(gotToolkits(userData.toolkits));
+    Store.dispatch(gotProgramme(userData.programme));
     return userData;
   }, (userData) => {
     return userData;
@@ -108,4 +115,34 @@ export function logoutAction() {
   });
 
   return {type: 'LOGOUT', payload: ''};
+}
+
+export function updatePassword(password, confirmPassword) {
+  var payload = updateUserPassword(password, confirmPassword);
+  return {
+    type: RECOVER_PASSWORD,
+    payload
+  };
+}
+
+export function finishedRecoverPassword() {
+  return {
+    type: RECOVER_PASSWORD_FINISHED,
+    payload: {}
+  };
+}
+
+export function recoverPassword(email) {
+  var payload = sendRecoverPasswordEmail(email);
+  return {
+    type: RECOVER_PASSWORD_EMAIL,
+    payload
+  };
+}
+
+export function hideRecoverPassword() {
+  return {
+    type: RECOVER_PASSWORD_EMAIL_HIDE,
+    payload: {}
+  };
 }

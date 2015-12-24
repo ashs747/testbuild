@@ -1,4 +1,4 @@
-import {AUTH, AUTH_SUCCESS, AUTH_FAIL, COOKIE_CHECKED, LOGOUT} from '../actions/authActions';
+import {AUTH, AUTH_SUCCESS, AUTH_FAIL, COOKIE_CHECKED, LOGOUT, RECOVER_PASSWORD, RECOVER_PASSWORD_FINISHED, RECOVER_PASSWORD_EMAIL, RECOVER_PASSWORD_EMAIL_HIDE} from '../actions/authActions';
 import cookie from 'cookie-cutter';
 
 const initialState = {
@@ -57,7 +57,6 @@ export function reducer(state = initialState, action) {
           return {
             waitingForLogin: false,
             error: {
-              code: action.payload.status,
               message: action.payload.message
             }
           };
@@ -67,6 +66,70 @@ export function reducer(state = initialState, action) {
             waitingForLogin: true
           };
       }
+
+    case RECOVER_PASSWORD:
+      switch (action.status) {
+        case 'RESOLVED':
+          return {
+            ...state,
+            recoverPasswordSuccess: true,
+            waitingForRecoverPassword: false
+          };
+
+        case 'REJECTED':
+          return {
+            ...state,
+            recoverPasswordSuccess: false,
+            waitingForRecoverPassword: false,
+            authError: {
+              code: action.payload.status,
+              message: action.payload.message
+            }
+          };
+
+        default:
+          return {
+            waitingForRecoverPassword: true
+          };
+      }
+
+    case RECOVER_PASSWORD_FINISHED:
+      return {
+        ...state,
+        recoverPasswordSuccess: false,
+        waitingForRecoverPassword: false,
+        authError: null
+      };
+
+    case RECOVER_PASSWORD_EMAIL:
+      switch (action.status) {
+        case 'RESOLVED':
+          return {
+            ...state,
+            waitingForLogin: false,
+            sentRecoveryEmail: true
+          };
+
+        case 'REJECTED':
+          return {
+            ...state,
+            waitingForLogin: false,
+            error: {
+              message: action.payload.message
+            }
+          };
+
+        default:
+          return {
+            waitingForLogin: true
+          };
+      }
+
+    case RECOVER_PASSWORD_EMAIL_HIDE:
+      return {
+        ...state,
+        sentRecoveryEmail: false
+      };
 
     default:
       return state;

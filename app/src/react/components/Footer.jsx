@@ -29,7 +29,7 @@ class Footer extends React.Component {
                 <LiAnchor text="Toolkit" url="/#/toolkits"/>
               </ul>
               <ul className="list-three">
-                <LiAnchor text="Need Help?" url="/#/help"/>
+                <LiAnchor text="Need Help?" url={this.props.supportUrl}/>
                 <LiAnchor text="Log Out" url="/#/login"/>
               </ul>
               <img src="assets/img/cirrus-logo.png" />
@@ -44,7 +44,8 @@ class Footer extends React.Component {
 
 function mapFooterProps(state) {
   return {
-    profile: state.width.profile
+    profile: state.width.profile,
+    supportUrl: state.programme.supportUrl
   };
 };
 

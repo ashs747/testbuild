@@ -33,7 +33,11 @@ class ActivityView extends React.Component {
     activity = activity[0];
     let smallTable = (this.props.profile === "sm");
     let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
-    let preWorkResources = activity.resources;
+    let groupedResources = this.groupResources(activity.resources);
+    let preWorkResources = groupedResources["pre-work"];
+    if (!preWorkResources) {
+      preWorkResources = [];
+    }
     var preWork;
     if (activity.myBookedEventAndSlot) {
       preWorkResources = preWorkResources.concat(activity.myBookedEventAndSlot.resources);
@@ -49,8 +53,8 @@ class ActivityView extends React.Component {
     let resources = (
       <div>
         <ResourceWidget title="Pre-work" resources={preWorkResources} />
-        <ResourceWidget title="Resources" resources={activity.resources} />
-        <ResourceWidget title="Course notes and recordings" resources={activity.resources} />
+        <ResourceWidget title="Resources" resources={groupedResources["resource"]} />
+        <ResourceWidget title="Course notes and recordings" resources={groupedResources["course-notes"]} />
       </div>
     );
     let overview = (
@@ -123,6 +127,17 @@ class ActivityView extends React.Component {
       }
     });
     return singleModuleSingleActivity;
+  }
+
+  groupResources(resources = []) {
+    let groupedResources = [];
+    resources.forEach(resource => {
+      if (!groupedResources[resource.context]) {
+        groupedResources[resource.context] = [];
+      }
+      groupedResources[resource.context].push(resource);
+    });
+    return groupedResources;
   }
 
 }
