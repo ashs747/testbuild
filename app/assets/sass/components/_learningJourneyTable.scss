@@ -365,3 +365,33 @@
 .plj-small-row:nth-child(odd) {
   background-color: $light_grey;
 }
+
+@media (max-width: 767px) {
+  .learning-journey-module.widget {
+
+    h5 {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .module-overview {
+      padding: 10px;
+      margin: 3px 0;
+      i {
+        font-size: 28px;
+        margin-top: 20px;
+      }
+      .notice {
+        width: 20px;
+        height: 20px;
+        i {
+          margin-top: 4px;
+        }
+      }
+    }
+    .small-row {
+      .text {
+        width: 75%;
+      }
+    }
+  }
+}
