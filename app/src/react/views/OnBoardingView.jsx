@@ -8,7 +8,7 @@ function mapProps(state) {
   var slideID = "onBoarding";
   return {
     slides: onboardingSlides,
-    topNav: true,
+    topNav: false,
     index: state.slide[slideID] ? state.slide[slideID].index : 0,
     slideID,
   };
