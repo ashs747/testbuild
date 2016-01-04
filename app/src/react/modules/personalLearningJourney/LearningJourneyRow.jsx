@@ -29,7 +29,7 @@ class LearningJourneyRow extends React.Component {
     }
 
     if (event) {
-      let trigger = (type === "Workshop") ? <p><u>{event.tooltipTitle}</u></p> : <p><u>View Details</u></p>;
+      let trigger = (type === "Workshop") ? <p>{event.tooltipTitle}</p> : <p>View Details</p>;
       location = <Tooltip trigger={trigger} content={<Markdown source={event.tooltipBody} />} />;
       if (type === "Project") {
         location = <p><a href={`/#/project/${activity.id}`}>Project Page</a></p>;
@@ -47,9 +47,10 @@ class LearningJourneyRow extends React.Component {
       <tr className="plj-table-row">
         {iconRow}
         <td className="activity">{title}</td>
-        <td>{type}</td>
-        <td>{date}</td>
-        <td>{time}</td>
+        <td className="type">{type}</td>
+        <td className="date">{date}</td>
+        <td className="time">{time}</td>
+        <td className="ical"><a className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a></td>
         <td className="location">{location}</td>
         <td className="status">{status}</td>
       </tr>
@@ -60,7 +61,7 @@ class LearningJourneyRow extends React.Component {
 
   mapStatus(activity, moduleId) {
     switch (activity.status) {
-      case "dates-tbc": return (<span>Dates TBC</span>);
+      case "dates-tbc": return (<p>Dates TBC</p>);
       case "book": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>BOOK</a>);
       case "booked-can-change": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>CHANGE</a>);
       case "booked-cannot-change": return (<i className="fa fa-info-circle"></i>);

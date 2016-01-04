@@ -16,8 +16,8 @@ class LearningJourneyView extends React.Component {
       i++;
       return (
         <div className="plj-table" key={key}>
-          <h2>Module {i}</h2>
-          <LearningJourneyTable journeyModule={module} smallTable={this.props.width === "sm"}/>
+          <h4>Module {i}</h4>
+          <LearningJourneyTable journeyModule={module} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"}/>
         </div>
       );
     });
@@ -25,8 +25,8 @@ class LearningJourneyView extends React.Component {
       <div className="personal-learning-journey">
         <div className="header">
           <div className="text">
-            <h1>Your learning journey</h1>
-            <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
+            <h2>Your learning journey</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
           </div>
         </div>
         <div className="body">
