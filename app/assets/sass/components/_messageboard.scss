@@ -7,6 +7,9 @@ textarea[disabled="true"] {
 	padding: 5px;
 	height: 100%;
 }
+.message:first-child {
+	margin-top: 16px;
+}
 .message {
 	border: 1.5px solid $border_grey;
 	margin: 8px 0;
@@ -230,12 +233,13 @@ textarea:focus {
 	}
 	.post-admin-buttons {
 		float: left;
-		width: 50%;
+		width: 85%;
 		div {
 			display: inline-block;
 			border-radius: 2px;
 			.upload-media {
 				background-color: $dark_grey;
+				margin-right: 5px;
 			}
 			.embed-video-button {
 				background-color: $dark_grey;
@@ -248,7 +252,10 @@ textarea:focus {
 			}
 		}
 		.url-field {
-			margin-left: 10px;
+			margin-left: 5px;
+			input {
+				height: 30px;
+			}
 		}
 		.go {
 			margin-left: 5px;
@@ -260,14 +267,18 @@ textarea:focus {
 	}
 	.post {
 		float: right;
-		width: 30%;
+		width: 15%;
 		a {
+			height: 33px;
+			float: right;
 			width: 100%;
+			max-width: 100px;
 			background-color: $site_red;
 			color: $white;
 			font-weight: bold;
 			padding: 3px 6px;
 			font-size: 12px;
+			padding-top: 7px;
 		}
 	}
 }
@@ -296,8 +307,16 @@ textarea:focus {
 
 .mobile-form {
 	padding: 15px 10px;
+	.post {
+		width: 50%;
+		a {
+			height: 25px;
+			padding-top: 3px;
+		}
+	}
 	.post-admin-buttons {
 		position: relative;
+		width: 50%;
 		.btn {
 			width: 100%;
 			padding: 5px;
@@ -309,10 +328,16 @@ textarea:focus {
 		.upload-media-component {
 			width: 49%;
 			float: left;
+			a {
+				padding: 2px 5px;
+			}
 		}
 		.embed-video {
 			width: 49%;
 			float:right;
+			a {
+				padding: 2px 5px;
+			}
 		}
 		.url-field {
 			position: relative;

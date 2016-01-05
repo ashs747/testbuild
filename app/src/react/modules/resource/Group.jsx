@@ -18,7 +18,7 @@ class Group extends React.Component {
       }
       return <Display key={`res-${ref}`} title={resource.name} reference={ref} icon={resource.type.icon} />;
     });
-    let title = this.props.title ? <h4>{this.props.title}</h4> : null;
+    let title = this.props.title ? <h5>{this.props.title}</h5> : null;
     return (
       <div className="resource-group">
         {title}

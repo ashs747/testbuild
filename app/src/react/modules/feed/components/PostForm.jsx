@@ -41,8 +41,8 @@ class PostForm extends React.Component {
       </div>
     ) : null;
     let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
-    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} authToken={this.props.authToken}/> : null;
-    let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId={this.props.feedID} /> : null;
+    let uploadMedia = (this.props.showUploadMedia) ? <UploadMedia feedId={this.props.feedID} authToken={this.props.authToken} profile={this.props.profile} /> : null;
+    let embedVideo = (this.props.showEmbedVideo) ? <EmbedVideo feedId={this.props.feedID} profile={this.props.profile} /> : null;
     let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
     let postButton;
     if (!this.props.commentForm) {

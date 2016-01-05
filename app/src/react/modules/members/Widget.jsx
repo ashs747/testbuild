@@ -15,7 +15,7 @@ class Widget extends React.Component {
     }) : null;
     return (
       <div className="members-module">
-        <h3>{this.props.title}</h3>
+        <h4>{this.props.title}</h4>
           <div className="user-wrapper">
             {users}
           </div>

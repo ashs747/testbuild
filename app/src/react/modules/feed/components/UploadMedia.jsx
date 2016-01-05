@@ -38,9 +38,10 @@ class UploadMedia extends React.Component {
   }
 
   render() {
+    let displayText = this.props.profile !== "sm" ? "Upload Photo/Video" : null;
     return (
       <div className="upload-media-component">
-        <a ref="browse" className="btn upload-media" href="javascript:void(0)"><i className="fa fa-picture-o"></i></a>
+        <a ref="browse" className="btn upload-media" href="javascript:void(0)"><i className="fa fa-picture-o"></i> {displayText}</a>
       </div>
     );
   }
