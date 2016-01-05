@@ -50,7 +50,7 @@ class ModuleView extends React.Component {
           {carousel}
         </div>
         <div className="left-content">
-          <h3>Your learning journey</h3>
+          <h4 style={{marginTop: "45px", marginBottom: "30px", fontWeight: 600}}>Your learning journey</h4>
           {ljt}
           <div className="module-content">
             <h2>{module.name}</h2>
@@ -94,7 +94,7 @@ class ModuleView extends React.Component {
             </div>
           </div>
           <div className="col-sm-10">
-            <h1>{`Module ${this.props.params.module} - ${module.name}`}</h1>
+            <h2>{`Module ${this.props.params.module} - ${module.name}`}</h2>
           </div>
         </div>
         {bodyContent}
