@@ -11,7 +11,7 @@ class FullDataCaptureForm extends React.Component {
       <div className="full-data-capture-form">
         <div className="details-panel">
           <div className="panel-header">
-            <h3>My details</h3>
+            <h4>My details</h4>
           </div>
           <div className="panel-inner">
             <form onSubmit={this.onDetailsSubmit}>
@@ -69,16 +69,16 @@ class FullDataCaptureForm extends React.Component {
         </div>
         <div className="details-panel">
           <div className="panel-header">
-            <h3>Password</h3>
+            <h4>Change password</h4>
           </div>
           <div className="panel-inner">
             <form onSubmit={this.onPasswordSubmit}>
               <div className="panel-row clearfix">
-                <label>Password</label>
+                <label>New</label>
                 <input className="form-control" type="password" value={this.props.password} onChange={this.onChange.bind(this, "password")} />
               </div>
               <div className="panel-row clearfix">
-                <label>Confirm</label>
+                <label>Re-enter</label>
                 <input className="form-control" type="password" value="" onChange={this.onChange.bind(this, "confirm")} />
               </div>
               <div className="panel-row clearfix">

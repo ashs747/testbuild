@@ -1,7 +1,7 @@
 .profile {
   background-color: $white;
   .header {
-    padding: 50px;
+    padding: 80px;
     background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -9,14 +9,12 @@
     background-size: cover;
     color: $white;
     text-align: center;
-    h1 {
-      font-size: 40px;
-      margin-bottom: 30px;
+    h2 {
       font-weight: bold;
+      margin-top: 0;
     }
-    h6 {
-      font-size: 16px;
-      line-height: 20px;
+    p {
+      font-weight: 600;
     }
     .header-text {
       max-width: 700px;
@@ -25,14 +23,24 @@
     }
   }
   .main {
-    padding: 60px;
+    padding: 60px 80px;
+    .panel-header {
+      padding: 25px 20px;
+      h4 {
+        margin: 0;
+      }
+    }
   }
   .main-inner {
     background-color: $light_grey;
-    padding: 40px;
+    padding: 45px 55px;
+    border: 1px solid $dark_grey;
   }
   .upload-profile {
     margin-bottom: 20px;
+    p {
+      font-size: 12px;
+    }
   }
   .panel-inner {
     text-align: center;
@@ -58,10 +66,10 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
   .profile {
     .main {
-      padding: 20px;
+      padding: 40px;
     }
     .main-inner {
       padding: 10px;
