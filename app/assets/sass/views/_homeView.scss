@@ -1,74 +1,68 @@
 .home {
+  a {
+    color: $white;
+  }
   .row {
     margin: 0;
   }
   .header-page {
     background: url('/assets/img/home-introduction.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     color: $white;
-    padding: 60px 0px;
+    padding: 70px 0px;
     text-align: center;
-    a {
-      color: $white;
-    }
-    h1 {
-      font-weight: bold;
-    }
     .inner {
-      padding: 10px;
-      max-width: 500px;
+      max-width: 600px;
       margin: 0 auto;
     }
     img {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      border: 2px solid $white;
+      border: 3px solid $white;
       margin: 0 auto;
+      margin-top: 40px;
       display: block;
     }
-  }
-  .go-to-alz {
-    border: 2px solid $white;
-    border-radius: 5px;
-    padding: 10px;
-    width: 55%;
-    margin: 0 auto;
-    cursor: pointer;
-    p {
-      margin: 0;
+    .go-to-alz {
+      border: 4px solid $white;
+      cursor: pointer;
+      width:40%;
+      margin: 0 auto;
+      margin-top: 20px;
     }
   }
   .left-bar {
     background-color: $white;
     padding: 0;
+    width: 70%;
   }
   .right-bar {
     background-color: $light_grey;
-    height: 1413px;
-    padding-left: 5px;
-    padding-right: 5px;
+    height: 1416px;
+    padding: 15px 10px;
+    width: 30%;
   }
   .home-learning {
-    h5 {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
     h6 {
       color: $site_red;
-      font-size: 14px;
-      text-align: right;
-      font-weight: bold;
     }
   }
   .learning-journey {
-    padding: 40px;
-    a {
-      color: $site_red;
+    padding: 50px 55px;
+    padding-right: 65px;
+    h4 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .red-link {
+      text-align: right;
+      font-size: 14px;
+      margin-top: 30px;
+      margin-bottom: 0;
+      a {
+        color: $site_red;
+      }
     }
   }
   .grid-links {
@@ -79,27 +73,40 @@
     .featured {
       background-color: $site_red;
       color: $white;
+      h4 {
+        margin: 25px 0;
+      }
     }
     .programme {
       background: url('/assets/img/home-programme.png');
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
       background-size: cover;
       color: $white;
       padding: 20px;
+      h4 {
+        margin-top: 50px;
+        margin-bottom: 20px;
+      }
+      p {
+        margin: 0 auto;
+        max-width: 250px;
+      }
       a {
         color: $white;
       }
     }
     .help {
       background: url('/assets/img/home-help.png');
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
       background-size: cover;
       color: $white;
       padding: 20px;
+      h4 {
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+      p {
+        margin: 0 auto;
+        max-width: 300px;
+      }
       a {
         color: $white;
       }
@@ -107,12 +114,21 @@
     .log {
       background-color: $white;
       padding: 20px;
+      h4 {
+        margin-top: 30px;
+        margin-bottom: 25px;
+      }
+      p {
+        margin: 0 auto;
+        margin-bottom: 40px;
+        max-width: 300px;
+      }
       a {
         color: $site_red;
       }
     }
     .inner {
-      padding: 20px;
+      padding: 10px;
     }
     .circle {
       margin: 30px auto;
@@ -123,8 +139,8 @@
     }
     .find-out-more {
       cursor: pointer;
-      border: 2px solid $white;
-      width: 60%;
+      border: 3px solid $white;
+      width: 36%;
       display: block;
       margin: 25px auto;
       h6 {
@@ -134,8 +150,8 @@
     }
     .find-out-more-red {
       cursor: pointer;
-      border: 2px solid $site_red;
-      width: 60%;
+      border: 3px solid $site_red;
+      width: 36%;
       display: block;
       margin: 25px auto;
       h6 {
@@ -145,8 +161,12 @@
     }
   }
   .message-list {
-  	height: 1241px;
+  	height: 1182px;
   	overflow-y: auto;
+  }
+  .message-board {
+    background-color: $white;
+    padding: 9px 15px;
   }
 }
 
@@ -168,6 +188,9 @@
     border: 2px solid $white;
     height: 90px;
     width: 90px;
+  }
+  p {
+    font-weight: 600;
   }
   .carousel-indicators {
     .active {
@@ -195,6 +218,15 @@
 
 @media (max-width: 767px) {
   .home {
+    h1 {
+      font-size: 24px;
+    }
+    .header-page {
+      padding: 20px 0;
+      img {
+        margin-top: 0;
+      }
+    }
     .learning-journey {
       padding: 20px;
     }

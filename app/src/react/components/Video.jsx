@@ -41,7 +41,7 @@ class Video extends React.Component {
 
   formatYoutubeUrl(url, autoplay) {
     let token = this.youtubeParser(url);
-    let newUrl = `https://www.youtube.com/embed/${token}?wmode=transparent`;
+    let newUrl = `https://www.youtube.com/embed/${token}?wmode=transparent&showinfo=0`;
 
     if (autoplay) {
       newUrl += "&rel=0&autoplay=1";

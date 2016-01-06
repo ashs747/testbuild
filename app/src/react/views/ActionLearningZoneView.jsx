@@ -58,7 +58,7 @@ class ActionLearningZoneView extends React.Component {
   render() {
     var messageBoard = (
       <div className="alz-message-board">
-        <h3>{this.props.cohort.name} message board</h3>
+        <h4>{this.props.cohort.name} message board</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
         <ALZFeed />
       </div>
@@ -105,12 +105,11 @@ class ActionLearningZoneView extends React.Component {
         <div className="row">
           <div className="col-sm-12 header-page">
             <div className="col-sm-8">
-              <h1>Action learning zone</h1>
+              <h2>Action learning zone</h2>
             </div>
             <div className="col-sm-4">
-            /* This needs to be implemented along with a User-Role check */
               <select className="form-control">
-                <option>Cohort 1</option>
+                <option>Cohort 1 - Implement</option>
               </select>
             </div>
           </div>

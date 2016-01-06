@@ -12,11 +12,11 @@ class LearningJourneyTable extends React.Component {
     let rows = null;
     if (this.props.journeyModule) {
       rows = _.mapObject(this.props.journeyModule.activities, (activity, key) => {
-        return <LearningJourneyRow key={key} activity={activity} smallTable={this.props.smallTable} moduleId={this.props.journeyModule.id}/>;
+        return <LearningJourneyRow showIcon={this.props.showIcon} key={key} activity={activity} smallTable={this.props.smallTable} moduleId={this.props.journeyModule.id}/>;
       });
     }
     let iconRow = (this.props.showIcon) ? <th className="row-icon"></th> : null;
-    let headerIcon = (this.props.showIcon) ? <th className="row-icon"><i className="fa fa-lightbulb-o"></i></th> : null;
+    let headerIcon = (this.props.showIcon) ? <th className="row-icon"><i className="fa fa-gears"></i></th> : null;
     let content = this.props.smallTable ? (
       <div className="table">
         <div className="heading">
@@ -33,7 +33,7 @@ class LearningJourneyTable extends React.Component {
         <thead>
           <tr className="heading">
             {headerIcon}
-            <th colSpan="6">
+            <th colSpan="7">
               <div className="title"><a href={`/#/module/${this.props.journeyModule.id}`}>{`Module ${this.props.journeyModule.id} - ${this.props.journeyModule.name}`}</a></div>
               <div className="sub-title">{moment(this.props.journeyModule.startDate).format('MMMM YYYY')} - {moment(this.props.journeyModule.endDate).format('MMMM YYYY')}</div>
             </th>
@@ -44,6 +44,7 @@ class LearningJourneyTable extends React.Component {
             <th>TYPE</th>
             <th>DATE</th>
             <th>TIME</th>
+            <th></th>
             <th>DETAILS</th>
             <th></th>
           </tr>
@@ -53,8 +54,8 @@ class LearningJourneyTable extends React.Component {
         </tbody>
         <tfoot className="footer">
           <tr>
-            <td></td>
-            <td colSpan="6">VIEW LEARNING LOG <i className="fa fa-chevron-right"></i></td>
+            <td className={this.props.showIcon ? "show-icon-footer" : ""}></td>
+            <td colSpan="7"><span>VIEW LEARNING LOG ></span></td>
           </tr>
         </tfoot>
       </table>

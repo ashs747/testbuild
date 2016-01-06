@@ -4,7 +4,7 @@
     margin: 0;
   }
   .header-page {
-    padding: 60px 30px;
+    padding: 85px 20px;
     background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -15,20 +15,37 @@
       height: 40px;
       border-radius: 0;
     }
-    h1 {
-      font-weight: 800;
+    h2 {
+      font-weight: bold;
       margin: 0;
     }
   }
   .alz-message-board {
-    padding: 20px 10px;
+    padding: 50px 25px;
+    h4 {
+      font-weight: 600;
+      margin-top: 0;
+    }
+  }
+  .members-module {
+    padding-top: 20px;
+    h4 {
+      margin: 20px;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+  }
+  .message-board {
+    padding: 0;
+    margin-top: 25px;
   }
   .right-bar {
-    padding: 20px;
+    padding: 30px 20px;
   }
   .left-bar {
     border-right: 2px solid $dark_grey;
     background-color: $white;
+    padding: 0;
   }
 }
 

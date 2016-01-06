@@ -27,6 +27,7 @@ $icon-font-path: '/bower_components/bootstrap-sass/assets/fonts/bootstrap/';
 @import "./components/upload";
 @import "./components/slideshow";
 @import "./components/tooltip";
+@import "./components/learningJourneyTable";
 
 @font-face {
   font-family: "FontAwesome";
@@ -53,7 +54,10 @@ body {
 }
 
 .container-fluid {
-  max-width: $max_width;
+  max-width: 1214px;
+  border-left: 1px solid $border_grey;
+  border-right: 1px solid $border_grey;
+  padding: 0;
 }
 
 #app {

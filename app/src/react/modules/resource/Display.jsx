@@ -10,7 +10,7 @@ class Display extends React.Component {
     return (
       <div className="resource-display">
         <i className={`fa fa-${this.props.icon}`}></i>
-        <h6 className="resource-title"><a href={this.props.reference}>{this.props.title}</a></h6>
+        <p className="resource-title"><a href={this.props.reference}>{this.props.title}</a></p>
       </div>
     );
   }

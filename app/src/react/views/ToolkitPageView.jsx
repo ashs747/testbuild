@@ -26,7 +26,7 @@ class ToolkitPageView extends React.Component {
               <div className="header-icon"><i className={`fa fa-${toolkit.icons}`}></i></div>
             </div>
             <div className="col-md-8 col-sm-10">
-              <h1>{toolkit.title}</h1>
+              <h2>{toolkit.title}</h2>
             </div>
             <div className="col-md-3 visible-lg visible-md">
               <div className="pdf">
@@ -37,8 +37,7 @@ class ToolkitPageView extends React.Component {
         </div>
         <div className="body">
           <div className="row">
-            <div className="col-md-9 left-bar">
-              <h4>Toolkit Content</h4>
+            <div className="col-md-8 left-bar">
               <div className="content">
                 <Markdown source={toolkit.content} />
               </div>
@@ -46,9 +45,9 @@ class ToolkitPageView extends React.Component {
             <div className="col-md-12 hidden-lg hidden-md second-pdf">
               <FileDownload file={toolkit.pdfLink} buttonText="DOWNLOAD PDF"/>
             </div>
-            <div className="col-md-3 right-bar">
+            <div className="col-md-4 right-bar">
               <div className="hints-and-tips">
-                <h3>Hints and Tips</h3>
+                <h4>Hints and Tips</h4>
                 <div className="list">
                   <Markdown source={toolkit.hints} />
                 </div>

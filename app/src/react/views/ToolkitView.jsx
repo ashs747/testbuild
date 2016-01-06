@@ -16,10 +16,10 @@ class ToolkitView extends React.Component {
         <div className="header">
           <div className="header-text">
             <h1>Toolkit</h1>
-            <h6>This collection of topic based ‘tools’ are designed to support your learning as you go through the programme.
+            <p>This collection of topic based ‘tools’ are designed to support your learning as you go through the programme.
               As you work with your peers, you can discuss which are going to be most helpful for your individual learning plan.
               You may find them handy to use with your teams. These great toolkits really help for when you want to do some
-              independent development or just want a quick refresher in your own time. Feel free to have an explore!</h6>
+              independent development or just want a quick refresher in your own time. Feel free to have an explore!</p>
           </div>
         </div>
         <div className="body clearfix">
@@ -35,8 +35,8 @@ class ToolkitView extends React.Component {
         <div className="widget-icon">
           <i className={`fa fa-${toolkit.icons}`}></i>
         </div>
-        <h3>Tool title:<br />{toolkit.title}</h3>
-        <a className="btn" href={`/#/toolkit/${toolkit.slug}`}>View</a>
+        <h3>{toolkit.title}</h3>
+        <a className="btn" href={`/#/toolkit/${toolkit.slug}`}>VIEW</a>
       </div>
     ));
     return mappedWidgets;

@@ -44,7 +44,7 @@ class ActivityView extends React.Component {
       if (activity.myBookedEventAndSlot.content && activity.myBookedEventAndSlot.content.length > 0) {
         preWork = (
           <div>
-            <h3>Pre Work</h3>
+            <h4>Pre Work</h4>
             <Markdown source={activity.myBookedEventAndSlot.content} />
           </div>
         );
@@ -59,11 +59,11 @@ class ActivityView extends React.Component {
     );
     let overview = (
       <div className="overview">
-        <h3>Your learning journey</h3>
+        <h4 style={{marginTop: "25px", marginBottom: "30px"}}>Your learning journey</h4>
         {ljt}
         <div className="overview-inner">
           {preWork}
-          <h3>Overview and objectives</h3>
+          <h4>Overview and objectives</h4>
           <Markdown source={activity.content} />
         </div>
       </div>
@@ -104,8 +104,9 @@ class ActivityView extends React.Component {
             </div>
           </div>
           <div className="col-sm-10">
-            <h3>{`Module ${moduleWithActivity.id} - ${moduleWithActivity.name}`}</h3>
-            <h1>{activity.name}</h1>
+            <h4>{`Module ${moduleWithActivity.id} - ${moduleWithActivity.name}`}</h4>
+            <h2>{activity.name}</h2>
+            <h4>{activity.type}</h4>
           </div>
         </div>
         {bodyContent}

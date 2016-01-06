@@ -89,13 +89,15 @@ class Comment extends React.Component {
     }
     return (
       <div className={`comment clearfix ${(this.props.profile === "sm") ? "mobile-comment" : "" }`}>
-        <CloudinaryImg file={profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
-        <div className={contentClass}>
-          <h6>{this.props.name}</h6>
-          {bodyContent}
-          <span className="comment-date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
-        </div>
         {editButtons}
+        <div className="comment-body clearfix">
+          <CloudinaryImg file={profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
+          <div className={contentClass}>
+            <p><span className="red-bold">{this.props.name}</span></p>
+              {bodyContent}
+            <span className="comment-date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
+          </div>
+        </div>
       </div>
     );
   }
