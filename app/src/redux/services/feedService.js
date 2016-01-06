@@ -63,3 +63,10 @@ export function postComment(feedID, messageID, comment) {
 export function postUpdatedMessage(boardID, messageID, content) {
   return request.post(`${apiRoot}api/feeds/${boardID}/message/${messageID}`, content);
 }
+
+export function embedVideo(url) {
+  let params = {
+    url
+  };
+  return request.post(`${apiRoot}api/files/embed-video`, params);
+}

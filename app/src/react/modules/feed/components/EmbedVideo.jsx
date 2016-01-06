@@ -1,5 +1,5 @@
 import React from 'react';
-import {embedVideo} from '../../../../redux/actions/feedActions';
+import {embedVideoAction} from '../../../../redux/actions/feedActions';
 import {dispatch} from '../../../../redux/store';
 
 class EmbedVideo extends React.Component {
@@ -77,7 +77,7 @@ class EmbedVideo extends React.Component {
 
   saveVideo() {
     /* Saves the video into app state against the message via a reducer */
-    dispatch(embedVideo(this.props.feedId, React.findDOMNode(this.refs.urlField).value));
+    dispatch(embedVideoAction(this.props.feedId, React.findDOMNode(this.refs.urlField).value));
     this.setState({showUrlField: false});
   }
 

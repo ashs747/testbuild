@@ -20,7 +20,7 @@ function mapUploadForm(state) {
 var MappedUploadProfile = connect(mapUploadForm)(UploadProfile);
 
 function mapCaptureFormProps(state) {
-  
+
   // FixMe: Not finished (mappings);
   return {
     ...state.user,
@@ -58,7 +58,7 @@ var ConnectedWelcomeBlock = connect(mapWelcomePage)(WelcomeBlock);
 export const onboardingSlides = [{
   content: (
     <Provider store={store}>
-    {function() { 
+    {function() {
       return (
         <ConnectedWelcomeBlock />
       );
@@ -104,7 +104,7 @@ export const onboardingSlides = [{
           <div className="body">
           <div className="title">
             <h1>A message from the executive board</h1>
-            <Video url="https://www.youtube.com/watch?v=HGdQUMzRVxA" />
+            <Video url="https://vimeo.com/150919913" />
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
           </div>
         </div>

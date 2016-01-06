@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 import ImageGrid from './ImageGrid.jsx';
 import CloudinaryImg from './CloudinaryImg.jsx';
+import Video from './Video.jsx';
 
 export default class MediaGrid extends React.Component {
 
@@ -53,10 +54,9 @@ export default class MediaGrid extends React.Component {
         var boundClick = this.onMediaClick.bind(this, i);
         this.mediaGalleryList.push(file);
         medialist.images.push(file);
-      } else if (file.mimeType.match('video.*')) {
-        thumbnail = _.where(file.variations, {variation: "small"});
-        thumbnailUrl = (thumbnail.length > 0) ? thumbnail[0].reference : "/assets/img/thumb-default.png";
-        medialist.videos.push(<Video url={file.reference} key={`video-component${i}`} autoPlay={false} color="#007075" thumb={thumbnailUrl} marginBottom={5} />);
+      } else if (file.reference === "vimeo" || file.reference === "youtube") {
+        let url = _.findWhere(file.metadata, {key: "url"});
+        medialist.videos.push(<Video url={url.value} key={`video-component${file.id}`} autoPlay={false} color="#007075"/>);
       }
     });
 

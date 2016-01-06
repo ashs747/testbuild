@@ -29,7 +29,6 @@ class PostForm extends React.Component {
     this.onSave = this.onSave.bind(this);
     this.keyPress = this.keyPress.bind(this);
     this.mapAttachments = this.mapAttachments.bind(this);
-    this.rotateAttachment = this.rotateAttachment.bind(this);
     this.removeAttachment = this.removeAttachment.bind(this);
   }
 
@@ -97,9 +96,28 @@ class PostForm extends React.Component {
         height: (this.props.profile === "sm") ? "90px" : "150px",
         width: (this.props.profile === "sm") ? "90px" : "150px",
       };
+
+      if (a.mime_type === "video/mp4") {
+        if (a.reference === "youtube") {
+          a.metadata.forEach((meta) => {
+            if (meta.key === "url") {
+              let videoCode = meta.value.split("?v=");
+              videoCode = videoCode[1].split("&");
+              thumbnail = `http://img.youtube.com/vi/${videoCode[0]}/0.jpg`;
+            }
+          });
+        }
+        return (
+          <div key={a.id} className="item">
+            <img src={thumbnail} style={imageViewStyle} />
+            <a onClick={this.removeAttachment(a)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
+          </div>
+        );
+      }
+
       return (
         <div key={a.id} className="item">
-          <CloudinaryImg file={a} width="120" height="120" style={imageViewStyle} crop="fill" defaultImg={thumbnail} style={imageViewStyle} />
+          <CloudinaryImg file={a} width="120" height="120" style={imageViewStyle} crop="fill" defaultImg={thumbnail} />
           <a onClick={this.removeAttachment(a)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
           {rotate}
         </div>
