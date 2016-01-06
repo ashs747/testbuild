@@ -4,6 +4,9 @@
 }
 
 .slideshow-arrows {
+  span {
+    cursor: pointer;
+  }
   .slideshow-prev-arrow {
     float: left;
     width: 50%;
@@ -13,6 +16,12 @@
     width: 50%;
     text-align: right;
   }
+}
+
+.slideshow-nav {
+  position: absolute;
+  width: calc(100% - 60px);
+  bottom: 30px;
 }
 
 .slideshow-nav-items {

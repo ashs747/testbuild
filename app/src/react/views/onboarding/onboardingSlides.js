@@ -72,6 +72,80 @@ export const onboardingSlides = [{
     <Provider store={store}>
       {function() {
         return (
+          <div className="body">
+          <div className="title">
+            <h1>A message from the executive board</h1>
+            <Video url="https://vimeo.com/150919913" />
+          </div>
+        </div>
+        );
+      }}
+    </Provider>
+  ),
+  className: 'message',
+  showPrev: true,
+  showNext: true
+}, {
+  content: (
+    <Provider store={store}>
+      {function() {
+        return (
+          <div className="body">
+          <div className="title">
+            <h1>Your learning journey</h1>
+          </div>
+          <div className="content">
+            <div className="col-sm-7">
+              <img src="https://placehold.it/300x275?text=picture_here" />
+            </div>
+            <div className="col-sm-5">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div className="clearfix"/>
+          </div>
+        </div>
+        );
+      }}
+    </Provider>
+  ),
+  className: 'journey',
+  showPrev: true,
+  showNext: true
+}, {
+  content: (
+    <Provider store={store}>
+      {function() {
+        return (
+          <div className="body">
+          <div className="title">
+            <h1>Track your progress and see upcoming events</h1>
+          </div>
+          <div className="content">
+            <div className="col-sm-7">
+              <img src="https://placehold.it/300x275?text=picture_here" />
+            </div>
+            <div className="col-sm-5">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div className="clearfix"/>
+          </div>
+        </div>
+        );
+      }}
+    </Provider>
+  ),
+  className: 'progress',
+  showPrev: true,
+  showNext: true
+}, {
+  content: (
+    <Provider store={store}>
+      {function() {
+        return (
           <div className="inner">
           <h1>Upload a photo and choose a password</h1>
           <div className="row">
@@ -88,7 +162,7 @@ export const onboardingSlides = [{
     </Provider>
   ),
   className: 'profile',
-  showPrev: false,
+  showPrev: true,
   showNext: true,
   onNextClick: function() {
     console.log('this', this);
@@ -103,106 +177,18 @@ export const onboardingSlides = [{
         return (
           <div className="body">
           <div className="title">
-            <h1>A message from the executive board</h1>
-            <Video url="https://vimeo.com/150919913" />
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
-          </div>
-        </div>
-        );
-      }}
-    </Provider>
-  ),
-  className: 'message',
-  showPrev: false,
-  showNext: true
-}, {
-  content: (
-    <Provider store={store}>
-      {function() {
-        return (
-          <div className="body">
-          <div className="title">
-            <h1>Your learning journey</h1>
-          </div>
-          <div className="content">
-            <div className="col-sm-7">
-              image here
-            </div>
-            <div className="col-sm-5">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.<br /><br />
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. </p>
-            </div>
-            <div className="clearfix"/>
-          </div>
-        </div>
-        );
-      }}
-    </Provider>
-  ),
-  className: 'journey',
-  showPrev: false,
-  showNext: true
-}, {
-  content: (
-    <Provider store={store}>
-      {function() {
-        return (
-          <div className="body">
-          <div className="title">
-            <h1>Track your progress and see upcoming events</h1>
-          </div>
-          <div className="content">
-            <div className="col-sm-7">
-              image here
-            </div>
-            <div className="col-sm-5">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.<br /><br />
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. </p>
-            </div>
-            <div className="clearfix"/>
-          </div>
-        </div>
-        );
-      }}
-    </Provider>
-  ),
-  className: 'progress',
-  showPrev: false,
-  showNext: true
-}, {
-  content: (
-    <Provider store={store}>
-      {function() {
-        return (
-          <div className="body">
-          <div className="title">
-            <h1>What do you want to do now?</h1>
+            <h1>Your onboarding is complete</h1>
             <div className="sub">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod, incididunt ut
-              labore.</p>
+              <p>Please make a note of your password. Click below to log in to the portal using your email and password.</p>
             </div>
           </div>
           <div className="content">
-            <div className="col-sm-2"></div>
-            <div className="col-sm-4">
+            <div className="final-button">
               <div className="circle hidden-xs">
-                <i className="fa fa-home"></i>
+                <i className="fa fa-sign-in"></i>
               </div>
-              <a className="btn">GO TO THE HOMEPAGE</a>
+              <a className="btn" href="/#/login">GO TO THE LOGIN PAGE</a>
             </div>
-            <div className="col-sm-4">
-              <div className="circle hidden-xs">
-                <i className="fa fa-question-circle"></i>
-              </div>
-              <a className="btn">LEARN MORE</a>
-            </div>
-            <div className="col-sm-2"></div>
           <div className="clearfix"/>
           </div>
         </div>
@@ -211,6 +197,6 @@ export const onboardingSlides = [{
     </Provider>
   ),
   className: 'final',
-  showPrev: false,
+  showPrev: true,
   showNext: false
 }];
