@@ -37,7 +37,7 @@ class ModuleView extends React.Component {
       };
     });
     let moduleSlug = module.name.replace(/\s+/g, '-').toLowerCase();
-    let icon = <img src={`assets/img/${moduleSlug}.png`} alt="module icon" />
+    let icon = <img src={`assets/img/${moduleSlug}.png`} alt="module icon" />;
     let carousel = <Carousel context={`module-${module.id}`} items={items} defineWidthClass="col-xs-8 col-xs-offset-2"/>;
     let exampleMarkdown = `
 ##### Engaging
