@@ -21,6 +21,8 @@ class LearningJourneyWidget extends React.Component {
         }
         return this.hasOutstandingActivities(module) ? <div className="notice"><i className="fa fa-exclamation"></i></div> : <div className="notice complete"><i className="fa fa-check"></i></div>;
       })();
+      let moduleSlug = module.name.replace(/\s+/g, '-').toLowerCase();
+      let icon = <img src={`assets/img/${moduleSlug}.png`} alt="module icon"/>;
       let content = (this.props.smallWidget) ? (
         <tr key={key} className="small-row">
           <td className="activity">
@@ -44,7 +46,7 @@ class LearningJourneyWidget extends React.Component {
           <td className="activity">
             <div className={currentModule}>
               {notice}
-              <i className="fa fa-cogs"></i>
+              {icon}
               <div className="module-text">
                 <h5><b>Module {module.id} - {module.name}</b></h5>
                 <h5 style={{fontSize: "16px"}}>{moment(module.startDate).format('MMMM YYYY')} - {moment(module.endDate).format('MMMM YYYY')}</h5>

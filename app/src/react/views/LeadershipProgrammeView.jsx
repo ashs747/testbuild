@@ -13,16 +13,24 @@ class LeadershipProgrammeView extends React.Component {
 
   render() {
     let carouselItems = [{
-      name: "Ambassador for Change",
-      icon: "shield",
+      name: "Inspiring Connector",
+      icon: <img src="assets/img/inspiring-connector.png" alt="module icon" />,
       copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
     }, {
       name: "Ambassador for Change",
-      icon: "shield",
+      icon: <img src="assets/img/ambassador-for-change.png" alt="module icon" />,
       copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
     }, {
-      name: "Ambassador for Change",
-      icon: "shield",
+      name: "Agile Decision Maker",
+      icon: <img src="assets/img/agile-decision-maker.png" alt="module icon" />,
+      copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
+    }, {
+      name: "People Leader",
+      icon: <img src="assets/img/people-leader.png" alt="module icon" />,
+      copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
+    }, {
+      name: "Performance Driver",
+      icon: <img src="assets/img/performance-driver.png" alt="module icon" />,
       copy: "You enable others to learn and develop; show them how, provide support and create opportunities; share knowledge and skills with others."
     }];
 

@@ -84,14 +84,18 @@
     }
     .carousel {
       .icon {
+        background-color: transparent;
         height: 160px;
         width: 160px;
-        background-color: #23b9d7;
         color: $white;
         p {
           line-height: 140px;
           font-size: 115px;
           margin-bottom: 0;
+        }
+        img {
+          height: 100%;
+          width: 100%;
         }
       }
       .carousel-control {
