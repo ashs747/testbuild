@@ -49,7 +49,7 @@ class Header extends React.Component {
           <LiAnchor text="Programme" onClick={this.toggleMobileNav} url="/#/programme"/>
           <LiAnchor text="Learning Journey" onClick={this.toggleMobileNav} url="/#/personal-learning-journey"/>
           <LiAnchor text="Action Learning Zone" onClick={this.toggleMobileNav} url="/#/action-learning-zone"/>
-          <LiAnchor text="Toolkit" onClick={this.toggleMobileNav} url="/#/tools"/>
+          <LiAnchor text="Toolkit" onClick={this.toggleMobileNav} url="/#/toolkits"/>
           <LiAnchor text="Profile" onClick={this.toggleMobileNav} url="/#/profile"/>
           <LiAnchor text="Need Help?" onClick={this.toggleMobileNav} url={this.props.supportUrl}/>
           <LiAnchor text="Logout" action={this.logout} url="/#/login"/>

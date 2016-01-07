@@ -152,7 +152,7 @@ class LeadershipProgrammeView extends React.Component {
         <div className="message-from">
           <div className="inner">
             <h1>A Message from the Executive Board</h1>
-            <Video url="https://www.youtube.com/watch?v=HGdQUMzRVxA" />
+            <Video url="https://vimeo.com/150919913/" />
           </div>
         </div>
       </div>

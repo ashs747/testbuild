@@ -12,6 +12,9 @@ class UploadMedia extends React.Component {
     this.onFileUploaded = this.onFileUploaded.bind(this);
     this.onFilesAdded = this.onFilesAdded.bind(this);
     this.onError = this.onError.bind(this);
+    this.state = {
+      loading: false
+    };
   }
 
   componentDidMount() {
@@ -39,18 +42,21 @@ class UploadMedia extends React.Component {
 
   render() {
     let displayText = this.props.profile !== "sm" ? "Upload Photo/Video" : null;
+    let icon = this.state.loading ? <img src="assets/img/ajax-loader1.gif" /> : <div><i className="fa fa-picture-o"></i> {displayText}</div>;
     return (
       <div className="upload-media-component">
-        <a ref="browse" className="btn upload-media" href="javascript:void(0)"><i className="fa fa-picture-o"></i> {displayText}</a>
+        <a ref="browse" className="btn upload-media" href="javascript:void(0)">{icon}</a>
       </div>
     );
   }
 
   onFilesAdded(up, file) {
     this.plup.start();
+    this.setState({loading: true});
   }
 
   onFileUploaded(up, file, data) {
+    this.setState({loading: false});
     let response = JSON.parse(data.response);
     dispatch(addFile(response, this.props.feedId));
   }

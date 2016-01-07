@@ -75,7 +75,7 @@ export const onboardingSlides = [{
           <div className="body">
           <div className="title">
             <h1>A message from the executive board</h1>
-            <Video url="https://www.youtube.com/watch?v=HGdQUMzRVxA" />
+            <Video url="https://vimeo.com/150919913" />
           </div>
         </div>
         );

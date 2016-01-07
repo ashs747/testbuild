@@ -11,10 +11,18 @@ class CloudinaryImg extends React.Component {
     if (this.props.file) {
       metadata = this.props.file.metadata;
     }
-    
+
     var imgParams = [];
     var modStr = '';
     var file = this.props.file;
+
+    if (file && file.context === "embed") {
+      return (
+        <a href={this.props.secure ? file.secure_url : file.url}>
+          <img style={this.props.style} src={this.props.defaultImg} alt={this.props.alt}/>
+        </a>
+      );
+    }
 
     if (file && file.metadata) {
       /*eslint-disable camelcase */
@@ -76,4 +84,3 @@ class CloudinaryImg extends React.Component {
 }
 
 export default CloudinaryImg;
-

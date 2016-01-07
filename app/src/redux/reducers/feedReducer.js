@@ -38,14 +38,14 @@ export const feedReducer = (state = defaultState, action) => {
 
     case FEED_ALLOW_EDIT:
       feed = state[action.payload.feedID];
-      
+
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('editable')(action));
       return nextState;
       break;
 
     case FEED_UPDATE_MESSAGE:
       feed = state[action.payload.feedID];
-      
+
       nextState[action.payload.feedID].messages = feed.messages.map(updateMatchedByFieldName('content')(action));
       return nextState;
       break;
@@ -153,15 +153,16 @@ export const feedReducer = (state = defaultState, action) => {
       switch (action.error) {
         case undefined:
           let payload = action.payload;
-          let metaPreviewURL = _.findWhere(payload.metadata, {key: "url"});
-          payload.previewUrl = metaPreviewURL.value;
-
-          let splitUrl = payload.previewUrl.split("/upload/");
-          payload.thumbnail = `${splitUrl[0]}/upload/c_fill,h_200,w_200/${splitUrl[1]}`;
+          if (payload.reference === "cloudinary") {
+            let metaPreviewURL = _.findWhere(payload.metadata, {key: "url"});
+            payload.previewUrl = metaPreviewURL.value;
+            let splitUrl = payload.previewUrl.split("/upload/");
+            payload.thumbnail = `${splitUrl[0]}/upload/c_fill,h_200,w_200/${splitUrl[1]}`;
+          }
           nextState[action.payload.feedId].files = nextState[action.payload.feedId].files || [];
           nextState[action.payload.feedId].files.push(payload);
+
           return nextState;
-          
           break;
         default:
           return state;
@@ -208,22 +209,17 @@ export const feedReducer = (state = defaultState, action) => {
 
           nextState[action.payload.feedID].messages = messages;
           return nextState;
-        
-        default: 
+
+        default:
           return {...state};
       }
 
     case "FEED_EMBED_VIDEO":
       switch (action.status) {
         case 'RESOLVED':
+          nextState[action.payload.feedId].files = nextState[action.payload.feedId].files || [];
+          nextState[action.payload.feedId].files.push(action.payload.file);
           nextState = Object.assign({}, state);
-          let file = {
-            previewUrl: null,
-            reference: "vimeo",
-            mimeType: "video/vimeo",
-            thumbnail: action.payload.thumbnail
-          };
-          nextState[action.payload.feedId].files = [...state[action.payload.feedId].files, file];
           return nextState;
           break;
         case 'REJECTED':

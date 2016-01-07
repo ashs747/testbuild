@@ -1,5 +1,5 @@
 //feedActions
-import {postUpdatedMessage, postMessage, postComment, deleteMessage, patchMessage, getFeedMessages, updateMeta} from '../services/feedService';
+import {postUpdatedMessage, postMessage, postComment, deleteMessage, patchMessage, getFeedMessages, updateMeta, embedVideo} from '../services/feedService';
 import store from '../store.js';
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
 export const FEED_UPDATE_MESSAGE = 'FEED_UPDATE_MESSAGE';
@@ -41,7 +41,7 @@ export const createComment = (feedID, messageID) => {
       });
     response.feedID = feedID;
     response.id = messageID;
-    
+
     return {
       type: 'FEED_CREATE_COMMENT',
       payload: response
@@ -60,7 +60,7 @@ export const createComment = (feedID, messageID) => {
 export const deleteMessageFromFeed = (feedID, messageID) => {
   let asyncResponse = deleteMessage(messageID).then((result) => {
     store.dispatch(fetchLatestFeedMessages(feedID));
-    
+
     return {...result, feedID, messageID};
   });
 
@@ -200,13 +200,12 @@ export const rotateAttachment = (feedId, imageFile, imageRotation) => {
   };
 };
 
-export const embedVideo = (feedId, url) => {
-  let videoCode = url.split("?v=");
-  videoCode = videoCode[1].split("&");
-  let thumbnail = `http://img.youtube.com/vi/${videoCode[0]}/0.jpg`;
-  let payload = Promise.resolve({
-    thumbnail,
-    feedId
+export const embedVideoAction = (feedId, url) => {
+  let payload = embedVideo(url).then((file) => {
+    return {
+      file: file.file,
+      feedId
+    };
   });
   return {
     type: 'FEED_EMBED_VIDEO',
@@ -219,7 +218,7 @@ export const createMessage = (feedID) => {
   var message = {};
   var files = store.getState().feeds[feedID].files || [];
   message.content = store.getState().feeds[feedID].newMessageContent;
-  
+
   message.files = files.length > 0 ? files.map((file) => {
     return file.id;
   }) : undefined;
