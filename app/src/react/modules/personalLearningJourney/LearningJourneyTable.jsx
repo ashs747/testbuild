@@ -16,7 +16,8 @@ class LearningJourneyTable extends React.Component {
       });
     }
     let iconRow = (this.props.showIcon) ? <th className="row-icon"></th> : null;
-    let headerIcon = (this.props.showIcon) ? <th className="row-icon"><i className="fa fa-gears"></i></th> : null;
+    let moduleSlug = this.props.journeyModule.name.replace(/\s+/g, '-').toLowerCase();
+    let headerIcon = (this.props.showIcon) ? <th className="row-icon"><img src={`assets/img/${moduleSlug}.png`} alt="module icon"/></th> : null;
     let content = this.props.smallTable ? (
       <div className="table">
         <div className="heading">

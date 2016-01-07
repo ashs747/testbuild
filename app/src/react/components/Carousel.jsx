@@ -19,10 +19,11 @@ class Carousel extends React.Component {
       if (item.backgroundImage) {
         style.backgroundImage = `url('${item.backgroundImage}')`;
       }
+      let icon = (typeof item.icon === 'string') ? <p><i className={`fa fa-${item.icon}`} ></i></p> : item.icon;
       items.push(
         <div key={i} className={`item text-center ${className}`} style={style}>
           <div className="icon">
-            <p><i className={`fa fa-${item.icon}`} ></i></p>
+            {icon}
           </div>
           <div className="row">
             <div className={width}>

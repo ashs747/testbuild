@@ -12,15 +12,13 @@
       width: 100px;
       height: 100px;
       margin: 0 auto;
-      background-color: $white;
       color: $dark_blue;
       border-radius: 50%;
       font-size: 30px;
     }
-    i {
-      font-size: 60px;
-      margin-top: 20px;
-      margin-left: 20px;
+    img {
+      height: 100%;
+      width: 100%;
     }
     h3 {
       margin-bottom: 5px;
@@ -28,6 +26,12 @@
     h2 {
       font-weight: bold;
       margin-top: 30px;
+    }
+    .col-sm-2 {
+      padding-right: 0;
+    }
+    .col-sm-10 {
+      padding-left: 0;
     }
   }
   .carousel-indicators {

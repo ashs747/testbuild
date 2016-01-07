@@ -36,6 +36,8 @@ class ModuleView extends React.Component {
         backgroundImage: file.reference
       };
     });
+    let moduleSlug = module.name.replace(/\s+/g, '-').toLowerCase();
+    let icon = <img src={`assets/img/${moduleSlug}.png`} alt="module icon" />
     let carousel = <Carousel context={`module-${module.id}`} items={items} defineWidthClass="col-xs-8 col-xs-offset-2"/>;
     let exampleMarkdown = `
 ##### Engaging
@@ -90,7 +92,7 @@ class ModuleView extends React.Component {
         <div className="header-top clearfix">
           <div className="col-sm-2">
             <div className="icon">
-              <span><i className={`fa fa-${module.icon}`}></i></span>
+              {icon}
             </div>
           </div>
           <div className="col-sm-10">
