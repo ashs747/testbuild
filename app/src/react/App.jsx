@@ -91,22 +91,24 @@ class App extends React.Component {
         return; // LoggedIn - Nothing to do
       }
 
-      var authTokenInCookie = cookie.get('access_token');
-      var refreshToken = cookie.get('refresh_token');
+      if (!stAccToken) {
+        var authTokenInCookie = cookie.get('access_token');
+        var refreshToken = cookie.get('refresh_token');
 
-      if (!authTokenInCookie && !refreshToken) {
-        // TODO: Mop up invalid token in cookie
-        if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
-          router.transitionTo('/login');
+        if (!authTokenInCookie && !refreshToken) {
+          // TODO: Mop up invalid token in cookie
+          if (activeRouteBase && activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
+            router.transitionTo('/login');
+            return;
+          }
+        } else {
+          var authTokenData = {};
+          authTokenData['access_token'] = authTokenInCookie;
+          authTokenData['refresh_token'] = refreshToken;
+          /* Throw the tokens from the cookie up to state */
+          store.dispatch(loadAuthFromCookie(authTokenData));
           return;
         }
-      } else {
-        var authTokenData = {};
-        authTokenData['access_token'] = authTokenInCookie;
-        authTokenData['refresh_token'] = refreshToken;
-        /* Throw the tokens from the cookie up to state */
-        store.dispatch(loadAuthFromCookie(authTokenData));
-        return;
       }
     }
   }

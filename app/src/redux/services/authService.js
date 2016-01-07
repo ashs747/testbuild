@@ -75,6 +75,22 @@ export const getOAuthToken = (username, password) => {
   });
 };
 
+export const getOAuthTokenFromOneUseKey = (key) => {
+  if (!key) {
+    throw new Error('You need the yellow key');
+  }
+  /*eslint-disable camelcase */
+  return oAuth({
+    scope:'PRE_AUTH',
+    grant_type:'http://strata.core/grants/onetime',
+    client_id: config.api.clientId,
+    client_secret: config.api.appSecret,
+    key: key
+  });
+};
+
+
+
 export const getInitialUserData = () => {
   return user();
 };

@@ -1,6 +1,6 @@
 import authManager from 'cirrus/services/managers/authManager';
 import userManager from 'cirrus/services/managers/userManager';
-import {getOAuthToken, getOAuthTokenFromRefreshToken, getUserData, setCookieCredentials} from '../services/authService';
+import {getOAuthToken, getOAuthTokenFromOneUseKey, getOAuthTokenFromRefreshToken, getUserData, setCookieCredentials} from '../services/authService';
 import {updateUserPassword, sendRecoverPasswordEmail} from '../services/userService';
 import cookie from 'cookie-cutter';
 import Store from '../store.js';
@@ -21,11 +21,10 @@ export const RECOVER_PASSWORD_EMAIL_HIDE = 'RECOVER_PASSWORD_EMAIL_HIDE';
 
 export function fetchInitialUserData(key) {
   let authByOneTimeKey = (key) => {
-    return Promise.resolve('MGYxNmEzZjJhZTNjYmU1NjkzOTE0OGI0MGQxNDZhYzdkYjJlMDM3YjcyNzc5Nzg0YTQ1ZWZmMzA3MWU3NDA3Mg'); //TODO: OneTimeKeyExchange Service
+    return getOAuthTokenFromOneUseKey(key)
   };
-  let req = authByOneTimeKey(key).then((token) => {
-    setCookieCredentials(token);
-    return getUserData();
+  let req = authByOneTimeKey(key).then((response) => {
+    return getUserData(response.access_token);
   });
 
   return {
@@ -67,6 +66,14 @@ export function authAction(username, password) {
     payload: req
   };
 };
+
+export function exchangeOTUK(key) {
+  let req = getOAuthTokenFromOneUseKey(key);
+  return {
+    type: AUTH,
+    payload: req
+  };
+}
 
 export function loadAuthFromCookie(cookieData) {
   return {

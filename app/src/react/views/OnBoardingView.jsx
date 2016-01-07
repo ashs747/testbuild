@@ -1,7 +1,7 @@
 import React from 'react';
 import Slideshow from '../modules/slideshow/Slideshow.jsx';
 import {onboardingSlides} from './onboarding/onboardingSlides.js';
-import {fetchInitialUserData} from '../../redux/actions/authActions';
+import {fetchInitialUserData, exchangeOTUK} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
 
 function mapProps(state) {
