@@ -59,7 +59,7 @@ export const clearDetailFormErrors = () => {
   return {
     type: 'USER_CLEAR_DETAILS_FORM',
     payload: {}
-  }
+  };
 };
 
 export const saveUserPassword = () => {
@@ -68,5 +68,14 @@ export const saveUserPassword = () => {
   return {
     type: 'USER_SAVE_PASSWORD',
     payload
+  };
+};
+
+export const newProfilePic = (profilePic) => {
+  return {
+    type: 'USER_UPDATE_PROFILE',
+    payload: {
+      profilePic
+    }
   };
 };

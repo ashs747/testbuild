@@ -37,6 +37,14 @@ function mapCaptureFormProps(state) {
 };
 var MappedDataCaptureForm = connect(mapCaptureFormProps)(FullDataCaptureForm);
 
+function mapUploadProfileProps(state) {
+  return {
+    buttonText: "UPLOAD / CHANGE",
+    profilePic: state.user.profilePic
+  };
+}
+var MappedUploadProfile = connect(mapUploadProfileProps)(UploadProfile);
+
 class ProfileView extends React.Component {
 
   constructor() {
@@ -57,7 +65,7 @@ class ProfileView extends React.Component {
         <div className="main">
           <div className="main-inner clearfix">
             <div className="col-md-4 col-sm-5">
-              <UploadProfile buttonText="UPLOAD / CHANGE" profilePic={this.props.profilePic} />
+              <MappedUploadProfile />
               <div className="details-panel">
                 <div className="panel-header">
                   <h4>My information</h4>

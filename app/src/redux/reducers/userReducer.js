@@ -101,7 +101,7 @@ export function reducer(state = initialState, action) {
         passwordSuccess: false,
         password: null,
         confirm: null
-      }
+      };
 
     case 'USER_SAVE_PASSWORD':
       switch (action.status) {
@@ -128,6 +128,12 @@ export function reducer(state = initialState, action) {
             passwordError: false,
             passwordSuccess: false
           };
+      }
+
+    case 'USER_UPDATE_PROFILE':
+      return {
+          ...state,
+          profilePic: action.payload.profilePic
       }
   }
 
