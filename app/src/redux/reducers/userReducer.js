@@ -132,9 +132,9 @@ export function reducer(state = initialState, action) {
 
     case 'USER_UPDATE_PROFILE':
       return {
-          ...state,
-          profilePic: action.payload.profilePic
-      }
+        ...state,
+        profilePic: action.payload.profilePic
+      };
   }
 
 }
