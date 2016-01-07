@@ -94,13 +94,13 @@ class ActivityView extends React.Component {
           break;
       }
     })();
-
+    let icon = this.assignIcon(activity.type);
     return (
       <div className="activity-view">
         <div className="header clearfix">
           <div className="col-sm-2">
             <div className="icon">
-              <span><i className={`fa fa-${moduleWithActivity.icon}`}></i></span>
+              <span><i className={icon}></i></span>
             </div>
           </div>
           <div className="col-sm-10">
@@ -139,6 +139,21 @@ class ActivityView extends React.Component {
       groupedResources[resource.context].push(resource);
     });
     return groupedResources;
+  }
+
+  assignIcon(type) {
+    switch (type) {
+      case 'Workshop':
+        return 'fa fa-users';
+      case 'Webinar':
+        return 'fa fa-laptop';
+      case 'Project':
+        return 'fa fa-star';
+      case 'Coaching':
+        return 'fa fa-comments-o';
+      default:
+        return 'fa fa-users';
+    }
   }
 
 }

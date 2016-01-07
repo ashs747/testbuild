@@ -2,21 +2,48 @@ import React from 'react';
 import FullDataCaptureForm from '../components/FullDataCaptureForm.jsx';
 import UploadProfile from '../components/UploadProfile.jsx';
 import {connect} from 'react-redux';
+import {dispatch} from '../../redux/store';
+import {updateUserObject, saveUserProfile, saveUserPassword} from '../../redux/actions/usersActions';
 
 function mapCaptureFormProps(state) {
+  var user = state.user;
   return {
-    title: "",
-    forename: "",
-    surname: "",
-    telephone: "",
-    jobTitle: "",
-    businessArea: "",
-    skype: "",
-    timezone: ""
-    //action: updateUserObject
+    title: user.title,
+    forename: user.forename,
+    surname: user.surname,
+    telephone: user.properties ? user.properties.telephone : "",
+    jobTitle: user.properties ? user.properties.jobTitle : "",
+    businessArea: user.properties ? user.properties.businessArea : "",
+    skype: user.properties ? user.properties.skype : "",
+    timezone: user.timezone,
+    password: user.password,
+    confirm: user.confirm,
+    detailsLoading: user.detailsLoading,
+    detailsSuccess: user.detailsSuccess,
+    detailsError: user.detailsError,
+    passwordLoading: user.passwordLoading,
+    passwordSuccess: user.passwordSuccess,
+    passwordError: user.passwordError,
+    updateUserDetails: ((field, value) => {
+      dispatch(updateUserObject(field, value));
+    }),
+    onDetailsSave: (() => {
+      dispatch(saveUserProfile());
+    }),
+    onPasswordSave: (() => {
+      dispatch(saveUserPassword());
+    })
   };
 };
 var MappedDataCaptureForm = connect(mapCaptureFormProps)(FullDataCaptureForm);
+
+function mapUploadProfileProps(state) {
+  return {
+    buttonText: "UPLOAD / CHANGE",
+    profilePic: state.user.profilePic
+  };
+}
+var MappedUploadProfile = connect(mapUploadProfileProps)(UploadProfile);
 
 class ProfileView extends React.Component {
 
@@ -38,7 +65,7 @@ class ProfileView extends React.Component {
         <div className="main">
           <div className="main-inner clearfix">
             <div className="col-md-4 col-sm-5">
-              <UploadProfile buttonText="UPLOAD / CHANGE" profilePic={this.props.profilePic} />
+              <MappedUploadProfile />
               <div className="details-panel">
                 <div className="panel-header">
                   <h4>My information</h4>
@@ -48,7 +75,7 @@ class ProfileView extends React.Component {
                   <p>{this.props.cohort.name}</p>
                   <p>Organisation: States of Jersey</p>
                   <p><b>{this.props.userEmail}</b></p>
-                  <p className="small-text">If these details are incorrect please contact <a href="mailto:">email@email.com <i className="fa fa-chevron-right"></i></a></p>
+                  <p className="small-text">If these details are incorrect please contact <a href="mailto:">EMAIL HERE ></a></p>
                 </div>
               </div>
             </div>

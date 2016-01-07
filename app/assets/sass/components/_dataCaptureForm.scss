@@ -42,4 +42,14 @@
       margin: 10px 0;
     }
   }
+  &.details {
+    .btn {
+      width: 70px;
+    }
+  }
+  &.password {
+    .btn {
+      width: 175px;
+    }
+  }
 }

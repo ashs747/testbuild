@@ -1,5 +1,5 @@
 import store from '../store.js';
-import {updateUserData} from '../services/userService';
+import {updateUserData, updateUserProfile, updateUserPassword} from '../services/userService';
 // Update a users Cohorts
 export function fetchUsersByCohort(id) {
 
@@ -15,6 +15,14 @@ export const updateUserObject = (field, value) => {
       field,
       value
     }
+  };
+};
+
+export const saveUserProfile = () => {
+  let payload = updateUserProfile();
+  return {
+    type: 'USER_SAVED',
+    payload
   };
 };
 
@@ -44,5 +52,30 @@ export const saveUserData = (slideID) => {
   return {
     type: 'SAVING_USER_DETAILS_STARTED',
     status: 'PENDING'
+  };
+};
+
+export const clearDetailFormErrors = () => {
+  return {
+    type: 'USER_CLEAR_DETAILS_FORM',
+    payload: {}
+  };
+};
+
+export const saveUserPassword = () => {
+  var params = store.getState().user;
+  let payload = updateUserPassword(params.password, params.confirm);
+  return {
+    type: 'USER_SAVE_PASSWORD',
+    payload
+  };
+};
+
+export const newProfilePic = (profilePic) => {
+  return {
+    type: 'USER_UPDATE_PROFILE',
+    payload: {
+      profilePic
+    }
   };
 };
