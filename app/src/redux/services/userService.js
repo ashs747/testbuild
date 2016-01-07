@@ -18,6 +18,10 @@ export function updateUserData() {
   return request.put(apiRoot + `api/user/profile`, filteredParams);
 }
 
+export function updateUserProfile() {
+
+}
+
 export function updateUserPassword(password, passwordConfirm) {
   var passwordParams = {
     password,

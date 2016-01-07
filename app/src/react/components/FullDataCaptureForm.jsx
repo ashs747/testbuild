@@ -35,19 +35,19 @@ class FullDataCaptureForm extends React.Component {
               </div>
               <div className="panel-row clearfix">
                 <label>Job Title</label>
-                <input className="form-control" value={this.props.jobTitle} onChange={this.onChange.bind(this, "jobTitle")} />
+                <input className="form-control" value={this.props.jobTitle} onChange={this.onChange.bind(this, "properties.jobTitle")} />
               </div>
               <div className="panel-row clearfix">
                 <label>Business area</label>
-                <input className="form-control" value={this.props.businessArea} onChange={this.onChange.bind(this, "businessArea")} />
+                <input className="form-control" value={this.props.businessArea} onChange={this.onChange.bind(this, "properties.businessArea")} />
               </div>
               <div className="panel-row clearfix">
                 <label>Telephone</label>
-                <input className="form-control" value={this.props.telephone} onChange={this.onChange.bind(this, "telephone")} />
+                <input className="form-control" value={this.props.telephone} onChange={this.onChange.bind(this, "properties.telephone")} />
               </div>
               <div className="panel-row clearfix">
                 <label>Skype</label>
-                <input className="form-control" value={this.props.skype} onChange={this.onChange.bind(this, "skype")} />
+                <input className="form-control" value={this.props.skype} onChange={this.onChange.bind(this, "properties.skype")} />
               </div>
               <div className="panel-row clearfix">
                 <label>Timezone</label>
@@ -93,7 +93,7 @@ class FullDataCaptureForm extends React.Component {
 
   onChange(field, e) {
     e.preventDefault();
-    //this.props.updateUserDetails(field, e.target.value);
+    this.props.updateUserDetails(field, e.target.value);
   }
 
   onDetailsSubmit(e) {

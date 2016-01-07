@@ -2,18 +2,27 @@ import React from 'react';
 import FullDataCaptureForm from '../components/FullDataCaptureForm.jsx';
 import UploadProfile from '../components/UploadProfile.jsx';
 import {connect} from 'react-redux';
+import {dispatch} from '../../redux/store';
+import {updateUserObject} from '../../redux/actions/usersActions';
 
 function mapCaptureFormProps(state) {
+  var user = state.user;
   return {
-    title: "",
-    forename: "",
-    surname: "",
-    telephone: "",
-    jobTitle: "",
-    businessArea: "",
-    skype: "",
-    timezone: ""
+    title: user.title,
+    forename: user.forename,
+    surname: user.surname,
+    telephone: user.properties ? user.properties.telephone : "",
+    jobTitle: user.properties ? user.properties.jobTitle : "",
+    businessArea: user.properties ? user.properties.businessArea : "",
+    skype: user.properties ? user.properties.skype : "",
+    timezone: user.timezone,
     //action: updateUserObject
+    updateUserDetails: ((field, value) => {
+      dispatch(updateUserObject(field, value));
+    }),
+    onDetailsSubmit: (() => {
+      dispatch()
+    })
   };
 };
 var MappedDataCaptureForm = connect(mapCaptureFormProps)(FullDataCaptureForm);

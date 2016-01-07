@@ -5,6 +5,7 @@ export function reducer(state = initialState, action) {
   switch (action.type) {
 
     case 'INITIAL_DATA_UPDATED':
+      console.log(action.payload);
       var newState = {...state};
       var field = action.payload.field;
       var value = action.payload.value;
@@ -14,7 +15,7 @@ export function reducer(state = initialState, action) {
         newState.properties[propsField] = value;
         return newState;
       }
-      
+
       newState[field] = value;
       return newState;
       break;
@@ -28,11 +29,11 @@ export function reducer(state = initialState, action) {
         case 'REJECTED':
           return {...state};
 
-        default: 
+        default:
           return {...state};
       }
 
-    case 'LOGOUT': 
+    case 'LOGOUT':
       return {};
 
     case 'FETCH_COHORT':

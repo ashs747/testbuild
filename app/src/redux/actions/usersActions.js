@@ -1,5 +1,5 @@
 import store from '../store.js';
-import {updateUserData} from '../services/userService';
+import {updateUserData, updateUserProfile} from '../services/userService';
 // Update a users Cohorts
 export function fetchUsersByCohort(id) {
 
@@ -17,6 +17,13 @@ export const updateUserObject = (field, value) => {
     }
   };
 };
+
+export const saveUserProfile = () => {
+  let asyncAction = updateUserProfile();
+  return {
+
+  };
+}
 
 export const saveUserData = (slideID) => {
   /**** TODO - import the service *****/
