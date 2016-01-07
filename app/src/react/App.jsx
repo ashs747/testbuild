@@ -67,7 +67,7 @@ class App extends React.Component {
     let stAccToken = initialized ? state.auth.access_token : false;
 
     if (stAccToken && state.auth.waitingForLogin === false) {
-      if (userLoggedIn === false) {
+      if (!userLoggedIn) {
         store.dispatch(tokenCheckAction());
         return;
       }
@@ -97,7 +97,8 @@ class App extends React.Component {
 
         if (!authTokenInCookie && !refreshToken) {
           // TODO: Mop up invalid token in cookie
-          if (activeRouteBase && activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
+
+          if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
             router.transitionTo('/login');
             return;
           }
