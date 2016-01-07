@@ -3,7 +3,7 @@ import FullDataCaptureForm from '../components/FullDataCaptureForm.jsx';
 import UploadProfile from '../components/UploadProfile.jsx';
 import {connect} from 'react-redux';
 import {dispatch} from '../../redux/store';
-import {updateUserObject} from '../../redux/actions/usersActions';
+import {updateUserObject, saveUserProfile, saveUserPassword} from '../../redux/actions/usersActions';
 
 function mapCaptureFormProps(state) {
   var user = state.user;
@@ -16,12 +16,22 @@ function mapCaptureFormProps(state) {
     businessArea: user.properties ? user.properties.businessArea : "",
     skype: user.properties ? user.properties.skype : "",
     timezone: user.timezone,
-    //action: updateUserObject
+    password: user.password,
+    confirm: user.confirm,
+    detailsLoading: user.detailsLoading,
+    detailsSuccess: user.detailsSuccess,
+    detailsError: user.detailsError,
+    passwordLoading: user.passwordLoading,
+    passwordSuccess: user.passwordSuccess,
+    passwordError: user.passwordError,
     updateUserDetails: ((field, value) => {
       dispatch(updateUserObject(field, value));
     }),
-    onDetailsSubmit: (() => {
-      dispatch()
+    onDetailsSave: (() => {
+      dispatch(saveUserProfile());
+    }),
+    onPasswordSave: (() => {
+      dispatch(saveUserPassword());
     })
   };
 };
@@ -57,7 +67,7 @@ class ProfileView extends React.Component {
                   <p>{this.props.cohort.name}</p>
                   <p>Organisation: States of Jersey</p>
                   <p><b>{this.props.userEmail}</b></p>
-                  <p className="small-text">If these details are incorrect please contact <a href="mailto:">email@email.com <i className="fa fa-chevron-right"></i></a></p>
+                  <p className="small-text">If these details are incorrect please contact <a href="mailto:">EMAIL HERE ></a></p>
                 </div>
               </div>
             </div>

@@ -1,15 +1,28 @@
 import React from 'react';
+import {clearDetailFormErrors} from '../../redux/actions/usersActions';
 
 class FullDataCaptureForm extends React.Component {
 
   constructor() {
     super();
+    this.onDetailsSubmit = this.onDetailsSubmit.bind(this);
+    this.onPasswordSubmit = this.onPasswordSubmit.bind(this);
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearDetailFormErrors());
   }
 
   render() {
+    let detailsError = this.props.detailsError ? <div className="alert alert-danger">There was an error saving your details, please refresh the page and try again or contact Cirrus support if the error persists</div> : null;
+    let detailsLoading = this.props.detailsLoading ? <img src="assets/img/ajax-loader-red.gif" /> : "SAVE";
+    let detailsSuccess = this.props.detailsSuccess ? <div className="alert alert-success">Details saved</div> : null;
+    let passwordError = this.props.passwordError ? <div className="alert alert-danger">ERROR</div> : null;
+    let passwordLoading = this.props.passwordLoading ? <img src="assets/img/ajax-loader-red.gif" /> : "CHANGE PASSWORD";
+    let passwordSuccess = this.props.passwordSuccess ? <div className="alert alert-success">Password saved</div> : null;
     return (
       <div className="full-data-capture-form">
-        <div className="details-panel">
+        <div className="details-panel details">
           <div className="panel-header">
             <h4>My details</h4>
           </div>
@@ -62,12 +75,14 @@ class FullDataCaptureForm extends React.Component {
                 </select>
               </div>
               <div className="panel-row clearfix">
-                <button type="submit" className="btn">SAVE</button>
+                <button type="submit" className="btn">{detailsLoading}</button>
               </div>
             </form>
+            {detailsError}
+            {detailsSuccess}
           </div>
         </div>
-        <div className="details-panel">
+        <div className="details-panel password">
           <div className="panel-header">
             <h4>Change password</h4>
           </div>
@@ -75,16 +90,18 @@ class FullDataCaptureForm extends React.Component {
             <form onSubmit={this.onPasswordSubmit}>
               <div className="panel-row clearfix">
                 <label>New</label>
-                <input className="form-control" type="password" value={this.props.password} onChange={this.onChange.bind(this, "password")} />
+                <input required className="form-control" type="password" value={this.props.password} onChange={this.onChange.bind(this, "password")} />
               </div>
               <div className="panel-row clearfix">
                 <label>Re-enter</label>
-                <input className="form-control" type="password" value="" onChange={this.onChange.bind(this, "confirm")} />
+                <input required className="form-control" type="password" value={this.props.confirm} onChange={this.onChange.bind(this, "confirm")} />
               </div>
               <div className="panel-row clearfix">
-                <button type="submit" className="btn">CHANGE PASSWORD</button>
+                <button type="submit" className="btn">{passwordLoading}</button>
               </div>
             </form>
+            {passwordError}
+            {passwordSuccess}
           </div>
         </div>
       </div>
@@ -98,12 +115,12 @@ class FullDataCaptureForm extends React.Component {
 
   onDetailsSubmit(e) {
     e.preventDefault();
-    //this.props.onDetailsSave(field, e.target.value);
+    this.props.onDetailsSave();
   }
 
   onPasswordSubmit(e) {
     e.preventDefault();
-    //this.props.onPasswordSave(field, e.target.value);
+    this.props.onPasswordSave();
   }
 
 }

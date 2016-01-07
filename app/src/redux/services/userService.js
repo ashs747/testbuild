@@ -19,7 +19,15 @@ export function updateUserData() {
 }
 
 export function updateUserProfile() {
-
+  var params = store.getState().user;
+  var filteredParams = {
+    title: params.title,
+    forename: params.forename,
+    surname: params.surname,
+    timezone: params.timezone,
+    properties: JSON.stringify(params.properties)
+  };
+  return request.put(apiRoot + `api/user/profile`, filteredParams);
 }
 
 export function updateUserPassword(password, passwordConfirm) {
