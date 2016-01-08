@@ -55,13 +55,18 @@ class MessageList extends React.Component {
       } else {
         comments = [];
       }
+      let properties = {};
+      try {
+        properties = JSON.parse(message.user.properties);
+      } catch (e) {}
 
       let editable = message.editable;
       let userCanEdit = message.can_edit;
       let newComment = message.newComment;
       return <Message
         feedID={this.props.feedID}
-        key={key} name={name}
+        key={key}
+        name={name}
         content={content}
         date={date.format()}
         profilePic={profilePic}
@@ -79,7 +84,11 @@ class MessageList extends React.Component {
         dispatchEditAction={this.editMessage(key)}
         dispatchUpdateAction={this.updateMessage(key)}
         dispatchSaveAction={this.saveMessage(key)}
-        profile={this.props.profile} />;
+        profile={this.props.profile}
+        jobTitle={properties.jobTitle}
+        businessArea={properties.businessArea}
+        email={message.user.email}
+        telephone={properties.telephone} />;
     });
   }
 

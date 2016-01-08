@@ -6,6 +6,8 @@ import PostForm from './PostForm.jsx';
 import CloudinaryImg from '../../../components/CloudinaryImg.jsx';
 import MediaGrid from '../../../components/MediaGrid.jsx';
 import moment from 'moment-timezone';
+import Tooltip from '../../tooltip/Wrapper.jsx';
+
 /**
   Message Component, used to display a message (top level post) on the programme feed
   Dumb component, only accepts and displays props, has no sorting logic
@@ -101,13 +103,29 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
+    let content = (
+      <div>
+        <div className="user-display-tooltip-header">
+          <p>{this.props.name}</p>
+        </div>
+        <div className="user-display-tooltip-body">
+          <div className="profile-image">
+            <CloudinaryImg default="assets/img/profile-placeholder.jpg" file={profilePic} />
+          </div>
+          <p>{this.props.jobTitle}</p>
+          <p>{this.props.businessArea}</p>
+          <p>{this.props.email}</p>
+          <p>{this.props.telephone}</p>
+        </div>
+      </div>
+    );
 
     return (
       <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
           <CloudinaryImg file={profilePic} alt={this.props.name} defaultImg="assets/img/profile-placeholder.jpg"/>
           <div className="header-text">
-            <p><b><u>{this.props.name}</u></b></p>
+            <Tooltip trigger={<p><b><u>{this.props.name}</u></b></p>} content={content} className="mini-profile-tooltip" />
             <p className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</p>
           </div>
           {editButtons}
