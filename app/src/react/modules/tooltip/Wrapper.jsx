@@ -8,7 +8,9 @@ class Wrapper extends React.Component {
     this.showTooltip = this.showTooltip.bind(this);
     this.hideTooltip = this.hideTooltip.bind(this);
     this.state = {
-      displayTooltip: false
+      displayTooltip: false,
+      x: 0,
+      y: 0
     };
   }
 
@@ -23,17 +25,18 @@ class Wrapper extends React.Component {
     return (
       <div className="tooltip-trigger" style={{position: "relative"}}>
         {clonedElement}
-        <Tooltip display={this.state.displayTooltip} content={this.props.content} onBlur={this.hideTooltip} className={this.props.className} />
+        <Tooltip ref="tooltip" display={this.state.displayTooltip} content={this.props.content} onBlur={this.hideTooltip} className={this.props.className} x={this.state.x} y={this.state.y}/>
       </div>
     );
   }
 
-  showTooltip() {
-    this.setState({displayTooltip: true});
+  showTooltip(e) {
+    console.log(this.refs.tooltip);
+    this.setState({displayTooltip: true, x: e.clientX, y: e.clientY});
   }
 
   hideTooltip() {
-    this.setState({displayTooltip: false});
+    //this.setState({displayTooltip: false});
   }
 
 }
