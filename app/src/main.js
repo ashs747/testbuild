@@ -29,6 +29,7 @@ import ActivityView from './react/views/ActivityView.jsx';
 import ProfileView from './react/views/ProfileView.jsx';
 import BookingView from './react/views/BookingView.jsx';
 import ResetPasswordView from './react/views/ResetPasswordView.jsx';
+import {refreshTokenAction, loadAuthFromCookie, tokenCheckAction, authTokenCheck} from './redux/actions/authActions';
 
 /* Trashing app.jsx temporarily for the refactor
 import App from './react/App.jsx'; */

@@ -10,6 +10,7 @@ import {getPLJData} from '../../redux/actions/learningJourneyActions';
 import {gotUsersCohort} from '../../redux/actions/cohortActions';
 import {gotToolkits} from '../../redux/actions/contentActions';
 import {gotProgramme} from '../../redux/actions/programmeActions';
+import {pushPath} from 'redux-simple-router';
 
 export const AUTH = 'AUTH';
 export const TOKEN_CHECKED = 'TOKEN_CHECKED';
@@ -57,7 +58,15 @@ export function refreshTokenAction(token) {
 
 export function authAction(username, password) {
   let req = getOAuthToken(username, password)
-  .then(saveToCookie);
+  .then(saveToCookie)
+  .then(res => {
+      getUserData(res.access_token).then(res=>{
+        Store.dispatch(pushPath('/#/'));
+      });
+     return res;
+   }, res => {
+    return res;
+   });
 
   return {
     type: AUTH,
@@ -86,6 +95,7 @@ export function authTokenCheck() {
     Store.dispatch(gotUsersCohort(userData.cohort));
     Store.dispatch(gotToolkits(userData.toolkits));
     Store.dispatch(gotProgramme(userData.programme));
+
     return userData;
   }, (userData) => {
     return userData;

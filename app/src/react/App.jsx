@@ -1,7 +1,6 @@
 import React from 'react';
 import router from './router';
 import store from '../redux/store';
-import {refreshTokenAction, loadAuthFromCookie, tokenCheckAction, authTokenCheck} from '../redux/actions/authActions';
 import {windowResize} from '../redux/actions/widthActions';
 import $ from 'jquery';
 import cookie from 'cookie-cutter';
@@ -28,12 +27,12 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.state.Handler) {
+    if (!this.props.children) {
       return <div />;
     }
     return (
       <div>
-        <this.state.Handler />
+        {this.props.children}
       </div>
     );
   }
