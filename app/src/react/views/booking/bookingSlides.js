@@ -79,37 +79,28 @@ function getActivityFromLearningJourneyByUrl(learningJourney) {
 export const bookingScreenSlides = [{
   content: (
       <Provider store={store}>
-        {function() {
-          return (
-            <div className="choose-slide clearfix">
-              <div className="col-md-6">
-                <MappedBookingDateDisplay />
-              </div>
-              <div className="col-md-6">
-                <MappedSlotDisplay />
-              </div>
-            </div>
-          );
-        }
-      }
+        <div className="choose-slide clearfix">
+          <div className="col-md-6">
+            <MappedBookingDateDisplay />
+          </div>
+          <div className="col-md-6">
+            <MappedSlotDisplay />
+          </div>
+        </div>
     </Provider>
   ),
   showNext: false
 }, {
   content: (
     <Provider store={store}>
-      {function() {
-        return (
-          <div className="confirm-slide clearfix">
-           <div className="col-md-6 col-md-push-6">
-              <MappedConfirmation />
-            </div>
-            <div className="col-md-6 col-md-pull-6">
-              <MappedFacilitatorBio />
-            </div>
-          </div>
-        );
-      }}
+      <div className="confirm-slide clearfix">
+        <div className="col-md-6 col-md-push-6">
+          <MappedConfirmation />
+        </div>
+        <div className="col-md-6 col-md-pull-6">
+          <MappedFacilitatorBio />
+        </div>
+      </div>
     </Provider>
   ),
   showPrev: false,
@@ -117,13 +108,9 @@ export const bookingScreenSlides = [{
 }, {
   content: (
     <Provider store={store}>
-      {function() {
-        return (
-          <div className="complete-slide clearfix">
-            <MappedComplete />
-          </div>
-        );
-      }}
+      <div className="complete-slide clearfix">
+        <MappedComplete />
+      </div>
     </Provider>
   ),
   showPrev: false,

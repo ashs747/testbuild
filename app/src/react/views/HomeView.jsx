@@ -1,6 +1,6 @@
 import React from 'react';
 import {dispatch} from '../../redux/store';
-import TabStack from 'cirrus/react/components/TabStack';
+import TabStack from '../legacy/TabStack.jsx';
 import {connect} from 'react-redux';
 import moment from 'moment-timezone';
 import LearningJourneyWidget from '../modules/personalLearningJourney/LearningJourneyWidget.jsx';

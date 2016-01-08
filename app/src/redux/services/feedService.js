@@ -1,5 +1,6 @@
 import config from '../../localConfig';
 import requesty from '../../request';
+console.log(requesty);
 var request = requesty();
 
 let apiRoot = config.api ? config.api.url : '';

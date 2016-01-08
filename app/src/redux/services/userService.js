@@ -2,8 +2,9 @@
 import config from '../../localConfig';
 import store from '../store';
 import requesty from '../../request';
-var request = requesty();
 
+ /*eslint-disable camelcase */
+var request = requesty();
 let apiRoot = config.api ? config.api.url : '';
 
 export function updateUserData() {
@@ -44,3 +45,4 @@ export function sendRecoverPasswordEmail(email) {
   };
   return request.post(apiRoot + `user/password/reset`, params);
 };
+ /*eslint-enable camelcase */

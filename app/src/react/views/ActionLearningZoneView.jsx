@@ -4,10 +4,12 @@ import _ from 'underscore';
 import {connect} from 'react-redux';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {getFeedIdForContext} from '../../redux/services/feedService';
-import Store from '../../redux/store';
-import TabStack from 'cirrus/react/components/TabStack';
+
+import TabStack from '../legacy/TabStack.jsx';
+import Button from '../legacy/Button.jsx';
+
 import ResourcesWidget from '../modules/resource/Widget.jsx';
-var dispatch = Store.dispatch;
+
 var feedID;
 
 function mapALZFeed(state) {

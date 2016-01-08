@@ -20,7 +20,7 @@ class UploadMedia extends React.Component {
   componentDidMount() {
     this.plup = new window.plupload.Uploader({
       /* eslint-disable */
-      browse_button: React.findDOMNode(this.refs.browse),
+      browse_button: findDOMNode(this.refs.browse),
       url: `${config.api.url}api/upload`,
       multi_selection: false,
       runtimes: 'html5,flash',

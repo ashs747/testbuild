@@ -12,6 +12,7 @@ class LearningJourneyView extends React.Component {
 
   render() {
     let i = 0;
+    console.log(this.props.modules);
     let learningJournies = _.mapObject(this.props.modules, (module, key) => {
       i++;
       return (

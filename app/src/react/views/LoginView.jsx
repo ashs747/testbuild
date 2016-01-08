@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from 'cirrus/react/components/Button';
+import Button from '../legacy/Button.jsx';
 import {authAction, logoutAction, recoverPassword, hideRecoverPassword} from '../../redux/actions/authActions';
-import config from 'cirrus/configs/appConfig';
+import config from '../../config.js';
 import {connect} from 'react-redux';
 
 class LoginView extends React.Component {

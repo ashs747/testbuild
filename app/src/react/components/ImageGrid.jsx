@@ -1,4 +1,5 @@
 import React from 'react';
+import {findDOMNode} from 'react-dom';
 import _ from 'underscore';
 import imagesLoaded from 'imagesloaded';
 import $ from 'jquery';
@@ -26,11 +27,11 @@ export default class ImageGrid extends React.Component {
     });
   }
   componentDidMount() {
-    this.$refToComponent = $(React.findDOMNode(this));
+    this.$refToComponent = $(findDOMNode(this));
     this.$refToComponent.on('resize', (e) => {
       this.setState({rowWidth: this.$refToComponent.width()});
     });
-    this.setState({rowWidth: $(React.findDOMNode(this)).width()});
+    this.setState({rowWidth: $(findDOMNode(this)).width()});
   }
   render() {
     var rowWidth = this.state.rowWidth || 300;
