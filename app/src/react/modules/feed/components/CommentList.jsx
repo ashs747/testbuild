@@ -73,6 +73,11 @@ class CommentList extends React.Component {
         return dispatch(updateMessage(this.props.feedID, comment.id, text));
       };
 
+      let properties = {};
+      try {
+        properties = JSON.parse(comment.user.properties);
+      } catch (e) {}
+
       return (<Comment
         key={comment.id}
         name={name}
@@ -85,7 +90,11 @@ class CommentList extends React.Component {
         dispatchEditAction={editComment}
         editCommentAction={updateComment}
         dispatchSaveAction={saveMessage}
-        profile={this.props.profile} />
+        profile={this.props.profile}
+        jobTitle={properties.jobTitle}
+        businessArea={properties.businessArea}
+        email={comment.user.email}
+        telephone={properties.telephone} />
       );
     });
     return commentList;
