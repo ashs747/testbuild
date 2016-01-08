@@ -97,10 +97,14 @@ class App extends React.Component {
 
         if (!authTokenInCookie && !refreshToken) {
           // TODO: Mop up invalid token in cookie
-
-          if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
-            router.transitionTo('/login');
-            return;
+          console.log('router.getCurrentRoutes(); earlier than redirect', router.getCurrentRoutes());
+          if (router.getCurrentRoutes()) {    
+            if (activeRouteBase !== 'login' && activeRouteBase !== 'on-boarding') {
+              console.log('activeRouteBase at redirect', activeRouteBase);
+              console.log('router.getCurrentRoutes(); at redirect',router.getCurrentRoutes());
+              router.transitionTo('/login');
+              return;
+            }
           }
         } else {
           var authTokenData = {};
