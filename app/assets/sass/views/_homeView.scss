@@ -1,7 +1,4 @@
 .home {
-  a {
-    color: $white;
-  }
   .row {
     margin: 0;
   }
@@ -14,6 +11,9 @@
     .inner {
       max-width: 600px;
       margin: 0 auto;
+    }
+    a {
+      color: $white;
     }
     img {
       width: 90px;
