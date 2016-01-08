@@ -10,7 +10,8 @@ class Tooltip extends React.Component {
   render() {
     let classNames = [
       'custom-tooltip',
-      (this.props.display) ? "show" : "hide"
+      (this.props.display) ? "show" : "hide",
+      this.props.className
     ];
     return (
       <div className={classNames.join(" ")} >

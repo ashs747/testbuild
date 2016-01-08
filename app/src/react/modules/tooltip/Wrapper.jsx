@@ -23,7 +23,7 @@ class Wrapper extends React.Component {
     return (
       <div className="tooltip-trigger" style={{position: "relative"}}>
         {clonedElement}
-        <Tooltip display={this.state.displayTooltip} content={this.props.content} onBlur={this.hideTooltip} />
+        <Tooltip display={this.state.displayTooltip} content={this.props.content} onBlur={this.hideTooltip} className={this.props.className} />
       </div>
     );
   }
