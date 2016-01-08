@@ -78,8 +78,9 @@
     .name {
       display: inline-block;
       border-bottom: 1px solid $underline_grey;
+      font-weight: bold;
+      margin-bottom: 0;
       p {
-        font-weight: bold;
         margin-bottom: 0;
       }
     }

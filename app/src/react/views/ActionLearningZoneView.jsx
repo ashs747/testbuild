@@ -35,7 +35,7 @@ var MembersModule = connect(mapMembersProps)(MembersModuleWidget);
 
 function mapResourceProps(state) {
   return {
-    title: "Resouces",
+    title: "Resources",
     resources: state.cohort ? state.cohort.resources : []
   };
 }

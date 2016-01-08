@@ -10,10 +10,17 @@ class Tooltip extends React.Component {
   render() {
     let classNames = [
       'custom-tooltip',
-      (this.props.display) ? "show" : "hide"
+      this.props.className
     ];
+    let style = {
+      position: "fixed",
+      left: this.props.x,
+      top: this.props.y,
+      zIndex: 1000,
+      visibility: (this.props.display) ? "visible" : "hidden"
+    };
     return (
-      <div className={classNames.join(" ")} >
+      <div className={classNames.join(" ")} style={style} onMouseLeave={this.props.onMouseLeave}>
         {this.props.content}
         <div className="down-arrow" />
       </div>

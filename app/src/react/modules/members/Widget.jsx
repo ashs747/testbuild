@@ -11,7 +11,19 @@ class Widget extends React.Component {
   render() {
     let users = (this.props.users) ? this.props.users.map((user, i) => {
       let profilePic = user.profilePic;
-      return <UserDisplay key={`${i}-${profilePic}`} image={profilePic} default="assets/img/profile-placeholder.jpg" name={`${user.forename} ${user.surname}`} imageViewStyle={this.props.imageViewStyle} />;
+      return (
+        <UserDisplay
+          key={`${i}-${profilePic}`}
+          image={profilePic}
+          default="assets/img/profile-placeholder.jpg"
+          name={`${user.forename} ${user.surname}`}
+          imageViewStyle={this.props.imageViewStyle}
+          jobTitle={user.properties.jobTitle}
+          businessArea={user.properties.businessArea}
+          email={user.email}
+          telephone={user.properties.telephone}
+        />
+      );
     }) : null;
     return (
       <div className="members-module">
