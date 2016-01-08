@@ -40,6 +40,7 @@
     }
     a {
       color: $white;
+      cursor: pointer;
     }
   }
   .nav-buttons {
@@ -57,6 +58,7 @@
       font-size: 14px;
       color: $site_red;
       font-weight: bold;
+      cursor: pointer;
     }
   }
 }
