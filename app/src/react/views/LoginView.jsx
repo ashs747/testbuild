@@ -19,6 +19,10 @@ class LoginView extends React.Component {
     };
   }
 
+  componentWillMount() {
+    this.props.dispatch(logoutAction());
+  }
+
   render() {
     let loginText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "LOG IN";
     let recoverText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "RECOVER PASSWORD";

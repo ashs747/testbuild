@@ -107,7 +107,7 @@ export function getCookies() {
 }
 
 export function logoutAction() {
-  cookie.set('authToken', '', {
+  cookie.set('access_token', '', {
     expires: 0
   });
   cookie.set('refresh_token', '', {

@@ -58,7 +58,7 @@ class BookingDateDisplay extends React.Component {
         <h3>Select a date</h3>
         {dateSelection}
         <br />
-        <a href="/#/personal-learning-journey" className="btn back">CANCEL</a>
+        <a onClick={this.cancel} className="btn back">CANCEL</a>
       </div>
     );
   }
@@ -117,6 +117,10 @@ class BookingDateDisplay extends React.Component {
       value = eventDate.target.value;
     }
     this.props.dispatch(userSelectedDate(value));
+  }
+
+  cancel() {
+    window.history.back();
   }
 }
 

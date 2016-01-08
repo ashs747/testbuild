@@ -24,6 +24,11 @@
   .slide-container {
     opacity: 0.9;
   }
+  .slideshow-nav {
+    position: absolute;
+    width: calc(100% - 60px);
+    bottom: 30px;
+  }
   .slideshow-module  {
     position: relative;
     width: 750px;

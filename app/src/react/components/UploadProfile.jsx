@@ -1,8 +1,9 @@
 import React from 'react';
 import CloudinaryImg from './CloudinaryImg.jsx';
-
-var profilePicUpdated = {type: 'PROFILE_PIC_UPDATED', payload: ''}; //TODO - serviceWork
-var dispatch = () => {};
+import {dispatch} from '../../redux/store';
+import config from '../../localConfig';
+import store from '../../redux/store.js';
+import {newProfilePic} from '../../redux/actions/usersActions';
 
 /*eslint-disable camelcase */
 
@@ -12,51 +13,62 @@ class UploadProfile extends React.Component {
     super();
     this.onFilesAdded = this.onFilesAdded.bind(this);
     this.onFileUploaded = this.onFileUploaded.bind(this);
+    this.state = {
+      loading: false
+    };
   }
 
   componentDidMount() {
-    this.uploader = new plupload.Uploader({
-      browse_button: this.refs.uploadbtn.getDOMNode(),
-      url: this.props.uploadURL,
+    this.plup = new window.plupload.Uploader({
+      /* eslint-disable */
+      browse_button: React.findDOMNode(this.refs.uploadPhoto),
+      url: `${config.api.url}api/upload`,
       multi_selection: false,
       multipart_params: {'context': 'profile-picture'},
       runtimes: 'html5,flash',
-      flash_swf_url: '/assets/flash/Moxie.swf',
+      flash_swf_url: '/app/bower_components/plupload/js/Movie.swf',
       file_data_name: 'file',
       headers: {
-        Authorization: `Bearer ${this.props.authToken}`
+        Authorization: `Bearer ${store.getState().auth.access_token}`
       }
+      /* eslint-enable */
     });
-
-    this.uploader.init();
-    this.uploader.bind('FilesAdded', this.onFilesAdded);
-    // this.uploader.bind('UploadProgress', this.onProgress);
-    this.uploader.bind('FileUploaded', this.onFileUploaded);
-    this.uploader.bind('UploadComplete', this.onUploadComplete);
-    this.uploader.bind('Error', this.onError);
+    this.plup.init();
+    //The function to fire when the file has been added to the queue
+    this.plup.bind('FilesAdded', this.onFilesAdded);
+    //The function to fire when a single file has been upload
+    this.plup.bind('FileUploaded', this.onFileUploaded);
+    //The function to fire when an error occurs
+    this.plup.bind('Error', this.onError);
   }
 
   render() {
+    let loading = this.state.loading ? <img src="assets/img/ajax-loader-red.gif" /> : this.props.buttonText;
     return (
       <div className="upload-profile">
         <div className="circle-image">
           <CloudinaryImg file={this.props.profilePic} default="assets/img/profile-placeholder.jpg"/>
         </div>
-        <button className="btn" ref="uploadbtn">{this.props.buttonText}</button>
+        <button className="btn" ref="uploadPhoto">{loading}</button>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
       </div>
     );
   }
 
   onFilesAdded(up, file) {
-    this.uploader.start();
+    this.plup.start();
+    this.setState({loading: true});
   }
 
   onFileUploaded(up, file, data) {
+    this.setState({loading: false});
     let response = JSON.parse(data.response);
-    dispatch(profilePicUpdated);
+    dispatch(newProfilePic(response.file));
   }
 
+  onError(up, args) {
+    //dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
+  }
 }
 /*eslint-enable camelcase */
 export default UploadProfile;
