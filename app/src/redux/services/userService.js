@@ -10,7 +10,7 @@ export function updateUserData() {
   var params = store.getState().user;
   var filteredParams = {
     password: params.password,
-    passwordConfirm: params.passwordConfirm,
+    confirm_password: params.passwordConfirm,
     forename: params.forename,
     surname: params.surname,
     properties: JSON.stringify(params.properties)

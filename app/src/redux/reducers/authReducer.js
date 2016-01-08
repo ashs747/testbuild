@@ -43,7 +43,8 @@ export function reducer(state = initialState, action) {
       }
       break;
 
-    case AUTH:
+    case 'AUTH':
+      console.log(action);
       switch (action.status) {
         case 'RESOLVED':
           var ns = {

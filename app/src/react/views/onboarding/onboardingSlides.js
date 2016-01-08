@@ -165,9 +165,7 @@ export const onboardingSlides = [{
   showPrev: true,
   showNext: true,
   onNextClick: function() {
-    console.log('this', this);
     var slideID = this.props.slideID;
-    console.log(this);
     store.dispatch(saveUserData(slideID));
   }
 }, {

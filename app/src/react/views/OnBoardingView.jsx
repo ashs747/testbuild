@@ -3,6 +3,7 @@ import Slideshow from '../modules/slideshow/Slideshow.jsx';
 import {onboardingSlides} from './onboarding/onboardingSlides.js';
 import {fetchInitialUserData, exchangeOTUK} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
+import store from '../../redux/store';
 
 function mapProps(state) {
   var slideID = "onBoarding";
@@ -19,7 +20,7 @@ class OnBoarding extends React.Component {
 
   componentWillMount() {
     let userToken = this.props.params.userToken;
-    this.props.dispatch(fetchInitialUserData(userToken));
+    store.dispatch(exchangeOTUK(userToken));
   }
 
   constructor() {

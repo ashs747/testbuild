@@ -20,10 +20,9 @@ export const RECOVER_PASSWORD_EMAIL = 'RECOVER_PASSWORD_EMAIL';
 export const RECOVER_PASSWORD_EMAIL_HIDE = 'RECOVER_PASSWORD_EMAIL_HIDE';
 
 export function fetchInitialUserData(key) {
-  let authByOneTimeKey = (key) => {
-    return getOAuthTokenFromOneUseKey(key)
-  };
-  let req = authByOneTimeKey(key).then((response) => {
+  
+  let req = getOAuthTokenFromOneUseKey(key).then((response) => {
+    Store.dispatch({type:AUTH, payload:response});
     return getUserData(response.access_token);
   });
 
