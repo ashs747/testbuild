@@ -1,7 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import cloneWithProps from 'react-addons-clone-with-props';
-
+var cloneWithProps = React.cloneElement;
 var HIDDEN_STYLE_PROPS = {
   style: {
     visibility: 'hidden',

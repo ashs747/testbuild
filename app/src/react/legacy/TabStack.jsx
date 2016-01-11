@@ -108,7 +108,7 @@ var TabBar = React.createClass({
 
       var className = item.props.tabClass;
       var activeClass = i == this.props.selectedIndex ? 'active' : '';
-      className = this.addClass(className, activeClass);
+      className = `${className} ${activeClass}`;
 
       tabs.push(
         <div key={i} onClick={this.onClick.bind(this, i)} className={className}><span>{item.props.label}</span></div>

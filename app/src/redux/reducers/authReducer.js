@@ -6,6 +6,7 @@ const initialState = {
 };
 
 export function reducer(state = initialState, action) {
+  console.log('ACTION', action);
   switch (action.type) {
     case 'LOGOUT':
       return {};

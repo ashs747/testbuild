@@ -4,6 +4,7 @@ import {dispatch} from '../../../../redux/store';
 import config from '../../../../localConfig';
 import cookie from 'cookie-cutter';
 import store from '../../../../redux/store.js';
+import {findDOMNode} from 'react-dom';
 
 class UploadMedia extends React.Component {
 

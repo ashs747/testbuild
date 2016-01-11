@@ -29,10 +29,10 @@ import ActivityView from './react/views/ActivityView.jsx';
 import ProfileView from './react/views/ProfileView.jsx';
 import BookingView from './react/views/BookingView.jsx';
 import ResetPasswordView from './react/views/ResetPasswordView.jsx';
-import {refreshTokenAction, loadAuthFromCookie, tokenCheckAction, authTokenCheck} from './redux/actions/authActions';
 
-/* Trashing app.jsx temporarily for the refactor
-import App from './react/App.jsx'; */
+/* Trashing app.jsx temporarily for the refactor */
+
+import AppWrapper from './react/App.jsx';
 
 var DefaultRoute = Route;
 
@@ -44,32 +44,34 @@ var slaves = {};
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <DefaultRoute component={connect((state) => state)(MainView)}>
-        <DefaultRoute component={connect((state) => state)(HomeView)} />
-      </DefaultRoute>
-      <Route path="/" component={connect((state) => state)(MainView)}>
-        <Route path="personal-learning-journey" component={connect((state) => state)(LearningJourneyView)} />
-        <Route path="module" path="module/:module" component={ModuleView} />
-        <Route path="action-learning-zone" component={ActionLearningZone} />
-        <Route path="faq" component={FAQView} />
-        <Route path="project" path="project/:project" component={ProjectView} />
-        <Route path="programme" component={LeadershipProgrammeView} />
-        <Route path="home" component={HomeView} />
-        <Route path="toolkits" component={ToolkitView} />
-        <Route path="toolkit" path="toolkit/:toolkit" component={ToolkitPageView} />
-        <Route path="activity" path="activity/:activity" component={ActivityView} />
-        <Route path="profile" component={ProfileView} />
-        <Route path="booking" path="booking/:module/:activity" component={BookingView} />
-      </Route>
-      <Route path="login" component={connect((state) => {
-        return {
-          error: state.auth.error,
-          loading: state.auth.waitingForLogin,
-          sentRecoveryEmailSuccess: state.auth.sentRecoveryEmail
-        };
-      })(LoginView)} />
-      <Route path="on-boarding/:userToken" component={OnBoardingView} />
-      <Route path="recover-password/:userToken" component={ResetPasswordView} />
-  </Router>
+    <AppWrapper dispatch={store.dispatch}>
+      <Router history={history}>
+        <DefaultRoute component={connect((state) => state)(MainView)}>
+          <DefaultRoute component={connect((state) => state)(HomeView)} />
+        </DefaultRoute>
+        <Route path="/" component={connect((state) => state)(MainView)}>
+          <Route path="personal-learning-journey" component={connect((state) => state)(LearningJourneyView)} />
+          <Route path="module" path="module/:module" component={ModuleView} />
+          <Route path="action-learning-zone" component={ActionLearningZone} />
+          <Route path="faq" component={FAQView} />
+          <Route path="project" path="project/:project" component={ProjectView} />
+          <Route path="programme" component={LeadershipProgrammeView} />
+          <Route path="home" component={HomeView} />
+          <Route path="toolkits" component={ToolkitView} />
+          <Route path="toolkit" path="toolkit/:toolkit" component={ToolkitPageView} />
+          <Route path="activity" path="activity/:activity" component={ActivityView} />
+          <Route path="profile" component={ProfileView} />
+          <Route path="booking" path="booking/:module/:activity" component={BookingView} />
+        </Route>
+        <Route path="login" component={connect((state) => {
+          return {
+            error: state.auth.error,
+            loading: state.auth.waitingForLogin,
+            sentRecoveryEmailSuccess: state.auth.sentRecoveryEmail
+          };
+        })(LoginView)} />
+        <Route path="on-boarding/:userToken" component={OnBoardingView} />
+        <Route path="recover-password/:userToken" component={ResetPasswordView} />
+    </Router>
+  </AppWrapper>
 </Provider>, document.getElementById('app'));

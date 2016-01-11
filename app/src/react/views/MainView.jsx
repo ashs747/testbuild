@@ -20,7 +20,7 @@ class MainView extends React.Component {
 
   componentWillReceiveProps(props) {
     console.log('getting props', props);
-    if (this.props.auth.access_token !== props.auth.access_token) {
+    if ((this.props.auth.access_token !== props.auth.access_token) || this.props.auth.tokenChecked === false) {
       this.checkLoggedInState();
     }
   }

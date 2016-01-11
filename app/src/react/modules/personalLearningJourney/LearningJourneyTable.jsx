@@ -9,11 +9,15 @@ class LearningJourneyTable extends React.Component {
   }
 
   render() {
-    let rows = null;
+
+    let rows = [];
     if (this.props.journeyModule) {
-      rows = _.mapObject(this.props.journeyModule.activities, (activity, key) => {
-        return <LearningJourneyRow showIcon={this.props.showIcon} key={key} activity={activity} smallTable={this.props.smallTable} moduleId={this.props.journeyModule.id}/>;
-      });
+      
+      for (let key in this.props.journeyModule.activities) {
+        if (this.props.journeyModule.activities.hasOwnProperty(key)) {
+          rows.push(<LearningJourneyRow showIcon={this.props.showIcon} key={key} activity={this.props.journeyModule.activities[key]} smallTable={this.props.smallTable} moduleId={this.props.journeyModule.id}/>);
+        } 
+      }
     }
     let iconRow = (this.props.showIcon) ? <th className="row-icon"></th> : null;
     let moduleSlug = this.props.journeyModule.name.replace(/\s+/g, '-').toLowerCase();
