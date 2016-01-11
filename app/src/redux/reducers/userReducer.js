@@ -14,7 +14,6 @@ export function reducer(state = initialState, action) {
         newState.properties[propsField] = value;
         return newState;
       }
-
       newState[field] = value;
       return newState;
       break;
