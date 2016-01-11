@@ -46,9 +46,6 @@ ReactDOM.render(
   <Provider store={store}>
     <AppWrapper dispatch={store.dispatch}>
       <Router history={history}>
-        <DefaultRoute component={connect((state) => state)(MainView)}>
-          <DefaultRoute component={connect((state) => state)(HomeView)} />
-        </DefaultRoute>
         <Route path="/" component={connect((state) => state)(MainView)}>
           <Route path="personal-learning-journey" component={connect((state) => state)(LearningJourneyView)} />
           <Route path="module" path="module/:module" component={ModuleView} />

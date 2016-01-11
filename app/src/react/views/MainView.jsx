@@ -2,6 +2,7 @@ import React from 'react';
 import {RouteHandler} from 'react-router';
 import HeaderElem from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
+import HomeView from './HomeView.jsx';
 import store from '../../redux/store.js';
 import cookie from 'cookie-cutter';
 import router from 'react-router';
@@ -37,7 +38,7 @@ class MainView extends React.Component {
       <div className="main">
         <div className={`${(this.props.width.profile !== "sm") ? "container-fluid" : ""}`}>
           <HeaderElem display={loggedIn} dispatch={this.props.dispatch}/>
-          {this.props.children}
+          {this.props.children || <HomeView />}
           <Footer display={loggedIn} />
         </div>
       </div>
@@ -60,7 +61,6 @@ class MainView extends React.Component {
     if (stAccToken && loginPending === false) {
       console.log('Not waiting for login, got stateAccessToken');
       if (!userLoggedIn) {
-
         this.props.dispatch(tokenCheckAction());
         return;
       }
@@ -80,7 +80,7 @@ class MainView extends React.Component {
         this.waitForLogin = false;
         if (activeRouteBase.indexOf('login') > -1) {
           console.log('go to homepage, login success');
-          this.props.dispatch(pushPath('/#/'));; // Login Success - Go to home page
+          this.props.dispatch(pushPath('/'));; // Login Success - Go to home page
           return;
         }
         return; // LoggedIn - Nothing to do
@@ -93,7 +93,7 @@ class MainView extends React.Component {
         if (!authTokenInCookie && !refreshToken) {
           // TODO: Mop up invalid token in cookie
           console.log('No access token anywhere to be found, redirect');
-          this.props.dispatch(pushPath('/#/login'));
+          this.props.dispatch(pushPath('/login'));
           return;
         } else {
           var authTokenData = {};
