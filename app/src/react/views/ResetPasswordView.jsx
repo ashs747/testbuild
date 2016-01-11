@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updatePassword, finishedRecoverPassword} from '../../redux/actions/authActions';
+import {updatePassword, logoutAction, finishedRecoverPassword, fetchInitialUserData} from '../../redux/actions/authActions';
 
 class ResetPasswordView extends React.Component {
 
@@ -13,6 +13,12 @@ class ResetPasswordView extends React.Component {
       confirmPassword: "",
       passwordsDontMatchError: false
     };
+  }
+
+  componentWillMount() {
+    var token = this.props.params.userToken;
+    var dispatch = this.props.dispatch;
+    dispatch(fetchInitialUserData(token));
   }
 
   render() {
@@ -62,7 +68,7 @@ class ResetPasswordView extends React.Component {
   }
 
   finishedRecoverPassword() {
-    this.props.dispatch(finishedRecoverPassword());
+    this.props.dispatch(logoutAction());
   }
 
   onSubmit(e) {
