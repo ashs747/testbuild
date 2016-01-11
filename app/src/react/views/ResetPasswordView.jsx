@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updatePassword, finishedRecoverPassword} from '../../redux/actions/authActions';
+import {updatePassword, logoutAction, finishedRecoverPassword, fetchInitialUserData} from '../../redux/actions/authActions';
 
 class ResetPasswordView extends React.Component {
 
@@ -15,6 +15,12 @@ class ResetPasswordView extends React.Component {
     };
   }
 
+  componentWillMount() {
+    var token = this.props.params.userToken;
+    var dispatch = this.props.dispatch;
+    dispatch(fetchInitialUserData(token));
+  }
+
   render() {
     let passwordsDontMatchError = (this.state.passwordsDontMatchError) ? (
       <div className="alert alert-danger">
@@ -26,7 +32,7 @@ class ResetPasswordView extends React.Component {
         <p>There has been an error on the server, please contact Cirrus support</p>
       </div>
     ) : null;
-    let btnText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif"/> : "Save";
+    let btnText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif"/> : "SAVE";
     let content = (!this.props.success) ? (
       <div className="form">
         <div className="recover-password">
@@ -62,7 +68,7 @@ class ResetPasswordView extends React.Component {
   }
 
   finishedRecoverPassword() {
-    this.props.dispatch(finishedRecoverPassword());
+    this.props.dispatch(logoutAction());
   }
 
   onSubmit(e) {
