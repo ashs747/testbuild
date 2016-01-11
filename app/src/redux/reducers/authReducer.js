@@ -21,6 +21,7 @@ export function reducer(state = initialState, action) {
       };
 
     case 'TOKEN_CHECKED':
+    console.log('TokenCheck in authReducer', action);
       switch (action.status) {
         case 'REJECTED':
           return {

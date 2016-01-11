@@ -21,7 +21,6 @@ export const RECOVER_PASSWORD_EMAIL = 'RECOVER_PASSWORD_EMAIL';
 export const RECOVER_PASSWORD_EMAIL_HIDE = 'RECOVER_PASSWORD_EMAIL_HIDE';
 
 export function fetchInitialUserData(key) {
-  
   let req = getOAuthTokenFromOneUseKey(key).then((response) => {
     Store.dispatch({type: AUTH, payload: response});
     return getUserData(response.access_token);
@@ -76,6 +75,7 @@ export function authAction(username, password) {
 
 export function exchangeOTUK(key) {
   let req = getOAuthTokenFromOneUseKey(key);
+
   return {
     type: AUTH,
     payload: req

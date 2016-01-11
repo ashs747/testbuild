@@ -23,6 +23,14 @@ function feedsArrayToObject(feedsArray) {
 
 function formatUserData(userData) {
   var user = userData.user[0] || userData.user;
+  if (user.properties && typeof(user.properties) === 'string') {
+    try {
+      user.properties = JSON.parse(user.properties);
+    } catch (e) {
+      //console.log(e);
+    }
+  }
+
   var feeds = feedsArrayToObject(userData.feeds);
   var cohort = userData.cohort;
   var toolkits = userData.toolkits;

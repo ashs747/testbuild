@@ -1,7 +1,7 @@
 import React from 'react';
 import Slideshow from '../modules/slideshow/Slideshow.jsx';
 import {onboardingSlides} from './onboarding/onboardingSlides.js';
-import {fetchInitialUserData, exchangeOTUK} from '../../redux/actions/authActions';
+import {fetchInitialUserData} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
 import store from '../../redux/store';
 
@@ -20,7 +20,7 @@ class OnBoarding extends React.Component {
 
   componentWillMount() {
     let userToken = this.props.params.userToken;
-    store.dispatch(exchangeOTUK(userToken));
+    store.dispatch(fetchInitialUserData(userToken));
   }
 
   constructor() {

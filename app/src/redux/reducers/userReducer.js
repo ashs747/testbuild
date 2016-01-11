@@ -47,7 +47,6 @@ export function reducer(state = initialState, action) {
       switch (action.status) {
         case 'RESOLVED':
           var user = action.payload.user;
-          user.properties = JSON.parse(user.properties);
           return {
             ...state,
             ...user,
