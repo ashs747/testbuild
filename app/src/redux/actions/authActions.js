@@ -22,10 +22,10 @@ export const RECOVER_PASSWORD_EMAIL_HIDE = 'RECOVER_PASSWORD_EMAIL_HIDE';
 
 export function fetchInitialUserData(key) {
   let req = getOAuthTokenFromOneUseKey(key).then((response) => {
-
     Store.dispatch({type: 'AUTH', status: 'RESOLVED', payload: response});
-
     return getUserData(response.access_token);
+  }, (er) => {
+    Store.dispatch(logoutAction());
   });
   return {
     type: TOKEN_CHECKED,
@@ -49,7 +49,9 @@ function updateStateFromNewToken(res) {
 export function refreshTokenAction(token) {
   // dispatch a call to the oAuth endpoint to exchange the refresh token for an access_token
   let req = getOAuthTokenFromRefreshToken(token)
-    .then(saveToCookie);
+    .then(saveToCookie, (response) => {
+      Store.dispatch(logoutAction());
+    });
 
   return {
     type: AUTH,
@@ -108,7 +110,12 @@ export function authTokenCheck() {
 }
 
 export function tokenCheckAction() {
-  var out = authTokenCheck();
+  var out = authTokenCheck().then(out => {
+    return out;
+  }, (er) => {
+    Store.dispatch(logoutAction());
+  });
+
   return {
     type: 'TOKEN_CHECKED',
     payload: out
@@ -133,6 +140,7 @@ export function logoutAction() {
   cookie.set('refresh_token', '', {
     expires: 0
   });
+  Store.dispatch(pushPath('/login'));
 
   return {type: 'LOGOUT', payload: ''};
 }
