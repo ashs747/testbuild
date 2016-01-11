@@ -32,7 +32,7 @@ class ResetPasswordView extends React.Component {
         <p>There has been an error on the server, please contact Cirrus support</p>
       </div>
     ) : null;
-    let btnText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif"/> : "Save";
+    let btnText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif"/> : "SAVE";
     let content = (!this.props.success) ? (
       <div className="form">
         <div className="recover-password">

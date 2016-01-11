@@ -7,6 +7,15 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  text-align: center;
+}
+
+.alert {
+  max-width: 360px;
+  margin: 0 auto;
+  p {
+    margin: 5px;
+  }
 }
 
 .login-wrapper {
