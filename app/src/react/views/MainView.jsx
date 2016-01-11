@@ -1,5 +1,4 @@
 import React from 'react';
-import {RouteHandler} from 'react-router';
 import HeaderElem from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import HomeView from './HomeView.jsx';
