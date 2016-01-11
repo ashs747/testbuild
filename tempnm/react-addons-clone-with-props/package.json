@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "react-addons-clone-with-props",
+      "/Users/darkynt/dev/soj.portal-ui"
+    ]
+  ],
+  "_from": "react-addons-clone-with-props@latest",
+  "_id": "react-addons-clone-with-props@0.14.6",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-addons-clone-with-props",
+  "_nodeVersion": "4.2.2",
+  "_npmUser": {
+    "email": "paul@oshannessy.com",
+    "name": "zpao"
+  },
+  "_npmVersion": "2.14.15",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "react-addons-clone-with-props",
+    "raw": "react-addons-clone-with-props",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-addons-clone-with-props/-/react-addons-clone-with-props-0.14.6.tgz",
+  "_shasum": "bcc287f159e974820aa5455b862d98be571ee915",
+  "_shrinkwrap": null,
+  "_spec": "react-addons-clone-with-props",
+  "_where": "/Users/darkynt/dev/soj.portal-ui",
+  "bugs": {
+    "url": "https://github.com/facebook/react/issues"
+  },
+  "dependencies": {},
+  "description": "This package provides the React cloneWithProps add-on.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "bcc287f159e974820aa5455b862d98be571ee915",
+    "tarball": "http://registry.npmjs.org/react-addons-clone-with-props/-/react-addons-clone-with-props-0.14.6.tgz"
+  },
+  "homepage": "https://github.com/facebook/react#readme",
+  "keywords": [
+    "react",
+    "react-addon"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "spicyj",
+      "email": "ben@benalpert.com"
+    },
+    {
+      "name": "zpao",
+      "email": "paul@oshannessy.com"
+    }
+  ],
+  "name": "react-addons-clone-with-props",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "react": "^0.14.6"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facebook/react.git"
+  },
+  "scripts": {},
+  "version": "0.14.6"
+}

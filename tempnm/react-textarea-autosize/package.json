@@ -1,0 +1,65 @@
+{
+  "name": "react-textarea-autosize",
+  "description": "textarea component for React which grows with content",
+  "version": "2.5.4",
+  "author": {
+    "name": "Andrey Popp",
+    "email": "8mayday@gmail.com",
+    "url": "http://andreypopp.com"
+  },
+  "homepage": "https://github.com/andreypopp/react-textarea-autosize",
+  "keywords": [
+    "react",
+    "react-component",
+    "textarea",
+    "grow",
+    "autosize"
+  ],
+  "license": "MIT",
+  "main": "lib/TextareaAutosize.js",
+  "peerDependencies": {
+    "react": ">= 0.13.0 || ^0.14.0-alpha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andreypopp/react-textarea-autosize.git"
+  },
+  "devDependencies": {
+    "babel": "^5.1.0",
+    "babel-eslint": "^3.0.1",
+    "eslint": "^0.19.0",
+    "eslint-plugin-react": "^2.1.0"
+  },
+  "dependencies": {},
+  "gitHead": "27fc5cdb7240095f53cfaa95bd7de154e7b6bb90",
+  "bugs": {
+    "url": "https://github.com/andreypopp/react-textarea-autosize/issues"
+  },
+  "_id": "react-textarea-autosize@2.5.4",
+  "scripts": {},
+  "_shasum": "8c7466a23100dc6e71db224e666f971b389cd26a",
+  "_from": "react-textarea-autosize@>=2.5.3 <3.0.0",
+  "_npmVersion": "3.3.3",
+  "_nodeVersion": "4.1.1",
+  "_npmUser": {
+    "name": "andreypopp",
+    "email": "8mayday@gmail.com"
+  },
+  "dist": {
+    "shasum": "8c7466a23100dc6e71db224e666f971b389cd26a",
+    "tarball": "http://registry.npmjs.org/react-textarea-autosize/-/react-textarea-autosize-2.5.4.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "andreypopp",
+      "email": "8mayday@gmail.com"
+    },
+    {
+      "name": "kylemathews",
+      "email": "mathews.kyle@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/react-textarea-autosize/-/react-textarea-autosize-2.5.4.tgz",
+  "readme": "ERROR: No README data found!"
+}
