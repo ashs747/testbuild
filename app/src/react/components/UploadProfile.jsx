@@ -21,7 +21,7 @@ class UploadProfile extends React.Component {
   componentDidMount() {
     this.plup = new window.plupload.Uploader({
       /* eslint-disable */
-      browse_button: findDOMNode(this.refs.uploadPhoto),
+      browse_button: this.refs.uploadPhoto,
       url: `${config.api.url}api/upload`,
       multi_selection: false,
       multipart_params: {'context': 'profile-picture'},
