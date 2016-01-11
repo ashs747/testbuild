@@ -10,7 +10,6 @@ class LearningJourneyRow extends React.Component {
   }
 
   render() {
-    console.log('The activity', this.props.activity);
     let activity = this.props.activity;
     let title = activity.name;
     let type = activity.type;

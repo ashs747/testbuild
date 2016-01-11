@@ -20,14 +20,12 @@ class MainView extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log('getting props', props);
     if ((this.props.auth.access_token !== props.auth.access_token) || this.props.auth.tokenChecked === false) {
       this.checkLoggedInState();
     }
   }
 
   componentWillMount(props) {
-    console.log('Component mounting', this.props);
     this.checkLoggedInState();
   }
 
@@ -46,7 +44,6 @@ class MainView extends React.Component {
   }
 
   getActiveRouteBase() {
-    console.log('history:', this.props.routing.path);
     return this.props.routing.path;
   }
 
@@ -59,7 +56,6 @@ class MainView extends React.Component {
     let stAccToken = this.props.auth.access_token || false;
 
     if (stAccToken && loginPending === false) {
-      console.log('Not waiting for login, got stateAccessToken');
       if (!userLoggedIn) {
         this.props.dispatch(tokenCheckAction());
         return;
@@ -68,7 +64,6 @@ class MainView extends React.Component {
 
     if (!loginPending) {
       if (!stAccToken && stRefreshToken) {
-        console.log('No access token Only Refresh token');
         if (this.waitForLogin !== true) {
           this.waitForLogin = true;
           this.props.dispatch(refreshTokenAction(stRefreshToken));
@@ -79,7 +74,6 @@ class MainView extends React.Component {
       if (userLoggedIn) {
         this.waitForLogin = false;
         if (activeRouteBase.indexOf('login') > -1) {
-          console.log('go to homepage, login success');
           this.props.dispatch(pushPath('/'));; // Login Success - Go to home page
           return;
         }
@@ -92,7 +86,6 @@ class MainView extends React.Component {
 
         if (!authTokenInCookie && !refreshToken) {
           // TODO: Mop up invalid token in cookie
-          console.log('No access token anywhere to be found, redirect');
           this.props.dispatch(pushPath('/login'));
           return;
         } else {
@@ -100,7 +93,6 @@ class MainView extends React.Component {
           authTokenData['access_token'] = authTokenInCookie;
           authTokenData['refresh_token'] = refreshToken;
           /* Throw the tokens from the cookie up to state */
-          console.log('Loading from cookies');
           this.props.dispatch(loadAuthFromCookie(authTokenData));
           return;
         }

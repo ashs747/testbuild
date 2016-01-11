@@ -92,14 +92,16 @@ export function loadAuthFromCookie(cookieData) {
 export function authTokenCheck() {
   return getUserData().then((userData) => {
     var getThisUsersCohortAction = gotUsersCohort(userData.cohort);
-  
+
     Store.dispatch(getPLJData());
     Store.dispatch(getThisUsersCohortAction);
     Store.dispatch(gotToolkits(userData.toolkits));
     Store.dispatch(gotProgramme(userData.programme));
     return userData;
   }, (er) => {
-    console.log(er);
+    if (console && console.log) {
+      console.log(er);
+    }
   });
 }
 
