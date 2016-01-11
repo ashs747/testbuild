@@ -20,8 +20,7 @@ var Request = function() {
   function makeRequest(method, url, params, token) {
 
     token = token || (Store ? Store.getState().auth.access_token : null);
-    console.log(`MakeRequest ${url}`, token);
-    
+
     return new Promise(function(resolve, reject) {
       var xhr = (function() { 
         if (window.XMLHttpRequest) {

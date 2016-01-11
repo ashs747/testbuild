@@ -21,7 +21,6 @@ export function reducer(state = initialState, action) {
       };
 
     case 'TOKEN_CHECKED':
-    console.log('TokenCheck in authReducer', action);
       switch (action.status) {
         case 'REJECTED':
           return {
@@ -45,12 +44,13 @@ export function reducer(state = initialState, action) {
       break;
 
     case 'AUTH':
-      console.log(action);
+      let payload = action.payload;
+      /* what on earth is the issue here?!*/
       switch (action.status) {
         case 'RESOLVED':
           var ns = {
             ...state,
-            ...action.payload,
+            ...payload,
             waitingForLogin: false
           };
           return ns;

@@ -22,7 +22,9 @@ export const RECOVER_PASSWORD_EMAIL_HIDE = 'RECOVER_PASSWORD_EMAIL_HIDE';
 
 export function fetchInitialUserData(key) {
   let req = getOAuthTokenFromOneUseKey(key).then((response) => {
-    Store.dispatch({type: AUTH, payload: response});
+
+    Store.dispatch({type: 'AUTH', status: 'RESOLVED', payload: response});
+
     return getUserData(response.access_token);
   });
   return {
