@@ -14,6 +14,7 @@ function mapHomeFeedProps(state) {
     profile: "sm",
     showComments: true,
     showEmbedVideo: true,
+    profilePic: state.user.profilePic,
     title: "Programme feed"
   };
 };

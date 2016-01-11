@@ -52,11 +52,11 @@ class LearningJourneyWidget extends React.Component {
                 {icon}
                 <div className="module-text">
                   <h5><b>Module {theModule.id} - {theModule.name}</b></h5>
-                  <h5 style={{fontSize: "16px"}}>{moment(module.startDate).format('MMMM YYYY')} - {moment(module.endDate).format('MMMM YYYY')}</h5>
+                  <h5 style={{fontSize: "16px"}}>{moment(theModule.startDate).format('MMMM YYYY')} - {moment(theModule.endDate).format('MMMM YYYY')}</h5>
                 </div>
               </div>
             </td>
-            <td><div className="right-arrow"><a href={`/#/module/${module.id}`}><i className="fa fa-arrow-right"></i></a></div></td>
+            <td><div className="right-arrow"><a href={`/#/module/${theModule.id}`}><i className="fa fa-arrow-right"></i></a></div></td>
           </tr>
         );
         rows.push(content);
