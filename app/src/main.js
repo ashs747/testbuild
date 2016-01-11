@@ -34,8 +34,6 @@ import ResetPasswordView from './react/views/ResetPasswordView.jsx';
 
 import AppWrapper from './react/App.jsx';
 
-var DefaultRoute = Route;
-
 /*  Binds history to our Store STATE in store.getState().routing */
 const history = createBrowserHistory();
 syncReduxAndRouter(history, store);
