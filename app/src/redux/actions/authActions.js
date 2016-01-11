@@ -63,11 +63,9 @@ export function authAction(username, password) {
   let req = getOAuthToken(username, password)
   .then(saveToCookie)
   .then(res => {
-    getUserData(res.access_token).then(res=>{
+    getUserData(res.access_token).then(res => {
       Store.dispatch(pushPath('/#/'));
     });
-    return res;
-  }, res => {
     return res;
   });
 
