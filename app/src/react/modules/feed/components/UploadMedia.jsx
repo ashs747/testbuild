@@ -4,6 +4,7 @@ import {dispatch} from '../../../../redux/store';
 import config from '../../../../localConfig';
 import cookie from 'cookie-cutter';
 import store from '../../../../redux/store.js';
+import {findDOMNode} from 'react-dom';
 
 class UploadMedia extends React.Component {
 
@@ -20,7 +21,7 @@ class UploadMedia extends React.Component {
   componentDidMount() {
     this.plup = new window.plupload.Uploader({
       /* eslint-disable */
-      browse_button: React.findDOMNode(this.refs.browse),
+      browse_button: findDOMNode(this.refs.browse),
       url: `${config.api.url}api/upload`,
       multi_selection: false,
       runtimes: 'html5,flash',

@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import LiAnchor from './LiAnchor.jsx';
 import {logoutAction} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';

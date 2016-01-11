@@ -1,6 +1,6 @@
 import authManager from 'cirrus/services/managers/authManager';
 import userManager from 'cirrus/services/managers/userManager';
-import {getOAuthToken, getOAuthTokenFromRefreshToken, getUserData, setCookieCredentials} from '../services/authService';
+import {getOAuthToken, getOAuthTokenFromOneUseKey, getOAuthTokenFromRefreshToken, getUserData, setCookieCredentials} from '../services/authService';
 import {updateUserPassword, sendRecoverPasswordEmail} from '../services/userService';
 import cookie from 'cookie-cutter';
 import Store from '../store.js';
@@ -10,6 +10,7 @@ import {getPLJData} from '../../redux/actions/learningJourneyActions';
 import {gotUsersCohort} from '../../redux/actions/cohortActions';
 import {gotToolkits} from '../../redux/actions/contentActions';
 import {gotProgramme} from '../../redux/actions/programmeActions';
+import {pushPath} from 'redux-simple-router';
 
 export const AUTH = 'AUTH';
 export const TOKEN_CHECKED = 'TOKEN_CHECKED';
@@ -20,14 +21,12 @@ export const RECOVER_PASSWORD_EMAIL = 'RECOVER_PASSWORD_EMAIL';
 export const RECOVER_PASSWORD_EMAIL_HIDE = 'RECOVER_PASSWORD_EMAIL_HIDE';
 
 export function fetchInitialUserData(key) {
-  let authByOneTimeKey = (key) => {
-    return Promise.resolve('MGYxNmEzZjJhZTNjYmU1NjkzOTE0OGI0MGQxNDZhYzdkYjJlMDM3YjcyNzc5Nzg0YTQ1ZWZmMzA3MWU3NDA3Mg'); //TODO: OneTimeKeyExchange Service
-  };
-  let req = authByOneTimeKey(key).then((token) => {
-    setCookieCredentials(token);
-    return getUserData();
+  let req = getOAuthTokenFromOneUseKey(key).then((response) => {
+    Store.dispatch({type: 'AUTH', status: 'RESOLVED', payload: response});
+    return getUserData(response.access_token);
+  }, (er) => {
+    Store.dispatch(logoutAction());
   });
-
   return {
     type: TOKEN_CHECKED,
     payload: req
@@ -50,7 +49,9 @@ function updateStateFromNewToken(res) {
 export function refreshTokenAction(token) {
   // dispatch a call to the oAuth endpoint to exchange the refresh token for an access_token
   let req = getOAuthTokenFromRefreshToken(token)
-    .then(saveToCookie);
+    .then(saveToCookie, (response) => {
+      Store.dispatch(logoutAction());
+    });
 
   return {
     type: AUTH,
@@ -60,13 +61,28 @@ export function refreshTokenAction(token) {
 
 export function authAction(username, password) {
   let req = getOAuthToken(username, password)
-  .then(saveToCookie);
+  .then(saveToCookie)
+  .then(res => {
+    getUserData(res.access_token).then(res => {
+      Store.dispatch(pushPath('/#/'));
+    });
+    return res;
+  });
 
   return {
     type: AUTH,
     payload: req
   };
 };
+
+export function exchangeOTUK(key) {
+  let req = getOAuthTokenFromOneUseKey(key);
+
+  return {
+    type: AUTH,
+    payload: req
+  };
+}
 
 export function loadAuthFromCookie(cookieData) {
   return {
@@ -77,18 +93,27 @@ export function loadAuthFromCookie(cookieData) {
 
 export function authTokenCheck() {
   return getUserData().then((userData) => {
+    var getThisUsersCohortAction = gotUsersCohort(userData.cohort);
+
     Store.dispatch(getPLJData());
-    Store.dispatch(gotUsersCohort(userData.cohort));
+    Store.dispatch(getThisUsersCohortAction);
     Store.dispatch(gotToolkits(userData.toolkits));
     Store.dispatch(gotProgramme(userData.programme));
     return userData;
-  }, (userData) => {
-    return userData;
+  }, (er) => {
+    if (console && console.log) {
+      console.log(er);
+    }
   });
 }
 
 export function tokenCheckAction() {
-  var out = authTokenCheck();
+  var out = authTokenCheck().then(out => {
+    return out;
+  }, (er) => {
+    Store.dispatch(logoutAction());
+  });
+
   return {
     type: 'TOKEN_CHECKED',
     payload: out
@@ -113,6 +138,7 @@ export function logoutAction() {
   cookie.set('refresh_token', '', {
     expires: 0
   });
+  Store.dispatch(pushPath('/login'));
 
   return {type: 'LOGOUT', payload: ''};
 }

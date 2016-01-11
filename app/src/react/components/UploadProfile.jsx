@@ -4,7 +4,7 @@ import {dispatch} from '../../redux/store';
 import config from '../../localConfig';
 import store from '../../redux/store.js';
 import {newProfilePic} from '../../redux/actions/usersActions';
-
+import {findDOMNode} from 'react-dom';
 /*eslint-disable camelcase */
 
 class UploadProfile extends React.Component {
@@ -21,7 +21,7 @@ class UploadProfile extends React.Component {
   componentDidMount() {
     this.plup = new window.plupload.Uploader({
       /* eslint-disable */
-      browse_button: React.findDOMNode(this.refs.uploadPhoto),
+      browse_button: findDOMNode(this.refs.uploadPhoto),
       url: `${config.api.url}api/upload`,
       multi_selection: false,
       multipart_params: {'context': 'profile-picture'},

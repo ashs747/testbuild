@@ -23,6 +23,14 @@ function feedsArrayToObject(feedsArray) {
 
 function formatUserData(userData) {
   var user = userData.user[0] || userData.user;
+  if (user.properties && typeof(user.properties) === 'string') {
+    try {
+      user.properties = JSON.parse(user.properties);
+    } catch (e) {
+      //console.log(e);
+    }
+  }
+
   var feeds = feedsArrayToObject(userData.feeds);
   var cohort = userData.cohort;
   var toolkits = userData.toolkits;
@@ -72,6 +80,20 @@ export const getOAuthToken = (username, password) => {
     client_id: config.api.clientId,
     client_secret: config.api.appSecret,
     grant_type: 'password'
+  });
+};
+
+export const getOAuthTokenFromOneUseKey = (key) => {
+  if (!key) {
+    throw new Error('You need the yellow key');
+  }
+  /*eslint-disable camelcase */
+  return oAuth({
+    scope: 'PRE_AUTH',
+    grant_type: 'http://strata.core/grants/onetime',
+    client_id: config.api.clientId,
+    client_secret: config.api.appSecret,
+    key: key
   });
 };
 

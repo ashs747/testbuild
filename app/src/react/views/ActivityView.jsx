@@ -4,9 +4,10 @@ import {getActivityContent} from '../../redux/actions/contentActions';
 import {dispatch} from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
-import TabStack from 'cirrus/react/components/TabStack';
 import Markdown from 'react-remarkable';
 import _ from 'underscore';
+
+import TabStack from '../legacy/TabStack.jsx';
 
 class ActivityView extends React.Component {
 

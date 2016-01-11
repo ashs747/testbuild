@@ -18,6 +18,7 @@ var Request = function() {
   }
 
   function makeRequest(method, url, params, token) {
+
     token = token || (Store ? Store.getState().auth.access_token : null);
 
     return new Promise(function(resolve, reject) {

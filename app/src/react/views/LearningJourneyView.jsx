@@ -11,16 +11,21 @@ class LearningJourneyView extends React.Component {
   }
 
   render() {
-    let i = 0;
-    let learningJournies = _.mapObject(this.props.modules, (module, key) => {
-      i++;
-      return (
-        <div className="plj-table" key={key}>
-          <h4>Module {i}</h4>
-          <LearningJourneyTable journeyModule={module} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"}/>
-        </div>
-      );
-    });
+    let i = 1;
+    let learningJourneyReactArray = [];
+
+    for (let key in this.props.modules) {
+      if (this.props.modules.hasOwnProperty(key)) {
+        learningJourneyReactArray.push((
+          <div className="plj-table" key={key}>
+            <h4>Module {i}</h4>
+            <LearningJourneyTable journeyModule={this.props.modules[key]} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"}/>
+          </div>
+        ));
+        i++;
+      }
+    }
+
     return (
       <div className="personal-learning-journey">
         <div className="header">
@@ -30,7 +35,7 @@ class LearningJourneyView extends React.Component {
           </div>
         </div>
         <div className="body">
-          {learningJournies}
+          {learningJourneyReactArray}
         </div>
       </div>
     );
