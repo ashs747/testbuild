@@ -24,7 +24,7 @@ class LearningJourneyWidget extends React.Component {
           }
           return this.hasOutstandingActivities(theModule) ? <div className="notice"><i className="fa fa-exclamation"></i></div> : <div className="notice complete"><i className="fa fa-check"></i></div>;
         })();
-        let moduleSlug = module.name ? module.name.replace(/\s+/g, '-').toLowerCase() : '';
+        let moduleSlug = theModule.name ? theModule.name.replace(/\s+/g, '-').toLowerCase() : '';
         let icon = <img src={`assets/img/${moduleSlug}.png`} alt="module icon"/>;
         let content = (this.props.smallWidget) ? (
           <tr key={key} className="small-row">
@@ -32,7 +32,7 @@ class LearningJourneyWidget extends React.Component {
               <a href={`/#/module/${theModule.id}`}>
                 <div className={currentModule}>
                   <div className="icon clearfix">
-                    <i className="fa fa-cogs"></i>
+                    {icon}
                   </div>
                   <div className="text">
                     <h5>{`Module ${theModule.id} - ${theModule.name}`}</h5>
@@ -51,7 +51,7 @@ class LearningJourneyWidget extends React.Component {
                 {notice}
                 {icon}
                 <div className="module-text">
-                  <h5><b>Module {module.id} - {module.name}</b></h5>
+                  <h5><b>Module {theModule.id} - {theModule.name}</b></h5>
                   <h5 style={{fontSize: "16px"}}>{moment(module.startDate).format('MMMM YYYY')} - {moment(module.endDate).format('MMMM YYYY')}</h5>
                 </div>
               </div>
@@ -63,7 +63,7 @@ class LearningJourneyWidget extends React.Component {
         i++;
       }
     }
-    
+
     return (
       <div className="learning-journey-module widget">
         <table border-spacing="separate" className="table">
