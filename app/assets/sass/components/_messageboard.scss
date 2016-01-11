@@ -35,6 +35,11 @@ textarea[disabled="true"] {
 			margin: 0;
 			color: $site_red;
 		}
+		.custom-tooltip {
+			p {
+				color: $body_color;
+			}
+		}
 		.date-display {
 			position: relative;
 			display: block;
