@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Tooltip from './Tooltip.jsx';
 
 class Wrapper extends React.Component {
@@ -33,16 +34,16 @@ class Wrapper extends React.Component {
   }
 
   showTooltip(e) {
-    var tooltip = React.findDOMNode(this.refs.tooltip).getBoundingClientRect();
-    var trigger = React.findDOMNode(this.refs.trigger).getBoundingClientRect();
+    var tooltip = ReactDOM.findDOMNode(this.refs.tooltip).getBoundingClientRect();
+    var trigger = ReactDOM.findDOMNode(this.refs.trigger).getBoundingClientRect();
     var x = e.clientX - (tooltip.width / 2);
     var y = trigger.bottom - (trigger.height / 2) - tooltip.height - 20;
     this.setState({displayTooltip: true, x, y});
   }
 
   hideTooltip(e) {
-    var tooltip = React.findDOMNode(this.refs.tooltip).getBoundingClientRect();
-    var trigger = React.findDOMNode(this.refs.trigger).getBoundingClientRect();
+    var tooltip = ReactDOM.findDOMNode(this.refs.tooltip).getBoundingClientRect();
+    var trigger = ReactDOM.findDOMNode(this.refs.trigger).getBoundingClientRect();
     var withinX = (e.clientX >= tooltip.left && e.clientX <= tooltip.right);
     var withinY = (e.clientY < trigger.top);
     if (!(withinX && withinY)) {
@@ -51,8 +52,8 @@ class Wrapper extends React.Component {
   }
 
   onTooltipLeave(e) {
-    var tooltip = React.findDOMNode(this.refs.tooltip).getBoundingClientRect();
-    var trigger = React.findDOMNode(this.refs.trigger).getBoundingClientRect();
+    var tooltip = ReactDOM.findDOMNode(this.refs.tooltip).getBoundingClientRect();
+    var trigger = ReactDOM.findDOMNode(this.refs.trigger).getBoundingClientRect();
     var withinX = (e.clientX > tooltip.left && e.clientX < tooltip.right);
     var withinY = (e.clientY < trigger.top && e.clientY >= tooltip.top);
     if (!(withinX && withinY)) {

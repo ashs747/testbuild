@@ -78,11 +78,11 @@ export default class ImageGrid extends React.Component {
 
     let grid = buildRowsToGrid(this.props.files, rowWidth);
 
-    var cloudinaryGrid = grid.map((row) => {
+    var cloudinaryGrid = grid.map((row, i) => {
       let rowObj = row.map((file) => {
-        return <CloudinaryImg file={file} width={file.dispWidth} height={file.dispHeight} crop="fill" />;
+        return <CloudinaryImg file={file} key={`${file.etag}-${file.created_at}`} width={file.dispWidth} height={file.dispHeight} crop="fill" />;
       });
-      return (<div className="imageRow">
+      return (<div className="imageRow" key={i}>
         {rowObj}
         </div>);
     });
