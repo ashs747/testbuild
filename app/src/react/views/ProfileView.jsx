@@ -11,7 +11,7 @@ function mapCaptureFormProps(state) {
     title: user.title,
     forename: user.forename,
     surname: user.surname,
-    telephone: user.properties ? user.properties.telephone : "",
+    telephone: user.properties ? user.properties.phone : "",
     jobTitle: user.properties ? user.properties.jobTitle : "",
     businessArea: user.properties ? user.properties.businessArea : "",
     skype: user.properties ? user.properties.skype : "",

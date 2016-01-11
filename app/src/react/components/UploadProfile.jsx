@@ -20,7 +20,7 @@ class UploadProfile extends React.Component {
   componentDidMount() {
     this.plup = new window.plupload.Uploader({
       /* eslint-disable */
-      browse_button: this.refs.uploadPhoto,
+      browse_button: this.refs.uploadButton,
       url: `${config.api.url}api/upload`,
       multi_selection: false,
       multipart_params: {'context': 'profile-picture'},
@@ -48,7 +48,7 @@ class UploadProfile extends React.Component {
         <div className="circle-image">
           <CloudinaryImg file={this.props.profilePic} default="assets/img/profile-placeholder.jpg"/>
         </div>
-        <button className="btn" ref="uploadPhoto">{loading}</button>
+        <button className="btn" ref="uploadButton">{loading}</button>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
       </div>
     );
@@ -66,7 +66,6 @@ class UploadProfile extends React.Component {
   }
 
   onError(up, args) {
-    //dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
   }
 }
 /*eslint-enable camelcase */
