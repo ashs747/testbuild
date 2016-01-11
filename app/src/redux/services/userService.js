@@ -2,15 +2,16 @@
 import config from '../../localConfig';
 import store from '../store';
 import requesty from '../../request';
-var request = requesty();
 
+ /*eslint-disable camelcase */
+var request = requesty();
 let apiRoot = config.api ? config.api.url : '';
 
 export function updateUserData() {
   var params = store.getState().user;
   var filteredParams = {
     password: params.password,
-    passwordConfirm: params.passwordConfirm,
+    confirm_password: params.passwordConfirm,
     forename: params.forename,
     surname: params.surname,
     properties: JSON.stringify(params.properties)
@@ -44,3 +45,4 @@ export function sendRecoverPasswordEmail(email) {
   };
   return request.post(apiRoot + `user/password/reset`, params);
 };
+ /*eslint-enable camelcase */

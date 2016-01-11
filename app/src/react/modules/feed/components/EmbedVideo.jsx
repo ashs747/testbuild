@@ -1,4 +1,5 @@
 import React from 'react';
+import {findDOMNode} from 'react-dom';
 import {embedVideoAction} from '../../../../redux/actions/feedActions';
 import {dispatch} from '../../../../redux/store';
 
@@ -61,7 +62,7 @@ class EmbedVideo extends React.Component {
       Then passes through to the saveVideo function
     */
     let error;
-    let url = React.findDOMNode(this.refs.urlField).value;
+    let url = findDOMNode(this.refs.urlField).value;
     if (!url) {
       error = "No url provided";
     } else if (!this.checkUrl(url)) {
@@ -77,7 +78,7 @@ class EmbedVideo extends React.Component {
 
   saveVideo() {
     /* Saves the video into app state against the message via a reducer */
-    dispatch(embedVideoAction(this.props.feedId, React.findDOMNode(this.refs.urlField).value));
+    dispatch(embedVideoAction(this.props.feedId, findDOMNode(this.refs.urlField).value));
     this.setState({showUrlField: false});
   }
 

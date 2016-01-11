@@ -43,12 +43,14 @@ export function reducer(state = initialState, action) {
       }
       break;
 
-    case AUTH:
+    case 'AUTH':
+      let payload = action.payload;
+      /* what on earth is the issue here?!*/
       switch (action.status) {
         case 'RESOLVED':
           var ns = {
             ...state,
-            ...action.payload,
+            ...payload,
             waitingForLogin: false
           };
           return ns;

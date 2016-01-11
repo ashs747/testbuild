@@ -1,4 +1,5 @@
 import React from 'react';
+import {findDOMNode} from 'react-dom';
 import _ from 'underscore';
 import imagesLoaded from 'imagesloaded';
 import $ from 'jquery';
@@ -26,11 +27,11 @@ export default class ImageGrid extends React.Component {
     });
   }
   componentDidMount() {
-    this.$refToComponent = $(React.findDOMNode(this));
+    this.$refToComponent = $(findDOMNode(this));
     this.$refToComponent.on('resize', (e) => {
       this.setState({rowWidth: this.$refToComponent.width()});
     });
-    this.setState({rowWidth: $(React.findDOMNode(this)).width()});
+    this.setState({rowWidth: $(findDOMNode(this)).width()});
   }
   render() {
     var rowWidth = this.state.rowWidth || 300;
@@ -74,14 +75,13 @@ export default class ImageGrid extends React.Component {
       } // end for
       return row;
     };
-
     let grid = buildRowsToGrid(this.props.files, rowWidth);
 
-    var cloudinaryGrid = grid.map((row) => {
+    var cloudinaryGrid = grid.map((row, i) => {
       let rowObj = row.map((file) => {
-        return <CloudinaryImg file={file} width={file.dispWidth} height={file.dispHeight} crop="fill" />;
+        return <CloudinaryImg file={file} key={`${file.etag}-${file.created_at}`} width={file.dispWidth} height={file.dispHeight} crop="fill" />;
       });
-      return (<div className="imageRow">
+      return (<div className="imageRow" key={i}>
         {rowObj}
         </div>);
     });

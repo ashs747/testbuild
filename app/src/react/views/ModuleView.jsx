@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
 import FeedWidget from '../modules/feed/Widget.jsx';
-import TabStack from 'cirrus/react/components/TabStack';
+import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import Carousel from '../components/Carousel.jsx';
 import Markdown from 'react-remarkable';
@@ -14,6 +14,7 @@ function mapHomeFeedProps(state) {
     profile: "sm",
     showComments: true,
     showEmbedVideo: true,
+    profilePic: state.user.profilePic,
     title: "Programme feed"
   };
 };

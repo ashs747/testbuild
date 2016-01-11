@@ -1,4 +1,5 @@
 import React from 'react';
+import {findDOMNode} from 'react-dom';
 import imagesLoaded from 'imagesloaded';
 var $ = require('jquery');
 
@@ -159,8 +160,8 @@ export default class ImageView extends React.Component {
       return;
     }
 
-    this.container.width = $(React.findDOMNode(this)).width();
-    this.container.height = $(React.findDOMNode(this)).height();
+    this.container.width = $(findDOMNode(this)).width();
+    this.container.height = $(findDOMNode(this)).height();
     var size = this.calculateSize();
     if (!this.props.scaleUp) {
       if (size.width > this.image.width || size.height > this.image.height) {
@@ -170,7 +171,7 @@ export default class ImageView extends React.Component {
     }
 
     var position = this.calculatePosition(size);
-    $(React.findDOMNode(this.refs.image)).css({
+    $(findDOMNode(this.refs.image)).css({
       width: size.width,
       height: size.height,
       top: position.top,

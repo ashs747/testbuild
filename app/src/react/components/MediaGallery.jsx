@@ -1,4 +1,6 @@
 import React from 'react';
+import {findDOMNode} from 'ready-dom';
+
 import ImageView from './ImageView.jsx';
 var $ = require('jquery');
 
@@ -30,7 +32,7 @@ export default class MediaGallery extends React.Component {
 
   componentDidMount() {
     if (this.props.displayNav) {
-      $(React.findDOMNode(this)).find('.selected-media').css({
+      $(findDOMNode(this)).find('.selected-media').css({
         bottom: `${this.props.thumbnailHeight}px`,
         top: 0,
         left: 0,
@@ -38,13 +40,12 @@ export default class MediaGallery extends React.Component {
         position: "absolute"
       });
     } else {
-      $(React.findDOMNode(this)).find('.selected-media').css({
+      $(findDOMNode(this)).find('.selected-media').css({
         bottom: 0,
         height: "100%"
       });
     }
-    //$(React.findDOMNode(this)).find('.selected-media').panzoom();
-    var height = $(React.findDOMNode(this)).height() / 2;
+    var height = $(findDOMNode(this)).height() / 2;
     var navigationHeight = this.props.thumbnailHeight;
     var offset = height;
 
@@ -52,7 +53,7 @@ export default class MediaGallery extends React.Component {
       offset = offset + navigationHeight;
     }
 
-    $(React.findDOMNode(this)).find('.navigation').css({
+    $(findDOMNode(this)).find('.navigation').css({
       height: `${this.props.thumbnailHeight}px`
     });
 
@@ -61,7 +62,7 @@ export default class MediaGallery extends React.Component {
     setTimeout(this.resizeClickZone, 500);
     $(window).on("resize", this.resizeClickZone);
 
-    var thumbnailNavIsVisible = $(React.findDOMNode(this)).find('.navigation').is(':visible');
+    var thumbnailNavIsVisible = $(findDOMNode(this)).find('.navigation').is(':visible');
     this.setState({
       displayNav: thumbnailNavIsVisible
     });
@@ -194,8 +195,8 @@ export default class MediaGallery extends React.Component {
   }
 
   resizeClickZone() {
-    var newHeight = $(React.findDOMNode(this)).height() - this.props.thumbnailHeight - 50;
-    $(React.findDOMNode(this)).find('.click').height(newHeight);
+    var newHeight = $(findDOMNode(this)).height() - this.props.thumbnailHeight - 50;
+    $(findDOMNode(this)).find('.click').height(newHeight);
   }
 
 }
