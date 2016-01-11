@@ -14,7 +14,7 @@ export function updateUserData() {
     confirm_password: params.passwordConfirm,
     forename: params.forename,
     surname: params.surname,
-    properties: JSON.stringify(params.properties)
+    properties: params.properties
   };
   return request.put(apiRoot + `api/user/profile`, filteredParams);
 }
@@ -26,7 +26,7 @@ export function updateUserProfile() {
     forename: params.forename,
     surname: params.surname,
     timezone: params.timezone,
-    properties: JSON.stringify(params.properties)
+    properties: params.properties
   };
   return request.put(apiRoot + `api/user/profile`, filteredParams);
 }
