@@ -8,11 +8,20 @@ class Wrapper extends React.Component {
     this.showTooltip = this.showTooltip.bind(this);
     this.hideTooltip = this.hideTooltip.bind(this);
     this.onTooltipLeave = this.onTooltipLeave.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
     this.state = {
       displayTooltip: false,
       x: 0,
       y: 0
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   render() {
@@ -58,7 +67,12 @@ class Wrapper extends React.Component {
     if (!(withinX && withinY)) {
       this.setState({displayTooltip: false});
     }
+  }
 
+  handleScroll(e) {
+    if (this.state.displayTooltip === true) {
+      this.setState({displayTooltip: false});
+    }
   }
 
 }
