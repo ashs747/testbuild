@@ -39,7 +39,7 @@ export default class FeedWidget extends React.Component {
           />
           <MessageList messages={feed.messages.map((message) => {
             return message;
-          })} feedID={feedID} profile={this.props.profile} />
+          })} feedID={feedID} profile={this.props.profile} profilePic={this.props.profilePic}/>
         </div>
       );
     }
