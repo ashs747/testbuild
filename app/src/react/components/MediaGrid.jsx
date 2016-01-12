@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'underscore';
+import _ from 'lodash';
 import ImageGrid from './ImageGrid.jsx';
 import CloudinaryImg from './CloudinaryImg.jsx';
 import Video from './Video.jsx';

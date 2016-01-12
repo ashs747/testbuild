@@ -3,7 +3,7 @@ const browserSync = require('browser-sync');
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const browserify = require('browserify');
-const babelify = require('gulp-babel');
+const babelify = require('babelify');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
@@ -16,6 +16,10 @@ const path = require('path');
 
 browserSync.create();
 var babelOptions = {
+  "ignore": /underscore/,
+  "compact": true,
+  "sourceMaps": true,
+  "global": false,
   "presets": ["react", "es2015", "stage-2", "stage-0"],
   "plugins": ["transform-es3-member-expression-literals", "transform-es3-property-literals"]
 }
@@ -24,10 +28,11 @@ var babelPatterns = ['!./app/src/**/__tests__/**/*.js', './app/src/**/*.js', './
 module.exports = function(gulp, workingDir) {
   gulp.task('bundlejs', ['eslint'], () => {
     return browserify({
-        entries: './app/src/main.js',
-        debug : !process.env['strata_environment']
-      })
-    .transform('babelify', babelOptions)
+      entries: './app/src/main.js',
+      insertGlobals: false,
+      debug: true
+    })
+    .transform(babelify, babelOptions)
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./app/dist'));
@@ -65,9 +70,9 @@ module.exports = function(gulp, workingDir) {
 
   gulp.task('default', ['bundlejs', 'bundlesass'],function() {
     browserSync.init({
-        server: {
-            baseDir: "./app"
-        }
+      server: {
+        baseDir: "./app"
+      }
     });
 
     gulp.watch(babelPatterns, ['bundlejs'], function() {
