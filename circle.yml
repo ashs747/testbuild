@@ -11,8 +11,8 @@ test:
   override:
     - cp app/src/localConfig.js.dist app/src/localConfig.js
     - npm install --only=dev
-    - npm install
     - npm install -g eslint babel-eslint bower gulp
+    - npm rebuild node-sass
     - bower install
     - gulp build
 deployment:
