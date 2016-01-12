@@ -15,7 +15,10 @@ const cache = require('gulp-cached');
 const path = require('path');
 
 browserSync.create();
-
+var babelOptions = {
+  "presets": ["react", "es2015", "stage-2", "stage-0"],
+  "plugins": ["transform-es3-member-expression-literals", "transform-es3-property-literals"]
+}
 var babelPatterns = ['!./app/src/**/__tests__/**/*.js', './app/src/**/*.js', './app/src/**/*.jsx'];
 
 module.exports = function(gulp, workingDir) {
@@ -24,7 +27,7 @@ module.exports = function(gulp, workingDir) {
         entries: './app/src/main.js',
         debug : !process.env['strata_environment']
       })
-    .transform('babelify', {"presets": ["react", "es2015", "stage-2", "stage-0"]})
+    .transform('babelify', babelOptions)
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./app/dist'));
