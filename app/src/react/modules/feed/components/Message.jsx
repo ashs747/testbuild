@@ -57,7 +57,7 @@ class Message extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     let changeableKeys = ['content', 'editable', 'commentText', 'newCommentPending', 'err', 'newCommentErr'];
 
-    if (this.state.fullString != nextState.fullString) {
+    if (this.state.fullString !== nextState.fullString) {
       return true;
     }
 
@@ -67,7 +67,7 @@ class Message extends React.Component {
       }
     }
 
-    if (nextProps.comments.length != this.props.comments.length) {
+    if (nextProps.comments.length !== this.props.comments.length) {
       return true;
     }
 
@@ -121,7 +121,7 @@ class Message extends React.Component {
     );
 
     return (
-      <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
+      <div className={`message ${(this.props.profile === "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
           <CloudinaryImg file={profilePic} alt={this.props.name} defaultImg="assets/img/profile-placeholder.jpg"/>
           <div className="header-text">

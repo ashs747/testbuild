@@ -29,7 +29,7 @@ class Slideshow extends React.Component {
     } else {
       slide.onPrevClick = slide.onPrevClick.bind(this);
     }
-    
+
     let className = `slideshow-module ${slide.className ? slide.className : ""}`;
     return (
       <div className={className}>
@@ -52,12 +52,12 @@ class Slideshow extends React.Component {
     If no value has been passed, default to standard behaviour (only show next if there is a slide to show)
   */
   showNext() {
-    let showNext = this.props.slides[this.props.index].showNext;
-    if (typeof showNext !== 'undefined') {
-      if (typeof showNext === 'function') {
-        return showNext.call(this);
+    let showNextSlide = this.props.slides[this.props.index].showNext;
+    if (typeof showNextSlide !== 'undefined') {
+      if (typeof showNextSlide === 'function') {
+        return showNextSlide.call(this);
       }
-      return (!!showNext);
+      return (!!showNextSlide);
     }
     return (this.props.index < this.props.slides.length - 1);
   }
@@ -67,16 +67,15 @@ class Slideshow extends React.Component {
     If no value has been passed, default to standard behaviour (only show prev if not first slide)
   */
   showPrev() {
-    let showPrev = this.props.slides[this.props.index].showPrev;
-    if (typeof showPrev !== 'undefined') {
-      if (typeof showPrev === 'function') {
-        return showPrev.call(this);
+    let showPrevSlide = this.props.slides[this.props.index].showPrev;
+    if (typeof showPrevSlide !== 'undefined') {
+      if (typeof showPrevSlide === 'function') {
+        return showPrevSlide.call(this);
       }
-      return (!!showPrev);
+      return (!!showPrevSlide);
     }
     return (this.props.index !== 0);
   }
-
 }
 Slideshow.defaultProps = {
   slides: [],

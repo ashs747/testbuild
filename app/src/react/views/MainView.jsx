@@ -30,7 +30,6 @@ class MainView extends React.Component {
 
   render() {
     let loggedIn = this.props.user.loggedIn;
-    
     return (
       <div className="main">
         <div className={`${(this.props.width.profile !== "sm") ? "container-fluid" : ""}`}>
@@ -47,7 +46,6 @@ class MainView extends React.Component {
   }
 
   checkLoggedInState() {
-    
     let activeRouteBase = this.getActiveRouteBase();
     let loginPending = (this.props.auth.waitingForLogin) ? true : this.waitForLogin;
     let userLoggedIn = this.props.auth.tokenChecked;

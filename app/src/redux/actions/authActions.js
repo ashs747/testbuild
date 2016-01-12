@@ -1,5 +1,3 @@
-import authManager from 'cirrus/services/managers/authManager';
-import userManager from 'cirrus/services/managers/userManager';
 import {getOAuthToken, getOAuthTokenFromOneUseKey, getOAuthTokenFromRefreshToken, getUserData, setCookieCredentials} from '../services/authService';
 import {updateUserPassword, sendRecoverPasswordEmail} from '../services/userService';
 import cookie from 'cookie-cutter';
@@ -126,7 +124,7 @@ export function getCookies() {
     access_token: cookie.get('authToken'),
     expires_in: cookie.get('expiresIn'),
     refresh_token: cookie.get('refreshToken'),
-    user_id: parseInt(cookie.get('userId'))
+    user_id: parseInt(cookie.get('userId'), 10)
   };
   /*eslint-enable camelcase */
 }

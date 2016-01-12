@@ -90,7 +90,7 @@ class LearningJourneyWidget extends React.Component {
 
   hasOutstandingActivities(theModule) {
     _.mapObject(theModule.activities, (act, key) => {
-      if (act.status != "completed") {
+      if (act.status !== "completed") {
         return false;
       }
     });

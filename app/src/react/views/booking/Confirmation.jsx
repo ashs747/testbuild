@@ -46,7 +46,7 @@ class Confirmation extends React.Component {
 
   mapError(error) {
     let errorText;
-    if (error.status == 422) {
+    if (error.status === 422) {
       errorText = "It appears someone has booked this slot while you were viewing it, please go back and select a new slot";
     } else {
       errorText = "It appears there was an error, please contact Cirrus support";

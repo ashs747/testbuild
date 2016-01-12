@@ -8,7 +8,6 @@ class MiniDataCaptureForm extends React.Component {
   }
 
   render() {
-
     let inputClasses = this.props.errorClasses || [];
     inputClasses.push('form-control');
     let inputClassText = inputClasses.join(',');

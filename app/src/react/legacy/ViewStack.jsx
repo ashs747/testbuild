@@ -1,5 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
+import _ from 'underscore';
+
 var cloneWithProps = React.cloneElement;
 var HIDDEN_STYLE_PROPS = {
   style: {
@@ -26,7 +28,6 @@ var ViewStack = React.createClass({
     className = this.addClass(className, 'view-stack');
 
     var children = React.Children.map(this.props.children, function(child, index) {
-
       var props = {
         key: "view-stack-" + index,
         className: 'view-stack-item'
@@ -36,7 +37,6 @@ var ViewStack = React.createClass({
         Object.assign(props, HIDDEN_STYLE_PROPS);
       }
       return cloneWithProps(child, props);
-
     }.bind(this));
 
     return (
@@ -62,7 +62,6 @@ var ViewStack = React.createClass({
   },
 
   linkify: function(text) {
-
     var urlPattern = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
     var pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
 

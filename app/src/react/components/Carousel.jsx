@@ -14,7 +14,7 @@ class Carousel extends React.Component {
     var navigation = [];
     let width = (this.props.defineWidthClass) ? this.props.defineWidthClass : "col-sm-10 col-sm-offset-1";
     this.props.items.forEach((item, i) => {
-      let className = (i == 0) ? "active" : "";
+      let className = (i === 0) ? "active" : "";
       let style = {};
       if (item.backgroundImage) {
         style.backgroundImage = `url('${item.backgroundImage}')`;

@@ -43,11 +43,11 @@ export default class ImageView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.layout != nextProps.layout) {
+    if (this.props.layout !== nextProps.layout) {
       this.setCalculationMethod(nextProps.layout);
     }
 
-    if (this.props.src != nextProps.src) {
+    if (this.props.src !== nextProps.src) {
       this.preloadImage(nextProps.src).on('done', this.onImagePreloaded);
     }
   }

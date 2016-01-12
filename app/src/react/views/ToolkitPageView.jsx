@@ -62,7 +62,7 @@ class ToolkitPageView extends React.Component {
   getToolkitFromUrlSlug(toolkits, slug) {
     let selectedToolkit = null;
     toolkits.forEach((toolkit) => {
-      if (toolkit.slug == slug) {
+      if (toolkit.slug === slug) {
         selectedToolkit = toolkit;
       }
     });

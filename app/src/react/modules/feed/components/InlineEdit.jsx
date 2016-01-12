@@ -38,7 +38,7 @@ export default class InlineEdit extends React.Component {
 
   keyHandler(e) {
     var keyPressed = e.which || e.keyCode;
-    if (keyPressed == '13') {
+    if (keyPressed === '13') {
       this.onSave(e);
     }
   }

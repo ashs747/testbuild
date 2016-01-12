@@ -1,8 +1,7 @@
 import store from '../store.js';
 import {updateUserData, updateUserProfile, updateUserPassword} from '../services/userService';
 // Update a users Cohorts
-export function fetchUsersByCohort(id) {
-
+export function fetchUsersByCohort() {
   return {
     'type': 'FETCH_COHORT'
   };

@@ -1,5 +1,5 @@
+/* eslint-disable */
 import Store from './redux/store';
-
 var Request = function() {
   function get(url, token) {
     return makeRequest('GET', url, null, token);
@@ -84,3 +84,4 @@ var Request = function() {
 };
 
 export default Request;
+/* eslint-enable */

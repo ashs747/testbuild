@@ -20,7 +20,6 @@ function mapUploadForm(state) {
 var MappedUploadProfile = connect(mapUploadForm)(UploadProfile);
 
 function mapCaptureFormProps(state) {
-
   // FixMe: Not finished (mappings);
   return {
     ...state.user,
@@ -28,6 +27,7 @@ function mapCaptureFormProps(state) {
     updateAction: updateUserObject
   };
 };
+
 var MappedDataCaptureForm = connect(mapCaptureFormProps)(DataCaptureForm);
 
 class WelcomeBlock extends React.Component {

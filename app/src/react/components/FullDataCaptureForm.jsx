@@ -14,7 +14,6 @@ class FullDataCaptureForm extends React.Component {
   }
 
   render() {
-
     let detailsError = this.props.detailsError ? <div className="alert alert-danger">There was an error saving your details, please refresh the page and try again or contact Cirrus support if the error persists</div> : null;
     let detailsLoading = this.props.detailsLoading ? <img src="assets/img/ajax-loader-red.gif" /> : "SAVE";
     let detailsSuccess = this.props.detailsSuccess ? <div className="alert alert-success">Details saved</div> : null;
