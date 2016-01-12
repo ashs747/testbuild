@@ -2,7 +2,6 @@ import React from 'react';
 import {addFile} from '../../../../redux/actions/feedActions';
 import {dispatch} from '../../../../redux/store';
 import config from '../../../../localConfig';
-import cookie from 'cookie-cutter';
 import store from '../../../../redux/store.js';
 import {findDOMNode} from 'react-dom';
 
@@ -44,6 +43,7 @@ class UploadMedia extends React.Component {
   render() {
     let displayText = this.props.profile !== "sm" ? "Upload Photo/Video" : null;
     let icon = this.state.loading ? <img src="assets/img/ajax-loader1.gif" /> : <div><i className="fa fa-picture-o"></i> {displayText}</div>;
+
     return (
       <div className="upload-media-component">
         <a ref="browse" className="btn upload-media" href="javascript:void(0)">{icon}</a>
@@ -51,18 +51,19 @@ class UploadMedia extends React.Component {
     );
   }
 
-  onFilesAdded(up, file) {
+  onFilesAdded() {
     this.plup.start();
     this.setState({loading: true});
   }
 
   onFileUploaded(up, file, data) {
-    this.setState({loading: false});
     let response = JSON.parse(data.response);
+
+    this.setState({loading: false});
     dispatch(addFile(response, this.props.feedId));
   }
 
-  onError(up, args) {
+  onError() {
     dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
   }
 }

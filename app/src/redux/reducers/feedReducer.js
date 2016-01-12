@@ -189,7 +189,7 @@ export const feedReducer = (state = defaultState, action) => {
     case "FEED_REMOVE_ATTACHMENT":
       nextState = Object.assign({}, state);
       nextState[action.payload.feedId].files = state[action.payload.feedId].files.filter((el) => {
-        return action.payload.imageId != el.id;
+        return action.payload.imageId !== el.id;
       });
       return nextState;
       break;

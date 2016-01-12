@@ -29,13 +29,13 @@ class SlotDisplay extends React.Component {
   }
 
   render() {
-    if (!this.props.selectedDate || this.props.selectedDate == 0) {
+    if (!this.props.selectedDate || this.props.selectedDate === 0) {
       return <div />;
     }
     let reducedEventObjs = this.reduceEventDates(this.props.events, this.props.selectedDate);
     if (this.props.width === "sm") {
       let mobileJSX = this.mapMobileSelects(reducedEventObjs);
-      let mobileBook = (this.state.slot && this.state.slot != 0) ? (
+      let mobileBook = (this.state.slot && this.state.slot !== 0) ? (
         <a className="btn confirm-btn" onClick={this.clickedMobileBook}>CONFIRM</a>
       ) : null;
       return (
@@ -203,7 +203,7 @@ class SlotDisplay extends React.Component {
     let event = this.findEventById(this.props.events, this.state.mobileEventId);
     let slot;
     for (var i in event.slots) {
-      if (event.slots[i].id == this.state.slot) {
+      if (event.slots[i].id === this.state.slot) {
         slot = event.slots[i];
       }
     }
@@ -227,7 +227,7 @@ class SlotDisplay extends React.Component {
   */
   findEventById(eventObjs, eventID) {
     for (var i in eventObjs) {
-      if (eventObjs[i].id == eventID) {
+      if (eventObjs[i].id === eventID) {
         return eventObjs[i];
       }
     }

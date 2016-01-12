@@ -6,24 +6,22 @@ export const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'LOGOUT':
       return {};
-      
+
     case "CONTENT_GET_PROJECT":
       switch (action.status) {
         case "RESOLVED":
           nextState = Object.assign({}, state);
           nextState.project = action.payload;
           return nextState;
-          break;
         default:
           return state;
-          break;
       }
+
     case "CONTENT_GET_ALL_TOOLKITS":
       nextState = Object.assign({}, state);
       nextState.toolkits = action.payload;
       return nextState;
-      break;
-      break;
+
     case "CONTENT_GET_ACTIVITY":
       switch (action.status) {
         case "RESOLVED":
@@ -36,6 +34,7 @@ export const reducer = (state = defaultState, action) => {
           break;
       }
       break;
+
     default:
       return state;
   }

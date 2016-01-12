@@ -93,6 +93,3 @@ export const getOAuthTokenFromOneUseKey = (key) => {
   });
 };
 
-export const getInitialUserData = () => {
-  return user();
-};

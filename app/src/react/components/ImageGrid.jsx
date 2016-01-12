@@ -17,10 +17,6 @@ export default class ImageGrid extends React.Component {
     };
   }
 
-  componentWillMount() {
-    
-  }
-
   componentWillUnmount() {
     this.$refToComponent.off('resize', (e) => {
       this.setState({rowWidth: this.$refToComponent.width()});
@@ -56,10 +52,9 @@ export default class ImageGrid extends React.Component {
           file.dispHeight = Math.ceil(file.dispWidth * file.oDimensions.aspect);
           row[j].push(file); // first file in row
         } else {
-          
           file.dispHeight = Math.ceil(row[j][0].dispHeight);
           file.dispWidth = Math.ceil(file.dispHeight * file.oDimensions.aspect);
-       
+
           if (remainingWidth >= file.dispWidth) {
             row[j].push(file);
           } else {
@@ -85,7 +80,7 @@ export default class ImageGrid extends React.Component {
         {rowObj}
         </div>);
     });
-    
+
     return (
       <div className={this.props.className}>
         {cloudinaryGrid}
@@ -100,9 +95,11 @@ export default class ImageGrid extends React.Component {
         dimensions[meta.key] = meta.value;
       }
     });
+
     let rotation = file.metadata.filter((meta) => {
-      return (meta.key === 'rotate'); 
+      return (meta.key === 'rotate')
     });
+
     dimensions.aspect = (dimensions.width / dimensions.height);
     if (rotation.length === 1) {
       let swapWH = (rotation[0].value) % 180;

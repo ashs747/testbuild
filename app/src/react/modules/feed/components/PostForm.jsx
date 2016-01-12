@@ -2,7 +2,7 @@ import React from 'react';
 import TextArea from 'react-textarea-autosize';
 import UploadMedia from './UploadMedia.jsx';
 import EmbedVideo from './EmbedVideo.jsx';
-import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';;
+import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';
 import {dispatch} from '../../../../redux/store';
 import ImageView from '../../../components/ImageView.jsx';
 import CloudinaryImg from '../../../components/CloudinaryImg.jsx';
@@ -84,7 +84,7 @@ class PostForm extends React.Component {
   }
 
   mapAttachments(attachments) {
-    let attachmentsArray = attachments.map((a, i) => {
+    let attachmentsArray = attachments.map((a) => {
       let thumbnail = '/assets/img/thumb-default.png';
       let rotate;
       if (a) {
@@ -138,7 +138,7 @@ class PostForm extends React.Component {
 
   keyPress(e) {
     var keyPressed = e.which || e.keyCode;
-    if (keyPressed == '13') {
+    if (keyPressed === '13') {
       this.onSave(e);
     }
   }

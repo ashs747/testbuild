@@ -1,2 +1,2 @@
 var gulp = require('gulp');
-require('cirrus/gulp/reactBuild')(gulp, __dirname);
+require('./gulp/main')(gulp, __dirname);

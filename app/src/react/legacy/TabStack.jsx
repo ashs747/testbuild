@@ -1,6 +1,7 @@
 import ViewStack from './ViewStack.jsx';
 import React from 'react';
 import $ from 'jquery';
+import _ from 'underscore';
 
 var TabStack = React.createClass({
   getInitialState: function() {
@@ -20,7 +21,6 @@ var TabStack = React.createClass({
   },
 
   linkify: function(text) {
-
     var urlPattern = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
     var pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
 
@@ -75,7 +75,7 @@ var TabStack = React.createClass({
   },
 
   componentWillUpdate: function(nextProps, nextState) {
-    if (this.props.onChange && this.state.selectedIndex != nextState.selectedIndex) {
+    if (this.props.onChange && this.state.selectedIndex !== nextState.selectedIndex) {
       this.props.onChange(nextState.selectedIndex);
     }
   },
@@ -105,9 +105,8 @@ var TabBar = React.createClass({
     var tabs = [];
 
     React.Children.forEach(this.props.children, function(item, i) {
-
       var className = item.props.tabClass;
-      var activeClass = i == this.props.selectedIndex ? 'active' : '';
+      var activeClass = (i === this.props.selectedIndex) ? 'active' : '';
       className = `${className} ${activeClass}`;
 
       tabs.push(

@@ -29,7 +29,7 @@ class Slideshow extends React.Component {
     } else {
       slide.onPrevClick = slide.onPrevClick.bind(this);
     }
-    
+
     let className = `slideshow-module ${slide.className ? slide.className : ""}`;
     return (
       <div className={className}>

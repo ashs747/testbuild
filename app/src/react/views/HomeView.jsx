@@ -31,7 +31,6 @@ class HomeView extends React.Component {
   }
 
   render() {
-
     let carouselItems = [{
       icon: "",
       copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."

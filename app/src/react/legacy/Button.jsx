@@ -48,7 +48,7 @@ var Button = React.createClass({
       content = <span>&nbsp;<img style={style} src={'assets/img/circle-loader-20x20-' + loader + '.gif'} /></span>;
     }
 
-    if (this.props.type == 'submit') {
+    if (this.props.type === 'submit') {
       return <button {...other} className={classNames(classes)} onClick={this.onClick.bind(this, onClick)}>{content}</button>;
     }
 

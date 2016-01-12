@@ -66,7 +66,6 @@ class CloudinaryImg extends React.Component {
       }
       modStr = modStr || `${imgParams.join(',')}/`;
       outStr = outStr.split('upload/').join(`upload/${modStr}`);
-
     } else {
       // format a default
       outStr = this.props.defaultImg || '';

@@ -10,7 +10,7 @@ export default class MediaGallery extends React.Component {
     super();
     this.getMedia = this.getMedia.bind(this);
     this.setIndex = this.setIndex.bind(this);
-    this.increseIndex = this.increseIndex.bind(this);
+    this.increaseIndex = this.increaseIndex.bind(this);
     this.decreaseIndex = this.decreaseIndex.bind(this);
     this.resizeClickZone = this.resizeClickZone.bind(this);
     this.state = {
@@ -126,7 +126,7 @@ export default class MediaGallery extends React.Component {
       ) : null;
 
       var rightClick = (this.state.index !== media.length - 1 || this.props.cycle) ? (
-        <div className="right-click click" ref="right" onClick={this.increseIndex}>
+        <div className="right-click click" ref="right" onClick={this.increaseIndex}>
           <div style={{float: "right", position: "relative"}} className="right-arrow arrow"><span style={{color: "white"}}></span></div>
         </div>
       ) : null;
@@ -165,8 +165,7 @@ export default class MediaGallery extends React.Component {
     });
   }
 
-  increseIndex() {
-
+  increaseIndex() {
     var newIndex = this.state.index + 1;
 
     if (newIndex === this.state.media.length) {

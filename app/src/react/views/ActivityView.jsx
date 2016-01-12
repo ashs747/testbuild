@@ -120,7 +120,7 @@ class ActivityView extends React.Component {
     let newObj = _.mapObject(modules, (mod, key) => {
       var selectedActivity;
       var activities = _.mapObject(mod.activities, (act, key) => {
-        if (act.id == activityID) {
+        if (act.id === activityID) {
           selectedActivity = {[key]: act};
         }
       });

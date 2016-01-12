@@ -1,9 +1,7 @@
 import {castPropertiesToObject} from '../helpers/genericHelpers';
 
 export function reducer(state = {}, action) {
-
   switch (action.type) {
-
     case 'INITIAL_DATA_UPDATED':
       var newState = {...state};
       var field = action.payload.field;
@@ -135,5 +133,4 @@ export function reducer(state = {}, action) {
         profilePic: action.payload.profilePic
       };
   }
-
 }
