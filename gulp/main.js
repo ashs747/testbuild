@@ -32,7 +32,7 @@ module.exports = function(gulp, workingDir) {
       transform: [["babelify", babelOptions], "dekeywordify"]
     })
     .bundle()
-    .pipe(source('bundle.js'))
+    .pipe(source('app.js'))
     .pipe(gulp.dest('./app/dist'));
   });
 
