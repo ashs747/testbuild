@@ -3,11 +3,9 @@ const browserSync = require('browser-sync');
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const browserify = require('browserify');
-const babelify = require('babelify');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
-const dekeywordify = require('dekeywordify');
 const source = require('vinyl-source-stream');
 const fs = require('fs');
 const eslint = require('gulp-eslint');
@@ -30,10 +28,9 @@ module.exports = function(gulp, workingDir) {
     return browserify({
       entries: './app/src/main.js',
       insertGlobals: false,
-      debug: true
+      debug: true,
+      transform: [["babelify", babelOptions], "dekeywordify"]
     })
-    .transform(babelify, babelOptions)
-    .transform(dekeywordify)
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./app/dist'));
