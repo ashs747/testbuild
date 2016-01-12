@@ -15,7 +15,7 @@ const path = require('path');
 browserSync.create();
 var babelOptions = {
   "ignore": /underscore/,
-  "compact": true,
+  "compact": false,
   "sourceMaps": true,
   "global": false,
   "presets": ["react", "es2015", "stage-2", "stage-0"],
@@ -27,7 +27,7 @@ module.exports = function(gulp, workingDir) {
   gulp.task('bundlejs', ['eslint'], () => {
     return browserify({
       entries: './app/src/main.js',
-      insertGlobals: false,
+      insertGlobals: true,
       debug: true,
       transform: [["babelify", babelOptions], "dekeywordify"]
     })
