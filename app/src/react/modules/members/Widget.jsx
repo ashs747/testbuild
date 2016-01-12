@@ -11,7 +11,7 @@ class Widget extends React.Component {
   render() {
     let users = (this.props.users) ? this.props.users.map((user, i) => {
       let profilePic = user.profilePic;
-      let properties = user.properties;
+      let properties = user.properties || {};
       return (
         <UserDisplay
           key={`${i}-${profilePic}`}
@@ -22,7 +22,7 @@ class Widget extends React.Component {
           jobTitle={properties.jobTitle || ''}
           businessArea={properties.businessArea || ''}
           email={user.email}
-          telephone={user.properties.phone || ''}
+          telephone={properties.phone || ''}
         />
       );
     }) : null;
