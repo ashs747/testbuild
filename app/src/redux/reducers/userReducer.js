@@ -1,6 +1,6 @@
-var initialState = {};
+import {castPropertiesToObject} from '../helpers/genericHelpers';
 
-export function reducer(state = initialState, action) {
+export function reducer(state = {}, action) {
 
   switch (action.type) {
 
@@ -21,7 +21,8 @@ export function reducer(state = initialState, action) {
     case 'FETCHED_INITIAL_USER':
       switch (action.status) {
         case 'RESOLVED':
-          let newState = {...state, ...action.payload};
+          let user = castPropertiesToObject(action.payload);
+          let newState = {...state, ...user};
           return newState;
 
         case 'REJECTED':
@@ -38,7 +39,7 @@ export function reducer(state = initialState, action) {
       switch (action.status) {
         case 'RESOLVED':
           return {...state,
-            cohortMembers: action.payload.users
+            cohortMembers: action.payload.users ? action.payload.users.map(castPropertiesToObject) : []
           };
       }
 
