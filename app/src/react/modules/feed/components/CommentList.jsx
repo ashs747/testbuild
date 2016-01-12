@@ -73,7 +73,7 @@ class CommentList extends React.Component {
         return dispatch(updateMessage(this.props.feedID, comment.id, text));
       };
 
-      var properties = comment.user.properties;
+      var properties = comment.user.properties || {};
 
       return (<Comment
         key={comment.id}
