@@ -46,7 +46,7 @@ class UploadProfile extends React.Component {
     return (
       <div className="upload-profile">
         <div className="circle-image">
-          <CloudinaryImg file={this.props.profilePic} default="assets/img/profile-placeholder.jpg"/>
+          <CloudinaryImg file={this.props.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
         </div>
         <button className="btn" ref="uploadButton">{loading}</button>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
