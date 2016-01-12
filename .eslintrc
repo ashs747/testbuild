@@ -21,6 +21,8 @@
   },
   "plugins": ["react"],
   "rules": {
+    "no-func-assign":2,
+    "no-unexpected-multiline":2,
     "no-multi-spaces": 2,
     "no-nested-ternary": 2,
     "computed-property-spacing": [2, "never"],

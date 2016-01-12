@@ -10,10 +10,11 @@ dependencies:
 test:
   override:
     - cp app/src/localConfig.js.dist app/src/localConfig.js
+    - npm install --only=dev
     - npm install
-    - ./node_modules/bower/bin/bower install
-    - ./node_modules/gulp/bin/gulp.js lint
-    - ./node_modules/gulp/bin/gulp.js build
+    - npm install -g eslint babel-eslint bower gulp
+    - bower install
+    - gulp build
 deployment:
   elasticbeanstalk:
     branch: develop

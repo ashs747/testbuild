@@ -1,5 +1,3 @@
-import authManager from 'cirrus/services/managers/authManager';
-import userManager from 'cirrus/services/managers/userManager';
 import {getOAuthToken, getOAuthTokenFromOneUseKey, getOAuthTokenFromRefreshToken, getUserData, setCookieCredentials} from '../services/authService';
 import {updateUserPassword, sendRecoverPasswordEmail} from '../services/userService';
 import cookie from 'cookie-cutter';

@@ -10,7 +10,6 @@ import _ from 'underscore';
 var dispatch = Store.dispatch;
 
 class ProjectView extends React.Component {
-
   constructor() {
     super();
   }
@@ -102,7 +101,6 @@ class ProjectView extends React.Component {
         if (act.id === activityID) {
           selectedActivity = {[key]: act};
         }
-        
       });
       if (selectedActivity) {
         singleModuleSingleActivity = {...mod, activities: selectedActivity};

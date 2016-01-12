@@ -7,7 +7,7 @@ const babelify = require('gulp-babel');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
-const minifyCss = require('gulp-minify-css');
+
 const source = require('vinyl-source-stream');
 const fs = require('fs');
 const eslint = require('gulp-eslint');
@@ -22,7 +22,7 @@ module.exports = function(gulp, workingDir) {
   gulp.task('bundlejs', ['eslint'], () => {
     return browserify({
         entries: './app/src/main.js',
-        debug : !gulp.env.production
+        debug : !process.env['strata_environment']
       })
     .transform('babelify', {"presets": ["react", "es2015", "stage-2", "stage-0"]})
     .bundle()
@@ -33,13 +33,13 @@ module.exports = function(gulp, workingDir) {
   gulp.task('bundlesass', function() {
     return gulp.src('./app/assets/sass/**/*.scss')
       .pipe(sourcemaps.init())
-      .pipe(sass({outputStyle: 'compressed'}).sync().on('error', sass.logError))
+      .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest('./app/dist/'));
   });
 
   gulp.task('sass:watch', function () {
-    gulp.watch('./sass/**/*.scss', ['sass']);
+    gulp.watch('./sass/**/*.scss', ['bundlesass']);
   });
 
   gulp.task('bundlejs:watch', function() {
@@ -60,7 +60,7 @@ module.exports = function(gulp, workingDir) {
     }));
   });
 
-  gulp.task('default', function() {
+  gulp.task('default', ['bundlejs', 'bundlesass'],function() {
     browserSync.init({
         server: {
             baseDir: "./app"
@@ -71,9 +71,10 @@ module.exports = function(gulp, workingDir) {
       browserSync.reload();
     });
 
-    gulp.watch('./sass/**/*.scss', ['sass'], () => {
+    gulp.watch('./sass/**/*.scss', ['bundlesass'], () => {
       browserSync.reload();
     });
   });
 
+  gulp.task('build', ['bundlejs', 'bundlesass']);
 };

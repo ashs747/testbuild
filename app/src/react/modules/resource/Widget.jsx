@@ -2,12 +2,7 @@ import React from 'react';
 import Group from './Group.jsx';
 import _ from 'underscore';
 
-export default class Widget extends React.Component {
-
-  propTypes: {
-    resources: React.PropTypes.array,
-    title: React.PropTypes.string
-  }
+class Widget extends React.Component {
 
   constructor() {
     super();
@@ -106,5 +101,12 @@ export default class Widget extends React.Component {
     }
     return resources;
   }
-
 }
+
+Widget.propTypes = {
+  resources: React.PropTypes.array,
+  title: React.PropTypes.string
+}
+
+export default Widget;
+
