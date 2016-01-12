@@ -7,7 +7,7 @@ const babelify = require('babelify');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
-
+const dekeywordify = require('dekeywordify');
 const source = require('vinyl-source-stream');
 const fs = require('fs');
 const eslint = require('gulp-eslint');
@@ -33,6 +33,7 @@ module.exports = function(gulp, workingDir) {
       debug: true
     })
     .transform(babelify, babelOptions)
+    .transform(dekeywordify)
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./app/dist'));
