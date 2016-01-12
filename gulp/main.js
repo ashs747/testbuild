@@ -67,11 +67,11 @@ module.exports = function(gulp, workingDir) {
         }
     });
 
-    gulp.watch(babelPatterns, ['bundlejs'], () => {
+    gulp.watch(babelPatterns, ['bundlejs'], function() {
       browserSync.reload();
     });
 
-    gulp.watch('./sass/**/*.scss', ['bundlesass'], () => {
+    gulp.watch('./sass/**/*.scss', ['bundlesass'], function() {
       browserSync.reload();
     });
   });
