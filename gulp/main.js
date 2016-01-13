@@ -14,13 +14,13 @@ const path = require('path');
 
 browserSync.create();
 var babelOptions = {
-  "ignore": /underscore/,
   "compact": false,
   "sourceMaps": true,
   "global": false,
-  "presets": ["react", "es2015", "stage-2", "stage-0"],
-  "plugins": ["transform-es3-member-expression-literals", "transform-es3-property-literals"]
+  "presets": ["react", "es2015", "stage-2", "stage-0"]
 }
+
+//  "ignore": /underscore/, "plugins": ["transform-es3-member-expression-literals", "transform-es3-property-literals"]
 var babelPatterns = ['!./app/src/**/__tests__/**/*.js', './app/src/**/*.js', './app/src/**/*.jsx'];
 
 module.exports = function(gulp, workingDir) {
@@ -32,7 +32,7 @@ module.exports = function(gulp, workingDir) {
       transform: [["babelify", babelOptions], "dekeywordify"]
     })
     .bundle()
-    .pipe(source('app.js'))
+    .pipe(source('bundle.js'))
     .pipe(gulp.dest('./app/dist'));
   });
 
