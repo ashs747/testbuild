@@ -95,7 +95,7 @@ export const feedReducer = (state = defaultState, action) => {
         case 'REJECTED':
         // Error Handling to be discussed;
           nextState[action.payload.feedID].newMessagePending = false;
-          nextState[action.payload.feedID].newMessageErr = 'Could not post your message.';
+          nextState[action.payload.feedID].error = 'Could not post your message.';
           return {
             ...state,
             error: 'Could not post new message'
@@ -150,8 +150,8 @@ export const feedReducer = (state = defaultState, action) => {
       break;
 
     case "FEED_ADD_FILE":
-      switch (action.error) {
-        case undefined:
+      switch(action.status) {
+        case "RESOLVED":
           let payload = action.payload;
           if (payload.reference === "cloudinary") {
             let metaPreviewURL = _.findWhere(payload.metadata, {key: "url"});
@@ -161,14 +161,17 @@ export const feedReducer = (state = defaultState, action) => {
           }
           nextState[action.payload.feedId].files = nextState[action.payload.feedId].files || [];
           nextState[action.payload.feedId].files.push(payload);
-
           return nextState;
-          break;
+
+        case "REJECTED":
+          nextState[action.payload.feedId].error = nextState[action.payload.feedId].error;
+          nextState[action.payload.feedId].error = "File upload failed, please make sure your file is an image with extension .jpg, .png or .gif";
+          return nextState;
+
         default:
           return state;
-          break;
       }
-      break;
+
     case "FEED_UPDATE_FILE":
       switch (action.status) {
         case "RESOLVED":
@@ -232,6 +235,13 @@ export const feedReducer = (state = defaultState, action) => {
           break;
       }
       break;
+
+    case "REMOVE_FEED_ERROR":
+      if (nextState[action.payload.feedId]) {
+        nextState[action.payload.feedId].error = nextState[action.payload.feedId].error;
+        nextState[action.payload.feedId].error = null;
+      }
+      return nextState;
 
     default:
       return state;

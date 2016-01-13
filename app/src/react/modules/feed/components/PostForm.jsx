@@ -3,9 +3,10 @@ import TextArea from 'react-textarea-autosize';
 import UploadMedia from './UploadMedia.jsx';
 import EmbedVideo from './EmbedVideo.jsx';
 import {removeAttachment, rotateAttachment} from '../../../../redux/actions/feedActions';
-import {dispatch} from '../../../../redux/store';
+import store from '../../../../redux/store';
 import ImageView from '../../../components/ImageView.jsx';
 import CloudinaryImg from '../../../components/CloudinaryImg.jsx';
+var dispatch = store.dispatch;
 
 /**
   PostForm Component, posts a message (or a comment) to a programme feed
@@ -59,12 +60,10 @@ class PostForm extends React.Component {
     if (this.props.commentForm) {
       className += " comment-form";
     }
-    if (this.props.err) {
-      className += " validation-error";
-    }
     if (this.props.pending) {
       className += " pending";
     }
+    let error = this.props.err ? <div className="alert alert-danger">{this.props.err}</div> : null;
     return (
       <div className={`${className} clearfix`}>
         <div className="post-profile">
@@ -78,6 +77,7 @@ class PostForm extends React.Component {
           {embedVideo}
         </div>
         {postButton}
+        {error}
         {attachmentsjsx}
       </div>
     );

@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getActivityContent} from '../../redux/actions/contentActions';
-import {dispatch} from '../../redux/store';
+import store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
 import Markdown from 'react-remarkable';
 import _ from 'underscore';
+var dispatch = store.dispatch;
 
 import TabStack from '../legacy/TabStack.jsx';
 
@@ -105,7 +106,7 @@ class ActivityView extends React.Component {
             </div>
           </div>
           <div className="col-sm-10">
-            <h4>{`Module ${moduleWithActivity.id} - ${moduleWithActivity.name}`}</h4>
+            <h4>{`Module ${moduleWithActivity.moduleId} - ${moduleWithActivity.name}`}</h4>
             <h2>{activity.name}</h2>
             <h4>{activity.type}</h4>
           </div>
@@ -120,7 +121,7 @@ class ActivityView extends React.Component {
     let newObj = _.mapObject(modules, (mod, key) => {
       var selectedActivity;
       var activities = _.mapObject(mod.activities, (act, key) => {
-        if (act.id === activityID) {
+        if (act.id === parseInt(activityID, 10)) {
           selectedActivity = {[key]: act};
         }
       });

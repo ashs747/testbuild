@@ -1,9 +1,9 @@
 import React from 'react';
 import {addFile} from '../../../../redux/actions/feedActions';
-import {dispatch} from '../../../../redux/store';
 import config from '../../../../localConfig';
 import store from '../../../../redux/store.js';
 import {findDOMNode} from 'react-dom';
+var dispatch = store.dispatch;
 
 class UploadMedia extends React.Component {
 
@@ -53,18 +53,18 @@ class UploadMedia extends React.Component {
 
   onFilesAdded() {
     this.plup.start();
+    dispatch({'type': 'REMOVE_FEED_ERROR', payload: {feedId: this.props.feedId}});
     this.setState({loading: true});
   }
 
   onFileUploaded(up, file, data) {
     let response = JSON.parse(data.response);
-
     this.setState({loading: false});
     dispatch(addFile(response, this.props.feedId));
   }
 
   onError() {
-    dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
+    this.setState({loading: false});
   }
 }
 UploadMedia.propTypes = {

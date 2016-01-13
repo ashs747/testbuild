@@ -1,8 +1,9 @@
 import React from 'react';
 import Markdown from 'react-remarkable';
 import {connect} from 'react-redux';
-import {dispatch} from '../../redux/store';
+import store from '../../redux/store';
 import FileDownload from '../components/FileDownload.jsx';
+var dispatch = store.dispatch;
 
 class ToolkitPageView extends React.Component {
 
