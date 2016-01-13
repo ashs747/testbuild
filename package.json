@@ -45,6 +45,7 @@
   "devDependencies": {
     "babel-core": "^6.4.0",
     "babel-eslint": "^4.1.1",
+    "babel-plugin-react": "^1.0.0",
     "babel-plugin-rewire": "^0.1.21",
     "babel-plugin-transform-es3-member-expression-literals": "^6.3.13",
     "babel-plugin-transform-es3-property-literals": "^6.3.13",

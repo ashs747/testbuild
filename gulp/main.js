@@ -17,10 +17,15 @@ var gutil = require('gulp-util');
 
 browserSync.create();
 var babelOptions = {
-  "compact": false,
+  "compact": true,
   "sourceMaps": true,
-  "global": true,
-  "presets": ["react", "es2015", "stage-2", "stage-0"]
+  "global": false,
+  "presets": ["react", "es2015", "stage-2", "stage-0"],
+  "sourceMapRelative": './app/src',
+  "ignore": [
+    'node_modules/',
+    'bower_components/'
+  ]
 }
 
 //  "ignore": /underscore/, "plugins": ["transform-es3-member-expression-literals", "transform-es3-property-literals"]
@@ -37,7 +42,7 @@ var buildOnceOpts = {
   entries: ['./app/src/main.js'],
   insertGlobals: true,
   debug: true,
-  transform: ["browserify-shim", ["babelify", babelOptions], "dekeywordify"]
+  transform: ["browserify-shim", ["babelify", babelOptions]]
 };
 
 function watchifyReloadWrapper(cb){
@@ -47,15 +52,15 @@ function watchifyReloadWrapper(cb){
       process.exit();
     })
     .on('time', function(time){
-      gutil.log(gutil.colors.green('Browserify'), 'Built ' + gutil.colors.green('in ' + time + ' ms'));
+      gutil.log(gutil.colors.green('Browserify'), 'Built ' + gutil.colors.red('in ' + time + ' ms'));
       cb();
     })
-    .on('log', function(time){
-      gutil.log(gutil.colors.green('Browserify'), 'Log ' + gutil.colors.green('in ' + time + ' ms'));
+    .on('log', function(msg){
+      gutil.log(gutil.colors.green('Browserify'), 'Log ' + gutil.colors.red(msg));
       cb();
     })
-    .on('update', function(time){
-      gutil.log(gutil.colors.green('Browserify'), 'Update ' + gutil.colors.green('in ' + time + ' ms'));
+    .on('update', function(path){
+      gutil.log(gutil.colors.green('Browserify'), 'Update ' + gutil.colors.red('in ' + path));
       cb();
     })
     .bundle()
