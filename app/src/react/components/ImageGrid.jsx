@@ -1,6 +1,6 @@
 import React from 'react';
 import {findDOMNode} from 'react-dom';
-import _ from 'lodash';
+import _ from 'underscore';
 import imagesLoaded from 'imagesloaded';
 import $ from 'jquery';
 import CloudinaryImg from './CloudinaryImg.jsx';

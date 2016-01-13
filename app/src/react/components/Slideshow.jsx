@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import _ from 'underscore';
 
 class Slideshow extends React.Component {
 
