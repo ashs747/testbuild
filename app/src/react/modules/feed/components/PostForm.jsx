@@ -138,7 +138,7 @@ class PostForm extends React.Component {
 
   keyPress(e) {
     var keyPressed = e.which || e.keyCode;
-    if (keyPressed === '13') {
+    if (keyPressed === 13) {
       this.onSave(e);
     }
   }

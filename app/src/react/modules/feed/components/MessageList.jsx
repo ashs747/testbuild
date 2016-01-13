@@ -85,7 +85,8 @@ class MessageList extends React.Component {
         jobTitle={properties.jobTitle}
         businessArea={properties.businessArea}
         email={message.user.email}
-        telephone={properties.phone} />;
+        telephone={properties.phone}
+        userProfilePic={this.props.profilePic} />;
     });
   }
 

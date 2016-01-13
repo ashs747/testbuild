@@ -146,7 +146,7 @@ class Message extends React.Component {
           commentForm={true}
           profile={this.props.profile}
           saveOnEnter={true}
-          profilePic={profilePic}
+          profilePic={this.props.userProfilePic}
         />
       </div>
     );
