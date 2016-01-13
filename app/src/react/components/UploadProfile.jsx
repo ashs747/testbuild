@@ -4,8 +4,8 @@ import {dispatch} from '../../redux/store';
 import config from '../../localConfig';
 import store from '../../redux/store.js';
 import {newProfilePic} from '../../redux/actions/usersActions';
-/*eslint-disable camelcase */
 
+/*eslint-disable camelcase */
 class UploadProfile extends React.Component {
 
   constructor() {

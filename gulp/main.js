@@ -1,13 +1,10 @@
 const browserSync = require('browser-sync');
-
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const browserify = require('browserify');
-const babelify = require('gulp-babel');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
-
 const source = require('vinyl-source-stream');
 const fs = require('fs');
 const eslint = require('gulp-eslint');
@@ -15,16 +12,24 @@ const cache = require('gulp-cached');
 const path = require('path');
 
 browserSync.create();
+var babelOptions = {
+  "compact": false,
+  "sourceMaps": true,
+  "global": false,
+  "presets": ["react", "es2015", "stage-2", "stage-0"]
+}
 
+//  "ignore": /underscore/, "plugins": ["transform-es3-member-expression-literals", "transform-es3-property-literals"]
 var babelPatterns = ['!./app/src/**/__tests__/**/*.js', './app/src/**/*.js', './app/src/**/*.jsx'];
 
 module.exports = function(gulp, workingDir) {
   gulp.task('bundlejs', ['eslint'], () => {
     return browserify({
-        entries: './app/src/main.js',
-        debug : !process.env['strata_environment']
-      })
-    .transform('babelify', {"presets": ["react", "es2015", "stage-2", "stage-0"]})
+      entries: './app/src/main.js',
+      insertGlobals: true,
+      debug: true,
+      transform: [["babelify", babelOptions], "dekeywordify"]
+    })
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./app/dist'));
@@ -59,21 +64,22 @@ module.exports = function(gulp, workingDir) {
       }
     }));
   });
-
-  gulp.task('default', ['bundlejs', 'bundlesass'],function() {
+  gulp.task('default', ['bundlejs', 'bundlesass'], function() {
     browserSync.init({
-        server: {
-            baseDir: "./app"
-        }
+      server: {
+        baseDir: "./app"
+      }
     });
 
-    gulp.watch(babelPatterns, ['bundlejs'], function() {
-      browserSync.reload();
-    });
+    gulp.watch(babelPatterns, ['buildJsReloadBrowser']);
+    gulp.watch('./sass/**/*.scss', ['buildCssReloadBrowser']);
+  });
 
-    gulp.watch('./sass/**/*.scss', ['bundlesass'], function() {
-      browserSync.reload();
-    });
+  gulp.task('buildJsReloadBrowser', ['bundlejs'], function(){
+    browserSync.reload();
+  });
+  gulp.task('buildCssReloadBrowser', ['bundlesass'], function(){
+    browserSync.reload();
   });
 
   gulp.task('build', ['bundlejs', 'bundlesass']);
