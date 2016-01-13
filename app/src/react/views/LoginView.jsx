@@ -22,7 +22,6 @@ class LoginView extends React.Component {
   componentWillMount() {
     this.props.dispatch(logoutAction());
   }
-
   render() {
     let loginText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "LOG IN";
     let recoverText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif" /> : "RECOVER PASSWORD";
@@ -47,6 +46,7 @@ class LoginView extends React.Component {
         </div>
       </div>
     );
+
     var recoverForm = (
       <div className="recover-form">
         <form onSubmit={this.onRecoverPassword}>

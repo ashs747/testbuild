@@ -4,7 +4,6 @@ import Message from './Message.jsx';
 import {createComment, deleteMessageFromFeed, setEditable, saveUpdatedMessage, updateMessage, updateNewMessage, saveNewMessage} from '../../../../redux/actions/feedActions.js';
 import Store from '../../../../redux/store';
 var dispatch = Store.dispatch;
-
 /**
   MessageList Component, used to display a list of messages
   Iterates over a list of Message components
@@ -107,7 +106,6 @@ class MessageList extends React.Component {
       dispatch(deleteMessageFromFeed(this.props.feedID, messageID));
     };
   };
-
   editMessage(messageID) {
     return () => {
       dispatch(setEditable(this.props.feedID, messageID, true));
