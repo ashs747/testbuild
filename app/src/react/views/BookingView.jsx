@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import Slideshow from '../modules/slideshow/Slideshow.jsx';
 import {bookingScreenSlides} from './booking/bookingSlides.js';
 import {nav} from './booking/customBookingNav.js';
-import {dispatch} from '../../redux/store.js';
+import store from '../../redux/store.js';
 import {moveToSlide} from '../../redux/actions/slideActions.js';
+var dispatch = store.dispatch;
 
 function mapProps(state) {
   var slideID = "booking";

@@ -31,7 +31,7 @@ export default class FeedWidget extends React.Component {
             attachments={feed.files}
             dispatch={this.props.dispatch}
             pending={feed.newMessagePending}
-            err={feed.newMessageErr}
+            err={feed.error}
             content={feed.newMessageContent}
             postStatus={true}
             profile={this.props.profile}

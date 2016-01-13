@@ -163,6 +163,7 @@ export const fetchLatestFeedMessages = (feedID) => {
 export const addFile = (file, feedId) => {
   return {
     type: 'FEED_ADD_FILE',
+    status: "RESOLVED",
     payload: {
       ...file.file,
       feedId

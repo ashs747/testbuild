@@ -1,5 +1,5 @@
 import React from 'react';
-import {dispatch} from '../../redux/store';
+import dispatch from '../../redux/store';
 import TabStack from '../legacy/TabStack.jsx';
 import {connect} from 'react-redux';
 import moment from 'moment-timezone';
@@ -11,6 +11,7 @@ import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import _ from 'underscore';
 var feedID;
+var store = dispatch.store;
 
 function mapHomeFeedProps(state) {
   return {
