@@ -91,7 +91,7 @@ class CommentList extends React.Component {
         jobTitle={properties.jobTitle}
         businessArea={properties.businessArea}
         email={comment.user.email}
-        telephone={properties.telephone} />
+        telephone={properties.phone} />
       );
     });
     return commentList;

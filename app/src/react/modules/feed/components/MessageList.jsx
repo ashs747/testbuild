@@ -55,10 +55,7 @@ class MessageList extends React.Component {
       } else {
         comments = [];
       }
-      let properties = {};
-      try {
-        properties = JSON.parse(message.user.properties);
-      } catch (e) {}
+      let properties = message.user.properties || {};
 
       let editable = message.editable;
       let userCanEdit = message.can_edit;
@@ -88,7 +85,7 @@ class MessageList extends React.Component {
         jobTitle={properties.jobTitle}
         businessArea={properties.businessArea}
         email={message.user.email}
-        telephone={properties.telephone} />;
+        telephone={properties.phone} />;
     });
   }
 
