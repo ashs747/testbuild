@@ -2,8 +2,9 @@ import React from 'react';
 import FullDataCaptureForm from '../components/FullDataCaptureForm.jsx';
 import UploadProfile from '../components/UploadProfile.jsx';
 import {connect} from 'react-redux';
-import {dispatch} from '../../redux/store';
+import store from '../../redux/store';
 import {updateUserObject, saveUserProfile, saveUserPassword} from '../../redux/actions/usersActions';
+var dispatch = store.dispatch;
 
 function mapCaptureFormProps(state) {
   var user = state.user;

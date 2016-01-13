@@ -29,13 +29,13 @@ class LearningJourneyWidget extends React.Component {
         let content = (this.props.smallWidget) ? (
           <tr key={key} className="small-row">
             <td className="activity">
-              <a href={`/#/module/${theModule.id}`}>
+              <a href={`/#/module/${theModule.moduleId}`}>
                 <div className={currentModule}>
                   <div className="icon clearfix">
                     {icon}
                   </div>
                   <div className="text">
-                    <h5>{`Module ${theModule.id} - ${theModule.name}`}</h5>
+                    <h5>{`Module ${theModule.moduleNumber} - ${theModule.name}`}</h5>
                     <div className="subTitle">{moment(theModule.startDate).format('MMM YYYY')} - {moment(theModule.endDate).format('MMM YYYY')}</div>
                   </div>
                   {notice}
@@ -51,12 +51,12 @@ class LearningJourneyWidget extends React.Component {
                 {notice}
                 {icon}
                 <div className="module-text">
-                  <h5><b>Module {theModule.id} - {theModule.name}</b></h5>
+                  <h5><b>Module {theModule.moduleNumber} - {theModule.name}</b></h5>
                   <h5 style={{fontSize: "16px"}}>{moment(theModule.startDate).format('MMMM YYYY')} - {moment(theModule.endDate).format('MMMM YYYY')}</h5>
                 </div>
               </div>
             </td>
-            <td><div className="right-arrow"><a href={`/#/module/${theModule.id}`}><i className="fa fa-arrow-right"></i></a></div></td>
+            <td><div className="right-arrow"><a href={`/#/module/${theModule.moduleId}`}><i className="fa fa-arrow-right"></i></a></div></td>
           </tr>
         );
         rows.push(content);

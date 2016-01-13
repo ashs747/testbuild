@@ -14,7 +14,7 @@ class LearningJourneyTable extends React.Component {
     if (this.props.journeyModule) {
       for (let key in this.props.journeyModule.activities) {
         if (this.props.journeyModule.activities.hasOwnProperty(key)) {
-          rows.push(<LearningJourneyRow showIcon={this.props.showIcon} key={key} activity={this.props.journeyModule.activities[key]} smallTable={this.props.smallTable} moduleId={this.props.journeyModule.id}/>);
+          rows.push(<LearningJourneyRow showIcon={this.props.showIcon} key={key} activity={this.props.journeyModule.activities[key]} smallTable={this.props.smallTable} moduleId={this.props.journeyModule.moduleId}/>);
         }
       }
     }
@@ -38,7 +38,7 @@ class LearningJourneyTable extends React.Component {
           <tr className="heading">
             {headerIcon}
             <th colSpan="7">
-              <div className="title"><a href={`/#/module/${this.props.journeyModule.id}`}>{`Module ${this.props.journeyModule.id} - ${this.props.journeyModule.name}`}</a></div>
+              <div className="title"><a href={`/#/module/${this.props.journeyModule.moduleId}`}>{`Module ${this.props.journeyModule.moduleNumber} - ${this.props.journeyModule.name}`}</a></div>
               <div className="sub-title">{moment(this.props.journeyModule.startDate).format('MMMM YYYY')} - {moment(this.props.journeyModule.endDate).format('MMMM YYYY')}</div>
             </th>
           </tr>

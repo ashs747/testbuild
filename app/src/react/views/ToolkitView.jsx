@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {dispatch} from '../../redux/store';
+import store from '../../redux/store';
+var dispatch = store.dispatch;
 
 class ToolkitView extends React.Component {
 

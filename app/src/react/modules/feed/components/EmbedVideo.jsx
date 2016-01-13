@@ -1,7 +1,8 @@
 import React from 'react';
 import {findDOMNode} from 'react-dom';
 import {embedVideoAction} from '../../../../redux/actions/feedActions';
-import {dispatch} from '../../../../redux/store';
+import store from '../../../../redux/store';
+var dispatch = store.dispatch;
 
 class EmbedVideo extends React.Component {
 
