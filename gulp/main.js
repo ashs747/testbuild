@@ -1,5 +1,4 @@
 const browserSync = require('browser-sync');
-
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const browserify = require('browserify');
@@ -65,21 +64,22 @@ module.exports = function(gulp, workingDir) {
       }
     }));
   });
-
-  gulp.task('default', ['bundlejs', 'bundlesass'],function() {
+  gulp.task('default', ['bundlejs', 'bundlesass'], function() {
     browserSync.init({
       server: {
         baseDir: "./app"
       }
     });
 
-    gulp.watch(babelPatterns, ['bundlejs'], function() {
-      browserSync.reload();
-    });
+    gulp.watch(babelPatterns, ['buildJsReloadBrowser']);
+    gulp.watch('./sass/**/*.scss', ['buildCssReloadBrowser']);
+  });
 
-    gulp.watch('./sass/**/*.scss', ['bundlesass'], function() {
-      browserSync.reload();
-    });
+  gulp.task('buildJsReloadBrowser', ['bundlejs'], function(){
+    browserSync.reload();
+  });
+  gulp.task('buildCssReloadBrowser', ['bundlesass'], function(){
+    browserSync.reload();
   });
 
   gulp.task('build', ['bundlejs', 'bundlesass']);

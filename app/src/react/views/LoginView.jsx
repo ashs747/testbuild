@@ -71,7 +71,6 @@ class LoginView extends React.Component {
           break;
       }
     })();
-
     return (
       <div className="wrapper">
         <div className="login-wrapper">
