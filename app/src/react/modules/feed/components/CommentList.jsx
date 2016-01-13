@@ -82,7 +82,7 @@ class CommentList extends React.Component {
         date={date}
         profilePic={profilePic}
         editable={editable}
-        userCanEdit={true}
+        userCanEdit={userCanEdit}
         dispatchDeleteAction={deleteComment}
         dispatchEditAction={editComment}
         editCommentAction={updateComment}
