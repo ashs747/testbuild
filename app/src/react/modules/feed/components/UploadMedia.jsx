@@ -65,6 +65,7 @@ class UploadMedia extends React.Component {
 
   onError() {
     this.setState({loading: false});
+    dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
   }
 }
 UploadMedia.propTypes = {
