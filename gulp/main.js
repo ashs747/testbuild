@@ -33,6 +33,8 @@ var watchifyOpts = {
   entries: ['./app/src/main.js'],
   insertGlobals: false,
   debug: true,
+  cache: {},
+  packageCache: {},
   plugin: [watchify],
   transform: ["browserify-shim", ["babelify", babelOptions]]
 };
@@ -49,26 +51,32 @@ var buildOnceOpts = {
 };
 
 function watchifyReloadWrapper(cb){
-  return browserify(watchifyOpts)
-    .on('error', function(er) {
-      gutil.log(gutil.colors.red('Browserify'), 'Error: ' + gutil.colors.green(er));
-      process.exit();
-    })
-    .on('time', function(time){
-      gutil.log(gutil.colors.green('Browserify'), 'Built ' + gutil.colors.red('in ' + time + ' ms'));
+  var b = browserify(watchifyOpts);
+
+  b.on('error', function(er) {
+    gutil.log(gutil.colors.red('Browserify'), 'Error: ' + gutil.colors.green(er));
+    process.exit();
+  })
+  .on('time', function(time){
+    gutil.log(gutil.colors.green('Browserify'), 'Built ' + gutil.colors.red('in ' + time + ' ms'));
+  })
+  .on('log', function(msg){
+    gutil.log(gutil.colors.green('Browserify'), 'Log ' + gutil.colors.red(msg));
+    if (msg.indexOf('written') > -1) {
       cb();
-    })
-    .on('log', function(msg){
-      gutil.log(gutil.colors.green('Browserify'), 'Log ' + gutil.colors.red(msg));
-      cb();
-    })
-    .on('update', function(path){
-      gutil.log(gutil.colors.green('Browserify'), 'Update ' + gutil.colors.red('in ' + path));
-      cb();
-    })
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./app/dist'));
+    }
+  })
+  .on('update', function(path){
+    gutil.log(gutil.colors.green('Browserify'), 'Update ' + gutil.colors.red('in ' + path));
+    b.bundle()
+      .pipe(source('bundle.js'))
+      .pipe(gulp.dest('./app/dist'))
+  })
+  .bundle()
+  .pipe(source('bundle.js'))
+  .pipe(gulp.dest('./app/dist'));
+
+  return b;
 }
 
 module.exports = function(gulp) {
@@ -140,7 +148,9 @@ module.exports = function(gulp) {
   });
 
   gulp.task('buildCssReloadBrowser', ['bundlesass'], function(){
-    browserSync.reload();
+    setTimeout(function(){
+      browserSync.reload();
+    }, 200);
   });
 
   gulp.task('build', ['bundlesass', 'bundlejs']);

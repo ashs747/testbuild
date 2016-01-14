@@ -6,7 +6,7 @@
     "test": "./node_modules/.bin/karma start karma.conf.js"
   },
   "dependencies": {
-    "babel-polyfill": "^6.0.16",
+    "babel-polyfill": "^6.3.14",
     "bootstrap": "^3.3.5",
     "bower": "^1.5.2",
     "classnames": "^2.2.3",
@@ -19,7 +19,6 @@
     "history": "^1.17.0",
     "imagesloaded": "^3.1.8",
     "jquery": "^1.11.3",
-    "underscore": "^1.8.3",
     "moment-timezone": "^0.4.0",
     "react": "^0.14.6",
     "react-addons-clone-with-props": "^0.14.6",
@@ -33,6 +32,7 @@
     "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.3",
     "shivie8": "^1.0.0",
+    "underscore": "^1.8.3",
     "xdomain": "^0.7.3"
   },
   "browser": {},
