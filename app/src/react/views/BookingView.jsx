@@ -61,7 +61,7 @@ let mappedBookingView = connect(mapBookingViewprops)(BookingView);
 function getActivityFromLearningJourneyByUrl(learningJourney) {
   let moduleAndActivityIds = window.location.href.split("booking/")[1];
   let moduleID = moduleAndActivityIds.split("/")[0];
-  let activityID = moduleAndActivityIds.split("/")[1];
+  let activityID = moduleAndActivityIds.split("/")[1].charAt(0);
 
   if (learningJourney && learningJourney["m" + moduleID]) {
     return learningJourney["m" + moduleID].activities["a" + activityID];
