@@ -5,7 +5,6 @@ const browserify = require('browserify');
 const watchify = require('watchify');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
-const uglify = require('gulp-uglify');
 const source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 const fs = require('fs');
@@ -33,16 +32,20 @@ var babelPatterns = ['!./app/src/**/__tests__/**/*.js', './app/src/**/*.js', './
 var watchifyOpts = {
   entries: ['./app/src/main.js'],
   insertGlobals: false,
-  debug: false,
+  debug: true,
   plugin: [watchify],
   transform: ["browserify-shim", ["babelify", babelOptions]]
+};
+
+var uglifyifyOptions = {
+  global: true
 };
 
 var buildOnceOpts = {
   entries: ['./app/src/main.js'],
   insertGlobals: true,
-  debug: true,
-  transform: ["browserify-shim", ["babelify", babelOptions]]
+  debug: false,
+  transform: ["browserify-shim", ["babelify", babelOptions], ["uglifyify", uglifyifyOptions]]
 };
 
 function watchifyReloadWrapper(cb){
@@ -141,4 +144,12 @@ module.exports = function(gulp) {
   });
 
   gulp.task('build', ['bundlesass', 'bundlejs']);
+
+  gulp.task('browsersync', function() {
+    browserSync.init({
+      server: {
+        baseDir: "./app"
+      }
+    })
+  });
 };
