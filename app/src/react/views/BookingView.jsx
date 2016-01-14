@@ -59,13 +59,17 @@ function mapBookingViewprops(state) {
 let mappedBookingView = connect(mapBookingViewprops)(BookingView);
 
 function getActivityFromLearningJourneyByUrl(learningJourney) {
-  let moduleAndActivityIds = window.location.href.split("booking/")[1];
-  let moduleID = moduleAndActivityIds.split("/")[0];
-  let activityID = moduleAndActivityIds.split("/")[1].charAt(0);
+  let routing = store.getState().routing;
+  if (routing) {
+    let moduleAndActivityIds = routing.path.split("booking/")[1];
+    if (moduleAndActivityIds) {
+      let moduleID = moduleAndActivityIds.split("/")[0];
+      let activityID = moduleAndActivityIds.split("/")[1]
 
-  if (learningJourney && learningJourney["m" + moduleID]) {
-    return learningJourney["m" + moduleID].activities["a" + activityID];
+      if (learningJourney && learningJourney["m" + moduleID]) {
+        return learningJourney["m" + moduleID].activities["a" + activityID];
+      }
+    }
   }
 }
-
 export default mappedBookingView;

@@ -36,7 +36,8 @@ function mapFacilitatorBioProps(state) {
   let bio = (facilitator.properties && facilitator.properties.bio) ? facilitator.properties.bio : "";
   return {
     bio,
-    name: `${facilitator.forename} ${facilitator.surname}`
+    name: `${facilitator.forename} ${facilitator.surname}`,
+    profilePic: facilitator.profilePic
   };
 }
 var MappedFacilitatorBio = connect(mapFacilitatorBioProps)(FacilitatorBio);
@@ -67,7 +68,7 @@ function mapCompleteProps(state) {
 var MappedComplete = connect(mapCompleteProps)(Complete);
 
 function getActivityFromLearningJourneyByUrl(learningJourney) {
-  let moduleAndActivityIds = window.location.href.split("booking/")[1];
+  let moduleAndActivityIds = store.getState().routing.path.split("booking/")[1];
   let moduleID = moduleAndActivityIds.split("/")[0];
   let activityID = moduleAndActivityIds.split("/")[1];
 
