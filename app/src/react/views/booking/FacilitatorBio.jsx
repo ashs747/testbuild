@@ -1,4 +1,5 @@
 import React from 'react';
+import CloudinaryImg from '../../components/CloudinaryImg.jsx';
 
 class CoachBio extends React.Component {
 
@@ -7,11 +8,9 @@ class CoachBio extends React.Component {
   }
 
   render() {
-    //TODO: normalize the facilitator bio and profile pic (through properties)
-    let profilePic = (this.props.profilePic) ? this.props.profilePic : "/assets/img/profile-placeholder.jpg";
     return (
       <div className="coach-bio">
-        <img src={profilePic} alt="profile-pic" />
+        <CloudinaryImg file={this.props.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
         <h4>{this.props.name}</h4>
         <p>{this.props.bio}</p>
       </div>

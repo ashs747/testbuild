@@ -36,7 +36,8 @@ function mapFacilitatorBioProps(state) {
   let bio = (facilitator.properties && facilitator.properties.bio) ? facilitator.properties.bio : "";
   return {
     bio,
-    name: `${facilitator.forename} ${facilitator.surname}`
+    name: `${facilitator.forename} ${facilitator.surname}`,
+    profilePic: facilitator.profilePic
   };
 }
 var MappedFacilitatorBio = connect(mapFacilitatorBioProps)(FacilitatorBio);

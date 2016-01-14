@@ -19,8 +19,13 @@ class Complete extends React.Component {
         </div>
         <p className="small"><strong>Cancellation Terms</strong></p>
         <p className="small">{this.props.cancellationTerms}</p>
+        <a onClick={this.cancel} className="btn back">GO BACK</a>
       </div>
     );
+  }
+
+  cancel() {
+    window.history.back();
   }
 
 }
