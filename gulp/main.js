@@ -29,6 +29,7 @@ var babelOptions = {
 
 //  "ignore": /underscore/, "plugins": ["transform-es3-member-expression-literals", "transform-es3-property-literals"]
 var babelPatterns = ['!./app/src/**/__tests__/**/*.js', './app/src/**/*.js', './app/src/**/*.jsx'];
+
 var watchifyOpts = {
   entries: ['./app/src/main.js'],
   insertGlobals: false,
@@ -103,8 +104,11 @@ module.exports = function(gulp) {
 
   gulp.task('bundlesass', function() {
     return gulp.src('./app/assets/sass/**/*.scss')
+      .pipe(cache('sass'))
       .pipe(sourcemaps.init())
-      .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+      .pipe(sass.sync({outputStyle: 'compressed'}).on('error', function(er) {
+        gutil.log(gutil.colors.green('SASS'), 'Error ' + gutil.colors.red(er));
+      }))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest('./app/dist/'));
   });
@@ -148,9 +152,7 @@ module.exports = function(gulp) {
   });
 
   gulp.task('buildCssReloadBrowser', ['bundlesass'], function(){
-    setTimeout(function(){
-      browserSync.reload();
-    }, 200);
+    browserSync.reload();
   });
 
   gulp.task('build', ['bundlesass', 'bundlejs']);
