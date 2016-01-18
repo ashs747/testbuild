@@ -46,7 +46,6 @@ export default class ImageGrid extends React.Component {
           return a.oDimensions.aspect - b.oDimensions.aspect;
         });
 
-        console.log(files);
         for (let i = 0; i < files.length; i++) {
           row[j] = (row[j] instanceof Array) ? row[j] : [];
           let file = files[i];
@@ -100,7 +99,7 @@ export default class ImageGrid extends React.Component {
 
       var cloudinaryGrid = grid.map((row, i) => {
         let rowObj = row.map((file, j) => {
-          return <CloudinaryImg file={file} key={`${j}${i}${file.etag}-${file.created_at}`} width={file.dispWidth} height={file.dispHeight} crop="fill" />;
+          return <CloudinaryImg file={file} key={`${j}${i}${file.etag ? file.etag : ''}`} width={file.dispWidth} height={file.dispHeight} crop="fill" />;
         });
         return (<div className="imageRow" key={i} className={`holds-${rowObj.length}-img`}>
           {rowObj}
