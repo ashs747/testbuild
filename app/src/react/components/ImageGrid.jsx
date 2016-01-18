@@ -1,7 +1,6 @@
 import React from 'react';
 import {findDOMNode} from 'react-dom';
 import _ from 'underscore';
-import imagesLoaded from 'imagesloaded';
 import $ from 'jquery';
 import CloudinaryImg from './CloudinaryImg.jsx';
 
@@ -64,6 +63,11 @@ export default class ImageGrid extends React.Component {
             grid.push(row[j]);
             j += 1;
             row[j] = [];
+            // Not the last file? Continue as normal
+            if (i === (files.length - 1)) {
+              file.dispWidth = width;
+              file.dispHeight = Math.ceil(file.dispHeight * file.oDimensions.aspect);
+            }
             row[j].push(file);
           }
         }
