@@ -110,7 +110,7 @@ module.exports = function(gulp) {
   });
 
   gulp.task('sass:watch', function () {
-    gulp.watch('./sass/**/*.scss', ['bundlesass']);
+    gulp.watch('./app/assets/sass/**/*.scss', ['bundlesass']);
   });
 
   gulp.task('bundlejs:watch', function() {
@@ -136,7 +136,7 @@ module.exports = function(gulp) {
         baseDir: "./app"
       }
     });
-    gulp.watch('./sass/**/*.scss', ['buildCssReloadBrowser']);
+    gulp.watch('./app/assets/sass/**/*.scss', ['buildCssReloadBrowser']);
     gulp.watch(babelPatterns, ['eslint']);
     watchifyReloadWrapper(function() {
       browserSync.reload();
