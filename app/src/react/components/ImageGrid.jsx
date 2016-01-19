@@ -12,21 +12,21 @@ export default class ImageGrid extends React.Component {
     this.state = {
       images: [],
       grid: [],
-      rowWidth: 100
+      rowWidth: 298
     };
   }
 
   componentWillUnmount() {
     this.$refToComponent.off('resize', (e) => {
-      this.setState({rowWidth: this.$refToComponent.width()});
+      this.setState({rowWidth: Math.floor(this.$refToComponent.width() - 5)});
     });
   }
   componentDidMount() {
     this.$refToComponent = $(findDOMNode(this));
     this.$refToComponent.on('resize', (e) => {
-      this.setState({rowWidth: this.$refToComponent.width()});
+      this.setState({rowWidth: Math.floor(this.$refToComponent.width() - 5)});
     });
-    this.setState({rowWidth: $(findDOMNode(this)).width()});
+    this.setState({rowWidth: Math.floor(this.$refToComponent.width() - 5)});
   }
   render() {
     if (this.state.rowWidth <= 100) {
@@ -53,7 +53,7 @@ export default class ImageGrid extends React.Component {
           if (row[j].length > 0) {
             remainingWidth = row[j].reduce((prev, cur) => {
               return Math.floor(prev - cur.dispWidth);
-            }, Math.floor(width));
+            }, width);
           }
           if (row[j].length === 0) {
             maxTargetInRow = (width > 321 && files.length > 2) ? 4 : 3;
@@ -95,13 +95,14 @@ export default class ImageGrid extends React.Component {
         } // end for
         return row;
       };
+      console.log(rowWidth);
       let grid = buildRowsToGrid(this.props.files, rowWidth);
 
       var cloudinaryGrid = grid.map((row, i) => {
         let rowObj = row.map((file, j) => {
           return <CloudinaryImg file={file} key={`${j}${i}${file.etag ? file.etag : ''}`} width={file.dispWidth} height={file.dispHeight} crop="fill" />;
         });
-        return (<div className="imageRow" key={i} className={`holds-${rowObj.length}-img`}>
+        return (<div key={i} className={`image-row holds-${rowObj.length}-img`}>
           {rowObj}
           </div>);
       });
