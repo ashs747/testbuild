@@ -427,8 +427,6 @@ textarea:focus {
 	img {
 		display:block;
 		margin:0 auto;
-		width:100%;
-		height:auto;
 	}
 }
 
@@ -443,4 +441,8 @@ textarea:focus {
 		opacity:1;
 	}
 
+}
+
+.image-row.holds-1-img a {
+	display:block;
 }
