@@ -39,10 +39,12 @@ const history = createBrowserHistory();
 syncReduxAndRouter(history, store);
 
 function authStateToProps(state) {
-  return { width: state.width,
+  return {
+    width: state.width,
     routing: state.routing,
     user: state.user,
-  auth: state.auth}
+    auth: state.auth
+  }
 }
 
 ReactDOM.render(
