@@ -19,9 +19,10 @@ class MainView extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if ((this.props.auth.access_token !== props.auth.access_token) || this.props.auth.tokenChecked === false) {
-      this.checkLoggedInState();
+    if ((this.props.auth.access_token !== props.auth.access_token) || (props.auth.tokenChecked === false)) {
+      this.checkLoggedInState(props);
     }
+    return true;
   }
 
   componentWillMount(props) {
@@ -45,36 +46,34 @@ class MainView extends React.Component {
     return this.props.routing.path;
   }
 
-  checkLoggedInState() {
+  checkLoggedInState(props) {
+    props = props || this.props;
     let activeRouteBase = this.getActiveRouteBase();
-    let loginPending = (this.props.auth.waitingForLogin) ? true : this.waitForLogin;
-    let userLoggedIn = this.props.auth.tokenChecked;
-    let stRefreshToken = this.props.auth.refresh_token || false;
-    let stAccToken = this.props.auth.access_token || false;
+    let loginPending = props.auth.waitingForLogin;
+    let userLoggedIn = props.auth.tokenChecked;
+    let stRefreshToken = props.auth.refresh_token || false;
+    let stAccToken = props.auth.access_token || false;
 
     if (stAccToken && loginPending === false) {
       if (!userLoggedIn) {
-        this.props.dispatch(tokenCheckAction());
+        props.dispatch(tokenCheckAction());
         return;
       }
     }
 
     if (!loginPending) {
       if (!stAccToken && stRefreshToken) {
-        if (this.waitForLogin !== true) {
-          this.waitForLogin = true;
-          this.props.dispatch(refreshTokenAction(stRefreshToken));
-          return;
-        }
+        props.dispatch(refreshTokenAction(stRefreshToken));
+        return;
       }
 
       if (userLoggedIn) {
         this.waitForLogin = false;
         if (activeRouteBase.indexOf('login') > -1) {
-          this.props.dispatch(pushPath('/'));; // Login Success - Go to home page
+          props.dispatch(pushPath('/'));; // Login Success - Go to home page
           return;
         }
-        return; // LoggedIn - Nothing to do
+        return;
       }
 
       if (!stAccToken) {
@@ -83,14 +82,14 @@ class MainView extends React.Component {
 
         if (!authTokenInCookie && !refreshToken) {
           // TODO: Mop up invalid token in cookie
-          this.props.dispatch(pushPath('/login'));
+          props.dispatch(pushPath('/login'));
           return;
         } else {
           var authTokenData = {};
           authTokenData['access_token'] = authTokenInCookie;
           authTokenData['refresh_token'] = refreshToken;
           /* Throw the tokens from the cookie up to state */
-          this.props.dispatch(loadAuthFromCookie(authTokenData));
+          props.dispatch(loadAuthFromCookie(authTokenData));
           return;
         }
       }
