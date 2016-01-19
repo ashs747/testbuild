@@ -38,25 +38,30 @@ import AppWrapper from './react/App.jsx';
 const history = createBrowserHistory();
 syncReduxAndRouter(history, store);
 
-var slaves = {};
+function authStateToProps(state) {
+  return { width: state.width,
+    routing: state.routing,
+    user: state.user,
+  auth: state.auth}
+}
 
 ReactDOM.render(
   <Provider store={store}>
     <AppWrapper dispatch={store.dispatch}>
       <Router history={history}>
-        <Route path="/" component={connect((state) => state)(MainView)}>
+        <Route path="/" component={connect(authStateToProps)(MainView)}>
           <Route path="personal-learning-journey" component={connect((state) => state)(LearningJourneyView)} />
-          <Route path="module" path="module/:module" component={ModuleView} />
-          <Route path="action-learning-zone" component={ActionLearningZone} />
-          <Route path="faq" component={FAQView} />
-          <Route path="project" path="project/:project" component={ProjectView} />
-          <Route path="programme" component={LeadershipProgrammeView} />
-          <Route path="home" component={HomeView} />
-          <Route path="toolkits" component={ToolkitView} />
-          <Route path="toolkit" path="toolkit/:toolkit" component={ToolkitPageView} />
-          <Route path="activity" path="activity/:activity" component={ActivityView} />
-          <Route path="profile" component={ProfileView} />
-          <Route path="booking" path="booking/:module/:activity" component={BookingView} />
+          <Route path="module" path="module/:module" component={connect()(ModuleView)} />
+          <Route path="action-learning-zone" component={connect()(ActionLearningZone)} />
+          <Route path="faq" component={connect()(FAQView)} />
+          <Route path="project" path="project/:project" component={connect()(ProjectView)} />
+          <Route path="programme" component={connect()(LeadershipProgrammeView)} />
+          <Route path="home" component={connect()(HomeView)} />
+          <Route path="toolkits" component={connect()(ToolkitView)} />
+          <Route path="toolkit" path="toolkit/:toolkit" component={connect()(ToolkitPageView)} />
+          <Route path="activity" path="activity/:activity" component={connect()(ActivityView)} />
+          <Route path="profile" component={connect()(ProfileView)} />
+          <Route path="booking" path="booking/:module/:activity" component={connect()(BookingView)} />
         </Route>
         <Route path="login" component={connect((state) => {
           return {

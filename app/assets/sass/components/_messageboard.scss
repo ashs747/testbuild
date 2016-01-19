@@ -422,13 +422,25 @@ textarea:focus {
 }
 
 .holds-1-img {
+	margin-left:0;
 	display:block;
 	img {
 		display:block;
 		margin:0 auto;
+		width:100%;
+		height:auto;
 	}
 }
 
+.image-row {
+	display:block;
+	margin:0 0 0 2px;
+	a {
+		display: inline-block;
+		opacity:0.9;
+	}
+	a:hover {
+		opacity:1;
+	}
 
-.holds-2-img {
 }
