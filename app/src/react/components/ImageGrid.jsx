@@ -95,7 +95,6 @@ export default class ImageGrid extends React.Component {
         } // end for
         return row;
       };
-      console.log(rowWidth);
       let grid = buildRowsToGrid(this.props.files, rowWidth);
 
       var cloudinaryGrid = grid.map((row, i) => {
