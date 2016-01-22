@@ -29,3 +29,4 @@ deployment:
       - pip install awscli
       - chmod +x ./docker/run.sh
       - ./docker/run.sh deployment $CIRCLE_SHA1 staging
+
