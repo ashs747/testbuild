@@ -7,64 +7,21 @@ export const reducer = (state = defaultState, action) => {
     case 'LOGOUT':
       return {};
 
-    case "CONTENT_GET_RESOURCES":
-      switch (action.status) {
-        case "RESOLVED":
-          nextState = Object.assign({}, state);
-          nextState.resources = action.payload.resources;
-          nextState.projects = action.payload.projects;
-          return nextState;
-          break;
-        default:
-          return state;
-          break;
-      }
-    case "CONTENT_GET_FAQS":
-      switch (action.status) {
-        case "RESOLVED":
-          nextState = Object.assign({}, state);
-          nextState.faq = action.payload;
-          return nextState;
-          break;
-        default:
-          return state;
-          break;
-      }
     case "CONTENT_GET_PROJECT":
       switch (action.status) {
         case "RESOLVED":
           nextState = Object.assign({}, state);
           nextState.project = action.payload;
           return nextState;
-          break;
         default:
           return state;
-          break;
       }
+
     case "CONTENT_GET_ALL_TOOLKITS":
-      switch (action.status) {
-        case "RESOLVED":
-          nextState = Object.assign({}, state);
-          nextState.toolkits = action.payload;
-          return nextState;
-          break;
-        default:
-          return state;
-          break;
-      }
-      break;
-    case "CONTENT_GET_TOOLKIT_CONTENT":
-      switch (action.status) {
-        case "RESOLVED":
-          nextState = Object.assign({}, state);
-          nextState.toolkitContent = action.payload;
-          return nextState;
-          break;
-        default:
-          return state;
-          break;
-      }
-      break;
+      nextState = Object.assign({}, state);
+      nextState.toolkits = action.payload;
+      return nextState;
+
     case "CONTENT_GET_ACTIVITY":
       switch (action.status) {
         case "RESOLVED":
@@ -77,6 +34,7 @@ export const reducer = (state = defaultState, action) => {
           break;
       }
       break;
+
     default:
       return state;
   }

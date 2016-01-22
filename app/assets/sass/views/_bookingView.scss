@@ -7,11 +7,12 @@
   h2 {
     font-size: 28px;
   }
-  h3 {
-    margin-top: 0;
-    font-size: 24px;
-  }
+
   .header {
+    h3 {
+      margin-top: 0;
+      font-size: 24px;
+    }
     padding: 40px;
     color: $white;
     background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
@@ -34,6 +35,32 @@
 
 .slideshow-module {
   border: 1px solid $dark_grey;
+  h4 {
+    margin: 11px 0;
+  }
+}
+
+.alert {
+  margin-top: 20px;
+  width: 100%;
+  max-width: none;
+}
+
+.no-dates {
+  padding: 10px;
+  border: 1px solid $dark_grey;
+  background-color: $light_grey;
+}
+
+.back {
+  background-color: $dark_blue;
+  color: $white;
+  width: 100px;
+  padding: 4px 12px;
+}
+
+.back:hover {
+  color: $light_grey;
 }
 
 .choose-slide {
@@ -94,6 +121,7 @@
     font-size: 24px;
   }
   .coach-bio {
+    margin-top: 20px;
     border: 1px solid $dark_grey;
     border-radius: 2px;
     background-color: $light_grey;
@@ -135,12 +163,6 @@
     .grey {
       background-color: $light_grey;
     }
-  }
-  .back {
-    background-color: $dark_blue;
-    color: $white;
-    width: 100px;
-    padding: 4px 12px;
   }
   .confirm {
     background-color: $site_red;
@@ -214,6 +236,9 @@
   }
   .small {
     font-size: 14px;
+  }
+  .back {
+    margin-top: 10px;
   }
 }
 

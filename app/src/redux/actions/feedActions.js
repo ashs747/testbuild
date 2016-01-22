@@ -1,5 +1,5 @@
 //feedActions
-import {postUpdatedMessage, postMessage, postComment, deleteMessage, patchMessage, getFeedMessages} from '../services/feedService';
+import {postUpdatedMessage, postMessage, postComment, deleteMessage, patchMessage, getFeedMessages, updateMeta, embedVideo} from '../services/feedService';
 import store from '../store.js';
 export const FEED_CREATE_MESSAGE = 'FEED_CREATE_MESSAGE';
 export const FEED_UPDATE_MESSAGE = 'FEED_UPDATE_MESSAGE';
@@ -24,46 +24,34 @@ export const createComment = (feedID, messageID) => {
   message.parent = messageID;
   message.content = store.getState().feeds[feedID].messages.reduce((prev, cur) => {
     if (cur.id === messageID) {
-      return prev + cur.newComment;
+      if (cur.newComment) {
+        return prev + cur.newComment;
+      }
     }
     return prev;
   }, '');
- 
-  let asyncResponse = postMessage(feedID, JSON.stringify(message), messageID)
-    .then((res) => {
-      dispatch(fetchLatestFeedMessages(feedID));
-      var out = JSON.parse(res.text);
-      return {feedID, message: out};
-    });
 
-  return {
-    type: 'FEED_CREATE_COMMENT',
-    payload: asyncResponse
-  };
-};
+  if (message.content && message.content.trim().length >= 1) {
+    let response = postMessage(feedID, message, messageID)
+      .then((res) => {
+        dispatch(updateNewMessage(feedID, '', messageID));
+        dispatch(fetchLatestFeedMessages(feedID));
+        var out = res.text;
+        return {feedID, message: out};
+      });
+    response.feedID = feedID;
+    response.id = messageID;
 
-export const createMessage = (feedID) => {
-  var dispatch = store.dispatch;
-  var message = {};
-  var files = store.getState().feeds[feedID].files || [];
-  message.content = store.getState().feeds[feedID].newMessageContent;
-  
-  message.files = files.length > 0 ? files.map((file) => {
-    return file.id;
-  }) : undefined;
-
-  var messageAsJSONString = JSON.stringify(message);
-
-  let asyncResponse = postMessage(feedID, messageAsJSONString)
-    .then((res) => {
-      dispatch(fetchLatestFeedMessages(feedID));
-      var out = JSON.parse(res.text);
-      return {feedID, message: out};
-    });
-  return {
-    type: FEED_CREATE_MESSAGE,
-    payload: asyncResponse
-  };
+    return {
+      type: 'FEED_CREATE_COMMENT',
+      payload: response
+    };
+  } else {
+    alert("Sorry, blank replies aren't allowed");
+    return {
+      type: "NO_OP"
+    };
+  }
 };
 
 /**
@@ -72,8 +60,8 @@ export const createMessage = (feedID) => {
 export const deleteMessageFromFeed = (feedID, messageID) => {
   let asyncResponse = deleteMessage(messageID).then((result) => {
     store.dispatch(fetchLatestFeedMessages(feedID));
-    var resultText = JSON.parse(result.text);
-    return {...resultText, feedID, messageID};
+
+    return {...result, feedID, messageID};
   });
 
   return {
@@ -99,7 +87,7 @@ export const setEditable = (feedID, messageID, canEdit) => {
  * written-out
  */
 
-export const updateNewMessage = (feedID, messageContent, messageID) => {
+export function updateNewMessage(feedID, messageContent, messageID) {
   return {
     type: 'FEED_UPDATE_NEW_POST',
     payload: {
@@ -139,22 +127,29 @@ export const saveUpdatedMessage = (feedID, messageID, commentID) => {
     message = findMessageByID(message.comments, commentID);
     messageID = commentID;
   }
+  if (message.content.trim().length < 1) {
+    alert("You can't post a blank message, please enter some text");
+  } else {
+    var payload = postUpdatedMessage(feedID, messageID, message)
+      .then((res) => {
+        dispatch(setEditable(feedID, messageID, false));
+        return res.text;
+      })
+      .then((resParsed) => {
+        dispatch(fetchLatestFeedMessages(feedID));
+        return {...resParsed,
+          feedID};
+      });
+    payload = {...payload,
+      feedID,
+      messageID,
+      commentID};
 
-  var payload = postUpdatedMessage(feedID, messageID, JSON.stringify(message))
-    .then((res) => {
-      dispatch(setEditable(feedID, messageID, false));
-      return JSON.parse(res.text);
-    })
-    .then((resParsed) => {
-      dispatch(fetchLatestFeedMessages(feedID));
-      return {...resParsed,
-        feedID};
-    });
-
-  return {
-    type: 'FEED_SAVE_MESSAGE',
-    payload
-  };
+    return {
+      type: 'FEED_SAVE_MESSAGE',
+      payload
+    };
+  }
 };
 
 export const fetchLatestFeedMessages = (feedID) => {
@@ -166,12 +161,13 @@ export const fetchLatestFeedMessages = (feedID) => {
 };
 
 export const addFile = (file, feedId) => {
-  let payload = Promise.resolve({
-    ...file.file, feedId
-  });
   return {
     type: 'FEED_ADD_FILE',
-    payload
+    status: "RESOLVED",
+    payload: {
+      ...file.file,
+      feedId
+    }
   };
 };
 
@@ -184,25 +180,67 @@ export const removeAttachment = (feedId, imageId) => {
   };
 };
 
-export const rotateAttachment = (feedId, imageId) => {
-  return {
-    type: 'FEED_ROTATE_ATTACHMENT',
-    payload: {
-      feedId, imageId
+export const rotateAttachment = (feedId, imageFile, imageRotation) => {
+  imageRotation = imageRotation || 0;
+  let newImageRotation = (imageRotation === 270) ? 0 : imageRotation + 90;
+  let updatedMeta = {
+    metaData: {
+      rotate: newImageRotation
     }
+  };
+  let returnedFile = updateMeta(imageFile.id, updatedMeta).then((res) =>{
+    return {
+      ...res,
+      feedId
+    };
+  });
+
+  return {
+    type: 'FEED_UPDATE_FILE',
+    payload: returnedFile
   };
 };
 
-export const embedVideo = (feedId, url) => {
-  let videoCode = url.split("?v=");
-  videoCode = videoCode[1].split("&");
-  let thumbnail = `http://img.youtube.com/vi/${videoCode[0]}/0.jpg`;
-  let payload = Promise.resolve({
-    thumbnail,
-    feedId
+export const embedVideoAction = (feedId, url) => {
+  let payload = embedVideo(url).then((file) => {
+    return {
+      file: file.file,
+      feedId
+    };
   });
   return {
     type: 'FEED_EMBED_VIDEO',
     payload
   };
+};
+
+export const createMessage = (feedID) => {
+  var dispatch = store.dispatch;
+  var message = {};
+  var files = store.getState().feeds[feedID].files || [];
+  message.content = store.getState().feeds[feedID].newMessageContent;
+
+  message.files = files.length > 0 ? files.map((file) => {
+    return file.id;
+  }) : undefined;
+
+  if (message.content && (message.content.trim().length > 0)) {
+    let asyncResponse = postMessage(feedID, message)
+      .then((res) => {
+        dispatch(fetchLatestFeedMessages(feedID));
+        var out = res.text;
+        return {feedID, message: out};
+      });
+
+    asyncResponse.feedID = feedID;
+    return {
+      type: FEED_CREATE_MESSAGE,
+      payload: asyncResponse
+    };
+  } else {
+    alert("Cannot save a blank message!");
+    return {
+      type: 'NO_OP'
+    };
+  }
 };

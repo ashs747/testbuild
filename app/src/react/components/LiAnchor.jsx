@@ -9,13 +9,17 @@ export default class LiAnchor extends React.Component {
   render() {
     const subMenu = this.props.childList || '';
 
-    return (<li>
-      <a href={this.props.url} onClick={this.doAction}>{this.props.text}</a>
-      {subMenu}
-    </li>);
+    return (
+      <li onClick={this.doAction}>
+        <a>{this.props.text}</a>
+        {subMenu}
+      </li>
+    );
   }
-
   doAction(e) {
+    if (this.props.url) {
+      window.location.href = this.props.url;
+    }
     if (this.props.action) {
       e.preventDefault();
       this.props.action();

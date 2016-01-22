@@ -3,8 +3,11 @@ import CommentList from './CommentList.jsx';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
 import PostForm from './PostForm.jsx';
+import CloudinaryImg from '../../../components/CloudinaryImg.jsx';
 import MediaGrid from '../../../components/MediaGrid.jsx';
 import moment from 'moment-timezone';
+import Tooltip from '../../tooltip/Wrapper.jsx';
+
 /**
   Message Component, used to display a message (top level post) on the programme feed
   Dumb component, only accepts and displays props, has no sorting logic
@@ -52,21 +55,22 @@ class Message extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    let changeableKeys = ['content', 'editable', 'commentText'];
+    let changeableKeys = ['content', 'editable', 'commentText', 'newCommentPending', 'err', 'newCommentErr'];
 
-    if (this.state.fullString != nextState.fullString) {
+    if (this.state.fullString !== nextState.fullString) {
       return true;
     }
 
     for (let key in nextProps) {
-      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) >= 0 && (this.props[key] != nextProps[key])) {
+      if (nextProps.hasOwnProperty(key) && changeableKeys.indexOf(key) >= 0 && (this.props[key] !== nextProps[key])) {
         return true;
       }
     }
-    
-    if (nextProps.comments.length != this.props.comments.length) {
+
+    if (nextProps.comments.length !== this.props.comments.length) {
       return true;
     }
+
     for (let i = 0; i < nextProps.comments.length; i += 1) {
       let thisComment = this.props.comments[i],
         nextComment = nextProps.comments[i];
@@ -76,11 +80,11 @@ class Message extends React.Component {
         }
       }
     }
-    return false; 
+    return false;
   }
 
   render() {
-    let profilePic = (this.props.profilePic) ? this.props.profilePic : '/assets/img/profile-placeholder.jpg';
+    let profilePic = this.props.profilePic;
     let bodyString = <p>{this.props.content.split(' ').map(URLBuilder)}</p>;
     if (!this.state.fullString) {
       //String is too long, show small one and display see more link to change to fullstring
@@ -99,14 +103,30 @@ class Message extends React.Component {
           <a className="btn" onClick={this.onEditClicked}><i className="fa fa-pencil"></i></a>
           <a className="btn" onClick={this.onDeleteClicked}><i className="fa fa-times"></i></a>
         </div>) : null;
+    let content = (
+      <div>
+        <div className="user-display-tooltip-header">
+          <p>{this.props.name}</p>
+        </div>
+        <div className="user-display-tooltip-body">
+          <div className="profile-image">
+            <CloudinaryImg default="assets/img/profile-placeholder.jpg" file={profilePic} />
+          </div>
+          <p>{this.props.jobTitle}</p>
+          <p>{this.props.businessArea}</p>
+          <p>{this.props.email}</p>
+          <p>{this.props.telephone}</p>
+        </div>
+      </div>
+    );
 
     return (
-      <div className={`message ${(this.props.profile == "sm") ? "mobile-message" : ""}`}>
+      <div className={`message ${(this.props.profile === "sm") ? "mobile-message" : ""}`}>
         <div className="header clearfix">
-          <img src={profilePic} />
+          <CloudinaryImg file={profilePic} alt={this.props.name} defaultImg="assets/img/profile-placeholder.jpg"/>
           <div className="header-text">
-            <h6>{this.props.name}</h6>
-            <span className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
+            <Tooltip trigger={<p><b><u>{this.props.name}</u></b></p>} content={content} className="mini-profile-tooltip" />
+            <p className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</p>
           </div>
           {editButtons}
         </div>
@@ -121,9 +141,12 @@ class Message extends React.Component {
           content={this.props.commentText}
           onSave={this.createComment}
           onEdit={this.editNewComment}
+          err={this.props.newCommentErr}
+          pending={this.props.newCommentPending}
           commentForm={true}
           profile={this.props.profile}
           saveOnEnter={true}
+          profilePic={this.props.userProfilePic}
         />
       </div>
     );
@@ -161,7 +184,7 @@ Message.propTypes = {
   name: React.PropTypes.string.isRequired,
   content: React.PropTypes.string.isRequired,
   date: React.PropTypes.string.isRequired,
-  profilePic: React.PropTypes.string,
+  profilePic: React.PropTypes.object,
   files: React.PropTypes.array,
   comments: React.PropTypes.array,
   editable: React.PropTypes.bool,

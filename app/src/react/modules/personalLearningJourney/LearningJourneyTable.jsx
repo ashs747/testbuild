@@ -9,14 +9,18 @@ class LearningJourneyTable extends React.Component {
   }
 
   render() {
-    let rows = null;
+    let rows = [];
+
     if (this.props.journeyModule) {
-      rows = _.mapObject(this.props.journeyModule.activities, (activity, key) => {
-        return <LearningJourneyRow key={key} activity={activity} smallTable={this.props.smallTable} moduleID={this.props.journeyModule.id}/>;
-      });
+      for (let key in this.props.journeyModule.activities) {
+        if (this.props.journeyModule.activities.hasOwnProperty(key)) {
+          rows.push(<LearningJourneyRow showIcon={this.props.showIcon} key={key} activity={this.props.journeyModule.activities[key]} smallTable={this.props.smallTable} moduleId={this.props.journeyModule.moduleId}/>);
+        }
+      }
     }
     let iconRow = (this.props.showIcon) ? <th className="row-icon"></th> : null;
-    let headerIcon = (this.props.showIcon) ? <th className="row-icon"><i className="fa fa-lightbulb-o"></i></th> : null;
+    let moduleSlug = this.props.journeyModule.name.replace(/\s+/g, '-').toLowerCase();
+    let headerIcon = (this.props.showIcon) ? <th className="row-icon"><img src={`assets/img/${moduleSlug}.png`} alt="module icon"/></th> : null;
     let content = this.props.smallTable ? (
       <div className="table">
         <div className="heading">
@@ -33,8 +37,8 @@ class LearningJourneyTable extends React.Component {
         <thead>
           <tr className="heading">
             {headerIcon}
-            <th colSpan="6">
-              <div className="title">{this.props.journeyModule.name}</div>
+            <th colSpan="7">
+              <div className="title"><a href={`/#/module/${this.props.journeyModule.moduleId}`}>{`Module ${this.props.journeyModule.moduleNumber} - ${this.props.journeyModule.name}`}</a></div>
               <div className="sub-title">{moment(this.props.journeyModule.startDate).format('MMMM YYYY')} - {moment(this.props.journeyModule.endDate).format('MMMM YYYY')}</div>
             </th>
           </tr>
@@ -44,7 +48,8 @@ class LearningJourneyTable extends React.Component {
             <th>TYPE</th>
             <th>DATE</th>
             <th>TIME</th>
-            <th>LOCATION</th>
+            <th></th>
+            <th>DETAILS</th>
             <th></th>
           </tr>
         </thead>
@@ -53,8 +58,8 @@ class LearningJourneyTable extends React.Component {
         </tbody>
         <tfoot className="footer">
           <tr>
-            <td></td>
-            <td colSpan="6">VIEW LEARNING LOG <i className="fa fa-chevron-right"></i></td>
+            <td className={this.props.showIcon ? "show-icon-footer" : ""}></td>
+            <td colSpan="7"><span>VIEW LEARNING LOG ></span></td>
           </tr>
         </tfoot>
       </table>

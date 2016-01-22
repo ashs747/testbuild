@@ -18,8 +18,10 @@ export default class FeedWidget extends React.Component {
       //We have feeds
       var feedID = getFeedIdForContext(feeds, context);
       var feed = this.props.feeds[feedID];
+      let title = (this.props.title) ? <h4 className="semi-bold">{this.props.title}</h4> : null;
       return (
         <div className="message-board">
+          {title}
           <PostForm
             feedID={feedID}
             showUploadMedia={true}
@@ -28,13 +30,16 @@ export default class FeedWidget extends React.Component {
             onSave={this.dispatchCreateMessage}
             attachments={feed.files}
             dispatch={this.props.dispatch}
+            pending={feed.newMessagePending}
+            err={feed.error}
             content={feed.newMessageContent}
             postStatus={true}
             profile={this.props.profile}
+            profilePic={this.props.profilePic}
           />
           <MessageList messages={feed.messages.map((message) => {
             return message;
-          })} feedID={feedID} profile={this.props.profile} />
+          })} feedID={feedID} profile={this.props.profile} profilePic={this.props.profilePic}/>
         </div>
       );
     }

@@ -1,5 +1,5 @@
 module.exports = {
-  programmeId: 0,
+  programmeId: 1,
   appId: 0,
   appName: 'States of Jersey',
   appSlug: 'soj',
@@ -8,5 +8,6 @@ module.exports = {
     minor: 0,
     patch: 0
   },
-  analyticsId: ''
+  analyticsId: '',
+  amazonBucket: "//s3-eu-west-1.amazonaws.com/strata-shared-files/"
 };

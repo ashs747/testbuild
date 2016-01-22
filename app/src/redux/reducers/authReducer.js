@@ -1,7 +1,8 @@
-import {AUTH, AUTH_SUCCESS, AUTH_FAIL, COOKIE_CHECKED, LOGOUT} from '../actions/authActions';
+import {AUTH, AUTH_SUCCESS, AUTH_FAIL, COOKIE_CHECKED, LOGOUT, RECOVER_PASSWORD, RECOVER_PASSWORD_FINISHED, RECOVER_PASSWORD_EMAIL, RECOVER_PASSWORD_EMAIL_HIDE} from '../actions/authActions';
 import cookie from 'cookie-cutter';
 
 const initialState = {
+  waitingForLogin: false
 };
 
 export function reducer(state = initialState, action) {
@@ -10,20 +11,105 @@ export function reducer(state = initialState, action) {
       return {};
       break;
 
-    case 'COOKIE_CHECKED':
-      if (action.status === 'REJECTED') {
-        return {};
+    case 'COOKIE_AUTH_LOADED':
+      var cookieData = action.payload;
+      return {
+        ...state,
+        ...cookieData,
+        tokenChecked: false,
+        waitingForLogin: false
+      };
+
+    case 'TOKEN_CHECKED':
+      switch (action.status) {
+        case 'REJECTED':
+          return {
+            waitingForLogin: false,
+            tokenChecked: false
+          };
+
+        case 'RESOLVED':
+          return {
+            ...state,
+            waitingForLogin: false,
+            tokenChecked: true
+          };
+
+        default:
+          return {
+            ...state,
+            waitingForLogin: true
+          };
       }
-      return state;
       break;
 
-    case AUTH:
+    case 'AUTH':
+      let payload = action.payload;
+      /* what on earth is the issue here?!*/
+      switch (action.status) {
+        case 'RESOLVED':
+          var ns = {
+            ...state,
+            ...payload,
+            waitingForLogin: false
+          };
+          return ns;
+
+        case 'REJECTED':
+          return {
+            waitingForLogin: false,
+            error: {
+              message: action.payload.message
+            }
+          };
+
+        default:
+          return {
+            waitingForLogin: true
+          };
+      }
+
+    case RECOVER_PASSWORD:
       switch (action.status) {
         case 'RESOLVED':
           return {
             ...state,
-            ...action.payload.body,
-            waitingForLogin: false
+            recoverPasswordSuccess: true,
+            waitingForRecoverPassword: false
+          };
+
+        case 'REJECTED':
+          return {
+            ...state,
+            recoverPasswordSuccess: false,
+            waitingForRecoverPassword: false,
+            authError: {
+              code: action.payload.status,
+              message: action.payload.message
+            }
+          };
+
+        default:
+          return {
+            waitingForRecoverPassword: true
+          };
+      }
+
+    case RECOVER_PASSWORD_FINISHED:
+      return {
+        ...state,
+        recoverPasswordSuccess: false,
+        waitingForRecoverPassword: false,
+        authError: null
+      };
+
+    case RECOVER_PASSWORD_EMAIL:
+      switch (action.status) {
+        case 'RESOLVED':
+          return {
+            ...state,
+            waitingForLogin: false,
+            sentRecoveryEmail: true
           };
 
         case 'REJECTED':
@@ -31,16 +117,21 @@ export function reducer(state = initialState, action) {
             ...state,
             waitingForLogin: false,
             error: {
-              code: action.payload.status,
               message: action.payload.message
             }
           };
 
         default:
-          return {...state,
+          return {
             waitingForLogin: true
           };
       }
+
+    case RECOVER_PASSWORD_EMAIL_HIDE:
+      return {
+        ...state,
+        sentRecoveryEmail: false
+      };
 
     default:
       return state;

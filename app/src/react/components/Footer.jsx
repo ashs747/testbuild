@@ -17,16 +17,19 @@ class Footer extends React.Component {
         default:
           return (
             <div className="footer clearfix full">
+              <h3 className="semi-bold">Quick Links</h3>
               <ul className="list-one">
-                <LiAnchor text="Home" url="/#/home"/>
                 <LiAnchor text="Programme" url="/#/programme"/>
                 <LiAnchor text="Learning Journey" url="/#/personal-learning-journey"/>
                 <LiAnchor text="Action Learning Zone" url="/#/action-learning-zone"/>
               </ul>
               <ul className="list-two">
-                <LiAnchor text="Toolkit" url="/#/tools"/>
-                <LiAnchor text="My details" url="/#/profile"/>
-                <LiAnchor text="Need Help?" url="/#/help"/>
+                <LiAnchor text="Learning Log" url="#"/>
+                <LiAnchor text="Profile" url="/#/profile"/>
+                <LiAnchor text="Toolkit" url="/#/toolkits"/>
+              </ul>
+              <ul className="list-three">
+                <LiAnchor text="Need Help?" url={this.props.supportUrl}/>
                 <LiAnchor text="Log Out" url="/#/login"/>
               </ul>
               <img src="assets/img/cirrus-logo.png" />
@@ -41,7 +44,8 @@ class Footer extends React.Component {
 
 function mapFooterProps(state) {
   return {
-    profile: state.width.profile
+    profile: state.width.profile,
+    supportUrl: state.programme.supportUrl
   };
 };
 

@@ -30,7 +30,6 @@ describe("The Feed-Reducer - Message Board State Handler", () => {
     };
 
     let finalState = feedReducer(exampleState, allowEditAction);
-    console.log('the comment: ', finalState.programmeFeed1.messages[0].comments[0]);
     expect(finalState.programmeFeed1.messages[0].comments[0].editing).to.equal(true);
   });
 

@@ -4,12 +4,12 @@ import _ from 'underscore';
 import {connect} from 'react-redux';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {getFeedIdForContext} from '../../redux/services/feedService';
-import {fetchUsersByCohort} from '../../redux/actions/usersActions';
-import {getResourcesByCohort} from '../../redux/actions/contentActions';
-import Store from '../../redux/store';
-import TabStack from 'cirrus/react/components/TabStack';
+
+import TabStack from '../legacy/TabStack.jsx';
+import Button from '../legacy/Button.jsx';
+
 import ResourcesWidget from '../modules/resource/Widget.jsx';
-var dispatch = Store.dispatch;
+
 var feedID;
 
 function mapALZFeed(state) {
@@ -18,13 +18,14 @@ function mapALZFeed(state) {
     feeds: state.feeds,
     profile: state.width.profile,
     showComments: true,
+    profilePic: state.user.profilePic
   };
 };
 var ALZFeed = connect(mapALZFeed)(FeedWidget);
 
 function mapMembersProps(state) {
   return {
-    users: state.user.users,
+    users: state.cohort.users,
     title: 'Team',
     imageViewStyle: {
       height: "40px",
@@ -36,8 +37,8 @@ var MembersModule = connect(mapMembersProps)(MembersModuleWidget);
 
 function mapResourceProps(state) {
   return {
-    title: "Resouces",
-    resources: state.content ? state.content.resources : []
+    title: "Resources",
+    resources: state.cohort ? state.cohort.resources : []
   };
 }
 var TeamResourcesWidget = connect(mapResourceProps)(ResourcesWidget);
@@ -56,15 +57,10 @@ class ActionLearningZoneView extends React.Component {
     super();
   }
 
-  componentDidMount() {
-    dispatch(fetchUsersByCohort(1));
-    dispatch(getResourcesByCohort(1));
-  }
-
   render() {
     var messageBoard = (
       <div className="alz-message-board">
-        <h3>Cohort 1 message board</h3>
+        <h4>{this.props.cohort.name} message board</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
         <ALZFeed />
       </div>
@@ -111,11 +107,11 @@ class ActionLearningZoneView extends React.Component {
         <div className="row">
           <div className="col-sm-12 header-page">
             <div className="col-sm-8">
-              <h1>Action learning zone</h1>
+              <h2>Action learning zone</h2>
             </div>
             <div className="col-sm-4">
               <select className="form-control">
-                <option>Cohort 1</option>
+                <option>Cohort 1 - Implement</option>
               </select>
             </div>
           </div>
@@ -129,7 +125,8 @@ class ActionLearningZoneView extends React.Component {
 function mapALZProps(state) {
   return {
     profile: state.width.profile,
-    feeds: state.feeds
+    feeds: state.feeds,
+    cohort: state.cohort
   };
 };
 

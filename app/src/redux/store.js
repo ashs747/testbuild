@@ -8,14 +8,18 @@ import {reducer as width} from './reducers/widthReducer';
 import {reducer as user} from './reducers/userReducer';
 import {reducer as content} from './reducers/contentReducer';
 import {reducer as slide} from './reducers/slideReducer';
+import {reducer as booking} from './reducers/bookingReducer';
+import {reducer as cohort} from './reducers/cohortReducer';
+import {reducer as programme} from './reducers/programmeReducer';
+import {routeReducer} from 'redux-simple-router';
+
 import thunk from 'redux-thunk';
 
 const createStoreWithMiddleware = applyMiddleware(
   thunk, promiseMiddleware
 )(createStore);
 
-const appReducers = combineReducers({
-  auth, learningJourney, modules, feeds, width, user, content, slide
+const appReducers = combineReducers({ routing: routeReducer, auth, learningJourney, modules, feeds, width, user, content, slide, booking, cohort, programme
 });
 
 export default createStoreWithMiddleware(appReducers);

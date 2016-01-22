@@ -4,6 +4,9 @@
 }
 
 .slideshow-arrows {
+  span {
+    cursor: pointer;
+  }
   .slideshow-prev-arrow {
     float: left;
     width: 50%;

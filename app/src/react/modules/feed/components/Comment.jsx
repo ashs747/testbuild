@@ -3,6 +3,9 @@ import TextArea from 'react-textarea-autosize';
 import InlineEdit from './InlineEdit.jsx';
 import URLBuilder from '../helpers/URLBuilder';
 import moment from 'moment-timezone';
+import CloudinaryImg from '../../../components/CloudinaryImg.jsx';
+import Tooltip from '../../tooltip/Wrapper.jsx';
+
 /**
   Comment Component, used to display a comment (child of a message) on the programme feed
   Dumb component, only accepts and displays props, has no sorting logic
@@ -53,7 +56,7 @@ class Comment extends React.Component {
 
     return false;
   }
-  
+
   componentWillMount() {
     if (this.props.content.length > 200) {
       this.setState({
@@ -86,15 +89,35 @@ class Comment extends React.Component {
     if (this.props.userCanEdit) {
       contentClass += " with-buttons";
     }
+
+    let content = (
+      <div>
+        <div className="user-display-tooltip-header">
+          <p>{this.props.name}</p>
+        </div>
+        <div className="user-display-tooltip-body">
+          <div className="profile-image">
+            <CloudinaryImg default="assets/img/profile-placeholder.jpg" file={profilePic} />
+          </div>
+          <p>{this.props.jobTitle}</p>
+          <p>{this.props.businessArea}</p>
+          <p>{this.props.email}</p>
+          <p>{this.props.telephone}</p>
+        </div>
+      </div>
+    );
+
     return (
       <div className={`comment clearfix ${(this.props.profile === "sm") ? "mobile-comment" : "" }`}>
-        <img src={profilePic} />
-        <div className={contentClass}>
-          <h6>{this.props.name}</h6>
-          {bodyContent}
-          <span className="comment-date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
-        </div>
         {editButtons}
+        <div className="comment-body clearfix">
+          <CloudinaryImg file={profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
+          <div className={contentClass}>
+            <Tooltip trigger={<p><span className="red-bold">{this.props.name}</span></p>} content={content} className="mini-profile-tooltip" />
+              {bodyContent}
+            <span className="comment-date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</span>
+          </div>
+        </div>
       </div>
     );
   }
@@ -130,7 +153,7 @@ Comment.propTypes = {
   name: React.PropTypes.string.isRequired,
   content: React.PropTypes.string.isRequired,
   date: React.PropTypes.object.isRequired,
-  profilePic: React.PropTypes.string,
+  profilePic: React.PropTypes.object,
   editing: React.PropTypes.bool
 };
 

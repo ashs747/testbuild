@@ -8,88 +8,146 @@
     font-weight: bold;
     font-size: 35px;
   }
+  .programme-width {
+    max-width: 420px;
+    margin: 0 auto;
+    h3 {
+      margin-top: 50px;
+    }
+  }
   .intro {
     color: $white;
-    padding: 90px;
+    padding: 135px 0;
     background: url('/assets/img/programme-introduction.png');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     h1 {
+      font-weight: bold;
+      font-size: 50px;
       margin: 35px 0;
+    }
+    p {
+      font-weight: 600;
+    }
+    .inner {
+      max-width: 650px;
+      margin: 0 auto;
     }
   }
   .our-values {
     background-color: $white;
-    padding: 40px;
+    padding: 100px;
+    h1 {
+      margin-bottom: 20px;
+    }
+    p {
+      color: $dark_blue;
+      font-weight: 600;
+      margin: 20px 0;
+    }
   }
   .value-carousel {
     background-color: $site_red;
+    padding: 45px 0;
     .carousel {
       background-color: $site_red;
       color: $white;
       .icon {
-        height: 160px;
-        width: 160px;
+        height: 170px;
+        width: 170px;
+        margin-top: 15px;
         background-color: $white;
         color: $dark_blue;
         p {
-          font-size: 115px;
-        }
-      }
-      i {
-        font-size: 100px;
-      }
-    }
-  }
-  .title-carousel {
-    background-color: $white;
-    .carousel {
-      h3 {
-        color: $site_red;
-      }
-      .icon {
-        height: 160px;
-        width: 160px;
-        background-color: $site_red;
-        color: $white;
-        p {
-          font-size: 115px;
+          line-height: 142px;
+          font-size: 128px;
         }
       }
       i {
         font-size: 100px;
       }
       .carousel-indicators {
-        li {
-          border: 1px solid $site_red;
+        margin-bottom: 0;
+      }
+    }
+  }
+  .title-carousel {
+    color: $dark_blue;
+    padding-top: 60px;
+    padding-bottom: 105px;
+    background-color: $white;
+    h3 {
+      margin-top: 45px;
+      margin-bottom: 25px;
+    }
+    .carousel {
+      .icon {
+        background-color: transparent;
+        height: 160px;
+        width: 160px;
+        color: $white;
+        p {
+          line-height: 140px;
+          font-size: 115px;
+          margin-bottom: 0;
         }
-        .active {
-          background-color: $site_red;
+        img {
+          height: 100%;
+          width: 100%;
         }
+      }
+      .carousel-control {
+        margin-top: 130px;
+      }
+      i {
+        font-size: 100px;
+      }
+      .carousel-indicators {
+        display: none;
       }
     }
   }
   .double-column {
     .circle {
-      width: 125px;
-      height: 125px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       background-color: $white;
       margin: 0 auto;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      p {
+        line-height: 120px;
+      }
     }
     .inner {
-      padding: 80px 45px;
+      padding: 95px 0;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    h3 {
+      margin: 20px 0;
     }
     p {
-      margin-bottom: 0;
+      font-weight: 600;
+      margin: 0;
     }
   }
   .roadmap {
     background-color: $white;
-    padding: 50px;
+    padding-top: 80px;
+    padding-bottom: 65px;
+    p {
+      font-weight: 600;
+    }
+    h1 {
+      margin: 0;
+      margin-bottom: 35px;
+    }
+    .learning-journey-module {
+      margin-top: 30px;
+    }
   }
   .qualities {
     background: url('/assets/img/programme-leadership-qualities.png');
@@ -98,17 +156,20 @@
     -o-background-size: cover;
     background-size: cover;
     color: $white;
-    padding: 60px;
+    padding: 80px;
     h1 {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+    p {
+      font-weight: 600;
     }
   }
   .carousel {
     background-color: $white;
-    padding: 30px;
   }
   .blended-learning {
-    padding: 60px;
+    padding: 135px;
     color: $white;
     background-color: $dark_blue;
     h1 {
@@ -120,12 +181,14 @@
       font-size: 50px;
     }
     h5 {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: bold;
-      margin-top: 20px;
+      margin-top: 40px;
+      margin-bottom: 10px;
     }
     p {
-      font-size: 14px;
+      line-height: 24px;
+      margin-bottom: 0;
     }
   }
   .workshop {
@@ -136,7 +199,7 @@
     background-size: cover;
     color: $white;
     .icon {
-      border: 2px solid $white;
+      border: 3px solid $white;
       width: 80px;
       height: 80px;
       margin: 0 auto;
@@ -150,6 +213,9 @@
     background-color: $white;
     h5 {
       color: $site_red;
+    }
+    p {
+      font-color: $dark_blue;
     }
     .icon {
       background-color: $dark_grey;
@@ -166,13 +232,13 @@
     background-color: $site_red;
     color: $white;
     .icon {
-      border: 2px solid $white;
+      border: 3px solid $white;
       width: 80px;
       height: 80px;
       margin: 0 auto;
       border-radius: 50%;
       i {
-        font-size: 36px;
+        font-size: 38px;
       }
     }
   }
@@ -184,7 +250,7 @@
     background-size: cover;
     color: $white;
     .icon {
-      border: 2px solid $white;
+      border: 3px solid $white;
       width: 80px;
       height: 80px;
       margin: 0 auto;
@@ -195,24 +261,27 @@
     }
   }
   .box-inner {
-    max-width: 400px;
+    max-width: 290px;
     margin: 0 auto;
-    padding: 50px
+    padding-top: 65px;
+    padding-bottom: 95px;
   }
   .message-from {
     background-color: $site_red;
     color: $white;
-    padding: 60px;
+    padding: 70px;
     h1 {
-      margin: 0 0 40px 0;
+      margin-top: 25px;
+      margin-bottom: 50px;
     }
     .video {
-      width: 100%;
+      width: 550px;
       margin: 0 auto;
-      height: 400px;
+      height: 260px;
     }
   }
   .left-column {
+    color: $dark_blue;
     background-color: $white;
     .circle {
       color: $white;
@@ -252,15 +321,33 @@
 @media (max-width: 550px) {
   .leadership-programme {
     .intro {
-      padding: 30px;
+      h1 {
+        font-size: 36px;
+      }
+      padding: 20px;
+    }
+    .our-values {
+      padding: 20px;
+    }
+    .value-carousel {
+      padding: 10px;
+      h3 {
+        margin-top: 20px;
+      }
     }
     .double-column {
       .inner {
-        padding: 40px 20px;
+        padding: 20px 10px;
+      }
+      .circle {
+        margin-bottom: 20px;
       }
     }
     .qualities {
-      padding: 30px;
+      padding: 20px;
+    }
+    .title-carousel {
+      padding: 20px 10px;
     }
     .blended-learning {
       padding: 20px;
@@ -269,8 +356,12 @@
       font-size: 30px;
     }
     .message-from {
+      padding: 20px;
       .video {
         height: 300px;
+      }
+      h1 {
+        margin:  20px 0;
       }
     }
     .box-inner {
@@ -279,12 +370,6 @@
     .roadmap {
       padding: 20px;
     }
-    .message-from {
-      padding: 20px;
-      h1 {
-        margin:  20px 0;
-      }
-    }
   }
 }
 
@@ -292,7 +377,8 @@
   .leadership-programme {
     .message-from {
       .video {
-        height: 200px;
+        width: 240px;
+        height: 140px;
       }
     }
   }

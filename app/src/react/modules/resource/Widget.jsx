@@ -2,12 +2,7 @@ import React from 'react';
 import Group from './Group.jsx';
 import _ from 'underscore';
 
-export default class Widget extends React.Component {
-
-  propTypes: {
-    resources: React.PropTypes.array,
-    title: React.PropTypes.string
-  }
+class Widget extends React.Component {
 
   constructor() {
     super();
@@ -39,7 +34,7 @@ export default class Widget extends React.Component {
 
   groupResources() {
     return _.groupBy(this.props.resources, (resource) => {
-      let type = resource.type.typeSlug;
+      let type = resource.type.type;
       if (type.indexOf("document-") > -1) {
         return "document";
       } else {
@@ -106,5 +101,12 @@ export default class Widget extends React.Component {
     }
     return resources;
   }
-
 }
+
+Widget.propTypes = {
+  resources: React.PropTypes.array,
+  title: React.PropTypes.string
+}
+
+export default Widget;
+

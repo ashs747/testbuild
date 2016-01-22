@@ -14,11 +14,16 @@ class Carousel extends React.Component {
     var navigation = [];
     let width = (this.props.defineWidthClass) ? this.props.defineWidthClass : "col-sm-10 col-sm-offset-1";
     this.props.items.forEach((item, i) => {
-      let className = (i == 0) ? "active" : "";
+      let className = (i === 0) ? "active" : "";
+      let style = {};
+      if (item.backgroundImage) {
+        style.backgroundImage = `url('${item.backgroundImage}')`;
+      }
+      let icon = (typeof item.icon === 'string') ? <p><i className={`fa fa-${item.icon}`} ></i></p> : item.icon;
       items.push(
-        <div key={i} className={`item text-center ${className}`}>
+        <div key={i} className={`item text-center ${className}`} style={style}>
           <div className="icon">
-            <p><i className={`fa fa-${item.icon}`} ></i></p>
+            {icon}
           </div>
           <div className="row">
             <div className={width}>

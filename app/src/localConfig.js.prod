@@ -1,8 +1,8 @@
-// use this file to add your own local config. Don't add anything to this dist file!
+// use this file to add your own local config.
 module.exports = {
   api: {
-    url: "http://strata-nightly.elasticbeanstalk.com/app_dev.php/",
-    clientId: '1_2iga6pm7vlgkcsocowk88s00k4gooo8k0swck0ss008cwkw44w',
-    appSecret: '36cnv0fmtl0k8k44kcw0w0sw4kg0wg0gk48cosoog4c88ow4k4'
+    url: 'http://strata-nightly.cirrus-connect.com/app_dev.php/',
+    clientId: '1_1ent9nu4jjwkcggwk4os8wsgkcgosocgo4w4ksk800w804kkgk',
+    appSecret: '6d4s86f1768808wg4swk8k4ws0sswgk0scg4sc4kg840kwsgws'
   }
 };

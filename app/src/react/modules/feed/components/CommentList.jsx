@@ -37,15 +37,16 @@ class CommentList extends React.Component {
     let commentList = this.mapComments(this.props.comments);
     let displayCommentsLink = (commentList.length > 0) ? (
       <div className="show-comments-link">
-        <a onClick={this.showComments}>{`View ${commentList.length} comment${(commentList.length > 1) ? "s" : ""}`} <i className="fa fa-chevron-right"></i></a>
+        <u><a className="semi-bold" onClick={this.showComments}>{`View ${commentList.length} Comment${(commentList.length > 1) ? "s" : ""} >`}</a></u>
       </div>
     ) : null;
     let content = (this.state.showComments || this.props.showComments) ? commentList : displayCommentsLink;
-    return (
+    let finalContent = content ? (
       <div className="comment-list">
         {content}
       </div>
-    );
+    ) : null;
+    return finalContent;
   }
 
   mapComments(comments = []) {
@@ -54,7 +55,7 @@ class CommentList extends React.Component {
       let name = `${comment.user.forename} ${comment.user.surname}`;
       let content = comment.content;
       let date = moment(comment.date);
-      let profilePic = comment.user.profilePic ? comment.user.profilePic.reference : '';
+      let profilePic = comment.user.profilePic ? comment.user.profilePic : '';
       let editable = comment.editable;
       let userCanEdit = comment.can_edit;
 
@@ -72,6 +73,8 @@ class CommentList extends React.Component {
         return dispatch(updateMessage(this.props.feedID, comment.id, text));
       };
 
+      var properties = comment.user.properties || {};
+
       return (<Comment
         key={comment.id}
         name={name}
@@ -79,12 +82,16 @@ class CommentList extends React.Component {
         date={date}
         profilePic={profilePic}
         editable={editable}
-        userCanEdit={true}
+        userCanEdit={userCanEdit}
         dispatchDeleteAction={deleteComment}
         dispatchEditAction={editComment}
         editCommentAction={updateComment}
         dispatchSaveAction={saveMessage}
-        profile={this.props.profile} />
+        profile={this.props.profile}
+        jobTitle={properties.jobTitle}
+        businessArea={properties.businessArea}
+        email={comment.user.email}
+        telephone={properties.phone} />
       );
     });
     return commentList;

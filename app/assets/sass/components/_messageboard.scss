@@ -1,9 +1,19 @@
+textarea[disabled="true"] {
+	background-color: #ccc;
+	box-shadow: inset rgba(0,0,0,.1) 0px 0px 12px;
+}
+
 .message-board {
 	padding: 5px;
+	height: 100%;
+	word-wrap: break-word;
+}
+.message:first-child {
+	margin-top: 16px;
 }
 .message {
-	border: 1.5px solid $dark_grey;
-	margin: 10px 0;
+	border: 1.5px solid $border_grey;
+	margin: 8px 0;
 	background-color: $white;
 	color: $body_color;
 	.header {
@@ -21,12 +31,22 @@
 		margin-left: 10px;
 		margin-top: 5px;
 		float: left;
-		h6 {
+		p {
 			margin: 0;
-			font-size: 18px;
-			font-weight: bold;
 			color: $site_red;
-			text-decoration: underline;
+		}
+		.custom-tooltip {
+			p {
+				color: $body_color;
+			}
+		}
+		.date-display {
+			position: relative;
+			display: block;
+			float: left;
+			font-size: 11px;
+			font-weight: 600;
+			color: #999;
 		}
 		span {
 			color: #999;
@@ -41,17 +61,23 @@
 		textarea {
 			width: 100%;
 		}
+		p {
+			margin-top: 0;
+		}
+		a {
+			color: $site_red;
+		}
 	}
 	.admin-buttons {
 		float: right;
 		a {
-			background-color: $dark_grey;
+			background-color: $border_grey;
 			padding: 2px;
-			margin: 0 5px;
+			margin: 0 2px;
 			height: 25px;
 			width: 25px;
 			font-size: 14px;
-			color: $body_color;
+			color: $dark_blue;
 		}
 	}
 	.see-more {
@@ -70,6 +96,7 @@
 .post-form {
 	background-color: $light_grey;
 	padding: 15px;
+	border-top: 1px solid $border_grey;
 	img {
 		float: left;
 		width: 40px;
@@ -97,7 +124,7 @@ textarea:focus {
 
 .comment-list {
 	background-color: $light_grey;
-	border-bottom: 1px solid $dark_grey;
+	border-top: 1px solid $border_grey;
 	.show-comments-link {
 		padding: 15px;
 		a {
@@ -113,7 +140,7 @@ textarea:focus {
 .comment {
 	color: $body_color;
 	padding: 15px;
-	border-bottom: 1px solid $dark_grey;
+	border-bottom: 1px solid $border_grey;
 	img {
 		float: left;
 		width: 40px;
@@ -130,22 +157,31 @@ textarea:focus {
 	.comment-content {
 		float: left;
 		margin-left: 10px;
-		width: calc(100% - 50px);
+		width: calc(100% - 115px);
+		line-height: 15px;
 		h6 {
 			float: left;
 			margin-right: 5px;
 		}
+		.red-bold {
+			text-decoration: underline;
+			font-weight: bold;
+			color: $site_red;
+			margin-right: 5px;
+		}
 		p {
+			display: inline;
 			font-size: 14px;
 			color: $body_color;
 			margin: 0;
 		}
 	}
 	.comment-date-display {
+		margin-top: 2px;
 		position: relative;
 		display: block;
-		float: left;
-		font-size: 14px;
+		font-size: 11px;
+		font-weight: 600;
 		color: #999;
 	}
 	textarea {
@@ -153,6 +189,9 @@ textarea:focus {
 		margin-top: 5px;
 		resize: none;
 	}
+}
+.comment:last-child {
+	border-bottom: none;
 }
 
 .save-button {
@@ -172,11 +211,12 @@ textarea:focus {
 }
 
 .post-form-status {
-	border: 1px solid $dark_grey;
+	border: 1px solid $border_grey;
 	background-color: $light_grey;
 	padding: 15px;
 	.post-profile {
 		float: left;
+		margin-top: 8px;
 		img {
 			height: 40px;
 			width: 40px;
@@ -198,13 +238,13 @@ textarea:focus {
 	}
 	.post-admin-buttons {
 		float: left;
-		width: 100%;
+		width: 85%;
 		div {
 			display: inline-block;
-			margin: 0 2px 0 0;
 			border-radius: 2px;
 			.upload-media {
 				background-color: $dark_grey;
+				margin-right: 5px;
 			}
 			.embed-video-button {
 				background-color: $dark_grey;
@@ -217,7 +257,10 @@ textarea:focus {
 			}
 		}
 		.url-field {
-			margin-left: 10px;
+			margin-left: 5px;
+			input {
+				height: 30px;
+			}
 		}
 		.go {
 			margin-left: 5px;
@@ -229,13 +272,25 @@ textarea:focus {
 	}
 	.post {
 		float: right;
-		width: 80px;
+		width: 15%;
 		a {
+			height: 33px;
+			float: right;
 			width: 100%;
+			max-width: 100px;
 			background-color: $site_red;
 			color: $white;
 			font-weight: bold;
+			padding: 3px 6px;
+			font-size: 12px;
+			padding-top: 7px;
 		}
+	}
+	.alert {
+		float: left;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		max-width: none;
 	}
 }
 
@@ -261,36 +316,68 @@ textarea:focus {
 	}
 }
 
+.video {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	iframe, object, embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
 .mobile-form {
-	padding: 5px;
+	padding: 15px 10px;
+	.post {
+		width: 50%;
+		a {
+			height: 25px;
+			padding-top: 3px;
+		}
+	}
 	.post-admin-buttons {
 		position: relative;
+		width: 50%;
 		.btn {
 			width: 100%;
-			padding: 2px;
+			padding: 5px;
 			i {
-				font-size: 10px;
+				color: $dark_blue;
+				font-size: 16px;
 			}
 		}
 		.upload-media-component {
 			width: 49%;
 			float: left;
+			a {
+				padding: 2px 5px;
+			}
 		}
 		.embed-video {
 			width: 49%;
 			float:right;
+			a {
+				padding: 2px 5px;
+			}
 		}
 		.url-field {
 			position: relative;
 			right: 100%;
 			top: 10px;
-			width: 200%;
+			width: 400%;
 			margin: 0;
+			margin-bottom: 10px;
 			.go {
 				width: 50px;
 				margin: 0;
 				margin-bottom: 3px;
-				margin-left: 1px;
+				margin-left: 5px;
+				padding: 3px 6px;
+				font-size: 12px;
 			}
 		}
 	}
@@ -317,12 +404,45 @@ textarea:focus {
 .mobile-comment {
 	padding: 7.5px;
 	.admin-buttons {
+		float:none;
+		margin-bottom: 3px;
+		text-align:right;
 		.btn {
-			display: block;
-			margin: 10px 2px;
+			margin: 2px;
 		}
 	}
 	.with-buttons {
 		width: calc(100% - 80px);
 	}
+	.comment-body {
+		p {
+			display: inline;
+		}
+	}
+}
+
+.holds-1-img {
+	margin-left:0;
+	display:block;
+	img {
+		display:block;
+		margin:0 auto;
+	}
+}
+
+.image-row {
+	display:block;
+	margin:0 0 0 2px;
+	a {
+		display: inline-block;
+		opacity:0.9;
+	}
+	a:hover {
+		opacity:1;
+	}
+
+}
+
+.image-row.holds-1-img a {
+	display:block;
 }

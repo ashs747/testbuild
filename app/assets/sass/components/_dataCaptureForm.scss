@@ -1,15 +1,8 @@
-.full-data-capture-form {
-
-}
-
 .details-panel {
   background-color: $white;
   margin-bottom: 20px;
   border-radius: 3px;
   border: 1px solid $dark_grey;
-  h3 {
-    margin-top: 10px;
-  }
   .panel-header {
     background-color: $dark_blue;
     padding: 10px 20px;
@@ -17,10 +10,11 @@
     border-radius: 3px 3px 0 0;
   }
   .panel-inner {
-    padding: 20px;
+    padding: 30px;
   }
   .panel-row {
     label {
+      text-align: left;
       padding: 5px;
       float: left;
       width: 30%;
@@ -46,6 +40,16 @@
       float: right;
       padding: 4px 18px;
       margin: 10px 0;
+    }
+  }
+  &.details {
+    .btn {
+      width: 70px;
+    }
+  }
+  &.password {
+    .btn {
+      width: 175px;
     }
   }
 }

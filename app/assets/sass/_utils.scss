@@ -7,9 +7,61 @@ $max_width: 1244px;
 $hi_res: "(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx)";
 $body_font: "proxima-nova", Arial, Helvetica, sans-serif;
 
-$body_color: #010101;
+$body_color: #292929;
 $site_red: #b60011;
 $white: #ffffff;
 $light_grey: #f8f8f8;
 $dark_grey: #e7e7e7;
 $dark_blue: #454e58;
+$light_blue: #afbdcc;
+$border_grey: #dfe1e6;
+$textbox_grey: #d0cfcf;
+$underline_grey: #d5d6d7;
+$success: #7eac0e;
+
+//fonts
+
+p {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 10px 0;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 35px;
+}
+
+h4 {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+.semi-bold {
+  font-weight: 600;
+}
+
+.btn {
+  border-radius: 2px;
+}
+
+textarea {
+  border: 1px solid $textbox_grey;
+}

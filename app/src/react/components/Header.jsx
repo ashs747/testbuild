@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import LiAnchor from './LiAnchor.jsx';
 import {logoutAction} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
@@ -23,7 +23,7 @@ class Header extends React.Component {
       <div className="tabbed-nav">
         <ul>
           <LiAnchor text="Profile" action="" url="/#/profile"/>
-          <LiAnchor text="Need Help?" action="" url="/#/help"/>
+          <LiAnchor text="Need Help?" action="" url={this.props.supportUrl}/>
           <LiAnchor text="Log Out" action="" url="/#/login"/>
           <img src="assets/img/cirrus-logo.png" />
         </ul>
@@ -45,13 +45,13 @@ class Header extends React.Component {
     let mobileNav = (this.state.showMobileNav) ? (
       <div className="mobile-nav">
         <ul>
-          <LiAnchor text="Home" onClick={this.toggleMobileNav} url="/#/home"/>
-          <LiAnchor text="Programme" onClick={this.toggleMobileNav} url="/#/programme"/>
-          <LiAnchor text="Learning Journey" onClick={this.toggleMobileNav} url="/#/personal-learning-journey"/>
-          <LiAnchor text="Action Learning Zone" onClick={this.toggleMobileNav} url="/#/action-learning-zone"/>
-          <LiAnchor text="Toolkit" onClick={this.toggleMobileNav} url="/#/tools"/>
-          <LiAnchor text="Profile" onClick={this.toggleMobileNav} url="/#/profile"/>
-          <LiAnchor text="Need Help?" onClick={this.toggleMobileNav} url="/#/help"/>
+          <LiAnchor text="Home" action={this.toggleMobileNav} url="/#/home"/>
+          <LiAnchor text="Programme" action={this.toggleMobileNav} url="/#/programme"/>
+          <LiAnchor text="Learning Journey" action={this.toggleMobileNav} url="/#/personal-learning-journey"/>
+          <LiAnchor text="Action Learning Zone" action={this.toggleMobileNav} url="/#/action-learning-zone"/>
+          <LiAnchor text="Toolkit" action={this.toggleMobileNav} url="/#/toolkits"/>
+          <LiAnchor text="Profile" action={this.toggleMobileNav} url="/#/profile"/>
+          <LiAnchor text="Need Help?" action={this.toggleMobileNav} url={this.props.supportUrl}/>
           <LiAnchor text="Logout" action={this.logout} url="/#/login"/>
         </ul>
       </div>
@@ -136,7 +136,8 @@ class Header extends React.Component {
 
 function mapHeaderProps(state) {
   return {
-    profile: state.width.profile
+    profile: state.width.profile,
+    supportUrl: state.programme.supportUrl
   };
 };
 

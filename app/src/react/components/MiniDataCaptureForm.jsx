@@ -4,29 +4,33 @@ class MiniDataCaptureForm extends React.Component {
 
   constructor() {
     super();
+    this.onChange = this.onChange.bind(this);
   }
 
   render() {
+    let inputClasses = this.props.errorClasses || [];
+    inputClasses.push('form-control');
+    let inputClassText = inputClasses.join(',');
+    var phoneNumber = (this.props.properties && this.props.properties.phone) ? this.props.properties.phone : '';
     return (
       <div className="mini-data-capture-form">
         <div className="form-inputs">
           <form>
-            <input className="form-control" type="text" placeholder="First Name" value={this.props.forename} onChange={this.onChange.bind(this, "forename")}/>
-            <input className="form-control" type="text" placeholder="Last Name" value={this.props.surname} onChange={this.onChange.bind(this, "surname")}/>
-            <input className="form-control" type="text" placeholder="Phone Number" value={this.props.telephone} onChange={this.onChange.bind(this, "telephone")}/>
-            <input className="form-control" type="password" placeholder="Password" value={this.props.password} onChange={this.onChange.bind(this, "password")}/>
-            <input className="form-control" type="password" placeholder="Confirm Password" value="" onChange={this.onChange.bind(this, "confirm")}/>
+            <input className={inputClassText} id="forename" type="text" placeholder="First Name" value={this.props.forename} onChange={this.onChange}/>
+            <input className={inputClassText} id="surname" type="text" placeholder="Last Name" value={this.props.surname} onChange={this.onChange}/>
+            <input className={inputClassText} id="properties.phone" type="text" placeholder="Phone Number" value={this.props.phone} onChange={this.onChange}/>
+            <input className={inputClassText} id="password" type="password" placeholder="Password" value={this.props.password} onChange={this.onChange}/>
+            <input className={inputClassText} id="passwordConfirm" type="password" placeholder="Confirm Password" value={this.props.passwordConfirm} onChange={this.onChange}/>
           </form>
         </div>
       </div>
     );
   }
 
-  onChange(field, e) {
+  onChange(e) {
     e.preventDefault();
-    //this.props.dispatch(this.props.action(field, e.target.value));
+    this.props.dispatch(this.props.updateAction(e.target.id, e.target.value));
   }
-
 }
 
 export default MiniDataCaptureForm;

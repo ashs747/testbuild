@@ -5,52 +5,8 @@ const initialState = {};
 
 export function reducer(state = initialState, action) {
   var nextState;
+
   switch (action.type) {
-    case 'LOGOUT':
-      return {};
-
-    case "LEARNING_JOURNEY_USER_SELECTED_DATE":
-      nextState = Object.assign({}, state);
-      nextState.currentSelectedDate = action.payload.date;
-      return nextState;
-
-    case "LEARNING_JOURNEY_USER_SELECTED_SLOT":
-      nextState = Object.assign({}, state);
-      nextState.currentSelectedSlot = {
-        slot: action.payload.slot,
-        facilitator: action.payload.facilitator
-      };
-      return nextState;
-
-    case "LEARNING_JOURNEY_BOOKED_SLOT":
-      switch (action.status) {
-        case "RESOLVED":
-          nextState = Object.assign({}, state);
-          if (action.payload !== true) {
-            nextState.error = action.payload;
-          }
-          return nextState;
-
-        default:
-          return state;
-      }
-
-    case "LEARNING_JOURNEY_GET_SLOTS":
-      switch (action.status) {
-        case "RESOLVED":
-          nextState = Object.assign({}, state);
-          nextState.events = action.payload.body.events;
-          return nextState;
-
-        default:
-          return state;
-      }
-
-    case "LEARNING_JOURNEY_REMOVE_ERROR":
-      nextState = Object.assign({}, state);
-      nextState.error = null;
-      return nextState;
-
     case "LEARNING_JOURNEY_FETCHED":
       switch (action.status) {
         case "RESOLVED":
@@ -67,7 +23,7 @@ export function reducer(state = initialState, action) {
                   }
                 }
               }
-              if (!availableSlots) {
+              if (!availableSlots && !activity.myBookedEventAndSlot) {
                 status = "dates-tbc";
               } else {
                 //If we have a booked event, proceed to calculate status
@@ -82,14 +38,14 @@ export function reducer(state = initialState, action) {
                   //If the event has passed, start to check attendance and rating
                   if (moment().isAfter(bookedEvent.endDate)) {
                     //If the event has been attended, check logging and rating
-                    if (bookedEvent.attendance === "attended") {
+                    if (bookedEvent.attendance === true) {
                       if (activity.log) {
                         status = "completed";
                       } else {
                         status = "log";
                       }
                     //If event is missed
-                    } else if (bookedEvent.attendance === "missed") {
+                    } else if (bookedEvent.attendance === false) {
                       status = "missed";
                     } else {
                       status = "no-attendance-marked";

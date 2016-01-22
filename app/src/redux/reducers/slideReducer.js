@@ -25,6 +25,12 @@ export function reducer(state = initialState, action) {
       return nextState;
       break;
 
+    case "SLIDE_MOVE_SLIDE":
+      nextState = Object.assign({}, state);
+      nextState[action.payload.slideID].index = action.payload.idx;
+      return nextState;
+      break;
+
     default:
       return state;
   }

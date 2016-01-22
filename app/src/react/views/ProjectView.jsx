@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getProjectContent} from '../../redux/actions/contentActions';
-import TabStack from 'cirrus/react/components/TabStack';
+import TabStack from '../legacy/TabStack.jsx';
 import Store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
@@ -10,7 +10,6 @@ import _ from 'underscore';
 var dispatch = Store.dispatch;
 
 class ProjectView extends React.Component {
-
   constructor() {
     super();
   }
@@ -99,7 +98,7 @@ class ProjectView extends React.Component {
     let newObj = _.mapObject(modules, (mod, key) => {
       var selectedActivity;
       var activities = _.mapObject(mod.activities, (act, key) => {
-        if (act.id == activityID) {
+        if (act.id === activityID) {
           selectedActivity = {[key]: act};
         }
       });
@@ -109,7 +108,6 @@ class ProjectView extends React.Component {
     });
     return singleModuleSingleActivity;
   }
-
 }
 
 function mapProjectProps(state) {

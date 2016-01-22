@@ -1,8 +1,9 @@
 import React from 'react';
 import Markdown from 'react-remarkable';
 import {connect} from 'react-redux';
-import {getToolkitContentFromSlug} from '../../redux/actions/contentActions';
-import {dispatch} from '../../redux/store';
+import store from '../../redux/store';
+import FileDownload from '../components/FileDownload.jsx';
+var dispatch = store.dispatch;
 
 class ToolkitPageView extends React.Component {
 
@@ -10,50 +11,46 @@ class ToolkitPageView extends React.Component {
     super();
   }
 
-  componentWillMount() {
-    dispatch(getToolkitContentFromSlug(this.props.params.toolkit));
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.params.toolkit !== nextProps.params.toolkit) {
-      dispatch(getToolkitContentFromSlug(this.props.params.toolkit));
-    }
-  }
-
   render() {
+    if (!this.props.toolkits) {
+      return (<div />);
+    }
+    let toolkit = this.getToolkitFromUrlSlug(this.props.toolkits, this.props.params.toolkit);
+    if (!toolkit) {
+      return (<div />);
+    }
     return (
       <div className="toolkit-page">
         <div className="header">
           <div className="row">
             <div className="col-md-1 col-sm-2">
-              <div className="header-icon"><i className={`fa fa-${this.props.toolkitContent.icon}`}></i></div>
+              <div className="header-icon"><i className={`fa fa-${toolkit.icons}`}></i></div>
             </div>
             <div className="col-md-8 col-sm-10">
-              <h1>{this.props.toolkitContent.title}</h1>
+              <h2>{toolkit.title}</h2>
             </div>
             <div className="col-md-3 visible-lg visible-md">
               <div className="pdf">
-                <a href={this.props.toolkitContent.pdfLink} target="_blank">Download PDF</a>
+                <FileDownload file={toolkit.pdfLink} buttonText="DOWNLOAD PDF"/>
               </div>
             </div>
           </div>
         </div>
         <div className="body">
           <div className="row">
-            <div className="col-md-9 left-bar">
-              <h4>Toolkit Content</h4>
+            <div className="col-md-8 left-bar">
               <div className="content">
-                <Markdown source={this.props.toolkitContent.content} />
+                <Markdown source={toolkit.content} />
               </div>
             </div>
             <div className="col-md-12 hidden-lg hidden-md second-pdf">
-              <a href={this.props.toolkitContent.pdfLink} target="_blank">Download as PDF <i className="fa fa-chevron-right"></i></a>
+              <FileDownload file={toolkit.pdfLink} buttonText="DOWNLOAD PDF"/>
             </div>
-            <div className="col-md-3 right-bar">
+            <div className="col-md-4 right-bar">
               <div className="hints-and-tips">
-                <h3>Hints and Tips</h3>
+                <h4>Hints and Tips</h4>
                 <div className="list">
-                  <Markdown source={this.props.toolkitContent.hints} />
+                  <Markdown source={toolkit.hints} />
                 </div>
               </div>
             </div>
@@ -62,11 +59,21 @@ class ToolkitPageView extends React.Component {
       </div>
     );
   }
+
+  getToolkitFromUrlSlug(toolkits, slug) {
+    let selectedToolkit = null;
+    toolkits.forEach((toolkit) => {
+      if (toolkit.slug === slug) {
+        selectedToolkit = toolkit;
+      }
+    });
+    return selectedToolkit;
+  }
 }
 
 function mapToolkitContentProps(state) {
   return {
-    toolkitContent: state.content.toolkitContent ? state.content.toolkitContent : {}
+    toolkits: state.content.toolkits
   };
 };
 let mappedToolkitPageView = connect(mapToolkitContentProps)(ToolkitPageView);

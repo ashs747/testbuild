@@ -1,7 +1,13 @@
-import request from 'cirrus/services/request';
 import config from '../../localConfig';
+import requesty from '../../request';
+
+var request = requesty();
 
 let apiRoot = config.api ? config.api.url : '';
+
+export function updateMeta(fileID, metaData) {
+  return request.post(`${apiRoot}api/files/${fileID}/meta-data`, metaData);
+}
 
 function formatFeedObject(feedObject) {
   return setNoneEditable(feedObject['message-boards'][0]);
@@ -37,7 +43,6 @@ export function getFeedIdForContext(feeds, feedContext) {
 
 export function getFeedMessages(feedID, qty = 60) {
   return request.get(apiRoot + 'api/feeds/' + feedID)
-    .end()
     .then(formatFeedObject);
 }
 
@@ -58,4 +63,11 @@ export function postComment(feedID, messageID, comment) {
 
 export function postUpdatedMessage(boardID, messageID, content) {
   return request.post(`${apiRoot}api/feeds/${boardID}/message/${messageID}`, content);
+}
+
+export function embedVideo(url) {
+  let params = {
+    url
+  };
+  return request.post(`${apiRoot}api/files/embed-video`, params);
 }
