@@ -3,9 +3,13 @@ if [ "$1" == "deployment" ]
 then
   if [ "$3" == "staging" ]
   then
-    cp -f app/src/localConfig.js.prod app/src/localConfig.js
+    cp -f app/src/localConfig.js.staging app/src/localConfig.js
   else
-    cp -f app/src/localConfig.js.nightly app/src/localConfig.js
+    if [ "$3" == "production" ]
+    then
+      cp -f app/src/localConfig.js.prod app/src/localConfig.js
+    else
+      cp -f app/src/localConfig.js.nightly app/src/localConfig.js
   fi
   ./node_modules/gulp/bin/gulp.js build
   zip -r $2.zip ./ -x "*.git*" -x "venv/*" -x "node_modules/*"
