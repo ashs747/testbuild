@@ -10,6 +10,7 @@ then
       cp -f app/src/localConfig.js.prod app/src/localConfig.js
     else
       cp -f app/src/localConfig.js.nightly app/src/localConfig.js
+    fi
   fi
   ./node_modules/gulp/bin/gulp.js build
   zip -r $2.zip ./ -x "*.git*" -x "venv/*" -x "node_modules/*"
