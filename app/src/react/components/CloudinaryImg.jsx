@@ -15,6 +15,7 @@ class CloudinaryImg extends React.Component {
     var imgParams = [];
     var modStr = '';
     var file = this.props.file;
+    var rotate;
 
     if (file && file.context === "embed") {
       return (
@@ -42,6 +43,7 @@ class CloudinaryImg extends React.Component {
       }
 
       if (file.rotate || this.props.rotate) {
+        rotate = file.rotate || this.props.rotate;
         if (!this.props.rotate) {
           imgParams.push(`a_${file.rotate},${imgParams}`);
         } else {
@@ -75,9 +77,15 @@ class CloudinaryImg extends React.Component {
     }
 
     var outputImage = <img style={this.props.style} src={outStr} alt={this.props.alt}/>;
+    var url = this.props.secure ? file.secure_url : file.url;
+
+    if (rotate) {
+      url = url.split('upload/').join(`upload/a_${rotate}/`);
+    }
+
     if (!this.props.disableAnchor) {
       outputImage = (
-        <a href={this.props.secure ? file.secure_url : file.url}>
+        <a href={url}>
           {outputImage}
         </a>
       )
