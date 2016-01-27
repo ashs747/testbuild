@@ -51,6 +51,9 @@
   .learning-journey {
     padding: 50px 55px;
     padding-right: 65px;
+    a {
+      color: $site_red;
+    }
     h4 {
       margin-top: 0;
       margin-bottom: 20px;
