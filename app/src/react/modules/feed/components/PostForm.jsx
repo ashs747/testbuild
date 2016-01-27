@@ -46,9 +46,10 @@ class PostForm extends React.Component {
     let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
     let postButton;
     if (!this.props.commentForm) {
-      postButton = (this.props.pending) ? null : (
+      var text = (this.props.pending) ? <img src="assets/img/ajax-loader-red.gif" /> : "POST";
+      postButton = (
         <div className="post">
-          <a className="btn" onClick={this.onSave}>POST</a>
+          <a className="btn" onClick={this.onSave}>{text}</a>
         </div>
       );
     }
