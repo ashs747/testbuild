@@ -203,7 +203,7 @@ class SlotDisplay extends React.Component {
     let event = this.findEventById(this.props.events, this.state.mobileEventId);
     let slot;
     for (var i in event.slots) {
-      if (event.slots[i].id === parseInt(this.state.slot)) {
+      if (event.slots[i].id === parseInt(this.state.slot, 10)) {
         slot = event.slots[i];
       }
     }
@@ -227,7 +227,7 @@ class SlotDisplay extends React.Component {
   */
   findEventById(eventObjs, eventID) {
     for (var i in eventObjs) {
-      if (eventObjs[i].id === parseInt(eventID)) {
+      if (eventObjs[i].id === parseInt(eventID, 10)) {
         return eventObjs[i];
       }
     }
