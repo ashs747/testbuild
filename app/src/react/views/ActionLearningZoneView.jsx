@@ -110,9 +110,6 @@ class ActionLearningZoneView extends React.Component {
               <h2>Action learning zone</h2>
             </div>
             <div className="col-sm-4">
-              <select className="form-control">
-                <option>Cohort 1 - Implement</option>
-              </select>
             </div>
           </div>
         </div>
