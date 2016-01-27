@@ -117,7 +117,7 @@ class PostForm extends React.Component {
 
       return (
         <div key={a.id} className="item">
-          <CloudinaryImg file={a} width="120" height="120" style={imageViewStyle} crop="fill" defaultImg={thumbnail} />
+          <CloudinaryImg file={a} width="120" height="120" style={imageViewStyle} crop="fill" defaultImg={thumbnail} disableAnchor={true} />
           <a onClick={this.removeAttachment(a)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
           {rotate}
         </div>

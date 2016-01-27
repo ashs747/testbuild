@@ -73,12 +73,18 @@ class CloudinaryImg extends React.Component {
       file.secure_url = outStr;
       file.url = outStr;
     }
-    /*eslint-enable camelcase */
-    var outputImageWithAnchor = (<a href={this.props.secure ? file.secure_url : file.url}>
-      <img style={this.props.style} src={outStr} alt={this.props.alt}/>
-    </a>);
 
-    return (this.props.outputTextOnly) ? outStr : outputImageWithAnchor;
+    var outputImage = <img style={this.props.style} src={outStr} alt={this.props.alt}/>;
+    if (!this.props.disableAnchor) {
+      outputImage = (
+        <a href={this.props.secure ? file.secure_url : file.url}>
+          {outputImage}
+        </a>
+      )
+    }
+    /*eslint-enable camelcase */
+
+    return (this.props.outputTextOnly) ? outStr : outputImage;
   }
 }
 
