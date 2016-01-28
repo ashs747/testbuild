@@ -143,10 +143,14 @@ export function reducer(state = {}, action) {
           };
 
         case 'REJECTED':
+          var error = "There was an error, please contact Cirrus support";
+          if (typeof action.error === 'string') {
+            error = action.error
+          }
           return {
             ...state,
             onBoardingLoading: false,
-            onBoardingError: action.error
+            onBoardingError: error
           };
 
         default:

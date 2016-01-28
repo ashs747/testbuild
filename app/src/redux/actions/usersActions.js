@@ -26,7 +26,6 @@ export const saveUserProfile = () => {
 };
 
 export const saveUserData = (slideID) => {
-  /**** TODO - import the service *****/
   let asyncAction = updateUserData()
     .then((status) => {
       if (slideID) {

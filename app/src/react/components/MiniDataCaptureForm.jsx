@@ -13,7 +13,7 @@ class MiniDataCaptureForm extends React.Component {
     let inputClassText = inputClasses.join(',');
     var phoneNumber = (this.props.properties && this.props.properties.phone) ? this.props.properties.phone : '';
     var spinner = (this.props.loading ? <img src="assets/img/ajax-loader-trans.gif" /> : null);
-    var error = (this.props.err) ? <div className="alert alert-danger">Error</div> : null;
+    var error = (this.props.err) ? <div className="alert alert-danger">{this.props.err}</div> : null;
     return (
       <div className="mini-data-capture-form">
         <div className="form-inputs">
