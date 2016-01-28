@@ -8,9 +8,11 @@ export default class LiAnchor extends React.Component {
 
   render() {
     const subMenu = this.props.childList || '';
+    const icon = this.props.icon ? <i className={`fa fa-${this.props.icon}`}></i> : null;
 
     return (
       <li onClick={this.doAction}>
+        {icon}
         <a>{this.props.text}</a>
         {subMenu}
       </li>

@@ -19,25 +19,19 @@ class Header extends React.Component {
         <img src="assets/img/programme-logo.png" />
       </div>
     );
-    let tabbedNav = (
+
+    let subNav = (
+
+    );
+
+    let navIcons = (
       <div className="tabbed-nav">
         <ul>
-          <LiAnchor text="Profile" action="" url="/#/profile"/>
-          <LiAnchor text="Need Help?" action="" url={this.props.supportUrl}/>
-          <LiAnchor text="Log Out" action="" url="/#/login"/>
-          <img src="assets/img/cirrus-logo.png" />
-        </ul>
-      </div>
-    );
-    let navButtons = (
-      <div className="nav-buttons clearfix">
-        <ul>
-          <LiAnchor text="Home" action="" url="/#/home"/>
-          <LiAnchor text="Programme" action="" url="/#/programme"/>
-          <LiAnchor text="Learning Journey" action="" url="/#/personal-learning-journey"/>
-          <LiAnchor text="Action Learning Zone" url="/#/action-learning-zone"/>
-          <LiAnchor text="Learning Log" action=""/>
-          <LiAnchor text="Toolkit" action="" url="/#/toolkits"/>
+          <LiAnchor text="Home" url="/#/" icon="home" />
+          <LiAnchor text="My Learning" subMenu={subNav} icon="pencil-square-o"/>
+          <LiAnchor text="My Team" url="/#/action-learning-zone" icon="users"/>
+          <LiAnchor text="Toolkit" url="/#/toolkit" icon="wrench"/>
+          <LiAnchor text="Help" url={this.props.supportUrl} icon="question-circle"/>
         </ul>
       </div>
     );
@@ -60,41 +54,19 @@ class Header extends React.Component {
     let headerContent = (() => {
       switch (this.props.profile) {
         case "lg":
+        case "mg":
           return (
-            <div className="row">
-              <div className="col-md-4">
-                {logo}
-              </div>
-              <div className="col-md-8">
-                <div className="row">
-                  <div className="col-md-12">
-                    {tabbedNav}
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-12">
-                    {navButtons}
-                  </div>
+            <div className="full-nav">
+              <div className="top-nav-bar">
+                <img src="assets/img/programme-logo.png" alt="logo" />
+                <div className="header-right">
+                  <img src={user.profilePic} alt="profile" />
+                  <p>Welcome <a href="/#/profile">{`${user.forename} ${user.surname}`}</a> | <a href="/#/login">Logout</a></p>
+                  <img src="assets/img/cirrus-logo.png" alt="cirrus" />
                 </div>
               </div>
-            </div>
-          );
-          break;
-        case "md":
-          return (
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-xs-5">
-                  {logo}
-                </div>
-                <div className="col-xs-7">
-                  {tabbedNav}
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12">
-                  {navButtons}
-                </div>
+              <div className="nav-bottom-bar">
+                {navIcons}
               </div>
             </div>
           );
@@ -137,7 +109,8 @@ class Header extends React.Component {
 function mapHeaderProps(state) {
   return {
     profile: state.width.profile,
-    supportUrl: state.programme.supportUrl
+    supportUrl: state.programme.supportUrl,
+    user: state.user
   };
 };
 
