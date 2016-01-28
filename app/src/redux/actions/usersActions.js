@@ -32,25 +32,23 @@ export const saveUserData = (slideID) => {
       if (slideID) {
         store.dispatch({type: "SLIDE_NEXT_SLIDE", payload: {slideID: slideID}});
       }
-      return {
+      store.dispatch({
         type: 'SAVE_USER_DETAILS',
         status: 'RESOLVED',
         payload: {
           'fromSlide': slideID
         }
-      };
+      });
     }, (err) => {
-      return {
+      store.dispatch({
         type: 'SAVE_USER_DETAILS',
         status: 'REJECTED',
-        error: {
-          'validation': 'Bad password etc'
-        }
-      };
+        error: err
+      });
     });
   return {
-    type: 'SAVING_USER_DETAILS_STARTED',
-    status: 'PENDING'
+    type: 'SAVE_USER_DETAILS',
+    payload: {}
   };
 };
 

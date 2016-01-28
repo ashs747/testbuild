@@ -9,11 +9,12 @@
   background-size: cover;
   h1 {
     font-weight: bold;
+    font-size: 40px;
   }
   .header {
     width: 100%;
     background-color: $white;
-    padding: 20px;
+    padding: 10px;
     height: 100px;
     .logo {
       margin-bottom: 0;
@@ -28,6 +29,9 @@
     position: absolute;
     width: calc(100% - 60px);
     bottom: 30px;
+  }
+  .slideshow-nav-items {
+    display: none;
   }
   .slideshow-module  {
     position: relative;
@@ -75,7 +79,6 @@
     height: calc(100% - 72px);
   }
   .title {
-    margin: 60px 0;
     text-align: left;
     p {
       margin-top: 40px;
@@ -94,7 +97,7 @@
     padding: 20px;
   }
   .inner {
-    padding: 40px;
+    padding: 25px;
     h1 {
       margin: 0 auto;
       max-width: 400px;
@@ -113,7 +116,7 @@
   }
 }
 
-.slideshow-module.message {
+.slideshow-module.message-slide {
   background-color: $dark_blue;
   color: $white;
   .body {
@@ -148,7 +151,7 @@
 .slideshow-module.progress {
   .title {
     text-align: center;
-    width: 60%;
+    width: 70%;
     color: $site_red;
     margin: 20px auto;
   }

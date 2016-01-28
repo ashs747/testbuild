@@ -20,11 +20,12 @@ function mapUploadForm(state) {
 var MappedUploadProfile = connect(mapUploadForm)(UploadProfile);
 
 function mapCaptureFormProps(state) {
-  // FixMe: Not finished (mappings);
   return {
     ...state.user,
     ...state.user.properties,
-    updateAction: updateUserObject
+    updateAction: updateUserObject,
+    loading: state.user.onBoardingLoading,
+    err: state.user.onBoardingError
   };
 };
 
@@ -34,7 +35,7 @@ class WelcomeBlock extends React.Component {
   render() {
     return (
       <div className="row body">
-        <div className="title col-sm-8">
+        <div className="title col-sm-9">
           <h1>Hi {this.props.forename}<br /><br />Welcome to your leadership programme</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
         </div>
@@ -74,7 +75,7 @@ export const onboardingSlides = [{
       </div>
     </Provider>
   ),
-  className: 'message',
+  className: 'message-slide',
   showPrev: true,
   showNext: true
 }, {

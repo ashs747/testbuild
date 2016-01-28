@@ -104,17 +104,9 @@ module.exports = function(gulp) {
 
   gulp.task('bundlesass', function() {
     return gulp.src('./app/assets/sass/**/*.scss')
-      .pipe(cache('sass'))
-      .pipe(sourcemaps.init())
-      .pipe(sass.sync({outputStyle: 'compressed'}).on('error', function(er) {
-        gutil.log(gutil.colors.green('SASS'), 'Error ' + gutil.colors.red(er));
-      }))
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest('./app/dist/'));
-  });
-
-  gulp.task('sass:watch', function () {
-    gulp.watch('./app/assets/sass/**/*.scss', ['bundlesass']);
+      .pipe(sass())
+      .pipe(gulp.dest('./app/dist/'))
+      .pipe(browserSync.stream());
   });
 
   gulp.task('bundlejs:watch', function() {
@@ -140,7 +132,7 @@ module.exports = function(gulp) {
         baseDir: "./app"
       }
     });
-    gulp.watch('./app/assets/sass/**/*.scss', ['buildCssReloadBrowser']);
+    gulp.watch('./app/assets/sass/**/*.scss', ['bundlesass']);
     gulp.watch(babelPatterns, ['eslint']);
     watchifyReloadWrapper(function() {
       browserSync.reload();
@@ -149,10 +141,6 @@ module.exports = function(gulp) {
 
   gulp.task('buildJsReloadBrowser', ['eslint'], function(){
     watchifyReloadWrapper(browserSync.reload);
-  });
-
-  gulp.task('buildCssReloadBrowser', ['bundlesass'], function(){
-    browserSync.reload();
   });
 
   gulp.task('build', ['bundlesass', 'bundlejs']);
