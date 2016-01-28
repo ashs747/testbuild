@@ -13,7 +13,8 @@ function mapUploadForm(state) {
     buttonText: "UPLOAD",
     uploadURL: `${config.api.url}api/upload`,
     profilePic: state.user.profilePic,
-    authToken: state.auth.access_token //TODO: one-time-key-to-token-exchange - server + services
+    authToken: state.auth.access_token, //TODO: one-time-key-to-token-exchange - server + services,
+    width: state.width.profile
   };
 };
 
