@@ -2,7 +2,7 @@
 module.exports = {
   api: {
     url: "http://192.168.1.57:8888/app_dev.php/",
-    clientId: '1_100hxv5prstw8w0k00wk0s8o0o4gc4w0ocs4kkswk0088gck8c',
-    appSecret: '1h6uycoxy85c4ckw0go48osg48844k0okgss084w4wgggw0ow8'
+    clientId: '1_1ent9nu4jjwkcggwk4os8wsgkcgosocgo4w4ksk800w804kkgk',
+    appSecret: '6d4s86f1768808wg4swk8k4ws0sswgk0scg4sc4kg840kwsgws'
   }
 };
