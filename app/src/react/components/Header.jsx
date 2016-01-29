@@ -2,86 +2,120 @@ import React from 'react';
 import LiAnchor from './LiAnchor.jsx';
 import {logoutAction} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
+import CloudinaryImg from './CloudinaryImg.jsx';
 
 class Header extends React.Component {
   constructor() {
     super();
     this.logout = this.logout.bind(this);
     this.toggleMobileNav = this.toggleMobileNav.bind(this);
+    this.displaySubNav = this.displaySubNav.bind(this);
     this.state = {
-      showMobileNav: false
+      showMobileNav: false,
+      displaySubNav: false
     };
   }
 
   render() {
-    let logo = (
-      <div className="header-logo">
-        <img src="assets/img/programme-logo.png" />
-      </div>
+    let name = (this.props.user.forename) ? `${this.props.user.forename} ${this.props.user.surname}` : "";
+    let subnav = (
+      <ul>
+        <li className="sub-nav">
+          <div className="sub-nav-content clearfix">
+            <div className="col-sm-6">
+              <ul className="modules">
+                <a href="/#/module/1"><li><img src="assets/img/inspiring-connector.png"/><p>Module 1</p></li></a>
+                <a href="/#/module/2"><li><img src="assets/img/ambassador-for-change.png"/><p>Module 2</p></li></a>
+                <a href="/#/module/3"><li><img src="assets/img/agile-decision-maker.png"/><p>Module 3</p></li></a>
+                <a href="/#/module/4"><li><img src="assets/img/people-leader.png"/><p>Module 4</p></li></a>
+                <a href="/#/module/5"><li><img src="assets/img/performance-driver.png"/><p>Module 5</p></li></a>
+              </ul>
+            </div>
+            <div className="col-sm-6">
+              <ul className="other-links">
+                <a href="/#/programme"><li><i className="fa fa-circle"></i><p>Programme</p></li></a>
+                <a href="/#/personal-learning-journey"><li><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
+                <li><i className="fa fa-circle"></i><p>Learning Log</p></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
     );
 
-    let subNav = (
-
-    );
-
-    let navIcons = (
-      <div className="tabbed-nav">
-        <ul>
-          <LiAnchor text="Home" url="/#/" icon="home" />
-          <LiAnchor text="My Learning" subMenu={subNav} icon="pencil-square-o"/>
-          <LiAnchor text="My Team" url="/#/action-learning-zone" icon="users"/>
-          <LiAnchor text="Toolkit" url="/#/toolkit" icon="wrench"/>
-          <LiAnchor text="Help" url={this.props.supportUrl} icon="question-circle"/>
-        </ul>
+    let mobileSubNav = (
+      <div>
+        <a href="/#/module/1"><li><img src="assets/img/inspiring-connector.png"/><p>Module 1</p></li></a>
+        <a href="/#/module/2"><li><img src="assets/img/ambassador-for-change.png"/><p>Module 2</p></li></a>
+        <a href="/#/module/3"><li><img src="assets/img/agile-decision-maker.png"/><p>Module 3</p></li></a>
+        <a href="/#/module/4"><li><img src="assets/img/people-leader.png"/><p>Module 4</p></li></a>
+        <a href="/#/module/5"><li><img src="assets/img/performance-driver.png"/><p>Module 5</p></li></a>
+        <a href="/#/programme"><li><i className="fa fa-circle"></i><p>Programme</p></li></a>
+        <a href="/#/personal-learning-journey"><li><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
+        <li><i className="fa fa-circle"></i><p>Learning Log</p></li>
       </div>
     );
 
     let mobileNav = (this.state.showMobileNav) ? (
       <div className="mobile-nav">
         <ul>
-          <LiAnchor text="Home" action={this.toggleMobileNav} url="/#/home"/>
-          <LiAnchor text="Programme" action={this.toggleMobileNav} url="/#/programme"/>
-          <LiAnchor text="Learning Journey" action={this.toggleMobileNav} url="/#/personal-learning-journey"/>
-          <LiAnchor text="Action Learning Zone" action={this.toggleMobileNav} url="/#/action-learning-zone"/>
-          <LiAnchor text="Toolkit" action={this.toggleMobileNav} url="/#/toolkits"/>
-          <LiAnchor text="Profile" action={this.toggleMobileNav} url="/#/profile"/>
-          <LiAnchor text="Need Help?" action={this.toggleMobileNav} url={this.props.supportUrl}/>
-          <LiAnchor text="Logout" action={this.logout} url="/#/login"/>
+            <LiAnchor action={this.toggleMobileNav} text="Home" url="/#/" icon="home" />
+            <LiAnchor action={this.displaySubNav} text="My Learning" icon="users"/>
+            {this.state.displaySubNav ? mobileSubNav : null}
+            <LiAnchor action={this.toggleMobileNav} text="My Team" url="/#/action-learning-zone" icon="users"/>
+            <LiAnchor action={this.toggleMobileNav} text="Toolkit" url="/#/toolkits" icon="wrench"/>
+            <LiAnchor action={this.toggleMobileNav} text="Help" url={this.props.supportUrl} icon="question-circle"/>
+            <li className="cirrus-footer"><img src="assets/img/cirrus-logo.png" /></li>
         </ul>
       </div>
     ) : null;
 
+    let mobileIcon = "fa fa-bars";
+    if (this.state.showMobileNav) {
+      mobileIcon += " fa-rotate-90";
+    }
+
     let headerContent = (() => {
       switch (this.props.profile) {
-        case "lg":
-        case "mg":
-          return (
-            <div className="full-nav">
-              <div className="top-nav-bar">
-                <img src="assets/img/programme-logo.png" alt="logo" />
-                <div className="header-right">
-                  <img src={user.profilePic} alt="profile" />
-                  <p>Welcome <a href="/#/profile">{`${user.forename} ${user.surname}`}</a> | <a href="/#/login">Logout</a></p>
-                  <img src="assets/img/cirrus-logo.png" alt="cirrus" />
-                </div>
-              </div>
-              <div className="nav-bottom-bar">
-                {navIcons}
-              </div>
-            </div>
-          );
-          break;
         case "sm":
           return (
             <div className="small-nav">
-              <div className="top-logo">
-                <img src="assets/img/programme-logo.png" />
-              </div>
-              <div className="dark-blue clearfix">
-                <img src="assets/img/cirrus-logo.png" />
-                <div onClick={this.toggleMobileNav} className="nav-icon"><i className="fa fa-bars"></i></div>
+              <div className="top-small-nav clearfix">
+                <div className="programme-logo">
+                  <img src="assets/img/programme-logo.png" />
+                </div>
+                <div onClick={this.toggleMobileNav} className="nav-icon"><i className={mobileIcon}></i></div>
               </div>
               {mobileNav}
+            </div>
+          );
+          break;
+        default:
+          return (
+            <div className="full-nav">
+              <div className="top-nav-bar clearfix">
+                <a href="/#/">
+                  <img className="programme-logo" src="assets/img/programme-logo.png" alt="logo" />
+                </a>
+                <div className="header-right">
+                  <div className="links clearfix">
+                    <div className="profile-pic">
+                      <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
+                    </div>
+                    <p>Welcome <a href="/#/profile">{name}</a> | <a href="/#/login">Logout</a></p>
+                  </div>
+                  <img className="cirrus-logo" src="assets/img/cirrus-logo-header.png" alt="cirrus" />
+                </div>
+              </div>
+              <div className="nav-bottom-bar">
+                <ul>
+                  <LiAnchor text="Home" url="/#/" icon="home" />
+                  <LiAnchor text="My Learning" icon="pencil-square-o" className="sub-menu" childList={subnav} />
+                  <LiAnchor text="My Team" url="/#/action-learning-zone" icon="users"/>
+                  <LiAnchor text="Toolkit" url="/#/toolkits" icon="wrench"/>
+                  <LiAnchor text="Help" url={this.props.supportUrl} icon="question-circle"/>
+                </ul>
+              </div>
             </div>
           );
           break;
@@ -102,6 +136,12 @@ class Header extends React.Component {
   toggleMobileNav() {
     this.setState({
       showMobileNav: !this.state.showMobileNav
+    });
+  }
+
+  displaySubNav() {
+    this.setState({
+      displaySubNav: !this.state.displaySubNav
     });
   }
 }

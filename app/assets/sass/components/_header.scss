@@ -1,134 +1,228 @@
-/* The SOJ Header */
 .header {
   background-color: $white;
-  .row {
-    margin: 0;
-  }
-  .col-md-4 {
-    width: 36%;
-    padding: 0;
-  }
-  .col-md-8 {
-    width: 64%;
-    padding: 0;
-  }
-  .header-logo {
-    padding: 15px 40px;
-    img {
-      width: 100%;
-    }
-  }
-  li {
-    display: inline;
-  }
-  ul {
-    padding: 0;
-    float: right;
-  }
-  .tabbed-nav {
-    img {
-      padding: 10px;
-    }
-    li {
-      float: left;
-      background-color: $site_red;
-      padding: 10px 20px;
-      font-weight: 600;
-      margin: 0 5px;
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
-    }
-    a {
-      color: $white;
-      cursor: pointer;
-    }
-  }
-  .nav-buttons {
-    ul {
-      text-align: right;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-    li {
-      display: inline-block;
-      text-align: center;
-      padding: 0 15px;
-    }
-    a {
-      font-size: 14px;
-      color: $site_red;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  }
 }
-.small-nav {
-  .top-logo {
-    img {
-      display: block;
-      margin: 0 auto;
-      padding: 10px;
-      width: 100%;
-      max-width: 325px;
-    }
-  }
-  .dark-blue {
-    background-color: $dark_blue;
-    img {
-      padding: 10px;
-      float: left;
-    }
-    .nav-icon {
-      float: right;
-      color: $white;
-      font-size: 36px;
-      padding: 0 10px;
-      cursor: pointer;
-    }
-  }
-}
-
-.mobile-nav {
-  position: absolute;
-  width: 100%;
-  z-index: 1000;
-  background-color: $light_grey;
-  ul {
+.top-nav-bar {
+  padding: 15px 30px;
+  .programme-logo {
+    max-width: 275px;
     width: 100%;
-  }
-  li {
-    cursor: pointer;
-    background-color: $white;
-    padding: 10px;
     float: left;
-    display: block;
-    width: calc(100% - 10px);
-    margin: 2.5px 5px;
+  }
+  .cirrus-logo {
+    margin-left: 25px;
+  }
+  .header-right {
+    float: right;
+    img {
+      float: right;
+    }
+  }
+  .links {
+    float: left;
+    margin-top: 5px;
+    p {
+      float: left;
+      font-size: 14px;
+      margin-top: 12.5px;
+      font-weight: bold;
+    }
+    a {
+      color: $body_color;
+      border-bottom: 1px solid $border_grey;
+      text-decoration: none;
+    }
+    a:active {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .profile-pic {
+    float: left;
+    margin-right: 10px;
+    img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
   }
 }
 
-@media (max-width: 1125px) {
-  .header {
-    .header-logo {
-      padding: 10px 5px;
+.nav-bottom-bar {
+  ul {
+    margin-bottom: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  .sub-nav {
+    display: none;
+    width: 100%;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+  li {
+    position: relative;
+    width: 20%;
+    display: inline-block;
+    text-align: center;
+    background-color: $site_red;
+    color: $white;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 25px;
+    cursor: pointer;
+    padding-bottom: 20px;
+    a {
+      color: $white;
+      line-height: 20px;
+      text-decoration: none;
+      transition: color 0.25s;
     }
-    .tabbed-nav {
-      li {
-        padding: 15px 10px 5px 10px;
-        margin: 0 2px;
-      }
-      img {
-        padding: 10px;
-      }
+    i {
+      margin-right: 10px;
+      font-size: 22px;
     }
-    .nav-buttons {
+    ul {
+      position:absolute;
+      left:0;
+      top: 71px;
+    }
+    .sub-nav li {
+      background-color: $dark_blue;
+      opacity: 0.9;
+      width: 100%;
+      position:relative;
+      margin:0;
+      display:block;
+    }
+    .sub-nav-content {
+      width: 500px;
+      padding: 30px 35px;
+      padding-right: 25px;
+      background-color: $dark_blue;
+      ul {
+        position: static;
+      }
+      .col-sm-6 {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .col-sm-6:nth-child(2) {
+        ul {
+          list-style-type: circle;
+        }
+      }
       li {
-        width: 16.666%;
+        overflow: hidden;
+        height: 44px;
         padding: 0;
+        margin: 0;
+        border-bottom: 2px solid #565a5f;
+        text-align: left;
+      }
+      .modules {
+        img {
+          height: 25px;
+          width: 25px;
+          margin-right: 15px;
+        }
+      }
+      p {
+        font-size: 16px;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 11px;
+        transition: color 0.25s;
+        color: #d7d2cd;
+      }
+      i {
+        vertical-align: middle;
+        font-size: 6px;
+        line-height: 12px;
+      }
+      li:hover {
+        p {
+          color: $white;
+        }
+      }
+    }
+  }
+  li:hover {
+    a {
+      color: #fdb7b7;
+    }
+  }
+  .sub-menu {
+    transition: background-color 0.25s;
+    a {
+      transition: color 0.25s;
+    }
+  }
+  .sub-menu:hover {
+    background-color: $dark_blue;
+    a {
+      color: $white;
+    }
+  }
+}
+
+.small-nav {
+  width: 100%;
+
+  .programme-logo {
+    float: left;
+    padding: 10px;
+    max-width: 235px;
+    img {
+      width: 100%;
+    }
+  }
+  .nav-icon {
+    font-size: 45px;
+    width: 45px;
+    float: right;
+    line-height: 45px;
+    margin-top: 10px;
+  }
+  .mobile-nav {
+    width: 100%;
+    position: absolute;
+    background-color: $dark_blue;
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      border-bottom: 1px solid $white;
+      cursor: pointer;
+      font-weight: bold;
+      padding:10px 25px;
+      height: 50px;
+      color: $white;
+      i {
+        font-size: 22px;
+        margin-top: 3px;
+        margin-right: 10px;
       }
       a {
-        font-size:14px;
+        color: $white;
+      }
+      ul {
+        display: none;
       }
     }
+    .cirrus-footer {
+      text-align: right;
+      background-color: $site_red;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .top-nav-bar {
+    padding: 15px;
   }
 }
