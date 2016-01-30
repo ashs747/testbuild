@@ -3,6 +3,10 @@
   margin: 0 0 20px 0;
   .col-sm-12 {
     padding: 0;
+    background-color: $white;
+    p {
+      margin-left: 10px;
+    }
   }
   .title {
     background-color: $dark_blue;

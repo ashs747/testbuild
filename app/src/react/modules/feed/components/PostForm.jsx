@@ -46,9 +46,10 @@ class PostForm extends React.Component {
     let placeholder = (this.props.commentForm) ? "Write a comment" : "What's happening?";
     let postButton;
     if (!this.props.commentForm) {
-      postButton = (this.props.pending) ? null : (
+      var text = (this.props.pending) ? <img src="assets/img/ajax-loader-red.gif" /> : "POST";
+      postButton = (
         <div className="post">
-          <a className="btn" onClick={this.onSave}>POST</a>
+          <a className="btn" onClick={this.onSave}>{text}</a>
         </div>
       );
     }
@@ -117,7 +118,7 @@ class PostForm extends React.Component {
 
       return (
         <div key={a.id} className="item">
-          <CloudinaryImg file={a} width="120" height="120" style={imageViewStyle} crop="fill" defaultImg={thumbnail} />
+          <CloudinaryImg file={a} width="120" height="120" style={imageViewStyle} crop="fill" defaultImg={thumbnail} disableAnchor={true} />
           <a onClick={this.removeAttachment(a)}><img className="image-icon remove" src="/assets/img/delete.png" /></a>
           {rotate}
         </div>

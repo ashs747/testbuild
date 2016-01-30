@@ -8,8 +8,8 @@ class FileDownload extends React.Component {
   }
 
   render() {
-    if (!file) {
-      return <a href="#" target="_blank">{this.props.buttonText}</a>;
+    if (!this.props.file) {
+      return <a href="javascript:;">{this.props.buttonText}</a>;
     }
     var file = {...this.props.file};
     for (let i = 0; i < file.metadata.length; i += 1) {

@@ -43,13 +43,30 @@ class UploadProfile extends React.Component {
 
   render() {
     let loading = this.state.loading ? <img src="assets/img/ajax-loader-red.gif" /> : this.props.buttonText;
-    return (
-      <div className="upload-profile">
+    let content = this.props.width === "sm" ? (
+      <div className="row">
+        <div className="col-xs-6">
+          <div className="circle-image">
+            <CloudinaryImg file={this.props.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
+          </div>
+          <button className="btn" ref="uploadButton">{loading}</button>
+        </div>
+        <div className="col-xs-6">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
+        </div>
+      </div>
+    ) : (
+      <div>
         <div className="circle-image">
           <CloudinaryImg file={this.props.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
         </div>
         <button className="btn" ref="uploadButton">{loading}</button>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
+      </div>
+    );
+    return (
+      <div className="upload-profile">
+        {content}
       </div>
     );
   }

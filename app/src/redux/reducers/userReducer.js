@@ -132,5 +132,33 @@ export function reducer(state = {}, action) {
         ...state,
         profilePic: action.payload.profilePic
       };
+
+    case 'SAVE_USER_DETAILS':
+      switch (action.status) {
+        case 'RESOLVED':
+          return {
+            ...state,
+            onBoardingLoading: false,
+            onBoardingError: action.error
+          };
+
+        case 'REJECTED':
+          var error = "There was an error, please contact Cirrus support";
+          if (typeof action.error === 'string') {
+            error = action.error
+          }
+          return {
+            ...state,
+            onBoardingLoading: false,
+            onBoardingError: error
+          };
+
+        default:
+          return {
+            ...state,
+            onBoardingLoading: true,
+            onBoardingError: null
+          };
+      }
   }
 }

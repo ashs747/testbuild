@@ -12,10 +12,13 @@ class Widget extends React.Component {
   }
 
   render() {
-    let groupedResources = this.groupResources();
-    let groups = this.createGroupsFromResources(groupedResources);
-    let orderedResources = this.orderResources(groups);
-    let columnedResources = this.columnResources(orderedResources);
+    let content = <p>No resources currently available</p>;
+    if (this.props.resources.length > 0) {
+      let groupedResources = this.groupResources();
+      let groups = this.createGroupsFromResources(groupedResources);
+      let orderedResources = this.orderResources(groups);
+      content = this.columnResources(orderedResources);
+    }
     return (
       <div className="resource-widget">
         <div className="title">
@@ -24,7 +27,7 @@ class Widget extends React.Component {
         <div className="body">
           <div className="row">
             <div className="col-sm-12">
-              {columnedResources}
+              {content}
             </div>
           </div>
         </div>
@@ -107,6 +110,9 @@ Widget.propTypes = {
   resources: React.PropTypes.array,
   title: React.PropTypes.string
 }
+Widget.defaultProps = {
+  resources: [],
+  title: ""
+};
 
 export default Widget;
-
