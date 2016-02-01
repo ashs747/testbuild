@@ -71,9 +71,6 @@ class Header extends React.Component {
     ) : null;
 
     let mobileIcon = "fa fa-bars";
-    if (this.state.showMobileNav) {
-      mobileIcon += " fa-rotate-90";
-    }
 
     let headerContent = (() => {
       switch (this.props.profile) {
