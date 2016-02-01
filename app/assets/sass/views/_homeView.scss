@@ -3,6 +3,8 @@
     margin: 0;
   }
   .header-page {
+    position: relative;
+    z-index: -2;
     background: url('/assets/img/home-introduction.png');
     background-size: cover;
     color: $white;
