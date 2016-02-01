@@ -44,15 +44,15 @@ class Header extends React.Component {
     );
 
     let mobileSubNav = (
-      <div>
-        <a href="/#/module/1"><li><img src="assets/img/inspiring-connector.png"/><p>Module 1</p></li></a>
-        <a href="/#/module/2"><li><img src="assets/img/ambassador-for-change.png"/><p>Module 2</p></li></a>
-        <a href="/#/module/3"><li><img src="assets/img/agile-decision-maker.png"/><p>Module 3</p></li></a>
-        <a href="/#/module/4"><li><img src="assets/img/people-leader.png"/><p>Module 4</p></li></a>
-        <a href="/#/module/5"><li><img src="assets/img/performance-driver.png"/><p>Module 5</p></li></a>
-        <a href="/#/programme"><li><i className="fa fa-circle"></i><p>Programme</p></li></a>
-        <a href="/#/personal-learning-journey"><li><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
-        <li><i className="fa fa-circle"></i><p>Learning Log</p></li>
+      <div className="sub-nav">
+        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src="assets/img/inspiring-connector.png"/><p>Module 1</p></li></a>
+        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src="assets/img/ambassador-for-change.png"/><p>Module 2</p></li></a>
+        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src="assets/img/agile-decision-maker.png"/><p>Module 3</p></li></a>
+        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src="assets/img/people-leader.png"/><p>Module 4</p></li></a>
+        <a href="/#/module/5"><li onClick={this.toggleMobileNav}><img src="assets/img/performance-driver.png"/><p>Module 5</p></li></a>
+        <a href="/#/programme"><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Programme</p></li></a>
+        <a href="/#/personal-learning-journey"><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
+        <a><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Learning Log</p></li></a>
       </div>
     );
 
@@ -60,7 +60,7 @@ class Header extends React.Component {
       <div className="mobile-nav">
         <ul>
             <LiAnchor action={this.toggleMobileNav} text="Home" url="/#/" icon="home" />
-            <LiAnchor action={this.displaySubNav} text="My Learning" icon="users"/>
+            <LiAnchor action={this.displaySubNav} text="My Learning" icon="pencil-square-o" className="my-learning" mobileSubNav={true} displaySubNav={this.state.displaySubNav}/>
             {this.state.displaySubNav ? mobileSubNav : null}
             <LiAnchor action={this.toggleMobileNav} text="My Team" url="/#/action-learning-zone" icon="users"/>
             <LiAnchor action={this.toggleMobileNav} text="Toolkit" url="/#/toolkits" icon="wrench"/>
@@ -135,7 +135,8 @@ class Header extends React.Component {
 
   toggleMobileNav() {
     this.setState({
-      showMobileNav: !this.state.showMobileNav
+      showMobileNav: !this.state.showMobileNav,
+      displaySubNav: false
     });
   }
 

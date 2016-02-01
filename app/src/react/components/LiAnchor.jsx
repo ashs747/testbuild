@@ -12,29 +12,34 @@ export default class LiAnchor extends React.Component {
     var submenu = $('.sub-menu');
     var height = subnav.height();
 
-    submenu.hover(
-      () => {
-        $('.sub-nav').stop();
-        $('.sub-nav').slideDown(250);
-      }, () => {
-        $('.sub-nav').stop();
-        $('.sub-nav').slideUp(250);
-      }
-    );
+    submenu.hover(() => {
+      $('.sub-nav').stop();
+      $('.sub-nav').slideDown(250);
+    }, () => {
+      $('.sub-nav').stop();
+      $('.sub-nav').slideUp(250);
+    });
   }
 
   render() {
     const subMenu = this.props.childList || '';
     const icon = this.props.icon ? <i className={`fa fa-${this.props.icon}`}></i> : null;
+    let arrow;
+    let className = this.props.className;
 
-    if (this.props.mobileNav) {
-
+    if (this.props.mobileSubNav) {
+      var type = (this.props.displaySubNav) ? "down" : "up";
+      arrow = <i className={`fa fa-chevron-${type} sub-arrow`} ></i>
+      if (this.props.displaySubNav) {
+        className += " no-border-bottom";
+      }
     }
 
     return (
-      <li onClick={this.doAction} className={this.props.className} >
+      <li onClick={this.doAction} className={className} >
         {icon}
         <a>{this.props.text}</a>
+        {arrow}
         {subMenu}
       </li>
     );

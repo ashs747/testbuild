@@ -170,7 +170,6 @@
 
 .small-nav {
   width: 100%;
-
   .programme-logo {
     float: left;
     padding: 10px;
@@ -190,6 +189,7 @@
     width: 100%;
     position: absolute;
     background-color: $dark_blue;
+    z-index: 100;
     ul {
       list-style-type: none;
       padding: 0;
@@ -200,6 +200,7 @@
       cursor: pointer;
       font-weight: bold;
       padding:10px 25px;
+      padding-right: 10px;
       height: 50px;
       color: $white;
       i {
@@ -214,9 +215,59 @@
         display: none;
       }
     }
+    .sub-nav {
+      border-bottom: 1px solid $white;
+      background-color: #606a75;
+      a {
+        text-decoration: none;
+      }
+      li {
+        padding: 0;
+        padding-top: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0 25px;
+        border-bottom: 2px solid #7e848b;
+      }
+      a:last-child {
+        li {
+          border-bottom: none;
+        }
+      }
+      p {
+        display: inline;
+        color: #d7d2cd;
+      }
+      img {
+        position: relative;
+        top: -1px;
+        margin-right: 10px;
+      }
+      i {
+        position: relative;
+        top: -2px;
+        color: #d7d2cd;
+        font-size: 6px;
+        margin-right: 10px;
+      }
+      img {
+        height: 25px;
+        width: 25px;
+      }
+    }
     .cirrus-footer {
       text-align: right;
       background-color: $site_red;
+    }
+    .my-learning {
+      background-color: $site_red;
+
+      .sub-arrow {
+        float: right;
+      }
+    }
+    .no-border-bottom {
+      border-bottom: none;
     }
   }
 }
