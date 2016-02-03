@@ -1,5 +1,5 @@
 import store from '../store.js';
-import {updateUserData, updateUserProfile, updateUserPassword} from '../services/userService';
+import {updateUserData, updateUserProfile, updateUserPassword, updateUserProfilePicture} from '../services/userService';
 // Update a users Cohorts
 export function fetchUsersByCohort() {
   return {
@@ -68,10 +68,12 @@ export const saveUserPassword = () => {
 };
 
 export const newProfilePic = (profilePic) => {
+  var ppic = updateUserProfilePicture(profilePic.id)
+    .then((res) => {
+      return profilePic
+    });
   return {
     type: 'USER_UPDATE_PROFILE',
-    payload: {
-      profilePic
-    }
+    payload: ppic
   };
 };

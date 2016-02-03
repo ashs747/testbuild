@@ -37,6 +37,10 @@ export function updateUserProfile() {
   return request.put(apiRoot + `api/user/profile`, filteredParams);
 }
 
+export function updateUserProfilePicture(fileId) {
+  return request.post(apiRoot + 'api/upload/profile-picture', {fileId: fileId})
+}
+
 export function updateUserPassword(password, passwordConfirm) {
   var passwordParams = {
     password,
