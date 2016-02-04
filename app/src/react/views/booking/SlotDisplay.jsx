@@ -80,10 +80,11 @@ class SlotDisplay extends React.Component {
     let mappedEvents = events.map((event, i) => {
       let reducedSlots = this.reduceSlots(event.slots);
       let mappedSlots = this.mapSlots(reducedSlots, event.facilitator);
+      let name = (event.facilitator) ? `${event.facilitator.forename} ${event.facilitator.surname}` : "NO FACILITATOR ASSIGNED";
       return (
         <div key={i} className="facilitator-block">
           <div className="block-header">
-            <h5>{`Coach: ${event.facilitator.forename} ${event.facilitator.surname}`}</h5>
+            <h5>{`Coach: ${name}`}</h5>
           </div>
           <table>
             <thead>
@@ -128,12 +129,13 @@ class SlotDisplay extends React.Component {
       if (i % 2 !== 0) {
         className += " odd";
       }
+      let button = (facilitator) ? <a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a> : <a className="btn" style={{cursor: "not-allowed"}}><s>BOOK</s></a>
       return (
         <tr key={slot.id} className={className}>
           <td>{moment(slot.startDate).format('HH:mm')}</td>
           <td>{moment(slot.endDate).format('HH:mm')}</td>
           <td>{slot.location}</td>
-          <td><a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a></td>
+          <td>{button}</td>
         </tr>
       );
     });

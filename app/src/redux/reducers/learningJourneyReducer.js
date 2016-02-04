@@ -38,14 +38,14 @@ export function reducer(state = initialState, action) {
                   //If the event has passed, start to check attendance and rating
                   if (moment().isAfter(bookedEvent.endDate)) {
                     //If the event has been attended, check logging and rating
-                    if (bookedEvent.attendance === true) {
+                    if (bookedEvent.attendance === "Attended") {
                       if (activity.log) {
                         status = "completed";
                       } else {
                         status = "log";
                       }
                     //If event is missed
-                    } else if (bookedEvent.attendance === false) {
+                    } else if (bookedEvent.attendance === "Not Attended") {
                       status = "missed";
                     } else {
                       status = "no-attendance-marked";
