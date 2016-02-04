@@ -29,7 +29,7 @@ class LearningJourneyRow extends React.Component {
     }
 
     if (event) {
-      if (event.tooltipTitle && event.tooltipody) {
+      if (event.tooltipTitle && event.tooltipBody) {
         let trigger = (type === "Workshop") ? <p>{event.tooltipTitle}</p> : <p>View Details</p>;
         location = <Tooltip trigger={trigger} content={<Markdown source={event.tooltipBody} />} />;
       }
