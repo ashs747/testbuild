@@ -40,13 +40,6 @@ class ModuleView extends React.Component {
     let moduleSlug = module.name.replace(/\s+/g, '-').toLowerCase();
     let icon = <img src={`assets/img/${moduleSlug}.png`} alt="module icon" />;
     let carousel = <Carousel context={`module-${module.id}`} items={items} defineWidthClass="col-xs-8 col-xs-offset-2"/>;
-    let exampleMarkdown = `
-##### Engaging
-
-+ Communicates in an inspirational and motivational manner, achieves other's buy-in
-+ Actively listens to others including customers and colleagues at all levels
-+ Effectively communicates the organisation's vision; gives a sense of purpose and pride
-    `;
     let leftbar = (
       <div>
         <div className="module-carousel">
@@ -57,7 +50,7 @@ class ModuleView extends React.Component {
           {ljt}
           <div className="module-content">
             <h2>{module.name}</h2>
-            <Markdown source={exampleMarkdown} options={{html: true}}/>
+            <Markdown source={module.content} options={{html: true}}/>
           </div>
         </div>
       </div>
