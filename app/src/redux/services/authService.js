@@ -11,23 +11,13 @@ function oAuth(params) {
   return request.post(apiRoot + 'oauth/v2/token', params);
 }
 
-function feedsArrayToObject(feedsArray) {
-  var feedsObj = {};
-
-  feedsArray.forEach((feed) => {
-    feedsObj[feed.id] = feed;
-  });
-
-  return feedsObj;
-}
-
 function formatUserData(userData) {
   var user = userData.user[0] || userData.user;
   if (!user.properties || user.properties instanceof Array) {
     user.properties = {};
   }
 
-  var feeds = feedsArrayToObject(userData.feeds);
+  var feeds = userData.feeds;
   var cohort = userData.cohort;
   var toolkits = userData.toolkits;
   var programme = userData.programme;
@@ -92,4 +82,3 @@ export const getOAuthTokenFromOneUseKey = (key) => {
     key: key
   });
 };
-
