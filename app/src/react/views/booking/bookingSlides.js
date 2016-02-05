@@ -15,7 +15,8 @@ function mapBookingDateDisplayProps(state) {
     activity,
     selectedDate: state.booking.currentSelectedDate,
     user: state.user,
-    width: state.width.profile
+    width: state.width.profile,
+    supportUrl: state.programme.supportUrl
   };
 };
 var MappedBookingDateDisplay = connect(mapBookingDateDisplayProps)(BookingDateDisplay);

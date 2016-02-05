@@ -23,7 +23,7 @@ class BookingDateDisplay extends React.Component {
       eventDateRows = (
         <p className="no-dates">There are currently no alternative dates or times available for this activity.
         Select “cancel” at the bottom of the page to keep your existing booking .
-        You can contact the [link]programme support team if you need further assistance.</p>
+        You can contact the <a href={this.props.supportUrl}>programme support team</a> if you need further assistance.</p>
       );
     }
 
