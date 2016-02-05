@@ -128,10 +128,28 @@ export function reducer(state = {}, action) {
       }
 
     case 'USER_UPDATE_PROFILE':
-      return {
-        ...state,
-        profilePic: action.payload.profilePic
-      };
+      switch (action.status) {
+        case 'PENDING':
+          return {
+            ...state,
+            profilePending: true
+          }
+
+        case 'REJECTED':
+          return {
+            ...state,
+            profilePending: false
+          }
+        case 'RESOLVED':
+          return {
+            ...state,
+            profilePic: action.payload,
+            profilePending: false
+          };
+
+        default:
+          return state;
+      }
 
     case 'SAVE_USER_DETAILS':
       switch (action.status) {

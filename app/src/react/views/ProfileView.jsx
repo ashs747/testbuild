@@ -41,7 +41,8 @@ var MappedDataCaptureForm = connect(mapCaptureFormProps)(FullDataCaptureForm);
 function mapUploadProfileProps(state) {
   return {
     buttonText: "UPLOAD / CHANGE",
-    profilePic: state.user.profilePic
+    profilePic: state.user.profilePic,
+    profilePicPending: state.user.profilePending
   };
 }
 var MappedUploadProfile = connect(mapUploadProfileProps)(UploadProfile);
