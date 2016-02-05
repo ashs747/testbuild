@@ -50,8 +50,7 @@ function mapConfirmationProps(state) {
     bookedSlot: (activity.myBookedEventAndSlot),
     facilitator,
     slot: state.booking.currentSelectedSlot.slot,
-    error: state.booking.error,
-    cancellationTerms: "Cancellation terms go here when we have them"
+    error: state.booking.error
   };
 }
 var MappedConfirmation = connect(mapConfirmationProps)(Confirmation);
@@ -62,7 +61,6 @@ function mapCompleteProps(state) {
   return {
     facilitator: `${facilitator.forename} ${facilitator.surname}`,
     slot: state.booking.currentSelectedSlot.slot,
-    cancellationTerms: "Cancellation terms go here when we have them",
     activity
   };
 }

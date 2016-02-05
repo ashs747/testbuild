@@ -19,6 +19,12 @@ class Confirmation extends React.Component {
     }
     let facilitator = this.props.facilitator;
     let name = `${facilitator.forename} ${facilitator.surname}`;
+    let cancellationTerms;
+    if (this.props.slot.cancelBy) {
+      cancellationTerms = (moment().isBefore(this.props.slot.cancelBy)) ?
+        `You have until ${moment(this.props.slot.cancelBy).format('MMMM Do YYYY')} to change your booking; after which you will need to contact Cirrus support to change it.` :
+        `After confirming your booking if you need to amend it you will need to contact Cirrus support.`
+    }
     return (
       <div className="confirm-selection">
         <h3>Confirm your selection</h3>
@@ -36,7 +42,7 @@ class Confirmation extends React.Component {
             <p><strong>Time: </strong>{`${moment(this.props.slot.startDate).format('HH:mm')} - ${moment(this.props.slot.endDate).format('HH:mm')}`}</p>
           </div>
         </div>
-        <h6><strong>Cancellation Terms</strong><br />{this.props.cancellationTerms}</h6>
+        <p><strong>Cancellation Terms: </strong><br />{cancellationTerms}</p>
         <a className="btn back" onClick={this.prevSlide}>BACK</a>
         <a className="btn confirm" onClick={this.confirm}>CONFIRM</a>
         {error}
