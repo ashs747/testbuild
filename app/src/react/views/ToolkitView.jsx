@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import store from '../../redux/store';
+import CloudinaryImg from '../components/CloudinaryImg.jsx';
 var dispatch = store.dispatch;
 
 class ToolkitView extends React.Component {
@@ -31,15 +32,18 @@ class ToolkitView extends React.Component {
   }
 
   mapToolkitWidgets(toolkits) {
-    let mappedWidgets = toolkits.map(toolkit => (
-      <div key={toolkit.id} className={`toolkit-widget ${this.props.profile}-item`}>
-        <div className="widget-icon">
-          <i className={`fa fa-${toolkit.icons}`}></i>
+    let mappedWidgets = toolkits.map(toolkit => {
+      let icon = toolkit.icon ? <CloudinaryImg file={toolkit.icon} /> : null;
+      return (
+        <div key={toolkit.id} className={`toolkit-widget ${this.props.profile}-item`}>
+          <div className="widget-icon">
+            {icon}
+          </div>
+          <h3>{toolkit.title}</h3>
+          <a className="btn" href={`/#/toolkit/${toolkit.slug}`}>VIEW</a>
         </div>
-        <h3>{toolkit.title}</h3>
-        <a className="btn" href={`/#/toolkit/${toolkit.slug}`}>VIEW</a>
-      </div>
-    ));
+      );
+    });
     return mappedWidgets;
   }
 }
