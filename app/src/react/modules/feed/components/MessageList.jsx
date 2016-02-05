@@ -43,7 +43,7 @@ class MessageList extends React.Component {
       let key = message.id;
       let name = message.user ? `${message.user.forename} ${message.user.surname}` : '';
       let content = message.content;
-      let date = moment(message.updatedOn);
+      let date = moment(message.date);
       let profilePic = (message.user && message.user.profilePic) ? message.user.profilePic : '';
       let files = message.files;
       var comments;
