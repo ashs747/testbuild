@@ -42,7 +42,8 @@ class UploadProfile extends React.Component {
   }
 
   render() {
-    let loading = this.state.loading ? <img src="assets/img/ajax-loader-red.gif" /> : this.props.buttonText;
+    
+    let loading = (this.state.loading || this.props.profilePicPending) ? <img src="assets/img/ajax-loader-red.gif" /> : this.props.buttonText;
     let content = this.props.width === "sm" ? (
       <div className="row">
         <div className="col-xs-6">
