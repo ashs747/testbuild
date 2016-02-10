@@ -65,6 +65,10 @@
       margin-top: 0;
       margin-bottom: 25px;
     }
+    .message-list {
+      max-height: 1200px;
+      overflow-y: scroll;
+    }
   }
   .module-content {
     padding: 20px;
@@ -127,6 +131,12 @@
     .header-top {
       h2 {
         margin-top: 10px;
+      }
+    }
+    .message-board {
+      .message-list {
+        max-height: none;
+        overflow-y: hidden;
       }
     }
   }
