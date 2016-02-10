@@ -17,7 +17,7 @@ class Complete extends React.Component {
     return (
       <div className="complete-slide">
         <h3>Booking Confirmed: {this.props.activity.name}</h3>
-        <p><strong>We have sent you a confirmation email with an outlook calendar invite. You can change your selected session time by visiting the coaching zone up to 48 hours before your appointment.</strong></p>
+        <p><strong>We have sent you a confirmation email with an outlook calendar invite.</strong></p>
         <div className="booking-details">
           <p><strong>Coach:</strong> {this.props.facilitator}</p>
           <p><strong>Date:</strong> {moment(this.props.slot.startDate).format('Do MMMM YYYY')}</p>
