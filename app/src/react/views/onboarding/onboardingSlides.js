@@ -89,12 +89,15 @@ export const onboardingSlides = [{
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="https://placehold.it/300x275?text=picture_here" />
+            <img src="assets/img/on-boarding-learning-journey.png" />
           </div>
           <div className="col-sm-5">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
               labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.</p>
           </div>
           <div className="clearfix"/>
         </div>

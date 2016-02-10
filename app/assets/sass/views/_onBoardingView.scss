@@ -141,6 +141,12 @@
 }
 
 .slideshow-module.journey {
+  p {
+    margin-top: 0;
+  }
+  img {
+    width: 100%;
+  }
   .title {
     text-align: center;
     color: $site_red;
