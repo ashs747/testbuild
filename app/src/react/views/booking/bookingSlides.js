@@ -15,7 +15,8 @@ function mapBookingDateDisplayProps(state) {
     activity,
     selectedDate: state.booking.currentSelectedDate,
     user: state.user,
-    width: state.width.profile
+    width: state.width.profile,
+    supportUrl: state.programme.supportUrl
   };
 };
 var MappedBookingDateDisplay = connect(mapBookingDateDisplayProps)(BookingDateDisplay);
@@ -49,8 +50,7 @@ function mapConfirmationProps(state) {
     bookedSlot: (activity.myBookedEventAndSlot),
     facilitator,
     slot: state.booking.currentSelectedSlot.slot,
-    error: state.booking.error,
-    cancellationTerms: "Cancellation terms go here when we have them"
+    error: state.booking.error
   };
 }
 var MappedConfirmation = connect(mapConfirmationProps)(Confirmation);
@@ -61,7 +61,6 @@ function mapCompleteProps(state) {
   return {
     facilitator: `${facilitator.forename} ${facilitator.surname}`,
     slot: state.booking.currentSelectedSlot.slot,
-    cancellationTerms: "Cancellation terms go here when we have them",
     activity
   };
 }

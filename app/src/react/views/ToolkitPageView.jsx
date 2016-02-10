@@ -3,6 +3,7 @@ import Markdown from 'react-remarkable';
 import {connect} from 'react-redux';
 import store from '../../redux/store';
 import FileDownload from '../components/FileDownload.jsx';
+import CloudinaryImg from '../components/CloudinaryImg.jsx';
 var dispatch = store.dispatch;
 
 class ToolkitPageView extends React.Component {
@@ -24,7 +25,9 @@ class ToolkitPageView extends React.Component {
         <div className="header">
           <div className="row">
             <div className="col-md-1 col-sm-2">
-              <div className="header-icon"><i className={`fa fa-${toolkit.icons}`}></i></div>
+              <div className="header-icon">
+                <CloudinaryImg file={toolkit.icon} />
+              </div>
             </div>
             <div className="col-md-8 col-sm-10">
               <h2>{toolkit.title}</h2>

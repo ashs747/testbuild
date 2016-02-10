@@ -13,6 +13,7 @@ function mapUploadForm(state) {
     buttonText: "UPLOAD",
     uploadURL: `${config.api.url}api/upload`,
     profilePic: state.user.profilePic,
+    profilePicPending: state.user.profilePending,
     authToken: state.auth.access_token, //TODO: one-time-key-to-token-exchange - server + services,
     width: state.width.profile
   };
