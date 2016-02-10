@@ -38,8 +38,8 @@ class WelcomeBlock extends React.Component {
     return (
       <div className="row body">
         <div className="title col-sm-9">
-          <h1>Hi {this.props.forename}<br /><br />Welcome to your leadership programme</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
+          <h1>Hi {this.props.forename},<br /><br />Welcome to your portal for the Managers to Leaders programme.  </h1>
+          <p>Come on in, we’ve been expecting you!</p>
         </div>
       </div>
     );
