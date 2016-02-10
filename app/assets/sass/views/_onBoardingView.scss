@@ -145,12 +145,13 @@
     margin-top: 0;
   }
   img {
-    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
   }
   .title {
     text-align: center;
     color: $site_red;
-    margin: 40px 0;
+    margin: 15px 0;
   }
   .content {
     text-align: left;
@@ -287,6 +288,11 @@
             margin-bottom: 2px;
             height: 35px;
           }
+        }
+      }
+      .journey, .progress {
+        img {
+          display: none;
         }
       }
     }
