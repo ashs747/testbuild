@@ -133,6 +133,12 @@
         margin-top: 10px;
       }
     }
+    .message-board {
+      .message-list {
+        max-height: none;
+        overflow-y: hidden;
+      }
+    }
   }
 }
 
