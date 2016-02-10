@@ -40,7 +40,8 @@
     margin: 50px auto;
   }
   .footer {
-    height: 100px;
+    height: calc(100% - 720px);
+    max-height: 100px;
     background-color: $dark_blue;
     position: absolute;
     bottom: 0;
