@@ -3,6 +3,7 @@ import {userSelectedSlot} from '../../../redux/actions/bookingActions';
 import {nextSlide} from '../../../redux/actions/slideActions';
 import _ from 'underscore';
 import moment from 'moment-timezone';
+import Tooltip from '../../modules/tooltip/Wrapper.jsx';
 
 class SlotDisplay extends React.Component {
 
@@ -79,7 +80,7 @@ class SlotDisplay extends React.Component {
   mapFacilitatorObjs(events) {
     let mappedEvents = events.map((event, i) => {
       let reducedSlots = this.reduceSlots(event.slots);
-      let mappedSlots = this.mapSlots(reducedSlots, event.facilitator);
+      let mappedSlots = this.mapSlots(reducedSlots, event.facilitator, event.tooltipTitle, event.tooltipBody);
       let name = (event.facilitator) ? `${event.facilitator.forename} ${event.facilitator.surname}` : "NO FACILITATOR ASSIGNED";
       return (
         <div key={i} className="facilitator-block">
@@ -123,18 +124,25 @@ class SlotDisplay extends React.Component {
     Called by mapFacilitatorObjs, and returns a mapped list of slots as table rows to be displayed
     in the desktop sized  facilitator widgets
   */
-  mapSlots(slots, facilitator) {
+  mapSlots(slots, facilitator, tooltipTitle, tooltipBody) {
     let mappedSlots = slots.map((slot, i) => {
       let className = "slot";
       if (i % 2 !== 0) {
         className += " odd";
       }
-      let button = (facilitator) ? <a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a> : <a className="btn" style={{cursor: "not-allowed"}}><s>BOOK</s></a>
+      let button = (facilitator) ? <a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a> : <a className="btn" style={{cursor: "not-allowed"}}><s>BOOK</s></a>;
+      var details = <p>Details TBC</p>;
+      if (tooltipTitle) {
+        details = <p>{tooltipTitle}</p>;
+        if (tooltipBody) {
+          details = <Tooltip trigger={details} content={tooltipBody} />
+        }
+      }
       return (
         <tr key={slot.id} className={className}>
           <td>{moment(slot.startDate).format('HH:mm')}</td>
           <td>{moment(slot.endDate).format('HH:mm')}</td>
-          <td>{slot.location}</td>
+          <td>{details}</td>
           <td>{button}</td>
         </tr>
       );
