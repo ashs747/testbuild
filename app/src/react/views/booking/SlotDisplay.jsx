@@ -130,7 +130,7 @@ class SlotDisplay extends React.Component {
       if (i % 2 !== 0) {
         className += " odd";
       }
-      let button = (facilitator) ? <a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a> : <a className="btn" style={{cursor: "not-allowed"}}><s>BOOK</s></a>;
+      let button = (facilitator) ? <a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a> : <a className="btn" style={{cursor: "not-allowed"}}><s>BOOK</s></a>
       var details = <p>Details TBC</p>;
       if (tooltipTitle) {
         details = <p>{tooltipTitle}</p>;
