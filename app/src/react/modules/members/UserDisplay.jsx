@@ -17,7 +17,7 @@ class UserDisplay extends React.Component {
         </div>
         <div className="user-display-tooltip-body">
           <div className="profile-image">
-            <CloudinaryImg default={this.props.default} file={this.props.image} />
+            <CloudinaryImg defaultImg={this.props.default} file={this.props.image} />
           </div>
           <p>{this.props.jobTitle}</p>
           <p>{this.props.businessArea}</p>
@@ -28,7 +28,7 @@ class UserDisplay extends React.Component {
     );
     return (
       <div className="user-display clearfix">
-        <CloudinaryImg default={this.props.default} file={this.props.image} className="profile-image" style={this.props.imageViewStyle} />
+        <CloudinaryImg defaultImg={this.props.default} file={this.props.image} className="profile-image" style={this.props.imageViewStyle} />
         <div className="name">
           <Tooltip trigger={<p>{this.props.name} ></p>} content={content} className="mini-profile-tooltip" />
         </div>
