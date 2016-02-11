@@ -1,5 +1,6 @@
 import {AUTH, AUTH_SUCCESS, AUTH_FAIL, COOKIE_CHECKED, LOGOUT, RECOVER_PASSWORD, RECOVER_PASSWORD_FINISHED, RECOVER_PASSWORD_EMAIL, RECOVER_PASSWORD_EMAIL_HIDE} from '../actions/authActions';
 import cookie from 'cookie-cutter';
+import { UPDATE_PATH } from 'redux-simple-router'
 
 const initialState = {
   waitingForLogin: false
@@ -10,6 +11,9 @@ export function reducer(state = initialState, action) {
     case 'LOGOUT':
       return {};
       break;
+
+    case UPDATE_PATH:
+      return {...state, waitingForLogin: false};
 
     case 'COOKIE_AUTH_LOADED':
       var cookieData = action.payload;
@@ -50,8 +54,7 @@ export function reducer(state = initialState, action) {
         case 'RESOLVED':
           var ns = {
             ...state,
-            ...payload,
-            waitingForLogin: false
+            ...payload
           };
           return ns;
 
