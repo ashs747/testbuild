@@ -18,10 +18,7 @@ class ToolkitView extends React.Component {
         <div className="header">
           <div className="header-text">
             <h1>Toolkit</h1>
-            <p>This collection of topic based ‘tools’ are designed to support your learning as you go through the programme.
-              As you work with your peers, you can discuss which are going to be most helpful for your individual learning plan.
-              You may find them handy to use with your teams. These great toolkits really help for when you want to do some
-              independent development or just want a quick refresher in your own time. Feel free to have an explore!</p>
+            <p>A collection of tools designed to support you through the programme and beyond. Straightforward tips and techniques to put into practice straight away.</p>
           </div>
         </div>
         <div className="body clearfix">

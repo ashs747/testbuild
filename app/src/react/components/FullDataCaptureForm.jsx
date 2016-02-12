@@ -47,6 +47,14 @@ class FullDataCaptureForm extends React.Component {
                 <input className="form-control" value={this.props.surname} onChange={this.onChange.bind(this, "surname")} />
               </div>
               <div className="panel-row clearfix">
+                <label>Email</label>
+                <input disabled className="form-control" value={this.props.email} />
+              </div>
+              <div className="panel-row clearfix">
+                <label>Cohort</label>
+                <input disabled className="form-control" value={this.props.cohort.name} />
+              </div>
+              <div className="panel-row clearfix">
                 <label>Job Title</label>
                 <input className="form-control" value={this.props.jobTitle} onChange={this.onChange.bind(this, "properties.jobTitle")} />
               </div>

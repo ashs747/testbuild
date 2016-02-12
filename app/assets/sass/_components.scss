@@ -11,10 +11,12 @@
   .title {
     background-color: $dark_blue;
     color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     h4 {
       font-weight: 600;
       margin: 0;
-      padding: 22px 18px;
+      padding: 18px;
     }
   }
   .resource-group {
@@ -107,7 +109,7 @@
     width: 33.3333%;
     padding: 20px 5px;
     float: left;
-    background-color: #f5f6f7;
+    background-color: $dark_grey;
     cursor: pointer;
     vertical-align: middle;
     min-height: 80px;

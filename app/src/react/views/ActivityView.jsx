@@ -61,7 +61,6 @@ class ActivityView extends React.Component {
     );
     let overview = (
       <div className="overview">
-        <h4 style={{marginTop: "25px", marginBottom: "30px"}}>Your learning journey</h4>
         {ljt}
         <div className="overview-inner">
           {preWork}

@@ -38,7 +38,7 @@ class WelcomeBlock extends React.Component {
     return (
       <div className="row body">
         <div className="title col-sm-9">
-          <h1>Hi {this.props.forename},<br /><br />Welcome to your portal for the Managers to Leaders programme.  </h1>
+          <h1>Hi {this.props.forename},<br /><br />Welcome to your portal for the Managers to Leaders programme.</h1>
           <p>Come on in, we’ve been expecting you!</p>
         </div>
       </div>
@@ -89,15 +89,12 @@ export const onboardingSlides = [{
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="assets/img/on-boarding-learning-journey.png" />
+            <img src="assets/img/on-boarding-learning-journey-new.png" />
           </div>
           <div className="col-sm-5">
-            <p>We have identified 5 essential leadership qualities which are the building blocks for every great leader in the States.
-              The 9 month ‘Managers to Leaders’ programme is built around these qualities and has been designed specifically for
+            <p>We have identified 5 essential leadership qualities which are the building blocks for every great leader in the States.</p>
+            <p>The 9 month ‘Managers to Leaders’ programme is built around these qualities and has been designed specifically for
               managers and leaders at States of Jersey.</p>
-            <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and a development
-              project. It includes a large variety of experiential activities and self-learning tools that will help you to accelerate,
-              stretch and grow.</p>
           </div>
           <div className="clearfix"/>
         </div>
@@ -119,8 +116,8 @@ export const onboardingSlides = [{
             <img src="https://placehold.it/300x275?text=picture_here" />
           </div>
           <div className="col-sm-5">
-            <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and a business challenge.
-              It includes a large variety of experiential activities and self-learning tools that will help you to accelerate, stretch and grow.</p>
+            <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and a business challenge.</p>
+            <p>It includes a large variety of experiential activities and self-learning tools that will help you to accelerate, stretch and grow.</p>
           </div>
           <div className="clearfix"/>
         </div>
@@ -142,9 +139,9 @@ export const onboardingSlides = [{
             <img src="https://placehold.it/300x275?text=picture_here" />
           </div>
           <div className="col-sm-5">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Your personalised learning journey gives you all the key dates and information you need to stay on track.</p>
+            <p>As you’ll be learning in a cohort most of the dates are fixed but you can book your coaching sessions at a time to suit you.</p>
+            <p>We’ll send you email reminders about upcoming events so you don’t forget.</p>
           </div>
           <div className="clearfix"/>
         </div>
@@ -166,7 +163,8 @@ export const onboardingSlides = [{
             <img src="https://placehold.it/300x275?text=picture_here" />
           </div>
           <div className="col-sm-5">
-            <p>This portal is here to guide you through your development journey.  You can access it on any device with an internet connection.  We’ll send you an email with the web address - store it in your bookmarks for quick access.</p>
+            <p>This portal is here to guide you through your development journey.  You can access it on any device with an internet connection.</p>
+            <p>We’ll send you an email with the web address - store it in your bookmarks for quick access.</p>
             <p>Webinars are best experienced on a laptop or desktop.</p>
           </div>
           <div className="clearfix"/>
@@ -182,7 +180,7 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="inner">
-          <h1>Upload a photo and choose a password</h1>
+          <h1>Now, add a photo and password</h1>
           <div className="row">
             <div className="upload-image col-sm-6">
               <MappedUploadProfile />

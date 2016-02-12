@@ -8,17 +8,21 @@ export default class LiAnchor extends React.Component {
   }
 
   componentDidMount() {
-    var subnav = $('.sub-nav');
-    var submenu = $('.sub-menu');
-    var height = subnav.height();
+    if (this.props.subMenu) {
+      var subNavSelector = '#sub-nav-' + this.props.subMenu;
+      var subMenuSelector = '#sub-menu-' + this.props.subMenu;
+      var subnav = $(subNavSelector);
+      var submenu = $(subMenuSelector);
+      var height = subnav.height();
 
-    submenu.hover(() => {
-      $('.sub-nav').stop();
-      $('.sub-nav').slideDown(250);
-    }, () => {
-      $('.sub-nav').stop();
-      $('.sub-nav').slideUp(250);
-    });
+      submenu.hover(() => {
+        subnav.stop();
+        subnav.slideDown(250);
+      }, () => {
+        subnav.stop();
+        subnav.slideUp(250);
+      });
+    }
   }
 
   render() {
@@ -36,7 +40,7 @@ export default class LiAnchor extends React.Component {
     }
 
     return (
-      <li onClick={this.doAction} className={className} >
+      <li onClick={this.doAction} className={className} id={`sub-menu-${this.props.subMenu}`}>
         {icon}
         <a>{this.props.text}</a>
         {arrow}

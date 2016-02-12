@@ -46,7 +46,6 @@ class ModuleView extends React.Component {
           {carousel}
         </div>
         <div className="left-content">
-          <h4 style={{marginTop: "45px", marginBottom: "30px", fontWeight: 600}}>Your learning journey</h4>
           {ljt}
           <div className="module-content">
             <h2>{module.name}</h2>
