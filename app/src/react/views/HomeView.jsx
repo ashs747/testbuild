@@ -32,19 +32,8 @@ class HomeView extends React.Component {
   }
 
   render() {
-    let carouselItems = [{
-      icon: "",
-      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }, {
-      icon: "",
-      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }, {
-      icon: "",
-      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }, {
-      icon: "",
-      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }];
+    let featuredToolkits = (this.props.toolkits) ? this.props.toolkits.filter(toolkit => toolkit.featured) : [];
+    let carouselItems = featuredToolkits.map(this.mapToolkits);
 
     let learningJourney = (
       <div className="home-learning">
@@ -138,6 +127,11 @@ class HomeView extends React.Component {
     return <div/>;
   }
 
+  mapToolkits(toolkit) {
+    console.log(toolkit);
+    return toolkit;
+  }
+
 }
 
 function mapHomeProps(state) {
@@ -145,7 +139,8 @@ function mapHomeProps(state) {
     profile: state.width.profile,
     modules: state.learningJourney,
     user: state.user,
-    supportUrl: state.programme.supportUrl
+    supportUrl: state.programme.supportUrl,
+    toolkits: state.content.toolkits
   };
 };
 
