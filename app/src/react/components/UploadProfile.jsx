@@ -42,7 +42,7 @@ class UploadProfile extends React.Component {
   }
 
   render() {
-    
+
     let loading = (this.state.loading || this.props.profilePicPending) ? <img src="assets/img/ajax-loader-red.gif" /> : this.props.buttonText;
     let content = this.props.width === "sm" ? (
       <div className="row">
@@ -53,7 +53,7 @@ class UploadProfile extends React.Component {
           <button className="btn" ref="uploadButton">{loading}</button>
         </div>
         <div className="col-xs-6">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
+          <p>Don’t be shy! Please add a profile picture to help people in your Cohort recognize you when you send messages and collaborate. If you’re on a mobile device you can use your camera to take one now.</p>
         </div>
       </div>
     ) : (
@@ -62,7 +62,7 @@ class UploadProfile extends React.Component {
           <CloudinaryImg file={this.props.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
         </div>
         <button className="btn" ref="uploadButton">{loading}</button>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
+        <p>Don’t be shy! Please add a profile picture to help people in your Cohort recognize you when you send messages and collaborate. If you’re on a mobile device you can use your camera to take one now.</p>
       </div>
     );
     return (

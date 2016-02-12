@@ -112,6 +112,29 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
+          <h1>An interactive learning experience</h1>
+        </div>
+        <div className="content">
+          <div className="col-sm-7">
+            <img src="https://placehold.it/300x275?text=picture_here" />
+          </div>
+          <div className="col-sm-5">
+            <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and a business challenge.
+              It includes a large variety of experiential activities and self-learning tools that will help you to accelerate, stretch and grow.</p>
+          </div>
+          <div className="clearfix"/>
+        </div>
+      </div>
+    </Provider>
+  ),
+  className: 'interactive',
+  showPrev: true,
+  showNext: true
+}, {
+  content: (
+    <Provider store={store}>
+      <div className="body">
+        <div className="title">
           <h1>Track your progress and see upcoming events</h1>
         </div>
         <div className="content">
@@ -134,14 +157,39 @@ export const onboardingSlides = [{
 }, {
   content: (
     <Provider store={store}>
-      <div className="inner">
-        <h1>Upload a photo and choose a password</h1>
-        <div className="row">
-          <div className="upload-image col-sm-6">
-            <MappedUploadProfile />
+      <div className="body">
+        <div className="title">
+          <h1>Accessible on any device</h1>
+        </div>
+        <div className="content">
+          <div className="col-sm-7">
+            <img src="https://placehold.it/300x275?text=picture_here" />
           </div>
-          <div className="col-sm-6">
-            <MappedDataCaptureForm />
+          <div className="col-sm-5">
+            <p>This portal is here to guide you through your development journey.  You can access it on any device with an internet connection.  We’ll send you an email with the web address - store it in your bookmarks for quick access.</p>
+            <p>Webinars are best experienced on a laptop or desktop.</p>
+          </div>
+          <div className="clearfix"/>
+        </div>
+      </div>
+    </Provider>
+  ),
+  className: 'devices',
+  showPrev: true,
+  showNext: true
+}, {
+  content: (
+    <Provider store={store}>
+      <div className="body">
+        <div className="inner">
+          <h1>Upload a photo and choose a password</h1>
+          <div className="row">
+            <div className="upload-image col-sm-6">
+              <MappedUploadProfile />
+            </div>
+            <div className="col-sm-6">
+              <MappedDataCaptureForm />
+            </div>
           </div>
         </div>
       </div>
