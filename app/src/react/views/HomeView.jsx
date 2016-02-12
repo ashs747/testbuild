@@ -32,19 +32,13 @@ class HomeView extends React.Component {
   }
 
   render() {
-    let carouselItems = [{
-      icon: "",
-      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }, {
-      icon: "",
-      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }, {
-      icon: "",
-      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }, {
-      icon: "",
-      copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }];
+    let featuredToolkits = (this.props.toolkits) ? this.props.toolkits.filter(toolkit => toolkit.featured) : [];
+    let carouselItems = featuredToolkits.map(toolkit => {
+      return {
+        icon: <CloudinaryImg file={toolkit.icon} disableAnchor={true}/>,
+        copy: <a href={`/#/toolkit/${toolkit.slug}`}>{toolkit.title}</a>
+      };
+    });
 
     let learningJourney = (
       <div className="home-learning">
@@ -145,7 +139,8 @@ function mapHomeProps(state) {
     profile: state.width.profile,
     modules: state.learningJourney,
     user: state.user,
-    supportUrl: state.programme.supportUrl
+    supportUrl: state.programme.supportUrl,
+    toolkits: state.content.toolkits
   };
 };
 
