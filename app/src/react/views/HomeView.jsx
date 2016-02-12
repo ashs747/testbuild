@@ -33,7 +33,12 @@ class HomeView extends React.Component {
 
   render() {
     let featuredToolkits = (this.props.toolkits) ? this.props.toolkits.filter(toolkit => toolkit.featured) : [];
-    let carouselItems = featuredToolkits.map(this.mapToolkits);
+    let carouselItems = featuredToolkits.map(toolkit => {
+      return {
+        icon: <CloudinaryImg file={toolkit.icon} disableAnchor={true}/>,
+        copy: <a href={`/#/toolkit/${toolkit.slug}`}>{toolkit.title}</a>
+      };
+    });
 
     let learningJourney = (
       <div className="home-learning">
@@ -125,11 +130,6 @@ class HomeView extends React.Component {
       );
     }
     return <div/>;
-  }
-
-  mapToolkits(toolkit) {
-    console.log(toolkit);
-    return toolkit;
   }
 
 }

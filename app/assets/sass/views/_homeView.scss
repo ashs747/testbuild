@@ -188,12 +188,18 @@
 .carousel {
   .icon {
     color: $white;
-    border: 2px solid $white;
-    height: 90px;
-    width: 90px;
+    height: 95px;
+    width: 95px;
+  }
+  img {
+    border-radius: 50%;
+    vertical-align: top;
   }
   p {
     font-weight: 600;
+  }
+  a {
+    color: $white;
   }
   .carousel-indicators {
     .active {
