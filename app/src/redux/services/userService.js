@@ -9,7 +9,7 @@ let apiRoot = config.api ? config.api.url : '';
 
 export function updateUserData() {
   var params = store.getState().user;
-  if (!params.password || !params.passwordConfirm || !params.forename || !params.surname || !params.properties.phone) {
+  if (!params.password || !params.passwordConfirm || !params.forename || !params.surname) {
     return Promise.reject("Please fill out all form fields");
   }
   if (params.password !== params.passwordConfirm) {

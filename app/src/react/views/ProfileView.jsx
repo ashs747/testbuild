@@ -1,6 +1,7 @@
 import React from 'react';
 import FullDataCaptureForm from '../components/FullDataCaptureForm.jsx';
 import UploadProfile from '../components/UploadProfile.jsx';
+import UpdatePassword from '../components/UpdatePassword.jsx';
 import {connect} from 'react-redux';
 import store from '../../redux/store';
 import {updateUserObject, saveUserProfile, saveUserPassword} from '../../redux/actions/usersActions';
@@ -19,26 +20,36 @@ function mapCaptureFormProps(state) {
     businessArea: user.properties ? user.properties.businessArea : "",
     skype: user.properties ? user.properties.skype : "",
     timezone: user.timezone,
-    password: user.password,
-    confirm: user.confirm,
     detailsLoading: user.detailsLoading,
     detailsSuccess: user.detailsSuccess,
     detailsError: user.detailsError,
+    updateUserDetails: ((field, value) => {
+      dispatch(updateUserObject(field, value));
+    }),
+    onDetailsSave: (() => {
+      dispatch(saveUserProfile());
+    })
+  };
+};
+var MappedDataCaptureForm = connect(mapCaptureFormProps)(FullDataCaptureForm);
+
+function mapUpdatePasswordProps(state) {
+  var user = state.user;
+  return {
+    password: user.password,
+    confirm: user.confirm,
     passwordLoading: user.passwordLoading,
     passwordSuccess: user.passwordSuccess,
     passwordError: user.passwordError,
     updateUserDetails: ((field, value) => {
       dispatch(updateUserObject(field, value));
     }),
-    onDetailsSave: (() => {
-      dispatch(saveUserProfile());
-    }),
     onPasswordSave: (() => {
       dispatch(saveUserPassword());
     })
-  };
-};
-var MappedDataCaptureForm = connect(mapCaptureFormProps)(FullDataCaptureForm);
+  }
+}
+var MappedUpdatePassword = connect(mapUpdatePasswordProps)(UpdatePassword);
 
 function mapUploadProfileProps(state) {
   return {
@@ -77,6 +88,7 @@ class ProfileView extends React.Component {
                   <MappedUploadProfile />
                 </div>
               </div>
+              <MappedUpdatePassword />
             </div>
           </div>
         </div>

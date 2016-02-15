@@ -1,4 +1,5 @@
 .home {
+  background-color: $white;
   .row {
     margin: 0;
   }
@@ -39,7 +40,7 @@
   }
   .right-bar {
     background-color: #F6F7F8;
-    height: 1416px;
+    height: 1406px;
     padding: 15px 10px;
     width: 30%;
     border-left: 1px solid #EFEFEF;
@@ -57,7 +58,7 @@
     }
     h4 {
       margin-top: 0;
-      margin-bottom: 20px;
+      margin-bottom: 0px;
     }
     .red-link {
       text-align: right;
@@ -66,6 +67,8 @@
       margin-bottom: 0;
       a {
         color: $site_red;
+        border-bottom: 1px solid #e9cfd0;
+        text-decoration: none;
       }
     }
   }
@@ -165,13 +168,16 @@
     }
   }
   .message-list {
-  	height: 1182px;
+  	height: 1100px;
   	overflow-y: auto;
   }
   .message-board {
     padding: 9px 15px;
     .post-form-status {
       background-color: $white;
+    }
+    h4 {
+      margin-bottom: 10px;
     }
   }
 }

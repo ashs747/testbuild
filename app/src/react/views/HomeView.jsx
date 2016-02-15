@@ -21,7 +21,8 @@ function mapHomeFeedProps(state) {
     showComments: true,
     showEmbedVideo: true,
     profilePic: state.user.profilePic,
-    title: "Programme feed"
+    title: "Programme feed",
+    subTitle: "Everyone on the programme can view, post or comment here. We’ll post links and videos to enrich your development and share news about the leadership programme."
   };
 };
 
@@ -46,7 +47,7 @@ class HomeView extends React.Component {
           <h4 className="semi-bold">Your learning journey</h4>
           <p>Keep track of your progress as you go through the programme. Click on any of the modules for more detail of the workshops, webinars, coaching and projects in each. You can also see a timetable of all the events in programme <a href="/#/personal-learning-journey">here ></a></p>
           <LearningJourneyWidget journeyModules={this.props.modules} smallWidget={this.props.profile === 'sm'}/>
-          <h6 className="red-link"><u><b><a href="/#/personal-learning-journey">VIEW DETAILED LEARNING JOURNEY ></a></b></u></h6>
+          <h6 className="red-link"><a href="/#/personal-learning-journey">VIEW DETAILED LEARNING JOURNEY ></a></h6>
         </div>
         <div className="grid-links">
           <div className="col-sm-6 grid-panel featured">

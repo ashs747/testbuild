@@ -15,7 +15,8 @@ function mapHomeFeedProps(state) {
     showComments: true,
     showEmbedVideo: true,
     profilePic: state.user.profilePic,
-    title: "Programme feed"
+    title: "Programme feed",
+    subTitle: "Everyone on the programme can view, post or comment here. We’ll post links and videos to enrich your development and share news about the leadership programme."
   };
 };
 
