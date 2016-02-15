@@ -29,11 +29,6 @@
       background-color: $light_grey;
       border: none;
     }
-    input:focus {
-      border-color: #B60011;
-      box-shadow: 0 1px 1px #ffffff inset, 0 0 8px #B60011;
-      outline: 0 none;
-    }
     .btn {
       background-color: $site_red;
       color: $white;

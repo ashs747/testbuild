@@ -7,9 +7,18 @@ textarea[disabled="true"] {
 	padding: 5px;
 	height: 100%;
 	word-wrap: break-word;
+	p {
+		font-size: 14px;
+	}
+	.message-name {
+		color: $site_red !important;
+		font-weight: 600;
+		border-bottom: 1px solid #e9cfd0;
+		line-height: 16px;
+	}
 }
 .message:first-child {
-	margin-top: 16px;
+	margin-top: 8px;
 }
 .message {
 	border: 1.5px solid $border_grey;
@@ -116,20 +125,16 @@ textarea[disabled="true"] {
 	}
 }
 
-textarea:focus {
-	border-color: $site_red;
-	box-shadow: 0 1px 0px $white inset, 0 0 6px $site_red;
-	outline: 0 none;
-}
-
 .comment-list {
 	background-color: $light_grey;
 	border-top: 1px solid $border_grey;
 	.show-comments-link {
 		padding: 15px;
 		a {
+			font-size: 14px;
 			cursor: pointer;
 			color: $body_color;
+			border-bottom: 1px solid #d3d3d3;
 		}
 		i {
 			font-size: 14px;

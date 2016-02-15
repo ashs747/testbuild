@@ -179,15 +179,15 @@ export const onboardingSlides = [{
   content: (
     <Provider store={store}>
       <div className="body">
-        <div className="inner">
+        <div className="title">
           <h1>Now, add a photo and password</h1>
-          <div className="row">
-            <div className="upload-image col-sm-6">
-              <MappedUploadProfile />
-            </div>
-            <div className="col-sm-6">
-              <MappedDataCaptureForm />
-            </div>
+        </div>
+        <div className="content clearfix">
+          <div className="upload-image col-sm-6">
+            <MappedUploadProfile />
+          </div>
+          <div className="col-sm-6">
+            <MappedDataCaptureForm />
           </div>
         </div>
       </div>

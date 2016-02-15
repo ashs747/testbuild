@@ -21,7 +21,7 @@ function mapHomeFeedProps(state) {
     showComments: true,
     showEmbedVideo: true,
     profilePic: state.user.profilePic,
-    title: "Programme Feed"
+    title: "Programme feed"
   };
 };
 
@@ -121,7 +121,7 @@ class HomeView extends React.Component {
               <h1>Welcome back {this.props.user.forename}</h1>
               <p className="semi-bold">Join the discussion, collaborate with people in your group</p>
               <div className="go-to-alz">
-                <a href="/#/action-learning-zone"><h6><b>GO TO ACTION LEARNING ZONE</b></h6></a>
+                <a href="/#/my-team"><h6><b>GO TO MY TEAM</b></h6></a>
               </div>
             </div>
           </div>
