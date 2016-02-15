@@ -122,7 +122,7 @@ class Header extends React.Component {
                 <ul>
                   <LiAnchor text="Home" url="/#/" icon="home" />
                   <LiAnchor text="Modules" icon="cubes" className="sub-menu" subMenu="module" childList={moduleSubNav} />
-                  <LiAnchor text="My Journey" icon="pencil-square-o" className="sub-menu" subMenu="journey" childList={myJourneySubNav} />
+                  <LiAnchor text="My Journey" icon="pencil-square-o" className="sub-menu" subMenu="journey"/>
                   <LiAnchor text="My Team" url="/#/action-learning-zone" icon="users"/>
                   <LiAnchor text="Toolkit" url="/#/toolkits" icon="wrench"/>
                 </ul>
