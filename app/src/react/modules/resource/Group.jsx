@@ -10,10 +10,12 @@ class Group extends React.Component {
   render() {
     let resources = this.props.resources.map((resource) => {
       let ref = "#";
-      if (resource.file) {
-        //Put more sorting logic in here to interpolate references uploaded to s3
-        if (resource.file.reference) {
-          ref = resource.file.reference;
+      if (resource.file && resource.file.metadata) {
+        var meta = resource.file.metadata;
+        for (var i = 0; i < meta.length; i++) {
+          if (meta[i].key === "url") {
+            ref = meta[i].value;
+          }
         }
       }
       return <Display key={`res-${ref}`} title={resource.name} reference={ref} icon={resource.type.icon} />;
