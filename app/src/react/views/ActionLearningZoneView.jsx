@@ -61,8 +61,10 @@ class ActionLearningZoneView extends React.Component {
     var messageBoard = (
       <div className="alz-message-board">
         <h4>{this.props.cohort.name} message board</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-        <ALZFeed />
+        <div className="message-inner">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+          <ALZFeed />
+        </div>
       </div>
     );
     var resoucesWidgets = (

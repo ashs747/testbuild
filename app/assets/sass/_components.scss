@@ -2,11 +2,8 @@
   border: 1px solid $dark_grey;
   margin: 0 0 20px 0;
   .col-sm-12 {
-    padding: 0;
+    padding: 0 22px;
     background-color: $white;
-    p {
-      margin-left: 10px;
-    }
   }
   .title {
     background-color: $dark_blue;
@@ -14,16 +11,17 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     h4 {
+      font-size: 21px;
       font-weight: 600;
       margin: 0;
-      padding: 18px;
+      padding: 12px;
     }
   }
   .resource-group {
     display: block;
     background-color: $white;
-    padding: 25px 15px;
-    border-bottom: 1px solid $dark_grey;
+    padding: 25px 0;
+    border-bottom: 2px solid $dark_grey;
     h5 {
       font-size: 20px;
       margin-top: 0;
@@ -37,7 +35,7 @@
       }
       p {
         display:inline;
-        margin-left: 10px;
+        margin-left: 20px;
         vertical-align: middle;
         font-weight: bold;
         border-bottom: 1px solid $underline_grey;
