@@ -34,7 +34,7 @@ class BookingDateDisplay extends React.Component {
       bookingMessage = (
         <div className="alert alert-warning">
           <p>You have a booking on <strong>{startDate.format('dddd Do MMMM YYYY')}</strong> at <strong>{`${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`}</strong>.
-            Select a new date or to cancel please click here to raise a support ticket</p>
+            Select a new date or to cancel please click <a href={this.props.supportUrl}>here</a> to raise a support ticket</p>
         </div>
       );
     }

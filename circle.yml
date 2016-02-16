@@ -16,17 +16,23 @@ test:
     - bower install
     - gulp build
 deployment:
-  elasticbeanstalk:
+  nightlies:
     branch: develop
     commands:
       - pip install awscli
       - chmod +x ./docker/run.sh
-      - ./docker/run.sh deployment $CIRCLE_SHA1 edge
+      - ./docker/run.sh deployment $CIRCLE_SHA1 nightly
 
   staging:
-    branch: master
+    branch: /^release-.*/
     commands:
       - pip install awscli
       - chmod +x ./docker/run.sh
       - ./docker/run.sh deployment $CIRCLE_SHA1 staging
 
+  release:
+    branch: master
+    commands:
+      - pip install awscli
+      - chmod +x ./docker/run.sh
+      - ./docker/run.sh deployment $CIRCLE_SHA1 live

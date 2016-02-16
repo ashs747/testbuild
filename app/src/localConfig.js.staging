@@ -1,7 +1,7 @@
 // use this file to add your own local config.
 module.exports = {
   api: {
-    url: 'http://strata-staging.elasticbeanstalk.com/app_dev.php/',
+    url: 'http://strata-staging.cirrus-connect.com/app_dev.php/',
     clientId: '1_1ent9nu4jjwkcggwk4os8wsgkcgosocgo4w4ksk800w804kkgk',
     appSecret: '6d4s86f1768808wg4swk8k4ws0sswgk0scg4sc4kg840kwsgws'
   }

@@ -40,7 +40,8 @@
     margin: 50px auto;
   }
   .footer {
-    height: 100px;
+    height: calc(100% - 720px);
+    max-height: 100px;
     background-color: $dark_blue;
     position: absolute;
     bottom: 0;
@@ -96,13 +97,14 @@
   .row {
     padding: 20px;
   }
-  .inner {
+  .body {
     padding: 25px;
     h1 {
       margin: 0 auto;
       max-width: 400px;
       color: $site_red;
       font-size: 40px;
+      text-align: center;
     }
   }
   .upload-profile {
@@ -141,10 +143,17 @@
 }
 
 .slideshow-module.journey {
+  p {
+    margin-top: 0;
+  }
+  img {
+    max-width: 100%;
+    margin-top: 20px;
+  }
   .title {
     text-align: center;
     color: $site_red;
-    margin: 40px 0;
+    margin: 15px 0;
   }
   .content {
     text-align: left;
@@ -158,6 +167,35 @@
     width: 70%;
     color: $site_red;
     margin: 20px auto;
+  }
+  .content {
+    text-align: left;
+    font-size: 16px;
+  }
+}
+
+.slideshow-module.interactive {
+  img {
+    max-width: 100%;
+  }
+  .title {
+    text-align: center;
+    color: $site_red;
+    margin: 30px 0;
+  }
+  .content {
+    text-align: left;
+    font-size: 16px;
+  }
+}
+.slideshow-module.devices {
+  img {
+    max-width: 100%;
+  }
+  .title {
+    text-align: center;
+    color: $site_red;
+    margin: 30px 0;
   }
   .content {
     text-align: left;
@@ -233,20 +271,18 @@
         width: 100%;
         border: none;
         padding: 0;
-        img {
-          height: 100px;
-        }
+        max-width: 100%;
         h1 {
           text-align: center;
           font-size: 24px;
           margin: 10px 0;
         }
         .body {
-          overflow: hidden;
           width: 100%;
           margin: 0;
           padding: 0;
-          height: unset;
+          height: calc(100% - 45px);
+          overflow-y: scroll;
         }
         .title {
           margin: 0 auto;
