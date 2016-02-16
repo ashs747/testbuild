@@ -32,7 +32,7 @@ export default class LiAnchor extends React.Component {
     let className = this.props.className;
 
     if (this.props.mobileSubNav) {
-      var type = (this.props.displaySubNav) ? "down" : "up";
+      var type = (this.props.displaySubNav) ? "up" : "down";
       arrow = <i className={`fa fa-chevron-${type} sub-arrow`} ></i>
       if (this.props.displaySubNav) {
         className += " no-border-bottom";
