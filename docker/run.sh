@@ -1,5 +1,6 @@
 #!/bin/bash
-let versionName="${3:0:3}-${2:0:8}"
+versionName=`echo ${3:0:3}-${2:0:8}`
+echo Deploying $versionName
 if [ "$1" == "deployment" ]
 then
   if [ "$3" == "staging" ]
