@@ -71,7 +71,7 @@
     background-color: $site_red;
     color: $white;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
     padding-top: 10px;
     cursor: pointer;
     padding-bottom: 10px;
@@ -82,6 +82,8 @@
       transition: color 0.25s;
     }
     i {
+      position: relative;
+      top: 2px;
       margin-right: 10px;
       font-size: 22px;
     }
