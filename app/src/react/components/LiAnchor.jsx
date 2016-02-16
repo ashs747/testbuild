@@ -8,17 +8,21 @@ export default class LiAnchor extends React.Component {
   }
 
   componentDidMount() {
-    var subnav = $('.sub-nav');
-    var submenu = $('.sub-menu');
-    var height = subnav.height();
+    if (this.props.subMenu) {
+      var subNavSelector = '#sub-nav-' + this.props.subMenu;
+      var subMenuSelector = '#sub-menu-' + this.props.subMenu;
+      var subnav = $(subNavSelector);
+      var submenu = $(subMenuSelector);
+      var height = subnav.height();
 
-    submenu.hover(() => {
-      $('.sub-nav').stop();
-      $('.sub-nav').slideDown(250);
-    }, () => {
-      $('.sub-nav').stop();
-      $('.sub-nav').slideUp(250);
-    });
+      submenu.hover(() => {
+        subnav.stop();
+        subnav.slideDown(250);
+      }, () => {
+        subnav.stop();
+        subnav.slideUp(250);
+      });
+    }
   }
 
   render() {
@@ -28,7 +32,7 @@ export default class LiAnchor extends React.Component {
     let className = this.props.className;
 
     if (this.props.mobileSubNav) {
-      var type = (this.props.displaySubNav) ? "down" : "up";
+      var type = (this.props.displaySubNav) ? "up" : "down";
       arrow = <i className={`fa fa-chevron-${type} sub-arrow`} ></i>
       if (this.props.displaySubNav) {
         className += " no-border-bottom";
@@ -36,9 +40,8 @@ export default class LiAnchor extends React.Component {
     }
 
     return (
-      <li onClick={this.doAction} className={className} >
-        {icon}
-        <a>{this.props.text}</a>
+      <li onClick={this.doAction} className={className} id={`sub-menu-${this.props.subMenu}`}>
+        <a href="#">{icon} {this.props.text}</a>
         {arrow}
         {subMenu}
       </li>

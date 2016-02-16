@@ -7,9 +7,19 @@ textarea[disabled="true"] {
 	padding: 5px;
 	height: 100%;
 	word-wrap: break-word;
+	p {
+		font-size: 14px;
+		line-height: 16px;
+	}
+	.message-name {
+		color: $site_red !important;
+		font-weight: 600;
+		border-bottom: 1px solid #e9cfd0;
+		line-height: 16px;
+	}
 }
 .message:first-child {
-	margin-top: 16px;
+	margin-top: 8px;
 }
 .message {
 	border: 1.5px solid $border_grey;
@@ -19,6 +29,7 @@ textarea[disabled="true"] {
 	.header {
 		background-color: $white;
 		padding: 15px;
+		padding-bottom: 10px;
 		img {
 			height: 40px;
 			width: 40px;
@@ -99,14 +110,14 @@ textarea[disabled="true"] {
 	border-top: 1px solid $border_grey;
 	img {
 		float: left;
-		width: 40px;
-		height: 40px;
+		width: 35px;
+		height: 35px;
 		border-radius: 50%;
 	}
 	.post-message {
 		float: left;
 		margin-left: 10px;
-		margin-top: 10px;
+		margin-top: 4px;
 		width: calc(100% - 50px);
 	}
 	textarea {
@@ -116,20 +127,16 @@ textarea[disabled="true"] {
 	}
 }
 
-textarea:focus {
-	border-color: $site_red;
-	box-shadow: 0 1px 0px $white inset, 0 0 6px $site_red;
-	outline: 0 none;
-}
-
 .comment-list {
 	background-color: $light_grey;
 	border-top: 1px solid $border_grey;
 	.show-comments-link {
 		padding: 15px;
 		a {
+			font-size: 14px;
 			cursor: pointer;
 			color: $body_color;
+			border-bottom: 1px solid #d3d3d3;
 		}
 		i {
 			font-size: 14px;
@@ -331,7 +338,7 @@ textarea:focus {
 }
 
 .mobile-form {
-	padding: 15px 10px;
+	padding: 10px;
 	.post {
 		width: 50%;
 		a {

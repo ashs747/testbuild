@@ -15,7 +15,8 @@ function mapHomeFeedProps(state) {
     showComments: true,
     showEmbedVideo: true,
     profilePic: state.user.profilePic,
-    title: "Programme feed"
+    title: "Programme feed",
+    subTitle: "Everyone on the programme can view, post or comment here. We’ll post links and videos to enrich your development and share news about the leadership programme."
   };
 };
 
@@ -46,7 +47,6 @@ class ModuleView extends React.Component {
           {carousel}
         </div>
         <div className="left-content">
-          <h4 style={{marginTop: "45px", marginBottom: "30px", fontWeight: 600}}>Your learning journey</h4>
           {ljt}
           <div className="module-content">
             <h2>{module.name}</h2>

@@ -1,7 +1,10 @@
 .activity-view {
-  background-color: $light_grey;
+  background-color: $white;
+  h4 {
+    font-size: 21px;
+  }
   .header {
-    padding: 75px 45px;
+    padding: 30px 45px;
     color: $white;
     background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -36,9 +39,10 @@
   }
   .right-bar {
     padding: 15px;
+    background-color: $light_grey;
   }
   .overview {
-    padding: 40px 25px;
+    padding: 15px 25px;
     h4 {
       font-weight: 600;
     }

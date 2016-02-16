@@ -1,4 +1,5 @@
 .home {
+  background-color: $white;
   .row {
     margin: 0;
   }
@@ -6,7 +7,7 @@
     background: url('/assets/img/home-introduction.png');
     background-size: cover;
     color: $white;
-    padding: 70px 0px;
+    padding: 40px 0px;
     text-align: center;
     .inner {
       max-width: 600px;
@@ -21,7 +22,7 @@
       border-radius: 50%;
       border: 3px solid $white;
       margin: 0 auto;
-      margin-top: 40px;
+      margin-top: 10px;
       display: block;
     }
     .go-to-alz {
@@ -38,14 +39,16 @@
     width: 70%;
   }
   .right-bar {
-    background-color: $light_grey;
-    height: 1416px;
+    background-color: #F6F7F8;
+    height: 1406px;
     padding: 15px 10px;
     width: 30%;
+    border-left: 1px solid #EFEFEF;
   }
   .home-learning {
     h6 {
       color: $site_red;
+      font-weight: 600;
     }
   }
   .learning-journey {
@@ -56,7 +59,7 @@
     }
     h4 {
       margin-top: 0;
-      margin-bottom: 20px;
+      margin-bottom: 0px;
     }
     .red-link {
       text-align: right;
@@ -65,6 +68,8 @@
       margin-bottom: 0;
       a {
         color: $site_red;
+        border-bottom: 1px solid #e9cfd0;
+        text-decoration: none;
       }
     }
   }
@@ -164,12 +169,17 @@
     }
   }
   .message-list {
-  	height: 1182px;
+  	height: 1100px;
   	overflow-y: auto;
   }
   .message-board {
-    background-color: $white;
     padding: 9px 15px;
+    .post-form-status {
+      background-color: $white;
+    }
+    h4 {
+      margin-bottom: 10px;
+    }
   }
 }
 
