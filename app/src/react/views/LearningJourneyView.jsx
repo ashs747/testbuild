@@ -31,7 +31,7 @@ class LearningJourneyView extends React.Component {
         <div className="header">
           <div className="text">
             <h2>Your learning journey</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            <p>Keep track of your progress and see what events are coming up next.  After each activity we’ll ask you for your feedback and to complete your learning log. If you’re not able to make any of the dates please click <a href={this.props.supportUrl}>here</a></p>
           </div>
         </div>
         <div className="body">
@@ -45,7 +45,8 @@ class LearningJourneyView extends React.Component {
 function maplearningJourneyViewProps(state) {
   return {
     modules: state.learningJourney,
-    width: state.width.profile
+    width: state.width.profile,
+    supportUrl: state.programme.supportUrl
   };
 }
 let mappedLearningJourneyView = connect(maplearningJourneyViewProps)(LearningJourneyView);

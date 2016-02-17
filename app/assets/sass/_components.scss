@@ -2,26 +2,26 @@
   border: 1px solid $dark_grey;
   margin: 0 0 20px 0;
   .col-sm-12 {
-    padding: 0;
+    padding: 0 22px;
     background-color: $white;
-    p {
-      margin-left: 10px;
-    }
   }
   .title {
     background-color: $dark_blue;
     color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     h4 {
+      font-size: 21px;
       font-weight: 600;
       margin: 0;
-      padding: 22px 18px;
+      padding: 12px;
     }
   }
   .resource-group {
     display: block;
     background-color: $white;
-    padding: 25px 15px;
-    border-bottom: 1px solid $dark_grey;
+    padding: 25px 0;
+    border-bottom: 2px solid $dark_grey;
     h5 {
       font-size: 20px;
       margin-top: 0;
@@ -35,7 +35,7 @@
       }
       p {
         display:inline;
-        margin-left: 10px;
+        margin-left: 20px;
         vertical-align: middle;
         font-weight: bold;
         border-bottom: 1px solid $underline_grey;
@@ -82,7 +82,7 @@
     .name {
       display: inline-block;
       border-bottom: 1px solid $underline_grey;
-      font-weight: bold;
+      font-weight: 600;
       margin-bottom: 0;
       p {
         margin-bottom: 0;
@@ -107,7 +107,7 @@
     width: 33.3333%;
     padding: 20px 5px;
     float: left;
-    background-color: #f5f6f7;
+    background-color: $dark_grey;
     cursor: pointer;
     vertical-align: middle;
     min-height: 80px;

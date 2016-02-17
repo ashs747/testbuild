@@ -57,7 +57,11 @@ export default class ImageGrid extends React.Component {
           }
           if (row[j].length === 0) {
             maxTargetInRow = (width > 321 && files.length > 2) ? 4 : 3;
-            file.dispWidth = Math.floor(width / maxTargetInRow);
+            if (files.length === 1 && file.oDimensions.aspect >= 1) {
+              file.dispWidth = width;
+            } else {
+              file.dispWidth = Math.floor(width / maxTargetInRow);
+            }
             file.dispHeight = Math.floor(file.dispWidth / file.oDimensions.aspect);
             row[j].push(file); // first file in row
           } else {

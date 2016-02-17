@@ -9,7 +9,7 @@ class LearningJourneyWidget extends React.Component {
 
   render() {
     if (Object.keys(this.props.journeyModules).length === 0) {
-      return <div />;
+      return <div><img src="assets/img/ajax-loader-trans.gif" style={{margin: "20px auto", display: "block"}}/></div>;
     }
     let i = 1;
     let rows = [];

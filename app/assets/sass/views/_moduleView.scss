@@ -1,7 +1,7 @@
 .module-view {
-  background-color: $light_grey;
+  background-color: $white;
   .header-top {
-    padding: 80px 40px;
+    padding: 35px;
     color: $white;
     background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -55,15 +55,19 @@
   .right-bar {
     padding: 10px;
     padding-bottom: 0;
+    border-left: 1px solid #EFEFEF;
+    background-color: $light_grey;
   }
   .message-board {
-    background-color: $white;
     border-radius: 2px;
-    padding: 40px 20px;
+    padding: 20px 20px;
     margin: 0;
     h4 {
       margin-top: 0;
-      margin-bottom: 25px;
+      margin-bottom: 10px;
+    }
+    .post-form-status {
+      background-color: $white;
     }
     .message-list {
       max-height: 1200px;
