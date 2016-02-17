@@ -41,7 +41,7 @@ export default class LiAnchor extends React.Component {
 
     return (
       <li onClick={this.doAction} className={className} id={`sub-menu-${this.props.subMenu}`}>
-        <a href="#">{icon} {this.props.text}</a>
+        <a>{icon} {this.props.text}</a>
         {arrow}
         {subMenu}
       </li>
