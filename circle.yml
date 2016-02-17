@@ -24,7 +24,7 @@ deployment:
       - ./docker/run.sh deployment $CIRCLE_SHA1 nightly
 
   staging:
-    branch: /release-*/
+    branch: [/release-.*/,/hotfix-.*/]
     commands:
       - pip install awscli
       - chmod +x ./docker/run.sh
