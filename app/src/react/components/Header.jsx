@@ -9,47 +9,58 @@ class Header extends React.Component {
     super();
     this.logout = this.logout.bind(this);
     this.toggleMobileNav = this.toggleMobileNav.bind(this);
-    this.displaySubNav = this.displaySubNav.bind(this);
+    this.displayModuleSubNav = this.displayModuleSubNav.bind(this);
+    this.displayJourneySubNav = this.displayJourneySubNav.bind(this);
     this.state = {
       showMobileNav: false,
-      displaySubNav: false
+      displayModuleSubNav: false,
+      displayJourneySubNav: false
     };
   }
 
   render() {
     let name = (this.props.user.forename) ? `${this.props.user.forename} ${this.props.user.surname}` : "";
-    let subnav = (
+    let moduleSubNav = (
       <ul>
-        <li className="sub-nav">
+        <li id="sub-nav-module" className="sub-nav">
           <div className="sub-nav-content clearfix">
-            <div className="col-sm-6">
-              <ul className="modules">
-                <a href="/#/module/1"><li><img src="assets/img/inspiring-connector.png"/><p>Module 1</p></li></a>
-                <a href="/#/module/2"><li><img src="assets/img/ambassador-for-change.png"/><p>Module 2</p></li></a>
-                <a href="/#/module/3"><li><img src="assets/img/agile-decision-maker.png"/><p>Module 3</p></li></a>
-                <a href="/#/module/4"><li><img src="assets/img/people-leader.png"/><p>Module 4</p></li></a>
-                <a href="/#/module/5"><li><img src="assets/img/performance-driver.png"/><p>Module 5</p></li></a>
-              </ul>
-            </div>
-            <div className="col-sm-6">
-              <ul className="other-links">
-                <a href="/#/programme"><li><i className="fa fa-circle"></i><p>Programme</p></li></a>
-                <a href="/#/personal-learning-journey"><li><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
-                <li><i className="fa fa-circle"></i><p>Learning Log</p></li>
-              </ul>
-            </div>
+            <ul className="modules">
+              <a href="/#/module/1"><li><img src="assets/img/inspiring-connector.png"/><p>Inspiring Connector</p></li></a>
+              <a href="/#/module/2"><li><img src="assets/img/ambassador-for-change.png"/><p>Ambassador for Change</p></li></a>
+              <a href="/#/module/3"><li><img src="assets/img/agile-decision-maker.png"/><p>Agile Decision Maker</p></li></a>
+              <a href="/#/module/4"><li><img src="assets/img/people-leader.png"/><p>People Leader</p></li></a>
+              <a href="/#/module/5"><li><img src="assets/img/performance-driver.png"/><p>Performance Driver</p></li></a>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    );
+    let journeySubNav = (
+      <ul>
+        <li id="sub-nav-journey" className="sub-nav">
+          <div className="sub-nav-content clearfix">
+            <ul className="modules">
+              <a href="/#/programme"><li><i className="fa fa-circle"></i><p>Programme</p></li></a>
+              <a href="/#/personal-learning-journey"><li><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
+              <a><li><i className="fa fa-circle"></i><p>Learning Log</p></li></a>
+            </ul>
           </div>
         </li>
       </ul>
     );
 
-    let mobileSubNav = (
+    let mobileModuleNav = (
       <div className="sub-nav">
-        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src="assets/img/inspiring-connector.png"/><p>Module 1</p></li></a>
-        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src="assets/img/ambassador-for-change.png"/><p>Module 2</p></li></a>
-        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src="assets/img/agile-decision-maker.png"/><p>Module 3</p></li></a>
-        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src="assets/img/people-leader.png"/><p>Module 4</p></li></a>
-        <a href="/#/module/5"><li onClick={this.toggleMobileNav}><img src="assets/img/performance-driver.png"/><p>Module 5</p></li></a>
+        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src="assets/img/inspiring-connector.png"/><p>Inspiring Connector</p></li></a>
+        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src="assets/img/ambassador-for-change.png"/><p>Ambassador for Change</p></li></a>
+        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src="assets/img/agile-decision-maker.png"/><p>Agile Decision Maker</p></li></a>
+        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src="assets/img/people-leader.png"/><p>People Leader</p></li></a>
+        <a href="/#/module/5"><li onClick={this.toggleMobileNav}><img src="assets/img/performance-driver.png"/><p>Performance Driver</p></li></a>
+      </div>
+    );
+
+    let mobileJourneyNav = (
+      <div className="sub-nav">
         <a href="/#/programme"><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Programme</p></li></a>
         <a href="/#/personal-learning-journey"><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
         <a><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Learning Log</p></li></a>
@@ -60,9 +71,11 @@ class Header extends React.Component {
       <div className="mobile-nav">
         <ul>
             <LiAnchor action={this.toggleMobileNav} text="Home" url="/#/" icon="home" />
-            <LiAnchor action={this.displaySubNav} text="My Learning" icon="pencil-square-o" className="my-learning" mobileSubNav={true} displaySubNav={this.state.displaySubNav}/>
-            {this.state.displaySubNav ? mobileSubNav : null}
-            <LiAnchor action={this.toggleMobileNav} text="My Team" url="/#/action-learning-zone" icon="users"/>
+            <LiAnchor action={this.displayModuleSubNav} text="Modules" icon="cubes" className="my-learning" mobileSubNav={true} displaySubNav={this.state.displayModuleSubNav}/>
+            {this.state.displayModuleSubNav ? mobileModuleNav : null}
+            <LiAnchor action={this.displayJourneySubNav} text="My Journey" icon="pencil-square-o" className="my-learning" mobileSubNav={true} displaySubNav={this.state.displayJourneySubNav}/>
+            {this.state.displayJourneySubNav ? mobileJourneyNav : null}
+            <LiAnchor action={this.toggleMobileNav} text="My Team" url="/#/my-team" icon="users"/>
             <LiAnchor action={this.toggleMobileNav} text="Toolkit" url="/#/toolkits" icon="wrench"/>
             <LiAnchor action={this.toggleMobileNav} text="Help" url={this.props.supportUrl} icon="question-circle"/>
             <li className="cirrus-footer"><img src="assets/img/cirrus-logo.png" /></li>
@@ -99,7 +112,7 @@ class Header extends React.Component {
                     <div className="profile-pic">
                       <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
                     </div>
-                    <p>Welcome <a href="/#/profile">{name}</a> | <a href="/#/login">Logout</a></p>
+                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl}>Help</a> | <a href="/#/login">Logout</a></p>
                   </div>
                   <img className="cirrus-logo" src="assets/img/cirrus-logo-header.png" alt="cirrus" />
                 </div>
@@ -107,10 +120,10 @@ class Header extends React.Component {
               <div className="nav-bottom-bar">
                 <ul>
                   <LiAnchor text="Home" url="/#/" icon="home" />
-                  <LiAnchor text="My Learning" icon="pencil-square-o" className="sub-menu" childList={subnav} />
-                  <LiAnchor text="My Team" url="/#/action-learning-zone" icon="users"/>
+                  <LiAnchor text="Modules" icon="cubes" className="sub-menu" subMenu="module" childList={moduleSubNav} />
+                  <LiAnchor text="My Journey" icon="pencil-square-o" className="sub-menu" subMenu="journey" childList={journeySubNav} />
+                  <LiAnchor text="My Team" url="/#/my-team" icon="users"/>
                   <LiAnchor text="Toolkit" url="/#/toolkits" icon="wrench"/>
-                  <LiAnchor text="Help" url={this.props.supportUrl} icon="question-circle"/>
                 </ul>
               </div>
             </div>
@@ -133,13 +146,20 @@ class Header extends React.Component {
   toggleMobileNav() {
     this.setState({
       showMobileNav: !this.state.showMobileNav,
-      displaySubNav: false
+      displayModuleSubNav: false,
+      displayJourneySubNav: false
     });
   }
 
-  displaySubNav() {
+  displayModuleSubNav() {
     this.setState({
-      displaySubNav: !this.state.displaySubNav
+      displayModuleSubNav: !this.state.displayModuleSubNav
+    });
+  }
+
+  displayJourneySubNav() {
+    this.setState({
+      displayJourneySubNav: !this.state.displayJourneySubNav
     });
   }
 }

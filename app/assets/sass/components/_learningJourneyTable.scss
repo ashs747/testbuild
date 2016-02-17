@@ -196,6 +196,7 @@
         width: 100%;
         color: $white;
         padding: 3px 12px;
+        font-weight: bold;
       }
       .icon {
         margin: 0 auto;
@@ -211,6 +212,9 @@
       }
       .red {
         background-color: $site_red;
+      }
+      p {
+        font-size: 14px;
       }
     }
   }

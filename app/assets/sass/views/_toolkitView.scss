@@ -1,17 +1,16 @@
 .toolkits {
   background-color: $white;
   .header {
-    padding: 75px;
+    padding: 30px;
     background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     color: $white;
-    text-align: center;
     h1 {
       font-size: 40px;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
       margin-top: 5px;
       font-weight: bold;
     }
@@ -20,9 +19,9 @@
       line-height: 20px;
     }
     .header-text {
-      max-width: 700px;
+      max-width: 535px;
       display: block;
-      margin: 0 auto;
+      margin-left: 5px;
     }
   }
   .body {

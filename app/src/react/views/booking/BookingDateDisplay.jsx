@@ -69,7 +69,7 @@ class BookingDateDisplay extends React.Component {
   */
   momentToString(eventsArray) {
     let stringEventDates = eventsArray.map(eventObj => {
-      return moment(eventObj.eventDate).format('MMMM Do YYYY');
+      return moment(eventObj.eventDate).format('dddd Do MMMM YYYY');
     });
     return stringEventDates;
   }

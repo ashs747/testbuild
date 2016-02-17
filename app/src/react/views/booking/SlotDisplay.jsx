@@ -67,7 +67,7 @@ class SlotDisplay extends React.Component {
   reduceEventDates(events, selectedDate) {
     let reducedEventDates = [];
     for (var i in events) {
-      if (moment(events[i].eventDate).format('MMMM Do YYYY') === this.props.selectedDate) {
+      if (moment(events[i].eventDate).format('dddd Do MMMM YYYY') === this.props.selectedDate) {
         reducedEventDates.push(events[i]);
       }
     }

@@ -37,7 +37,7 @@ class CommentList extends React.Component {
     let commentList = this.mapComments(this.props.comments);
     let displayCommentsLink = (commentList.length > 0) ? (
       <div className="show-comments-link">
-        <u><a className="semi-bold" onClick={this.showComments}>{`View ${commentList.length} Comment${(commentList.length > 1) ? "s" : ""} >`}</a></u>
+        <a className="semi-bold" onClick={this.showComments}>{`View ${commentList.length} Comment${(commentList.length > 1) ? "s" : ""} >`}</a>
       </div>
     ) : null;
     let content = (this.state.showComments || this.props.showComments) ? commentList : displayCommentsLink;

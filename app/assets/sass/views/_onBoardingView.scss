@@ -94,9 +94,6 @@
 
 .slideshow-module.profile{
   background-color: $light_grey;
-  .row {
-    padding: 20px;
-  }
   .body {
     padding: 25px;
     h1 {
@@ -107,17 +104,26 @@
       text-align: center;
     }
   }
+  .content {
+    margin-top: 20px;
+  }
+  .form-inputs {
+    padding-top: 20px;
+  }
   .upload-profile {
     background-color: $light_grey;
     padding: 10px;
     border: none;
     .circle-image {
-      height: 60px;
-      width: 60px;
+      height: 70px;
+      width: 70px;
       img {
         width: 100%;
         height: 100%;
       }
+    }
+    .btn {
+      margin-bottom: 10px;
     }
   }
 }
@@ -148,7 +154,7 @@
   }
   img {
     max-width: 100%;
-    margin-top: 20px;
+    max-height: 350px;
   }
   .title {
     text-align: center;
@@ -242,6 +248,14 @@
 
 @media (max-width: 767px) {
   .on-boarding {
+    img {
+      max-width: 100%;
+    }
+    .journey, .interactive, .progress, .devices {
+      p {
+        display: none !important;
+      }
+    }
     .slideshow-nav {
       width: calc(100% - 10px);
       bottom: 10px;
@@ -257,10 +271,10 @@
       }
     }
     .footer {
-      height: 50px;
+      height: 0px;
     }
     .main {
-      height: calc(100% - 105px);
+      height: calc(100% - 55px);
     }
     .slide-container {
       height: 100%;
@@ -317,6 +331,31 @@
             margin-bottom: 2px;
             height: 35px;
           }
+        }
+      }
+      .profile {
+        .content {
+          margin-top: 0;
+        }
+        .upload-profile {
+          padding: 0;
+        }
+        p {
+          margin-top: 0;
+        }
+        .form-inputs {
+          padding: 0;
+        }
+        .form-control {
+          margin-bottom: 5px;
+        }
+        .btn {
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+        .alert {
+          padding-top: 10px;
+          padding-bottom: 10px;
         }
       }
     }
