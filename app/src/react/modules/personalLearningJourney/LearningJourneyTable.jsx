@@ -29,7 +29,6 @@ class LearningJourneyTable extends React.Component {
         </div>
         {rows}
         <div className="footer">
-          <span>VIEW LEARNING LOG <i className="fa fa-chevron-right"></i></span>
         </div>
       </div>
     ) : (
@@ -59,7 +58,7 @@ class LearningJourneyTable extends React.Component {
         <tfoot className="footer">
           <tr>
             <td className={this.props.showIcon ? "show-icon-footer" : ""}></td>
-            <td colSpan="7"><span>VIEW LEARNING LOG ></span></td>
+            <td colSpan="7"></td>
           </tr>
         </tfoot>
       </table>
