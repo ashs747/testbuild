@@ -43,14 +43,6 @@ function mapResourceProps(state) {
 }
 var TeamResourcesWidget = connect(mapResourceProps)(ResourcesWidget);
 
-function mapProjectProps(state) {
-  return {
-    title: "Project Pages",
-    resources: state.content ? state.content.projects : []
-  };
-}
-var ProjectsWidget = connect(mapProjectProps)(ResourcesWidget);
-
 class ActionLearningZoneView extends React.Component {
 
   constructor() {
@@ -69,7 +61,6 @@ class ActionLearningZoneView extends React.Component {
     );
     var resoucesWidgets = (
       <div className="resources-widgets">
-        <ProjectsWidget />
         <TeamResourcesWidget />
       </div>
     );
