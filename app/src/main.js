@@ -53,17 +53,17 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/" component={connect(authStateToProps)(MainView)}>
           <Route path="personal-learning-journey" component={connect((state) => state)(LearningJourneyView)} />
-          <Route path="module" path="module/:module" component={connect()(ModuleView)} />
+          <Route path="module/:module" component={connect()(ModuleView)} />
           <Route path="my-team" component={connect()(ActionLearningZone)} />
           <Route path="faq" component={connect()(FAQView)} />
-          <Route path="project" path="project/:project" component={connect()(ProjectView)} />
+          <Route path="project/:project" component={connect()(ProjectView)} />
           <Route path="programme" component={connect()(LeadershipProgrammeView)} />
           <Route path="home" component={connect()(HomeView)} />
           <Route path="toolkits" component={connect()(ToolkitView)} />
-          <Route path="toolkit" path="toolkit/:toolkit" component={connect()(ToolkitPageView)} />
-          <Route path="activity" path="activity/:activity" component={connect()(ActivityView)} />
+          <Route path="toolkit/:toolkit" component={connect()(ToolkitPageView)} />
+          <Route path="activity/:activity" component={connect()(ActivityView)} />
           <Route path="profile" component={connect()(ProfileView)} />
-          <Route path="booking" path="booking/:module/:activity" component={connect()(BookingView)} />
+          <Route path="booking/:module/:activity" component={connect()(BookingView)} />
         </Route>
         <Route path="login" component={connect((state) => {
           return {
