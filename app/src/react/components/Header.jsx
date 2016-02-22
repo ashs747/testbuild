@@ -42,7 +42,6 @@ class Header extends React.Component {
             <ul className="modules">
               <a href="/#/programme"><li><i className="fa fa-circle"></i><p>Programme</p></li></a>
               <a href="/#/personal-learning-journey"><li><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
-              <a><li><i className="fa fa-circle"></i><p>Learning Log</p></li></a>
             </ul>
           </div>
         </li>
@@ -63,7 +62,6 @@ class Header extends React.Component {
       <div className="sub-nav">
         <a href="/#/programme"><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Programme</p></li></a>
         <a href="/#/personal-learning-journey"><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Learning Journey</p></li></a>
-        <a><li onClick={this.toggleMobileNav}><i className="fa fa-circle"></i><p>Learning Log</p></li></a>
       </div>
     );
 
