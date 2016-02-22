@@ -9,7 +9,7 @@ class Group extends React.Component {
 
   render() {
     let resources = this.props.resources.map((resource, i) => {
-      let ref = "#";
+      let ref = i;
       if (resource.file && resource.file.metadata) {
         var meta = resource.file.metadata;
         for (var i = 0; i < meta.length; i++) {
@@ -18,7 +18,7 @@ class Group extends React.Component {
           }
         }
       }
-      return <Display key={`res-${i}`} title={resource.name} reference={ref} icon={resource.type.icon} />;
+      return <Display key={ref} title={resource.name} reference={ref} icon={resource.type.icon} />;
     });
     let title = this.props.title ? <h5>{this.props.title}</h5> : null;
     return (
