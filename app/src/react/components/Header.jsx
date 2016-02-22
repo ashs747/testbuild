@@ -75,7 +75,7 @@ class Header extends React.Component {
             {this.state.displayModuleSubNav ? mobileModuleNav : null}
             <LiAnchor action={this.displayJourneySubNav} text="My Journey" icon="pencil-square-o" className="my-learning" mobileSubNav={true} displaySubNav={this.state.displayJourneySubNav}/>
             {this.state.displayJourneySubNav ? mobileJourneyNav : null}
-            <LiAnchor action={this.toggleMobileNav} text="My Team" url="/#/my-team" icon="users"/>
+            <LiAnchor action={this.toggleMobileNav} text="My Cohort" url="/#/my-cohort" icon="users"/>
             <LiAnchor action={this.toggleMobileNav} text="Toolkit" url="/#/toolkits" icon="wrench"/>
             <LiAnchor action={this.toggleMobileNav} text="Help" url={this.props.supportUrl} icon="question-circle"/>
             <li className="cirrus-footer"><img src="assets/img/cirrus-logo.png" /></li>
@@ -122,7 +122,7 @@ class Header extends React.Component {
                   <LiAnchor text="Home" url="/#/" icon="home" />
                   <LiAnchor text="Modules" icon="cubes" className="sub-menu" subMenu="module" childList={moduleSubNav} />
                   <LiAnchor text="My Journey" icon="pencil-square-o" className="sub-menu" subMenu="journey" childList={journeySubNav} />
-                  <LiAnchor text="My Team" url="/#/my-team" icon="users"/>
+                  <LiAnchor text="My Cohort" url="/#/my-cohort" icon="users"/>
                   <LiAnchor text="Toolkit" url="/#/toolkits" icon="wrench"/>
                 </ul>
               </div>

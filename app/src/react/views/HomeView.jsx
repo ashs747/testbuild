@@ -122,7 +122,7 @@ class HomeView extends React.Component {
               <h1>Welcome back {this.props.user.forename}</h1>
               <p className="semi-bold">Join the discussion, collaborate with people in your group</p>
               <div className="go-to-alz">
-                <a href="/#/my-team"><h6><b>GO TO MY TEAM</b></h6></a>
+                <a href="/#/my-cohort"><h6><b>GO TO MY COHORT</b></h6></a>
               </div>
             </div>
           </div>
