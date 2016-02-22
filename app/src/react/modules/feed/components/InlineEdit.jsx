@@ -8,6 +8,10 @@ export default class InlineEdit extends React.Component {
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSave = this.onSave.bind(this);
     this.keyHandler = this.keyHandler.bind(this);
+    this.keyUpHandler = this.keyUpHandler.bind(this);
+    this.state = {
+      shiftDown: false
+    };
   }
 
   render() {
@@ -20,7 +24,7 @@ export default class InlineEdit extends React.Component {
 
     return (
       <form onSubmit={this.onSave} status={this.props.state}>
-        <TextArea value={this.props.content} onChange={this.onChangeHandler} onKeyDown={this.keyHandler} onBlur={this.onSave}/>
+        <TextArea value={this.props.content} onChange={this.onChangeHandler} onKeyDown={this.keyHandler} onBlur={this.onSave} onKeyUp={this.keyUpHandler}/>
         {saveButton}
       </form>
     );
@@ -38,8 +42,18 @@ export default class InlineEdit extends React.Component {
 
   keyHandler(e) {
     var keyPressed = e.which || e.keyCode;
-    if (keyPressed === '13') {
+    if (keyPressed === 16) {
+      this.setState({shiftDown: true});
+    }
+    if (keyPressed === 13 && !this.state.shiftDown) {
       this.onSave(e);
+    }
+  }
+
+  keyUpHandler(e) {
+    var keyLifted = e.which || e.keyCode;
+    if (keyLifted === 16) {
+      this.setState({shiftDown: false});
     }
   }
 }
