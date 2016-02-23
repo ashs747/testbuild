@@ -135,8 +135,17 @@
   .module-view {
     .header-top {
       h2 {
-        margin-top: 10px;
+        margin-top: 20px;
+        margin-left: 10px;
       }
+      .icon {
+        height: 80px;
+        width: 80px;
+      }
+    }
+    .left-content {
+      padding-left: 10px;
+      padding-right: 10px;
     }
     .message-board {
       .message-list {
@@ -160,8 +169,22 @@
       padding: 0px;
     }
     .module-carousel {
+      height: 150px;
       .row {
         padding-top: 30px;
+      }
+      .carousel-control {
+        margin-top: 65px;
+        img {
+          height: 20px;
+          width: 20px;
+        }
+      }
+      .left {
+        margin-left: 5px;
+      }
+      .right {
+        margin-right: 5px;
       }
     }
   }
