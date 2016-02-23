@@ -18,10 +18,10 @@ class ToolkitView extends React.Component {
         <div className="header">
           <div className="header-text">
             <h1>Toolkit</h1>
-            <p>A collection of tools designed to support you through the programme and beyond. Straightforward tips and techniques to put into practice straight away.</p>
           </div>
         </div>
         <div className="body clearfix">
+          <p>A collection of tools designed to support you through the programme and beyond. Straightforward tips and techniques to put into practice straight away.</p>
           {toolkitWidgets}
         </div>
       </div>
