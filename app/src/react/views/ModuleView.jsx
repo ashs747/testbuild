@@ -34,8 +34,16 @@ class ModuleView extends React.Component {
     }
     let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} />;
     let items = module.files.map(file => {
+      var reference = '#';
+      if (file && file.metadata) {
+        file.metadata.forEach(meta => {
+          if (meta.key === "url") {
+            reference = meta.value;
+          }
+        });
+      }
       return {
-        backgroundImage: file.reference
+        backgroundImage: reference
       };
     });
     let moduleSlug = module.name.replace(/\s+/g, '-').toLowerCase();

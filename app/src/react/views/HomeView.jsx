@@ -76,10 +76,10 @@ class HomeView extends React.Component {
           </div>
           <div className="col-sm-6 grid-panel log">
             <div className="inner">
-              <h4 className="semi-bold">Your learning log</h4>
-              <p>Use this to reflect on your own progress and with your line manager in your PDP.</p>
+              <h4 className="semi-bold">Your learning journey</h4>
+              <p>View your full timetable of events and book your coaching calls.</p>
               <div className="find-out-more-red">
-                <h6><b><a href="#">FIND OUT MORE</a></b></h6>
+                <h6><b><a href="/#/personal-learning-journey">FIND OUT MORE</a></b></h6>
               </div>
             </div>
           </div>
@@ -122,7 +122,7 @@ class HomeView extends React.Component {
               <h1>Welcome back {this.props.user.forename}</h1>
               <p className="semi-bold">Join the discussion, collaborate with people in your group</p>
               <div className="go-to-alz">
-                <a href="/#/my-team"><h6><b>GO TO MY TEAM</b></h6></a>
+                <a href="/#/my-cohort"><h6><b>GO TO MY COHORT</b></h6></a>
               </div>
             </div>
           </div>

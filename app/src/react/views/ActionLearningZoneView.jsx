@@ -43,14 +43,6 @@ function mapResourceProps(state) {
 }
 var TeamResourcesWidget = connect(mapResourceProps)(ResourcesWidget);
 
-function mapProjectProps(state) {
-  return {
-    title: "Project Pages",
-    resources: state.content ? state.content.projects : []
-  };
-}
-var ProjectsWidget = connect(mapProjectProps)(ResourcesWidget);
-
 class ActionLearningZoneView extends React.Component {
 
   constructor() {
@@ -62,14 +54,13 @@ class ActionLearningZoneView extends React.Component {
       <div className="alz-message-board">
         <h4>{this.props.cohort.name} message board</h4>
         <div className="message-inner">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+          <p>This is a private feed. Only members of your cohort and our facilitators can view, post or comment on this board. As you work on your business challenge you can use this board to share back ideas and collaborate.  You can upload videos or photos from your phone, tablet or PC as well as adding links to vimeo or YouTube videos.</p>
           <ALZFeed />
         </div>
       </div>
     );
     var resoucesWidgets = (
       <div className="resources-widgets">
-        <ProjectsWidget />
         <TeamResourcesWidget />
       </div>
     );
@@ -109,7 +100,7 @@ class ActionLearningZoneView extends React.Component {
         <div className="row">
           <div className="col-sm-12 header-page">
             <div className="col-sm-8">
-              <h2>My Team</h2>
+              <h2>My Cohort</h2>
             </div>
             <div className="col-sm-4">
             </div>

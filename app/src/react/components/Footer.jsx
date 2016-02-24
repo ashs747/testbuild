@@ -21,10 +21,9 @@ class Footer extends React.Component {
               <ul className="list-one">
                 <LiAnchor text="Programme" url="/#/programme"/>
                 <LiAnchor text="Learning Journey" url="/#/personal-learning-journey"/>
-                <LiAnchor text="My Team" url="/#/my-team"/>
+                <LiAnchor text="My Cohort" url="/#/my-cohort"/>
               </ul>
               <ul className="list-two">
-                <LiAnchor text="Learning Log" url="#"/>
                 <LiAnchor text="Profile" url="/#/profile"/>
                 <LiAnchor text="Toolkit" url="/#/toolkits"/>
               </ul>

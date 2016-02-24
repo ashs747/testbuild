@@ -54,7 +54,7 @@ ReactDOM.render(
         <Route path="/" component={connect(authStateToProps)(MainView)}>
           <Route path="personal-learning-journey" component={connect((state) => state)(LearningJourneyView)} />
           <Route path="module/:module" component={connect()(ModuleView)} />
-          <Route path="my-team" component={connect()(ActionLearningZone)} />
+          <Route path="my-cohort" component={connect()(ActionLearningZone)} />
           <Route path="faq" component={connect()(FAQView)} />
           <Route path="project/:project" component={connect()(ProjectView)} />
           <Route path="programme" component={connect()(LeadershipProgrammeView)} />

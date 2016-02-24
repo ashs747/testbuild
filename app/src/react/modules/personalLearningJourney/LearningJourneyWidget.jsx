@@ -49,9 +49,9 @@ class LearningJourneyWidget extends React.Component {
             <td className="activity">
               <div className={currentModule}>
                 {notice}
-                {icon}
+                <a href={`/#/module/${theModule.moduleId}`}>{icon}</a>
                 <div className="module-text">
-                  <h5><b>Module {theModule.moduleNumber} - {theModule.name}</b></h5>
+                  <h5><a href={`/#/module/${theModule.moduleId}`}>Module {theModule.moduleNumber} - {theModule.name}</a></h5>
                   <h5 style={{fontSize: "16px"}}>{moment(theModule.startDate).format('MMMM YYYY')} - {moment(theModule.endDate).format('MMMM YYYY')}</h5>
                 </div>
               </div>
