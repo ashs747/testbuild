@@ -91,15 +91,12 @@ class ModuleView extends React.Component {
     })();
     return (
       <div className="module-view">
-        <div className="header-top clearfix">
-          <div className="col-sm-2">
-            <div className="icon">
-              {icon}
-            </div>
+        <div className="header-top clearfix" style={{backgroundImage: `url("assets/img/banner-${moduleSlug}.png")`}}>
+          <div className="icon">
+            {icon}
           </div>
-          <div className="col-sm-10">
-            <h2>{`Module ${this.props.params.module} - ${module.name}`}</h2>
-          </div>
+          <h4>Module {this.props.params.module}</h4>
+          <h2>{module.name}</h2>
         </div>
         {bodyContent}
       </div>

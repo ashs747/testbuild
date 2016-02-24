@@ -1,14 +1,15 @@
 .personal-learning-journey{
   background-color: $white;
   .header {
-    padding: 35px;
-    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    padding: 40px;
+    background: url('/assets/img/learning-journey.png') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     color: $white;
     h2 {
+      color: $dark_blue;
       font-size: 40px;
       margin-top: 20px;
       margin-bottom: 20px;

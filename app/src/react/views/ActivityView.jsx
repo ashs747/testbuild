@@ -98,7 +98,7 @@ class ActivityView extends React.Component {
     let icon = this.assignIcon(activity.type);
     return (
       <div className="activity-view">
-        <div className="header clearfix">
+        <div className="header clearfix" style={{backgroundImage: `url("assets/img/${activity.type.toLowerCase()}.png")`}}>
           <div className="col-sm-2">
             <div className="icon">
               <span><i className={icon}></i></span>
