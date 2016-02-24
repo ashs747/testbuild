@@ -113,7 +113,7 @@ export const onboardingSlides = [{
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="https://placehold.it/300x275?text=picture_here" />
+            <img src="assets/img/areas-of-expertise.png" />
           </div>
           <div className="col-sm-5">
             <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and a business challenge.</p>
@@ -136,7 +136,7 @@ export const onboardingSlides = [{
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="https://placehold.it/300x275?text=picture_here" />
+            <img src="assets/img/track-your-progress.png" />
           </div>
           <div className="col-sm-5">
             <p>Your personalised learning journey gives you all the key dates and information you need to stay on track.</p>
@@ -160,7 +160,7 @@ export const onboardingSlides = [{
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="https://placehold.it/300x275?text=picture_here" />
+            <img src="assets/img/any-device.png" />
           </div>
           <div className="col-sm-5">
             <p>This portal is here to guide you through your development journey.  You can access it on any device with an internet connection.</p>
