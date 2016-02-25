@@ -35,8 +35,6 @@
     "array-bracket-spacing": [2, "never"],
     "no-unneeded-ternary": 2,
     "react/jsx-uses-vars": 1,
-    "padded-blocks": [2, "never"],
-    "no-trailing-spaces": 2,
     "indent": [2, 2, {"SwitchCase": 1}],
     
     "no-undef": 2,
