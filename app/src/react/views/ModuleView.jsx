@@ -32,7 +32,7 @@ class ModuleView extends React.Component {
     if (!module) {
       return <div />;
     }
-    let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} />;
+    let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} accessToken={this.props.accessToken} />;
     let items = module.files.map(file => {
       var reference = '#';
       if (file && file.metadata) {
@@ -120,7 +120,8 @@ class ModuleView extends React.Component {
 function mapModuleProps(state) {
   return {
     modules: state.learningJourney,
-    profile: state.width.profile
+    profile: state.width.profile,
+    accessToken: state.auth.access_token
   };
 }
 

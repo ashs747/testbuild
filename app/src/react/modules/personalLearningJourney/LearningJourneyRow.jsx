@@ -3,7 +3,6 @@ import moment from 'moment-timezone';
 import Tooltip from '../tooltip/Wrapper.jsx';
 import Markdown from 'react-remarkable';
 import config from '../../../localConfig';
-import store from '../../../redux/store';
 
 class LearningJourneyRow extends React.Component {
   constructor() {
@@ -36,8 +35,8 @@ class LearningJourneyRow extends React.Component {
         let trigger = (type === "Workshop") ? <p>{event.tooltipTitle}</p> : <p>View Details</p>;
         location = <Tooltip trigger={trigger} content={<Markdown source={event.tooltipBody} />} />;
       }
-      if (config.api && store.getState().auth) {
-        ical = <a href={`${config.api.url}api/plj/booking/ical/${event.id}?access_token=${store.getState().auth.access_token}`} className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a>;
+      if (config.api && this.props.accessToken) {
+        ical = <a href={`${config.api.url}api/plj/booking/ical/${event.id}?access_token=${this.props.accessToken}`} className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a>;
       }
       if (type === "Project") {
         location = <p><a href={`/#/project/${activity.id}`}>Project Page</a></p>;
