@@ -34,7 +34,7 @@ class ActivityView extends React.Component {
     }
     activity = activity[0];
     let smallTable = (this.props.profile === "sm");
-    let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} /> : null;
+    let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} accessToken={this.props.accessToken}/> : null;
     let groupedResources = this.groupResources(activity.resources);
     let preWorkResources = groupedResources["pre-work"];
     if (!preWorkResources) {
@@ -162,7 +162,8 @@ class ActivityView extends React.Component {
 function mapActivityViewProps(state) {
   return {
     profile: state.width.profile,
-    modules: state.learningJourney
+    modules: state.learningJourney,
+    accessToken: state.auth.acces_token
   };
 };
 let mappedActivityView = connect(mapActivityViewProps)(ActivityView);
