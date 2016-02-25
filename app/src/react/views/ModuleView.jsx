@@ -32,7 +32,7 @@ class ModuleView extends React.Component {
     if (!module) {
       return <div />;
     }
-    let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} />;
+    let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} accessToken={this.props.accessToken} />;
     let items = module.files.map(file => {
       var reference = '#';
       if (file && file.metadata) {
@@ -91,15 +91,12 @@ class ModuleView extends React.Component {
     })();
     return (
       <div className="module-view">
-        <div className="header-top clearfix">
-          <div className="col-sm-2">
-            <div className="icon">
-              {icon}
-            </div>
+        <div className="header-top clearfix" style={{backgroundImage: `url("assets/img/banner-${moduleSlug}.png")`}}>
+          <div className="icon">
+            {icon}
           </div>
-          <div className="col-sm-10">
-            <h2>{`Module ${this.props.params.module} - ${module.name}`}</h2>
-          </div>
+          <h4>Module {this.props.params.module}</h4>
+          <h2>{module.name}</h2>
         </div>
         {bodyContent}
       </div>
@@ -120,7 +117,8 @@ class ModuleView extends React.Component {
 function mapModuleProps(state) {
   return {
     modules: state.learningJourney,
-    profile: state.width.profile
+    profile: state.width.profile,
+    accessToken: state.auth.access_token
   };
 }
 

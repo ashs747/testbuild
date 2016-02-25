@@ -50,7 +50,8 @@ function mapConfirmationProps(state) {
     bookedSlot: (activity.myBookedEventAndSlot),
     facilitator,
     slot: state.booking.currentSelectedSlot.slot,
-    error: state.booking.error
+    error: state.booking.error,
+    eventID: state.booking.currentSelectedSlot.eventID
   };
 }
 var MappedConfirmation = connect(mapConfirmationProps)(Confirmation);

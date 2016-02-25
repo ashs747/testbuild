@@ -12,7 +12,8 @@ export function reducer(state = initialState, action) {
       nextState = Object.assign({}, state);
       nextState.currentSelectedSlot = {
         slot: action.payload.slot,
-        facilitator: action.payload.facilitator
+        facilitator: action.payload.facilitator,
+        eventID: action.payload.eventID
       };
       return nextState;
 
