@@ -1,6 +1,6 @@
 import React from 'react';
 import {prevSlide} from '../../../redux/actions/slideActions';
-import {bookUserOnToSlot, getSlotsForActivity, removeBookingError, deleteSlotForUser} from '../../../redux/actions/bookingActions';
+import {bookUserOnToSlot, getSlotsForActivity, removeBookingError} from '../../../redux/actions/bookingActions';
 import {getPLJData} from '../../../redux/actions/learningJourneyActions';
 import moment from 'moment-timezone';
 
@@ -65,11 +65,7 @@ class Confirmation extends React.Component {
   }
 
   confirm() {
-    let bookedSlot = (this.props.bookedSlot) ? this.props.bookedSlot.id : null;
-    if (this.props.bookedSlot) {
-      this.props.dispatch(deleteSlotForUser(bookedSlot));
-    }
-    this.props.dispatch(bookUserOnToSlot(this.props.slot.id));
+    this.props.dispatch(bookUserOnToSlot(this.props.eventID, this.props.slot.startDate));
   }
 
   prevSlide() {
