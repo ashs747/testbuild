@@ -7,6 +7,7 @@ dependencies:
   pre:
     - rm -rf ~/.npm/cirrus
     - rm -rf ./node_modules/cirrus
+    
 test:
   override:
     - cp app/src/localConfig.js.dist app/src/localConfig.js
@@ -15,6 +16,7 @@ test:
     - npm rebuild node-sass
     - bower install
     - gulp build
+
 deployment:
   nightlies:
     branch: develop
@@ -24,7 +26,7 @@ deployment:
       - ./docker/run.sh deployment $CIRCLE_SHA1 nightly
 
   staging:
-    branch: [/release-.*/,/hotfix-.*/]
+    branch: [/release-.*/, /hotfix-.*/]
     commands:
       - pip install awscli
       - chmod +x ./docker/run.sh
