@@ -44,9 +44,16 @@ var uglifyifyOptions = {
   global: true
 };
 
-var buildOnceOpts = {
+var buildDevOptions = {
   entries: ['./app/src/main.js'],
   insertGlobals: true,
+  debug: true,
+  transform: ["browserify-shim", ["babelify", babelOptions]]
+};
+
+var buildProductionOpts = {
+  entries: ['./app/src/main.js'],
+  insertGlobals: false,
   debug: false,
   transform: ["browserify-shim", ["babelify", babelOptions], ["uglifyify", uglifyifyOptions]]
 };
@@ -82,12 +89,19 @@ function watchifyReloadWrapper(cb){
 
 module.exports = function(gulp) {
   gulp.task('bundlejs', ['eslint'], function() {
-    return browserify(buildOnceOpts)
+    return browserify(buildDevOptions)
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./app/dist'))
   });
 
+  gulp.task('bundlejslive', ['eslint'], function() {
+    return browserify(buildDevOptions)
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./app/dist'))
+  });
+  
   gulp.task('watchJSBuild', ['eslint'], watchifyReloadWrapper);
 
   gulp.task('babeljs', ['eslint'], function() {
@@ -143,7 +157,7 @@ module.exports = function(gulp) {
     watchifyReloadWrapper(browserSync.reload);
   });
 
-  gulp.task('build', ['bundlesass', 'bundlejs']);
+  gulp.task('build', ['bundlesass', 'bundlejslive']);
 
   gulp.task('browsersync', function() {
     browserSync.init({
