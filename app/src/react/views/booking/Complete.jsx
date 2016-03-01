@@ -22,7 +22,7 @@ class Complete extends React.Component {
         <h3>Booking Confirmed: {this.props.activity.name}</h3>
         <p><strong>We have sent you a confirmation email with an outlook calendar invite.</strong></p>
         <div className="booking-details">
-
+          {consultant}
           <p><strong>Date:</strong> {moment(this.props.slot.startDate).format('Do MMMM YYYY')}</p>
           <p><strong>Time:</strong> {`${moment(this.props.slot.startDate).format('HH:mm')} - ${moment(this.props.slot.endDate).format('HH:mm')}`}</p>
         </div>
