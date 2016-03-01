@@ -34,6 +34,13 @@ var MappedSlotDisplay = connect(mapSlotDisplayProps)(SlotDisplay);
 
 function mapFacilitatorBioProps(state) {
   let facilitator = state.booking.currentSelectedSlot.facilitator;
+  if (!facilitator) {
+    return {
+      bio: "",
+      name: "Consultant(s) to be confirmed",
+      profilePic: null
+    }
+  }
   let bio = (facilitator.properties && facilitator.properties.bio) ? facilitator.properties.bio : "";
   return {
     bio,
@@ -60,7 +67,7 @@ function mapCompleteProps(state) {
   let activity = getActivityFromLearningJourneyByUrl(state.learningJourney);
   let facilitator = state.booking.currentSelectedSlot.facilitator;
   return {
-    facilitator: `${facilitator.forename} ${facilitator.surname}`,
+    facilitator,
     slot: state.booking.currentSelectedSlot.slot,
     activity
   };
