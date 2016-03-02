@@ -41,7 +41,7 @@ class SlotDisplay extends React.Component {
       ) : null;
       return (
         <div className="mobile-selects">
-          <h3>Select a coach and time</h3>
+          <h3>Select a time</h3>
           <p>Your timezone is set to <strong>GMT</strong>. <a href="/#/profile">Edit <i className="fa fa-right-chevron"></i></a></p>
           {mobileJSX}
           {mobileBook}
@@ -80,12 +80,12 @@ class SlotDisplay extends React.Component {
   mapFacilitatorObjs(events) {
     let mappedEvents = events.map((event, i) => {
       let reducedSlots = this.reduceSlots(event.slots);
-      let mappedSlots = this.mapSlots(reducedSlots, event.facilitator, event.tooltipTitle, event.tooltipBody);
-      let name = (event.facilitator) ? `${event.facilitator.forename} ${event.facilitator.surname}` : "NO FACILITATOR ASSIGNED";
+      let mappedSlots = this.mapSlots(reducedSlots, event.facilitator, event.tooltipTitle, event.tooltipBody, event.id);
+      let name = (event.facilitator) ? `${event.facilitator.forename} ${event.facilitator.surname}` : "TBC";
       return (
         <div key={i} className="facilitator-block">
           <div className="block-header">
-            <h5>{`Coach: ${name}`}</h5>
+            <h5>{`Consultant: ${name}`}</h5>
           </div>
           <table>
             <thead>
@@ -124,13 +124,12 @@ class SlotDisplay extends React.Component {
     Called by mapFacilitatorObjs, and returns a mapped list of slots as table rows to be displayed
     in the desktop sized  facilitator widgets
   */
-  mapSlots(slots, facilitator, tooltipTitle, tooltipBody) {
+  mapSlots(slots, facilitator, tooltipTitle, tooltipBody, eventID) {
     let mappedSlots = slots.map((slot, i) => {
       let className = "slot";
       if (i % 2 !== 0) {
         className += " odd";
       }
-      let button = (facilitator) ? <a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator)}>BOOK</a> : <a className="btn" style={{cursor: "not-allowed"}}><s>BOOK</s></a>
       var details = <p>Details TBC</p>;
       if (tooltipTitle) {
         details = <p>{tooltipTitle}</p>;
@@ -143,7 +142,7 @@ class SlotDisplay extends React.Component {
           <td>{moment(slot.startDate).format('HH:mm')}</td>
           <td>{moment(slot.endDate).format('HH:mm')}</td>
           <td>{details}</td>
-          <td>{button}</td>
+          <td><a className="btn" onClick={this.clickedBook.bind(this, slot, facilitator, eventID)}>BOOK</a></td>
         </tr>
       );
     });
@@ -159,7 +158,7 @@ class SlotDisplay extends React.Component {
   */
   mapMobileSelects(eventObjs) {
     let facilitatorOptions = eventObjs.map(event => {
-      let facilitatorName = `${event.facilitator.forename} ${event.facilitator.surname}`;
+      let facilitatorName = (event.facilitator) ? `${event.facilitator.forename} ${event.facilitator.surname}` : "** Consultant TBC **";
       return <option key={event.id} value={event.id}>{facilitatorName}</option>;
     });
     let facilitatorSelect = (
@@ -217,18 +216,19 @@ class SlotDisplay extends React.Component {
         slot = event.slots[i];
       }
     }
-    this.clickedBook(slot, event.facilitator);
+    this.clickedBook(slot, event.facilitator, this.state.mobileEventId);
   }
 
   /*
     Dispatches the action that the user has selected a slot, used to progress the slideshow
     and store the booked information for the confirmation slide
   */
-  clickedBook(slot, facilitator, e) {
+  clickedBook(slot, facilitator, eventID, e) {
     if (e) {
       e.preventDefault();
     }
-    this.props.dispatch(userSelectedSlot(slot, facilitator));
+
+    this.props.dispatch(userSelectedSlot(slot, facilitator, eventID));
     this.props.dispatch(nextSlide('booking'));
   }
 

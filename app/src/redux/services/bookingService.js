@@ -4,8 +4,11 @@ var request = requesty();
 
 let apiRoot = config.api ? config.api.url : '';
 
-export const bookSlot = (slotID) => {
-  return request.get(apiRoot + 'api/plj/booking/book/' + slotID);
+export const bookSlot = (eventId, startTime) => {
+  let params = {
+    startTime
+  };
+  return request.post(apiRoot + 'api/plj/booking/book/' + eventId, params);
 };
 
 export const getSlots = (activityID) => {
