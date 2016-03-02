@@ -1,4 +1,5 @@
 import {castPropertiesToObject} from '../helpers/genericHelpers';
+import React from 'react';
 
 export function reducer(state = {}, action) {
   switch (action.type) {
@@ -161,7 +162,9 @@ export function reducer(state = {}, action) {
           };
 
         case 'REJECTED':
-          var error = "There was an error, please contact Cirrus support";
+          var error = <p>There was an error, please refresh your page and try again,
+            if the error persists please contact Cirrus support by clicking
+            <a href="http://soj-support.cirrus-connect.com/support/home">here</a></p>;
           if (typeof action.error === 'string') {
             error = action.error
           }
