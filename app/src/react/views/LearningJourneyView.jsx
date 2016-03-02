@@ -19,7 +19,7 @@ class LearningJourneyView extends React.Component {
         learningJourneyReactArray.push((
           <div className="plj-table" key={key}>
             <h4>Module {i}</h4>
-            <LearningJourneyTable journeyModule={this.props.modules[key]} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"}/>
+            <LearningJourneyTable journeyModule={this.props.modules[key]} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"} accessToken={this.props.accessToken}/>
           </div>
         ));
         i++;
@@ -47,7 +47,8 @@ function maplearningJourneyViewProps(state) {
   return {
     modules: state.learningJourney,
     width: state.width.profile,
-    supportUrl: state.programme.supportUrl
+    supportUrl: state.programme.supportUrl,
+    accessToken: state.auth.access_token
   };
 }
 let mappedLearningJourneyView = connect(maplearningJourneyViewProps)(LearningJourneyView);

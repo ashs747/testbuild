@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment-timezone';
 import Tooltip from '../tooltip/Wrapper.jsx';
 import Markdown from 'react-remarkable';
+import config from '../../../localConfig';
 
 class LearningJourneyRow extends React.Component {
   constructor() {
@@ -20,6 +21,7 @@ class LearningJourneyRow extends React.Component {
     let date = (event) ? moment(event.startDate).format('ddd Do MMM YYYY') : "n/a";
     let time = (event) ? `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}` : "n/a";
     let location = "n/a";
+    let ical;
 
     let iconRow = (this.props.showIcon) ? <td className="row-icon"><i className={icon}></i></td> : null;
 
@@ -32,6 +34,9 @@ class LearningJourneyRow extends React.Component {
       if (event.tooltipTitle && event.tooltipBody) {
         let trigger = (type === "Workshop") ? <p>{event.tooltipTitle}</p> : <p>View Details</p>;
         location = <Tooltip trigger={trigger} content={<Markdown source={event.tooltipBody} />} />;
+      }
+      if (config.api && this.props.accessToken) {
+        ical = <a href={`${config.api.url}api/plj/booking/ical/${event.id}?access_token=${this.props.accessToken}`} className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a>;
       }
       if (type === "Project") {
         location = <p><a href={`/#/project/${activity.id}`}>Project Page</a></p>;
@@ -52,7 +57,7 @@ class LearningJourneyRow extends React.Component {
         <td className="type">{type}</td>
         <td className="date">{date}</td>
         <td className="time">{time}</td>
-        <td className="ical"><a className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a></td>
+        <td className="ical">{ical}</td>
         <td className="location">{location}</td>
         <td className="status">{status}</td>
       </tr>
