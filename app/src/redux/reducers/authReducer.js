@@ -13,6 +13,7 @@ export function reducer(state = initialState, action) {
       break;
 
     case UPDATE_PATH:
+      window.scrollTo(0, 0);
       return {...state, waitingForLogin: false};
 
     case 'COOKIE_AUTH_LOADED':
