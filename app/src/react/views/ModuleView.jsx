@@ -5,7 +5,6 @@ import FeedWidget from '../modules/feed/Widget.jsx';
 import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import Carousel from '../components/Carousel.jsx';
-import Markdown from 'react-remarkable';
 
 function mapHomeFeedProps(state) {
   return {
@@ -58,7 +57,7 @@ class ModuleView extends React.Component {
           {ljt}
           <div className="module-content">
             <h2>{module.name}</h2>
-            <Markdown source={module.content} options={{html: true}}/>
+            <div dangerouslySetInnerHTML={{__html: module.content}}></div>
           </div>
         </div>
       </div>

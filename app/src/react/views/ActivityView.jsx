@@ -4,7 +4,7 @@ import {getActivityContent} from '../../redux/actions/contentActions';
 import store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
-import Markdown from 'react-remarkable';
+import marked from 'react-marked';
 import _ from 'underscore';
 var dispatch = store.dispatch;
 
@@ -27,6 +27,7 @@ class ActivityView extends React.Component {
   }
 
   render() {
+
     let moduleWithActivity = this.getModuleWithOnlySingleActivity(this.props.modules, this.props.params.activity);
     var activity = _.values(moduleWithActivity.activities);
     if (activity.length === 0) {
@@ -47,7 +48,7 @@ class ActivityView extends React.Component {
         preWork = (
           <div>
             <h4>Pre Work</h4>
-            <Markdown source={activity.myBookedEventAndSlot.content} />
+            <div dangerouslySetInnerHTML={{__html: activity.myBookedEventAndSlot.content}}></div>
           </div>
         );
       }
@@ -59,13 +60,14 @@ class ActivityView extends React.Component {
         <ResourceWidget title="Course notes and recordings" resources={groupedResources["course-notes"]} />
       </div>
     );
+
     let overview = (
       <div className="overview">
         {ljt}
         <div className="overview-inner">
           {preWork}
           <h4>Overview and objectives</h4>
-          <Markdown source={activity.content} />
+          <div dangerouslySetInnerHTML={{__html: activity.content}}></div>
         </div>
       </div>
     );
