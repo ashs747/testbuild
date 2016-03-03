@@ -4,7 +4,6 @@ import {getActivityContent} from '../../redux/actions/contentActions';
 import store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
-import marked from 'react-marked';
 import _ from 'underscore';
 var dispatch = store.dispatch;
 
