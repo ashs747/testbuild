@@ -31,8 +31,7 @@ class LearningJourneyRow extends React.Component {
 
     if (event) {
       if (event.tooltipTitle && event.tooltipBody) {
-        let trigger = (type === "Workshop") ? <p>{event.tooltipTitle}</p> : <p>View Details</p>;
-        location = <Tooltip trigger={trigger} content={<div dangerouslySetInnerHTML={{__html: event.tooltipBody}} />}/>;
+        location = <Tooltip trigger={<p>{event.tooltipTitle}</p>} content={<div dangerouslySetInnerHTML={{__html: event.tooltipBody}} />}/>;
       }
       if (config.api && this.props.accessToken) {
         ical = <a href={`${config.api.url}api/plj/booking/ical/${event.id}?access_token=${this.props.accessToken}`} className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a>;
