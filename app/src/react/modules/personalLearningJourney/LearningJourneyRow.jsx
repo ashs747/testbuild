@@ -70,7 +70,12 @@ class LearningJourneyRow extends React.Component {
       case "dates-tbc": return (<p>Dates TBC</p>);
       case "book": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>BOOK</a>);
       case "booked-can-change": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>CHANGE</a>);
-      case "booked-cannot-change": return (<i className="fa fa-info-circle"></i>);
+      case "booked-cannot-change": return (
+        <Tooltip
+          trigger={<i className="fa fa-info-circle"></i>}
+          content={<p>If you need to amend this booking, please contact support by clicking <a href={this.props.supportUrl}>here</a>.</p>}
+        />
+      );
       case "log": return (<a className="btn">LOG</a>);
       case "missed": return (<div className="icon red"><i className="fa fa-times"></i></div>);
       case "no-attendance-marked": return null;

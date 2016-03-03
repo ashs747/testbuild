@@ -31,7 +31,7 @@ class ModuleView extends React.Component {
     if (!module) {
       return <div />;
     }
-    let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} accessToken={this.props.accessToken} />;
+    let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} accessToken={this.props.accessToken} supportUrl={this.props.supportUrl}/>;
     let items = module.files.map(file => {
       var reference = '#';
       if (file && file.metadata) {
@@ -117,7 +117,8 @@ function mapModuleProps(state) {
   return {
     modules: state.learningJourney,
     profile: state.width.profile,
-    accessToken: state.auth.access_token
+    accessToken: state.auth.access_token,
+    supportUrl: state.programme.supportUrl
   };
 }
 

@@ -38,17 +38,17 @@ export function reducer(state = initialState, action) {
                   //If the event has passed, start to check attendance and rating
                   if (moment().isAfter(bookedEvent.endDate)) {
                     //If the event has been attended, check logging and rating
-                    if (bookedEvent.attendance === "Attended") {
+                    status = "no-attendance-marked";
+                    if (bookedEvent.attendance === "attended") {
                       if (activity.log) {
                         status = "completed";
                       } else {
-                        status = "log";
+                        //TODO: Enable this when learning log complete
+                        //status = "log";
                       }
                     //If event is missed
-                    } else if (bookedEvent.attendance === "Not Attended") {
+                    } else if (bookedEvent.attendance === "not_attended") {
                       status = "missed";
-                    } else {
-                      status = "no-attendance-marked";
                     }
                   }
                   //If we dont have a status, then the user can book
