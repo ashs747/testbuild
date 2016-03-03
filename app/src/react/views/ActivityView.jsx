@@ -26,7 +26,6 @@ class ActivityView extends React.Component {
   }
 
   render() {
-
     let moduleWithActivity = this.getModuleWithOnlySingleActivity(this.props.modules, this.props.params.activity);
     var activity = _.values(moduleWithActivity.activities);
     if (activity.length === 0) {
@@ -59,7 +58,6 @@ class ActivityView extends React.Component {
         <ResourceWidget title="Course notes and recordings" resources={groupedResources["course-notes"]} />
       </div>
     );
-
     let overview = (
       <div className="overview">
         {ljt}
