@@ -43,7 +43,7 @@ class ToolkitPageView extends React.Component {
           <div className="row">
             <div className="col-md-8 left-bar">
               <div className="content">
-                <Markdown source={toolkit.content} />
+                <div dangerouslySetInnerHTML={{__html:toolkit.content}} />
               </div>
             </div>
             <div className="col-md-12 hidden-lg hidden-md second-pdf">
@@ -53,7 +53,7 @@ class ToolkitPageView extends React.Component {
               <div className="hints-and-tips">
                 <h4>Hints and Tips</h4>
                 <div className="list">
-                  <Markdown source={toolkit.hints} />
+                  <div dangerouslySetInnerHTML={{__html:toolkit.hints}}/>
                 </div>
               </div>
             </div>
