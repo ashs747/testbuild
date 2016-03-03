@@ -5,6 +5,7 @@ import store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
 import _ from 'underscore';
+import moment from 'moment-timezone';
 var dispatch = store.dispatch;
 
 import TabStack from '../legacy/TabStack.jsx';
@@ -51,11 +52,14 @@ class ActivityView extends React.Component {
         );
       }
     }
+    var courseNotes = (groupedResources["course-notes"] && activity.myBookedeventAndSlot && moment().isAfter(activity.myBookedEventAndSlot.endDate)) ? (
+      <ResourceWidget title="Course notes and recordings" resources={groupedResources["course-notes"]} />
+    ) : null;
     let resources = (
       <div>
         <ResourceWidget title="Pre-work" resources={preWorkResources} />
         <ResourceWidget title="Resources" resources={groupedResources["resource"]} />
-        <ResourceWidget title="Course notes and recordings" resources={groupedResources["course-notes"]} />
+        {courseNotes}
       </div>
     );
     let overview = (
