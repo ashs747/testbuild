@@ -13,13 +13,13 @@ class LearningJourneyView extends React.Component {
   render() {
     let i = 1;
     let learningJourneyReactArray = [];
-    console.log(this.props.supportUrl);
+
     for (let key in this.props.modules) {
       if (this.props.modules.hasOwnProperty(key)) {
         learningJourneyReactArray.push((
           <div className="plj-table" key={key}>
             <h4>Module {i}</h4>
-            <LearningJourneyTable journeyModule={this.props.modules[key]} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"} accessToken={this.props.accessToken} supportUrl={this.props.supportUrl}/>
+            <LearningJourneyTable journeyModule={this.props.modules[key]} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"} accessToken={this.props.accessToken}/>
           </div>
         ));
         i++;
