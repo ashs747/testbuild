@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Tooltip from '../tooltip/Wrapper.jsx';
-import Markdown from 'react-remarkable';
 import config from '../../../localConfig';
 
 class LearningJourneyRow extends React.Component {
@@ -33,7 +32,7 @@ class LearningJourneyRow extends React.Component {
     if (event) {
       if (event.tooltipTitle && event.tooltipBody) {
         let trigger = (type === "Workshop") ? <p>{event.tooltipTitle}</p> : <p>View Details</p>;
-        location = <Tooltip trigger={trigger} content={<Markdown source={event.tooltipBody} />} />;
+        location = <Tooltip trigger={trigger} content={<div dangerouslySetInnerHTML={{__html: event.tooltipBody}} />}/>;
       }
       if (config.api && this.props.accessToken) {
         ical = <a href={`${config.api.url}api/plj/booking/ical/${event.id}?access_token=${this.props.accessToken}`} className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a>;

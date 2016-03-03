@@ -4,7 +4,6 @@ import {getActivityContent} from '../../redux/actions/contentActions';
 import store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
-import Markdown from 'react-remarkable';
 import _ from 'underscore';
 var dispatch = store.dispatch;
 
@@ -47,7 +46,7 @@ class ActivityView extends React.Component {
         preWork = (
           <div>
             <h4>Pre Work</h4>
-            <Markdown source={activity.myBookedEventAndSlot.content} />
+            <div dangerouslySetInnerHTML={{__html: activity.myBookedEventAndSlot.content}}></div>
           </div>
         );
       }
@@ -65,7 +64,7 @@ class ActivityView extends React.Component {
         <div className="overview-inner">
           {preWork}
           <h4>Overview and objectives</h4>
-          <Markdown source={activity.content} />
+          <div dangerouslySetInnerHTML={{__html: activity.content}}></div>
         </div>
       </div>
     );
