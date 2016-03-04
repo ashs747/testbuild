@@ -14,7 +14,8 @@ class BookingDateDisplay extends React.Component {
       return <div />;
     }
     let activity = this.props.activity;
-    let stringDateArray = this.momentToString(activity.availableEvents);
+    let reducedEvents = this.reduceDuplicateSlotDates(activity);
+    let stringDateArray = this.momentToString(reducedEvents);
     let uniqueDateArray = this.reduceEventDates(stringDateArray);
     let eventDateRows = this.mapDateToJsx(uniqueDateArray);
     let bookingMessage;
@@ -109,6 +110,42 @@ class BookingDateDisplay extends React.Component {
       return dateItem;
     });
     return mappedItems;
+  }
+
+  reduceDuplicateSlotDates(activity) {
+    var bookedSlot = activity.myBookedEventAndSlot;
+    var events = activity.availableEvents;
+
+    /*
+      If the user has a booking, loop through every available events.
+      We need to reduce the slots for that event so they don't see duplicates
+    */
+    if (!bookedSlot) {
+      return activity.availableEvents;
+    }
+
+    for (var i = 0; i < events.length; i++) {
+      /*
+        If we find an event in the available events array with the same id
+        as the booked slots' event, we have the events' slots we need to
+        dedupe down and remove duplicates
+      */
+      if (events[i].id === bookedSlot.eventId) {
+        /*
+          Replace the slots against the event with a new filtered array which
+          only contains elements where the start/end date are not the same as
+          the users booked slot times
+        */
+        events[i].slots = events[i].slots.filter(slot => {
+          return !(slot.startDate === bookedSlot.startDate && slot.endDate === bookedSlot.endDate);
+        })
+      }
+    }
+
+    /*
+      Return an array of filtered events where there are slots (after a dedupe)
+    */
+    return events.filter(event => event.slots.length > 0);
   }
 
   eventDateClicked(eventDate) {
