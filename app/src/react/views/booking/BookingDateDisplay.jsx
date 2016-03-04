@@ -117,8 +117,9 @@ class BookingDateDisplay extends React.Component {
     var events = activity.availableEvents;
 
     /*
-      If the user has a booking, loop through every available events.
-      We need to reduce the slots for that event so they don't see duplicates
+      If the user has a booking, loop through every available event for activity.
+      We need to reduce the slots for the same event as their booking so they
+      don't see duplicate dates.
     */
     if (!bookedSlot) {
       return activity.availableEvents;
@@ -143,7 +144,7 @@ class BookingDateDisplay extends React.Component {
     }
 
     /*
-      Return an array of filtered events where there are slots (after a dedupe)
+      Return an array of filtered events where there are actually slots (after a dedupe)
     */
     return events.filter(event => event.slots.length > 0);
   }
