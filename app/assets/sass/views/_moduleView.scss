@@ -164,6 +164,23 @@
     .header-top {
       text-align: center;
       padding: 10px;
+      .icon {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 10px;
+        img {
+          width: 80px;
+          height: 80px;
+        }
+      }
+      h2 {
+        margin: 0;
+      }
+    }
+    .learning-journey-module {
+      .heading {
+        text-align: center;
+      }
     }
     .view-stack {
       padding: 5px;
