@@ -43,10 +43,12 @@
 @media (max-width: 767px) {
   .personal-learning-journey {
     .header {
-      padding: 20px;
-    }
-    h2 {
-      margin-top: 10px;
+      text-align: center;
+      padding: 10px;
+      background-position: left;
+      h2 {
+        margin: 10px;
+      }
     }
     .body {
       padding: 10px;

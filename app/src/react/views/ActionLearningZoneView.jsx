@@ -97,13 +97,9 @@ class ActionLearningZoneView extends React.Component {
     })();
     return (
       <div className="action-learning-zone">
-        <div className="row">
-          <div className="col-sm-12 header-page">
-            <div className="col-sm-8">
-              <h2>My Cohort</h2>
-            </div>
-            <div className="col-sm-4">
-            </div>
+        <div className="col-sm-12 header-page">
+          <div className="col-sm-8">
+            <h2>My Cohort</h2>
           </div>
         </div>
         {bodyContent}

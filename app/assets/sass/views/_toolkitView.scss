@@ -80,7 +80,12 @@
 @media (max-width: 767px) {
   .toolkits {
     .header {
+      text-align: center;
       padding: 30px;
+      background-position: left;
+      h1 {
+        margin: 0;
+      }
     }
   }
   .toolkit-widget {
