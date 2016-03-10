@@ -110,7 +110,7 @@ class Header extends React.Component {
                     <div className="profile-pic">
                       <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
                     </div>
-                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl}>Help</a> | <a href="/#/login">Logout</a></p>
+                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl} target="_blank">Help</a> | <a href="/#/login">Logout</a></p>
                   </div>
                   <img className="cirrus-logo" src="assets/img/cirrus-logo-header.png" alt="cirrus" />
                 </div>
