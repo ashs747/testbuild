@@ -51,7 +51,7 @@ export default class LiAnchor extends React.Component {
   doAction(e) {
     if (this.props.url) {
       if (this.props.target) {
-      window.open(this.props.url, this.props.target);
+        window.open(this.props.url, this.props.target);
       } else {
         window.location.href = this.props.url;
       }

@@ -72,7 +72,7 @@ class LearningJourneyRow extends React.Component {
       case "booked-cannot-change": return (
         <Tooltip
           trigger={<i className="fa fa-info-circle"></i>}
-          content={<p>If you need to amend this booking, please contact support by clicking <a href={this.props.supportUrl}>here</a>.</p>}
+          content={<p>If you need to amend this booking, please contact support by clicking <a href={this.props.supportUrl} target="_blank">here</a>.</p>}
         />
       );
       case "log": return (<a className="btn">LOG</a>);
