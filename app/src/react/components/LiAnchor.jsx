@@ -38,10 +38,10 @@ export default class LiAnchor extends React.Component {
         className += " no-border-bottom";
       }
     }
-
+    let target = (this.props.target) ? this.props.target : '_self';
     return (
       <li onClick={this.doAction} className={className} id={`sub-menu-${this.props.subMenu}`}>
-        <a>{icon} {this.props.text}</a>
+        <a target={target}>{icon} {this.props.text} </a>
         {arrow}
         {subMenu}
       </li>
@@ -50,7 +50,11 @@ export default class LiAnchor extends React.Component {
 
   doAction(e) {
     if (this.props.url) {
-      window.location.href = this.props.url;
+      if (this.props.target) {
+        window.open(this.props.url, this.props.target);
+      } else {
+        window.location.href = this.props.url;
+      }
     }
     if (this.props.action) {
       e.preventDefault();

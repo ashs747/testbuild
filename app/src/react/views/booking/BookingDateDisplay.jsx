@@ -24,7 +24,7 @@ class BookingDateDisplay extends React.Component {
       eventDateRows = (
         <p className="no-dates">There are currently no alternative dates or times available for this activity.
         Select “cancel” at the bottom of the page to keep your existing booking .
-        You can contact the <a href={this.props.supportUrl}>programme support team</a> if you need further assistance.</p>
+        You can contact the <a href={this.props.supportUrl} target="_blank">programme support team</a> if you need further assistance.</p>
       );
     }
 
@@ -35,7 +35,7 @@ class BookingDateDisplay extends React.Component {
       bookingMessage = (
         <div className="alert alert-warning">
           <p>You have a booking on <strong>{startDate.format('dddd Do MMMM YYYY')}</strong> at <strong>{`${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`}</strong>.
-            Select a new date or to cancel please click <a href={this.props.supportUrl}>here</a> to raise a support ticket</p>
+            Select a new date or to cancel please click <a href={this.props.supportUrl} target="_blank">here</a> to raise a support ticket</p>
         </div>
       );
     }
