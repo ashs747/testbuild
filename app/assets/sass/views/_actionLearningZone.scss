@@ -69,10 +69,19 @@
   .action-learning-zone {
     .header-page {
       height: inherit;
-      height: inherit;
+      padding: 20px;
       text-align: center;
       h2 {
         margin: 0;
+        font-size: 30px;
+      }
+    }
+    .tab-btn {
+      min-height: 30px;
+    }
+    .alz-message-board {
+      .message-inner {
+        padding: 0 10px;
       }
     }
   }
