@@ -43,6 +43,12 @@ class LearningJourneyRow extends React.Component {
       }
     }
 
+    if (!this.props.smallTable) {
+      date = (date) ? date : "n/a";
+      time = (time) ? time : "n/a";
+      location = (location) ? location : "n/a";
+    }
+
     let content = this.props.smallTable ? (
       <div className="plj-small-row clearfix">
         <p>{title}</p>
