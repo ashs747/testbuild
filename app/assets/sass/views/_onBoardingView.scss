@@ -16,11 +16,6 @@
     background-color: $white;
     padding: 10px;
     height: 100px;
-    .logo {
-      margin-bottom: 0;
-      width: 100%;
-      max-width: 355px;
-    }
   }
   .slide-container {
     opacity: 0.9;
@@ -261,13 +256,15 @@
       bottom: 10px;
     }
     .header {
-      padding: 5px;
+      padding: 0px;
       height: 55px;
-      .logo {
+      .header-logo {
         height: 100%;
-        width: unset;
-        margin: 0 auto;
+      }
+      img {
         display: block;
+        margin: 0 auto;
+        height: 100%;
       }
     }
     .footer {

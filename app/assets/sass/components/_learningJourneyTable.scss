@@ -466,7 +466,7 @@
 
 .plj-small-row {
   border: 1px solid $dark_grey;
-  text-align: center;
+  padding: 10px;
   .tooltip-trigger {
     display: inline-block;
     position: relative;
@@ -474,11 +474,32 @@
       left: -50%;
     }
   }
+  p {
+    margin: 5px 0;
+  }
+  a {
+    color: $dark_blue;
+    font-weight: 600;
+    border-bottom: 1px solid $border_grey;
+  }
+  .tooltip-trigger p {
+    font-weight: 600;
+    border-bottom: 1px solid $border_grey;
+  }
+  .col-xs-6 {
+    padding: 0;
+  }
+  .col-xs-6:last-child {
+    text-align: right;
+  }
   .btn {
     width: 100%;
     max-width: 90px;
     background-color: $site_red;
     color: $white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float: right;
   }
   .icon {
     width: 22px;

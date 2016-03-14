@@ -1,13 +1,13 @@
 .toolkit-page {
   background-color: $white;
   .header {
-    padding: 50px;
-    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    padding: 35px;
+    background-color: #E0DCD6;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    color: $white;
+    color: $dark_blue;
     text-align: left;
     .header-icon {
       text-align: center;
@@ -33,13 +33,13 @@
     .pdf {
       text-align: center;
       font-weight: bold;
-      border: 3px solid $white;
+      border: 3px solid $dark_blue;
       padding: 10px 30px;
-      color: $white;
+      color: $dark_blue;
       cursor: pointer;
       margin-top: 20px;
       a {
-        color: $white;
+        color: $dark_blue;
       }
     }
   }
@@ -69,6 +69,7 @@
       display: block;
       margin: 20px auto;
       max-width: 100%;
+      height: inherit !important;
     }
   }
   .right-bar {

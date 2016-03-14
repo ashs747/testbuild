@@ -17,9 +17,9 @@ class LearningJourneyRow extends React.Component {
     let icon = this.assignIcon(type);
     let status = (type !== "Project") ? this.mapStatus(activity, this.props.moduleId) : null;
 
-    let date = (event) ? moment(event.startDate).format('ddd Do MMM YYYY') : "n/a";
-    let time = (event) ? `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}` : "n/a";
-    let location = "n/a";
+    let date = (event) ? moment(event.startDate).format('ddd Do MMM YYYY') : null;
+    let time = (event) ? `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}` : null;
+    let location;
     let ical;
 
     let iconRow = (this.props.showIcon) ? <td className="row-icon"><i className={icon}></i></td> : null;
@@ -41,12 +41,19 @@ class LearningJourneyRow extends React.Component {
       }
     }
 
+    if (!this.props.smallTable) {
+      date = (date) ? date : "n/a";
+      time = (time) ? time : "n/a";
+      location = (location) ? location : "n/a";
+    }
+
     let content = this.props.smallTable ? (
-      <div className="plj-small-row">
-        <p>Title: {title}</p>
-        <p>Date: {date}</p>
-        <p>Location: {location}</p>
-        {status}
+      <div className="plj-small-row clearfix">
+        <p>{title}</p>
+        <p>{type}{date ? ` - ${date}` : null}</p>
+        <p>{time}</p>
+        <div className="col-xs-6"><p>{location}</p></div>
+        <div className="col-xs-6">{status}</div>
       </div>
     ) : (
       <tr className="plj-table-row">
