@@ -301,11 +301,15 @@
 }
 
 @media (max-width: 767px) {
+  .tab-bar {
+    .tab-btn {
+      min-height: 30px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
   .learning-journey-module {
     .heading {
-      padding: 10px;
-    }
-    .plj-small-row {
       padding: 10px;
     }
     .footer {

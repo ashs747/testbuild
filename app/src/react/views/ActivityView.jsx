@@ -4,8 +4,8 @@ import {getActivityContent} from '../../redux/actions/contentActions';
 import store from '../../redux/store';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
-import Markdown from 'react-remarkable';
 import _ from 'underscore';
+import moment from 'moment-timezone';
 var dispatch = store.dispatch;
 
 import TabStack from '../legacy/TabStack.jsx';
@@ -34,7 +34,7 @@ class ActivityView extends React.Component {
     }
     activity = activity[0];
     let smallTable = (this.props.profile === "sm");
-    let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} accessToken={this.props.accessToken}/> : null;
+    let ljt = (moduleWithActivity) ? <LearningJourneyTable journeyModule={moduleWithActivity} smallTable={smallTable} accessToken={this.props.accessToken} supportUrl={this.props.supportUrl}/> : null;
     let groupedResources = this.groupResources(activity.resources);
     let preWorkResources = groupedResources["pre-work"];
     if (!preWorkResources) {
@@ -47,16 +47,19 @@ class ActivityView extends React.Component {
         preWork = (
           <div>
             <h4>Pre Work</h4>
-            <Markdown source={activity.myBookedEventAndSlot.content} />
+            <div dangerouslySetInnerHTML={{__html: activity.myBookedEventAndSlot.content}}></div>
           </div>
         );
       }
     }
+    var courseNotes = (groupedResources["course-notes"] && activity.myBookedeventAndSlot && moment().isAfter(activity.myBookedEventAndSlot.endDate)) ? (
+      <ResourceWidget title="Course notes and recordings" resources={groupedResources["course-notes"]} />
+    ) : null;
     let resources = (
       <div>
         <ResourceWidget title="Pre-work" resources={preWorkResources} />
         <ResourceWidget title="Resources" resources={groupedResources["resource"]} />
-        <ResourceWidget title="Course notes and recordings" resources={groupedResources["course-notes"]} />
+        {courseNotes}
       </div>
     );
     let overview = (
@@ -65,7 +68,7 @@ class ActivityView extends React.Component {
         <div className="overview-inner">
           {preWork}
           <h4>Overview and objectives</h4>
-          <Markdown source={activity.content} />
+          <div dangerouslySetInnerHTML={{__html: activity.content}}></div>
         </div>
       </div>
     );
@@ -163,7 +166,8 @@ function mapActivityViewProps(state) {
   return {
     profile: state.width.profile,
     modules: state.learningJourney,
-    accessToken: state.auth.acces_token
+    accessToken: state.auth.acces_token,
+    supportUrl: state.programme.supportUrl
   };
 };
 let mappedActivityView = connect(mapActivityViewProps)(ActivityView);

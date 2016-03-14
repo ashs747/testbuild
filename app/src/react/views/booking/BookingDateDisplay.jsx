@@ -14,7 +14,8 @@ class BookingDateDisplay extends React.Component {
       return <div />;
     }
     let activity = this.props.activity;
-    let stringDateArray = this.momentToString(activity.availableEvents);
+    let reducedEvents = this.reduceDuplicateSlotDates(activity);
+    let stringDateArray = this.momentToString(reducedEvents);
     let uniqueDateArray = this.reduceEventDates(stringDateArray);
     let eventDateRows = this.mapDateToJsx(uniqueDateArray);
     let bookingMessage;
@@ -23,7 +24,7 @@ class BookingDateDisplay extends React.Component {
       eventDateRows = (
         <p className="no-dates">There are currently no alternative dates or times available for this activity.
         Select “cancel” at the bottom of the page to keep your existing booking .
-        You can contact the <a href={this.props.supportUrl}>programme support team</a> if you need further assistance.</p>
+        You can contact the <a href={this.props.supportUrl} target="_blank">programme support team</a> if you need further assistance.</p>
       );
     }
 
@@ -34,7 +35,7 @@ class BookingDateDisplay extends React.Component {
       bookingMessage = (
         <div className="alert alert-warning">
           <p>You have a booking on <strong>{startDate.format('dddd Do MMMM YYYY')}</strong> at <strong>{`${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`}</strong>.
-            Select a new date or to cancel please click <a href={this.props.supportUrl}>here</a> to raise a support ticket</p>
+            Select a new date or to cancel please click <a href={this.props.supportUrl} target="_blank">here</a> to raise a support ticket</p>
         </div>
       );
     }
@@ -109,6 +110,43 @@ class BookingDateDisplay extends React.Component {
       return dateItem;
     });
     return mappedItems;
+  }
+
+  reduceDuplicateSlotDates(activity) {
+    var bookedSlot = activity.myBookedEventAndSlot;
+    var events = activity.availableEvents;
+
+    /*
+      If the user has a booking, loop through every available event for activity.
+      We need to reduce the slots for the same event as their booking so they
+      don't see duplicate dates.
+    */
+    if (!bookedSlot) {
+      return activity.availableEvents;
+    }
+
+    for (var i = 0; i < events.length; i++) {
+      /*
+        If we find an event in the available events array with the same id
+        as the booked slots' event, we have the events' slots we need to
+        dedupe down and remove duplicates
+      */
+      if (events[i].id === bookedSlot.eventId) {
+        /*
+          Replace the slots against the event with a new filtered array which
+          only contains elements where the start/end date are not the same as
+          the users booked slot times
+        */
+        events[i].slots = events[i].slots.filter(slot => {
+          return !(slot.startDate === bookedSlot.startDate && slot.endDate === bookedSlot.endDate);
+        })
+      }
+    }
+
+    /*
+      Return an array of filtered events where there are actually slots (after a dedupe)
+    */
+    return events.filter(event => event.slots.length > 0);
   }
 
   eventDateClicked(eventDate) {

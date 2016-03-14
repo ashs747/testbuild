@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Tooltip from '../tooltip/Wrapper.jsx';
-import Markdown from 'react-remarkable';
 import config from '../../../localConfig';
 
 class LearningJourneyRow extends React.Component {
@@ -18,9 +17,9 @@ class LearningJourneyRow extends React.Component {
     let icon = this.assignIcon(type);
     let status = (type !== "Project") ? this.mapStatus(activity, this.props.moduleId) : null;
 
-    let date = (event) ? moment(event.startDate).format('ddd Do MMM YYYY') : "n/a";
-    let time = (event) ? `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}` : "n/a";
-    let location = "n/a";
+    let date = (event) ? moment(event.startDate).format('ddd Do MMM YYYY') : null;
+    let time = (event) ? `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}` : null;
+    let location;
     let ical;
 
     let iconRow = (this.props.showIcon) ? <td className="row-icon"><i className={icon}></i></td> : null;
@@ -32,8 +31,7 @@ class LearningJourneyRow extends React.Component {
 
     if (event) {
       if (event.tooltipTitle && event.tooltipBody) {
-        let trigger = (type === "Workshop") ? <p>{event.tooltipTitle}</p> : <p>View Details</p>;
-        location = <Tooltip trigger={trigger} content={<Markdown source={event.tooltipBody} />} />;
+        location = <Tooltip trigger={<p>{event.tooltipTitle}</p>} content={<div dangerouslySetInnerHTML={{__html: event.tooltipBody}} />}/>;
       }
       if (config.api && this.props.accessToken) {
         ical = <a href={`${config.api.url}api/plj/booking/ical/${event.id}?access_token=${this.props.accessToken}`} className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a>;
@@ -43,12 +41,19 @@ class LearningJourneyRow extends React.Component {
       }
     }
 
+    if (!this.props.smallTable) {
+      date = (date) ? date : "n/a";
+      time = (time) ? time : "n/a";
+      location = (location) ? location : "n/a";
+    }
+
     let content = this.props.smallTable ? (
-      <div className="plj-small-row">
-        <p>Title: {title}</p>
-        <p>Date: {date}</p>
-        <p>Location: {location}</p>
-        {status}
+      <div className="plj-small-row clearfix">
+        <p>{title}</p>
+        <p>{type}{date ? ` - ${date}` : null}</p>
+        <p>{time}</p>
+        <div className="col-xs-6"><p>{location}</p></div>
+        <div className="col-xs-6">{status}</div>
       </div>
     ) : (
       <tr className="plj-table-row">
@@ -71,7 +76,12 @@ class LearningJourneyRow extends React.Component {
       case "dates-tbc": return (<p>Dates TBC</p>);
       case "book": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>BOOK</a>);
       case "booked-can-change": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>CHANGE</a>);
-      case "booked-cannot-change": return (<i className="fa fa-info-circle"></i>);
+      case "booked-cannot-change": return (
+        <Tooltip
+          trigger={<i className="fa fa-info-circle"></i>}
+          content={<p>If you need to amend this booking, please contact support by clicking <a href={this.props.supportUrl} target="_blank">here</a>.</p>}
+        />
+      );
       case "log": return (<a className="btn">LOG</a>);
       case "missed": return (<div className="icon red"><i className="fa fa-times"></i></div>);
       case "no-attendance-marked": return null;

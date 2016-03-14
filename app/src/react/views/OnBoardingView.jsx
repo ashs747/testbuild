@@ -31,7 +31,9 @@ class OnBoarding extends React.Component {
     return (
       <div className="on-boarding">
         <div className="header clearfix">
-          <img className="logo" src="assets/img/programme-logo.png" alt="logo" />
+          <div className="header-logo">
+            <img src="assets/img/programme-logo.png" alt="logo" />
+          </div>
         </div>
         <div className="main">
           <div className="slide-container">

@@ -10,15 +10,15 @@ export function userSelectedDate(date) {
   };
 };
 
-export function userSelectedSlot(slot, facilitator) {
+export function userSelectedSlot(slot, facilitator, eventID) {
   return {
     type: "BOOKING_USER_SELECTED_SLOT",
-    payload: {slot, facilitator}
+    payload: {slot, facilitator, eventID}
   };
 };
 
-export function bookUserOnToSlot(slotID) {
-  let payload = bookSlot(slotID).then((res) => {
+export function bookUserOnToSlot(eventID, startTime) {
+  let payload = bookSlot(eventID, startTime).then((res) => {
     Store.dispatch(getPLJData());
     Store.dispatch(nextSlide("booking"));
     return true;
@@ -30,16 +30,6 @@ export function bookUserOnToSlot(slotID) {
     payload
   };
 };
-
-export function deleteSlotForUser(slotID) {
-  let payload = deleteSlot(slotID).then(() => {
-    Store.dispatch(getPLJData());
-  });
-  return {
-    type: "BOOKING_DELETED_SLOT",
-    payload
-  };
-}
 
 export function getSlotsForActivity(activityID) {
   let payload = getSlots(activityID);

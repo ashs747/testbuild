@@ -121,18 +121,21 @@
     }
     .log {
       background-color: $white;
-      padding: 20px;
       h4 {
-        margin-top: 30px;
-        margin-bottom: 25px;
+        color: $site_red;
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
       p {
         margin: 0 auto;
-        margin-bottom: 40px;
+        margin-bottom: 15px;
         max-width: 300px;
       }
       a {
         color: $site_red;
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 1px solid $site_red;
       }
     }
     .inner {
