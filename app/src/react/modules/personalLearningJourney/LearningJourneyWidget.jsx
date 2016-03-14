@@ -18,12 +18,14 @@ class LearningJourneyWidget extends React.Component {
         let theModule = this.props.journeyModules[key];
         let currentModule = this.isCurrentModule(theModule) ? 'module-overview current clearfix' : 'module-overview clearfix';
         let moduleDatePassed = this.moduleHasPassedDate(theModule) ? 'rank passed-date' : 'rank';
+        /*
         let notice = (() => {
           if (!this.moduleHasPassedDate(theModule)) {
             return null;
           }
           return this.hasOutstandingActivities(theModule) ? <div className="notice"><i className="fa fa-exclamation"></i></div> : <div className="notice complete"><i className="fa fa-check"></i></div>;
         })();
+        */
         let moduleSlug = theModule.name ? theModule.name.replace(/\s+/g, '-').toLowerCase() : '';
         let icon = <img src={`assets/img/${moduleSlug}.png`} alt="module icon"/>;
         let content = (this.props.smallWidget) ? (
@@ -38,7 +40,6 @@ class LearningJourneyWidget extends React.Component {
                     <h5>{`Module ${theModule.moduleNumber} - ${theModule.name}`}</h5>
                     <div className="subTitle">{moment(theModule.startDate).format('MMM YYYY')} - {moment(theModule.endDate).format('MMM YYYY')}</div>
                   </div>
-                  {notice}
                 </div>
               </a>
             </td>
@@ -48,7 +49,6 @@ class LearningJourneyWidget extends React.Component {
             <td className="row-icon"><div className={moduleDatePassed}>{i}</div></td>
             <td className="activity">
               <div className={currentModule}>
-                {notice}
                 <a href={`/#/module/${theModule.moduleId}`}>{icon}</a>
                 <div className="module-text">
                   <h5><a href={`/#/module/${theModule.moduleId}`}>Module {theModule.moduleNumber} - {theModule.name}</a></h5>

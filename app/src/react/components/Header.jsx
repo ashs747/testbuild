@@ -75,9 +75,7 @@ class Header extends React.Component {
             {this.state.displayJourneySubNav ? mobileJourneyNav : null}
             <LiAnchor action={this.toggleMobileNav} text="My Cohort" url="/#/my-cohort" icon="users"/>
             <LiAnchor action={this.toggleMobileNav} text="Toolkit" url="/#/toolkits" icon="wrench"/>
-            <LiAnchor action={this.toggleMobileNav} text="My Profile" url="/#/profile" icon="user"/>
-            <LiAnchor action={this.toggleMobileNav} text="Help" url={this.props.supportUrl} icon="question-circle"/>
-            <LiAnchor action={this.toggleMobileNav} text="Logout" url="/#/login" icon="sign-out"/>
+            <LiAnchor action={this.toggleMobileNav} text="Help" url={this.props.supportUrl} icon="question-circle" target="_blank"/>
             <li className="cirrus-footer"><img src="assets/img/cirrus-logo.png" /></li>
         </ul>
       </div>
@@ -112,7 +110,7 @@ class Header extends React.Component {
                     <div className="profile-pic">
                       <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
                     </div>
-                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl}>Help</a> | <a href="/#/login">Logout</a></p>
+                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl} target="_blank">Help</a> | <a href="/#/login">Logout</a></p>
                   </div>
                   <img className="cirrus-logo" src="assets/img/cirrus-logo-header.png" alt="cirrus" />
                 </div>

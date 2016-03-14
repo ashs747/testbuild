@@ -70,7 +70,7 @@ class HomeView extends React.Component {
               <h4><b>Need help?</b></h4>
               <p className="semi-bold">View knowledge base articles or contact the programme support team.<br />We’re here to help.</p>
               <div className="find-out-more">
-                <h6><b><a href={this.props.supportUrl}>FIND OUT MORE</a></b></h6>
+                <h6><b><a href={this.props.supportUrl} target="_blank">FIND OUT MORE</a></b></h6>
               </div>
             </div>
           </div>
@@ -118,7 +118,9 @@ class HomeView extends React.Component {
         <div className="home">
           <div className="header-page">
             <div className="inner">
-              <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
+              <a href="/#/profile">
+                <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" disableAnchor={true} />  
+              </a>
               <h1>Welcome back {this.props.user.forename}</h1>
               <p className="semi-bold">Join the discussion, collaborate with people in your group</p>
               <div className="go-to-alz">
