@@ -75,7 +75,9 @@ class Header extends React.Component {
             {this.state.displayJourneySubNav ? mobileJourneyNav : null}
             <LiAnchor action={this.toggleMobileNav} text="My Cohort" url="/#/my-cohort" icon="users"/>
             <LiAnchor action={this.toggleMobileNav} text="Toolkit" url="/#/toolkits" icon="wrench"/>
+            <LiAnchor action={this.toggleMobileNav} text="Profile" url="/#/profile" icon="user"/>
             <LiAnchor action={this.toggleMobileNav} text="Help" url={this.props.supportUrl} icon="question-circle" target="_blank"/>
+            <LiAnchor action={this.toggleMobileNav} text="Logout" url={this.props.supportUrl} icon="sign-out"/>
             <li className="cirrus-footer"><img src="assets/img/cirrus-logo.png" /></li>
         </ul>
       </div>
