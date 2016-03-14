@@ -13,7 +13,7 @@ class UpdatePassword extends React.Component {
   }
 
   render() {
-    let passwordError = this.mapPasswordError(this.props.passwordError);
+    let passwordError = this.buildErrorComponent(this.props.passwordError);
     let passwordLoading = this.props.passwordLoading ? <img src="assets/img/ajax-loader-red.gif" /> : "CHANGE PASSWORD";
     let passwordSuccess = this.props.passwordSuccess ? <div className="alert alert-success">Password saved</div> : null;
     return (
@@ -52,7 +52,7 @@ class UpdatePassword extends React.Component {
     this.props.onPasswordSave();
   }
 
-  mapPasswordError(err) {
+  buildErrorComponent(err) {
     if (!err) {
       return null;
     }
