@@ -56,9 +56,16 @@ class UpdatePassword extends React.Component {
     if (!err) {
       return null;
     }
-    if (err.includes("Bad Request")) {
-      return <div className="alert alert-danger">This password does not meet the recommended security requirements, please use a password longer than 6 characters with at least 1 uppercase letter and number</div>;
+    var error;
+    switch (true) {
+      case err.includes("Bad Request"):
+        error = "This password does not meet the recommended security requirements, please use a password longer than 6 characters with at least 1 uppercase letter and number";
+        break;
+      case err.includes("Unprocessable Entity"):
+        error = "Your passwords do not match";
+        break;
     }
+    return <div className="alert alert-danger">{error}</div>
   }
 
 }
