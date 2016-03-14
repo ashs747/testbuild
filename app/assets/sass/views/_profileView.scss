@@ -1,17 +1,18 @@
 .profile {
   background-color: $white;
   .header {
-    padding: 35px;
-    background: url('/assets/img/red-background.jpg') no-repeat center center fixed;
+    padding: 45px 30px;
+    background: url('/assets/img/toolkit.png') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    color: $white;
+    color: $dark_blue;
     h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      margin-top: 20px;
       font-weight: bold;
-      margin-top: 0;
-      margin-bottom: 0;
     }
     p {
       font-weight: 600;
@@ -86,6 +87,7 @@
 @media (max-width: 767px) {
   .profile {
     .header {
+      background-position: left;
       padding: 20px;
     }
     .main {
