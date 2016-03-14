@@ -13,6 +13,7 @@ const cache = require('gulp-cached');
 const path = require('path');
 const babel = require('gulp-babel');
 var gutil = require('gulp-util');
+var uglify = require('gulp-uglify');
 
 browserSync.create();
 var babelOptions = {
@@ -55,7 +56,7 @@ var buildProductionOpts = {
   entries: ['./app/src/main.js'],
   insertGlobals: false,
   debug: false,
-  transform: ["browserify-shim", ["babelify", babelOptions], ["uglifyify", uglifyifyOptions]]
+  transform: ["browserify-shim", ["envify", {NODE_ENV: "production"}], ["babelify", babelOptions], ["uglifyify", uglifyifyOptions]]
 };
 
 function watchifyReloadWrapper(cb){
@@ -99,6 +100,8 @@ module.exports = function(gulp) {
     return browserify(buildDevOptions)
     .bundle()
     .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('./app/dist'))
   });
   
