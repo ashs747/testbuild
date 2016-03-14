@@ -19,7 +19,7 @@ class LearningJourneyView extends React.Component {
         learningJourneyReactArray.push((
           <div className="plj-table" key={key}>
             <h4>Module {i}</h4>
-            <LearningJourneyTable journeyModule={this.props.modules[key]} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"} accessToken={this.props.accessToken}/>
+            <LearningJourneyTable journeyModule={this.props.modules[key]} smallTable={this.props.width === "sm"} showIcon={this.props.width === "lg"} accessToken={this.props.accessToken} supportUrl={this.props.supportUrl}/>
           </div>
         ));
         i++;

@@ -31,8 +31,7 @@ class LearningJourneyRow extends React.Component {
 
     if (event) {
       if (event.tooltipTitle && event.tooltipBody) {
-        let trigger = (type === "Workshop") ? <p>{event.tooltipTitle}</p> : <p>View Details</p>;
-        location = <Tooltip trigger={trigger} content={<div dangerouslySetInnerHTML={{__html: event.tooltipBody}} />}/>;
+        location = <Tooltip trigger={<p>{event.tooltipTitle}</p>} content={<div dangerouslySetInnerHTML={{__html: event.tooltipBody}} />}/>;
       }
       if (config.api && this.props.accessToken) {
         ical = <a href={`${config.api.url}api/plj/booking/ical/${event.id}?access_token=${this.props.accessToken}`} className="btn ical-button"><i className="fa fa-calendar-plus-o"></i></a>;
@@ -70,7 +69,12 @@ class LearningJourneyRow extends React.Component {
       case "dates-tbc": return (<p>Dates TBC</p>);
       case "book": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>BOOK</a>);
       case "booked-can-change": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>CHANGE</a>);
-      case "booked-cannot-change": return (<i className="fa fa-info-circle"></i>);
+      case "booked-cannot-change": return (
+        <Tooltip
+          trigger={<i className="fa fa-info-circle"></i>}
+          content={<p>If you need to amend this booking, please contact support by clicking <a href={this.props.supportUrl} target="_blank">here</a>.</p>}
+        />
+      );
       case "log": return (<a className="btn">LOG</a>);
       case "missed": return (<div className="icon red"><i className="fa fa-times"></i></div>);
       case "no-attendance-marked": return null;

@@ -28,7 +28,7 @@ class Footer extends React.Component {
                 <LiAnchor text="Toolkit" url="/#/toolkits"/>
               </ul>
               <ul className="list-three">
-                <LiAnchor text="Need Help?" url={this.props.supportUrl}/>
+                <LiAnchor text="Need Help?" url={this.props.supportUrl} target="_blank"/>
                 <LiAnchor text="Log Out" url="/#/login"/>
               </ul>
               <img src="assets/img/cirrus-logo.png" />
