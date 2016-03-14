@@ -76,10 +76,14 @@ class HomeView extends React.Component {
           </div>
           <div className="col-sm-6 grid-panel log">
             <div className="inner">
-              <h4 className="semi-bold">Your learning journey</h4>
-              <p>View your full timetable of events and book your coaching calls.</p>
-              <div className="find-out-more-red">
-                <h6><b><a href="/#/personal-learning-journey">FIND OUT MORE</a></b></h6>
+              <img src="assets/img/hult-logo.png" alt="Virtual Ashridge" />
+              <h4 className="semi-bold">Virtual Ashridge</h4>
+              <p>Please select a link below to access your customised Virtual Ashridge learning materials.</p>
+              <div className="col-sm-6">
+                <a href="http://mbcurl.me/12T1J">Education users ></a>
+              </div>
+              <div className="col-sm-6">
+                <a href="https://tinyurl.com/kpqsx5e">Everyone else ></a>
               </div>
             </div>
           </div>
@@ -119,7 +123,7 @@ class HomeView extends React.Component {
           <div className="header-page">
             <div className="inner">
               <a href="/#/profile">
-                <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" disableAnchor={true} />  
+                <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" disableAnchor={true} />
               </a>
               <h1>Welcome back {this.props.user.forename}</h1>
               <p className="semi-bold">Join the discussion, collaborate with people in your group</p>
