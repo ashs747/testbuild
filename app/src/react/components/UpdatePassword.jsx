@@ -13,7 +13,7 @@ class UpdatePassword extends React.Component {
   }
 
   render() {
-    let passwordError = this.props.passwordError ? <div className="alert alert-danger">ERROR</div> : null;
+    let passwordError = this.buildErrorComponent(this.props.passwordError);
     let passwordLoading = this.props.passwordLoading ? <img src="assets/img/ajax-loader-red.gif" /> : "CHANGE PASSWORD";
     let passwordSuccess = this.props.passwordSuccess ? <div className="alert alert-success">Password saved</div> : null;
     return (
@@ -50,6 +50,22 @@ class UpdatePassword extends React.Component {
   onPasswordSubmit(e) {
     e.preventDefault();
     this.props.onPasswordSave();
+  }
+
+  buildErrorComponent(err) {
+    if (!err) {
+      return null;
+    }
+    var error;
+    switch (true) {
+      case err.includes("Bad Request"):
+        error = "This password does not meet the recommended security requirements, please use a password longer than 6 characters with at least 1 uppercase letter and number";
+        break;
+      case err.includes("Unprocessable Entity"):
+        error = "Your passwords do not match";
+        break;
+    }
+    return <div className="alert alert-danger">{error}</div>
   }
 
 }
