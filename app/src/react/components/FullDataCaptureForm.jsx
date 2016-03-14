@@ -32,6 +32,11 @@ class FullDataCaptureForm extends React.Component {
                   <option value="Mrs">Mrs</option>
                   <option value="Miss">Miss</option>
                   <option value="Ms">Ms</option>
+                  <option value="Mx">Mx</option>
+                  <option value="Dr">Dr</option>
+                  <option value="Prof">Prof</option>
+                  <option value="Master">Master</option>
+                  <option value="Cllr">Cllr</option>
                 </select>
               </div>
               <div className="panel-row clearfix">
