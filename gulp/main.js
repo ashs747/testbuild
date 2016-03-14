@@ -49,7 +49,7 @@ var buildDevOptions = {
   entries: ['./app/src/main.js'],
   insertGlobals: true,
   debug: true,
-  transform: ["browserify-shim", ["babelify", babelOptions]]
+  transform: ["browserify-shim", ["envify"], ["babelify", babelOptions]]
 };
 
 var buildProductionOpts = {
