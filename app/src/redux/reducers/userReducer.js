@@ -115,7 +115,7 @@ export function reducer(state = {}, action) {
           return {
             ...state,
             passwordLoading: false,
-            passwordError: true,
+            passwordError: action.payload.message,
             passwordSuccess: false
           };
 
