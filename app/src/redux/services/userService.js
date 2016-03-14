@@ -41,10 +41,14 @@ export function updateUserProfilePicture(fileId) {
   return request.post(apiRoot + 'api/upload/profile-picture', {fileId: fileId})
 }
 
-export function updateUserPassword(password, passwordConfirm) {
+export function updateUserPassword(password, confirm_password) {
   var passwordParams = {
-    password,
-    passwordConfirm
+    password_update: {
+      password: {
+        password,
+        confirm_password
+      }
+    }
   };
   return request.put(apiRoot + `api/user/profile/password`, passwordParams);
 }
