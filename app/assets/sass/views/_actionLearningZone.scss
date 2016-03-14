@@ -67,10 +67,21 @@
 
 @media (max-width: 767px) {
   .action-learning-zone {
-    .header {
-      h1 {
-        text-align: center;
-        margin-bottom: 20px;
+    .header-page {
+      height: inherit;
+      padding: 20px;
+      text-align: center;
+      h2 {
+        margin: 0;
+        font-size: 30px;
+      }
+    }
+    .tab-btn {
+      min-height: 30px;
+    }
+    .alz-message-board {
+      .message-inner {
+        padding: 0 10px;
       }
     }
   }

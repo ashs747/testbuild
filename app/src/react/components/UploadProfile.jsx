@@ -52,7 +52,7 @@ class UploadProfile extends React.Component {
           <button className="btn" ref="uploadButton">{loading}</button>
         </div>
         <div className="col-xs-7">
-          <p>Don’t be shy! Please add a profile picture to help people in your Cohort recognize you when you send messages and collaborate.</p>
+          <p>Please add a profile picture to help people in your Cohort recognize you when you send messages and collaborate.</p>
         </div>
       </div>
     ) : (
@@ -61,7 +61,7 @@ class UploadProfile extends React.Component {
           <CloudinaryImg file={this.props.profilePic} defaultImg="assets/img/profile-placeholder.jpg"/>
         </div>
         <button className="btn" ref="uploadButton">{loading}</button>
-        <p>Don’t be shy! Please add a profile picture to help people in your Cohort recognize you when you send messages and collaborate.</p>
+        <p>Please add a profile picture to help people in your Cohort recognize you when you send messages and collaborate.</p>
       </div>
     );
     return (
