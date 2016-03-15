@@ -20,7 +20,8 @@ export function updateUserData() {
     confirm_password: params.passwordConfirm,
     forename: params.forename,
     surname: params.surname,
-    properties: params.properties
+    properties: params.properties,
+    title: params.title
   };
   return request.put(apiRoot + `api/user/profile`, filteredParams);
 }
