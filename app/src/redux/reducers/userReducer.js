@@ -157,21 +157,14 @@ export function reducer(state = {}, action) {
         case 'RESOLVED':
           return {
             ...state,
-            onBoardingLoading: false,
-            onBoardingError: action.error
+            onBoardingLoading: false
           };
 
         case 'REJECTED':
-          var error = <p>There was an error, please refresh your page and try again,
-            if the error persists please contact Cirrus support by clicking
-            <a href="http://soj-support.cirrus-connect.com/support/home">here</a></p>;
-          if (typeof action.error === 'string') {
-            error = action.error
-          }
           return {
             ...state,
             onBoardingLoading: false,
-            onBoardingError: error
+            onBoardingError: action.error.jsonResponse
           };
 
         default:
