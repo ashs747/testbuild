@@ -62,6 +62,7 @@ export function reducer(state = initialState, action) {
 
         case 'REJECTED':
           return {
+            ...state,
             waitingForLogin: false,
             error: {
               message: action.payload.message
@@ -70,6 +71,7 @@ export function reducer(state = initialState, action) {
 
         default:
           return {
+            ...state,
             waitingForLogin: true
           };
       }
@@ -88,14 +90,13 @@ export function reducer(state = initialState, action) {
             ...state,
             recoverPasswordSuccess: false,
             waitingForRecoverPassword: false,
-            authError: {
-              code: action.payload.status,
-              message: action.payload.message
-            }
+            authError: action.payload.jsonResponse
           };
 
         default:
           return {
+            ...state,
+            authError: null,
             waitingForRecoverPassword: true
           };
       }
