@@ -9,21 +9,17 @@ let apiRoot = config.api ? config.api.url : '';
 
 export function updateUserData() {
   var params = store.getState().user;
-  if (!params.password || !params.passwordConfirm || !params.forename || !params.surname) {
-    return Promise.reject("Please fill out all form fields");
-  }
-  if (params.password !== params.passwordConfirm) {
-    return Promise.reject("Passwords do not match");
-  }
+  console.log(params);
   var requestObj = {
     update_profile: {
       title: params.title,
       forename: params.forename,
       surname: params.surname,
       properties: params.properties,
+      timezone: params.timezone,
       plainPassword: {
-        password: params.password,
-        confirm_password: params.passwordConfirm
+        password: (params.password) ? params.password : "",
+        confirm_password: (params.passwordConfirm) ? params.passwordConfirm : ""
       }
     }
   };

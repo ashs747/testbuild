@@ -12,7 +12,8 @@ class MiniDataCaptureForm extends React.Component {
     inputClasses.push('form-control');
     let inputClassText = inputClasses.join(',');
     var spinner = (this.props.loading ? <img src="assets/img/ajax-loader-trans.gif" /> : null);
-    var error = (this.props.err) ? <div className="alert alert-danger">{this.props.err}</div> : null;
+    var error = null;
+    console.log(this.props.err);
     return (
       <div className="mini-data-capture-form">
         <div className="form-inputs">

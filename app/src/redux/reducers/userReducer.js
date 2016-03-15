@@ -153,6 +153,7 @@ export function reducer(state = {}, action) {
       }
 
     case 'SAVE_USER_DETAILS':
+      console.log(action);
       switch (action.status) {
         case 'RESOLVED':
           return {
@@ -162,16 +163,10 @@ export function reducer(state = {}, action) {
           };
 
         case 'REJECTED':
-          var error = <p>There was an error, please refresh your page and try again,
-            if the error persists please contact Cirrus support by clicking
-            <a href="http://soj-support.cirrus-connect.com/support/home">here</a></p>;
-          if (typeof action.error === 'string') {
-            error = action.error
-          }
           return {
             ...state,
             onBoardingLoading: false,
-            onBoardingError: error
+            onBoardingError: false
           };
 
         default:
