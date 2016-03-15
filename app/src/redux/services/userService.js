@@ -15,27 +15,33 @@ export function updateUserData() {
   if (params.password !== params.passwordConfirm) {
     return Promise.reject("Passwords do not match");
   }
-  var filteredParams = {
-    password: params.password,
-    confirm_password: params.passwordConfirm,
-    forename: params.forename,
-    surname: params.surname,
-    properties: params.properties,
-    title: params.title
+  var requestObj = {
+    update_profile: {
+      title: params.title,
+      forename: params.forename,
+      surname: params.surname,
+      properties: params.properties,
+      plainPassword: {
+        password: params.password,
+        confirm_password: params.passwordConfirm
+      }
+    }
   };
-  return request.put(apiRoot + `api/user/profile`, filteredParams);
+  return request.put(apiRoot + `api/user/profile`, requestObj);
 }
 
 export function updateUserProfile() {
   var params = store.getState().user;
-  var filteredParams = {
-    title: params.title,
-    forename: params.forename,
-    surname: params.surname,
-    timezone: params.timezone,
-    properties: params.properties
+  var requestObj = {
+    update_profile: {
+      title: params.title,
+      forename: params.forename,
+      surname: params.surname,
+      timezone: params.timezone,
+      properties: params.properties
+    }
   };
-  return request.put(apiRoot + `api/user/profile`, filteredParams);
+  return request.put(apiRoot + `api/user/profile`, requestObj);
 }
 
 export function updateUserProfilePicture(fileId) {
