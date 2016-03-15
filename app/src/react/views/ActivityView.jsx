@@ -52,7 +52,7 @@ class ActivityView extends React.Component {
         );
       }
     }
-    var courseNotes = (groupedResources["course-notes"] && activity.myBookedeventAndSlot && moment().isAfter(activity.myBookedEventAndSlot.endDate)) ? (
+    var courseNotes = (groupedResources["course-notes"] && activity.myBookedEventAndSlot && moment().isAfter(activity.myBookedEventAndSlot.endDate)) ? (
       <ResourceWidget title="Course notes and recordings" resources={groupedResources["course-notes"]} />
     ) : null;
     let resources = (
