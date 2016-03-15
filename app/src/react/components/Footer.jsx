@@ -1,5 +1,6 @@
 import React from 'react';
 import LiAnchor from './LiAnchor.jsx';
+import {logoutAction} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
 
 class Footer extends React.Component {
@@ -29,7 +30,7 @@ class Footer extends React.Component {
               </ul>
               <ul className="list-three">
                 <LiAnchor text="Need Help?" url={this.props.supportUrl} target="_blank"/>
-                <LiAnchor text="Log Out" url="/#/login"/>
+                <LiAnchor text="Log Out" action={logoutAction}/>
               </ul>
               <img src="assets/img/cirrus-logo.png" />
             </div>
