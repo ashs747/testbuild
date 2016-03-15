@@ -42,7 +42,7 @@ class LoginView extends React.Component {
         <div className="links">
           <p className="bookmark">Remember to bookmark this page so you can view it later.</p>
           <a onClick={this.showRecoverPassword}>Forgotten Password?</a>
-          <a href="http://soj-support.cirrus-connect.com/support/home" target="_blank">Need help?</a>
+          <a href="http://soj-support.leadership.gov.je/support/home" target="_blank">Need help?</a>
         </div>
       </div>
     );
