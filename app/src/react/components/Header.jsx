@@ -77,7 +77,7 @@ class Header extends React.Component {
             <LiAnchor action={this.toggleMobileNav} text="Toolkit" url="/#/toolkits" icon="wrench"/>
             <LiAnchor action={this.toggleMobileNav} text="Profile" url="/#/profile" icon="user"/>
             <LiAnchor action={this.toggleMobileNav} text="Help" url={this.props.supportUrl} icon="question-circle" target="_blank"/>
-            <LiAnchor action={this.toggleMobileNav} text="Logout" url={this.props.supportUrl} icon="sign-out"/>
+            <LiAnchor action={this.toggleMobileNav} text="Logout" action={logoutAction} icon="sign-out"/>
             <li className="cirrus-footer"><img src="assets/img/cirrus-logo.png" /></li>
         </ul>
       </div>
@@ -112,7 +112,7 @@ class Header extends React.Component {
                     <div className="profile-pic">
                       <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
                     </div>
-                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl} target="_blank">Help</a> | <a href="/#/login">Logout</a></p>
+                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl} target="_blank">Help</a> | <a href="#" onClick={this.logout}>Logout</a></p>
                   </div>
                   <img className="cirrus-logo" src="assets/img/cirrus-logo-header.png" alt="cirrus" />
                 </div>
@@ -139,7 +139,8 @@ class Header extends React.Component {
     );
   }
 
-  logout() {
+  logout(e) {
+    e.preventDefault();
     this.props.dispatch(logoutAction());
   }
 
