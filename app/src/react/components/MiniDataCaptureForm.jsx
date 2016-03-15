@@ -35,7 +35,7 @@ class MiniDataCaptureForm extends React.Component {
   }
 
   mapError(errorObj) {
-    if (!errorObj || errorObj.error.constructor !== Array) {
+    if (!errorObj || !errorObj.error || errorObj.error.constructor !== Array) {
       return null;
     }
     return errorObj.error.map((err, i) => <div key={`on-boarding-erorr-${i}`} className="alert alert-danger">{err}</div>);
