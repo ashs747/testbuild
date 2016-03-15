@@ -112,7 +112,7 @@ class Header extends React.Component {
                     <div className="profile-pic">
                       <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" />
                     </div>
-                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl} target="_blank">Help</a> | <a href="javascript:void(null);" onClick={logoutAction}>Logout</a></p>
+                    <p>Welcome <a href="/#/profile">{name}</a> | <a href={this.props.supportUrl} target="_blank">Help</a> | <a href="#" onClick={this.logout}>Logout</a></p>
                   </div>
                   <img className="cirrus-logo" src="assets/img/cirrus-logo-header.png" alt="cirrus" />
                 </div>
@@ -139,7 +139,8 @@ class Header extends React.Component {
     );
   }
 
-  logout() {
+  logout(e) {
+    e.preventDefault();
     this.props.dispatch(logoutAction());
   }
 
