@@ -10,8 +10,7 @@ class ResetPasswordView extends React.Component {
     this.finishedRecoverPassword = this.finishedRecoverPassword.bind(this);
     this.state = {
       password: "",
-      confirmPassword: "",
-      passwordsDontMatchError: false
+      confirmPassword: ""
     };
   }
 
@@ -22,16 +21,7 @@ class ResetPasswordView extends React.Component {
   }
 
   render() {
-    let passwordsDontMatchError = (this.state.passwordsDontMatchError) ? (
-      <div className="alert alert-danger">
-        <p>Your passwords don't match, please check your spelling and try again</p>
-      </div>
-    ) : null;
-    let serverError = (this.props.serverError) ? (
-      <div className="alert alert-danger">
-        <p>There has been an error on the server, please contact Cirrus support</p>
-      </div>
-    ) : null;
+    let serverError = this.mapError(this.props.error);
     let btnText = (this.props.loading) ? <img src="assets/img/ajax-loader.gif"/> : "SAVE";
     let content = (!this.props.success) ? (
       <div className="form">
@@ -43,7 +33,6 @@ class ResetPasswordView extends React.Component {
             <button type="submit" className="btn btn-block submit" style={{color: "white"}}>{btnText}</button>
           </form>
         </div>
-        {passwordsDontMatchError}
         {serverError}
       </div>
     ) : (
@@ -73,12 +62,7 @@ class ResetPasswordView extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    if (this.state.password === this.state.confirmPassword) {
-      this.setState({passwordsDontMatchError: false});
-      this.props.dispatch(updatePassword(this.state.password, this.state.confirmPassword));
-    } else {
-      this.setState({passwordsDontMatchError: true});
-    }
+    this.props.dispatch(updatePassword(this.state.password, this.state.confirmPassword));
   }
 
   onChange(field, e) {
@@ -87,13 +71,20 @@ class ResetPasswordView extends React.Component {
     });
   }
 
+  mapError(errorObj) {
+    if (!errorObj || !errorObj.error || errorObj.error.constructor !== Array) {
+      return null;
+    }
+    return errorObj.error.map((err, i) => <div key={`on-boarding-erorr-${i}`} className="alert alert-danger">{err}</div>);
+  }
+
 }
 
 function mapResetPasswordFormProps(state) {
   return {
     loading: state.auth.waitingForRecoverPassword,
     success: state.auth.recoverPasswordSuccess,
-    serverError: state.auth.authError
+    error: state.auth.authError
   };
 }
 let mappedResetPasswordView = connect(mapResetPasswordFormProps)(ResetPasswordView);
