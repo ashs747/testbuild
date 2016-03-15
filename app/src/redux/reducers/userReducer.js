@@ -153,20 +153,18 @@ export function reducer(state = {}, action) {
       }
 
     case 'SAVE_USER_DETAILS':
-      console.log(action);
       switch (action.status) {
         case 'RESOLVED':
           return {
             ...state,
-            onBoardingLoading: false,
-            onBoardingError: action.error
+            onBoardingLoading: false
           };
 
         case 'REJECTED':
           return {
             ...state,
             onBoardingLoading: false,
-            onBoardingError: false
+            onBoardingError: action.error.jsonResponse
           };
 
         default:

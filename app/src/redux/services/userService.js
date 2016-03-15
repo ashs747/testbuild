@@ -9,7 +9,6 @@ let apiRoot = config.api ? config.api.url : '';
 
 export function updateUserData() {
   var params = store.getState().user;
-  console.log(params);
   var requestObj = {
     update_profile: {
       title: params.title,
