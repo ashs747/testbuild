@@ -32,7 +32,7 @@ class EmbedVideo extends React.Component {
         </div>
       );
     }
-    let displayText = this.props.profile !== "sm" ? "Embed Youtube/Vimeo" : null;
+    let displayText = this.props.profile !== "sm" ? "Embed YouTube/Vimeo" : null;
     return (
       <div className="embed-video">
         <a className="btn embed-video-button" onClick={this.toggleUrlField}><i className="fa fa-share-alt"></i> {displayText}</a>

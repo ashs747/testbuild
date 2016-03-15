@@ -45,7 +45,7 @@ class HomeView extends React.Component {
       <div className="home-learning">
         <div className="learning-journey">
           <h4 className="semi-bold">Your learning journey</h4>
-          <p>Keep track of your progress as you go through the programme. Click on any of the modules for more detail of the workshops, webinars, coaching and projects in each. You can also see a timetable of all the events in programme <a href="/#/personal-learning-journey">here ></a></p>
+          <p>Keep track of your progress as you go through the programme. Click on any of the modules for more detail of the workshops, webinars, coaching and projects in each. You can also see a timetable of all the events in the programme <a href="/#/personal-learning-journey">here ></a></p>
           <LearningJourneyWidget journeyModules={this.props.modules} smallWidget={this.props.profile === 'sm'}/>
           <h6 className="red-link"><a href="/#/personal-learning-journey">VIEW DETAILED LEARNING JOURNEY ></a></h6>
         </div>
@@ -68,7 +68,7 @@ class HomeView extends React.Component {
           <div className="col-sm-6 grid-panel help">
             <div className="inner">
               <h4><b>Need help?</b></h4>
-              <p className="semi-bold">View knowledge base articles or contact the programme support team.<br />We’re here to help.</p>
+              <p className="semi-bold">Contact the programme support team.<br />We’re here to help.</p>
               <div className="find-out-more">
                 <h6><b><a href={this.props.supportUrl} target="_blank">FIND OUT MORE</a></b></h6>
               </div>

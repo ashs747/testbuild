@@ -54,7 +54,7 @@ class ActionLearningZoneView extends React.Component {
       <div className="alz-message-board">
         <h4>{this.props.cohort.name} message board</h4>
         <div className="message-inner">
-          <p>This is a private feed. Only members of your cohort and our facilitators can view, post or comment on this board. As you work on your business challenge you can use this board to share back ideas and collaborate.  You can upload videos or photos from your phone, tablet or PC as well as adding links to vimeo or YouTube videos.</p>
+          <p>This is a private feed. Only members of your cohort and our facilitators can view, post or comment on this board. As you work on your business challenge you can use this board to share back ideas and collaborate. You can upload videos or photos from your phone, tablet or PC as well as adding links to Vimeo or YouTube videos.</p>
           <ALZFeed />
         </div>
       </div>
