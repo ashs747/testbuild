@@ -9,42 +9,48 @@ let apiRoot = config.api ? config.api.url : '';
 
 export function updateUserData() {
   var params = store.getState().user;
-  if (!params.password || !params.passwordConfirm || !params.forename || !params.surname) {
-    return Promise.reject("Please fill out all form fields");
-  }
-  if (params.password !== params.passwordConfirm) {
-    return Promise.reject("Passwords do not match");
-  }
-  var filteredParams = {
-    password: params.password,
-    confirm_password: params.passwordConfirm,
-    forename: params.forename,
-    surname: params.surname,
-    properties: params.properties
+  var requestObj = {
+    update_profile: {
+      title: params.title,
+      forename: params.forename,
+      surname: params.surname,
+      properties: params.properties,
+      timezone: params.timezone,
+      plainPassword: {
+        password: (params.password) ? params.password : "",
+        confirm_password: (params.passwordConfirm) ? params.passwordConfirm : ""
+      }
+    }
   };
-  return request.put(apiRoot + `api/user/profile`, filteredParams);
+  return request.put(apiRoot + `api/user/profile`, requestObj);
 }
 
 export function updateUserProfile() {
   var params = store.getState().user;
-  var filteredParams = {
-    title: params.title,
-    forename: params.forename,
-    surname: params.surname,
-    timezone: params.timezone,
-    properties: params.properties
+  var requestObj = {
+    update_profile: {
+      title: params.title,
+      forename: params.forename,
+      surname: params.surname,
+      timezone: params.timezone,
+      properties: params.properties
+    }
   };
-  return request.put(apiRoot + `api/user/profile`, filteredParams);
+  return request.put(apiRoot + `api/user/profile`, requestObj);
 }
 
 export function updateUserProfilePicture(fileId) {
   return request.post(apiRoot + 'api/upload/profile-picture', {fileId: fileId})
 }
 
-export function updateUserPassword(password, passwordConfirm) {
+export function updateUserPassword(password, confirm_password) {
   var passwordParams = {
-    password,
-    passwordConfirm
+    password_update: {
+      password: {
+        password,
+        confirm_password
+      }
+    }
   };
   return request.put(apiRoot + `api/user/profile/password`, passwordParams);
 }

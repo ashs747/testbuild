@@ -71,7 +71,7 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
-          <h1>A message from the executive board</h1>
+          <h1>A message from the Corporate Management Board</h1>
           <Video url="https://vimeo.com/150919913" />
         </div>
       </div>
@@ -92,9 +92,9 @@ export const onboardingSlides = [{
             <img src="assets/img/on-boarding-learning-journey-new.png" />
           </div>
           <div className="col-sm-5">
-            <p>We have identified 5 essential leadership qualities which are the building blocks for every great leader in the States.</p>
-            <p>The 9 month ‘Managers to Leaders’ programme is built around these qualities and has been designed specifically for
-              managers and leaders at States of Jersey.</p>
+            <p>We have identified 5 essential Leadership Qualities which are the building blocks for every great leader in the States.</p>
+            <p>The 9-month ‘Managers to Leaders’ programme is built around these qualities and has been designed specifically to support
+            transformational leadership at the States of Jersey.</p>
           </div>
           <div className="clearfix"/>
         </div>
@@ -116,7 +116,7 @@ export const onboardingSlides = [{
             <img src="assets/img/areas-of-expertise.png" />
           </div>
           <div className="col-sm-5">
-            <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and a business challenge.</p>
+            <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and Action Learning.</p>
             <p>It includes a large variety of experiential activities and self-learning tools that will help you to accelerate, stretch and grow.</p>
           </div>
           <div className="clearfix"/>
@@ -139,7 +139,7 @@ export const onboardingSlides = [{
             <img src="assets/img/track-your-progress.png" />
           </div>
           <div className="col-sm-5">
-            <p>Your personalised learning journey gives you all the key dates and information you need to stay on track.</p>
+            <p>Your personalised learning journey gives you all the key dates and information you need to stay on-track.</p>
             <p>As you’ll be learning in a cohort most of the dates are fixed but you can book your coaching sessions at a time to suit you.</p>
             <p>We’ll send you email reminders about upcoming events so you don’t forget.</p>
           </div>

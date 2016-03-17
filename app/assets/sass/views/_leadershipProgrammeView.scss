@@ -177,6 +177,9 @@
     }
   }
   .delivery-grid {
+    div {
+      height: 450px;
+    }
     .icon {
       font-size: 50px;
     }
@@ -325,6 +328,11 @@
         font-size: 36px;
       }
       padding: 20px;
+    }
+    .delivery-grid {
+      div {
+        height: inherit;
+      }
     }
     .our-values {
       padding: 20px;

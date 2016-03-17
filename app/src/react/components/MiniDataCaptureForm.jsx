@@ -12,7 +12,7 @@ class MiniDataCaptureForm extends React.Component {
     inputClasses.push('form-control');
     let inputClassText = inputClasses.join(',');
     var spinner = (this.props.loading ? <img src="assets/img/ajax-loader-trans.gif" /> : null);
-    var error = (this.props.err) ? <div className="alert alert-danger">{this.props.err}</div> : null;
+    var error = this.mapError(this.props.err);
     return (
       <div className="mini-data-capture-form">
         <div className="form-inputs">
@@ -32,6 +32,13 @@ class MiniDataCaptureForm extends React.Component {
   onChange(e) {
     e.preventDefault();
     this.props.dispatch(this.props.updateAction(e.target.id, e.target.value));
+  }
+
+  mapError(errorObj) {
+    if (!errorObj || !errorObj.error || errorObj.error.constructor !== Array) {
+      return null;
+    }
+    return errorObj.error.map((err, i) => <div key={`on-boarding-erorr-${i}`} className="alert alert-danger">{err}</div>);
   }
 }
 

@@ -34,7 +34,7 @@ class LearningJourneyView extends React.Component {
           </div>
         </div>
         <div className="body">
-          <p>Keep track of your progress and see what events are coming up next.  After each activity we’ll ask you for your feedback and to complete your learning log. If you’re not able to make any of the dates please click <a href={this.props.supportUrl}>here</a></p>
+          <p>Keep track of your progress and see what events are coming up next.  After each activity we’ll ask you for your feedback and to complete your learning log. If you’re not able to make any of the dates please click <a target="_blank" href={this.props.supportUrl}>here ></a></p>
           <p>Click on any of the module or activity titles to visit the dedicated page for each and access any pre-work or resources.</p>
           {learningJourneyReactArray}
         </div>

@@ -13,7 +13,7 @@ class UpdatePassword extends React.Component {
   }
 
   render() {
-    let passwordError = this.props.passwordError ? <div className="alert alert-danger">ERROR</div> : null;
+    let passwordError = this.mapErrors(this.props.passwordError);
     let passwordLoading = this.props.passwordLoading ? <img src="assets/img/ajax-loader-red.gif" /> : "CHANGE PASSWORD";
     let passwordSuccess = this.props.passwordSuccess ? <div className="alert alert-success">Password saved</div> : null;
     return (
@@ -50,6 +50,13 @@ class UpdatePassword extends React.Component {
   onPasswordSubmit(e) {
     e.preventDefault();
     this.props.onPasswordSave();
+  }
+
+  mapErrors(errObj) {
+    if (!errObj || errObj.error.constructor !== Array) {
+      return null;
+    }
+    return errObj.error.map((err, i) => <div key={`password-error-${i}`} className="alert alert-danger">{err}</div>)
   }
 
 }
