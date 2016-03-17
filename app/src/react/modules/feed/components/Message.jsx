@@ -125,7 +125,7 @@ class Message extends React.Component {
         <div className="header clearfix">
           <CloudinaryImg file={profilePic} alt={this.props.name} defaultImg="assets/img/profile-placeholder.jpg"/>
           <div className="header-text">
-            <Tooltip trigger={<span className="message-name">{this.props.name}</span>} content={content} className="mini-profile-tooltip" />
+            <Tooltip trigger={<p className="message-name">{this.props.name}</p>} content={content} className="mini-profile-tooltip" />
             <p className="date-display">{moment(this.props.date).format('HH:mm - DD.MM.YYYY')}</p>
           </div>
           {editButtons}
