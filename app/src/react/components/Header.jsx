@@ -77,7 +77,7 @@ class Header extends React.Component {
             <LiAnchor action={this.toggleMobileNav} text="Toolkit" url="/#/toolkits" icon="wrench"/>
             <LiAnchor action={this.toggleMobileNav} text="Profile" url="/#/profile" icon="user"/>
             <LiAnchor action={this.toggleMobileNav} text="Help" url={this.props.supportUrl} icon="question-circle" target="_blank"/>
-            <LiAnchor action={this.toggleMobileNav} text="Logout" action={logoutAction} icon="sign-out"/>
+            <LiAnchor action={logoutAction} text="Logout" icon="sign-out"/>
             <li className="cirrus-footer"><img src="assets/img/cirrus-logo.png" /></li>
         </ul>
       </div>
