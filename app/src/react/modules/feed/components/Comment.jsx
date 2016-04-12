@@ -43,7 +43,10 @@ class Comment extends React.Component {
     };
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.fullString !== this.state.fullString) {
+      return true;
+    }
     let changeableKeys = ['editable', 'content'];
     let nextComment = nextProps;
     let lastComment = this.props;
@@ -73,8 +76,8 @@ class Comment extends React.Component {
       let subString = this.props.content.substring(0, 200);
       bodyString = (
         <p>
-          {subString}
-          <a className="see-more" onClick={this.showFullString}> See more <i className="fa fa-chevron-right"></i></a>
+          {subString}&nbsp;
+          <a className="see-more" onClick={this.showFullString} href="#">See more <i className="fa fa-chevron-right"></i></a>
         </p>
       );
     }
@@ -122,7 +125,8 @@ class Comment extends React.Component {
     );
   }
 
-  showFullString() {
+  showFullString(e) {
+    e.preventDefault();
     this.setState({
       fullString: true
     });
