@@ -1,5 +1,4 @@
 import React from 'react';
-import Markdown from 'react-remarkable';
 import {connect} from 'react-redux';
 import store from '../../redux/store';
 import FileDownload from '../components/FileDownload.jsx';
