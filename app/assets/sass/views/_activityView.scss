@@ -44,14 +44,6 @@
   .main {
     background-color: #f8f8f8;
   }
-  .left-bar {
-    padding: 0;
-    background-color: $white;
-  }
-  .right-bar {
-    padding: 15px;
-    background-color: $light_grey;
-  }
   .overview {
     padding: 0;
     h4 {
@@ -100,6 +92,19 @@
     }
     .overview-inner {
       padding: 20px 30px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .activity-view {
+    .left-bar {
+      padding: 0;
+      background-color: $white;
+    }
+    .right-bar {
+      padding: 15px;
+      background-color: $light_grey;
     }
   }
 }
