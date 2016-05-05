@@ -1,0 +1,40 @@
+.members-module {
+  background-color: #FFFFFF;
+  margin-bottom: 20px;
+  border: 1px solid $dark_grey;
+  .user-display {
+    padding: 10px 25px;
+    height: 60px;
+    border-bottom: 2px solid $dark_grey;
+    img {
+      float: left;
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+    }
+    p {
+      margin-top: 10px;
+      span {
+        cursor: pointer;
+      }
+      i {
+        font-size: 12px;
+      }
+    }
+    img {
+      border-radius: 50%;
+    }
+    .name {
+      display: inline-block;
+      border-bottom: 1px solid $underline_grey;
+      font-weight: 600;
+      margin-bottom: 0;
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .user-display:last-child {
+    border-bottom: none;
+  }
+}

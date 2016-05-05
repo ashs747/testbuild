@@ -1,0 +1,32 @@
+.tab-bar {
+  width: 100%;
+  background-color: $light_grey;
+  .tab-btn {
+    text-align: center;
+    width: 33.3333%;
+    padding: 20px 5px;
+    float: left;
+    background-color: $dark_grey;
+    cursor: pointer;
+    vertical-align: middle;
+    min-height: 80px;
+    &.active {
+      height:100%;
+      background-color: $white;
+    }
+  }
+}
+
+.view-stack {
+  background-color: $white;
+}
+
+@media (max-width: 767px) {
+  .tab-bar {
+    .tab-btn {
+      min-height: 30px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+}

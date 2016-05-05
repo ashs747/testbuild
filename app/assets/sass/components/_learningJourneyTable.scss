@@ -523,6 +523,14 @@
 }
 
 @media (max-width: 767px) {
+  .learning-journey-module {
+    .heading {
+      padding: 10px;
+    }
+    .footer {
+      padding: 10px;
+    }
+  }
   .learning-journey-module.widget {
     h5 {
       font-weight: 600;
