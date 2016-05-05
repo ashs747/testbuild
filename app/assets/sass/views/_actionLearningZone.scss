@@ -4,7 +4,7 @@
     margin: 0;
   }
   .header-page {
-    padding: 35px 20px;
+    padding: 20px;
     background: url('/assets/img/my-cohort.png');
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -12,17 +12,16 @@
     background-size: cover;
     color: $white;
     border-bottom: 1px solid #ccc;
-    height: 175px;
-    select {
-      height: 40px;
-      border-radius: 0;
-    }
+    text-align: center;
     h2 {
+      font-size: 30px;
       font-weight: bold;
       margin: 0;
-      margin-top: 30px;
       color: $dark_blue;
     }
+  }
+  .tab-btn {
+    font-size: 14px;
   }
   .alz-message-board {
     h4 {
@@ -33,8 +32,16 @@
       padding: 15px 30px;
     }
     .message-inner {
-      padding: 0 30px;
-      padding-bottom: 20px;
+      padding: 0 10px;
+    }
+    .message-board {
+      padding: 0;
+      margin-top: 20px;
+    }
+    .upload-media-component, .embed-video {
+      .btn {
+        font-weight: normal;
+      }
     }
   }
   .members-module {
@@ -45,54 +52,41 @@
       margin-top: 15px;
     }
   }
-  .message-board {
-    padding: 0;
-    margin-top: 20px;
-  }
-  .upload-media-component, .embed-video {
-    .btn {
-      font-weight: normal;
-    }
-  }
-  .right-bar {
-    padding: 30px 20px;
-    background-color: $light_grey;
-  }
-  .left-bar {
-    border-right: 2px solid $dark_grey;
-    background-color: $white;
-    padding: 0;
-  }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .action-learning-zone {
     .header-page {
-      height: inherit;
-      padding: 20px;
-      text-align: center;
+      height: 175px;
+      padding: 35px 20px;
+      text-align: left;
       h2 {
-        margin: 0;
-        font-size: 30px;
+        font-size: 40px;
+        margin-top: 30px;
       }
     }
     .tab-btn {
-      min-height: 30px;
+      font-size: 15.5px;
     }
     .alz-message-board {
       .message-inner {
-        padding: 0 10px;
+        padding: 0 30px;
+        padding-bottom: 20px;
       }
     }
   }
 }
 
-@media (max-width: 400px) {
+@media (min-width: 1024px) {
   .action-learning-zone {
-    .tab-bar {
-      .tab-btn {
-        font-size: 14px;
-      }
+    .right-bar {
+      padding: 30px 20px;
+      background-color: $light_grey;
+    }
+    .left-bar {
+      border-right: 2px solid $dark_grey;
+      background-color: $white;
+      padding: 0;
     }
   }
 }
