@@ -1,12 +1,13 @@
 .profile {
   background-color: $white;
   .header {
-    padding: 45px 30px;
+    padding: 20px;
     background: url('/assets/img/toolkit.png') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-position: center;
     color: $dark_blue;
     h2 {
       font-size: 40px;
@@ -14,17 +15,8 @@
       margin-top: 20px;
       font-weight: bold;
     }
-    p {
-      font-weight: 600;
-    }
-    .header-text {
-      max-width: 550px;
-      display: block;
-      margin-left: 5px;
-    }
   }
   .main {
-    padding: 30px;
     .panel-header {
       padding: 12px 18px;
       h4 {
@@ -34,7 +26,7 @@
   }
   .main-inner {
     background-color: $light_grey;
-    padding: 20px;
+    padding: 5px 0;
     border: 1px solid $dark_grey;
   }
   .upload-profile {
@@ -45,64 +37,43 @@
       font-size: 12px;
     }
   }
-  .panel-inner {
-    text-align: center;
-  }
-  h5 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
+  .details-panel {
+    .panel-inner {
+      text-align: center;
+      padding: 5px;
+    }
   }
   p {
     margin-bottom: 0;
-  }
-  .small-text {
-    margin: 20px 0;
-    font-size: 12px;
-    line-height: 14px;
-    a {
-      color: $site_red;
-    }
-    i {
-      font-size: 10px;
-    }
   }
   input:disabled {
     color: #666;
     background-color: $dark_grey !important;
   }
-}
-
-@media (max-width: 1024px) {
-  .profile {
-    .main {
-      padding: 40px;
-    }
-    .main-inner {
-      padding: 10px;
-    }
+  label {
+    font-size: 14px;
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .profile {
     .header {
-      background-position: left;
-      padding: 20px;
+      background-position: center;
+      padding: 45px 30px;
     }
     .main {
-      padding: 0;
+      padding: 30px;
     }
     .main-inner {
-      padding: 5px 0;
+      padding: 20px;
     }
     .details-panel {
       .panel-inner {
-        padding: 5px;
+        padding: 30px;
       }
     }
-  }
-  label {
-    font-size: 14px;
+    label {
+      font-size: 15.5px;
+    }
   }
 }
