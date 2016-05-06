@@ -1,27 +1,14 @@
 .toolkits {
   background-color: $white;
   .header {
-    padding: 45px 30px;
-    background: url('/assets/img/toolkit.png') no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    padding: 20px;
+    text-align: center;
+    background: url('/assets/img/toolkit.png') no-repeat center left;
     background-size: cover;
     color: $dark_blue;
     h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-      margin-top: 20px;
+      font-size: 30px;
       font-weight: bold;
-    }
-    h6 {
-      font-size: 16px;
-      line-height: 20px;
-    }
-    .header-text {
-      max-width: 535px;
-      display: block;
-      margin-left: 5px;
     }
   }
   .body {
@@ -31,7 +18,7 @@
 .toolkit-widget {
   display: inline-block;
   background-color: $light_grey;
-  padding: 25px;
+  padding: 15px;
   border: 1px solid $dark_grey;
   border-radius: 5px;
   text-align: center;
@@ -51,7 +38,6 @@
     }
   }
   h3 {
-    min-height: 80px;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -77,22 +63,23 @@
   margin: 10px 1.25%;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .toolkits {
     .header {
-      text-align: center;
-      padding: 20px;
+      padding: 45px 30px;
+      text-align: left;
       background-position: left;
       h1 {
-        margin: 0;
-        font-size: 30px;
+        font-size: 40px;
+        margin-bottom: 20px;
+        margin-top: 20px;
       }
     }
   }
   .toolkit-widget {
-    padding: 15px;
+    padding: 25px;
     h3 {
-      min-height: inherit;
+      min-height: 80px;
     }
   }
 }
