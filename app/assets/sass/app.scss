@@ -3,14 +3,10 @@ $icon-font-path: '/bower_components/bootstrap-sass/assets/fonts/bootstrap/';
 @import "../../bower_components/fontawesome/scss/font-awesome";
 @import "utils";
 @import "controls";
-@import "components";
-@import "./views/mainView";
 @import "./views/personalLearningJourney";
 @import "./views/loginView";
 @import "./views/moduleView";
-@import "./views/faqView";
 @import "./views/actionLearningZone";
-@import "./views/projectView";
 @import "./views/leadershipProgrammeView";
 @import "./views/onBoardingView";
 @import "./views/homeView";
@@ -29,6 +25,10 @@ $icon-font-path: '/bower_components/bootstrap-sass/assets/fonts/bootstrap/';
 @import "./components/tooltip";
 @import "./components/learningJourneyTable";
 @import "./components/miniProfileTooltip";
+@import "./components/carousel";
+@import "./components/membersModule";
+@import "./components/resourceWidget";
+@import "./components/tabStack";
 
 @font-face {
   font-family: "FontAwesome";

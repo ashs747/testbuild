@@ -9,61 +9,62 @@
   background-size: cover;
   h1 {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 24px;
+    text-align: center;
   }
   .header {
-    width: 100%;
     background-color: $white;
-    padding: 10px;
-    height: 100px;
+    height: 55px;
+    .header-logo {
+      height: 100%;
+    }
+    img {
+      display: block;
+      height: 100%;
+    }
+  }
+  .main {
+    height: calc(100% - 55px);
   }
   .slide-container {
     opacity: 0.9;
+    height: 100%;
+    .body {
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+    .slideshow-module  {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      border: none;
+      max-width: 100%;
+      .body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        height: calc(100% - 45px);
+        overflow-y: scroll;
+      }
+    }
   }
   .slideshow-nav {
     position: absolute;
-    width: calc(100% - 60px);
-    bottom: 30px;
+    width: calc(100% - 10px);
+    bottom: 10px;
   }
   .slideshow-nav-items {
     display: none;
   }
-  .slideshow-module  {
-    position: relative;
-    width: 750px;
-    height: 520px;
-    margin: 50px auto;
-  }
-  .footer {
-    height: calc(100% - 720px);
-    max-height: 100px;
-    background-color: $dark_blue;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-}
-
-.slide {
-  height: 520px;
-  .row {
-    margin: 0;
-  }
-  .body {
-    padding: 20px;
-  }
-  .nav {
-    i {
-      color: $site_red;
+  .journey, .interactive, .progress, .devices {
+    p {
+      display: none;
     }
-  }
-}
-
-.body {
-  img {
-    display: block;
-    margin: 0 auto;
   }
 }
 
@@ -71,7 +72,7 @@
   background-color: $site_red;
   color: $white;
   .body {
-    padding: 40px;
+    padding: 10px;
     height: calc(100% - 72px);
   }
   .title {
@@ -87,23 +88,75 @@
   }
 }
 
-.slideshow-module.profile{
-  background-color: $light_grey;
+.slideshow-module.message-slide {
+  background-color: $dark_blue;
+  color: $white;
   .body {
-    padding: 25px;
+    text-align: center;
+    width: 500px;
+    margin: 0 auto;
     h1 {
-      margin: 0 auto;
-      max-width: 400px;
-      color: $site_red;
-      font-size: 40px;
-      text-align: center;
+      font-size: 24px;
+      margin: 10px auto;
     }
   }
-  .content {
-    margin-top: 20px;
+  .video {
+    margin: 10px auto;
+    width: 90%;
+    overflow: visible;
   }
-  .form-inputs {
-    padding-top: 20px;
+}
+
+.slideshow-module.journey {
+  img {
+    max-width: 100%;
+    max-height: 330px;
+  }
+  .title {
+    text-align: center;
+    color: $site_red;
+    margin: 15px 0;
+  }
+}
+
+.slideshow-module.interactive {
+  img {
+    max-width: 100%;
+  }
+  .title {
+    text-align: center;
+    color: $site_red;
+    margin: 10px 0;
+  }
+}
+
+.slideshow-module.progress {
+  .title {
+    text-align: center;
+    width: 70%;
+    color: $site_red;
+    margin: 0 auto;
+  }
+}
+
+.slideshow-module.devices {
+  .title {
+    text-align: center;
+    color: $site_red;
+    margin: 0 auto;
+  }
+}
+
+.slideshow-module.profile {
+  background-color: $light_grey;
+  .body {
+    h1 {
+      margin: 10px auto;
+      max-width: 400px;
+      color: $site_red;
+      font-size: 24px;
+      text-align: center;
+    }
   }
   .upload-profile {
     background-color: $light_grey;
@@ -120,87 +173,6 @@
     .btn {
       margin-bottom: 10px;
     }
-  }
-}
-
-.slideshow-module.message-slide {
-  background-color: $dark_blue;
-  color: $white;
-  .body {
-    text-align: center;
-    width: 500px;
-    margin: 0 auto;
-    h1 {
-      font-size: 36px;
-      margin: 0 auto;
-    }
-  }
-  .video {
-    margin: 30px auto;
-    width: 100%;
-    height: 250px;
-  }
-
-}
-
-.slideshow-module.journey {
-  p:first-child {
-    margin-top: 25px;
-  }
-  img {
-    max-width: 100%;
-    max-height: 330px;
-  }
-  .title {
-    text-align: center;
-    color: $site_red;
-    margin: 15px 0;
-  }
-  .content {
-    text-align: left;
-    font-size: 16px;
-  }
-}
-
-.slideshow-module.progress {
-  .title {
-    text-align: center;
-    width: 70%;
-    color: $site_red;
-    margin: 20px auto;
-  }
-  .content {
-    text-align: left;
-    font-size: 16px;
-  }
-}
-
-.slideshow-module.interactive {
-  img {
-    max-width: 100%;
-  }
-  .title {
-    text-align: center;
-    color: $site_red;
-    margin: 30px 0;
-  }
-  .content {
-    text-align: left;
-    font-size: 16px;
-  }
-}
-.slideshow-module.devices {
-  img {
-    max-width: 100%;
-  }
-  .title {
-    text-align: center;
-    color: $site_red;
-    margin: 30px 0;
-  }
-  .content {
-    text-align: left;
-    font-size: 16px;
   }
 }
 
@@ -241,50 +213,49 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .on-boarding {
-    img {
-      max-width: 100%;
-    }
     .journey, .interactive, .progress, .devices {
       p {
-        display: none !important;
+        display: block;
       }
+    }
+    h1 {
+      font-weight: bold;
+      font-size: 40px;
     }
     .slideshow-nav {
-      width: calc(100% - 10px);
-      bottom: 10px;
+      width: calc(100% - 60px);
+      bottom: 30px;
     }
     .header {
-      padding: 0px;
-      height: 55px;
-      .header-logo {
-        height: 100%;
-      }
-      img {
-        display: block;
-        height: 100%;
-      }
+      padding: 10px;
+      height: 100px;
+      width: 100%;
     }
     .footer {
-      height: 0px;
+      height: calc(100% - 720px);
+      max-height: 100px;
+      background-color: $dark_blue;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
     .main {
-      height: calc(100% - 55px);
+      height: auto;
     }
     .slide-container {
       height: 100%;
       .slideshow-module {
-        overflow: hidden;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-        border: none;
-        padding: 0;
-        max-width: 100%;
+        margin: 25px auto;
+        width: 750px;
+        height: 520px;
+        padding: 30px;
+        border: 1px solid $white;
         h1 {
           text-align: center;
-          font-size: 24px;
+          font-size: 40px;
           margin: 10px 0;
         }
         .body {
@@ -292,76 +263,96 @@
           margin: 0;
           padding: 0;
           height: calc(100% - 45px);
-          overflow-y: scroll;
+          overflow-y: visible;
         }
         .title {
           margin: 0 auto;
         }
-        .video {
-          margin: 10px auto;
-          width: 90%;
-          height: unset;
-        }
-        .inner {
-          padding: 0;
-          h1 {
-            display: none;
-          }
-          .row {
-            padding: 0 5px;
-          }
-          .btn {
-            margin: 5px;
-          }
-          .upload-profile {
-            margin-bottom: 5px;
-            padding: 5px 0;
-          }
-          p {
-            margin-bottom: 0;
-          }
-          .form-inputs {
-            padding: 5px;
-          }
-          .form-control {
-            margin-bottom: 2px;
-            height: 35px;
-          }
+      }
+    }
+    .slideshow-module.welcome {
+      h1 {
+        text-align: left;
+      }
+      .body {
+        padding: 40px;
+      }
+      .title {
+        text-align: left;
+      }
+    }
+    .slideshow-module.message-slide {
+      .body {
+        width: 500px;
+        margin: 0 auto;
+        h1 {
+          font-size: 36px;
+          margin: 0 auto;
         }
       }
-      .profile {
-        .content {
-          margin-top: 0;
+      .video {
+        margin: 30px auto;
+        width: 100%;
+        height: unset;
+      }
+    }
+    .slideshow-module.journey {
+      p:first-child {
+        margin-top: 25px;
+      }
+      .content {
+        text-align: left;
+        font-size: 16px;
+      }
+    }
+    .slideshow-module.interactive {
+      .title {
+        margin: 30px 0;
+      }
+      .content {
+        text-align: left;
+        font-size: 16px;
+      }
+    }
+    .slideshow-module.progress {
+      .title {
+        margin: 20px auto;
+      }
+      .content {
+        text-align: left;
+        font-size: 16px;
+      }
+    }
+    .slideshow-module.devices {
+      .title {
+        margin: 20px 0;
+      }
+      .content {
+        text-align: left;
+        font-size: 16px;
+      }
+    }
+    .slideshow-module.profile {
+      .body {
+        padding: 25px;
+        h1 {
+          margin: 0 auto;
+          font-size: 40px;
         }
-        .upload-profile {
-          padding: 0;
-        }
-        p {
-          margin-top: 0;
-        }
-        .form-inputs {
-          padding: 0;
-        }
-        .form-control {
-          margin-bottom: 5px;
-        }
-        .btn {
-          margin-top: 5px;
-          margin-bottom: 5px;
-        }
-        .alert {
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
+      }
+      .content {
+        margin-top: 20px;
       }
     }
   }
 }
 
-@media (max-width: 1050px) {
+@media (min-width: 1024px) {
   .on-boarding {
-    .slideshow-module {
-      margin: 25px auto;
+    .slide-container {
+      .slideshow-module {
+        margin: 50px auto;
+      }
     }
   }
 }

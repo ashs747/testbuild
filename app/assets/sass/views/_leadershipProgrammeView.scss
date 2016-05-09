@@ -2,7 +2,7 @@
   text-align: center;
   h1 {
     font-weight: bold;
-    font-size: 44px;
+    font-size: 30px;
   }
   h3 {
     font-weight: bold;
@@ -17,15 +17,14 @@
   }
   .intro {
     color: $white;
-    padding: 135px 0;
+    padding: 20px;
     background: url('/assets/img/programme-introduction.png');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     h1 {
-      font-weight: bold;
-      font-size: 50px;
+      font-size: 36px;
       margin: 35px 0;
     }
     p {
@@ -38,7 +37,7 @@
   }
   .our-values {
     background-color: $white;
-    padding: 100px;
+    padding: 20px;
     h1 {
       margin-bottom: 20px;
     }
@@ -50,7 +49,7 @@
   }
   .value-carousel {
     background-color: $site_red;
-    padding: 45px 0;
+    padding: 10px;
     .carousel {
       background-color: $site_red;
       color: $white;
@@ -75,8 +74,7 @@
   }
   .title-carousel {
     color: $dark_blue;
-    padding-top: 60px;
-    padding-bottom: 105px;
+    padding: 20px 10px;
     background-color: $white;
     h3 {
       margin-top: 45px;
@@ -116,13 +114,13 @@
       border-radius: 50%;
       background-color: $white;
       margin: 0 auto;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       p {
         line-height: 120px;
       }
     }
     .inner {
-      padding: 95px 0;
+      padding: 20px 10px;
       max-width: 420px;
       margin: 0 auto;
     }
@@ -133,11 +131,42 @@
       font-weight: 600;
       margin: 0;
     }
+    .left-column {
+      color: $dark_blue;
+      background-color: $white;
+      .circle {
+        color: $white;
+        background-color: $site_red;
+        p {
+          font-size: 85px;
+        }
+        i {
+          font-size: 70px;
+        }
+      }
+    }
+    .right-column {
+      background: url('/assets/img/programme-what-in-it.png');
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      color: $white;
+      .circle {
+        color: $dark_blue;
+        background-color: $white;
+        p {
+          font-size: 90px;
+        }
+        i {
+          font-size: 80px;
+        }
+      }
+    }
   }
   .roadmap {
     background-color: $white;
-    padding-top: 80px;
-    padding-bottom: 65px;
+    padding: 20px;
     p {
       font-weight: 600;
     }
@@ -156,7 +185,7 @@
     -o-background-size: cover;
     background-size: cover;
     color: $white;
-    padding: 80px;
+    padding: 20px;
     h1 {
       margin-bottom: 30px;
       margin-top: 20px;
@@ -169,7 +198,7 @@
     background-color: $white;
   }
   .blended-learning {
-    padding: 135px;
+    padding: 20px;
     color: $white;
     background-color: $dark_blue;
     h1 {
@@ -177,11 +206,11 @@
     }
   }
   .delivery-grid {
-    div {
-      height: 450px;
-    }
     .icon {
       font-size: 50px;
+    }
+    .box-inner {
+      padding: 20px;
     }
     h5 {
       font-size: 28px;
@@ -272,122 +301,84 @@
   .message-from {
     background-color: $site_red;
     color: $white;
-    padding: 70px;
+    padding: 20px;
     h1 {
       margin-top: 25px;
       margin-bottom: 50px;
     }
     .video {
-      width: 550px;
-      margin: 0 auto;
-      height: 260px;
-    }
-  }
-  .left-column {
-    color: $dark_blue;
-    background-color: $white;
-    .circle {
-      color: $white;
-      background-color: $site_red;
-      p {
-        font-size: 85px;
-      }
-      i {
-        font-size: 70px;
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 25px;
+      height: 0;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
     }
   }
-  .right-column {
-    background: url('/assets/img/programme-what-in-it.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    color: $white;
-    .circle {
-      color: $dark_blue;
-      background-color: $white;
-      p {
-        font-size: 90px;
-      }
-      i {
-        font-size: 80px;
-      }
-    }
-  }
+
   .inner {
-    max-width: 740px;
+    max-width: 700px;
     margin: 0 auto;
   }
 }
 
-@media (max-width: 550px) {
+@media (min-width: 768px) {
   .leadership-programme {
-    .intro {
-      h1 {
-        font-size: 36px;
-      }
-      padding: 20px;
+    h1 {
+      font-size: 44px;
     }
-    .delivery-grid {
-      div {
-        height: inherit;
+    .intro {
+      padding: 135px 0;
+      h1 {
+        font-size: 50px;
+        margin: 35px 0;
       }
     }
     .our-values {
-      padding: 20px;
+      padding: 100px;
     }
     .value-carousel {
-      padding: 10px;
-      h3 {
-        margin-top: 20px;
-      }
-    }
-    .double-column {
-      .inner {
-        padding: 20px 10px;
-      }
-      .circle {
-        margin-bottom: 20px;
-      }
-    }
-    .qualities {
-      padding: 20px;
+      padding: 45px 0;
     }
     .title-carousel {
-      padding: 20px 10px;
+      pading-top: 60px;
+      padding-bottom: 105px;
     }
-    .blended-learning {
-      padding: 20px;
-    }
-    h1 {
-      font-size: 30px;
-    }
-    .message-from {
-      padding: 20px;
-      .video {
-        height: 300px;
+    .double-column {
+      .circle {
+        margin-bottom: 50px;
       }
-      h1 {
-        margin:  20px 0;
+      .inner {
+        padding: 95px 0;
       }
-    }
-    .box-inner {
-      padding: 20px;
     }
     .roadmap {
-      padding: 20px;
+      padding-top: 80px;
+      padding-bottom: 65px;
     }
-  }
-}
-
-@media (max-width: 400px) {
-  .leadership-programme {
-    .message-from {
-      .video {
-        width: 240px;
-        height: 140px;
+    .qualities {
+      padding: 80px;
+    }
+    .blended-learning {
+      padding: 135px;
+    }
+    .delivery-grid {
+      div {
+        height: 450px;
       }
+
+      .box-inner {
+        padding-top: 65px;
+        padding-bottom: 95px;
+      }
+    }
+    .message-from {
+      padding: 70px
     }
   }
 }

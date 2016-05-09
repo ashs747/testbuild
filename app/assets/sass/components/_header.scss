@@ -2,7 +2,7 @@
   background-color: $white;
 }
 .top-nav-bar {
-  padding: 15px 30px;
+  padding: 15px;
   .programme-logo {
     max-width: 275px;
     width: 100%;
@@ -287,8 +287,8 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (min-width: 1024px) {
   .top-nav-bar {
-    padding: 15px;
+    padding: 15px 30px;
   }
 }
