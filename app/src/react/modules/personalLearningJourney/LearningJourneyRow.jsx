@@ -15,7 +15,7 @@ class LearningJourneyRow extends React.Component {
     let type = activity.type;
     let event = activity.myBookedEventAndSlot;
     let icon = this.assignIcon(type);
-    let status = (type !== "Project") ? this.mapStatus(activity, this.props.moduleId) : null;
+    let status = (type !== "Project") ? this.mapStatus(activity, this.props.moduleNumber) : null;
 
     let date = (event) ? moment(event.startDate).format('ddd Do MMM YYYY') : null;
     let time = (event) ? `${moment(event.startDate).format('HH:mm')} - ${moment(event.endDate).format('HH:mm')}` : null;
@@ -71,11 +71,11 @@ class LearningJourneyRow extends React.Component {
     return content;
   }
 
-  mapStatus(activity, moduleId) {
+  mapStatus(activity, moduleNumber) {
     switch (activity.status) {
       case "dates-tbc": return (<p>Dates TBC</p>);
-      case "book": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>BOOK</a>);
-      case "booked-can-change": return (<a className="btn" href={`/#/booking/${moduleId}/${activity.id}`}>CHANGE</a>);
+      case "book": return (<a className="btn" href={`/#/booking/${moduleNumber}/${activity.id}`}>BOOK</a>);
+      case "booked-can-change": return (<a className="btn" href={`/#/booking/${moduleNumber}/${activity.id}`}>CHANGE</a>);
       case "booked-cannot-change": return (
         <Tooltip
           trigger={<i className="fa fa-info-circle"></i>}
