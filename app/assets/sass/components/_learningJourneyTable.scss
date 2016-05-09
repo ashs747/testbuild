@@ -1,6 +1,6 @@
 .learning-journey-module {
   font-size: 14px;
-  color: $dark_blue;
+  color: $secondaryFontColour;
   .row-icon {
     background-color: $white;
     border: none;
@@ -47,7 +47,7 @@
       .learning-activity {
         text-align:left;
         width: 25%;
-        border-left: 1px solid $dark_grey;
+        border-left: 1px solid $darkGreyBackground;
         padding-left: 30px;
       }
       .title {
@@ -128,7 +128,7 @@
         text-align:center;
         line-height:28px;
         border-radius:50%;
-        background-color: $dark_blue;
+        background-color: $secondaryColour;
         color: $white;
         font-size: 16px;
         z-index:2;
@@ -145,10 +145,10 @@
       text-align:left;
       font-weight:bold;
       padding-left: 30px;
-      border-left: 1px solid $dark_grey;
+      border-left: 1px solid $darkGreyBackground;
       a {
-        color: $dark_blue;
-        border-bottom: 1px solid $underline_grey;
+        color: $secondaryFontColour;
+        border-bottom: 1px solid $underlineGrey;
       }
     }
     .date {
@@ -164,14 +164,14 @@
       width: 5%;
       .ical-button {
         padding: 0;
-        background-color: $dark_grey;
+        background-color: $darkGreyBackground;
         width: 21px;
         height: 21px;
         border-radius: 2px;
         border: 1px solid $white;
         margin: 0 auto;
         i {
-          color: $dark_blue;
+          color: $secondaryFontColour;
           font-size: 13px;
           line-height: 16px;
         }
@@ -183,15 +183,15 @@
       p {
         display: inline;
         font-size: 14px;
-        border-bottom: 1px solid $underline_grey;
+        border-bottom: 1px solid $underlineGrey;
       }
     }
     .status {
       width: 10%;
-      border-right: 1px solid $dark_grey;
+      border-right: 1px solid $darkGreyBackground;
       font-size: 20px;
       .btn {
-        background-color: $site_red;
+        background-color: $primaryColour;
         max-width: 85px;
         width: 100%;
         color: $white;
@@ -211,7 +211,7 @@
         background-color: $success;
       }
       .red {
-        background-color: $site_red;
+        background-color: $primaryColour;
       }
       p {
         font-size: 14px;
@@ -222,7 +222,7 @@
     tr{
       td{
         &:last-child{
-          border-top: 1px solid $dark_grey;
+          border-top: 1px solid $darkGreyBackground;
           background-color:#f6f7f8;
           text-align:right;
           border-bottom-right-radius: 5px;
@@ -258,7 +258,7 @@
       width:35px;
       height:35px;
       border-radius: 50%;
-      background-color: $site_red;
+      background-color: $primaryColour;
       color:white;
       text-align:center;
       line-height:36px;
@@ -284,7 +284,7 @@
       &.passed-date{
         color:white;
         border:none;
-        background-color: $site_red;
+        background-color: $primaryColour;
       }
       &.passed-date:first-child {
         line-height: 42px;
@@ -322,10 +322,10 @@
         font-size: 28px;
         float:left;
         margin-top: 20px;
-        color: $site_red;
+        color: $primaryColour;
       }
       &.current {
-        background-color: $site_red;
+        background-color: $primaryColour;
         color:white;
         a {
           color: $white;
@@ -395,15 +395,15 @@
   }
   .heading {
     padding: 10px;
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     color: $white;
   }
   .table-headings {
     font-size: 12px;
-    color: $dark_blue;
+    color: $secondaryFontColour;
     background-color: #dbdbdb;
     td:last-child {
-      border-right: 1px solid $dark_grey;
+      border-right: 1px solid $darkGreyBackground;
     }
     th {
       border: none;
@@ -411,35 +411,35 @@
       padding-bottom: 15px;
     }
     th:last-child {
-      border-right: 1px solid $dark_grey;
+      border-right: 1px solid $darkGreyBackground;
     }
   }
   .footer {
     font-size: 14px;
-    background-color: $light_grey;
+    background-color: $lightGreyBackground;
     text-align: right;
     font-weight: bold;
     margin-bottom: 0;
     padding: 10px;
     span {
-      border-bottom: 1px solid $underline_grey;
+      border-bottom: 1px solid $underlineGrey;
     }
     td {
       padding: 20px;
     }
     td:first-child {
-      border-left: 1px solid $border_grey;
-      border-bottom: 1px solid $border_grey;
+      border-left: 1px solid $borderGrey;
+      border-bottom: 1px solid $borderGrey;
     }
     td:last-child {
-      border-right: 1px solid $border_grey;
-      border-bottom: 1px solid $border_grey;
+      border-right: 1px solid $borderGrey;
+      border-bottom: 1px solid $borderGrey;
     }
     .show-icon-footer {
       background-color: $white;
       border-left: none !important;
       border-bottom: none !important;
-      border-right: 1px solid $border_grey;
+      border-right: 1px solid $borderGrey;
     }
   }
   .custom-tooltip {
@@ -454,7 +454,7 @@
 }
 
 .plj-table-row:nth-child(even) {
-  background-color: $light_grey;
+  background-color: $lightGreyBackground;
 }
 
 .plj-table-row {
@@ -466,12 +466,12 @@
 
 .plj-table-row:last-child {
   .activity {
-    border-bottom: 1px solid $dark_grey;
+    border-bottom: 1px solid $darkGreyBackground;
   }
 }
 
 .plj-small-row {
-  border: 1px solid $dark_grey;
+  border: 1px solid $darkGreyBackground;
   padding: 10px;
   .tooltip-trigger {
     display: inline-block;
@@ -484,13 +484,13 @@
     margin: 5px 0;
   }
   a {
-    color: $dark_blue;
+    color: $secondaryFontColour;
     font-weight: 600;
-    border-bottom: 1px solid $border_grey;
+    border-bottom: 1px solid $borderGrey;
   }
   .tooltip-trigger p {
     font-weight: 600;
-    border-bottom: 1px solid $border_grey;
+    border-bottom: 1px solid $borderGrey;
   }
   .col-xs-6 {
     padding: 0;
@@ -501,7 +501,7 @@
   .btn {
     width: 100%;
     max-width: 90px;
-    background-color: $site_red;
+    background-color: $primaryColour;
     color: $white;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -518,14 +518,14 @@
     }
   }
   .green {
-    background-color: #7EAC0E;
+    background-color: $success;
   }
   .red {
-    background-color: $site_red;
+    background-color: $primaryColour;
   }
 }
 .plj-small-row:nth-child(odd) {
-  background-color: $light_grey;
+  background-color: $lightGreyBackground;
 }
 
 @media (min-width: 768px) {

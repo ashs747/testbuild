@@ -42,23 +42,23 @@
       margin-bottom: 20px;
     }
     p {
-      color: $dark_blue;
+      color: $secondaryFontColour;
       font-weight: 600;
       margin: 20px 0;
     }
   }
   .value-carousel {
-    background-color: $site_red;
+    background-color: $primaryColour;
     padding: 10px;
     .carousel {
-      background-color: $site_red;
+      background-color: $primaryColour;
       color: $white;
       .icon {
         height: 170px;
         width: 170px;
         margin-top: 15px;
         background-color: $white;
-        color: $dark_blue;
+        color: $secondaryFontColour;
         p {
           line-height: 142px;
           font-size: 128px;
@@ -73,7 +73,7 @@
     }
   }
   .title-carousel {
-    color: $dark_blue;
+    color: $secondaryFontColour;
     padding: 20px 10px;
     background-color: $white;
     h3 {
@@ -132,11 +132,11 @@
       margin: 0;
     }
     .left-column {
-      color: $dark_blue;
+      color: $secondaryFontColour;
       background-color: $white;
       .circle {
         color: $white;
-        background-color: $site_red;
+        background-color: $primaryColour;
         p {
           font-size: 85px;
         }
@@ -153,7 +153,7 @@
       background-size: cover;
       color: $white;
       .circle {
-        color: $dark_blue;
+        color: $secondaryFontColour;
         background-color: $white;
         p {
           font-size: 90px;
@@ -200,7 +200,7 @@
   .blended-learning {
     padding: 20px;
     color: $white;
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     h1 {
       padding: 0;
     }
@@ -244,13 +244,13 @@
   .coaching {
     background-color: $white;
     h5 {
-      color: $site_red;
+      color: $primaryColour;
     }
     p {
-      font-color: $dark_blue;
+      font-color: $secondaryFontColour;
     }
     .icon {
-      background-color: $dark_grey;
+      background-color: $darkGreyBackground;
       width: 80px;
       height: 80px;
       margin: 0 auto;
@@ -261,7 +261,7 @@
     }
   }
   .webinar {
-    background-color: $site_red;
+    background-color: $primaryColour;
     color: $white;
     .icon {
       border: 3px solid $white;
@@ -299,7 +299,7 @@
     padding-bottom: 95px;
   }
   .message-from {
-    background-color: $site_red;
+    background-color: $primaryColour;
     color: $white;
     padding: 20px;
     h1 {

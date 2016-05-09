@@ -11,7 +11,7 @@
     color: $white;
     text-align: center;
     h2 {
-      color: $dark_blue;
+      color: $secondaryFontColour;
       font-size: 30px;
       margin: 10px 0;
       font-weight: bold;
@@ -24,7 +24,7 @@
       max-width: 535px;
     }
     a {
-      color: $site_red;
+      color: $primaryColour;
     }
   }
   .body {
@@ -33,7 +33,7 @@
       font-size: 19px;
     }
     p a {
-      color: $site_red;
+      color: $primaryColour;
       border-bottom: 1px solid #e9cfd0;
       text-decoration: none;
     }

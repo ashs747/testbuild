@@ -27,8 +27,8 @@
       font-weight: bold;
     }
     a {
-      color: $body_color;
-      border-bottom: 1px solid $border_grey;
+      color: $primaryFontColour;
+      border-bottom: 1px solid $borderGrey;
       text-decoration: none;
     }
     a:active {
@@ -77,14 +77,14 @@
       width:100%;
       display:block;
       padding: 10px 0;
-      background: $site_red;
+      background: $primaryColour;
       line-height: 20px;
       text-decoration: none;
       transition: color 0.25s;
     }
 
     &:hover>a{
-      background: $dark_blue;
+      background: $secondaryFontColour;
       color:$white;
     }
 
@@ -110,7 +110,7 @@
     .sub-nav-content {
       width: 100%;
       padding: 15px 20px;
-      background: $dark_blue;
+      background: $secondaryFontColour;
 
       ul {
         position: static;
@@ -145,7 +145,7 @@
         display: inline-block;
         margin-top: 11px;
         transition: color 0.25s;
-        color: #d7d2cd;
+        color: $headerTextDropdownColour;
       }
       i {
         vertical-align: middle;
@@ -169,7 +169,7 @@
     }
   }
   .sub-menu:hover {
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     a {
       color: $white;
     }
@@ -205,7 +205,7 @@
   .mobile-nav {
     width: 100%;
     position: absolute;
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     z-index: 100;
     ul {
       list-style-type: none;
@@ -234,7 +234,7 @@
     }
     .sub-nav {
       border-bottom: 1px solid $white;
-      background: $dark_blue;
+      background: $secondaryFontColour;
       a {
         text-decoration: none;
       }
@@ -253,7 +253,7 @@
       }
       p {
         display: inline;
-        color: #d7d2cd;
+        color: $headerTextDropdownColour;
       }
       img {
         position: relative;
@@ -263,7 +263,7 @@
       i {
         position: relative;
         top: -2px;
-        color: #d7d2cd;
+        color: $headerTextDropdownColour;
         font-size: 6px;
         margin-right: 10px;
       }
@@ -274,7 +274,7 @@
     }
     .cirrus-footer {
       text-align: right;
-      background: $site_red;
+      background: $primaryColour;
     }
     .my-learning {
       .sub-arrow {

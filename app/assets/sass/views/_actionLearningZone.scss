@@ -1,5 +1,5 @@
 .action-learning-zone {
-  background-color: $light_grey;
+  background-color: $lightGreyBackground;
   .row {
     margin: 0;
   }
@@ -17,7 +17,7 @@
       font-size: 30px;
       font-weight: bold;
       margin: 0;
-      color: $dark_blue;
+      color: $secondaryFontColour;
     }
   }
   .tab-btn {
@@ -27,7 +27,7 @@
     h4 {
       font-weight: 600;
       margin-top: 0;
-      background-color: $site_red;
+      background-color: $primaryColour;
       color: $white;
       padding: 15px 30px;
     }
@@ -81,10 +81,10 @@
   .action-learning-zone {
     .right-bar {
       padding: 30px 20px;
-      background-color: $light_grey;
+      background-color: $lightGreyBackground;
     }
     .left-bar {
-      border-right: 2px solid $dark_grey;
+      border-right: 2px solid $darkGreyBackground;
       background-color: $white;
       padding: 0;
     }

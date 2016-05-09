@@ -1,12 +1,12 @@
 .tab-bar {
   width: 100%;
-  background-color: $light_grey;
+  background-color: $lightGreyBackground;
   .tab-btn {
     text-align: center;
     width: 33.3333%;
     padding: 15px 5px;
     float: left;
-    background-color: $dark_grey;
+    background-color: $darkGreyBackground;
     cursor: pointer;
     vertical-align: middle;
     min-height: 30px;

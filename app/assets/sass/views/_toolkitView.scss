@@ -5,7 +5,7 @@
     text-align: center;
     background: url('/assets/img/toolkit.png') no-repeat center left;
     background-size: cover;
-    color: $dark_blue;
+    color: $secondaryFontColour;
     h1 {
       font-size: 30px;
       font-weight: bold;
@@ -17,9 +17,9 @@
 }
 .toolkit-widget {
   display: inline-block;
-  background-color: $light_grey;
+  background-color: $lightGreyBackground;
   padding: 15px;
-  border: 1px solid $dark_grey;
+  border: 1px solid $darkGreyBackground;
   border-radius: 5px;
   text-align: center;
   .widget-icon {
@@ -29,7 +29,7 @@
     margin: 0 auto;
     background-color: $white;
     border-radius: 50%;
-    border: 1px solid $dark_grey;
+    border: 1px solid $darkGreyBackground;
     text-align: center;
     img {
       height: 100%;
@@ -43,7 +43,7 @@
     margin-bottom: 20px;
   }
   .btn {
-    background-color: $site_red;
+    background-color: $primaryColour;
     color: $white;
     width: 75px;
     padding: 3px 12px;

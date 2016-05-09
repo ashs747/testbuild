@@ -4,7 +4,7 @@
     height: 120px;
     width: 120px;
     margin: 0 auto;
-    background-color: $site_red;
+    background-color: $primaryColour;
     color: $white;
     border-radius: 50%;
   }
@@ -39,14 +39,14 @@
 }
 
 .carousel-indicators li {
-  border-color: $site_red;
+  border-color: $primaryColour;
   margin:0 3px;
   width:12px;
   height:12px;
 }
 
 .carousel-indicators li.active {
-  background: $site_red;
+  background: $primaryColour;
   margin:0 3px
 }
 

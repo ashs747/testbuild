@@ -26,20 +26,20 @@
     height:100%;
     display: inline-block;
     width: 20%;
-    background-color: #c7cacd;
+    background-color: $bookingNav;
     .main-block {
       width: calc(100% - 20px);
       float: left;
       height:100%;
       color: $white;
-      background-color: #c7cacd;
+      background-color: $bookingNav;
     }
     .right-block {
       width: 20px;
       float: left;
       border-top: 25px solid transparent;
       border-bottom: 25px solid transparent;
-      border-left: 10px solid #c7cacd;
+      border-left: 10px solid $bookingNav;
       height: 100%;
     }
     .left-block {
@@ -52,7 +52,7 @@
       height: 30px;
       background-color: $white;
       border-radius: 50%;
-      color: $site_red;
+      color: $primaryColour;
       text-align: center;
       margin: 10px 5px;
       float: left;
@@ -65,16 +65,16 @@
   }
   .active {
     width: 60%;
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     .main-block {
-      background-color: $dark_blue;
+      background-color: $secondaryColour;
     }
     .right-block {
       background-color: $white;
-      border-left: 10px solid $dark_blue;
+      border-left: 10px solid $secondaryFontColour;
     }
     .left-block {
-      background-color: $dark_blue;
+      background-color: $secondaryColour;
     }
     .text {
       display: block;
@@ -87,9 +87,9 @@
     }
   }
   .second-item {
-    background-color: #c7cacd;
+    background-color: $bookingNav;
     .right-block {
-      border-left: 10px solid #c7cacd;
+      border-left: 10px solid $bookingNav;
       background-color: $white;
     }
     .left-block {
@@ -136,7 +136,7 @@
       }
       .right-block {
         width: 20px;
-        border-left: 20px solid #c7cacd;
+        border-left: 20px solid $bookingNav;
       }
     }
     .active {

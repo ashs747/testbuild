@@ -35,7 +35,7 @@
   .learning-journey {
     padding: 20px;
     a {
-      color: $site_red;
+      color: $primaryColour;
       text-decoration: none;
     }
     p a {
@@ -52,7 +52,7 @@
       margin-bottom: 0;
       a {
         font-weight: 600;
-        color: $site_red;
+        color: $primaryColour;
         border-bottom: 1px solid #e9cfd0;
         text-decoration: none;
       }
@@ -61,7 +61,7 @@
   .grid-links {
     text-align: center;
     .featured {
-      background-color: $site_red;
+      background-color: $primaryColour;
       color: $white;
       h4 {
         margin: 25px 0;
@@ -104,7 +104,7 @@
     .log {
       background-color: $white;
       h4 {
-        color: $site_red;
+        color: $primaryColour;
         margin-top: 10px;
         margin-bottom: 10px;
       }
@@ -114,10 +114,10 @@
         max-width: 300px;
       }
       a {
-        color: $site_red;
+        color: $primaryColour;
         font-weight: 600;
         text-decoration: none;
-        border-bottom: 1px solid $site_red;
+        border-bottom: 1px solid $primaryColour;
       }
     }
     .inner {

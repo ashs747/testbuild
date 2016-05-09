@@ -27,7 +27,7 @@
     }
     padding: 20px;
     text-align: center;
-    color: $dark_blue;
+    color: $secondaryFontColour;
     background: url('/assets/img/booking.png') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -37,7 +37,7 @@
   .body {
     background-color: $white;
     .body-inner {
-      background-color: $light_grey;
+      background-color: $lightGreyBackground;
     }
   }
   .slideshow-module {
@@ -56,19 +56,19 @@
 
 .no-dates {
   padding: 10px;
-  border: 1px solid $dark_grey;
-  background-color: $light_grey;
+  border: 1px solid $darkGreyBackground;
+  background-color: $lightGreyBackground;
 }
 
 .back {
-  background-color: $dark_blue;
+  background-color: $secondaryColour;
   color: $white;
   width: 100px;
   padding: 4px 12px;
 }
 
 .back:hover {
-  color: $light_grey;
+  color: $lightGreyBackground;
 }
 
 .choose-slide {
@@ -78,7 +78,7 @@
     border-radius: 1px;
   }
   .confirm-btn {
-    background-color: $site_red;
+    background-color: $primaryColour;
     color: $white;
     width: 100%;
   }
@@ -87,9 +87,9 @@
 .confirm-slide {
   .coach-bio {
     margin-top: 20px;
-    border: 1px solid $dark_grey;
+    border: 1px solid $darkGreyBackground;
     border-radius: 2px;
-    background-color: $light_grey;
+    background-color: $lightGreyBackground;
     padding: 30px;
     text-align: center;
     h4 {
@@ -109,10 +109,10 @@
     display: block;
   }
   .selection-item {
-    border: 1px solid $dark_grey;
+    border: 1px solid $darkGreyBackground;
     .selection-header {
       padding: 10px 20px;
-      background-color: $dark_blue;
+      background-color: $secondaryColour;
       color: $white;
       h4 {
         font-weight: bold;
@@ -120,17 +120,17 @@
     }
     .selection-row {
       padding: 15px 20px;
-      border: 1px solid $dark_grey;
+      border: 1px solid $darkGreyBackground;
       p {
         margin: 0;
       }
     }
     .grey {
-      background-color: $light_grey;
+      background-color: $lightGreyBackground;
     }
   }
   .confirm {
-    background-color: $site_red;
+    background-color: $primaryColour;
     color: $white;
     width: 100px;
     padding: 4px 12px;
@@ -173,14 +173,14 @@
     }
     .body {
       padding: 10px;
-      border: 1px solid $dark_grey;
+      border: 1px solid $darkGreyBackground;
       .body-inner {
         padding: 20px;
-        border: 1px solid $dark_grey;
+        border: 1px solid $darkGreyBackground;
       }
     }
     .slideshow-module {
-      border: 1px solid $dark_grey;
+      border: 1px solid $darkGreyBackground;
       padding: 30px;
     }
     h3 {
@@ -198,16 +198,16 @@
   .choose-slide {
     .event-date-rows {
       width: 100%;
-      border: 1px solid $dark_grey;
+      border: 1px solid $darkGreyBackground;
       height: 354px;
       overflow: hidden;
       overflow-y: scroll;
       margin-top: 20px;
       .date-row {
-        background-color: $light_grey;
+        background-color: $lightGreyBackground;
         width: 100%;
         padding: 10px;
-        border: 1px solid $dark_grey;
+        border: 1px solid $darkGreyBackground;
         cursor: pointer;
       }
       .radio {
@@ -218,12 +218,12 @@
         background-color: $white;
         border-radius: 50%;
         margin-right: 10px;
-        border: 1px solid $dark_grey;
+        border: 1px solid $darkGreyBackground;
       }
       .date-row.selected-date {
         background-color: #def0d7 !important;
         .radio-inner {
-          background-color: $body_color;
+          background-color: $primaryFontColour;
           height: 8px;
           width: 8px;
           border-radius: 50%;
@@ -246,7 +246,7 @@
 
   .facilitator-slots {
     .facilitator-block {
-      border: 1px solid $dark_grey;
+      border: 1px solid $darkGreyBackground;
       border-radius: 2px;
       margin-bottom: 10px;
     }
@@ -254,7 +254,7 @@
       width: 100%;
     }
     .block-header {
-      background-color: $dark_blue;
+      background-color: $secondaryColour;
       color: $white;
       padding: 5px 15px;
       h5 {
@@ -263,7 +263,7 @@
     }
     thead {
       tr {
-        background-color: $light_grey;
+        background-color: $lightGreyBackground;
       }
       th {
         padding: 10px;
@@ -271,18 +271,18 @@
     }
     tbody {
       tr {
-        border: 1px solid $dark_grey;
+        border: 1px solid $darkGreyBackground;
       }
       td {
         padding: 10px;
       }
       .btn {
-        background-color: $site_red;
+        background-color: $primaryColour;
         color: $white;
       }
     }
     .odd {
-      background-color: $light_grey;
+      background-color: $lightGreyBackground;
     }
   }
 }

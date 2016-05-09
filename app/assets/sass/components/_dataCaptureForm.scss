@@ -2,9 +2,9 @@
   background-color: $white;
   margin-bottom: 20px;
   border-radius: 3px;
-  border: 1px solid $dark_grey;
+  border: 1px solid $darkGreyBackground;
   .panel-header {
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     padding: 10px 20px;
     color: $white;
     border-radius: 3px 3px 0 0;
@@ -26,11 +26,11 @@
       width: 70%;
       height: 40px;
       border-radius: 1px;
-      background-color: $light_grey;
+      background-color: $lightGreyBackground;
       border: none;
     }
     .btn {
-      background-color: $site_red;
+      background-color: $primaryColour;
       color: $white;
       float: right;
       padding: 4px 18px;

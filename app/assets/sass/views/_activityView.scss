@@ -8,7 +8,7 @@
   }
   .header {
     padding: 20px;
-    color: $dark_blue;
+    color: $secondaryFontColour;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -19,7 +19,7 @@
       height: 100px;
       margin: 0 auto;
       background-color: $white;
-      color: $dark_blue;
+      color: $secondaryFontColour;
       border-radius: 50%;
       font-size: 30px;
       text-align: center;
@@ -104,7 +104,7 @@
     }
     .right-bar {
       padding: 15px;
-      background-color: $light_grey;
+      background-color: $lightGreyBackground;
     }
   }
 }
