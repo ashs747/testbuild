@@ -28,7 +28,7 @@
     width: 20%;
     background-color: #c7cacd;
     .main-block {
-      width: calc(100% - 20px);
+      width: calc(100% - 30px);
       float: left;
       height:100%;
       color: $white;
@@ -140,14 +140,9 @@
       }
     }
     .active {
-      width: inherit;
-      .main-block {
-        .text {
-          display: none;
-        }
-      }
       .right-block {
         border-left-width: 20px;
+        border-left-color: $dark_blue;
       }
     }
     .second-item {

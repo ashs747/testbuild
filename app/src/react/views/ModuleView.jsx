@@ -102,10 +102,10 @@ class ModuleView extends React.Component {
     );
   }
 
-  getModuleFromRouteId(modules, moduleID) {
+  getModuleFromRouteId(modules, moduleNumber) {
     let module = null;
     _.mapObject(modules, (mod, key) => {
-      if (mod.moduleId === parseInt(moduleID, 10)) {
+      if (mod.moduleNumber === parseInt(moduleNumber, 10)) {
         module = mod;
       }
     });
