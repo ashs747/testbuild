@@ -248,9 +248,9 @@
     .slide-container {
       height: 100%;
       .slideshow-module {
+        margin: 25px auto;
         width: 750px;
         height: 520px;
-        margin: 50px auto;
         padding: 30px;
         border: 1px solid $white;
         h1 {
@@ -347,10 +347,12 @@
   }
 }
 
-@media (max-width: 1050px) {
+@media (min-width: 1024px) {
   .on-boarding {
-    .slideshow-module {
-      margin: 25px auto;
+    .slide-container {
+      .slideshow-module {
+        margin: 50px auto;
+      }
     }
   }
 }
