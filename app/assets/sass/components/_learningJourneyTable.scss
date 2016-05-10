@@ -81,12 +81,12 @@
         i {
           width:35px;
           height:35px;
-          border:2px solid black;
+          border:2px solid $primaryFontColour;
           text-align:center;
           line-height:35px;
           border-radius:50%;
-          background-color:black;
-          color:white;
+          background-color: $primaryFontColour;
+          color: $whiteFontColour;
           z-index:2;
           position:relative;
           margin-left:-5px;
@@ -259,18 +259,18 @@
       height:35px;
       border-radius: 50%;
       background-color: $primaryColour;
-      color:white;
+      color: $whiteFontColour;
       text-align:center;
       line-height:36px;
       font-size:24px;
       i{
-        color:white;
+        color: $whiteFontColour;
       }
     }
     .rank{
       width: 40px;
       height:40px;
-      background-color: white;
+      background-color: $whiteFontColour;
       font-size:24px;
       text-align:center;
       line-height: 36px;
@@ -282,7 +282,7 @@
       color: $primaryFontColour;
       margin-left: 7px;
       &.passed-date{
-        color:white;
+        color: $whiteFontColour;
         border:none;
         background-color: $primaryColour;
       }
@@ -355,7 +355,7 @@
             width:100%;
             font-size:18px;
             margin-top: 4px;
-            color:white;
+            color: $whiteFontColour;
           }
           top:0;
           right:0;
