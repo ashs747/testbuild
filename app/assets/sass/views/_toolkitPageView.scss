@@ -2,7 +2,7 @@
   background-color: $whiteBackground;
   .header {
     padding: 30px;
-    background-color: #E0DCD6;
+    background-color: $bannerBackgroundGrey;
     color: $secondaryFontColour;
     .header-icon {
       background-color: $lightGreyBackground;
@@ -95,10 +95,10 @@
   .toolkit-page {
     .header {
       padding: 30px;
-    }
-    h2 {
-      text-align: left;
-      margin: 0 30px;
+      h2 {
+        text-align: left;
+        margin: 25px 30px;
+      }
     }
     .pdf {
       text-align: center;

@@ -34,7 +34,7 @@
     }
     p a {
       color: $primaryColour;
-      border-bottom: 1px solid #e9cfd0;
+      border-bottom: 1px solid $primaryColourUnderline;
       text-decoration: none;
     }
   }

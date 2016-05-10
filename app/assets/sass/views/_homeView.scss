@@ -39,7 +39,7 @@
       text-decoration: none;
     }
     p a {
-      border-bottom: 1px solid #e9cfd0;
+      border-bottom: 1px solid $primaryColourUnderline;
     }
     h4 {
       margin-top: 0;
@@ -53,7 +53,7 @@
       a {
         font-weight: 600;
         color: $primaryColour;
-        border-bottom: 1px solid #e9cfd0;
+        border-bottom: 1px solid $primaryColourUnderline;
         text-decoration: none;
       }
     }
@@ -226,11 +226,11 @@
       width: 70%;
     }
     .right-bar {
-      background-color: #F6F7F8;
+      background-color: $lightGreyBackground;
       height: 1406px;
       padding: 15px 10px;
       width: 30%;
-      border-left: 1px solid #EFEFEF;
+      border-left: 1px solid $borderGrey;
     }
     .learning-journey {
       padding: 50px 55px;

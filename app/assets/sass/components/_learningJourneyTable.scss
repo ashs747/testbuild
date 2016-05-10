@@ -55,7 +55,7 @@
         font-weight:bold;
         font-size:19px;
         a {
-          border-bottom: 2px solid #83878D;
+          border-bottom: 2px solid $secondaryColourUnderline;
           color: $whiteFontColour;
         }
       }
@@ -74,7 +74,7 @@
           top: 30px;
           left:21px;
           bottom:10px;
-          border-left:2px dotted #222;
+          border-left:2px dotted $primaryFontColour;
           height:99%;
           z-index:1;
         }
@@ -116,7 +116,7 @@
         top: 40px;
         left :21px;
         bottom:10px;
-        border-left:2px dotted #222;
+        border-left:2px dotted $primaryFontColour;
         height:99%;
         z-index:1;
         padding-left: 10px;
@@ -223,7 +223,7 @@
       td{
         &:last-child{
           border-top: 1px solid $darkGreyBackground;
-          background-color:#f6f7f8;
+          background-color: $lightGreyBackground;
           text-align:right;
           border-bottom-right-radius: 5px;
         }
@@ -243,7 +243,7 @@
         top:50px;
         left:30px;
         bottom:10px;
-        border-left:2px dotted #222;
+        border-left:2px dotted $primaryFontColour;
         height:99%;
         z-index:1;
       }
@@ -278,7 +278,7 @@
       z-index:100;
       border-radius: 50%;
       font-weight:bold;
-      border:3px solid #222;
+      border:3px solid $primaryFontColour;
       color: $primaryFontColour;
       margin-left: 7px;
       &.passed-date{
@@ -295,7 +295,7 @@
       margin-left: 20px;
       h5 {
         font-weight: 600;
-        color: $whiteFontColour;
+        color: $secondaryFontColour;
       }
       h5:first-child {
         margin-bottom: 5px;
@@ -311,12 +311,12 @@
     }
     .module-overview {
       padding: 10px;
-      background-color: #f6f7f8;
+      background-color: $lightGreyBackground;
       border-radius:6px;
       font-size:18px;
       font-weight:normal;
       line-height:24px;
-      border:2px solid #dfe1e6;
+      border:2px solid $borderGrey;
       position:relative;
       margin: 3px 0;
       i{
@@ -327,12 +327,15 @@
       }
       &.current {
         background-color: $primaryColour;
-        color:white;
+        color: $whiteFontColour;
         a {
           color: $whiteFontColour;
         }
         i{
-          color: white;
+          color: $whiteFontColour;
+        }
+        h5 {
+          color: $whiteFontColour;
         }
       }
       img {
@@ -340,11 +343,10 @@
         margin-top: 5px;
         float: left;
       }
-
       .notice{
           width:20px;
           height:20px;
-          background-color:#e87300;
+          background-color: #e87300;
           position:absolute;
           display:table;
           vertical-align:middle;
@@ -360,7 +362,7 @@
           border-top-right-radius: 5px;
           border-bottom-left-radius: 5px;
           &.complete{
-            background-color:#069f22;
+            background-color: #069f22;
           }
       }
     }
@@ -402,7 +404,7 @@
   .table-headings {
     font-size: 12px;
     color: $secondaryFontColour;
-    background-color: #dbdbdb;
+    background-color: $darkGreyBackground;
     td:last-child {
       border-right: 1px solid $darkGreyBackground;
     }

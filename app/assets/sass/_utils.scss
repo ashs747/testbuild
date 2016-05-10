@@ -7,6 +7,10 @@ $max_width: 1244px;
 $hi_res: "(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx)";
 $body_font: "proxima-nova", Arial, Helvetica, sans-serif;
 
+//Main site colour
+$primaryColour: #fc4714;
+//Footer, top nav bar hover, panels on programme overview, tool hints & tips
+$secondaryColour: #454e58;
 //Main font colour
 $primaryFontColour: #292929;
 //Page headings, learning journey table and message feed alternate text
@@ -14,10 +18,6 @@ $secondaryFontColour: #454e58;
 //Used for all white font against dark corporate colours, useful for if we need
 //to switch because the colour is quite light
 $whiteFontColour: #ffffff;
-//Main site colour
-$primaryColour: #fc4714;
-//Footer, top nav bar hover, panels on programme overview, tool hints & tips
-$secondaryColour: #454e58;
 //Bar backgrounds and panel colours
 $lightGreyBackground: #f8f8f8;
 //Site background and message feed buttons
@@ -34,6 +34,8 @@ $borderWhite: #ffffff;
 $underlineGrey: #d5d6d7;
 //Success tick on learning journey table
 $success: #7eac0e;
+//Lighter shade of success green;
+$lightGreenSuccess: #def0d7;
 //Booking screen nav colour
 $bookingNav: #c7cacd;
 //Disabled text areas
@@ -42,8 +44,16 @@ $disabled: #cccccc;
 $buttonFocus: #7d7d7d;
 //Text from module dropdown on nav colour
 $headerTextDropdownColour: #d7d2cd;
+//Underline of the dropdown text
+$headerTextDropdownUnderlineColour: #565a5f;
+//Underline of the primary colour (home view "LEARNING JOURNEY link for example")
+$primaryColourUnderline: #e9cfd0;
+//Underline on secondary colour
+$secondaryColourUnderline: #83878D;
 //Date display colour on message feed
 $messageBoardDateColour: #999999;
+//The colour in the background of the banners, used as a solid colour on tools
+$bannerBackgroundGrey: #E0DCD6;
 
 
 //fonts

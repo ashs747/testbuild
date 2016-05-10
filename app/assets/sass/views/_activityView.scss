@@ -42,7 +42,7 @@
     }
   }
   .main {
-    background-color: #f8f8f8;
+    background-color: $lightGreyBackground;
   }
   .overview {
     padding: 0;
@@ -101,6 +101,7 @@
     .left-bar {
       padding: 0;
       background-color: $whiteBackground;
+      border-right: 1px solid $borderGrey;
     }
     .right-bar {
       padding: 15px;

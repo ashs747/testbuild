@@ -221,7 +221,7 @@
         border: 1px solid $darkGreyBackground;
       }
       .date-row.selected-date {
-        background-color: #def0d7 !important;
+        background-color: $lightGreenSuccess;
         .radio-inner {
           background-color: $primaryFontColour;
           height: 8px;
@@ -231,7 +231,7 @@
         }
       }
       .date-row.booked-date {
-        background-color: #fcf8e3;
+        background-color: $lightGreyBackground;
       }
     }
   }
