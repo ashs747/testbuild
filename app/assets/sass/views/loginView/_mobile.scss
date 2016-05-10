@@ -1,0 +1,102 @@
+.wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: url('/assets/img/login-background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+}
+
+.alert {
+  max-width: 360px;
+  margin: 0 auto;
+  p {
+    margin: 5px;
+  }
+}
+
+.login-wrapper {
+  position: relative;
+  margin: 0 auto;
+  max-width: 530px;
+  top: 0;
+  padding: 10px;
+}
+
+.login {
+  background-color: $whiteBackground;
+  opacity: 0.9;
+  padding: 80px 20px;
+  border-radius: 5px;
+  padding: 40px 20px;
+}
+
+.logo {
+  max-width: 360px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.form {
+  max-width: 420px;
+  margin: 0 auto;
+  button {
+    background-color: $secondaryColour;
+    border-color: $secondaryFontColour;
+    border-radius: 2px;
+    max-width: 360px;
+    margin: 0 auto;
+    height: 45px;
+    font-weight: bold;
+  }
+  button:hover, button:active, button:focus {
+    background-color: $secondaryColour;
+    border-color: $secondaryFontColour;
+  }
+  input {
+    max-width: 360px;
+    height: 45px;
+    border-radius: 2.5px;
+    margin: 15px auto;
+  }
+  img {
+    opacity: 0.9;
+  }
+  .links {
+    text-align: center;
+    margin-top: 20px;
+    a {
+      cursor: pointer;
+      color: $secondaryFontColour;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      display: inline;
+      text-decoration: underline;
+    }
+  }
+  .alert {
+    text-align: center;
+    margin-top: 10px;
+    padding: 5px 10px;
+  }
+  .bookmark {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+.recover-form {
+  .form {
+    .alert {
+      border: none;
+    }
+  }
+}

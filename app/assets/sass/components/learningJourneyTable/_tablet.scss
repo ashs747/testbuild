@@ -1,0 +1,30 @@
+.learning-journey-module {
+  .heading {
+    padding: 0;
+  }
+  .footer {
+    padding: 0;
+  }
+}
+.learning-journey-module.widget {
+  .module-overview {
+    padding: 10px  20px;
+    margin: 0;
+    i {
+      font-size: 46px;
+      margin-top: 10px;
+    }
+    .notice {
+      width: 30px;
+      height: 30px;
+      i {
+        margin-top: 7px;
+      }
+    }
+  }
+  .small-row {
+    .text {
+      width: 70%;
+    }
+  }
+}

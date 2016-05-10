@@ -1,0 +1,131 @@
+.on-boarding {
+  .journey, .interactive, .progress, .devices {
+    p {
+      display: block;
+    }
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 40px;
+  }
+  .slideshow-nav {
+    width: calc(100% - 60px);
+    bottom: 30px;
+  }
+  .header {
+    padding: 10px;
+    height: 100px;
+    width: 100%;
+  }
+  .footer {
+    height: calc(100% - 720px);
+    max-height: 100px;
+    background-color: $secondaryColour;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .main {
+    height: auto;
+  }
+  .slide-container {
+    height: 100%;
+    .slideshow-module {
+      margin: 25px auto;
+      width: 750px;
+      height: 520px;
+      padding: 30px;
+      border: 1px solid $borderWhite;
+      h1 {
+        text-align: center;
+        font-size: 40px;
+        margin: 10px 0;
+      }
+      .body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        height: calc(100% - 45px);
+        overflow-y: visible;
+      }
+      .title {
+        margin: 0 auto;
+      }
+    }
+  }
+  .slideshow-module.welcome {
+    h1 {
+      text-align: left;
+    }
+    .body {
+      padding: 40px;
+    }
+    .title {
+      text-align: left;
+    }
+  }
+  .slideshow-module.message-slide {
+    .body {
+      width: 500px;
+      margin: 0 auto;
+      h1 {
+        font-size: 36px;
+        margin: 0 auto;
+      }
+    }
+    .video {
+      margin: 30px auto;
+      width: 100%;
+      height: unset;
+    }
+  }
+  .slideshow-module.journey {
+    p:first-child {
+      margin-top: 25px;
+    }
+    .content {
+      text-align: left;
+      font-size: 16px;
+    }
+  }
+  .slideshow-module.interactive {
+    .title {
+      margin: 30px 0;
+    }
+    .content {
+      text-align: left;
+      font-size: 16px;
+    }
+  }
+  .slideshow-module.progress {
+    .title {
+      margin: 20px auto;
+    }
+    .content {
+      text-align: left;
+      font-size: 16px;
+    }
+  }
+  .slideshow-module.devices {
+    .title {
+      margin: 20px 0;
+    }
+    .content {
+      text-align: left;
+      font-size: 16px;
+    }
+  }
+  .slideshow-module.profile {
+    .body {
+      padding: 25px;
+      h1 {
+        margin: 0 auto;
+        font-size: 40px;
+      }
+    }
+    .content {
+      margin-top: 20px;
+    }
+  }
+}
