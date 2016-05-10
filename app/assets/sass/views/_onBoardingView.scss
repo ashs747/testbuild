@@ -13,7 +13,7 @@
     text-align: center;
   }
   .header {
-    background-color: $white;
+    background-color: $whiteBackground;
     height: 55px;
     .header-logo {
       height: 100%;
@@ -69,8 +69,8 @@
 }
 
 .slideshow-module.welcome {
-  background-color: $site_red;
-  color: $white;
+  background-color: $primaryColour;
+  color: $whiteFontColour;
   .body {
     padding: 10px;
     height: calc(100% - 72px);
@@ -83,14 +83,14 @@
   }
   .nav {
     i {
-      color: $white;
+      color: $whiteFontColour;
     }
   }
 }
 
 .slideshow-module.message-slide {
-  background-color: $dark_blue;
-  color: $white;
+  background-color: $secondaryColour;
+  color: $whiteFontColour;
   .body {
     text-align: center;
     width: 500px;
@@ -114,7 +114,7 @@
   }
   .title {
     text-align: center;
-    color: $site_red;
+    color: $primaryColour;
     margin: 15px 0;
   }
 }
@@ -125,7 +125,7 @@
   }
   .title {
     text-align: center;
-    color: $site_red;
+    color: $primaryColour;
     margin: 10px 0;
   }
 }
@@ -134,7 +134,7 @@
   .title {
     text-align: center;
     width: 70%;
-    color: $site_red;
+    color: $primaryColour;
     margin: 0 auto;
   }
 }
@@ -142,24 +142,24 @@
 .slideshow-module.devices {
   .title {
     text-align: center;
-    color: $site_red;
+    color: $primaryColour;
     margin: 0 auto;
   }
 }
 
 .slideshow-module.profile {
-  background-color: $light_grey;
+  background-color: $lightGreyBackground;
   .body {
     h1 {
       margin: 10px auto;
       max-width: 400px;
-      color: $site_red;
+      color: $primaryColour;
       font-size: 24px;
       text-align: center;
     }
   }
   .upload-profile {
-    background-color: $light_grey;
+    background-color: $lightGreyBackground;
     padding: 10px;
     border: none;
     .circle-image {
@@ -180,34 +180,34 @@
   .body {
     text-align: center;
   }
-  background-color: $site_red;
-  color: $white;
+  background-color: $primaryColour;
+  color: $whiteFontColour;
   .sub {
     width: 70%;
     margin: 0 auto;
   }
   .nav {
     i {
-      color: $white;
+      color: $whiteFontColour;
     }
   }
   .circle {
     margin: 30px auto;
     height: 130px;
     width: 130px;
-    background-color: $white;
+    background-color: $whiteBackground;
     border-radius: 50%;
     margin-top: 50px;
     i {
-      color: $dark_blue;
+      color: $secondaryFontColour;
       font-size: 74px;
       margin-top: 28px;
     }
   }
   .btn {
     font-weight: bold;
-    background-color: $dark_blue;
-    color: $white;
+    background-color: $secondaryColour;
+    color: $whiteFontColour;
     padding: 10px;
     width: 200px;
   }
@@ -236,7 +236,7 @@
     .footer {
       height: calc(100% - 720px);
       max-height: 100px;
-      background-color: $dark_blue;
+      background-color: $secondaryColour;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -252,7 +252,7 @@
         width: 750px;
         height: 520px;
         padding: 30px;
-        border: 1px solid $white;
+        border: 1px solid $borderWhite;
         h1 {
           text-align: center;
           font-size: 40px;

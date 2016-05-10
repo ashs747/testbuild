@@ -1,5 +1,5 @@
 textarea[disabled="true"] {
-	background-color: #ccc;
+	background-color: $disabled;
 	box-shadow: inset rgba(0,0,0,.1) 0px 0px 12px;
 }
 
@@ -12,9 +12,9 @@ textarea[disabled="true"] {
 		line-height: 16px;
 	}
 	.message-name {
-		color: $site_red !important;
+		color: $primaryColour !important;
 		font-weight: 600;
-		border-bottom: 1px solid #e9cfd0;
+		border-bottom: 1px solid $primaryColourUnderline;
 		line-height: 16px;
 	}
 }
@@ -22,12 +22,12 @@ textarea[disabled="true"] {
 	margin-top: 8px;
 }
 .message {
-	border: 1.5px solid $border_grey;
+	border: 1.5px solid $borderGrey;
 	margin: 8px 0;
-	background-color: $white;
-	color: $body_color;
+	background-color: $whiteBackground;
+	color: $primaryFontColour;
 	.header {
-		background-color: $white;
+		background-color: $whiteBackground;
 		padding: 15px;
 		padding-bottom: 10px;
 		img {
@@ -44,12 +44,12 @@ textarea[disabled="true"] {
 		float: left;
 		p {
 			margin: 0;
-			color: $site_red;
+			color: $primaryColour;
 			display: inline;
 		}
 		.custom-tooltip {
 			p {
-				color: $body_color;
+				color: $primaryFontColour;
 			}
 		}
 		.date-display {
@@ -57,10 +57,10 @@ textarea[disabled="true"] {
 			float: left;
 			font-size: 11px;
 			font-weight: 600;
-			color: #999;
+			color: $messageBoardDateColour;
 		}
 		span {
-			color: #999;
+			color: $messageBoardDateColour;
 			font-size: 14px;
 			float: left;
 		}
@@ -76,38 +76,38 @@ textarea[disabled="true"] {
 			margin-top: 0;
 		}
 		a {
-			color: $site_red;
+			color: $primaryColour;
 		}
 	}
 	.admin-buttons {
 		float: right;
 		a {
-			background-color: $border_grey;
+			background-color: $borderGrey;
 			padding: 2px;
 			margin: 0 2px;
 			height: 25px;
 			width: 25px;
 			font-size: 14px;
-			color: $dark_blue;
+			color: $secondaryFontColour;
 		}
 	}
 	.see-more {
 		cursor: pointer;
 		text-decoration: underline;
-		color: $site_red;
+		color: $primaryColour;
 		span {
-			color: $site_red;
+			color: $primaryColour;
 		}
 		i {
-			color: $site_red;
+			color: $primaryColour;
 			font-size: 12px;
 		}
 	}
 }
 .post-form {
-	background-color: $light_grey;
+	background-color: $lightGreyBackground;
 	padding: 15px;
-	border-top: 1px solid $border_grey;
+	border-top: 1px solid $borderGrey;
 	img {
 		float: left;
 		width: 35px;
@@ -128,15 +128,15 @@ textarea[disabled="true"] {
 }
 
 .comment-list {
-	background-color: $light_grey;
-	border-top: 1px solid $border_grey;
+	background-color: $lightGreyBackground;
+	border-top: 1px solid $borderGrey;
 	.show-comments-link {
 		padding: 15px;
 		a {
 			font-size: 14px;
 			cursor: pointer;
-			color: $body_color;
-			border-bottom: 1px solid #d3d3d3;
+			color: $primaryFontColour;
+			border-bottom: 1px solid $underlineGrey;
 		}
 		i {
 			font-size: 14px;
@@ -145,9 +145,9 @@ textarea[disabled="true"] {
 }
 
 .comment {
-	color: $body_color;
+	color: $primaryFontColour;
 	padding: 15px;
-	border-bottom: 1px solid $border_grey;
+	border-bottom: 1px solid $borderGrey;
 	img {
 		float: left;
 		width: 40px;
@@ -158,7 +158,7 @@ textarea[disabled="true"] {
 		margin: 0;
 		font-size: 18px;
 		font-weight: bold;
-		color: $site_red;
+		color: $primaryColour;
 		text-decoration: underline;
 	}
 	.comment-content {
@@ -173,13 +173,13 @@ textarea[disabled="true"] {
 		.red-bold {
 			text-decoration: underline;
 			font-weight: bold;
-			color: $site_red;
+			color: $primaryColour;
 			margin-right: 5px;
 		}
 		p {
 			display: inline;
 			font-size: 14px;
-			color: $body_color;
+			color: $primaryFontColour;
 			margin: 0;
 		}
 	}
@@ -189,7 +189,7 @@ textarea[disabled="true"] {
 		display: block;
 		font-size: 11px;
 		font-weight: 600;
-		color: #999;
+		color: $messageBoardDateColour;
 	}
 	textarea {
 		width: 100%;
@@ -202,12 +202,12 @@ textarea[disabled="true"] {
 }
 
 .save-button {
-	background-color: $site_red;
-	color: $white;
+	background-color: $primaryColour;
+	color: $whiteFontColour;
 }
 
 .media-grid {
-	background-color: $white;
+	background-color: $whiteBackground;
 	margin: 2px 0;
 }
 
@@ -218,8 +218,8 @@ textarea[disabled="true"] {
 }
 
 .post-form-status {
-	border: 1px solid $border_grey;
-	background-color: $light_grey;
+	border: 1px solid $borderGrey;
+	background-color: $lightGreyBackground;
 	padding: 15px;
 	.post-profile {
 		float: left;
@@ -250,14 +250,14 @@ textarea[disabled="true"] {
 			display: inline-block;
 			border-radius: 2px;
 			.upload-media {
-				background-color: $dark_grey;
+				background-color: $darkGreyBackground;
 				margin-right: 5px;
 			}
 			.embed-video-button {
-				background-color: $dark_grey;
+				background-color: $darkGreyBackground;
 			}
 			a {
-				color: $body_color;
+				color: $primaryFontColour;
 			}
 			i {
 				font-size: 14px;
@@ -271,8 +271,8 @@ textarea[disabled="true"] {
 		}
 		.go {
 			margin-left: 5px;
-			color: $white;
-			background-color: $site_red;
+			color: $whiteFontColour;
+			background-color: $primaryColour;
 			font-weight: bold;
 			padding: 4px 12px;
 		}
@@ -285,8 +285,8 @@ textarea[disabled="true"] {
 			float: right;
 			width: 100%;
 			max-width: 100px;
-			background-color: $site_red;
-			color: $white;
+			background-color: $primaryColour;
+			color: $whiteFontColour;
 			font-weight: bold;
 			padding: 3px 6px;
 			font-size: 12px;
@@ -353,7 +353,7 @@ textarea[disabled="true"] {
 			width: 100%;
 			padding: 5px;
 			i {
-				color: $dark_blue;
+				color: $secondaryFontColour;
 				font-size: 16px;
 			}
 		}

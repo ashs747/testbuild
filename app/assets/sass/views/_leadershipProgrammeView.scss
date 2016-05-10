@@ -16,7 +16,7 @@
     }
   }
   .intro {
-    color: $white;
+    color: $whiteFontColour;
     padding: 20px;
     background: url('/assets/img/programme-introduction.png');
     -webkit-background-size: cover;
@@ -36,29 +36,29 @@
     }
   }
   .our-values {
-    background-color: $white;
+    background-color: $whiteBackground;
     padding: 20px;
     h1 {
       margin-bottom: 20px;
     }
     p {
-      color: $dark_blue;
+      color: $secondaryFontColour;
       font-weight: 600;
       margin: 20px 0;
     }
   }
   .value-carousel {
-    background-color: $site_red;
+    background-color: $primaryColour;
     padding: 10px;
     .carousel {
-      background-color: $site_red;
-      color: $white;
+      background-color: $primaryColour;
+      color: $whiteFontColour;
       .icon {
         height: 170px;
         width: 170px;
         margin-top: 15px;
-        background-color: $white;
-        color: $dark_blue;
+        background-color: $whiteBackground;
+        color: $secondaryFontColour;
         p {
           line-height: 142px;
           font-size: 128px;
@@ -73,9 +73,9 @@
     }
   }
   .title-carousel {
-    color: $dark_blue;
+    color: $secondaryFontColour;
     padding: 20px 10px;
-    background-color: $white;
+    background-color: $whiteBackground;
     h3 {
       margin-top: 45px;
       margin-bottom: 25px;
@@ -85,7 +85,7 @@
         background-color: transparent;
         height: 160px;
         width: 160px;
-        color: $white;
+        color: $whiteFontColour;
         p {
           line-height: 140px;
           font-size: 115px;
@@ -112,7 +112,7 @@
       width: 130px;
       height: 130px;
       border-radius: 50%;
-      background-color: $white;
+      background-color: $whiteBackground;
       margin: 0 auto;
       margin-bottom: 20px;
       p {
@@ -132,11 +132,11 @@
       margin: 0;
     }
     .left-column {
-      color: $dark_blue;
-      background-color: $white;
+      color: $secondaryFontColour;
+      background-color: $whiteBackground;
       .circle {
-        color: $white;
-        background-color: $site_red;
+        color: $whiteFontColour;
+        background-color: $primaryColour;
         p {
           font-size: 85px;
         }
@@ -151,10 +151,10 @@
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
-      color: $white;
+      color: $whiteFontColour;
       .circle {
-        color: $dark_blue;
-        background-color: $white;
+        color: $secondaryFontColour;
+        background-color: $whiteBackground;
         p {
           font-size: 90px;
         }
@@ -165,7 +165,7 @@
     }
   }
   .roadmap {
-    background-color: $white;
+    background-color: $whiteBackground;
     padding: 20px;
     p {
       font-weight: 600;
@@ -184,7 +184,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    color: $white;
+    color: $whiteFontColour;
     padding: 20px;
     h1 {
       margin-bottom: 30px;
@@ -195,12 +195,12 @@
     }
   }
   .carousel {
-    background-color: $white;
+    background-color: $whiteBackground;
   }
   .blended-learning {
     padding: 20px;
-    color: $white;
-    background-color: $dark_blue;
+    color: $whiteFontColour;
+    background-color: $secondaryColour;
     h1 {
       padding: 0;
     }
@@ -229,9 +229,9 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    color: $white;
+    color: $whiteFontColour;
     .icon {
-      border: 3px solid $white;
+      border: 3px solid $borderWhite;
       width: 80px;
       height: 80px;
       margin: 0 auto;
@@ -242,15 +242,15 @@
     }
   }
   .coaching {
-    background-color: $white;
+    background-color: $whiteBackground;
     h5 {
-      color: $site_red;
+      color: $primaryColour;
     }
     p {
-      font-color: $dark_blue;
+      font-color: $secondaryFontColour;
     }
     .icon {
-      background-color: $dark_grey;
+      background-color: $darkGreyBackground;
       width: 80px;
       height: 80px;
       margin: 0 auto;
@@ -261,10 +261,10 @@
     }
   }
   .webinar {
-    background-color: $site_red;
-    color: $white;
+    background-color: $primaryColour;
+    color: $whiteFontColour;
     .icon {
-      border: 3px solid $white;
+      border: 3px solid $borderWhite;
       width: 80px;
       height: 80px;
       margin: 0 auto;
@@ -280,9 +280,9 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    color: $white;
+    color: $whiteFontColour;
     .icon {
-      border: 3px solid $white;
+      border: 3px solid $borderWhite;
       width: 80px;
       height: 80px;
       margin: 0 auto;
@@ -299,8 +299,8 @@
     padding-bottom: 95px;
   }
   .message-from {
-    background-color: $site_red;
-    color: $white;
+    background-color: $primaryColour;
+    color: $whiteFontColour;
     padding: 20px;
     h1 {
       margin-top: 25px;

@@ -1,5 +1,5 @@
 .header {
-  background-color: $white;
+  background-color: $whiteBackground;
 }
 .top-nav-bar {
   padding: 15px;
@@ -27,8 +27,8 @@
       font-weight: bold;
     }
     a {
-      color: $body_color;
-      border-bottom: 1px solid $border_grey;
+      color: $primaryFontColour;
+      border-bottom: 1px solid $borderGrey;
       text-decoration: none;
     }
     a:active {
@@ -67,25 +67,25 @@
     width: 20%;
     display: inline-block;
     text-align: center;
-    color: $white;
+    color: $whiteFontColour;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
 
     &>a {
-      color: $white;
+      color: $whiteFontColour;
       width:100%;
       display:block;
       padding: 10px 0;
-      background: $site_red;
+      background: $primaryColour;
       line-height: 20px;
       text-decoration: none;
       transition: color 0.25s;
     }
 
     &:hover>a{
-      background: $dark_blue;
-      color:$white;
+      background: $secondaryFontColour;
+      color: $whiteFontColour;
     }
 
     i {
@@ -110,7 +110,7 @@
     .sub-nav-content {
       width: 100%;
       padding: 15px 20px;
-      background: $dark_blue;
+      background: $secondaryFontColour;
 
       ul {
         position: static;
@@ -129,7 +129,7 @@
         height: 44px;
         padding: 0;
         margin: 0;
-        border-bottom: 2px solid #565a5f;
+        border-bottom: 2px solid $headerTextDropdownUnderlineColour;
         text-align: left;
       }
       .modules {
@@ -145,7 +145,7 @@
         display: inline-block;
         margin-top: 11px;
         transition: color 0.25s;
-        color: #d7d2cd;
+        color: $headerTextDropdownColour;
       }
       i {
         vertical-align: middle;
@@ -154,7 +154,7 @@
       }
       li:hover {
         p {
-          color: $white;
+          color: $whiteFontColour;
         }
       }
     }
@@ -169,9 +169,9 @@
     }
   }
   .sub-menu:hover {
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     a {
-      color: $white;
+      color: $whiteFontColour;
     }
   }
 }
@@ -205,7 +205,7 @@
   .mobile-nav {
     width: 100%;
     position: absolute;
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     z-index: 100;
     ul {
       list-style-type: none;
@@ -213,38 +213,30 @@
       margin: 0;
     }
     li {
-      border-bottom: 1px solid $white;
+      border-bottom: 1px solid $borderWhite;
       cursor: pointer;
       font-weight: bold;
       padding:10px 25px;
       padding-right: 10px;
       height: 50px;
-      color: $white;
+      color: $whiteFontColour;
       i {
         font-size: 22px;
         margin-top: 3px;
         margin-right: 10px;
       }
       a {
-        color: $white;
+        color: $whiteFontColour;
       }
       ul {
         display: none;
       }
     }
     .sub-nav {
-      border-bottom: 1px solid $white;
-      background: $dark_blue;
+      border-bottom: 1px solid $borderWhite;
+      background: $secondaryFontColour;
       a {
         text-decoration: none;
-      }
-      li {
-        padding: 0;
-        padding-top: 15px;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin: 0 25px;
-        border-bottom: 2px solid #7e848b;
       }
       a:last-child {
         li {
@@ -253,7 +245,7 @@
       }
       p {
         display: inline;
-        color: #d7d2cd;
+        color: $headerTextDropdownColour;
       }
       img {
         position: relative;
@@ -263,7 +255,7 @@
       i {
         position: relative;
         top: -2px;
-        color: #d7d2cd;
+        color: $headerTextDropdownColour;
         font-size: 6px;
         margin-right: 10px;
       }
@@ -274,7 +266,7 @@
     }
     .cirrus-footer {
       text-align: right;
-      background: $site_red;
+      background: $primaryColour;
     }
     .my-learning {
       .sub-arrow {

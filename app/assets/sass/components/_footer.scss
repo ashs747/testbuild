@@ -1,7 +1,7 @@
 .footer {
-  background-color: $dark_blue;
+  background-color: $secondaryColour;
   h3 {
-    color: $white;
+    color: $whiteFontColour;
     font-size: 15.5px;
   }
 }
@@ -32,6 +32,6 @@
   }
   a {
     cursor: pointer;
-    color: $light_blue;
+    color: $footerLinks;
   }
 }

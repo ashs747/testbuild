@@ -1,5 +1,5 @@
 .slideshow-module {
-  background-color: $white;
+  background-color: $whiteBackground;
   padding: 30px;
 }
 
@@ -26,20 +26,20 @@
     height:100%;
     display: inline-block;
     width: 20%;
-    background-color: #c7cacd;
+    background-color: $bookingNav;
     .main-block {
       width: calc(100% - 30px);
       float: left;
       height:100%;
-      color: $white;
-      background-color: #c7cacd;
+      color: $whiteFontColour;
+      background-color: $bookingNav;
     }
     .right-block {
       width: 20px;
       float: left;
       border-top: 25px solid transparent;
       border-bottom: 25px solid transparent;
-      border-left: 10px solid #c7cacd;
+      border-left: 10px solid $bookingNav;
       height: 100%;
     }
     .left-block {
@@ -50,9 +50,9 @@
     .circle {
       width: 30px;
       height: 30px;
-      background-color: $white;
+      background-color: $whiteBackground;
       border-radius: 50%;
-      color: $site_red;
+      color: $primaryColour;
       text-align: center;
       margin: 10px 5px;
       float: left;
@@ -65,16 +65,16 @@
   }
   .active {
     width: 60%;
-    background-color: $dark_blue;
+    background-color: $secondaryColour;
     .main-block {
-      background-color: $dark_blue;
+      background-color: $secondaryColour;
     }
     .right-block {
-      background-color: $white;
-      border-left: 10px solid $dark_blue;
+      background-color: $whiteBackground;
+      border-left: 10px solid $secondaryFontColour;
     }
     .left-block {
-      background-color: $dark_blue;
+      background-color: $secondaryColour;
     }
     .text {
       display: block;
@@ -83,29 +83,29 @@
   }
   .first-item {
     .right-block {
-      background-color: $white;
+      background-color: $whiteBackground;
     }
   }
   .second-item {
-    background-color: #c7cacd;
+    background-color: $bookingNav;
     .right-block {
-      border-left: 10px solid #c7cacd;
-      background-color: $white;
+      border-left: 10px solid $bookingNav;
+      background-color: $whiteBackground;
     }
     .left-block {
       border-top: 25px solid transparent;
       border-bottom: 25px solid transparent;
-      border-left: 10px solid $white;
+      border-left: 10px solid $borderWhite;
     }
   }
   .last-item {
     .right-block {
-      background-color: $white;
+      background-color: $whiteBackground;
     }
     .left-block {
       border-top: 25px solid transparent;
       border-bottom: 25px solid transparent;
-      border-left: 10px solid $white;
+      border-left: 10px solid $borderWhite;
     }
   }
 }
@@ -136,13 +136,13 @@
       }
       .right-block {
         width: 20px;
-        border-left: 20px solid #c7cacd;
+        border-left: 20px solid $bookingNav;
       }
     }
     .active {
       .right-block {
         border-left-width: 20px;
-        border-left-color: $dark_blue;
+        border-left-color: $secondaryColour;
       }
     }
     .second-item {

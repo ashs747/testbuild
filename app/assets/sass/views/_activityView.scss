@@ -1,5 +1,5 @@
 .activity-view {
-  background-color: $white;
+  background-color: $whiteBackground;
   h4 {
     font-size: 16px;
   }
@@ -8,7 +8,7 @@
   }
   .header {
     padding: 20px;
-    color: $dark_blue;
+    color: $secondaryFontColour;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -18,8 +18,8 @@
       width: 100px;
       height: 100px;
       margin: 0 auto;
-      background-color: $white;
-      color: $dark_blue;
+      background-color: $whiteBackground;
+      color: $secondaryFontColour;
       border-radius: 50%;
       font-size: 30px;
       text-align: center;
@@ -42,7 +42,7 @@
     }
   }
   .main {
-    background-color: #f8f8f8;
+    background-color: $lightGreyBackground;
   }
   .overview {
     padding: 0;
@@ -100,11 +100,12 @@
   .activity-view {
     .left-bar {
       padding: 0;
-      background-color: $white;
+      background-color: $whiteBackground;
+      border-right: 1px solid $borderGrey;
     }
     .right-bar {
       padding: 15px;
-      background-color: $light_grey;
+      background-color: $lightGreyBackground;
     }
   }
 }

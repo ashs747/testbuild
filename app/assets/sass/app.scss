@@ -47,17 +47,17 @@ html {
 
 body {
   height: 100%;
-  background-color: $dark_grey;
+  background-color: $darkGreyBackground;
   font-family: $body_font;
   position: relative;
-  color: $body_color;
+  color: $primaryFontColour;
   font-size: 15.5px;
 }
 
 .container-fluid {
   max-width: 1214px;
-  border-left: 1px solid $border_grey;
-  border-right: 1px solid $border_grey;
+  border-left: 1px solid $borderGrey;
+  border-right: 1px solid $borderGrey;
   padding: 0;
 }
 

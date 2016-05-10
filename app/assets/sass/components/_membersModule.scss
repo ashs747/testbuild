@@ -1,11 +1,11 @@
 .members-module {
-  background-color: #FFFFFF;
+  background-color: $whiteBackground;
   margin-bottom: 20px;
-  border: 1px solid $dark_grey;
+  border: 1px solid $darkGreyBackground;
   .user-display {
     padding: 10px 25px;
     height: 60px;
-    border-bottom: 2px solid $dark_grey;
+    border-bottom: 2px solid $darkGreyBackground;
     img {
       float: left;
       width: 40px;
@@ -26,7 +26,7 @@
     }
     .name {
       display: inline-block;
-      border-bottom: 1px solid $underline_grey;
+      border-bottom: 1px solid $underlineGrey;
       font-weight: 600;
       margin-bottom: 0;
       p {

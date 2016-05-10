@@ -1,9 +1,9 @@
 .module-view {
-  background-color: $white;
+  background-color: $whiteBackground;
   .header-top {
     padding: 10px;
     text-align: center;
-    color: $dark_blue;
+    color: $secondaryFontColour;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -11,7 +11,7 @@
     .icon {
       height: 60px;
       width: 60px;
-      color: $dark_blue;
+      color: $secondaryFontColour;
       border-radius: 50%;
       font-size: 30px;
       float: left;
@@ -41,7 +41,7 @@
     margin-top: 20px;
   }
   .learning-journey-module {
-    border: 1px solid $dark_grey;
+    border: 1px solid $darkGreyBackground;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
   }
@@ -54,13 +54,13 @@
       margin-bottom: 10px;
     }
     .post-form-status {
-      background-color: $white;
+      background-color: $whiteBackground;
     }
   }
   .module-content {
     padding: 20px;
     margin: 20px 0;
-    background-color: $light_grey;
+    background-color: $lightGreyBackground;
     h2 {
       font-size: 34px;
       margin-top: 10px;
@@ -81,7 +81,7 @@
     }
   }
   .module-tabs {
-    background-color: $white;
+    background-color: $whiteBackground;
   }
   .tab-bar {
     .tab-btn {
@@ -132,7 +132,7 @@
       }
     }
     .left-bar {
-      background-color: $white;
+      background-color: $whiteBackground;
       padding: 0;
       min-height: 1100px;
     }
@@ -147,8 +147,8 @@
     .right-bar {
       padding: 10px;
       padding-bottom: 0;
-      border-left: 1px solid #EFEFEF;
-      background-color: $light_grey;
+      border-left: 1px solid $borderGrey;
+      background-color: $lightGreyBackground;
     }
     .left-content {
       padding: 0 25px;

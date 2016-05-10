@@ -3,7 +3,7 @@
   width: 230px;
   border-radius: 10px;
   .user-display-tooltip-header {
-    background-color: #F5F6F7;
+    background-color: $darkGreyBackground;
     padding-top: 25px;
     padding-bottom: 20px;
     border-top-left-radius: 10px;
@@ -27,7 +27,7 @@
       margin-bottom: 20px;
     }
     p:nth-child(4) {
-      color: $site_red;
+      color: $primaryColour;
       text-decoration: underline;
     }
     padding: 20px 30px;
