@@ -13,7 +13,7 @@
     text-align: center;
   }
   .header {
-    background-color: $white;
+    background-color: $whiteBackground;
     height: 55px;
     .header-logo {
       height: 100%;
@@ -70,7 +70,7 @@
 
 .slideshow-module.welcome {
   background-color: $primaryColour;
-  color: $white;
+  color: $whiteFontColour;
   .body {
     padding: 10px;
     height: calc(100% - 72px);
@@ -83,14 +83,14 @@
   }
   .nav {
     i {
-      color: $white;
+      color: $whiteFontColour;
     }
   }
 }
 
 .slideshow-module.message-slide {
   background-color: $secondaryColour;
-  color: $white;
+  color: $whiteFontColour;
   .body {
     text-align: center;
     width: 500px;
@@ -181,21 +181,21 @@
     text-align: center;
   }
   background-color: $primaryColour;
-  color: $white;
+  color: $whiteFontColour;
   .sub {
     width: 70%;
     margin: 0 auto;
   }
   .nav {
     i {
-      color: $white;
+      color: $whiteFontColour;
     }
   }
   .circle {
     margin: 30px auto;
     height: 130px;
     width: 130px;
-    background-color: $white;
+    background-color: $whiteBackground;
     border-radius: 50%;
     margin-top: 50px;
     i {
@@ -207,7 +207,7 @@
   .btn {
     font-weight: bold;
     background-color: $secondaryColour;
-    color: $white;
+    color: $whiteFontColour;
     padding: 10px;
     width: 200px;
   }
@@ -252,7 +252,7 @@
         width: 750px;
         height: 520px;
         padding: 30px;
-        border: 1px solid $white;
+        border: 1px solid $borderWhite;
         h1 {
           text-align: center;
           font-size: 40px;

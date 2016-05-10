@@ -3,11 +3,11 @@
   margin: 0 0 20px 0;
   .col-sm-12 {
     padding: 0 22px;
-    background-color: $white;
+    background-color: $whiteBackground;
   }
   .title {
     background-color: $secondaryColour;
-    color: $white;
+    color: $whiteFontColour;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     h4 {
@@ -19,7 +19,7 @@
   }
   .resource-group {
     display: block;
-    background-color: $white;
+    background-color: $whiteBackground;
     padding: 25px 0;
     border-bottom: 2px solid $darkGreyBackground;
     h5 {

@@ -1,5 +1,5 @@
 .upload-profile {
-  background-color: $white;
+  background-color: $whiteBackground;
   border: 1px solid $darkGreyBackground;
   padding: 30px;
   text-align: center;
@@ -17,7 +17,7 @@
   }
   .btn {
     background-color: $primaryColour;
-    color: $white;
+    color: $whiteFontColour;
     padding: 4px 18px;
     margin: 20px 0;
     max-width: 100%;

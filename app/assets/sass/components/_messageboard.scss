@@ -24,10 +24,10 @@ textarea[disabled="true"] {
 .message {
 	border: 1.5px solid $borderGrey;
 	margin: 8px 0;
-	background-color: $white;
+	background-color: $whiteBackground;
 	color: $primaryFontColour;
 	.header {
-		background-color: $white;
+		background-color: $whiteBackground;
 		padding: 15px;
 		padding-bottom: 10px;
 		img {
@@ -203,11 +203,11 @@ textarea[disabled="true"] {
 
 .save-button {
 	background-color: $primaryColour;
-	color: $white;
+	color: $whiteFontColour;
 }
 
 .media-grid {
-	background-color: $white;
+	background-color: $whiteBackground;
 	margin: 2px 0;
 }
 
@@ -271,7 +271,7 @@ textarea[disabled="true"] {
 		}
 		.go {
 			margin-left: 5px;
-			color: $white;
+			color: $whiteFontColour;
 			background-color: $primaryColour;
 			font-weight: bold;
 			padding: 4px 12px;
@@ -286,7 +286,7 @@ textarea[disabled="true"] {
 			width: 100%;
 			max-width: 100px;
 			background-color: $primaryColour;
-			color: $white;
+			color: $whiteFontColour;
 			font-weight: bold;
 			padding: 3px 6px;
 			font-size: 12px;

@@ -1,12 +1,12 @@
 .details-panel {
-  background-color: $white;
+  background-color: $whiteBackground;
   margin-bottom: 20px;
   border-radius: 3px;
   border: 1px solid $darkGreyBackground;
   .panel-header {
     background-color: $secondaryColour;
     padding: 10px 20px;
-    color: $white;
+    color: $whiteFontColour;
     border-radius: 3px 3px 0 0;
   }
   .panel-inner {
@@ -31,7 +31,7 @@
     }
     .btn {
       background-color: $primaryColour;
-      color: $white;
+      color: $whiteFontColour;
       float: right;
       padding: 4px 18px;
       margin: 10px 0;

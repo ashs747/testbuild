@@ -1,5 +1,5 @@
 .toolkit-page {
-  background-color: $white;
+  background-color: $whiteBackground;
   .header {
     padding: 30px;
     background-color: #E0DCD6;
@@ -32,7 +32,7 @@
     background-color: $lightGreyBackground;
   }
   .left-bar {
-    background-color: $white;
+    background-color: $whiteBackground;
     padding: 30px;
     h4 {
       font-weight: bold;
@@ -55,9 +55,9 @@
     background-color: $lightGreyBackground;
   }
   .hints-and-tips {
-    background-color: $white;
+    background-color: $whiteBackground;
     h4 {
-      color: $white;
+      color: $whiteFontColour;
       background-color: $secondaryColour;
       padding: 20px 25px;
       font-weight: 600;
@@ -82,7 +82,7 @@
     background-color: $secondaryColour;
     text-align: right;
     a {
-      color: $white;
+      color: $whiteFontColour;
       cursor: pointer;
     }
     i {

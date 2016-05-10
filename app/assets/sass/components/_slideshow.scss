@@ -1,5 +1,5 @@
 .slideshow-module {
-  background-color: $white;
+  background-color: $whiteBackground;
   padding: 30px;
 }
 
@@ -31,7 +31,7 @@
       width: calc(100% - 20px);
       float: left;
       height:100%;
-      color: $white;
+      color: $whiteFontColour;
       background-color: $bookingNav;
     }
     .right-block {
@@ -50,7 +50,7 @@
     .circle {
       width: 30px;
       height: 30px;
-      background-color: $white;
+      background-color: $whiteBackground;
       border-radius: 50%;
       color: $primaryColour;
       text-align: center;
@@ -70,7 +70,7 @@
       background-color: $secondaryColour;
     }
     .right-block {
-      background-color: $white;
+      background-color: $whiteBackground;
       border-left: 10px solid $secondaryFontColour;
     }
     .left-block {
@@ -83,29 +83,29 @@
   }
   .first-item {
     .right-block {
-      background-color: $white;
+      background-color: $whiteBackground;
     }
   }
   .second-item {
     background-color: $bookingNav;
     .right-block {
       border-left: 10px solid $bookingNav;
-      background-color: $white;
+      background-color: $whiteBackground;
     }
     .left-block {
       border-top: 25px solid transparent;
       border-bottom: 25px solid transparent;
-      border-left: 10px solid $white;
+      border-left: 10px solid $borderWhite;
     }
   }
   .last-item {
     .right-block {
-      background-color: $white;
+      background-color: $whiteBackground;
     }
     .left-block {
       border-top: 25px solid transparent;
       border-bottom: 25px solid transparent;
-      border-left: 10px solid $white;
+      border-left: 10px solid $borderWhite;
     }
   }
 }

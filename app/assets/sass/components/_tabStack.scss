@@ -12,13 +12,13 @@
     min-height: 30px;
     &.active {
       height:100%;
-      background-color: $white;
+      background-color: $whiteBackground;
     }
   }
 }
 
 .view-stack {
-  background-color: $white;
+  background-color: $whiteBackground;
 }
 
 @media (min-width: 768px) {

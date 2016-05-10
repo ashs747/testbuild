@@ -1,5 +1,5 @@
 .header {
-  background-color: $white;
+  background-color: $whiteBackground;
 }
 .top-nav-bar {
   padding: 15px;
@@ -67,13 +67,13 @@
     width: 20%;
     display: inline-block;
     text-align: center;
-    color: $white;
+    color: $whiteFontColour;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
 
     &>a {
-      color: $white;
+      color: $whiteFontColour;
       width:100%;
       display:block;
       padding: 10px 0;
@@ -85,7 +85,7 @@
 
     &:hover>a{
       background: $secondaryFontColour;
-      color:$white;
+      color: $whiteFontColour;
     }
 
     i {
@@ -154,7 +154,7 @@
       }
       li:hover {
         p {
-          color: $white;
+          color: $whiteFontColour;
         }
       }
     }
@@ -171,7 +171,7 @@
   .sub-menu:hover {
     background-color: $secondaryColour;
     a {
-      color: $white;
+      color: $whiteFontColour;
     }
   }
 }
@@ -213,27 +213,27 @@
       margin: 0;
     }
     li {
-      border-bottom: 1px solid $white;
+      border-bottom: 1px solid $borderWhite;
       cursor: pointer;
       font-weight: bold;
       padding:10px 25px;
       padding-right: 10px;
       height: 50px;
-      color: $white;
+      color: $whiteFontColour;
       i {
         font-size: 22px;
         margin-top: 3px;
         margin-right: 10px;
       }
       a {
-        color: $white;
+        color: $whiteFontColour;
       }
       ul {
         display: none;
       }
     }
     .sub-nav {
-      border-bottom: 1px solid $white;
+      border-bottom: 1px solid $borderWhite;
       background: $secondaryFontColour;
       a {
         text-decoration: none;

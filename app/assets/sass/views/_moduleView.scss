@@ -1,5 +1,5 @@
 .module-view {
-  background-color: $white;
+  background-color: $whiteBackground;
   .header-top {
     padding: 10px;
     text-align: center;
@@ -54,7 +54,7 @@
       margin-bottom: 10px;
     }
     .post-form-status {
-      background-color: $white;
+      background-color: $whiteBackground;
     }
   }
   .module-content {
@@ -81,7 +81,7 @@
     }
   }
   .module-tabs {
-    background-color: $white;
+    background-color: $whiteBackground;
   }
   .tab-bar {
     .tab-btn {
@@ -132,7 +132,7 @@
       }
     }
     .left-bar {
-      background-color: $white;
+      background-color: $whiteBackground;
       padding: 0;
       min-height: 1100px;
     }

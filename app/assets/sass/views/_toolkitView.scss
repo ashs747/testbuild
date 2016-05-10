@@ -1,5 +1,5 @@
 .toolkits {
-  background-color: $white;
+  background-color: $whiteBackground;
   .header {
     padding: 20px;
     text-align: center;
@@ -27,7 +27,7 @@
     width: 95px;
     display: block;
     margin: 0 auto;
-    background-color: $white;
+    background-color: $whiteBackground;
     border-radius: 50%;
     border: 1px solid $darkGreyBackground;
     text-align: center;
@@ -44,7 +44,7 @@
   }
   .btn {
     background-color: $primaryColour;
-    color: $white;
+    color: $whiteFontColour;
     width: 75px;
     padding: 3px 12px;
     font-weight: bold;

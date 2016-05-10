@@ -1,5 +1,5 @@
 .home {
-  background-color: $white;
+  background-color: $whiteBackground;
   h1 {
     font-size: 24px;
   }
@@ -9,7 +9,7 @@
   .header-page {
     background: url('/assets/img/home-introduction.png');
     background-size: cover;
-    color: $white;
+    color: $whiteFontColour;
     padding: 20px 0px;
     text-align: center;
     .inner {
@@ -17,13 +17,13 @@
       margin: 0 auto;
     }
     a {
-      color: $white;
+      color: $whiteFontColour;
     }
     img {
       width: 90px;
       height: 90px;
       border-radius: 50%;
-      border: 3px solid $white;
+      border: 3px solid $borderWhite;
       margin: 0 auto;
       margin-top: 0;
       display: block;
@@ -62,7 +62,7 @@
     text-align: center;
     .featured {
       background-color: $primaryColour;
-      color: $white;
+      color: $whiteFontColour;
       h4 {
         margin: 25px 0;
       }
@@ -70,7 +70,7 @@
     .programme {
       background: url('/assets/img/home-programme.png');
       background-size: cover;
-      color: $white;
+      color: $whiteFontColour;
       padding: 20px;
       h4 {
         margin-top: 50px;
@@ -81,13 +81,13 @@
         max-width: 250px;
       }
       a {
-        color: $white;
+        color: $whiteFontColour;
       }
     }
     .help {
       background: url('/assets/img/home-help.png');
       background-size: cover;
-      color: $white;
+      color: $whiteFontColour;
       padding: 20px;
       h4 {
         margin-top: 30px;
@@ -98,11 +98,11 @@
         max-width: 300px;
       }
       a {
-        color: $white;
+        color: $whiteFontColour;
       }
     }
     .log {
-      background-color: $white;
+      background-color: $whiteBackground;
       h4 {
         color: $primaryColour;
         margin-top: 10px;
@@ -127,17 +127,17 @@
       margin: 30px auto;
       height: 90px;
       width: 90px;
-      border: 2px solid $white;
+      border: 2px solid $borderWhite;
       border-radius: 50%;
     }
     .find-out-more {
       cursor: pointer;
-      border: 3px solid $white;
+      border: 3px solid $borderWhite;
       width: 36%;
       display: block;
       margin: 25px auto;
       h6 {
-        color: $white;
+        color: $whiteFontColour;
         text-align: center;
       }
     }
@@ -145,7 +145,7 @@
   .message-board {
     padding: 9px 15px;
     .post-form-status {
-      background-color: $white;
+      background-color: $whiteBackground;
     }
     h4 {
       margin-bottom: 10px;
@@ -167,7 +167,7 @@
 
 .carousel {
   .icon {
-    color: $white;
+    color: $whiteFontColour;
     height: 95px;
     width: 95px;
   }
@@ -181,14 +181,14 @@
     font-weight: 600;
   }
   a {
-    color: $white;
+    color: $whiteFontColour;
   }
   .carousel-indicators {
     .active {
-      background-color: $white;
+      background-color: $whiteBackground;
     }
     li {
-      border: 1px solid $white;
+      border: 1px solid $borderWhite;
     }
   }
 }
@@ -205,7 +205,7 @@
       }
     }
     .go-to-alz {
-      border: 4px solid $white;
+      border: 4px solid $borderWhite;
       cursor: pointer;
       width:40%;
       margin: 0 auto;
@@ -221,7 +221,7 @@
 @media (min-width: 1024px) {
   .home {
     .left-bar {
-      background-color: $white;
+      background-color: $whiteBackground;
       padding: 0;
       width: 70%;
     }

@@ -10,7 +10,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    color: $white;
+    color: $whiteFontColour;
     border-bottom: 1px solid #ccc;
     text-align: center;
     h2 {
@@ -28,7 +28,7 @@
       font-weight: 600;
       margin-top: 0;
       background-color: $primaryColour;
-      color: $white;
+      color: $whiteFontColour;
       padding: 15px 30px;
     }
     .message-inner {
@@ -85,7 +85,7 @@
     }
     .left-bar {
       border-right: 2px solid $darkGreyBackground;
-      background-color: $white;
+      background-color: $whiteBackground;
       padding: 0;
     }
   }

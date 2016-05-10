@@ -1,5 +1,5 @@
 .activity-view {
-  background-color: $white;
+  background-color: $whiteBackground;
   h4 {
     font-size: 16px;
   }
@@ -18,7 +18,7 @@
       width: 100px;
       height: 100px;
       margin: 0 auto;
-      background-color: $white;
+      background-color: $whiteBackground;
       color: $secondaryFontColour;
       border-radius: 50%;
       font-size: 30px;
@@ -100,7 +100,7 @@
   .activity-view {
     .left-bar {
       padding: 0;
-      background-color: $white;
+      background-color: $whiteBackground;
     }
     .right-bar {
       padding: 15px;
