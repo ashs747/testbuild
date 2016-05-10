@@ -1,0 +1,47 @@
+.personal-learning-journey{
+  background-color: $whiteBackground;
+  .header {
+    padding: 10px;
+    background: url('/assets/img/learning-journey.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: left;
+    color: $whiteFontColour;
+    text-align: center;
+    h2 {
+      color: $secondaryFontColour;
+      font-size: 30px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    h6 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .text {
+      max-width: 535px;
+    }
+    a {
+      color: $primaryColour;
+    }
+  }
+  .body {
+    padding: 10px;
+    .title {
+      font-size: 19px;
+    }
+    p a {
+      color: $primaryColour;
+      border-bottom: 1px solid $primaryColourUnderline;
+      text-decoration: none;
+    }
+  }
+}
+
+.plj-table {
+  h4 {
+    font-weight: 600;
+  }
+}

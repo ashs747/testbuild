@@ -1,0 +1,11 @@
+.action-learning-zone {
+  .right-bar {
+    padding: 30px 20px;
+    background-color: $lightGreyBackground;
+  }
+  .left-bar {
+    border-right: 2px solid $darkGreyBackground;
+    background-color: $whiteBackground;
+    padding: 0;
+  }
+}

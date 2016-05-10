@@ -1,0 +1,56 @@
+.profile {
+  background-color: $whiteBackground;
+  .header {
+    padding: 20px;
+    background: url('/assets/img/toolkit.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    color: $secondaryFontColour;
+    h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  }
+  .main {
+    .panel-header {
+      padding: 12px 18px;
+      h4 {
+        margin: 0;
+      }
+    }
+  }
+  .main-inner {
+    background-color: $lightGreyBackground;
+    padding: 5px 0;
+    border: 1px solid $darkGreyBackground;
+  }
+  .upload-profile {
+    margin-bottom: 5px;
+    padding: 10px;
+    border: none;
+    p {
+      font-size: 12px;
+    }
+  }
+  .details-panel {
+    .panel-inner {
+      text-align: center;
+      padding: 5px;
+    }
+  }
+  p {
+    margin-bottom: 0;
+  }
+  input:disabled {
+    color: $primaryFontColour;
+    background-color: $darkGreyBackground !important;
+  }
+  label {
+    font-size: 14px;
+  }
+}

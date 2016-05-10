@@ -1,0 +1,54 @@
+.action-learning-zone {
+  background-color: $lightGreyBackground;
+  .row {
+    margin: 0;
+  }
+  .header-page {
+    padding: 20px;
+    background: url('/assets/img/my-cohort.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $whiteFontColour;
+    text-align: center;
+    h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 0;
+      color: $secondaryFontColour;
+    }
+  }
+  .tab-btn {
+    font-size: 14px;
+  }
+  .alz-message-board {
+    h4 {
+      font-weight: 600;
+      margin-top: 0;
+      background-color: $primaryColour;
+      color: $whiteFontColour;
+      padding: 15px 30px;
+    }
+    .message-inner {
+      padding: 0 10px;
+    }
+    .message-board {
+      padding: 0;
+      margin-top: 20px;
+    }
+    .upload-media-component, .embed-video {
+      .btn {
+        font-weight: normal;
+      }
+    }
+  }
+  .members-module {
+    padding-top: 20px;
+    h4 {
+      margin: 20px;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.module-view {
+  .header-top {
+    .icon {
+      height: 100px;
+      width: 100px;
+    }
+  }
+  .left-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .message-list {
+    max-height: 1200px;
+    overflow-y: scroll;
+  }
+}

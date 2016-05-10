@@ -1,0 +1,76 @@
+.activity-view {
+  background-color: $whiteBackground;
+  h4 {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  .header {
+    padding: 20px;
+    color: $secondaryFontColour;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-align: center;
+    .icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      background-color: $whiteBackground;
+      color: $secondaryFontColour;
+      border-radius: 50%;
+      font-size: 30px;
+      text-align: center;
+    }
+    i {
+      font-size: 60px;
+      line-height: 100px;
+    }
+    h4, h2 {
+      margin: 0;
+      font-weight: bold;
+    }
+    h2 {
+      margin: 5px 0;
+    }
+  }
+  .tab-bar {
+    .tab-btn {
+      width: 50%;
+    }
+  }
+  .main {
+    background-color: $lightGreyBackground;
+  }
+  .overview {
+    padding: 0;
+    h4 {
+      font-weight: 600;
+    }
+  }
+  .overview-inner {
+    padding: 5px;
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    h3:first-child {
+      margin-top: 0;
+    }
+    h5 {
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+  }
+  .row {
+    margin: 0;
+  }
+  .tab-btn {
+    width: 50%;
+  }
+  .view-stack {
+    padding: 10px;
+  }
+}
