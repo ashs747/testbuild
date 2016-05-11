@@ -4,6 +4,8 @@ import store from '../../redux/store';
 import CloudinaryImg from '../components/CloudinaryImg.jsx';
 var dispatch = store.dispatch;
 
+import {toolkitContent} from '../../content.js';
+
 class ToolkitView extends React.Component {
 
   constructor() {
@@ -21,7 +23,7 @@ class ToolkitView extends React.Component {
           </div>
         </div>
         <div className="body clearfix">
-          <p>A collection of tools designed to support you through the programme and beyond. Straightforward tips and techniques to put into practice straight away.</p>
+          <p>{toolkitContent.body}</p>
           {toolkitWidgets}
         </div>
       </div>

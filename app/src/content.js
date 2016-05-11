@@ -116,3 +116,22 @@ export const programmeContent = {
 export const moduleContent = {
   messageFeed: "Everyone on the programme can view, post or comment here. We’ll post links and videos to enrich your development and share news about the leadership programme."
 }
+
+export const learningJourneyContent = {
+  body: (supportUrl) => {
+    return (
+      <div>
+        <p>Keep track of your progress and see what events are coming up next.  After each activity we’ll ask you for your feedback and to complete your learning log. If you’re not able to make any of the dates please click <a target="_blank" href={supportUrl}>here ></a></p>
+        <p>Click on any of the module or activity titles to visit the dedicated page for each and access any pre-work or resources.</p>
+      </div>
+    )
+  }
+}
+
+export const myCohortContent = {
+  messageFeed: "This is a private feed. Only members of your cohort and our facilitators can view, post or comment on this board. As you work on your business challenge you can use this board to share back ideas and collaborate. You can upload videos or photos from your phone, tablet or PC as well as adding links to Vimeo or YouTube videos."
+}
+
+export const toolkitContent = {
+  body: "A collection of tools designed to support you through the programme and beyond. Straightforward tips and techniques to put into practice straight away."
+}
