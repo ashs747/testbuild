@@ -12,7 +12,6 @@ export const homeContent = {
       </p>
   ),
   messageFeed: "Everyone on the programme can view, post or comment here. We’ll post links and videos to enrich your development and share news about the leadership programme.",
-  //Need to work out a better way to CMS the home screen tiles, just leaving it for now.
 }
 
 export const programmeContent = {
@@ -121,7 +120,7 @@ export const learningJourneyContent = {
   body: (supportUrl) => {
     return (
       <div>
-        <p>Keep track of your progress and see what events are coming up next.  After each activity we’ll ask you for your feedback and to complete your learning log. If you’re not able to make any of the dates please click <a target="_blank" href={supportUrl}>here ></a></p>
+        <p>Keep track of your progress and see what events are coming up next. After each activity we’ll ask you for your feedback and to complete your learning log. If you’re not able to make any of the dates please click <a target="_blank" href={supportUrl}>here ></a></p>
         <p>Click on any of the module or activity titles to visit the dedicated page for each and access any pre-work or resources.</p>
       </div>
     )
@@ -134,4 +133,60 @@ export const myCohortContent = {
 
 export const toolkitContent = {
   body: "A collection of tools designed to support you through the programme and beyond. Straightforward tips and techniques to put into practice straight away."
+}
+
+export const onBoardingContent = {
+  slide1: {
+    title: "Welcome to your portal for the Managers to Leaders programme.",
+    body: "Come on in, we’ve been expecting you!"
+  },
+  slide2: {
+    title: "A message from the Corporate Management Board",
+    videoUrl: "https://vimeo.com/150919913"
+  },
+  slide3: {
+    title: "Your learning journey",
+    image: "assets/img/on-boarding-learning-journey-new.png",
+    content: (
+      <div>
+        <p>We have identified 5 essential Leadership Qualities which are the building blocks for every great leader in the States.</p>
+        <p>The 9-month ‘Managers to Leaders’ programme is built around these qualities and has been designed specifically to support transformational leadership at the States of Jersey.</p>
+      </div>
+    )
+  },
+  slide4: {
+    title: "An interactive learning experience",
+    image: "assets/img/areas-of-expertise.png",
+    content: (
+      <div>
+        <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and Action Learning.</p>
+        <p>It includes a large variety of experiential activities and self-learning tools that will help you to accelerate, stretch and grow.</p>
+      </div>
+    )
+  },
+  slide5: {
+    title: "Track your progress and see upcoming events",
+    image: "assets/img/track-your-progress.png",
+    content: (
+      <div>
+        <p>Your personalised learning journey gives you all the key dates and information you need to stay on-track.</p>
+        <p>As you’ll be learning in a cohort most of the dates are fixed but you can book your coaching sessions at a time to suit you.</p>
+        <p>We’ll send you email reminders about upcoming events so you don’t forget.</p>
+      </div>
+    )
+  },
+  slide6: {
+    title: "Accessible on any device",
+    image: "assets/img/any-device.png",
+    content: (
+      <div>
+        <p>This portal is here to guide you through your development journey.  You can access it on any device with an internet connection.</p>
+        <p>We’ll send you an email with the web address - store it in your bookmarks for quick access.</p>
+        <p>Webinars are best experienced on a laptop or desktop.</p>
+      </div>
+    )
+  },
+  slide7: {
+    title: "Now, add a photo and password"
+  }
 }

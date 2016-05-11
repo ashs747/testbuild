@@ -8,6 +8,8 @@ import UploadProfile from '../../components/UploadProfile.jsx';
 import {updateUserObject, saveUserData} from '../../../redux/actions/usersActions';
 import config from '../../../localConfig';
 
+import {onBoardingContent} from '../../../content.js';
+
 function mapUploadForm(state) {
   return {
     buttonText: "UPLOAD",
@@ -38,8 +40,8 @@ class WelcomeBlock extends React.Component {
     return (
       <div className="row body">
         <div className="title col-sm-9">
-          <h1>Hi {this.props.forename},<br /><br />Welcome to your portal for the Managers to Leaders programme.</h1>
-          <p>Come on in, we’ve been expecting you!</p>
+          <h1>Hi {this.props.forename},<br /><br />{onBoardingContent.slide1.title}</h1>
+          <p>{onBoardingContent.slide1.body}</p>
         </div>
       </div>
     );
@@ -71,8 +73,8 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
-          <h1>A message from the Corporate Management Board</h1>
-          <Video url="https://vimeo.com/150919913" />
+          <h1>{onBoardingContent.slide2.title}</h1>
+          <Video url={onBoardingContent.slide2.videoUrl} />
         </div>
       </div>
     </Provider>
@@ -85,16 +87,14 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
-          <h1>Your learning journey</h1>
+          <h1>{onBoardingContent.slide3.title}</h1>
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="assets/img/on-boarding-learning-journey-new.png" />
+            <img src={onBoardingContent.slide3.image}/>
           </div>
           <div className="col-sm-5">
-            <p>We have identified 5 essential Leadership Qualities which are the building blocks for every great leader in the States.</p>
-            <p>The 9-month ‘Managers to Leaders’ programme is built around these qualities and has been designed specifically to support
-            transformational leadership at the States of Jersey.</p>
+            {onBoardingContent.slide3.content}
           </div>
           <div className="clearfix"/>
         </div>
@@ -109,15 +109,14 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
-          <h1>An interactive learning experience</h1>
+          <h1>{onBoardingContent.slide4.title}</h1>
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="assets/img/areas-of-expertise.png" />
+            <img src={onBoardingContent.slide4.image} />
           </div>
           <div className="col-sm-5">
-            <p>The programme is delivered to you using a blended approach which will include workshops, webinars, coaching and Action Learning.</p>
-            <p>It includes a large variety of experiential activities and self-learning tools that will help you to accelerate, stretch and grow.</p>
+            {onBoardingContent.slide4.content}
           </div>
           <div className="clearfix"/>
         </div>
@@ -132,16 +131,14 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
-          <h1>Track your progress and see upcoming events</h1>
+          <h1>{onBoardingContent.slide5.title}</h1>
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="assets/img/track-your-progress.png" />
+            <img src={onBoardingContent.slide5.image} />
           </div>
           <div className="col-sm-5">
-            <p>Your personalised learning journey gives you all the key dates and information you need to stay on-track.</p>
-            <p>As you’ll be learning in a cohort most of the dates are fixed but you can book your coaching sessions at a time to suit you.</p>
-            <p>We’ll send you email reminders about upcoming events so you don’t forget.</p>
+            {onBoardingContent.slide5.content}
           </div>
           <div className="clearfix"/>
         </div>
@@ -156,16 +153,14 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
-          <h1>Accessible on any device</h1>
+          <h1>{onBoardingContent.slide6.title}</h1>
         </div>
         <div className="content">
           <div className="col-sm-7">
-            <img src="assets/img/any-device.png" />
+            <img src={onBoardingContent.slide6.image} />
           </div>
           <div className="col-sm-5">
-            <p>This portal is here to guide you through your development journey.  You can access it on any device with an internet connection.</p>
-            <p>We’ll send you an email with the web address - store it in your bookmarks for quick access.</p>
-            <p>Webinars are best experienced on a laptop or desktop.</p>
+            {onBoardingContent.slide6.content}
           </div>
           <div className="clearfix"/>
         </div>
@@ -180,7 +175,7 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
-          <h1>Now, add a photo and password</h1>
+          <h1>{onBoardingContent.slide7.title}</h1>
         </div>
         <div className="content clearfix">
           <div className="upload-image col-sm-6">
