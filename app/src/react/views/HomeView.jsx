@@ -13,6 +13,8 @@ import _ from 'underscore';
 var feedID;
 var store = dispatch.store;
 
+import {homeContent} from '../../content.js'
+
 function mapHomeFeedProps(state) {
   return {
     context: 'programme',
@@ -22,7 +24,7 @@ function mapHomeFeedProps(state) {
     showEmbedVideo: true,
     profilePic: state.user.profilePic,
     title: "Programme feed",
-    subTitle: "Everyone on the programme can view, post or comment here. We’ll post links and videos to enrich your development and share news about the leadership programme."
+    subTitle: homeContent.messageFeed
   };
 };
 
@@ -44,8 +46,8 @@ class HomeView extends React.Component {
     let learningJourney = (
       <div className="home-learning">
         <div className="learning-journey">
-          <h4 className="semi-bold">Your learning journey</h4>
-          <p>Keep track of your progress as you go through the programme. Click on any of the modules for more detail of the workshops, webinars, coaching and projects in each. You can also see a timetable of all the events in the programme <a href="/#/personal-learning-journey">here ></a></p>
+          <h4 className="semi-bold">{homeContent.learningJourneyHeader}</h4>
+          {homeContent.learningJourney}
           <LearningJourneyWidget journeyModules={this.props.modules} smallWidget={this.props.profile === 'sm'}/>
           <h6 className="red-link"><a href="/#/personal-learning-journey">VIEW DETAILED LEARNING JOURNEY ></a></h6>
         </div>
@@ -126,7 +128,7 @@ class HomeView extends React.Component {
                 <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" disableAnchor={true} />
               </a>
               <h1>Welcome back {this.props.user.forename}</h1>
-              <p className="semi-bold">Join the discussion, collaborate with people in your group</p>
+              <p className="semi-bold">{homeContent.headerSubText}</p>
               <div className="go-to-alz">
                 <a href="/#/my-cohort"><h6><b>GO TO MY COHORT</b></h6></a>
               </div>
