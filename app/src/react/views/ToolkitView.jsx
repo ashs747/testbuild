@@ -17,7 +17,7 @@ class ToolkitView extends React.Component {
     let toolkitWidgets = this.mapToolkitWidgets(this.props.toolkits);
     return (
       <div className="toolkits">
-        <div className="header">
+        <div className="header toolkit-banner">
           <div className="header-text">
             <h1>Toolkit</h1>
           </div>

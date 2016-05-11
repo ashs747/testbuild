@@ -16,7 +16,7 @@ class LeadershipProgrammeView extends React.Component {
   render() {
     return (
       <div className="leadership-programme">
-        <div className="intro">
+        <div className="intro programme-first-background">
           <div className="inner">
             <h1>{programmeContent.tile1.header}</h1>
             <p>{programmeContent.tile1.content}</p>
@@ -43,7 +43,7 @@ class LeadershipProgrammeView extends React.Component {
               <p>{programmeContent.tile3.content}</p>
             </div>
           </div>
-          <div className="col-sm-6 right-column">
+          <div className="col-sm-6 right-column programme-second-background">
             <div className="inner">
               <div className="circle">
                 <p><i className={`fa fa-${programmeContent.tile4.icon}`}></i></p>
@@ -53,7 +53,7 @@ class LeadershipProgrammeView extends React.Component {
             </div>
           </div>
         </div>
-        <div className="qualities">
+        <div className="qualities programme-third-background">
           <div className="inner">
             <h1>{programmeContent.tile5.header}</h1>
             <p>{programmeContent.tile5.content}</p>
@@ -71,7 +71,7 @@ class LeadershipProgrammeView extends React.Component {
           </div>
         </div>
         <div className="delivery-grid clearfix">
-          <div className="col-sm-6 workshop">
+          <div className="col-sm-6 workshop programme-fourth-background">
             <div className="box-inner">
               <div className="icon">
                 <i className={`fa fa-${programmeContent.tile7.icon}`}></i>
@@ -104,7 +104,7 @@ class LeadershipProgrammeView extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-6 development">
+          <div className="col-sm-6 development programme-fifth-background">
             <div className="box-inner">
               <div className="icon">
                 <i className={`fa fa-${programmeContent.tile10.icon}`}></i>

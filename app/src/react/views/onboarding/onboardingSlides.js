@@ -200,9 +200,9 @@ export const onboardingSlides = [{
     <Provider store={store}>
       <div className="body">
         <div className="title">
-          <h1>Your onboarding is complete</h1>
+          <h1>{onBoardingContent.slide8.title}</h1>
           <div className="sub">
-            <p>Please make a note of your password. Click below to log in to the portal using your email and password.</p>
+            <p>{onBoardingContent.slide8.content}</p>
           </div>
         </div>
         <div className="content">

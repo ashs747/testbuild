@@ -30,7 +30,7 @@ class LearningJourneyView extends React.Component {
 
     return (
       <div className="personal-learning-journey">
-        <div className="header">
+        <div className="header learning-journey-banner">
           <div className="text">
             <h2>Your learning journey</h2>
           </div>

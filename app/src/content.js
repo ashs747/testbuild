@@ -188,5 +188,9 @@ export const onBoardingContent = {
   },
   slide7: {
     title: "Now, add a photo and password"
+  },
+  slide8: {
+    title: "Your onboarding is complete",
+    content: "Please make a note of your password. Click below to log in to the portal using your email and password."
   }
 }

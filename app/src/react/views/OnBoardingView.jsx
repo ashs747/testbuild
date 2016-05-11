@@ -29,7 +29,7 @@ class OnBoarding extends React.Component {
 
   render() {
     return (
-      <div className="on-boarding">
+      <div className="on-boarding login-background">
         <div className="header clearfix">
           <div className="header-logo">
             <img src="assets/img/programme-logo.png" alt="logo" />

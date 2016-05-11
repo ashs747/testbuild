@@ -58,7 +58,7 @@ class HomeView extends React.Component {
               <Carousel context="tools" items={carouselItems} hideArrows={true} defineWidthClass="col-xs-10 col-xs-offset-1" />
             </div>
           </div>
-          <div className="col-sm-6 grid-panel programme">
+          <div className="col-sm-6 grid-panel programme tile-1-background">
             <div className="inner">
               <h4><b>Your leadership programme</b></h4>
               <p className="semi-bold">We've designed this programme all around you.</p>
@@ -67,7 +67,7 @@ class HomeView extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-6 grid-panel help">
+          <div className="col-sm-6 grid-panel help tile-2-background">
             <div className="inner">
               <h4><b>Need help?</b></h4>
               <p className="semi-bold">Contact the programme support team.<br />We’re here to help.</p>
@@ -122,7 +122,7 @@ class HomeView extends React.Component {
     if (this.props.user) {
       return (
         <div className="home">
-          <div className="header-page">
+          <div className="header-page home-banner">
             <div className="inner">
               <a href="/#/profile">
                 <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" disableAnchor={true} />
