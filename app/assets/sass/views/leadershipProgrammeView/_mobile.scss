@@ -18,11 +18,6 @@
   .intro {
     color: $whiteFontColour;
     padding: 20px;
-    background: url('/assets/img/programme-introduction.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     h1 {
       font-size: 36px;
       margin: 35px 0;
@@ -146,11 +141,6 @@
       }
     }
     .right-column {
-      background: url('/assets/img/programme-what-in-it.png');
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
       color: $whiteFontColour;
       .circle {
         color: $secondaryFontColour;
@@ -179,11 +169,6 @@
     }
   }
   .qualities {
-    background: url('/assets/img/programme-leadership-qualities.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     color: $whiteFontColour;
     padding: 20px;
     h1 {
@@ -224,11 +209,6 @@
     }
   }
   .workshop {
-    background: url('/assets/img/programme-workshop.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     color: $whiteFontColour;
     .icon {
       border: 3px solid $borderWhite;
@@ -275,11 +255,6 @@
     }
   }
   .development {
-    background: url('/assets/img/programme-development.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     color: $whiteFontColour;
     .icon {
       border: 3px solid $borderWhite;

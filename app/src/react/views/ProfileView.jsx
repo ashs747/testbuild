@@ -69,7 +69,7 @@ class ProfileView extends React.Component {
   render() {
     return (
       <div className="profile">
-        <div className="header">
+        <div className="header toolkit-banner">
           <div className="header-text">
             <h2>My Profile</h2>
           </div>

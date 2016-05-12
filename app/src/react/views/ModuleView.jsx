@@ -6,6 +6,8 @@ import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import Carousel from '../components/Carousel.jsx';
 
+import {moduleContent} from '../../content.js';
+
 function mapHomeFeedProps(state) {
   return {
     context: 'programme',
@@ -15,7 +17,7 @@ function mapHomeFeedProps(state) {
     showEmbedVideo: true,
     profilePic: state.user.profilePic,
     title: "Programme feed",
-    subTitle: "Everyone on the programme can view, post or comment here. We’ll post links and videos to enrich your development and share news about the leadership programme."
+    subTitle: moduleContent.messageFeed
   };
 };
 

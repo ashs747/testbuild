@@ -4,6 +4,8 @@ import {learningJourneyAction} from '../../redux/actions/learningJourneyActions'
 import {connect} from 'react-redux';
 import _ from 'underscore';
 
+import {learningJourneyContent} from '../../content.js';
+
 class LearningJourneyView extends React.Component {
 
   constructor() {
@@ -28,14 +30,13 @@ class LearningJourneyView extends React.Component {
 
     return (
       <div className="personal-learning-journey">
-        <div className="header">
+        <div className="header learning-journey-banner">
           <div className="text">
             <h2>Your learning journey</h2>
           </div>
         </div>
         <div className="body">
-          <p>Keep track of your progress and see what events are coming up next.  After each activity we’ll ask you for your feedback and to complete your learning log. If you’re not able to make any of the dates please click <a target="_blank" href={this.props.supportUrl}>here ></a></p>
-          <p>Click on any of the module or activity titles to visit the dedicated page for each and access any pre-work or resources.</p>
+          {learningJourneyContent.body(this.props.supportUrl)}
           {learningJourneyReactArray}
         </div>
       </div>

@@ -7,8 +7,6 @@
     margin: 0;
   }
   .header-page {
-    background: url('/assets/img/home-introduction.png');
-    background-size: cover;
     color: $whiteFontColour;
     padding: 20px 0px;
     text-align: center;
@@ -68,8 +66,6 @@
       }
     }
     .programme {
-      background: url('/assets/img/home-programme.png');
-      background-size: cover;
       color: $whiteFontColour;
       padding: 20px;
       h4 {
@@ -85,8 +81,6 @@
       }
     }
     .help {
-      background: url('/assets/img/home-help.png');
-      background-size: cover;
       color: $whiteFontColour;
       padding: 20px;
       h4 {
