@@ -1,92 +1,59 @@
-.login-background {
-  background: url('/assets/img/login-background.jpg') no-repeat center center fixed;
+@mixin cover-background($img) {
+  background: url($img) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.login-background {
+  @include cover-background('/assets/img/login-background.jpg');
 }
 
 .my-cohort-banner {
-  background: url('/assets/img/my-cohort.png');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  @include cover-background('/assets/img/my-cohort.png');
 }
 
 .booking-banner {
-  background: url('/assets/img/booking.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  @include cover-background('/assets/img/booking.png');
 }
 
 .home-banner {
-  background: url('/assets/img/home-introduction.png');
-  background-size: cover;
+  @include cover-background('/assets/img/home-introduction.png');
 }
 
 .tile-1-background {
-  background: url('/assets/img/home-programme.png');
-  background-size: cover;
+  @include cover-background('/assets/img/home-programme.png');
 }
 
 .tile-2-background {
-  background: url('/assets/img/home-help.png');
-  background-size: cover;
+  @include cover-background('/assets/img/home-help.png');
 }
 
 .programme-first-background {
-  background: url('/assets/img/programme-introduction.png');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  @include cover-background('/assets/img/programme-introduction.png');
 }
 
 .programme-second-background {
-  background: url('/assets/img/programme-what-in-it.png');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  @include cover-background('/assets/img/programme-what-in-it.png');
 }
 
 .programme-third-background {
-  background: url('/assets/img/programme-leadership-qualities.png');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  @include cover-background('/assets/img/programme-leadership-qualities.png');
 }
 
 .programme-fourth-background {
-  background: url('/assets/img/programme-workshop.png');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  @include cover-background('/assets/img/programme-workshop.png');
 }
 
 .programme-fifth-background {
-  background: url('/assets/img/programme-development.png');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  @include cover-background('/assets/img/programme-development.png');
 }
 
 .toolkit-banner {
-  background: url('/assets/img/toolkit.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position: center;
+  @include cover-background('/assets/img/toolkit.png');
 }
 
 .learning-journey-banner {
-  background: url('/assets/img/learning-journey.png') no-repeat left center;
-  background-size: cover;
+  @include cover-background('/assets/img/learning-journey.png');
 }
