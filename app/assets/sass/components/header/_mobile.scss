@@ -204,7 +204,7 @@
   .mobile-nav {
     width: 100%;
     position: absolute;
-    background-color: $secondaryColour;
+    background-color: $navigationColour;
     z-index: 100;
     ul {
       list-style-type: none;
@@ -265,7 +265,7 @@
     }
     .cirrus-footer {
       text-align: right;
-      background: $primaryColour;
+      background: $navigationColour;
     }
     .my-learning {
       .sub-arrow {
@@ -275,5 +275,6 @@
     .no-border-bottom {
       border-bottom: none;
     }
+    
   }
 }
