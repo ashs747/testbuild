@@ -83,7 +83,7 @@
     }
 
     &:hover>a{
-      background: $secondaryFontColour;
+      background: $subMenu;
       color: $whiteFontColour;
     }
 
@@ -109,7 +109,7 @@
     .sub-nav-content {
       width: 100%;
       padding: 15px 20px;
-      background: $secondaryFontColour;
+      background: $subMenu;
 
       ul {
         position: static;
@@ -233,7 +233,7 @@
     }
     .sub-nav {
       border-bottom: 1px solid $borderWhite;
-      background: $secondaryFontColour;
+      background: $subMenu;
       a {
         text-decoration: none;
       }

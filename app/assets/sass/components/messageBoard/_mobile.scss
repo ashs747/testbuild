@@ -272,7 +272,7 @@ textarea[disabled="true"] {
 		.go {
 			margin-left: 5px;
 			color: $whiteFontColour;
-			background-color: $primaryColour;
+			background-color:  #565abe;
 			font-weight: bold;
 			padding: 4px 12px;
 		}
@@ -285,7 +285,7 @@ textarea[disabled="true"] {
 			float: right;
 			width: 100%;
 			max-width: 100px;
-			background-color: $postbutton;
+			background-color: $postButton;
 			color: $whiteFontColour;
 			font-weight: bold;
 			padding: 3px 6px;
