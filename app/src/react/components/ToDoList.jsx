@@ -8,14 +8,14 @@ class ToDoList extends React.Component {
   }
 
   render() {
-  	var todoItems = this.props.data.map(function(item) {
-  		return <Todo text={item.text} createdBy={item.createdBy}  date={item.date}/>;
-  	});
+    var todoItems = this.props.data.map(function(item) {
+      return <Todo text={item.text} createdBy={item.createdBy} date={item.date}/>;
+    });
 
     return (
-    	<div>
-    		{todoItems}
-    	</div>
+      <div>
+        {todoItems}
+      </div>
     )
   }
 }
