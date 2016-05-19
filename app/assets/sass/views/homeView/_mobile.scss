@@ -33,11 +33,11 @@
   .learning-journey {
     padding: 20px;
     a {
-      color: $primaryColour;
+      color: $textColour;
       text-decoration: none;
     }
     p a {
-      border-bottom: 1px solid $primaryColourUnderline;
+      border-bottom: 1px solid $textColour;
     }
     h4 {
       margin-top: 0;
@@ -50,8 +50,8 @@
       margin-bottom: 0;
       a {
         font-weight: 600;
-        color: $primaryColour;
-        border-bottom: 1px solid $primaryColourUnderline;
+        color: $textColour;
+        border-bottom: 1px solid $textColour;
         text-decoration: none;
       }
     }

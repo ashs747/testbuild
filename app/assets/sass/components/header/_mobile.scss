@@ -83,7 +83,7 @@
     }
 
     &:hover>a{
-      background: $secondaryFontColour;
+      background: $subMenu;
       color: $whiteFontColour;
     }
 
@@ -109,7 +109,7 @@
     .sub-nav-content {
       width: 100%;
       padding: 15px 20px;
-      background: $secondaryFontColour;
+      background: $subMenu;
 
       ul {
         position: static;
@@ -204,7 +204,7 @@
   .mobile-nav {
     width: 100%;
     position: absolute;
-    background-color: $secondaryColour;
+    background-color: $navigationColour;
     z-index: 100;
     ul {
       list-style-type: none;
@@ -233,7 +233,7 @@
     }
     .sub-nav {
       border-bottom: 1px solid $borderWhite;
-      background: $secondaryFontColour;
+      background: $subMenu;
       a {
         text-decoration: none;
       }
@@ -265,7 +265,7 @@
     }
     .cirrus-footer {
       text-align: right;
-      background: $primaryColour;
+      background: $navigationColour;
     }
     .my-learning {
       .sub-arrow {
@@ -275,5 +275,6 @@
     .no-border-bottom {
       border-bottom: none;
     }
+    
   }
 }

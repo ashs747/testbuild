@@ -60,23 +60,23 @@ export const programmeContent = {
   },
   carousel2: [{
     name: "Inspiring Connector",
-    icon: <img src="assets/img/inspiring-connector.png" alt="module icon" />,
+    icon: <img src="assets/img/testmodule2.png" alt="module icon" />,
     copy: "Leaders should be engaging, great communicators and listeners, authentic and open, and respectful to others."
   }, {
     name: "Ambassador for Change",
-    icon: <img src="assets/img/ambassador-for-change.png" alt="module icon" />,
+    icon: <img src="assets/img/testmodule3.png" alt="module icon" />,
     copy: "Leaders should advocate change, be resilient and agile, drive continuous improvement, be courageous and bold."
   }, {
     name: "Agile Decision Maker",
-    icon: <img src="assets/img/agile-decision-maker.png" alt="module icon" />,
+    icon: <img src="assets/img/testmodule4.png" alt="module icon" />,
     copy: "Leaders should do things for the right reasons, empower others to make independent decisions and be accountable."
   }, {
     name: "People Leader",
-    icon: <img src="assets/img/people-leader.png" alt="module icon" />,
+    icon: <img src="assets/img/testmodule1.png" alt="module icon" />,
     copy: "Leaders should motivate and support others, nurture talent, and be aware of their own strengths and areas needing development."
   }, {
     name: "Performance Driver",
-    icon: <img src="assets/img/performance-driver.png" alt="module icon" />,
+    icon: <img src="assets/img/testmodule5.png" alt="module icon" />,
     copy: "Leaders should be focused on outcomes, effective and efficient, work smarter not harder, and set and deliver ambitious goals for themselves and others."
   }],
   tile6: {

@@ -7,7 +7,7 @@
 }
 
 .login-background {
-  @include cover-background('/assets/img/login-background.jpg');
+  @include cover-background('/assets/img/testBackgroundLogin.jpg');
 }
 
 .my-cohort-banner {
@@ -19,7 +19,7 @@
 }
 
 .home-banner {
-  @include cover-background('/assets/img/home-introduction.png');
+  @include cover-background('/assets/img/testHomeIntroduction.png');
 }
 
 .tile-1-background {

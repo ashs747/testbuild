@@ -10,6 +10,8 @@ import Store from '../../redux/store';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import _ from 'underscore';
+import HomePageTwoUpPanel from '../components/HomePageTwoUpPanel.jsx';
+
 var feedID;
 var store = dispatch.store;
 
@@ -51,44 +53,50 @@ class HomeView extends React.Component {
           <LearningJourneyWidget journeyModules={this.props.modules} smallWidget={this.props.profile === 'sm'}/>
           <h6 className="red-link"><a href="/#/personal-learning-journey">VIEW DETAILED LEARNING JOURNEY ></a></h6>
         </div>
-        <div className="grid-links">
-          <div className="col-sm-6 grid-panel featured">
-            <div className="inner">
-              <h4 className="semi-bold">Featured tools</h4>
-              <Carousel context="tools" items={carouselItems} hideArrows={true} defineWidthClass="col-xs-10 col-xs-offset-1" />
-            </div>
-          </div>
-          <div className="col-sm-6 grid-panel programme tile-1-background">
-            <div className="inner">
-              <h4><b>Your leadership programme</b></h4>
-              <p className="semi-bold">We've designed this programme all around you.</p>
-              <div className="find-out-more">
-                <h6><b><a href="/#/programme">FIND OUT MORE</a></b></h6>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6 grid-panel help tile-2-background">
-            <div className="inner">
-              <h4><b>Need help?</b></h4>
-              <p className="semi-bold">Contact the programme support team.<br />We’re here to help.</p>
-              <div className="find-out-more">
-                <h6><b><a href={this.props.supportUrl} target="_blank">FIND OUT MORE</a></b></h6>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6 grid-panel log">
-            <div className="inner">
-              <img src="assets/img/hult-logo.png" alt="Virtual Ashridge" />
-              <h4 className="semi-bold">Virtual Ashridge</h4>
-              <p>Please select a link below to access your customised Virtual Ashridge learning materials.</p>
-              <div className="col-sm-6">
+
+       <div className="grid-links">
+          <HomePageTwoUpPanel
+            titleText = "Featured tools"
+            backgroundClass = "featured">
+
+            <Carousel context="tools" items={carouselItems} hideArrows={true} defineWidthClass="col-xs-10 col-xs-offset-1" />
+          </HomePageTwoUpPanel>
+          
+          <HomePageTwoUpPanel
+            centerVertical = {true}
+            titleText = "Your leadership programme"
+            bodyText = "We've designed this programme all around you."
+            buttonLink = "/#/programme"
+            buttonText = "FIND OUT MORE"
+            buttonClass = "find-out-more"
+            backgroundClass = "tile-1-background"
+          />
+          
+          <HomePageTwoUpPanel
+            centerVertical = {true}
+            titleText = "Need Help"
+            bodyText = "Contact the programme support team.
+                        We’re here to help."
+            buttonLink = "/#/programme"
+            buttonText = "FIND OUT MORE"
+            buttonClass = "find-out-more"
+            backgroundClass = "tile-2-background"
+           />
+             
+          <HomePageTwoUpPanel
+            titleText = "Virtual Ashridge"
+            backgroundClass = "log"
+            bodyText = "Please select a link below to access your customised Virtual Ashridge learning materials."
+            topImage = {<img src="assets/img/hult-logo.png" alt="Virtual Ashridge" />}
+            >
+             <div className="col-sm-6">
                 <a href="http://mbcurl.me/12T1J">Education users ></a>
               </div>
               <div className="col-sm-6">
                 <a href="https://tinyurl.com/kpqsx5e">Everyone else ></a>
               </div>
-            </div>
-          </div>
+            </HomePageTwoUpPanel>
+
         </div>
       </div>
 
