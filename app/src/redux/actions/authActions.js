@@ -9,6 +9,7 @@ import {gotUsersCohort} from '../../redux/actions/cohortActions';
 import {gotToolkits} from '../../redux/actions/contentActions';
 import {gotProgramme} from '../../redux/actions/programmeActions';
 import {pushPath} from 'redux-simple-router';
+import {getWallsForProgramme} from '../../redux/actions/wallActions';
 
 export const AUTH = 'AUTH';
 export const TOKEN_CHECKED = 'TOKEN_CHECKED';
@@ -91,10 +92,9 @@ export function loadAuthFromCookie(cookieData) {
 
 export function authTokenCheck() {
   return getUserData().then((userData) => {
-    var getThisUsersCohortAction = gotUsersCohort(userData.cohort);
-
     Store.dispatch(getPLJData());
-    Store.dispatch(getThisUsersCohortAction);
+    Store.dispatch(getWallsForProgramme());
+    Store.dispatch(gotUsersCohort(userData.cohort));
     Store.dispatch(gotToolkits(userData.toolkits));
     Store.dispatch(gotProgramme(userData.programme));
     return userData;
