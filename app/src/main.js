@@ -27,6 +27,7 @@ import ActivityView from './react/views/ActivityView.jsx';
 import ProfileView from './react/views/ProfileView.jsx';
 import BookingView from './react/views/BookingView.jsx';
 import ResetPasswordView from './react/views/ResetPasswordView.jsx';
+import ConnectionsWallView from './react/views/ConnectionsWallView.jsx';
 
 /* Trashing app.jsx temporarily for the refactor */
 
@@ -60,6 +61,7 @@ ReactDOM.render(
           <Route path="activity/:activity" component={connect()(ActivityView)} />
           <Route path="profile" component={connect()(ProfileView)} />
           <Route path="booking/:module/:activity" component={connect()(BookingView)} />
+          <Route path="connections-wall/:id" component={ConnectionsWallView} />
         </Route>
         <Route path="login" component={connect((state) => {
           return {
