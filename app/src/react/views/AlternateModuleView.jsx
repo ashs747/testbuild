@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
 import FeedWidget from '../modules/feed/Widget.jsx';
+import ResourceWidget from '../modules/resource/Widget.jsx';
 import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import Carousel from '../components/Carousel.jsx';
@@ -58,12 +59,23 @@ class AlternateModuleView extends React.Component {
         <div className="left-content">
           {ljt}
           <div className="module-content">
-            <h2>{module.name}fdgf</h2>
-            <div dangerouslySetInnerHTML={{__html: module.content}}></div>
+            <span className="module-title">Your steps...</span>
+          </div>
+          <div className="module-content">
+            <span className="module-title">More information</span>
+            <p dangerouslySetInnerHTML={{__html: module.content}}/>
           </div>
         </div>
       </div>
     );
+    let connectionsWidget = (
+      <div>
+        <div>Connections Wall Component</div>
+        <a href="">
+          <img className="connections-wall-image" href="" src=""/>
+        </a>
+      </div>
+    )
     let bodyContent = (() => {
       switch (this.props.profile) {
         case 'lg':
@@ -73,15 +85,19 @@ class AlternateModuleView extends React.Component {
                 {leftbar}
               </div>
               <div className="col-sm-4 right-bar">
-                <this.HomeFeed />
+                {connectionsWidget}
+                <ResourceWidget title="Resources" resources={[]}/>
               </div>
             </div>
           );
           break;
         default:
+          const numberOfTabs = 3;
+          const tabWidth = 100 / numberOfTabs;
           let tab1 = (<div label="Overview" tabClass="tab-btn" key="tab1">{leftbar}</div>);
-          let tab2 = (<div label="Feed" tabClass="tab-btn" key="tab2"><this.HomeFeed /></div>);
-          let tabs = [tab1, tab2];
+          let tab2 = (<div label="Connections Wall" tabClass="tab-btn" key="tab2">{connectionsWidget}</div>);
+          let tab3 = (<div label="Resources" tabClass="tab-btn" key="tab3"><ResourceWidget title="Resources" resources={[]}/></div>);
+          let tabs = [tab1, tab2, tab3];
           return (
             <TabStack ref="moduleTabs" className="module-tabs" selectedIndex={0}>
               {tabs}
