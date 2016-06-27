@@ -18,6 +18,7 @@ import LoginView from './react/views/LoginView.jsx';
 import LearningJourneyView from './react/views/LearningJourneyView.jsx';
 import ActionLearningZone from './react/views/ActionLearningZoneView.jsx';
 import ModuleView from './react/views/ModuleView.jsx';
+import AlternateModuleView from './react/views/AlternateModuleView.jsx';
 import LeadershipProgrammeView from './react/views/LeadershipProgrammeView.jsx';
 import OnBoardingView from './react/views/OnBoardingView.jsx';
 import HomeView from './react/views/HomeView.jsx';
@@ -51,7 +52,7 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/" component={connect(authStateToProps)(MainView)}>
           <Route path="personal-learning-journey" component={connect((state) => state)(LearningJourneyView)} />
-          <Route path="module/:module" component={connect()(ModuleView)} />
+          <Route path="module/:module" component={connect()(AlternateModuleView)} />
           <Route path="my-cohort" component={connect()(ActionLearningZone)} />
           <Route path="programme" component={connect()(LeadershipProgrammeView)} />
           <Route path="home" component={connect()(HomeView)} />
