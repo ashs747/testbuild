@@ -1,0 +1,22 @@
+#connections-wall{
+  background-color: #f8f8f8;
+  padding: 25px;
+}
+.wall-posts{
+  margin-top: 25px;
+}
+.post-style {
+  background-color: #fff;
+  padding:25px;
+  height: 350px;
+  width: 300px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 25px;
+  h5 {
+    font-size: 1.6em;
+  }
+  .placeholder-image {
+    width:100%;
+  }
+}

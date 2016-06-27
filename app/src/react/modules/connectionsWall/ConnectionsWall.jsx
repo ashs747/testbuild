@@ -1,5 +1,8 @@
 import React from 'react';
 import WallPost from './WallPost.jsx';
+import ImageView from '../../components/ImageView.jsx';
+import Video from '../../components/Video.jsx';
+import moment from 'moment';
 
 class ConnectionsWall extends React.Component {
 
@@ -11,29 +14,51 @@ class ConnectionsWall extends React.Component {
     if (!this.props.wall) {
       return <p>No Wall Found</p>;
     }
-
-    console.log(this.props.wall);
-
-    /**
-      Some sort of mapping function to turn posts from the wall object post array
-      into post components
-
-      In each post component display the information thats in the object.
-
-      If there is evidence
-        Load in the video and imageview components to display it (evidence.reference should help)
-        Display title, name of the owner, postedOn date, description and number of likes
-      if not
-        display an upload button (does nothing), the users name and a placeholder upload image
-    */
-
+    const deadline = moment(this.props.wall.deadline).format('Do MMMM YYYY');
+    let posts = this.props.wall.posts.map(this.mapPosts);
 
     return (
-      <div dangerouslySetInnerHTML={{__html: this.props.wall.content}} />
+      <div id="connections-wall">
+        <p dangerouslySetInnerHTML={{__html: this.props.wall.content}} />
+        Deadline: {deadline}
+        <div className="wall-posts">
+          {posts}
+        </div>
+      </div>
     )
-
   }
 
+  mapPosts(post, i) {
+    if (post.evidence === null) {
+      return(
+        <div key={`factor-view-${i}`} className="post-style">
+          <h5>No Evidence Yet</h5>
+          <img className="placeholder-image" src="http://res.cloudinary.com/strata/image/upload/v1467020297/placeholder_c6u3x0.png"/>
+          <button>Upload</button>
+        </div>
+      );
+    }
+    else {
+      const postedDate = moment(post.postedOn).format('Do MMMM YYYY');
+      let evidenceComponent;
+      if (post.evidence.type === "image") {
+        evidenceComponent = <ImageView src = {post.evidence.url}/>;
+      }
+      else{
+        evidenceComponent = <Video url = {post.evidence.url}/>;
+      }
+      return(
+        <div key={`factor-view-${i}`} className="post-style">
+          <h5>{post.title}</h5>
+          <div className="post-user">{post.owner.forename} {post.owner.surname}</div>
+          <div className="post-date">{postedDate}</div>
+          <p>{post.description}</p>
+          {evidenceComponent}
+          <div>{post.likes.length} <button>Like</button></div>
+        </div>
+      );
+    }
+  }
 }
 
 export default ConnectionsWall;
