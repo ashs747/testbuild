@@ -13,7 +13,7 @@ class ConnectionsWall extends React.Component {
       return <p>No Wall Found</p>;
     }
     const deadline = moment(this.props.wall.deadline).format('Do MMMM YYYY');
-    let posts = this.props.wall.posts.map(this.mapPosts);
+    let posts = this.props.wall.posts.map(this.mapPosts.bind(null, this.props.currentUser));
 
     return (
       <div id="connections-wall">
@@ -26,9 +26,19 @@ class ConnectionsWall extends React.Component {
     )
   }
 
-  mapPosts(post, i) {
+  mapPosts(currentUser, post, i) {
+    const postBelongsToUser = (currentUser === post.owner.id);
     return (
-      <WallPost key={`factor-view-${i}`} title={post.title} description={post.description} evidence={post.evidence} owner={post.owner} date={post.date} likes={post.likes}/>
+      <WallPost
+        key={`wall-post-${i}`}
+        title={post.title}
+        description={post.description}
+        evidence={post.evidence}
+        owner={post.owner}
+        date={post.date}
+        likes={post.likes}
+        postBelongsToUser={postBelongsToUser}
+      />
     );
   }
 }

@@ -19,14 +19,15 @@ class ConnectionsWallView extends React.Component {
         break;
       }
     }
-    return <ConnectionsWall wall={wallObject} />
+    return <ConnectionsWall wall={wallObject} currentUser={this.props.currentUser} />
   }
 }
 
 var mappedConnectionsWallWrapperView = connect(state => {
   return {
     loading: state.wall.loading,
-    walls: state.wall.walls
+    walls: state.wall.walls,
+    currentUser: state.user.id
   };
 })(ConnectionsWallView);
 

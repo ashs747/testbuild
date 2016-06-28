@@ -5,8 +5,7 @@
 .wall-posts{
   margin-top: 25px;
 }
-.post-style {
-  background-color: $whiteBackground;
+.wall-post {
   padding:25px;
   height: 350px;
   width: 300px;
@@ -18,5 +17,23 @@
   }
   .placeholder-image {
     width:100%;
+  }
+
+  &.with-evidence {
+    background-color: $whiteBackground;
+    &.users-post {
+      background-color: #D3E7ED;
+    }
+  }
+
+  &.without-evidence{
+    background-color: red;
+    &.users-post {
+      background-color: #D48585;
+    }
+  }
+
+  &.current-user{
+    background-color: yellow;
   }
 }
