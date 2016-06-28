@@ -1,32 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
-import FeedWidget from '../modules/feed/Widget.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
 import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import Carousel from '../components/Carousel.jsx';
 
-import {moduleContent} from '../../content.js';
-
-function mapHomeFeedProps(state) {
-  return {
-    context: 'programme',
-    feeds: state.feeds,
-    profile: "sm",
-    showComments: true,
-    showEmbedVideo: true,
-    profilePic: state.user.profilePic,
-    title: "Programme feed",
-    subTitle: moduleContent.messageFeed
-  };
-};
-
 class AlternateModuleView extends React.Component {
 
   constructor() {
     super();
-    this.HomeFeed = connect(mapHomeFeedProps)(FeedWidget);
   }
 
   render() {
@@ -63,7 +46,7 @@ class AlternateModuleView extends React.Component {
           </div>
           <div className="module-content">
             <span className="module-title">More information</span>
-            <p dangerouslySetInnerHTML={{__html: module.content}}/>
+            <div dangerouslySetInnerHTML={{__html: module.content}}/>
           </div>
         </div>
       </div>
@@ -92,8 +75,6 @@ class AlternateModuleView extends React.Component {
           );
           break;
         default:
-          const numberOfTabs = 3;
-          const tabWidth = 100 / numberOfTabs;
           let tab1 = (<div label="Overview" tabClass="tab-btn" key="tab1">{leftbar}</div>);
           let tab2 = (<div label="Connections Wall" tabClass="tab-btn" key="tab2">{connectionsWidget}</div>);
           let tab3 = (<div label="Resources" tabClass="tab-btn" key="tab3"><ResourceWidget title="Resources" resources={[]}/></div>);
