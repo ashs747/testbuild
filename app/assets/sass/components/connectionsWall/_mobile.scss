@@ -1,12 +1,12 @@
 #connections-wall{
-  background-color: #f8f8f8;
+  background-color: $lightGreyBackground;
   padding: 25px;
 }
 .wall-posts{
   margin-top: 25px;
 }
 .post-style {
-  background-color: #fff;
+  background-color: $whiteBackground;
   padding:25px;
   height: 350px;
   width: 300px;

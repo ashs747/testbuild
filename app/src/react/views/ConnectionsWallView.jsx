@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ConnectionsWall from '../modules/connectionsWall/ConnectionsWall.jsx';
 
-class ConnectionsWallWrapperView extends React.Component {
+class ConnectionsWallView extends React.Component {
 
   constructor() {
     super();
@@ -13,15 +13,14 @@ class ConnectionsWallWrapperView extends React.Component {
     var requiredWallId = parseInt(this.props.params.id, 10);
     var wallObject = null;
 
-    walls.forEach((wall) => {
-      if (wall.activityId === requiredWallId) {
-        wallObject = wall;
+    for (let i = 0; i < walls.length; i++) {
+      if (walls[i].activityId === requiredWallId) {
+        wallObject = walls[i];
+        break;
       }
-    })
-
+    }
     return <ConnectionsWall wall={wallObject} />
   }
-
 }
 
 var mappedConnectionsWallWrapperView = connect(state => {
@@ -29,6 +28,6 @@ var mappedConnectionsWallWrapperView = connect(state => {
     loading: state.wall.loading,
     walls: state.wall.walls
   };
-})(ConnectionsWallWrapperView);
+})(ConnectionsWallView);
 
 export default mappedConnectionsWallWrapperView;
