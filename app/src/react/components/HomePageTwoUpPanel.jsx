@@ -17,7 +17,7 @@ class HomePageTwoUpPanel extends React.Component {
       button,textContent;
 
     if (this.props.buttonText && this.props.buttonLink) {
-      button =  (<div className={this.props.buttonClass}>
+      button = (<div className={this.props.buttonClass}>
           <h6><b><a href={this.props.buttonLink}>{this.props.buttonText}</a></b></h6>
         </div>);
     }
@@ -42,4 +42,3 @@ class HomePageTwoUpPanel extends React.Component {
 };
 
 export default HomePageTwoUpPanel;
-
