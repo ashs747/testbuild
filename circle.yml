@@ -7,7 +7,7 @@ dependencies:
   pre:
     - rm -rf ~/.npm/cirrus
     - rm -rf ./node_modules/cirrus
-    
+
 test:
   override:
     - cp app/src/localConfig.js.dist app/src/localConfig.js
@@ -17,24 +17,24 @@ test:
     - bower install
     - gulp build
 
-deployment:
-  nightlies:
-    branch: develop
-    commands:
-      - pip install awscli
-      - chmod +x ./docker/run.sh
-      - ./docker/run.sh deployment $CIRCLE_SHA1 nightly
-
-  staging:
-    branch: [/release-.*/, /hotfix-.*/]
-    commands:
-      - pip install awscli
-      - chmod +x ./docker/run.sh
-      - ./docker/run.sh deployment $CIRCLE_SHA1 staging
-
-  release:
-    branch: master
-    commands:
-      - pip install awscli
-      - chmod +x ./docker/run.sh
-      - ./docker/run.sh deployment $CIRCLE_SHA1 live
+#deployment:
+#  nightlies:
+#    branch: develop
+#    commands:
+#      - pip install awscli
+#      - chmod +x ./docker/run.sh
+#      - ./docker/run.sh deployment $CIRCLE_SHA1 nightly
+#
+#  staging:
+#    branch: [/release-.*/, /hotfix-.*/]
+#    commands:
+#      - pip install awscli
+#      - chmod +x ./docker/run.sh
+#      - ./docker/run.sh deployment $CIRCLE_SHA1 staging
+#
+#  release:
+#    branch: master
+#    commands:
+#      - pip install awscli
+#      - chmod +x ./docker/run.sh
+#      - ./docker/run.sh deployment $CIRCLE_SHA1 live

@@ -35,7 +35,7 @@ class BookingView extends React.Component {
     }
     return (
       <div className="booking">
-        <div className="header">
+        <div className="header booking-banner">
           <h3>Make a booking | {this.props.activity.type}: {this.props.activity.name}</h3>
         </div>
         <div className="body">

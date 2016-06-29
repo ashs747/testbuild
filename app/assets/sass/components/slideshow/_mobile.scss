@@ -1,0 +1,111 @@
+.slideshow-module {
+  background-color: $whiteBackground;
+  padding: 30px;
+}
+
+.slideshow-arrows {
+  span {
+    cursor: pointer;
+  }
+  .slideshow-prev-arrow {
+    float: left;
+    width: 50%;
+  }
+  .slideshow-next-arrow {
+    float: right;
+    width: 50%;
+    text-align: right;
+  }
+}
+
+.slideshow-nav-items {
+  display: inline-block;
+  width: 100%;
+  height:50px;
+  .block-nav {
+    height:100%;
+    display: inline-block;
+    width: 20%;
+    background-color: $bookingNav;
+    .main-block {
+      width: calc(100% - 30px);
+      float: left;
+      height:100%;
+      color: $whiteFontColour;
+      background-color: $bookingNav;
+    }
+    .right-block {
+      width: 20px;
+      float: left;
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
+      border-left: 10px solid $bookingNav;
+      height: 100%;
+    }
+    .left-block {
+      height: 100%;
+      width: 10px;
+      float: left;
+    }
+    .circle {
+      width: 30px;
+      height: 30px;
+      background-color: $whiteBackground;
+      border-radius: 50%;
+      color: $primaryColour;
+      text-align: center;
+      margin: 10px 5px;
+      float: left;
+      h5 {
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+  }
+  .active {
+    width: 60%;
+    background-color: $secondaryColour;
+    .main-block {
+      background-color: $secondaryColour;
+    }
+    .right-block {
+      background-color: $whiteBackground;
+      border-left: 10px solid $secondaryFontColour;
+    }
+    .left-block {
+      background-color: $secondaryColour;
+    }
+    .text {
+      display: block;
+      margin-top: 5px;
+    }
+  }
+  .first-item {
+    .right-block {
+      background-color: $whiteBackground;
+    }
+  }
+  .second-item {
+    background-color: $bookingNav;
+    .right-block {
+      border-left: 10px solid $bookingNav;
+      background-color: $whiteBackground;
+    }
+    .left-block {
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
+      border-left: 10px solid $borderWhite;
+    }
+  }
+  .last-item {
+    .right-block {
+      background-color: $whiteBackground;
+    }
+    .left-block {
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
+      border-left: 10px solid $borderWhite;
+    }
+  }
+}

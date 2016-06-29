@@ -1,0 +1,59 @@
+@mixin cover-background($img) {
+  background: url($img) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.login-background {
+  @include cover-background('/assets/img/testBackgroundLogin.jpg');
+}
+
+.my-cohort-banner {
+  @include cover-background('/assets/img/my-cohort.png');
+}
+
+.booking-banner {
+  @include cover-background('/assets/img/booking.png');
+}
+
+.home-banner {
+  @include cover-background('/assets/img/testHomeIntroduction.png');
+}
+
+.tile-1-background {
+  @include cover-background('/assets/img/home-programme.png');
+}
+
+.tile-2-background {
+  @include cover-background('/assets/img/home-help.png');
+}
+
+.programme-first-background {
+  @include cover-background('/assets/img/programme-introduction.png');
+}
+
+.programme-second-background {
+  @include cover-background('/assets/img/programme-what-in-it.png');
+}
+
+.programme-third-background {
+  @include cover-background('/assets/img/programme-leadership-qualities.png');
+}
+
+.programme-fourth-background {
+  @include cover-background('/assets/img/programme-workshop.png');
+}
+
+.programme-fifth-background {
+  @include cover-background('/assets/img/programme-development.png');
+}
+
+.toolkit-banner {
+  @include cover-background('/assets/img/toolkit.png');
+}
+
+.learning-journey-banner {
+  @include cover-background('/assets/img/learning-journey.png');
+}

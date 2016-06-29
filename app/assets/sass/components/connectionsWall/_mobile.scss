@@ -1,0 +1,39 @@
+#connections-wall{
+  background-color: $lightGreyBackground;
+  padding: 25px;
+}
+.wall-posts{
+  margin-top: 25px;
+}
+.wall-post {
+  padding:25px;
+  height: 350px;
+  width: 300px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 25px;
+  h5 {
+    font-size: 1.6em;
+  }
+  .placeholder-image {
+    width:100%;
+  }
+
+  &.with-evidence {
+    background-color: $whiteBackground;
+    &.users-post {
+      background-color: #D3E7ED;
+    }
+  }
+
+  &.without-evidence{
+    background-color: red;
+    &.users-post {
+      background-color: #D48585;
+    }
+  }
+
+  &.current-user{
+    background-color: yellow;
+  }
+}

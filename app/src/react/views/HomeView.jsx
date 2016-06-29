@@ -10,8 +10,12 @@ import Store from '../../redux/store';
 import FeedWidget from '../modules/feed/Widget.jsx';
 import {fetchLatestFeedMessages} from '../../redux/actions/feedActions';
 import _ from 'underscore';
+import HomePageTwoUpPanel from '../components/HomePageTwoUpPanel.jsx';
+
 var feedID;
 var store = dispatch.store;
+
+import {homeContent} from '../../content.js'
 
 function mapHomeFeedProps(state) {
   return {
@@ -22,7 +26,7 @@ function mapHomeFeedProps(state) {
     showEmbedVideo: true,
     profilePic: state.user.profilePic,
     title: "Programme feed",
-    subTitle: "Everyone on the programme can view, post or comment here. We’ll post links and videos to enrich your development and share news about the leadership programme."
+    subTitle: homeContent.messageFeed
   };
 };
 
@@ -44,49 +48,55 @@ class HomeView extends React.Component {
     let learningJourney = (
       <div className="home-learning">
         <div className="learning-journey">
-          <h4 className="semi-bold">Your learning journey</h4>
-          <p>Keep track of your progress as you go through the programme. Click on any of the modules for more detail of the workshops, webinars, coaching and projects in each. You can also see a timetable of all the events in the programme <a href="/#/personal-learning-journey">here ></a></p>
+          <h4 className="semi-bold">{homeContent.learningJourneyHeader}</h4>
+          {homeContent.learningJourney}
           <LearningJourneyWidget journeyModules={this.props.modules} smallWidget={this.props.profile === 'sm'}/>
           <h6 className="red-link"><a href="/#/personal-learning-journey">VIEW DETAILED LEARNING JOURNEY ></a></h6>
         </div>
-        <div className="grid-links">
-          <div className="col-sm-6 grid-panel featured">
-            <div className="inner">
-              <h4 className="semi-bold">Featured tools</h4>
-              <Carousel context="tools" items={carouselItems} hideArrows={true} defineWidthClass="col-xs-10 col-xs-offset-1" />
-            </div>
-          </div>
-          <div className="col-sm-6 grid-panel programme">
-            <div className="inner">
-              <h4><b>Your leadership programme</b></h4>
-              <p className="semi-bold">We've designed this programme all around you.</p>
-              <div className="find-out-more">
-                <h6><b><a href="/#/programme">FIND OUT MORE</a></b></h6>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6 grid-panel help">
-            <div className="inner">
-              <h4><b>Need help?</b></h4>
-              <p className="semi-bold">Contact the programme support team.<br />We’re here to help.</p>
-              <div className="find-out-more">
-                <h6><b><a href={this.props.supportUrl} target="_blank">FIND OUT MORE</a></b></h6>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6 grid-panel log">
-            <div className="inner">
-              <img src="assets/img/hult-logo.png" alt="Virtual Ashridge" />
-              <h4 className="semi-bold">Virtual Ashridge</h4>
-              <p>Please select a link below to access your customised Virtual Ashridge learning materials.</p>
-              <div className="col-sm-6">
+
+       <div className="grid-links">
+          <HomePageTwoUpPanel
+            titleText = "Featured tools"
+            backgroundClass = "featured">
+
+            <Carousel context="tools" items={carouselItems} hideArrows={true} defineWidthClass="col-xs-10 col-xs-offset-1" />
+          </HomePageTwoUpPanel>
+          
+          <HomePageTwoUpPanel
+            centerVertical = {true}
+            titleText = "Your leadership programme"
+            bodyText = "We've designed this programme all around you."
+            buttonLink = "/#/programme"
+            buttonText = "FIND OUT MORE"
+            buttonClass = "find-out-more"
+            backgroundClass = "tile-1-background"
+          />
+          
+          <HomePageTwoUpPanel
+            centerVertical = {true}
+            titleText = "Need Help"
+            bodyText = "Contact the programme support team.
+                        We’re here to help."
+            buttonLink = "/#/programme"
+            buttonText = "FIND OUT MORE"
+            buttonClass = "find-out-more"
+            backgroundClass = "tile-2-background"
+           />
+             
+          <HomePageTwoUpPanel
+            titleText = "Virtual Ashridge"
+            backgroundClass = "log"
+            bodyText = "Please select a link below to access your customised Virtual Ashridge learning materials."
+            topImage = {<img src="assets/img/hult-logo.png" alt="Virtual Ashridge" />}
+            >
+             <div className="col-sm-6">
                 <a href="http://mbcurl.me/12T1J">Education users ></a>
               </div>
               <div className="col-sm-6">
                 <a href="https://tinyurl.com/kpqsx5e">Everyone else ></a>
               </div>
-            </div>
-          </div>
+            </HomePageTwoUpPanel>
+
         </div>
       </div>
 
@@ -120,13 +130,13 @@ class HomeView extends React.Component {
     if (this.props.user) {
       return (
         <div className="home">
-          <div className="header-page">
+          <div className="header-page home-banner">
             <div className="inner">
               <a href="/#/profile">
                 <CloudinaryImg file={this.props.user.profilePic} defaultImg="assets/img/profile-placeholder.jpg" disableAnchor={true} />
               </a>
               <h1>Welcome back {this.props.user.forename}</h1>
-              <p className="semi-bold">Join the discussion, collaborate with people in your group</p>
+              <p className="semi-bold">{homeContent.headerSubText}</p>
               <div className="go-to-alz">
                 <a href="/#/my-cohort"><h6><b>GO TO MY COHORT</b></h6></a>
               </div>

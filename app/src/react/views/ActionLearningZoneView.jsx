@@ -10,6 +10,8 @@ import Button from '../legacy/Button.jsx';
 
 import ResourcesWidget from '../modules/resource/Widget.jsx';
 
+import {myCohortContent} from '../../content.js';
+
 var feedID;
 
 function mapALZFeed(state) {
@@ -54,7 +56,7 @@ class ActionLearningZoneView extends React.Component {
       <div className="alz-message-board">
         <h4>{this.props.cohort.name} message board</h4>
         <div className="message-inner">
-          <p>This is a private feed. Only members of your cohort and our facilitators can view, post or comment on this board. As you work on your business challenge you can use this board to share back ideas and collaborate. You can upload videos or photos from your phone, tablet or PC as well as adding links to Vimeo or YouTube videos.</p>
+          <p>{myCohortContent.messageFeed}</p>
           <ALZFeed />
         </div>
       </div>
@@ -97,7 +99,7 @@ class ActionLearningZoneView extends React.Component {
     })();
     return (
       <div className="action-learning-zone">
-        <div className="col-sm-12 header-page">
+        <div className="col-sm-12 header-page my-cohort-banner">
           <div className="col-sm-8">
             <h2>My Cohort</h2>
           </div>

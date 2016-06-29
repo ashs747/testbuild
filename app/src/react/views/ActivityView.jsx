@@ -108,7 +108,7 @@ class ActivityView extends React.Component {
             </div>
           </div>
           <div className="col-sm-10">
-            <h4>{`Module ${moduleWithActivity.moduleId} - ${moduleWithActivity.name}`}</h4>
+            <h4>{`Module ${moduleWithActivity.moduleNumber} - ${moduleWithActivity.name}`}</h4>
             <h2>{activity.name}</h2>
             <h4>{activity.type}</h4>
           </div>

@@ -1,0 +1,119 @@
+.booking {
+  .header {
+    padding: 40px;
+    text-align: left;
+  }
+  .body {
+    padding: 10px;
+    border: 1px solid $darkGreyBackground;
+    .body-inner {
+      padding: 20px;
+      border: 1px solid $darkGreyBackground;
+    }
+  }
+  .slideshow-module {
+    border: 1px solid $darkGreyBackground;
+    padding: 30px;
+  }
+  h3 {
+    font-size: 26px;
+    margin: 15px 0;
+  }
+  .confirm-selection {
+    margin-bottom: 0;
+  }
+  .col-md-6, .col-md-5 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+.choose-slide {
+  .event-date-rows {
+    width: 100%;
+    border: 1px solid $darkGreyBackground;
+    height: 354px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 20px;
+    .date-row {
+      background-color: $lightGreyBackground;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid $darkGreyBackground;
+      cursor: pointer;
+    }
+    .radio {
+      margin: 0;
+      float: left;
+      height: 20px;
+      width: 20px;
+      background-color: $whiteBackground;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 1px solid $darkGreyBackground;
+    }
+    .date-row.selected-date {
+      background-color: $lightGreenSuccess;
+      .radio-inner {
+        background-color: $primaryFontColour;
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        margin: 5px;
+      }
+    }
+    .date-row.booked-date {
+      background-color: $lightGreyBackground;
+    }
+  }
+}
+
+.confirm-slide {
+  h2 {
+    margin: 20px 15px;
+    font-weight: bold;
+    font-size: 24px;
+  }
+}
+
+.facilitator-slots {
+  .facilitator-block {
+    border: 1px solid $darkGreyBackground;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  table {
+    width: 100%;
+  }
+  .block-header {
+    background-color: $secondaryColour;
+    color: $whiteFontColour;
+    padding: 5px 15px;
+    h5 {
+      font-size: 20px;
+    }
+  }
+  thead {
+    tr {
+      background-color: $lightGreyBackground;
+    }
+    th {
+      padding: 10px;
+    }
+  }
+  tbody {
+    tr {
+      border: 1px solid $darkGreyBackground;
+    }
+    td {
+      padding: 10px;
+    }
+    .btn {
+      background-color: $primaryColour;
+      color: $whiteFontColour;
+    }
+  }
+  .odd {
+    background-color: $lightGreyBackground;
+  }
+}

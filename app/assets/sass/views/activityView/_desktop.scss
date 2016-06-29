@@ -1,0 +1,11 @@
+.activity-view {
+  .left-bar {
+    padding: 0;
+    background-color: $whiteBackground;
+    border-right: 1px solid $borderGrey;
+  }
+  .right-bar {
+    padding: 15px;
+    background-color: $lightGreyBackground;
+  }
+}

@@ -65,7 +65,7 @@ export const getOAuthToken = (username, password) => {
     password: password,
     client_id: config.api.clientId,
     client_secret: config.api.appSecret,
-    grant_type: 'password'
+    grant_type: 'http://strata.core/grants/portal-password'
   });
 };
 

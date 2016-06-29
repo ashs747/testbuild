@@ -1,0 +1,46 @@
+.module-view {
+  .header-top {
+    padding: 35px 50px;
+    text-align: left;
+    .icon {
+      width: 85px;
+      height: 85px;
+      margin: 0;
+      margin-right: 30px;
+    }
+    h4 {
+      font-size: 26px;
+    }
+  }
+  .left-bar {
+    background-color: $whiteBackground;
+    padding: 0;
+    min-height: 1100px;
+  }
+  .learning-journey-module {
+    .heading {
+      text-align: left;
+    }
+  }
+  view-stack {
+    padding: 10px;
+  }
+  .right-bar {
+    padding: 10px;
+    padding-bottom: 0;
+    border-left: 1px solid $borderGrey;
+    background-color: $lightGreyBackground;
+  }
+  .left-content {
+    padding: 0 25px;
+  }
+  .message-board {
+    padding: 20px;
+  }
+  .module-carousel {
+    height: 300px;
+    .row {
+      height: 90px;
+    }
+  }
+}

@@ -1,26 +1,71 @@
-$mobile_min: 320px;
-$mobile_max: 767px;
-$tablet_min: 768px;
-$tablet_max: 1024px;
-$max_width: 1244px;
-
 $hi_res: "(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx)";
 $body_font: "proxima-nova", Arial, Helvetica, sans-serif;
 
-$body_color: #292929;
-$site_red: #95062F;
-$white: #ffffff;
-$light_grey: #f8f8f8;
-$dark_grey: #e7e7e7;
-$dark_blue: #454e58;
-$light_blue: #afbdcc;
-$border_grey: #dfe1e6;
-$textbox_grey: #d0cfcf;
-$underline_grey: #d5d6d7;
+//Main site colour
+$primaryColour: #1db7d4;
+//Footer, top nav bar hover, panels on programme overview, tool hints & tips
+$secondaryColour: #1db7d4;
+//Main font colour
+$primaryFontColour: #292929;
+//Page headings, learning journey table and message feed alternate text
+$secondaryFontColour: #454e58;
+//Used for all white font against dark corporate colours, useful for if we need
+//to switch because the colour is quite light
+$whiteFontColour: #ffffff;
+//Bar backgrounds and panel colours
+$lightGreyBackground: #f8f8f8;
+//Site background and message feed buttons
+$darkGreyBackground: #e7e7e7;
+//You know the drill
+$whiteBackground: #ffffff;
+//Footer link colours
+$footerLinks: #afbdcc;
+//Learning journey/Message feed border colours
+$borderGrey: #dfe1e6;
+//Border white, again if we have a light colour, might want to switch this
+$borderWhite: #ffffff;
+//Underline in learning journey modules, members module and resource widget
+$underlineGrey: #d5d6d7;
+//Success tick on learning journey table
 $success: #7eac0e;
+//Lighter shade of success green;
+$lightGreenSuccess: #def0d7;
+//Booking screen nav colour
+$bookingNav: #c7cacd;
+//Disabled text areas
+$disabled: #cccccc;
+//Button hover and focus colour
+$buttonFocus: #0071ce;
+//Text from module dropdown on nav colour
+$headerTextDropdownColour: #d7d2cd;
+//Underline of the dropdown text
+$headerTextDropdownUnderlineColour: #565a5f;
+//Underline of the primary colour (home view "LEARNING JOURNEY link for example")
+$primaryColourUnderline: #e9cfd0;
+//Underline on secondary colour
+$secondaryColourUnderline: #83878D;
+//Date display colour on message feed
+$messageBoardDateColour: #999999;
+//The colour in the background of the banners, used as a solid colour on tools
+$bannerBackgroundGrey: #E0DCD6;
+//The colour in the background of footer
+$siteFooter: #485155;
+//The bacground colour of post and go buttons
+$postButton: #565abe;
+//The colour used in the background of the navigation
+$navigationColour: #1db7d4 ;
+//The colour used in the background of the arrows used in the learning journey
+$learningJourney: #e80c79;
+//The colour used for the font of the texts in learning journey
+$textColour:  #e80c79;
+//The colour used in the background of submenu
+$subMenu:  #0071ce  ;
+//The font colour used for the heading and underline in the messagefeed
+$messageName: #565abe;
+
+
 
 //fonts
-
 p {
   font-size: 16px;
   line-height: 20px;
@@ -63,5 +108,52 @@ h6 {
 }
 
 textarea {
-  border: 1px solid $textbox_grey;
+  border: 1px solid #d0cfcf;
+}
+
+html {
+  height:100%;
+}
+
+body {
+  height: 100%;
+  background-color: $darkGreyBackground;
+  font-family: $body_font;
+  position: relative;
+  color: $primaryFontColour;
+  font-size: 15.5px;
+}
+
+.container-fluid {
+  max-width: 1214px;
+  border-left: 1px solid $borderGrey;
+  border-right: 1px solid $borderGrey;
+  padding: 0;
+}
+
+#app {
+  overflow:hidden;
+}
+
+input[type="password"] {
+  font-family: sans-serif !important;
+}
+
+.btn {
+  font-weight: bold;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:focus {
+  background: $buttonFocus;
+
+  &:hover {
+    background: darken($buttonFocus,2%);
+  }
+}
+
+.form-control {
+  font-size: 16px;
+  color: $primaryFontColour;
 }

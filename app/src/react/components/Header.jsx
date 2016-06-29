@@ -25,11 +25,11 @@ class Header extends React.Component {
         <li id="sub-nav-module" className="sub-nav">
           <div className="sub-nav-content clearfix">
             <ul className="modules">
-              <a href="/#/module/1"><li><img src="assets/img/inspiring-connector.png"/><p>Inspiring Connector</p></li></a>
-              <a href="/#/module/2"><li><img src="assets/img/ambassador-for-change.png"/><p>Ambassador for Change</p></li></a>
-              <a href="/#/module/3"><li><img src="assets/img/agile-decision-maker.png"/><p>Agile Decision Maker</p></li></a>
-              <a href="/#/module/4"><li><img src="assets/img/people-leader.png"/><p>People Leader</p></li></a>
-              <a href="/#/module/5"><li><img src="assets/img/performance-driver.png"/><p>Performance Driver</p></li></a>
+              <a href="/#/module/1"><li><img src="assets/img/testmodule2.png"/><p>Inspiring Connector</p></li></a>
+              <a href="/#/module/2"><li><img src="assets/img/testmodule3.png"/><p>Ambassador for Change</p></li></a>
+              <a href="/#/module/3"><li><img src="assets/img/testmodule4.png"/><p>Agile Decision Maker</p></li></a>
+              <a href="/#/module/4"><li><img src="assets/img/testmodule1.png"/><p>People Leader</p></li></a>
+              <a href="/#/module/5"><li><img src="assets/img/testmodule5.png"/><p>Performance Driver</p></li></a>
             </ul>
           </div>
         </li>
@@ -50,11 +50,11 @@ class Header extends React.Component {
 
     let mobileModuleNav = (
       <div className="sub-nav">
-        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src="assets/img/inspiring-connector.png"/><p>Inspiring Connector</p></li></a>
-        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src="assets/img/ambassador-for-change.png"/><p>Ambassador for Change</p></li></a>
-        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src="assets/img/agile-decision-maker.png"/><p>Agile Decision Maker</p></li></a>
-        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src="assets/img/people-leader.png"/><p>People Leader</p></li></a>
-        <a href="/#/module/5"><li onClick={this.toggleMobileNav}><img src="assets/img/performance-driver.png"/><p>Performance Driver</p></li></a>
+        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule2.png"/><p>Inspiring Connector</p></li></a>
+        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule3.png"/><p>Ambassador for Change</p></li></a>
+        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule4.png"/><p>Agile Decision Maker</p></li></a>
+        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule1.png"/><p>People Leader</p></li></a>
+        <a href="/#/module/5"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule5.png"/><p>Performance Driver</p></li></a>
       </div>
     );
 

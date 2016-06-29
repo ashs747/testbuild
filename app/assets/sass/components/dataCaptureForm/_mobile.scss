@@ -1,0 +1,50 @@
+.details-panel {
+  background-color: $whiteBackground;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  border: 1px solid $darkGreyBackground;
+  .panel-header {
+    background-color: $secondaryColour;
+    padding: 10px 20px;
+    color: $whiteFontColour;
+    border-radius: 3px 3px 0 0;
+  }
+  .panel-inner {
+    padding: 30px;
+  }
+  .panel-row {
+    label {
+      text-align: left;
+      padding: 5px;
+      float: left;
+      width: 30%;
+      font-weight: normal;
+      margin: 10px 0;
+    }
+    .form-control {
+      float: right;
+      width: 70%;
+      height: 40px;
+      border-radius: 1px;
+      background-color: $lightGreyBackground;
+      border: none;
+    }
+    .btn {
+      background-color: $primaryColour;
+      color: $whiteFontColour;
+      float: right;
+      padding: 4px 18px;
+      margin: 10px 0;
+    }
+  }
+  &.details {
+    .btn {
+      width: 70px;
+    }
+  }
+  &.password {
+    .btn {
+      width: 175px;
+    }
+  }
+}
