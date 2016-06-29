@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import classnames from 'classnames'
 
 class WallPost extends React.Component {

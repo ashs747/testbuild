@@ -1,6 +1,6 @@
 import React from 'react';
 import WallPost from './WallPost.jsx';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 class ConnectionsWall extends React.Component {
 
