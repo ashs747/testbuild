@@ -47,7 +47,7 @@ class ResetPasswordView extends React.Component {
         <div className="login-wrapper">
           <div className="login">
             <div className="logo">
-              <img src="assets/img/programme-logo.png" alt="logo" />
+              <img src="assets/img/rb-logo.png" alt="logo" />
             </div>
             {content}
           </div>
