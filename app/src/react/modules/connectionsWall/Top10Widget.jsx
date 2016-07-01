@@ -31,6 +31,7 @@ class Top10Widget extends React.Component {
   sortPosts(posts) {
     let likedPosts = this.findLikedPosts(posts);
     let sortedPosts = likedPosts.sort(this.sortPostsByNumberOfLikes);
+    sortedPosts = sortedPosts.slice(0,10);
     let sortedPostContent = this.displaySortedPosts(sortedPosts);
     return sortedPostContent;
   }
@@ -64,15 +65,14 @@ class Top10Widget extends React.Component {
       if (i === 0) {
         trophy = <i className="fa fa-trophy"></i>
       }
-      if(i > 0){
+      if (i > 0) {
         if (post.likes.length != posts[i - 1].likes.length) {
           initRank++;
         }
       }
-      let rank = initRank;
       return (
         <li key={`wall-post-${i}`}>
-          <div className="top-10-rank">{rank}.</div>
+          <div className="top-10-rank">{initRank}.</div>
           <div className="top-10-name">
             <span>
               {post.owner.forename} {post.owner.surname}
