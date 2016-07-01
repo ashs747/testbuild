@@ -25,11 +25,11 @@ class Header extends React.Component {
         <li id="sub-nav-module" className="sub-nav">
           <div className="sub-nav-content clearfix">
             <ul className="modules">
-              <a href="/#/module/1"><li><img src="assets/img/rb-icon-community.png"/><p>Inspiring Connector</p></li></a>
-              <a href="/#/module/2"><li><img src="assets/img/rb-icon-collaboration.png"/><p>Ambassador for Change</p></li></a>
-              <a href="/#/module/3"><li><img src="assets/img/rb-icon-reputation.png"/><p>Agile Decision Maker</p></li></a>
-              <a href="/#/module/4"><li><img src="assets/img/rb-icon-business.png"/><p>People Leader</p></li></a>
-              
+              <a href="/#/module/1"><li><img src=""/><p>Inspiring Connector</p></li></a>
+              <a href="/#/module/2"><li><img src=""/><p>Ambassador for Change</p></li></a>
+              <a href="/#/module/3"><li><img src=""/><p>Agile Decision Maker</p></li></a>
+              <a href="/#/module/4"><li><img src=""/><p>People Leader</p></li></a>
+
             </ul>
           </div>
         </li>
@@ -50,11 +50,11 @@ class Header extends React.Component {
 
     let mobileModuleNav = (
       <div className="sub-nav">
-        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src="assets/img/rb-icon-community.png"/><p>Inspiring Connector</p></li></a>
-        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src="assets/img/rb-icon-collaboration.png"/><p>Ambassador for Change</p></li></a>
-        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src="assets/img/rb-icon-reputation.png"/><p>Agile Decision Maker</p></li></a>
-        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src="assets/img/rb-icon-business.png"/><p>People Leader</p></li></a>
-        
+        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src=""/><p>Inspiring Connector</p></li></a>
+        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src=""/><p>Ambassador for Change</p></li></a>
+        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src=""/><p>Agile Decision Maker</p></li></a>
+        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src=""/><p>People Leader</p></li></a>
+
       </div>
     );
 
