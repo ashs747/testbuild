@@ -30,64 +30,62 @@ class Top10Widget extends React.Component {
 
   sortPosts(posts) {
     let likedPosts = this.findLikedPosts(posts);
-    let sortedPosts = this.sortPostsByNumberOfLikes(likedPosts);
+    let sortedPosts = likedPosts.sort(this.sortPostsByNumberOfLikes);
     let sortedPostContent = this.displaySortedPosts(sortedPosts);
     return sortedPostContent;
   }
 
   findLikedPosts(posts){
     let likedPosts = [];
-    for (let i = 0; i < posts.length; i++) {
-      if (posts[i].evidence) {
-        if (posts[i].likes.length > 0) {
-          likedPosts.push(posts[i]);
+    posts.forEach(post => {
+      if (post.evidence) {
+        if (post.likes.length > 0) {
+          likedPosts.push(post);
         }
       }
-    }
+    })
     return likedPosts;
   }
 
-  sortPostsByNumberOfLikes(posts){
-    let sortedPosts = [];
-    while (posts.length > 0) {
-      let mostLiked = 0;
-      for (let i = 0; i < posts.length; i++) {
-        if (posts[i].likes.length > posts[mostLiked].likes.length) {
-          mostLiked = i;
-        }
-        if (i === posts.length - 1) {
-          sortedPosts.push(posts[mostLiked]);
-          posts.splice(mostLiked, 1);
-          break;
-        }
-      }
+  sortPostsByNumberOfLikes(a, b) {
+    if (a.likes.length > b.likes.length) {
+      return -1;
     }
-    return sortedPosts;
+    if (a.likes.length < b.likes.length) {
+      return 1;
+    }
+    return 0;
   }
 
   displaySortedPosts(posts){
-    let sortedPostContent = [];
-    for (let i = 0; i < posts.length; i++){
-      let trophy = "";
-      if(i === 0){
-        trophy = <i className="fa fa-trophy" aria-hidden="true"></i>
+    let initRank = 1;
+    let sortedPostContent = posts.map((post, i) => {
+      let trophy;
+      if (i === 0) {
+        trophy = <i className="fa fa-trophy"></i>
       }
-      sortedPostContent.push(
+      if(i > 0){
+        if (post.likes.length != posts[i - 1].likes.length) {
+          initRank++;
+        }
+      }
+      let rank = initRank;
+      return (
         <li key={`wall-post-${i}`}>
-          <div className="top-10-rank">{i+1}.</div>
+          <div className="top-10-rank">{rank}.</div>
           <div className="top-10-name">
             <span>
-              {posts[i].owner.forename} {posts[i].owner.surname}
+              {post.owner.forename} {post.owner.surname}
             </span>
             {trophy}
           </div>
           <div className="top-10-likes">
             <div className="top-10-icon"><i className="fa fa-thumbs-o-up"></i></div>
-            <div>{posts[i].likes.length}</div>
+            <div>{post.likes.length}</div>
           </div>
         </li>
-      );
-    }
+      )
+    });
     return sortedPostContent;
   }
 }
