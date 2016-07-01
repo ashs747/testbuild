@@ -51,7 +51,6 @@ class AlternateModuleView extends React.Component {
         </div>
       </div>
     );
-    console.log(module);
     let connectionsWidget = (
       <div>
         <div>Connections Wall Component</div>
