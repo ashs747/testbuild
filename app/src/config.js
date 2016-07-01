@@ -1,8 +1,8 @@
 module.exports = {
-  programmeId: 1,
+  programmeId: 2,
   appId: 0,
-  appName: 'States of Jersey',
-  appSlug: 'soj',
+  appName: 'Reckitts Benckiser',
+  appSlug: 'rb',
   version: {
     major: 0,
     minor: 0,

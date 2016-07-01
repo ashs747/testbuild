@@ -3,7 +3,7 @@
 }
 .top-nav-bar {
   padding: 15px;
-  .programme-logo {
+  .rb-logo {
     max-width: 100%;
     float: left;
   }
@@ -27,7 +27,7 @@
     }
     a {
       color: $primaryFontColour;
-      border-bottom: 1px solid $borderGrey;
+      border-bottom: 1px solid $primaryFontColour;
       text-decoration: none;
     }
     a:active {
@@ -186,7 +186,7 @@
 
 .small-nav {
   width: 100%;
-  .programme-logo {
+  .rb-logo {
     float: left;
     padding: 10px;
     max-width: 235px;
