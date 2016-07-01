@@ -1,4 +1,9 @@
-#connections-wall{
+.right-bar .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#connections-wall {
   background-color: $lightGreyBackground;
   padding: 25px;
 }
@@ -26,14 +31,90 @@
     }
   }
 
-  &.without-evidence{
+  &.without-evidence {
     background-color: red;
     &.users-post {
       background-color: #D48585;
     }
   }
 
-  &.current-user{
+  &.current-user {
     background-color: yellow;
+  }
+}
+
+.top-10-widget {
+  .row{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  border: 1px solid $darkGreyBackground;
+  margin: 0 0 20px 0;
+  .col-sm-12 {
+    padding: 10px 22px;
+    background-color: $whiteBackground;
+  }
+  .title {
+    background-color: $primaryColour;
+    color: $whiteFontColour;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    h4 {
+      font-size: 21px;
+      font-weight: 600;
+      margin: 0;
+      padding: 12px;
+    }
+  }
+  ul {
+    list-style: none;
+    li {
+      border-bottom: 1px dotted $darkGreyBackground;
+      padding-bottom: 3px;
+      div{
+        display: inline-block;
+      }
+      &:not(:first-child) {
+        margin-top: 4px;
+      }
+      &:not(:last-child) {
+        margin-bottom: 3px;
+      }
+
+    }
+  }
+  .body{
+    font-weight: bold;
+  }
+  .top-10-rank {
+    color: $primaryColour;
+    width: 15px;
+  }
+  .top-10-name {
+    width: calc(100% - 70px);
+    >span{
+      text-decoration: underline;
+      margin-right:5px;
+    }
+  }
+  .top-10-likes {
+    width: 55px;
+    .top-10-icon {
+      background-color: $primaryColour;
+      padding: 0 6px;
+      padding-bottom: 2px;
+      border-radius: 100%;
+      margin-right: 10px;
+    }
+    div {
+      display: inline;
+    }
+  }
+  .fa.fa-thumbs-o-up {
+    color: $whiteFontColour;
+    font-size: .8em;
+  }
+  .fa-trophy, .fa-star {
+    color: #DAA520;
   }
 }
