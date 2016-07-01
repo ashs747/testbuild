@@ -7,7 +7,7 @@
     margin: 0;
   }
   .header-page {
-    color: $whiteFontColour;
+    color: #4C6172;
     padding: 20px 0px;
     text-align: center;
     .inner {
@@ -15,13 +15,13 @@
       margin: 0 auto;
     }
     a {
-      color: $whiteFontColour;
+      color: #4C6172;
     }
     img {
       width: 90px;
       height: 90px;
       border-radius: 50%;
-      border: 3px solid $borderWhite;
+      border: 3px solid $borderProfilePic;
       margin: 0 auto;
       margin-top: 0;
       display: block;
@@ -50,8 +50,8 @@
       margin-bottom: 0;
       a {
         font-weight: 600;
-        color: $textColour;
-        border-bottom: 1px solid $textColour;
+        color:$redLink;
+        border-bottom: 1px solid $redLink;
         text-decoration: none;
       }
     }
