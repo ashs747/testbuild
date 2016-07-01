@@ -1,10 +1,11 @@
 import React from 'react';
-import _ from 'underscore';
 
 class Top10Widget extends React.Component {
+
   constructor() {
     super();
   }
+
   render() {
     let posts = this.props.wall.posts;
     let content = <p>No posts for this connections wall</p>;
@@ -26,8 +27,15 @@ class Top10Widget extends React.Component {
       </div>
     );
   }
+
   sortPosts(posts) {
-    let allPosts = posts;
+    let likedPosts = this.findLikedPosts(posts);
+    let sortedPosts = this.sortPostsByNumberOfLikes(likedPosts);
+    let sortedPostContent = this.displaySortedPosts(sortedPosts);
+    return sortedPostContent;
+  }
+
+  findLikedPosts(posts){
     let likedPosts = [];
     for (let i = 0; i < posts.length; i++) {
       if (posts[i].evidence) {
@@ -36,23 +44,30 @@ class Top10Widget extends React.Component {
         }
       }
     }
+    return likedPosts;
+  }
+
+  sortPostsByNumberOfLikes(posts){
     let sortedPosts = [];
-    while (likedPosts.length > 0) {
+    while (posts.length > 0) {
       let mostLiked = 0;
-      for (let i = 0; i < likedPosts.length; i++) {
-        console.log(likedPosts.length  + " " + likedPosts[mostLiked].likes.length);
-        if (likedPosts[i].likes.length > likedPosts[mostLiked].likes.length) {
+      for (let i = 0; i < posts.length; i++) {
+        if (posts[i].likes.length > posts[mostLiked].likes.length) {
           mostLiked = i;
         }
-        if (i === likedPosts.length - 1) {
-          sortedPosts.push(likedPosts[mostLiked]);
-          likedPosts.splice(mostLiked, 1);
+        if (i === posts.length - 1) {
+          sortedPosts.push(posts[mostLiked]);
+          posts.splice(mostLiked, 1);
           break;
         }
       }
     }
+    return sortedPosts;
+  }
+
+  displaySortedPosts(posts){
     let sortedPostContent = [];
-    for (let i = 0; i < sortedPosts.length; i++){
+    for (let i = 0; i < posts.length; i++){
       let trophy = "";
       if(i === 0){
         trophy = <i className="fa fa-trophy" aria-hidden="true"></i>
@@ -62,18 +77,17 @@ class Top10Widget extends React.Component {
           <div className="top-10-rank">{i+1}.</div>
           <div className="top-10-name">
             <span>
-              {sortedPosts[i].owner.forename} {sortedPosts[i].owner.surname}
+              {posts[i].owner.forename} {posts[i].owner.surname}
             </span>
             {trophy}
           </div>
           <div className="top-10-likes">
             <div className="top-10-icon"><i className="fa fa-thumbs-o-up"></i></div>
-            <div>{sortedPosts[i].likes.length}</div>
+            <div>{posts[i].likes.length}</div>
           </div>
         </li>
       );
     }
-    //console.log(_.sortBy(likedPosts, likes.length).reverse());
     return sortedPostContent;
   }
 }
