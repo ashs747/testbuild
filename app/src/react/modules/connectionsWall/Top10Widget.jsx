@@ -53,13 +53,23 @@ class Top10Widget extends React.Component {
     }
     let sortedPostContent = [];
     for (let i = 0; i < sortedPosts.length; i++){
+      let trophy = "";
+      if(i === 0){
+        trophy = <i className="fa fa-trophy" aria-hidden="true"></i>
+      }
       sortedPostContent.push(
         <li key={`wall-post-${i}`}>
-          <span className="top-10-rank">{i+1}.</span> <span className="top-10-name">{sortedPosts[i].owner.forename} {sortedPosts[i].owner.surname}</span>
-          <span className="top-10-likes">
+          <div className="top-10-rank">{i+1}.</div>
+          <div className="top-10-name">
+            <span>
+              {sortedPosts[i].owner.forename} {sortedPosts[i].owner.surname}
+            </span>
+            {trophy}
+          </div>
+          <div className="top-10-likes">
             <div className="top-10-icon"><i className="fa fa-thumbs-o-up"></i></div>
             <div>{sortedPosts[i].likes.length}</div>
-          </span>
+          </div>
         </li>
       );
     }

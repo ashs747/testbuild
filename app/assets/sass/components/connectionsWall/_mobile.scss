@@ -44,6 +44,10 @@
 }
 
 .top-10-widget {
+  .row{
+    margin-left: 0;
+    margin-right: 0;
+  }
   border: 1px solid $darkGreyBackground;
   margin: 0 0 20px 0;
   .col-sm-12 {
@@ -51,7 +55,7 @@
     background-color: $whiteBackground;
   }
   .title {
-    background-color: $secondaryColour;
+    background-color: $primaryColour;
     color: $whiteFontColour;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -66,33 +70,51 @@
     list-style: none;
     li {
       border-bottom: 1px dotted $darkGreyBackground;
-      margin-bottom: 3px;
       padding-bottom: 3px;
+      div{
+        display: inline-block;
+      }
+      &:not(:first-child) {
+        margin-top: 4px;
+      }
+      &:not(:last-child) {
+        margin-bottom: 3px;
+      }
+
     }
   }
   .body{
     font-weight: bold;
   }
-  .fa-thumbs-o-up {
+  .top-10-rank {
+    color: $primaryColour;
+    width: 15px;
+  }
+  .top-10-name {
+    width: calc(100% - 70px);
+    >span{
+      text-decoration: underline;
+      margin-right:5px;
+    }
+  }
+  .top-10-likes {
+    width: 55px;
+    .top-10-icon {
+      background-color: $primaryColour;
+      padding: 0 6px;
+      padding-bottom: 2px;
+      border-radius: 100%;
+      margin-right: 10px;
+    }
+    div {
+      display: inline;
+    }
+  }
+  .fa.fa-thumbs-o-up {
     color: $whiteFontColour;
-  }
-}
-.top-10-rank {
-  color: $primaryColour;
-}
-.top-10-name {
-  text-decoration: underline;
-  width: 25px;
-}
-.top-10-likes {
-  .top-10-icon {
-    background: $primaryColour;
-    padding: 5px;
-    border-radius: 100%;
     font-size: .8em;
-    margin-right: 10px;
   }
-  div {
-    display: inline;
+  .fa-trophy, .fa-star {
+    color: #DAA520;
   }
 }
