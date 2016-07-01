@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
+import Top10Widget from '../modules/connectionsWall/Top10Widget.jsx';
 import ResourceWidget from '../modules/resource/Widget.jsx';
 import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
@@ -53,7 +54,7 @@ class AlternateModuleView extends React.Component {
     );
     let connectionsWidget = (
       <div>
-        <div>Connections Wall Component</div>
+        <Top10Widget wall={this.props.walls[0]}/>
         <a href="">
           <img className="connections-wall-image" href="" src=""/>
         </a>
@@ -117,7 +118,8 @@ function mapModuleProps(state) {
     modules: state.learningJourney,
     profile: state.width.profile,
     accessToken: state.auth.access_token,
-    supportUrl: state.programme.supportUrl
+    supportUrl: state.programme.supportUrl,
+    walls: state.wall.walls
   };
 }
 
