@@ -1,0 +1,66 @@
+.view-edit-post {
+  background-color: $connectionsWallLightGreen;
+  margin-bottom: 20px;
+  padding: 15px 30px;
+  height: 470px;
+  .post-wrapper {
+    height: 100%;
+    border: 1px solid $textAreaBorder;
+  }
+  .evidence-wrapper {
+    background-color: $whiteBackground;
+    float: left;
+    height: 400px;
+    height: 100%;
+    width: 100%;
+  }
+  .form-wrapper {
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-color: $whiteBackground;
+  }
+  .action-buttons {
+    text-align: right;
+  }
+  .btn-publish {
+    background-color: $primaryColour;
+    color: $whiteBackground;
+    border-radius: 1px;
+    width: 90px;
+    margin-top: 15px;
+    float: right;
+  }
+  input {
+    height: 45px;
+    margin-bottom: 10px;
+  }
+  input {
+    color: black;
+  }
+  textarea {
+    height: 170px;
+  }
+  input, textarea {
+    width: 100%;
+    display: block;
+    background-color: $textareaBackground;
+    border: 2px solid $textAreaBorder;
+    padding: 7px;
+    resize: none;
+  }
+  .close-circle {
+    width: 40px;
+    height: 40px;
+    background-color: $darkGreyBackground;
+    padding: 0;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    i {
+      color: $whiteBackground;
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+}
