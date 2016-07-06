@@ -1,6 +1,8 @@
 import React from 'react';
 import ImageView from '../../components/ImageView.jsx';
+import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
+import moment from 'moment';
 
 class ViewEditPost extends React.Component {
 
@@ -24,26 +26,21 @@ class ViewEditPost extends React.Component {
     var post = this.props.post
     var state = (this.state.editing) ? "Editing" : "Viewing";
 
-    var evidence = this.getEvidencePhoto(post.evidence);
-    var editButton = (this.props.usersPost && post.evidence) ? (
-      <a className="edit-button btn" onClick={this.onEditClick}><i className="fa fa-pencil" /> Edit</a>
+    var evidence = this.getEvidence(post.evidence);
+    var editButton = (this.props.usersPost && post.evidence && !this.state.editing) ? (
+      <a className="btn circle edit-circle" onClick={this.onEditClick}><i className="fa fa-pencil"/></a>
     ) : null;
     var postForm = this.buildPostForm(post, this.props.usersPost);
-    const style = {
-      height: "100%",
-      width: "100%",
-      display: "inline-block"
-    };
     return (
       <div className="view-edit-post">
         <div className="post-wrapper clearfix">
           <div className="evidence-wrapper">
-            <ImageView src={evidence} layout="box-to-image" style={style}/>
+            {evidence}
           </div>
           <div className="form-wrapper">
-            <div className="action-buttons">
+            <div className="action-buttons clearfix">
               {editButton}
-              <a className="btn close-circle" onClick={this.onCloseClick}><i className="fa fa-times"/></a>
+              <a className="btn circle close-circle" onClick={this.onCloseClick}><i className="fa fa-times"/></a>
             </div>
             {postForm}
           </div>
@@ -83,10 +80,23 @@ class ViewEditPost extends React.Component {
     Show edit boxes and disaptch updated field calls
   */
   buildEditPostForm(post) {
-    console.log(post);
     return (
-      <div className="edit-post-form">
-
+      <div className="edit-post-form editing-post">
+        <h3>Edit your post</h3>
+        <input type="text" placeholder="Title" value={post.title} onChange={this.onChange.bind(null, "title")} />
+        <textarea
+          disabled={this.props.pending}
+          value={post.description}
+          placeholder="Description"
+          onChange={this.onChange.bind(null, "desciption")}
+        />
+        <div className="likes-counter">
+          <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
+          <b>{post.likes.length}</b>
+        </div>
+        <div className="publish-button">
+          <a className="btn btn-publish" onClick={this.onFormSave}>UPDATE</a>
+        </div>
       </div>
     )
   }
@@ -106,7 +116,9 @@ class ViewEditPost extends React.Component {
           placeholder="Description"
           onChange={this.onChange.bind(null, "desciption")}
         />
-        <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+        <div className="publish-button">
+          <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+        </div>
       </div>
     )
   }
@@ -116,18 +128,43 @@ class ViewEditPost extends React.Component {
     Show all the details of the post
   */
   buildViewPostForm(post) {
-    return <p>View post</p>;
+    var profilePicture = (post.owner.profilePic) ? post.owner.profilePic.url : "assets/img/profile-placeholder.jpg";
+    return (
+      <div className="edit-post-form view-form">
+        <h3>{post.title}</h3>
+        <img src={profilePicture} alt="profile-picture" />
+        <b className="user-name">{post.owner.forename} {post.owner.surname}</b>
+        <i className="uploaded">Uploaded: {moment(post.owner.postedOn).format('DD.MM.YYYY')}</i>
+        <p>{post.description}</p>
+        <div className="likes-counter">
+          <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
+          <b>{post.likes.length}</b>
+        </div>
+      </div>
+    )
   }
 
   /*
     Get the evidence photo, if we don't have one, display a placeholder
   */
-  getEvidencePhoto(evidence) {
+  getEvidence(evidence) {
+    const imageStyle = {
+      height: "100%",
+      width: "100%",
+      display: "inline-block"
+    };
     if (!evidence) {
-      return "http://res.cloudinary.com/strata/image/upload/v1467020297/placeholder_c6u3x0.png";
+      return <ImageView
+        src="http://res.cloudinary.com/strata/image/upload/v1467020297/placeholder_c6u3x0.png"
+        layout="box-to-image"
+        style={imageStyle}
+      />;
     }
     if (evidence.type === "image") {
-      return evidence.url;
+      return <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />
+    }
+    if (evidence.type === "video") {
+      return <Video url={evidence.url} colour="#ea3592" autoplay={false}/>
     }
   }
 
