@@ -17,6 +17,9 @@ export const reducer = (state = defaultState, action) => {
           return state;
       }
       return state;
+    case "UPDATE_WALL_POST_FIELD":
+      console.log(action.payload);
+      return state;
     default:
       return state;
   }
