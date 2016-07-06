@@ -4,7 +4,6 @@ import ConnectionsWall from '../modules/connectionsWall/ConnectionsWall.jsx';
 import Top10Widget from '../modules/connectionsWall/Top10Widget.jsx';
 import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
-import moment from 'moment-timezone';
 import _ from 'underscore';
 
 class ConnectionsWallView extends React.Component {
