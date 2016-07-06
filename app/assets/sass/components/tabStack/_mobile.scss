@@ -3,16 +3,23 @@
   background-color: $lightGreyBackground;
   .tab-btn {
     text-align: center;
+    font-size: 25px;
+    font-weight: bold;
     width: 33.3333%;
-    padding: 15px 5px;
+    padding: 11px 5px;
+    border: 3px solid #EDEEEF;
     float: left;
-    background-color: $darkGreyBackground;
+    background-color: #F6F6F7;
     cursor: pointer;
     vertical-align: middle;
     min-height: 30px;
+    color: #A6ABAD;
     &.active {
       height:100%;
       background-color: $whiteBackground;
+      color: $primaryFontColour;
+      padding: 15px 5px;
+      border: none;
     }
   }
 }
