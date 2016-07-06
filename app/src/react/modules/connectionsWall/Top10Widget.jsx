@@ -7,7 +7,7 @@ class Top10Widget extends React.Component {
   }
 
   render() {
-    let posts = this.props.wall.posts;
+    let posts = (this.props.wall) ? this.props.wall.posts : [];
     let content = <p>No posts for this connections wall</p>;
     if (posts.length > 0) {
       content = this.sortPosts(posts);
@@ -66,7 +66,7 @@ class Top10Widget extends React.Component {
         trophy = <i className="fa fa-trophy"></i>
       }
       if (i > 0) {
-        if (post.likes.length != posts[i - 1].likes.length) {
+        if (post.likes.length !== posts[i - 1].likes.length) {
           initRank++;
         }
       }
