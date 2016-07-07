@@ -22,12 +22,13 @@ class ConnectionsWallView extends React.Component {
     }
     activity = activity[0];
     var wallObject = null;
-    for (let i = 0; i < walls.length; i++) {
-      if (walls[i].activityId === requiredWallId) {
-        wallObject = walls[i];
-        break;
+    for (var wall in walls) {
+      if (walls.hasOwnProperty(wall)) {
+        if (walls[wall].activityId === requiredWallId) {
+          wallObject = walls[wall];
+        }
       }
-    };
+    }
     let top10 = (
       <Top10Widget wall={wallObject}/>
     );
@@ -123,7 +124,7 @@ var mappedConnectionsWallWrapperView = connect(state => {
   return {
     loading: state.wall.loading,
     profile: state.width.profile,
-    walls: state.wall.walls,
+    walls: state.wall,
     currentUser: state.user.id,
     learningJourney: state.learningJourney
   };

@@ -3,6 +3,9 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment';
+import {updateWallPostField} from '../../../redux/actions/wallActions';
+import store from '../../../redux/store';
+var dispatch = store.dispatch;
 import classnames from 'classnames';
 
 class ViewEditPost extends React.Component {
@@ -14,6 +17,7 @@ class ViewEditPost extends React.Component {
       editing = true;
     }
     this.onEditClick = this.onEditClick.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.state = {
       editing
     };
@@ -89,7 +93,7 @@ class ViewEditPost extends React.Component {
           disabled={this.props.pending}
           value={post.description}
           placeholder="Description"
-          onChange={this.onChange.bind(null, "desciption")}
+          onChange={this.onChange.bind(null, "description")}
         />
         <div className="likes-counter">
           <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
@@ -115,7 +119,7 @@ class ViewEditPost extends React.Component {
           disabled={this.props.pending}
           value={post.description}
           placeholder="Description"
-          onChange={this.onChange.bind(null, "desciption")}
+          onChange={this.onChange.bind(null, "description")}
         />
         <div className="publish-button">
           <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
@@ -186,7 +190,7 @@ class ViewEditPost extends React.Component {
     The onChange handler used for updating app state with the new field value
   */
   onChange(field, e) {
-    console.log(`Updating field: ${field} with value ${e.target.value}`);
+    dispatch(updateWallPostField(this.props.wallId, this.props.post.id, field, e.target.value));
   }
 
   /*
