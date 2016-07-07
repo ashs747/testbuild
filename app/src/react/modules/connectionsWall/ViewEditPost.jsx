@@ -162,7 +162,7 @@ class ViewEditPost extends React.Component {
     };
     if (!evidence) {
       return <ImageView
-        src="http://res.cloudinary.com/strata/image/upload/v1467020297/placeholder_c6u3x0.png"
+        src="http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png"
         layout="box-to-image"
         style={imageStyle}
       />;
