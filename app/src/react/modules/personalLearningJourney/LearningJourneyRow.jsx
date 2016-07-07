@@ -49,6 +49,7 @@ class LearningJourneyRow extends React.Component {
 
     if (type === "Wall") {
       date = <p>Deadline:<br/>{moment(activity.deadline).format('Do MMM YYYY')}</p>;
+      time = "N/A"
     }
 
     let content = this.props.smallTable ? (
