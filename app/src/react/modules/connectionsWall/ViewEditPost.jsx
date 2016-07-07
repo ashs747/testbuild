@@ -130,7 +130,7 @@ class ViewEditPost extends React.Component {
   */
   buildViewPostForm(post) {
     var profilePicture = (post.owner.profilePic) ? post.owner.profilePic.url : "assets/img/profile-placeholder.jpg";
-    var uploaded = (post.evidence) ? <i className="uploaded">Uploaded: {moment(post.owner.postedOn).format('DD.MM.YYYY')}</i> : null;
+    var uploaded = (post.evidence) ? <i className="uploaded">Uploaded: {moment(post.postedOn).format('DD.MM.YYYY')}</i> : null;
     var postClass = classnames('edit-post-form', 'view-form', {'not-uploaded': !post.evidence});
     var title = (post.title) ? post.title : "Awaiting Upload";
     var likesWidget = (post.evidence) ? (
