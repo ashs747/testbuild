@@ -15,16 +15,16 @@
   }
 
   .wall-post-sm {
-    width: 48%;
-    margin: 1%;
+    width: 49%;
+    margin: 0.5%;
   }
 
   .wall-post {
     text-align:center;
     background-color: $lightGreyBackground;
-    min-height: 325px;
+    min-height: 230px; //325px;
     border: 1px solid $darkGreyBackground;
-    padding: 8px;
+    padding: 6px; //8px;
     display: inline-block;
     vertical-align: top;
     position: relative;
@@ -33,23 +33,23 @@
       top: 0;
       left: 0;
       z-index: 1000;
+      width: 28px; //44px;
     }
     h5 {
-      font-size: 20px;
+      font-size: 14px; //20px;
       font-weight: bold;
-      height: 45px;
+      height: 30px; //45px;
+      margin-bottom: 5px;
     }
-
     &.users-post {
       background-color: $whiteBackground;
       border-color: #C2FF87;
       box-shadow: 0 0 7px #C2FF87;
     }
-
     .post-evidence {
-      margin-bottom: 20px;
+      margin-bottom: 15px; //20px;
       width: 100%;
-      height: 140px;
+      height: 90px; //140px;
       overflow: hidden;
       position: relative;
       .video{
@@ -66,9 +66,10 @@
       }
     }
     .post-details {
-      height: 55px;
+      height: 43px; //55px;
+      font-size: 12px;
       .post-name {
-        margin-bottom: 10px;
+        margin-bottom: 5px; //10px;
         img{
           display: none;
         }
@@ -84,21 +85,21 @@
         background-color: #B2C3CB;
         border: none;
         border-radius: 100%;
-        padding: 4px 8px;
+        padding: 2px 7px; //4px 8px;
         margin-right: 5px;
         .fa.fa-thumbs-o-up {
           color: $whiteFontColour;
-          font-size: 16px;
+          font-size: 14px; //16px;
         }
       }
     }
     .upload-evidence{
       text-transform: uppercase;
-      font-size: 12px;
+      font-size: 10px; //12px;
       font-weight: bold;
       border: 3px solid $primaryColour;
       background-color: transparent;
-      padding: 5px 23px;
+      padding: 3px 15px; //5px 23px;
     }
 
     &.post-liked button {
