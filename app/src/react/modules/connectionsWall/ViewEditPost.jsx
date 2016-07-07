@@ -93,7 +93,7 @@ class ViewEditPost extends React.Component {
           disabled={this.props.pending}
           value={post.description}
           placeholder="Description"
-          onChange={this.onChange.bind(null, "desciption")}
+          onChange={this.onChange.bind(null, "description")}
         />
         <div className="likes-counter">
           <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
@@ -119,7 +119,7 @@ class ViewEditPost extends React.Component {
           disabled={this.props.pending}
           value={post.description}
           placeholder="Description"
-          onChange={this.onChange.bind(null, "desciption")}
+          onChange={this.onChange.bind(null, "description")}
         />
         <div className="publish-button">
           <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>

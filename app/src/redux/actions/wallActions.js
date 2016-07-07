@@ -9,6 +9,7 @@ export function getWallsForProgramme() {
 };
 
 export function updateWallPostField(wallID, postID, field, value) {
+  console.log(arguments);
   return {
     type: 'UPDATE_WALL_POST_FIELD',
     payload: {
