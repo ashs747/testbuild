@@ -21,7 +21,7 @@ class ConnectionsWall extends React.Component {
       return <ViewEditPost key={`post-${i}`} post={post} usersPost={usersPost} wallId={this.props.wall.id}/>
     });
     return (
-      <div id="connections-wall">
+      <div className="connections-wall">
         {jsxPosts}
         {editPosts}
       </div>
