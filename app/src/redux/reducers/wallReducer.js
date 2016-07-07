@@ -1,5 +1,25 @@
 var defaultState = {};
 
+function formatEvidence(fileObj) {
+  var file = fileObj.file;
+  var formatFileObj = {};
+  switch (file.reference) {
+    case "cloudinary":
+      formatFileObj.type = "image";
+      break;
+    case "vimeo":
+    case "youtube":
+      formatFileObj.type = "video";
+      break;
+  }
+  file.metadata.forEach(meta => {
+    if (meta.key === "url") {
+      formatFileObj.url = meta.value;
+    }
+  });
+  return formatFileObj;
+}
+
 export const reducer = (state = defaultState, action) => {
   var wall;
   var newState;
@@ -24,6 +44,16 @@ export const reducer = (state = defaultState, action) => {
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
           post[action.payload.field] = action.payload.value;
+        }
+        return post;
+      });
+      return newState;
+    case "UPDATE_WALL_EVIDENCE":
+      newState = {...state};
+      wall = newState[action.payload.wallID];
+      wall.posts = wall.posts.map(post => {
+        if (post.id === action.payload.postID) {
+          post['tempEvidence'] = formatEvidence(action.payload.fileObj);
         }
         return post;
       });

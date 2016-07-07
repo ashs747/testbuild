@@ -16,3 +16,12 @@ export function updateWallPostField(wallID, postID, field, value) {
     }
   };
 }
+
+export function updateWallPostEvidence(wallID, postID, fileObj) {
+  return {
+    type: 'UPDATE_WALL_EVIDENCE',
+    payload: {
+      wallID, postID, fileObj
+    }
+  }
+}

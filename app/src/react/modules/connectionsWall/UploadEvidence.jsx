@@ -3,6 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import config from '../../../localConfig';
 import store from '../../../redux/store.js';
 import {findDOMNode} from 'react-dom';
+import {updateWallPostEvidence} from '../../../redux/actions/wallActions';
 var dispatch = store.dispatch;
 
 class UploadEvidence extends React.Component {
@@ -42,20 +43,27 @@ class UploadEvidence extends React.Component {
 
 
   render() {
+    const post = this.props.post;
     let imageStyle = {
       height: "100%",
       width: "100%",
       display: "inline-block"
     };
     let image = "http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png";
+    if (post.tempEvidence) {
+      image = post.tempEvidence.url;
+      if (post.tempEvidence.type === "video") {
+        //PLACEHOLDER
+        image = "http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png";
+      }
+    }
     if (this.state.loading) {
       image = "assets/img/ring.svg";
       imageStyle.backgroundColor = '#4C6172';
     }
+    let component = <ImageView src={image} layout="box-to-image" style={imageStyle} />;
     return (
-      <a ref="browse" href="javascript:void(0)">
-        <ImageView src={image} layout="box-to-image" style={imageStyle} />
-      </a>
+      <a ref="browse" href="javascript:void(0)">{component}</a>
     );
   }
 
@@ -67,12 +75,13 @@ class UploadEvidence extends React.Component {
   onFileUploaded(up, file, data) {
     let response = JSON.parse(data.response);
     this.setState({loading: false});
-    console.log(response);
+    dispatch(updateWallPostEvidence(this.props.wallId, this.props.postId, response));
   }
 
-  onError() {
+  onError(a, b, c) {
     this.setState({loading: false});
     //ERROR HANDLING
+    console.log(arguments);
     //dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
   }
 

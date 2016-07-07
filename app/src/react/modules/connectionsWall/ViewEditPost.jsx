@@ -19,6 +19,7 @@ class ViewEditPost extends React.Component {
     }
     this.onEditClick = this.onEditClick.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.getEvidence = this.getEvidence.bind(this);
     this.state = {
       editing
     };
@@ -32,7 +33,7 @@ class ViewEditPost extends React.Component {
     var post = this.props.post
     var state = (this.state.editing) ? "Editing" : "Viewing";
 
-    var evidence = this.getEvidence(post.evidence);
+    var evidence = this.getEvidence(post);
     var editButton = (this.props.usersPost && post.evidence && !this.state.editing) ? (
       <a className="btn circle edit-circle" onClick={this.onEditClick}><i className="fa fa-pencil"/></a>
     ) : null;
@@ -157,22 +158,22 @@ class ViewEditPost extends React.Component {
   }
 
   /*
-    Get the evidence photo, if we don't have one, display a placeholder
+    Get the evidence, if we don't have one, display a placeholder
   */
-  getEvidence(evidence) {
+  getEvidence(post) {
     const imageStyle = {
       height: "100%",
       width: "100%",
       display: "inline-block"
     };
-    if (!evidence) {
-      return <UploadEvidence />;
+    if (!post.evidence) {
+      return <UploadEvidence wallId={this.props.wallId} postId={post.id} post={post} />;
     }
-    if (evidence.type === "image") {
-      return <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />
+    if (post.evidence.type === "image") {
+      return <ImageView src={post.evidence.url} layout="box-to-image" style={imageStyle} />
     }
-    if (evidence.type === "video") {
-      return <Video url={evidence.url} colour="#ea3592" autoplay={false}/>
+    if (post.evidence.type === "video") {
+      return <Video url={post.evidence.url} colour="#ea3592" autoplay={false}/>
     }
   }
 
