@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import CloudinaryImg from '../../components/CloudinaryImg.jsx';
@@ -15,7 +14,6 @@ class WallPost extends React.Component {
   }
 
   render() {
-    console.log(this.props.profile);
     let buildWallPostFunction = (this.props.evidence) ? this.buildPostWithEvidence : this.buildPostWithoutEvidence;
     let wallPost = buildWallPostFunction();
     return wallPost;
