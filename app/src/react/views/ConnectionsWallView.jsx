@@ -29,6 +29,7 @@ class ConnectionsWallView extends React.Component {
         }
       }
     }
+    let connectionsWall = <ConnectionsWall wall={wallObject} currentUser={this.props.currentUser} profile={this.props.profile}/>
     let top10 = (
       <Top10Widget wall={wallObject}/>
     );
@@ -52,14 +53,16 @@ class ConnectionsWallView extends React.Component {
               </div>
               <div className="row">
                 <div className="col-sm-12">
-                  <ConnectionsWall wall={wallObject} currentUser={this.props.currentUser} />
+                  {connectionsWall}
                 </div>
               </div>
             </div>
           );
           break;
         default:
-          let tab1 = (<div label="Wall" tabClass="tab-btn" key="tab1"><ConnectionsWall wall={wallObject} currentUser={this.props.currentUser} /></div>);
+          let tab1 = (<div label="Wall" tabClass="tab-btn" key="tab1">
+            {connectionsWall}
+          </div>);
           let tab2 = (
             <div label="Top 10" tabClass="tab-btn" key="tab2">
               {top10}

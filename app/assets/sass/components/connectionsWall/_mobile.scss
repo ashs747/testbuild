@@ -3,42 +3,107 @@
   margin-right: 0;
 }
 
-.connections-wall {
-  padding: 25px;
-}
-.wall-posts{
-  margin-top: 25px;
-}
-.wall-post {
-  padding:25px;
-  height: 350px;
-  width: 300px;
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 25px;
-  h5 {
-    font-size: 1.6em;
-  }
-  .placeholder-image {
-    width:100%;
+.connections-wall{
+  .wall-post-lg {
+    width: 24%;
+    margin: 0 .5%;
   }
 
-  &.with-evidence {
-    background-color: $whiteBackground;
-    &.users-post {
-      background-color: #D3E7ED;
+  .wall-post-md {
+    width: 31.5%;
+    margin: 0 .75%;
+  }
+
+  .wall-post-sm {
+    width: 48%;
+    margin: 1%;
+  }
+
+  .wall-post {
+    text-align:center;
+    background-color: $lightGreyBackground;
+    min-height: 325px;
+    border: 1px solid $darkGreyBackground;
+    padding: 8px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    >.users-post-label{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1000;
     }
-  }
-
-  &.without-evidence {
-    background-color: red;
-    &.users-post {
-      background-color: #D48585;
+    h5 {
+      font-size: 20px;
+      font-weight: bold;
+      height: 45px;
     }
-  }
 
-  &.current-user {
-    background-color: yellow;
+    &.users-post {
+      background-color: $whiteBackground;
+      border-color: #C2FF87;
+      box-shadow: 0 0 7px #C2FF87;
+    }
+
+    .post-evidence {
+      margin-bottom: 20px;
+      width: 100%;
+      height: 140px;
+      overflow: hidden;
+      position: relative;
+      .video{
+        height: 100%;
+      }
+      .placeholder-image {
+        height: 120%;
+        margin: auto;
+        position: absolute;
+        top:-50px;
+        bottom:-50px;
+        left: -50px;
+        right: -50px;
+      }
+    }
+    .post-details {
+      height: 55px;
+      .post-name {
+        margin-bottom: 10px;
+        img{
+          display: none;
+        }
+      }
+      .post-date {
+        font-size: 12px;
+        font-style: italic;
+      }
+    }
+    .post-like {
+      font-weight: bold;
+      button{
+        background-color: #B2C3CB;
+        border: none;
+        border-radius: 100%;
+        padding: 4px 8px;
+        margin-right: 5px;
+        .fa.fa-thumbs-o-up {
+          color: $whiteFontColour;
+          font-size: 16px;
+        }
+      }
+    }
+    .upload-evidence{
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      border: 3px solid $primaryColour;
+      background-color: transparent;
+      padding: 5px 23px;
+    }
+
+    &.post-liked button {
+      background-color: $primaryColour;
+    }
   }
 }
 
