@@ -78,11 +78,8 @@ class UploadEvidence extends React.Component {
     dispatch(updateWallPostEvidence(this.props.wallId, this.props.postId, response));
   }
 
-  onError(a, b, c) {
-    this.setState({loading: false});
-    //ERROR HANDLING
-    console.log(arguments);
-    //dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
+  onError() {
+    this.setState({loading: false, error: true});
   }
 
 }
