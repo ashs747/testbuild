@@ -4,42 +4,94 @@
 }
 
 #connections-wall {
-  background-color: $lightGreyBackground;
+  background-color: $whiteBackground;
   padding: 25px;
 }
-.wall-posts{
-  margin-top: 25px;
-}
 .wall-post {
-  padding:25px;
-  height: 350px;
-  width: 300px;
+  text-align:center;
+  background-color: $lightGreyBackground;
+  width: 250px;
+  min-height: 350px;
+  border: 1px solid $darkGreyBackground;
+  padding: 8px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 25px;
+  margin-right: 10px;
+  position: relative;
+  >.users-post-label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
   h5 {
-    font-size: 1.6em;
-  }
-  .placeholder-image {
-    width:100%;
+    font-size: 20px;
+    font-weight: bold;
+    height: 45px;
   }
 
-  &.with-evidence {
+  &.users-post {
     background-color: $whiteBackground;
-    &.users-post {
-      background-color: #D3E7ED;
-    }
+    border-color: #C2FF87;
+    box-shadow: 0 0 7px #C2FF87;
   }
 
-  &.without-evidence {
-    background-color: red;
-    &.users-post {
-      background-color: #D48585;
+  .post-evidence {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 140px;
+    position: relative;
+    overflow: hidden;
+    .video{
+      height: 100%;
+    }
+    .placeholder-image {
+      width: 258px;
+      left: -13px;
+      position: absolute;
     }
   }
+  .post-details {
+    height: 75px;
+    .post-name {
+      margin-bottom: 10px;
+      img{
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+    }
+    .post-date {
+      font-size: 12px;
+      font-style: italic;
+    }
+  }
+  .post-like {
+    font-weight: bold;
+    button{
+      background-color: #B2C3CB;
+      border: none;
+      border-radius: 100%;
+      padding: 4px 8px;
+      margin-right: 5px;
+      .fa.fa-thumbs-o-up {
+        color: $whiteFontColour;
+        font-size: 16px;
+      }
+    }
+  }
+  .upload-evidence{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    border: 3px solid $primaryColour;
+    background-color: transparent;
+    padding: 5px 23px;
+  }
 
-  &.current-user {
-    background-color: yellow;
+  &.post-liked button {
+    background-color: $primaryColour;
   }
 }
 
