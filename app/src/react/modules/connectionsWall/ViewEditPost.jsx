@@ -7,6 +7,7 @@ import {updateWallPostField} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
+import UploadEvidence from './UploadEvidence.jsx';
 
 class ViewEditPost extends React.Component {
 
@@ -165,11 +166,7 @@ class ViewEditPost extends React.Component {
       display: "inline-block"
     };
     if (!evidence) {
-      return <ImageView
-        src="http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png"
-        layout="box-to-image"
-        style={imageStyle}
-      />;
+      return <UploadEvidence />;
     }
     if (evidence.type === "image") {
       return <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />
