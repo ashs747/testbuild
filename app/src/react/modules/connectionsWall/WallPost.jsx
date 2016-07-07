@@ -15,6 +15,7 @@ class WallPost extends React.Component {
   }
 
   render() {
+    console.log(this.props.profile);
     let buildWallPostFunction = (this.props.evidence) ? this.buildPostWithEvidence : this.buildPostWithoutEvidence;
     let wallPost = buildWallPostFunction();
     return wallPost;
@@ -33,13 +34,8 @@ class WallPost extends React.Component {
 
   buildPostWithEvidence() {
     let userLiked = false;
-    for (let i = 0; i < this.props.likes.length; i++) {
-      console.log(this.props.likes[i] + " " + this.props.currentUser);
-      if (this.props.likes[i] === this.props.currentUser){
-        userLiked = true;
-      }
-    }
-    const postClass = classnames('wall-post', 'with-evidence', {'users-post': this.props.postBelongsToUser}, {'post-liked': userLiked});
+    this.props.likes.forEach(like => {if (this.props.currentUser === like) userLiked = true});
+    const postClass = classnames(`wall-post-${this.props.profile}`, 'wall-post', 'with-evidence', {'users-post': this.props.postBelongsToUser}, {'post-liked': userLiked});
     const date = moment(this.props.date).format('DD.MM.YYYY');
     const evidenceComponent = this.buildEvidenceComponent(this.props.evidence);
     const label = this.getUserLabel(this.props.postBelongsToUser);
@@ -58,7 +54,7 @@ class WallPost extends React.Component {
   }
 
   buildPostWithoutEvidence() {
-    const postClass = classnames('wall-post', 'without-evidence', {'users-post': this.props.postBelongsToUser});
+    const postClass = classnames(`wall-post-${this.props.profile}`, 'wall-post', 'without-evidence', {'users-post': this.props.postBelongsToUser});
     let uploadButton = (this.props.postBelongsToUser) ? <button className="upload-evidence">+ Upload</button> : null
     const label = this.getUserLabel(this.props.postBelongsToUser);
     return (
@@ -86,10 +82,4 @@ class WallPost extends React.Component {
   }
 }
 
-var mappedWallPost = connect(state => {
-  return {
-    currentUser: state.user.id,
-  };
-})(WallPost);
-
-export default mappedWallPost;
+export default WallPost;
