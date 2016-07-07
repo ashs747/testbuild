@@ -1,0 +1,154 @@
+.view-edit-post {
+  margin-top: 10px;
+  background-color: $connectionsWallLightGreen;
+  .evidence-wrapper {
+    width: 100%;
+    height: 250px;
+    padding: 12px 6px;
+  }
+  .form-wrapper {
+    background-color: $whiteBackground;
+    border-top: 2px solid $textAreaBorder
+  }
+  .post-wrapper {
+    border: 1px solid $textAreaBorder;
+    position: relative;
+  }
+  .action-buttons {
+    position: absolute;
+    width: 100%;
+    top: 15px;
+    z-index: 1;
+  }
+  .circle {
+    width: 40px;
+    height: 40px;
+    background-color: $darkGreyBackground;
+    padding: 0;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    i {
+      color: $whiteBackground;
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+  .close-circle {
+    float: right;
+    right: 10px;
+  }
+  .edit-circle {
+    left: 10px;
+  }
+  .edit-button {
+    cursor: pointer;
+    height: 35px;
+    width: 80px;
+    border: 2px solid $primaryColour;
+    color: $primaryFontColour;
+    padding: 3px;
+    .edit-icon {
+      display: inline-block;
+      font-size: 20px;
+      margin-right: 10px;
+      margin-left: 5px;
+    }
+    span {
+      font-size: 10pt;
+      position: relative;
+      top: -1px;
+      font-weight: bold;
+    }
+  }
+  .video {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  .edit-post-form {
+    width: 100%;
+    padding: 20px 10px;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 19pt;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 8px;
+      display: block;
+      background-color: $textareaBackground;
+      border: 2px solid $textAreaBorder;
+      padding: 7px;
+      resize: none;
+    }
+    textarea {
+      height: 120px;
+    }
+    .publish-button {
+      text-align: right;
+    }
+    .btn-publish {
+      background-color: $primaryColour;
+      color: $whiteBackground;
+      border-radius: 1px;
+      width: 105px;
+      margin-top: 15px;
+      position: relative;
+      right: 0;
+    }
+    .user-name, .uploaded {
+      position: relative;
+      bottom: 5px;
+      margin-left: 7px;
+    }
+    .uploaded {
+      display: block;
+      margin-left: 40px;
+      bottom: 16px;
+    }
+    p {
+      margin-top: 0;
+    }
+    img {
+      border: 1px solid $darkGreyBackground;
+      border-radius: 50%;
+      height: 35px;
+      width: 35px;
+    }
+    .likes-counter {
+      display: inline-block;
+      b {
+        margin-left: 5px;
+      }
+      .likes-thumb {
+        height: 33px;
+        width: 33px;
+        background-color: $primaryColour;
+        border-radius: 50%;
+        text-align: center;
+        margin-right: 5px;
+        display: inline-block;
+        i {
+          line-height: 32px;
+          font-size: 20px;
+          color: $whiteBackground;
+        }
+      }
+    }
+    &.editing-post {
+      .likes-counter {
+        position: absolute;
+        bottom: 20px;
+      }
+    }
+    &.not-uploaded {
+      b {
+        bottom: -2px;
+      }
+    }
+  }
+}
