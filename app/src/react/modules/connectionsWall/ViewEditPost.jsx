@@ -167,7 +167,11 @@ class ViewEditPost extends React.Component {
       display: "inline-block"
     };
     if (!post.evidence) {
-      return <UploadEvidence wallId={this.props.wallId} postId={post.id} post={post} />;
+      if (this.props.usersPost) {
+        return <UploadEvidence wallId={this.props.wallId} postId={post.id} post={post} />;
+      }
+      var awaitingUploadImage = "http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png";
+      return <ImageView src={awaitingUploadImage} layout="box-to-image" style={imageStyle} />
     }
     if (post.evidence.type === "image") {
       return <ImageView src={post.evidence.url} layout="box-to-image" style={imageStyle} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageView from '../../components/ImageView.jsx';
+import Video from '../../components/Video.jsx';
 import config from '../../../localConfig';
 import store from '../../../redux/store.js';
 import {findDOMNode} from 'react-dom';
@@ -44,27 +45,39 @@ class UploadEvidence extends React.Component {
 
   render() {
     const post = this.props.post;
+    let video = false;
     let imageStyle = {
       height: "100%",
       width: "100%",
       display: "inline-block"
     };
     let image = "http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png";
+
+    //If we have temp evidence, set the image url as the image url
     if (post.tempEvidence) {
       image = post.tempEvidence.url;
-      if (post.tempEvidence.type === "video") {
-        //PLACEHOLDER
-        image = "http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png";
-      }
     }
+
+    //If the app is in loading state, show spinner and set background colour
     if (this.state.loading) {
       image = "assets/img/ring.svg";
       imageStyle.backgroundColor = '#4C6172';
     }
+
+    //Setting up the component
     let component = <ImageView src={image} layout="box-to-image" style={imageStyle} />;
-    return (
-      <a ref="browse" href="javascript:void(0)">{component}</a>
-    );
+
+    //If the temp evidence is a video, set it to a video player instead of image view
+    if (post.tempEvidence && post.tempEvidence.type === "video") {
+      component = <Video url={post.tempEvidence.url} colour="#ea3592" />
+    }
+
+    //If we don't have temp evidence, we want to wrap the placeholder image in the uploader
+    if (!post.tempEvidence) {
+      component = <a ref="browse" href="javascript:void(0)">{component}</a>;
+    }
+
+    return component;
   }
 
   onFilesAdded() {
@@ -79,7 +92,9 @@ class UploadEvidence extends React.Component {
   }
 
   onError() {
-    this.setState({loading: false, error: true});
+    this.setState({loading: false});
+    //ERROR HANDLING
+    //dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
   }
 
 }
