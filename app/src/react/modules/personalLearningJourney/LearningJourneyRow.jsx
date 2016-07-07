@@ -46,6 +46,10 @@ class LearningJourneyRow extends React.Component {
       time = (time) ? time : "n/a";
       location = (location) ? location : "n/a";
     }
+    console.log(activity);
+    if (type === "Wall") {
+      date = <p>Deadline:<br/>{moment(activity.deadline).format('Do MMM YYYY')}</p>;
+    }
 
     let content = this.props.smallTable ? (
       <div className="plj-small-row clearfix">
