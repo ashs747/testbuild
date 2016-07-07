@@ -1,5 +1,6 @@
 import React from 'react';
 import WallPost from './WallPost.jsx';
+import ViewEditPost from './ViewEditPost.jsx';
 import moment from 'moment-timezone';
 
 class ConnectionsWall extends React.Component {
@@ -13,15 +14,15 @@ class ConnectionsWall extends React.Component {
       return <p>No Wall Found</p>;
     }
     const deadline = moment(this.props.wall.deadline).format('Do MMMM YYYY');
-    let posts = this.props.wall.posts.map(this.mapPosts.bind(null, this.props.currentUser));
-
+    let posts = this.props.wall.posts;
+    let jsxPosts = posts.map(this.mapPosts.bind(null, this.props.currentUser));
+    var editPosts = posts.map((post, i) => {
+      var usersPost = (post.owner && post.owner.id === this.props.currentUser);
+      return <ViewEditPost key={`post-${i}`} post={post} usersPost={usersPost} wallId={this.props.wall.id}/>
+    });
     return (
       <div id="connections-wall">
-        <div dangerouslySetInnerHTML={{__html: this.props.wall.content}} />
-        Deadline: {deadline}
-        <div className="wall-posts">
-          {posts}
-        </div>
+        {editPosts}
       </div>
     )
   }

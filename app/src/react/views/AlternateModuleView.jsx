@@ -89,7 +89,7 @@ class AlternateModuleView extends React.Component {
     })();
     return (
       <div className="module-view">
-        <div className="header-top clearfix" style={{backgroundImage: `url("assets/img/banner-${moduleSlug}.png")`}}>
+        <div className="header-top clearfix" style={{backgroundImage: `url("assets/img/banner-${moduleSlug}.jpg")`}}>
           <div className="icon">
             {icon}
           </div>

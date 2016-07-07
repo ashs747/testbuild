@@ -7,3 +7,12 @@ export function getWallsForProgramme() {
     payload
   };
 };
+
+export function updateWallPostField(wallID, postID, field, value) {
+  return {
+    type: 'UPDATE_WALL_POST_FIELD',
+    payload: {
+      wallID, postID, field, value
+    }
+  };
+}
