@@ -1,5 +1,5 @@
 .view-edit-post {
-  padding: 15px 30px;
+  padding: 10px;
   .post-wrapper {
     height: 490px;
     background-color: $connectionsWallLightGreen;
@@ -22,8 +22,11 @@
     position: relative;
   }
   .edit-post-form {
-    padding: 0 45px;
-    margin-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    max-height:360px;
+    overflow: auto;
     h3 {
       margin-bottom: 17px;
     }
@@ -48,10 +51,5 @@
       right: 45px;
       bottom: 15px;
     }
-  }
-  .video {
-    width: 100%;
-    height: 100%;
-    padding: 0;
   }
 }
