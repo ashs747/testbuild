@@ -1,3 +1,16 @@
-.connections-wall {
+.connections-wall{
   padding: 0;
+  .wall-post {
+    min-height: 375px;
+    .post-details {
+      height: 75px;
+      .post-name>a>img {
+        display:inline-block;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+    }
+  }
 }
