@@ -71,12 +71,8 @@ class WallPost extends React.Component {
   }
 
   getUserLabel(user) {
-    if (user) {
-      return <img className="users-post-label"src="http://res.cloudinary.com/strata/image/upload/v1467819173/connections-wall-you_uxihlm.png" />;
-    }
-    else{
-      return null
-    }
+    let label = (user) ? <img className="users-post-label"src="http://res.cloudinary.com/strata/image/upload/v1467819173/connections-wall-you_uxihlm.png" /> : null;
+    return label;
   }
 }
 

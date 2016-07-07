@@ -3,127 +3,110 @@
   margin-right: 0;
 }
 
-.connections-wall {
-  background-color: $whiteBackground;
-  padding: 25px;
-}
-
-.wall-post-lg {
-  width: 24%;
-  margin: 0 .5%;
-}
-
-.wall-post-md {
-  width: 31.5%;
-  margin: 0 .75%;
-}
-
-.wall-post-sm {
-  width: 48%;
-  margin: 1%;
-}
-
-.wall-post {
-  text-align:center;
-  background-color: $lightGreyBackground;
-  min-height: 350px;
-  border: 1px solid $darkGreyBackground;
-  padding: 8px;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  >.users-post-label{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-  }
-  h5 {
-    font-size: 20px;
-    font-weight: bold;
-    height: 45px;
+#connections-wall{
+  .wall-post-lg {
+    width: 24%;
+    margin: 0 .5%;
   }
 
-  &.users-post {
-    background-color: $whiteBackground;
-    border-color: #C2FF87;
-    box-shadow: 0 0 7px #C2FF87;
+  .wall-post-md {
+    width: 31.5%;
+    margin: 0 .75%;
   }
 
-  .post-evidence {
-    margin-bottom: 20px;
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-    position: relative;
-    .video{
-      height: 100%;
-    }
-    .placeholder-image {
-      height: 120%;
-      margin: auto;
-      position: absolute;
-      top:-50px;
-      bottom:-50px;
-      left: -50px;
-      right: -50px;
-    }
-  }
-  .post-details {
-    height: 75px;
-    .post-name {
-      margin-bottom: 10px;
-      img{
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        margin-right: 5px;
-      }
-    }
-    .post-date {
-      font-size: 12px;
-      font-style: italic;
-    }
-  }
-  .post-like {
-    font-weight: bold;
-    button{
-      background-color: #B2C3CB;
-      border: none;
-      border-radius: 100%;
-      padding: 4px 8px;
-      margin-right: 5px;
-      .fa.fa-thumbs-o-up {
-        color: $whiteFontColour;
-        font-size: 16px;
-      }
-    }
-  }
-  .upload-evidence{
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: bold;
-    border: 3px solid $primaryColour;
-    background-color: transparent;
-    padding: 5px 23px;
+  .wall-post-sm {
+    width: 48%;
+    margin: 1%;
   }
 
-  &.post-liked button {
-    background-color: $primaryColour;
-  }
-}
-
-@media (max-width: 767px) {
-  .wall-post{
+  .wall-post {
+    text-align:center;
+    background-color: $lightGreyBackground;
     min-height: 325px;
+    border: 1px solid $darkGreyBackground;
+    padding: 8px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    >.users-post-label{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    h5 {
+      font-size: 20px;
+      font-weight: bold;
+      height: 45px;
+    }
+
+    &.users-post {
+      background-color: $whiteBackground;
+      border-color: #C2FF87;
+      box-shadow: 0 0 7px #C2FF87;
+    }
+
+    .post-evidence {
+      margin-bottom: 20px;
+      width: 100%;
+      height: 140px;
+      overflow: hidden;
+      position: relative;
+      .video{
+        height: 100%;
+      }
+      .placeholder-image {
+        height: 120%;
+        margin: auto;
+        position: absolute;
+        top:-50px;
+        bottom:-50px;
+        left: -50px;
+        right: -50px;
+      }
+    }
     .post-details {
       height: 55px;
-      img{
-        display: none;
+      .post-name {
+        margin-bottom: 10px;
+        img{
+          display: none;
+        }
       }
+      .post-date {
+        font-size: 12px;
+        font-style: italic;
+      }
+    }
+    .post-like {
+      font-weight: bold;
+      button{
+        background-color: #B2C3CB;
+        border: none;
+        border-radius: 100%;
+        padding: 4px 8px;
+        margin-right: 5px;
+        .fa.fa-thumbs-o-up {
+          color: $whiteFontColour;
+          font-size: 16px;
+        }
+      }
+    }
+    .upload-evidence{
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      border: 3px solid $primaryColour;
+      background-color: transparent;
+      padding: 5px 23px;
+    }
+
+    &.post-liked button {
+      background-color: $primaryColour;
     }
   }
 }
+
 .top-10-widget {
   .row{
     margin-left: 0;

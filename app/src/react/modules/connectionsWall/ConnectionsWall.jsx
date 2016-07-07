@@ -15,7 +15,7 @@ class ConnectionsWall extends React.Component {
     }
     const deadline = moment(this.props.wall.deadline).format('Do MMMM YYYY');
     let posts = this.props.wall.posts;
-    let jsxPosts = <div>{posts.map(this.mapPosts.bind(null, this.props.currentUser, this.props.profile))}</div>;
+    let jsxPosts = posts.map(this.mapPosts.bind(null, this.props.currentUser, this.props.profile));
     var editPosts = posts.map((post, i) => {
       var usersPost = (post.owner && post.owner.id === this.props.currentUser);
       return <ViewEditPost key={`post-${i}`} post={post} usersPost={usersPost} wallId={this.props.wall.id}/>
