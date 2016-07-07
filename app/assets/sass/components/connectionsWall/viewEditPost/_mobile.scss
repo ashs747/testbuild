@@ -145,5 +145,10 @@
         bottom: 20px;
       }
     }
+    &.not-uploaded {
+      b {
+        bottom: -2px;
+      }
+    }
   }
 }

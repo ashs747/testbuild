@@ -3,6 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment';
+import classnames from 'classnames';
 
 class ViewEditPost extends React.Component {
 
@@ -129,17 +130,23 @@ class ViewEditPost extends React.Component {
   */
   buildViewPostForm(post) {
     var profilePicture = (post.owner.profilePic) ? post.owner.profilePic.url : "assets/img/profile-placeholder.jpg";
+    var uploaded = (post.evidence) ? <i className="uploaded">Uploaded: {moment(post.owner.postedOn).format('DD.MM.YYYY')}</i> : null;
+    var postClass = classnames('edit-post-form', 'view-form', {'not-uploaded': !post.evidence});
+    var title = (post.title) ? post.title : "Awaiting Upload";
+    var likesWidget = (post.evidence) ? (
+      <div className="likes-counter">
+        <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
+        <b>{post.likes.length}</b>
+      </div>
+    ) : null;
     return (
-      <div className="edit-post-form view-form">
-        <h3>{post.title}</h3>
+      <div className={postClass}>
+        <h3>{title}</h3>
         <img src={profilePicture} alt="profile-picture" />
         <b className="user-name">{post.owner.forename} {post.owner.surname}</b>
-        <i className="uploaded">Uploaded: {moment(post.owner.postedOn).format('DD.MM.YYYY')}</i>
+        {uploaded}
         <p>{post.description}</p>
-        <div className="likes-counter">
-          <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
-          <b>{post.likes.length}</b>
-        </div>
+        {likesWidget}
       </div>
     )
   }
