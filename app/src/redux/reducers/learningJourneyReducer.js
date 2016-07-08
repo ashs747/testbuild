@@ -24,12 +24,7 @@ export function reducer(state = initialState, action) {
                 }
               }
               if (activity.type === "Wall") {
-                if (activity.uploaded) {
-                  status = "completed";
-                }
-                else {
-                  status = "upload";
-                }
+                status = (activity.uploaded) ? "completed" : "upload";
               }
               else if (!availableSlots && !activity.myBookedEventAndSlot) {
                 status = "dates-tbc";
