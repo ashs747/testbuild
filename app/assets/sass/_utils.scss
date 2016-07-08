@@ -155,9 +155,6 @@ input[type="password"] {
 .btn-primary:active,
 .btn-primary:focus {
   background: $buttonFocus;
-  border: none;
-  border-radius: 0;
-  text-transform: uppercase;
 
   &:hover {
     background: darken($buttonFocus,2%);
