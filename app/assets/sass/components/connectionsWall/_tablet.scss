@@ -1,16 +1,43 @@
 .connections-wall{
   padding: 0;
   .wall-post {
-    min-height: 375px;
+    min-height: 350px;
+    padding: 8px;
+    >.users-post-label{
+      width: 44px;
+    }
+    h5 {
+      font-size: 20px;
+      height: 45px;
+      margin-bottom: 10px;
+    }
     .post-details {
       height: 75px;
-      .post-name>a>img {
-        display:inline-block;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        margin-right: 5px;
+      font-size: 16px;
+      .post-name{
+        margin-bottom: 10px;
+        >a>img {
+          display:inline-block;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          margin-right: 5px;
+        }
       }
+    }
+    .post-evidence {
+      margin-bottom: 20px;
+      height: 140px;
+    }
+    .post-like button{
+      padding: 5px 10px;
+      .fa.fa-thumbs-o-up {
+        font-size: 16px;
+      }
+    }
+    .upload-evidence{
+      font-size: 12px;
+      padding: 5px 23px;
     }
   }
 }
