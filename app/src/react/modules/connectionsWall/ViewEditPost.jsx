@@ -3,7 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment-timezone';
-import {updateWallPostField, userDeletedEvidence, removeInfoBox} from '../../../redux/actions/wallActions';
+import {updateWallPostField, userDeletedEvidence, removeInfoBox, postEvidenceAction} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
@@ -22,6 +22,8 @@ class ViewEditPost extends React.Component {
     this.getEvidence = this.getEvidence.bind(this);
     this.buildInfoBox = this.buildInfoBox.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.onFormSave = this.onFormSave.bind(this);
+    this.onCloseClick = this.onCloseClick.bind(this);
     this.state = {
       editing
     };
@@ -172,8 +174,12 @@ class ViewEditPost extends React.Component {
       case 'error':
         text = <p>There has been an error uploading your evidence. If the error persists, please <a target="_blank" href={this.props.supportUrl}>click here</a></p>;
         break;
-      default:
-        return null;
+      case 'no-evidence':
+        text = <p>You cannot submit your post without any evidence attached</p>;
+        break;
+      case 'posted':
+        text = <p>Post successfull!</p>;
+        break;
     }
     return (
       <div className={`panel panel-${infoBox.type}`}>
@@ -231,7 +237,7 @@ class ViewEditPost extends React.Component {
     The onClick handler used to dispatch the update action
   */
   onFormSave() {
-    console.log("Post update action");
+    dispatch(postEvidenceAction(this.props.wallId, this.props.post.id));
   }
 
   /*
@@ -246,7 +252,7 @@ class ViewEditPost extends React.Component {
     Dispatch an action to update the parent component with a viewPost: 0.
   */
   onCloseClick() {
-    console.log("Close post");
+    this.setState({editing: false});
   }
 
   /*

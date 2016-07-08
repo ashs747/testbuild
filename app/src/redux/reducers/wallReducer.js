@@ -2,7 +2,9 @@ var defaultState = {};
 
 function formatEvidence(fileObj) {
   var file = fileObj.file;
-  var formatFileObj = {};
+  var formatFileObj = {
+    id: file.id
+  };
   switch (file.reference) {
     case "cloudinary":
       formatFileObj.type = "image";
@@ -87,6 +89,25 @@ export const reducer = (state = defaultState, action) => {
         return post;
       });
       return newState;
+    case 'POST_EVIDENCE':
+      switch (action.status) {
+        case "RESOLVED":
+          wall.posts = wall.posts.map(post => {
+            if (post.id === action.payload.post.id) {
+              post = action.payload.post
+              post['infoBox'] = {
+                msg: 'posted',
+                type: 'success'
+              };
+            }
+            return post;
+          });
+          return newState;
+        case "REJECTED":
+        break;
+        case "PENDING":
+        break;
+      }
     default:
       return state;
   }
