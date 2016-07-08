@@ -2,7 +2,7 @@ import React from 'react';
 import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import {updateWallPostField} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
