@@ -175,7 +175,7 @@ class ViewEditPost extends React.Component {
       return (
         <div className="evidence-inner-wrapper">
           <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />
-          <a className="btn-delete" href=""><i className="fa fa-trash-o"></i></a>
+          <a className="btn-delete" onClick={this.onDeleteClick}><i className="fa fa-trash-o"></i></a>
         </div>
       )
     }
@@ -212,6 +212,10 @@ class ViewEditPost extends React.Component {
   */
   onEditClick() {
     this.setState({editing: true});
+  }
+
+  onDeleteClick(){
+    console.log("delete");
   }
 
 }
