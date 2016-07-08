@@ -11,4 +11,11 @@
       bottom: 20px;
     }
   }
+  .btn-delete {
+    padding: 22px 30px;
+    top: calc(50% - 44px);
+    i {
+      font-size: 80px;
+    }
+  }
 }

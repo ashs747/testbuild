@@ -153,14 +153,14 @@
   }
   .btn-delete {
     background-color: #4c6172;
-    padding: 13px 18px; //22px 30px;
+    padding: 13px 18px;
     border-radius: 100%;
     position: absolute;
-    top: calc(50% - 26px);
-    right: 30%;
+    top: calc(50% - 38px);
+    right: calc(40% - 72px);
     i {
       color: $whiteBackground;
-      font-size: 47px; //80px;
+      font-size: 47px;
       text-align:center;
     }
   }

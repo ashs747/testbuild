@@ -52,4 +52,12 @@
       bottom: 15px;
     }
   }
+  .btn-delete {
+    padding: 18px 24px;
+    top: calc(50% - 36px);
+    right: 25%;
+    i {
+      font-size: 64px;
+    }
+  }
 }
