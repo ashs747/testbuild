@@ -3,8 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment-timezone';
-import {updateWallPostField} from '../../../redux/actions/wallActions';
-import {userDeletedEvidence} from '../../../redux/actions/wallActions';
+import {updateWallPostField, userDeletedEvidence} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
@@ -22,6 +21,7 @@ class ViewEditPost extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.getEvidence = this.getEvidence.bind(this);
     this.buildInfoBox = this.buildInfoBox.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
     this.state = {
       editing
     };
@@ -73,7 +73,7 @@ class ViewEditPost extends React.Component {
   buildPostForm(post, usersPost) {
     if (usersPost) {
       if (this.state.editing) {
-        if (post.evidence) {
+        if (post.postedOn) {
           return this.buildEditPostForm(post);
         }
         return this.buildFirstPostForm(post);
@@ -200,17 +200,28 @@ class ViewEditPost extends React.Component {
       var awaitingUploadImage = "http://res.cloudinary.com/strata/image/upload/v1467975107/awaiting-upload_wvdhdh.png";
       return <ImageView src={awaitingUploadImage} layout="box-to-image" style={imageStyle} />
     }
+
+    var content;
+    var delBtn = (this.state.editing) ? (
+      <a className="btn-delete" onClick={this.onDeleteClick}><i className="fa fa-trash-o"></i></a>
+    ) : null;
+
     if (post.evidence.type === "image") {
-      return (
-        <div className="evidence-inner-wrapper">
-          <ImageView src={post.evidence.url} layout="box-to-image" style={imageStyle} />
-          <a className="btn-delete" onClick={this.onDeleteClick}><i className="fa fa-trash-o"></i></a>
-        </div>
-      )
+      content = <ImageView src={post.evidence.url} layout="box-to-image" style={imageStyle} />;
     }
     if (post.evidence.type === "video") {
-      return <Video url={post.evidence.url} colour="#ea3592" autoplay={false}/>
+      content = <Video url={post.evidence.url} colour="#ea3592" autoplay={false}/>;
     }
+    if (!content) {
+      return null;
+    }
+
+    return (
+      <div className="evidence-inner-wrapper">
+        {content}
+        {delBtn}
+      </div>
+    )
   }
 
   /*
@@ -243,7 +254,7 @@ class ViewEditPost extends React.Component {
     this.setState({editing: true});
   }
 
-  onDeleteClick(){
+  onDeleteClick() {
     dispatch(userDeletedEvidence(this.props.wallId, this.props.post.id));
   }
 

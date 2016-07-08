@@ -43,3 +43,12 @@ export function removeInfoBox(wallID, postID) {
     }
   }
 }
+
+export function userDeletedEvidence(wallID, postID) {
+  return {
+    type: 'REMOVE_WALL_EVIDENCE',
+    payload: {
+      wallID, postID
+    }
+  }
+}
