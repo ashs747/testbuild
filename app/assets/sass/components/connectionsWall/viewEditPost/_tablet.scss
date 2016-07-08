@@ -68,4 +68,12 @@
       }
     }
   }
+  .btn-delete {
+    padding: 18px 24px;
+    top: calc(50% - 50px);
+    right: calc(40% - 98px);
+    i {
+      font-size: 64px;
+    }
+  }
 }

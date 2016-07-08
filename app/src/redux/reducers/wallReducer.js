@@ -78,6 +78,14 @@ export const reducer = (state = defaultState, action) => {
         return post;
       });
       return newState;
+    case 'REMOVE_WALL_EVIDENCE':
+      wall.posts = wall.posts.map(post => {
+        if (post.id === action.payload.postID) {
+          post['evidence'] = null;
+        }
+        return post;
+      });
+      return newState;
     default:
       return state;
   }
