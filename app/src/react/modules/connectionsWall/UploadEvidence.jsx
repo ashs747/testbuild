@@ -45,18 +45,13 @@ class UploadEvidence extends React.Component {
 
   render() {
     const post = this.props.post;
-    let video = false;
     let imageStyle = {
       height: "100%",
       width: "100%",
       display: "inline-block"
     };
-    let image = "http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png";
 
-    //If we have temp evidence, set the image url as the image url
-    if (post.tempEvidence) {
-      image = post.tempEvidence.url;
-    }
+    let image = "http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png";
 
     //If the app is in loading state, show spinner and set background colour
     if (this.state.loading) {
@@ -64,20 +59,11 @@ class UploadEvidence extends React.Component {
       imageStyle.backgroundColor = '#4C6172';
     }
 
-    //Setting up the component
-    let component = <ImageView src={image} layout="box-to-image" style={imageStyle} />;
-
-    //If the temp evidence is a video, set it to a video player instead of image view
-    if (post.tempEvidence && post.tempEvidence.type === "video") {
-      component = <Video url={post.tempEvidence.url} colour="#ea3592" />
-    }
-
-    //If we don't have temp evidence, we want to wrap the placeholder image in the uploader
-    if (!post.tempEvidence) {
-      component = <a ref="browse" href="javascript:void(0)">{component}</a>;
-    }
-
-    return component;
+    return (
+      <a ref="browse" href="javascript:void(0)">
+        <ImageView src={image} layout="box-to-image" style={imageStyle} />
+      </a>
+    );
   }
 
   onFilesAdded() {

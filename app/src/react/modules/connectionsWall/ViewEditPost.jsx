@@ -3,7 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment-timezone';
-import {updateWallPostField, userDeletedEvidence} from '../../../redux/actions/wallActions';
+import {updateWallPostField, userDeletedEvidence, removeInfoBox} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
@@ -193,7 +193,10 @@ class ViewEditPost extends React.Component {
       width: "100%",
       display: "inline-block"
     };
-    if (!post.evidence) {
+
+    var evidence = post.evidence || post.tempEvidence;
+
+    if (!evidence) {
       if (this.props.usersPost) {
         return <UploadEvidence wallId={this.props.wallId} post={post} />;
       }
@@ -206,11 +209,11 @@ class ViewEditPost extends React.Component {
       <a className="btn-delete" onClick={this.onDeleteClick}><i className="fa fa-trash-o"></i></a>
     ) : null;
 
-    if (post.evidence.type === "image") {
-      content = <ImageView src={post.evidence.url} layout="box-to-image" style={imageStyle} />;
+    if (evidence.type === "image") {
+      content = <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />;
     }
-    if (post.evidence.type === "video") {
-      content = <Video url={post.evidence.url} colour="#ea3592" autoplay={false}/>;
+    if (evidence.type === "video") {
+      content = <Video url={evidence.url} colour="#ea3592" autoplay={false}/>;
     }
     if (!content) {
       return null;
@@ -255,6 +258,7 @@ class ViewEditPost extends React.Component {
   }
 
   onDeleteClick() {
+    dispatch(removeInfoBox(this.props.wallId, this.props.post.id));
     dispatch(userDeletedEvidence(this.props.wallId, this.props.post.id));
   }
 

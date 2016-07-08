@@ -82,6 +82,7 @@ export const reducer = (state = defaultState, action) => {
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
           post['evidence'] = null;
+          post['tempEvidence'] = null;
         }
         return post;
       });
