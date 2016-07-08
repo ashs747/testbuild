@@ -46,7 +46,7 @@ class WallPost extends React.Component {
           <div className="post-name"><CloudinaryImg file="" defaultImg="assets/img/profile-placeholder.jpg" /> {this.props.owner.forename} {this.props.owner.surname}</div>
           <div className="post-date">Uploaded: {date}</div>
         </div>
-        <div className="post-like"><button><i className="fa fa-thumbs-o-up"></i></button>{this.props.likes.length}</div>
+        <div className="post-like"><i className="fa fa-thumbs-o-up"></i>{this.props.likes.length}</div>
       </div>
     )
   }
@@ -59,7 +59,7 @@ class WallPost extends React.Component {
       <div className={postClass}>
         {label}
         <div className="post-evidence">
-          <img className="placeholder-image" src="http://res.cloudinary.com/strata/image/upload/v1467878082/connections-wall-awaiting-upload_ecaku1.png"/>
+          <img className="placeholder-image" src="http://res.cloudinary.com/strata/image/upload/v1467975107/awaiting-upload_wvdhdh.png"/>
         </div>
         <h5>Awaiting Title</h5>
         <div className="post-details">

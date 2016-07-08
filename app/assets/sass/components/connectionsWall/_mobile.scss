@@ -22,7 +22,7 @@
   .wall-post {
     text-align:center;
     background-color: $lightGreyBackground;
-    min-height: 230px;
+    min-height: 205px;
     border: 1px solid $darkGreyBackground;
     padding: 6px;
     display: inline-block;
@@ -47,7 +47,7 @@
       box-shadow: 0 0 7px #C2FF87;
     }
     .post-evidence {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       width: 100%;
       height: 90px;
       overflow: hidden;
@@ -56,18 +56,18 @@
         height: 100%;
       }
       .placeholder-image {
-        height: 120%;
+        height: 225%;
         margin: auto;
         position: absolute;
-        top:-50px;
-        bottom:-50px;
-        left: -50px;
-        right: -50px;
+        top:-980px;
+        bottom:-1000px;
+        left: -1000px;
+        right: -1000px;
       }
     }
     .post-details {
-      height: 43px;;
       font-size: 12px;
+      margin-bottom: 7px;
       .post-name {
         margin-bottom: 5px;;
         img{
@@ -75,22 +75,19 @@
         }
       }
       .post-date {
-        font-size: 12px;
-        font-style: italic;
+        display: none;
       }
     }
     .post-like {
       font-weight: bold;
-      button{
+      i {
+        color: $whiteFontColour;
         background-color: #B2C3CB;
         border: none;
         border-radius: 100%;
-        padding: 2px 7px;
+        padding: 5px 6.5px;
         margin-right: 5px;
-        .fa.fa-thumbs-o-up {
-          color: $whiteFontColour;
-          font-size: 14px;
-        }
+        font-size: 13px;
       }
     }
     .upload-evidence{

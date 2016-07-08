@@ -14,6 +14,7 @@
     .post-details {
       height: 75px;
       font-size: 16px;
+      margin-bottom: 0;
       .post-name{
         margin-bottom: 10px;
         >a>img {
@@ -24,16 +25,15 @@
           margin-right: 5px;
         }
       }
+      .post-date {
+        font-size: 12px;
+        font-style: italic;
+        display: block;
+      }
     }
     .post-evidence {
       margin-bottom: 20px;
       height: 140px;
-    }
-    .post-like button{
-      padding: 5px 10px;
-      .fa.fa-thumbs-o-up {
-        font-size: 16px;
-      }
     }
     .upload-evidence{
       font-size: 12px;
