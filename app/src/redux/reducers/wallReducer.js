@@ -58,6 +58,19 @@ export const reducer = (state = defaultState, action) => {
         return post;
       });
       return newState;
+    case 'UPDATE_INFO_BOX':
+      newState = {...state};
+      wall = newState[action.payload.wallID];
+      wall.posts = wall.posts.map(post => {
+        if (post.id === action.payload.postID) {
+          post['infoBox'] = {
+            msg: action.payload.msg,
+            type: action.payload.type
+          }
+        }
+        return post;
+      });
+      return newState;
     default:
       return state;
   }

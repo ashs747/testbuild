@@ -25,3 +25,12 @@ export function updateWallPostEvidence(wallID, postID, fileObj) {
     }
   }
 }
+
+export function updateInfoBox(wallID, postID, msg, type) {
+  return {
+    type: 'UPDATE_INFO_BOX',
+    payload: {
+      wallID, postID, msg, type
+    }
+  }
+}

@@ -31,9 +31,13 @@ class ViewEditPost extends React.Component {
     }
 
     var post = this.props.post
-    var state = (this.state.editing) ? "Editing" : "Viewing";
 
     var evidence = this.getEvidence(post);
+    var infoBox = (this.props.usersPost && this.state.editing) ? (
+      <div className="panel panel-info">
+        <p>Hello</p>
+      </div>
+    ) : null;
     var editButton = (this.props.usersPost && post.evidence && !this.state.editing) ? (
       <a className="btn circle edit-circle" onClick={this.onEditClick}><i className="fa fa-pencil"/></a>
     ) : null;
@@ -87,6 +91,7 @@ class ViewEditPost extends React.Component {
     Show edit boxes and disaptch updated field calls
   */
   buildEditPostForm(post) {
+    const panel = (post.infoBox) ? this.buildInfoBox.bind(null, post.infoBox) : null;
     return (
       <div className="edit-post-form editing-post">
         <h3>Edit your post</h3>
@@ -101,8 +106,11 @@ class ViewEditPost extends React.Component {
           <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
           <b>{post.likes.length}</b>
         </div>
-        <div className="publish-button">
-          <a className="btn btn-publish" onClick={this.onFormSave}>UPDATE</a>
+        <div className="info-bar clearfix">
+          {panel}
+          <div className="publish-button">
+            <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+          </div>
         </div>
       </div>
     )
@@ -113,8 +121,9 @@ class ViewEditPost extends React.Component {
     Show edit boxes and disaptch updated field calls
   */
   buildFirstPostForm(post) {
+    const panel = (post.infoBox) ? this.buildInfoBox(post.infoBox) : null;
     return (
-      <div className="edit-post-form">
+      <div className="edit-post-form first-post">
         <h3>Upload your post</h3>
         <input type="text" placeholder="Title" value={post.title} onChange={this.onChange.bind(null, "title")} />
         <textarea
@@ -123,8 +132,11 @@ class ViewEditPost extends React.Component {
           placeholder="Description"
           onChange={this.onChange.bind(null, "description")}
         />
-        <div className="publish-button">
-          <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+      <div className="info-bar clearfix">
+          {panel}
+          <div className="publish-button">
+            <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+          </div>
         </div>
       </div>
     )
@@ -155,6 +167,27 @@ class ViewEditPost extends React.Component {
         {likesWidget}
       </div>
     )
+  }
+
+  buildInfoBox(infoBox) {
+    var text = "";
+    switch (infoBox.msg) {
+      case 'video-processing':
+        text = "Your video is currently being processed and will display as “unavailable” until complete. Click 'publish' to continue";
+        break;
+      case 'error':
+        text = "There has been an error uploading your evidence. If the error persists, please contact Cirrus support";
+        break;
+      default:
+        return null;
+    }
+    return (
+      <div className={`panel panel-${infoBox.type}`}>
+        <div className="panel-heading">
+          <p>{text}</p>
+        </div>
+      </div>
+    );
   }
 
   /*

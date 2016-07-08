@@ -4,7 +4,7 @@ import Video from '../../components/Video.jsx';
 import config from '../../../localConfig';
 import store from '../../../redux/store.js';
 import {findDOMNode} from 'react-dom';
-import {updateWallPostEvidence} from '../../../redux/actions/wallActions';
+import {updateWallPostEvidence, updateInfoBox} from '../../../redux/actions/wallActions';
 var dispatch = store.dispatch;
 
 class UploadEvidence extends React.Component {
@@ -88,13 +88,21 @@ class UploadEvidence extends React.Component {
   onFileUploaded(up, file, data) {
     let response = JSON.parse(data.response);
     this.setState({loading: false});
+    var isVideo = this.isVideo(response);
+    if (isVideo) {
+      dispatch(updateInfoBox(this.props.wallId, this.props.postId, 'video-processing', 'info'));
+    }
     dispatch(updateWallPostEvidence(this.props.wallId, this.props.postId, response));
   }
 
   onError() {
     this.setState({loading: false});
-    //ERROR HANDLING
-    //dispatch({'type': 'FEED_ADD_FILE', 'status': 'REJECTED', payload: {feedId: this.props.feedId}});
+    dispatch(updateInfoBox(this.props.wallId, this.props.postId, 'error', 'danger'));
+  }
+
+  isVideo(file) {
+    var fileObj = file.file;
+    return (fileObj && fileObj.reference && fileObj.reference === "vimeo");
   }
 
 }

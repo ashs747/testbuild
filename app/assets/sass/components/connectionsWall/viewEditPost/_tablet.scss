@@ -51,5 +51,17 @@
       right: 45px;
       bottom: 15px;
     }
+    &.first-post {
+      max-height: 370px;
+      .info-bar {
+        .btn-publish {
+          margin-top: 10px;
+          position: static;
+        }
+        .panel {
+          width: 100%;
+        }
+      }
+    }
   }
 }
