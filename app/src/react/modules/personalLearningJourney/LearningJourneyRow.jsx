@@ -91,6 +91,7 @@ class LearningJourneyRow extends React.Component {
       case "missed": return (<div className="icon red"><i className="fa fa-times"></i></div>);
       case "no-attendance-marked": return null;
       case "completed": return (<div className="icon green"><i className="fa fa-check"></i></div>);
+      case "upload": return  (<a className="btn btn-primary" href={`/#/connections-wall/${activity.id}?viewPost=${activity.postId}`}>Upload</a>);
       default: return null;
     }
   }
