@@ -16,3 +16,12 @@ export function updateWallPostField(wallID, postID, field, value) {
     }
   };
 }
+
+export function userDeletedEvidence(wallID, postID) {
+  return {
+    type: 'DELETE_WALL_POST_EVIDENCE',
+    payload: {
+      wallID, postID
+    }
+  };
+}

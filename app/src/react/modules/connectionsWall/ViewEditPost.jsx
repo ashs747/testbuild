@@ -4,6 +4,7 @@ import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment-timezone';
 import {updateWallPostField} from '../../../redux/actions/wallActions';
+import {userDeletedEvidence} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
@@ -215,7 +216,7 @@ class ViewEditPost extends React.Component {
   }
 
   onDeleteClick(){
-    console.log("delete");
+    dispatch(userDeletedEvidence(this.props.wallId, this.props.post.id));
   }
 
 }
