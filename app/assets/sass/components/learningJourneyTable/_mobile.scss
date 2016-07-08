@@ -153,12 +153,15 @@
     }
     .date {
       width: 17.5%;
+      p {
+        font-size: 14px;
+      }
     }
     .type{
       width: 10%;
     }
     .time {
-      width: 15%
+      width: 15%;
     }
     .ical {
       width: 5%;
