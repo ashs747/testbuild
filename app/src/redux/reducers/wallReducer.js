@@ -21,8 +21,13 @@ function formatEvidence(fileObj) {
 }
 
 export const reducer = (state = defaultState, action) => {
+  var newState = {...state};
   var wall;
-  var newState;
+
+  if (action.payload && action.payload.wallID) {
+    wall = newState[action.payload.wallID];
+  }
+
   switch (action.type) {
     case "FETCH_WALLS":
       switch(action.status) {
@@ -39,8 +44,6 @@ export const reducer = (state = defaultState, action) => {
       }
       return state;
     case "UPDATE_WALL_POST_FIELD":
-      newState = {...state};
-      wall = newState[action.payload.wallID];
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
           post[action.payload.field] = action.payload.value;
@@ -49,8 +52,6 @@ export const reducer = (state = defaultState, action) => {
       });
       return newState;
     case "UPDATE_WALL_EVIDENCE":
-      newState = {...state};
-      wall = newState[action.payload.wallID];
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
           post['tempEvidence'] = formatEvidence(action.payload.fileObj);
@@ -59,8 +60,6 @@ export const reducer = (state = defaultState, action) => {
       });
       return newState;
     case 'UPDATE_INFO_BOX':
-      newState = {...state};
-      wall = newState[action.payload.wallID];
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
           post['infoBox'] = {
@@ -72,8 +71,6 @@ export const reducer = (state = defaultState, action) => {
       });
       return newState;
     case 'REMOVE_INFO_BOX':
-      newState = {...state};
-      wall = newState[action.payload.wallID];
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
           post['infoBox'] = null;

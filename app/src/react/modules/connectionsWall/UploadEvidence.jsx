@@ -83,7 +83,7 @@ class UploadEvidence extends React.Component {
   onFilesAdded() {
     this.plup.start();
     this.setState({loading: true});
-    dispatch(removeInfoBox(this.props.wallId, this.props.postId));
+    dispatch(removeInfoBox(this.props.wallId, this.props.post.id));
   }
 
   onFileUploaded(up, file, data) {
@@ -91,14 +91,14 @@ class UploadEvidence extends React.Component {
     this.setState({loading: false});
     var isVideo = this.isVideo(response);
     if (isVideo) {
-      dispatch(updateInfoBox(this.props.wallId, this.props.postId, 'video-processing', 'info'));
+      dispatch(updateInfoBox(this.props.wallId, this.props.post.id, 'video-processing', 'info'));
     }
-    dispatch(updateWallPostEvidence(this.props.wallId, this.props.postId, response));
+    dispatch(updateWallPostEvidence(this.props.wallId, this.props.post.id, response));
   }
 
   onError() {
     this.setState({loading: false});
-    dispatch(updateInfoBox(this.props.wallId, this.props.postId, 'error', 'danger'));
+    dispatch(updateInfoBox(this.props.wallId, this.props.post.id, 'error', 'danger'));
   }
 
   isVideo(file) {

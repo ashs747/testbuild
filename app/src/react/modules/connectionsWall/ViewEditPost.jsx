@@ -20,6 +20,7 @@ class ViewEditPost extends React.Component {
     this.onEditClick = this.onEditClick.bind(this);
     this.onChange = this.onChange.bind(this);
     this.getEvidence = this.getEvidence.bind(this);
+    this.buildInfoBox = this.buildInfoBox.bind(this);
     this.state = {
       editing
     };
@@ -31,13 +32,7 @@ class ViewEditPost extends React.Component {
     }
 
     var post = this.props.post
-
     var evidence = this.getEvidence(post);
-    var infoBox = (this.props.usersPost && this.state.editing) ? (
-      <div className="panel panel-info">
-        <p>Hello</p>
-      </div>
-    ) : null;
     var editButton = (this.props.usersPost && post.evidence && !this.state.editing) ? (
       <a className="btn circle edit-circle" onClick={this.onEditClick}><i className="fa fa-pencil"/></a>
     ) : null;
@@ -91,7 +86,7 @@ class ViewEditPost extends React.Component {
     Show edit boxes and disaptch updated field calls
   */
   buildEditPostForm(post) {
-    const panel = (post.infoBox) ? this.buildInfoBox.bind(null, post.infoBox) : null;
+    const panel = (post.infoBox) ? this.buildInfoBox(post.infoBox) : null;
     const postClass = classnames("edit-post-form", "editing-post", {'short-textarea': panel});
     return (
       <div className={postClass}>
@@ -171,10 +166,10 @@ class ViewEditPost extends React.Component {
     var text = "";
     switch (infoBox.msg) {
       case 'video-processing':
-        text = "Your video is currently being processed and will display as “unavailable” until complete. Click 'publish' to continue";
+        text = <p>Your video is currently being processed and will display as “unavailable” until complete. Click 'publish' to continue</p>;
         break;
       case 'error':
-        text = "There has been an error uploading your evidence. If the error persists, please contact Cirrus support";
+        text = <p>There has been an error uploading your evidence. If the error persists, please <a target="_blank" href={this.props.supportUrl}>click here</a></p>;
         break;
       default:
         return null;
@@ -182,7 +177,7 @@ class ViewEditPost extends React.Component {
     return (
       <div className={`panel panel-${infoBox.type}`}>
         <div className="panel-heading">
-          <p>{text}</p>
+          {text}
         </div>
       </div>
     );
@@ -199,7 +194,7 @@ class ViewEditPost extends React.Component {
     };
     if (!post.evidence) {
       if (this.props.usersPost) {
-        return <UploadEvidence wallId={this.props.wallId} postId={post.id} post={post} />;
+        return <UploadEvidence wallId={this.props.wallId} post={post} />;
       }
       var awaitingUploadImage = "http://res.cloudinary.com/strata/image/upload/v1467975107/awaiting-upload_wvdhdh.png";
       return <ImageView src={awaitingUploadImage} layout="box-to-image" style={imageStyle} />
