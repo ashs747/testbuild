@@ -195,8 +195,11 @@
         max-width: 85px;
         width: 100%;
         color: $whiteFontColour;
-        padding: 3px 12px;
+        padding: 7px 12px;
+        border: none;
+        border-radius: 0;
         font-weight: bold;
+        text-transform: uppercase;
       }
       .icon {
         margin: 0 auto;
@@ -312,11 +315,11 @@
     .module-overview {
       padding: 10px;
       background-color: $lightGreyBackground;
-     
+
       font-size:18px;
       font-weight:normal;
       line-height:24px;
-      
+
       position:relative;
       margin: 3px 0;
       i{
