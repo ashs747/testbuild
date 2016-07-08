@@ -29,7 +29,13 @@ class ConnectionsWallView extends React.Component {
         }
       }
     }
-    let connectionsWall = <ConnectionsWall wall={wallObject} currentUser={this.props.currentUser} profile={this.props.profile}/>
+    let connectionsWall =
+    <ConnectionsWall
+      wall={wallObject}
+      currentUser={this.props.currentUser}
+      profile={this.props.profile}
+      supportUrl={this.props.supportUrl}
+      />
     let top10 = (
       <Top10Widget wall={wallObject}/>
     );
@@ -129,7 +135,8 @@ var mappedConnectionsWallWrapperView = connect(state => {
     profile: state.width.profile,
     walls: state.wall,
     currentUser: state.user.id,
-    learningJourney: state.learningJourney
+    learningJourney: state.learningJourney,
+    supportUrl: state.programme.supportUrl
   };
 })(ConnectionsWallView);
 

@@ -18,7 +18,7 @@ class ConnectionsWall extends React.Component {
     let jsxPosts = posts.map(this.mapPosts.bind(null, this.props.currentUser, this.props.profile));
     var editPosts = posts.map((post, i) => {
       var usersPost = (post.owner && post.owner.id === this.props.currentUser);
-      return <ViewEditPost key={`post-${i}`} post={post} usersPost={usersPost} wallId={this.props.wall.id}/>
+      return <ViewEditPost key={`post-${i}`} post={post} usersPost={usersPost} wallId={this.props.wall.id} supportUrl={this.props.supportUrl}/>
     });
     return (
       <div className="connections-wall">

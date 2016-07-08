@@ -7,6 +7,7 @@ import {updateWallPostField} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
+import UploadEvidence from './UploadEvidence.jsx';
 
 class ViewEditPost extends React.Component {
 
@@ -18,6 +19,8 @@ class ViewEditPost extends React.Component {
     }
     this.onEditClick = this.onEditClick.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.getEvidence = this.getEvidence.bind(this);
+    this.buildInfoBox = this.buildInfoBox.bind(this);
     this.state = {
       editing
     };
@@ -29,9 +32,7 @@ class ViewEditPost extends React.Component {
     }
 
     var post = this.props.post
-    var state = (this.state.editing) ? "Editing" : "Viewing";
-
-    var evidence = this.getEvidence(post.evidence);
+    var evidence = this.getEvidence(post);
     var editButton = (this.props.usersPost && post.evidence && !this.state.editing) ? (
       <a className="btn circle edit-circle" onClick={this.onEditClick}><i className="fa fa-pencil"/></a>
     ) : null;
@@ -85,8 +86,10 @@ class ViewEditPost extends React.Component {
     Show edit boxes and disaptch updated field calls
   */
   buildEditPostForm(post) {
+    const panel = (post.infoBox) ? this.buildInfoBox(post.infoBox) : null;
+    const postClass = classnames("edit-post-form", "editing-post", {'short-textarea': panel});
     return (
-      <div className="edit-post-form editing-post">
+      <div className={postClass}>
         <h3>Edit your post</h3>
         <input type="text" placeholder="Title" value={post.title} onChange={this.onChange.bind(null, "title")} />
         <textarea
@@ -99,8 +102,9 @@ class ViewEditPost extends React.Component {
           <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
           <b>{post.likes.length}</b>
         </div>
+        {panel}
         <div className="publish-button">
-          <a className="btn btn-publish" onClick={this.onFormSave}>UPDATE</a>
+          <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
         </div>
       </div>
     )
@@ -111,8 +115,10 @@ class ViewEditPost extends React.Component {
     Show edit boxes and disaptch updated field calls
   */
   buildFirstPostForm(post) {
+    const panel = (post.infoBox) ? this.buildInfoBox(post.infoBox) : null;
+    const postClass = classnames("edit-post-form", "first-post", {'short-textarea': panel});
     return (
-      <div className="edit-post-form">
+      <div className={postClass}>
         <h3>Upload your post</h3>
         <input type="text" placeholder="Title" value={post.title} onChange={this.onChange.bind(null, "title")} />
         <textarea
@@ -121,6 +127,7 @@ class ViewEditPost extends React.Component {
           placeholder="Description"
           onChange={this.onChange.bind(null, "description")}
         />
+        {panel}
         <div className="publish-button">
           <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
         </div>
@@ -155,27 +162,48 @@ class ViewEditPost extends React.Component {
     )
   }
 
+  buildInfoBox(infoBox) {
+    var text = "";
+    switch (infoBox.msg) {
+      case 'video-processing':
+        text = <p>Your video is currently being processed and will display as “unavailable” until complete. Click 'publish' to continue</p>;
+        break;
+      case 'error':
+        text = <p>There has been an error uploading your evidence. If the error persists, please <a target="_blank" href={this.props.supportUrl}>click here</a></p>;
+        break;
+      default:
+        return null;
+    }
+    return (
+      <div className={`panel panel-${infoBox.type}`}>
+        <div className="panel-heading">
+          {text}
+        </div>
+      </div>
+    );
+  }
+
   /*
-    Get the evidence photo, if we don't have one, display a placeholder
+    Get the evidence, if we don't have one, display a placeholder
   */
-  getEvidence(evidence) {
+  getEvidence(post) {
     const imageStyle = {
       height: "100%",
       width: "100%",
       display: "inline-block"
     };
-    if (!evidence) {
-      return <ImageView
-        src="http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png"
-        layout="box-to-image"
-        style={imageStyle}
-      />;
+    if (!post.evidence) {
+      if (this.props.usersPost) {
+        return <UploadEvidence wallId={this.props.wallId} post={post} />;
+      }
+      var awaitingUploadImage = "http://res.cloudinary.com/strata/image/upload/v1467975107/awaiting-upload_wvdhdh.png";
+      return <ImageView src={awaitingUploadImage} layout="box-to-image" style={imageStyle} />
     }
-    if (evidence.type === "image") {
-      return <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />
+    if (post.evidence.type === "image") {
+      return <ImageView src={post.evidence.url} layout="box-to-image" style={imageStyle} />
     }
-    if (evidence.type === "video") {
-      return <Video url={evidence.url} colour="#ea3592" autoplay={false}/>
+    if (post.evidence.type === "video") {
+      return <Video url={post.evidence.url} colour="#ea3592" autoplay={false}/>
     }
   }
 
