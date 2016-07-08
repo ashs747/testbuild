@@ -71,6 +71,16 @@ export const reducer = (state = defaultState, action) => {
         return post;
       });
       return newState;
+    case 'REMOVE_INFO_BOX':
+      newState = {...state};
+      wall = newState[action.payload.wallID];
+      wall.posts = wall.posts.map(post => {
+        if (post.id === action.payload.postID) {
+          post['infoBox'] = null;
+        }
+        return post;
+      });
+      return newState;
     default:
       return state;
   }

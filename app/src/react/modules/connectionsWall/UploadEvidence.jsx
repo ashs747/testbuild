@@ -4,7 +4,7 @@ import Video from '../../components/Video.jsx';
 import config from '../../../localConfig';
 import store from '../../../redux/store.js';
 import {findDOMNode} from 'react-dom';
-import {updateWallPostEvidence, updateInfoBox} from '../../../redux/actions/wallActions';
+import {updateWallPostEvidence, updateInfoBox, removeInfoBox} from '../../../redux/actions/wallActions';
 var dispatch = store.dispatch;
 
 class UploadEvidence extends React.Component {
@@ -83,6 +83,7 @@ class UploadEvidence extends React.Component {
   onFilesAdded() {
     this.plup.start();
     this.setState({loading: true});
+    dispatch(removeInfoBox(this.props.wallId, this.props.postId));
   }
 
   onFileUploaded(up, file, data) {

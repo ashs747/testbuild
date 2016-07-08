@@ -34,3 +34,12 @@ export function updateInfoBox(wallID, postID, msg, type) {
     }
   }
 }
+
+export function removeInfoBox(wallID, postID) {
+  return {
+    type: 'REMOVE_INFO_BOX',
+    payload: {
+      wallID, postID
+    }
+  }
+}

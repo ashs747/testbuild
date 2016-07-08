@@ -3,7 +3,7 @@
   .edit-post-form {
     padding: 0 45px;
     margin-top: 35px;
-    max-height: 300px;
+    max-height: 301px;
     .likes-counter {
       bottom: 20px;
     }
@@ -11,12 +11,7 @@
       bottom: 20px;
     }
     &.first-post {
-      max-height: 350px;
-      .info-bar {
-        .panel {
-          width: 50%;
-        }
-      }
+      max-height: 315px;
     }
   }
 }

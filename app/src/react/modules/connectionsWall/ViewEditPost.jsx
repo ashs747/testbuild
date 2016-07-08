@@ -92,8 +92,9 @@ class ViewEditPost extends React.Component {
   */
   buildEditPostForm(post) {
     const panel = (post.infoBox) ? this.buildInfoBox.bind(null, post.infoBox) : null;
+    const postClass = classnames("edit-post-form", "editing-post", {'short-textarea': panel});
     return (
-      <div className="edit-post-form editing-post">
+      <div className={postClass}>
         <h3>Edit your post</h3>
         <input type="text" placeholder="Title" value={post.title} onChange={this.onChange.bind(null, "title")} />
         <textarea
@@ -106,11 +107,9 @@ class ViewEditPost extends React.Component {
           <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
           <b>{post.likes.length}</b>
         </div>
-        <div className="info-bar clearfix">
-          {panel}
-          <div className="publish-button">
-            <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
-          </div>
+        {panel}
+        <div className="publish-button">
+          <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
         </div>
       </div>
     )
@@ -122,8 +121,9 @@ class ViewEditPost extends React.Component {
   */
   buildFirstPostForm(post) {
     const panel = (post.infoBox) ? this.buildInfoBox(post.infoBox) : null;
+    const postClass = classnames("edit-post-form", "first-post", {'short-textarea': panel});
     return (
-      <div className="edit-post-form first-post">
+      <div className={postClass}>
         <h3>Upload your post</h3>
         <input type="text" placeholder="Title" value={post.title} onChange={this.onChange.bind(null, "title")} />
         <textarea
@@ -132,11 +132,9 @@ class ViewEditPost extends React.Component {
           placeholder="Description"
           onChange={this.onChange.bind(null, "description")}
         />
-      <div className="info-bar clearfix">
-          {panel}
-          <div className="publish-button">
-            <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
-          </div>
+        {panel}
+        <div className="publish-button">
+          <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
         </div>
       </div>
     )
@@ -203,7 +201,7 @@ class ViewEditPost extends React.Component {
       if (this.props.usersPost) {
         return <UploadEvidence wallId={this.props.wallId} postId={post.id} post={post} />;
       }
-      var awaitingUploadImage = "http://res.cloudinary.com/strata/image/upload/v1467881930/connections-wall-click-to-add_rwb3sl.png";
+      var awaitingUploadImage = "http://res.cloudinary.com/strata/image/upload/v1467975107/awaiting-upload_wvdhdh.png";
       return <ImageView src={awaitingUploadImage} layout="box-to-image" style={imageStyle} />
     }
     if (post.evidence.type === "image") {
