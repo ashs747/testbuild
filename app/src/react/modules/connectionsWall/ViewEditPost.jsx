@@ -172,7 +172,12 @@ class ViewEditPost extends React.Component {
       />;
     }
     if (evidence.type === "image") {
-      return <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />
+      return (
+        <div className="evidence-inner-wrapper">
+          <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />
+          <a className="btn-delete" href=""><i className="fa fa-trash-o"></i></a>
+        </div>
+      )
     }
     if (evidence.type === "video") {
       return <Video url={evidence.url} colour="#ea3592" autoplay={false}/>
