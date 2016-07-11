@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
 import ResourceWidget from '../modules/resource/Widget.jsx';
+import Top10Widget from '../modules/connectionsWall/Top10Widget.jsx';
 import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import Carousel from '../components/Carousel.jsx';
@@ -17,6 +18,20 @@ class AlternateModuleView extends React.Component {
     if (!module) {
       return <div />;
     }
+
+    console.log(module);
+
+    var walls = this.props.walls;
+    var requiredWallId = parseInt(this.props.params.id, 10);
+    var wallObject = null;
+    for (var wall in walls) {
+      if (walls.hasOwnProperty(wall)) {
+        if (walls[wall].activityId === requiredWallId) {
+          wallObject = walls[wall];
+        }
+      }
+    }
+
     let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} accessToken={this.props.accessToken} supportUrl={this.props.supportUrl}/>;
     let items = module.files.map(file => {
       var reference = '#';
@@ -53,7 +68,7 @@ class AlternateModuleView extends React.Component {
     );
     let connectionsWidget = (
       <div>
-        <div>Connections Wall Component</div>
+        <Top10Widget wall={wallObject}/>
         <a href="">
           <img className="connections-wall-image" href="" src=""/>
         </a>
@@ -114,6 +129,7 @@ class AlternateModuleView extends React.Component {
 
 function mapModuleProps(state) {
   return {
+    walls: state.wall,
     modules: state.learningJourney,
     profile: state.width.profile,
     accessToken: state.auth.access_token,
