@@ -42,6 +42,7 @@ class ConnectionsWall extends React.Component {
         currentUser={currentUser}
         postBelongsToUser={postBelongsToUser}
         profile={profile}
+        pending={post.pending}
       />
     );
   }

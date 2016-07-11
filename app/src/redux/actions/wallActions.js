@@ -1,4 +1,5 @@
-import {getAllWallsForProgramme} from '../services/wallService';
+import {getAllWallsForProgramme, postEvidence} from '../services/wallService';
+import store from '../store.js';
 
 export function getWallsForProgramme() {
   var payload = getAllWallsForProgramme();
@@ -49,6 +50,56 @@ export function userDeletedEvidence(wallID, postID) {
     type: 'REMOVE_WALL_EVIDENCE',
     payload: {
       wallID, postID
+    }
+  }
+}
+
+export function clearTempData(wallID, postID) {
+  return {
+    type: 'REMOVE_TEMP_DATA',
+    payload: {
+      wallID, postID
+    }
+  }
+}
+
+export function postEvidenceAction(wallID, postID) {
+  var dispatch = store.dispatch;
+  var wall = store.getState().wall[wallID];
+  var post;
+  var dispatchObj = {};
+  wall.posts.forEach(postObj => {
+    if (postObj.id === postID) {
+      post = postObj;
+    }
+  })
+  var evidence = post.evidence
+  if (!evidence) {
+    dispatchObj = updateInfoBox(wallID, postID, 'no-evidence', 'danger');
+    return dispatchObj;
+  }
+  var payload = postEvidence(post).then((post) => {
+    dispatch({
+      type: "POST_EVIDENCE",
+      status: "RESOLVED",
+      payload: {
+        post, wallID
+      }
+    });
+  }, (err) => {
+    dispatch({
+      type: "POST_EVIDENCE",
+      status: "REJECTED",
+      payload: {
+        postID, wallID
+      }
+    })
+  });
+  return {
+    type: "POST_EVIDENCE",
+    status: "PENDING",
+    payload: {
+      postID, wallID
     }
   }
 }

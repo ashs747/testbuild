@@ -46,10 +46,17 @@
       position: absolute;
       bottom: 15px;
     }
-    .btn-publish {
+    .btn {
+      width: 80px;
+      font-size: 14px;
       position: absolute;
-      right: 45px;
-      bottom: 15px;
+      bottom: 20px;
+    }
+    .btn-cancel {
+      right: 105px;
+    }
+    .btn-publish {
+      right: 25px;
     }
     .panel {
       margin-bottom: 0;
