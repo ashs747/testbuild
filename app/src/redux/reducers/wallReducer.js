@@ -56,7 +56,7 @@ export const reducer = (state = defaultState, action) => {
     case "UPDATE_WALL_EVIDENCE":
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
-          post['tempEvidence'] = formatEvidence(action.payload.fileObj);
+          post['evidence'] = formatEvidence(action.payload.fileObj);
         }
         return post;
       });
@@ -83,8 +83,10 @@ export const reducer = (state = defaultState, action) => {
     case 'REMOVE_WALL_EVIDENCE':
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
+          if (post['postedOn']) {
+            post['tempEvidence'] = post['evidence'];
+          }
           post['evidence'] = null;
-          post['tempEvidence'] = null;
         }
         return post;
       });
@@ -99,15 +101,45 @@ export const reducer = (state = defaultState, action) => {
                 msg: 'posted',
                 type: 'success'
               };
+              post['pending'] = false;
             }
             return post;
           });
           return newState;
         case "REJECTED":
-        break;
+          wall.posts = wall.posts.map(post => {
+            if (post.id === action.payload.postID) {
+              post['pending'] = false;
+              post['infoBox'] = {
+                msg: 'error',
+                type: 'danger'
+              };
+            }
+            return post;
+          });
+          return newState;
         case "PENDING":
-        break;
+          wall.posts = wall.posts.map(post => {
+            if (post.id === action.payload.postID) {
+              post['pending'] = true;
+            }
+            return post;
+          });
+          return newState;
       }
+    case 'REMOVE_TEMP_DATA':
+      wall.posts = wall.posts.map(post => {
+        if (post.id === action.payload.postID) {
+          if (post['tempEvidence']) {
+            post['evidence'] = post['tempEvidence'];
+          }
+          post['tempEvidence'] = null;
+          post['tempTitle'] = null;
+          post['tempDescription'] = null;
+        }
+        return post;
+      });
+      return newState;
     default:
       return state;
   }

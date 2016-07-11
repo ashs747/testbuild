@@ -54,6 +54,15 @@ export function userDeletedEvidence(wallID, postID) {
   }
 }
 
+export function clearTempData(wallID, postID) {
+  return {
+    type: 'REMOVE_TEMP_DATA',
+    payload: {
+      wallID, postID
+    }
+  }
+}
+
 export function postEvidenceAction(wallID, postID) {
   var dispatch = store.dispatch;
   var wall = store.getState().wall[wallID];
@@ -64,7 +73,7 @@ export function postEvidenceAction(wallID, postID) {
       post = postObj;
     }
   })
-  var evidence = post.tempEvidence || post.evidence
+  var evidence = post.evidence
   if (!evidence) {
     dispatchObj = updateInfoBox(wallID, postID, 'no-evidence', 'danger');
     return dispatchObj;
@@ -88,6 +97,9 @@ export function postEvidenceAction(wallID, postID) {
   });
   return {
     type: "POST_EVIDENCE",
-    status: "PENDING"
+    status: "PENDING",
+    payload: {
+      postID, wallID
+    }
   }
 }

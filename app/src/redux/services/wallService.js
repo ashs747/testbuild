@@ -12,12 +12,13 @@ export const getAllWallsForProgramme = () => {
 };
 
 export const postEvidence = (post) => {
-  var evidence = post.tempEvidence || post.evidence;
+  var title = post.tempTitle || post.title;
+  var description = post.tempDescription || post.description;
   var data = {
     "update_wall_post": {
-      title: post.title,
-      description: post.description,
-      evidence: evidence.id
+      title,
+      description,
+      evidence: post.evidence.id
     }
   };
   return request.post(`${apiRoot}api/wall/update-post/${post.id}`, data);
