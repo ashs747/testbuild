@@ -19,14 +19,12 @@ class AlternateModuleView extends React.Component {
       return <div />;
     }
 
-    console.log(module);
-
-    var walls = this.props.walls;
-    var requiredWallId = parseInt(this.props.params.id, 10);
-    var wallObject = null;
-    for (var wall in walls) {
+    const walls = this.props.walls;
+    const moduleId = module.activities[Object.keys(module.activities)[0]].id;
+    let wallObject = null;
+    for (let wall in walls) {
       if (walls.hasOwnProperty(wall)) {
-        if (walls[wall].activityId === requiredWallId) {
+        if (walls[wall].activityId === moduleId) {
           wallObject = walls[wall];
         }
       }
