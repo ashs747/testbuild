@@ -65,18 +65,14 @@ class ConnectionsWall extends React.Component {
   }
 
   calculatePostsPerRow(profile) {
-    let posts;
     switch (profile) {
       case "lg":
-        posts = 4;
-        break;
+        return 4;
       case "md":
-        posts = 3;
-        break;
+        return 3;
       default:
-        posts = 2;
+        return 2;
     }
-    return posts;
   }
 
   mapPosts(currentUser, profile, post, i) {
