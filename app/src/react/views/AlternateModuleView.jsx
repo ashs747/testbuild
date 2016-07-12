@@ -18,8 +18,13 @@ class AlternateModuleView extends React.Component {
     if (!module) {
       return <div />;
     }
-
-    const wallObject = this.getWallObject(this.props.walls, module.activities[Object.keys(module.activities)[0]].id);
+    let wallId;
+    for (let activity in module.activities) {
+      if (module.activities[activity].type === "Wall") {
+        wallId = module.activities[activity].id;
+      }
+    }
+    const wallObject = this.getWallObject(this.props.walls, wallId);
 
     let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} accessToken={this.props.accessToken} supportUrl={this.props.supportUrl}/>;
     let items = module.files.map(file => {
