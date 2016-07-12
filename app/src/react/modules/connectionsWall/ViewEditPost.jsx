@@ -3,7 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment-timezone';
-import {updateWallPostField, userDeletedEvidence, removeInfoBox, postEvidenceAction, clearTempData} from '../../../redux/actions/wallActions';
+import {updateWallPostField, userDeletedEvidence, removeInfoBox, postEvidenceAction, clearTempData, changeEditState} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
@@ -13,10 +13,6 @@ class ViewEditPost extends React.Component {
 
   constructor(props) {
     super(props);
-    var editing = false;
-    if (props.post && !props.post.evidence && props.usersPost) {
-      editing = true;
-    }
     this.onEditClick = this.onEditClick.bind(this);
     this.onChange = this.onChange.bind(this);
     this.getEvidence = this.getEvidence.bind(this);
@@ -25,9 +21,6 @@ class ViewEditPost extends React.Component {
     this.onFormSave = this.onFormSave.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
     this.onCancelEditClick = this.onCancelEditClick.bind(this);
-    this.state = {
-      editing
-    };
   }
 
   render() {
@@ -37,7 +30,7 @@ class ViewEditPost extends React.Component {
 
     var post = this.props.post
     var evidence = this.getEvidence(post);
-    var editButton = (this.props.usersPost && post.evidence && !this.state.editing) ? (
+    var editButton = (this.props.usersPost && post.evidence && !post.editing) ? (
       <a className="btn circle edit-circle" onClick={this.onEditClick}><i className="fa fa-pencil"/></a>
     ) : null;
     var postForm = this.buildPostForm(post, this.props.usersPost);
@@ -75,7 +68,7 @@ class ViewEditPost extends React.Component {
   */
   buildPostForm(post, usersPost) {
     if (usersPost) {
-      if (this.state.editing) {
+      if (post.editing) {
         if (post.postedOn) {
           return this.buildEditPostForm(post);
         }
@@ -102,7 +95,7 @@ class ViewEditPost extends React.Component {
     ) : (
       <a className="btn btn-cancel" onClick={this.onCancelEditClick}>CANCEL</a>
     );
-    var title =  post.tempTitle || post.title;
+    var title = post.tempTitle || post.title;
     if (post.tempTitle === "") {
       title = post.tempTitle;
     }
@@ -238,7 +231,7 @@ class ViewEditPost extends React.Component {
     }
 
     var content;
-    var delBtn = (this.state.editing) ? (
+    var delBtn = (post.editing) ? (
       <a className="btn-delete" onClick={this.onDeleteClick}><i className="fa fa-trash-o"></i></a>
     ) : null;
 
@@ -265,7 +258,7 @@ class ViewEditPost extends React.Component {
   */
   onFormSave() {
     dispatch(removeInfoBox(this.props.wallId, this.props.post.id));
-    dispatch(postEvidenceAction(this.props.wallId, this.props.post.id));
+    dispatch(postEvidenceAction(this.props.wallId, this.props.post.id, this.props.activityId));
   }
 
   /*
@@ -280,7 +273,7 @@ class ViewEditPost extends React.Component {
     Dispatch an action to update the parent component with a viewPost: 0.
   */
   onCloseClick() {
-
+    window.location.href = `/#/connections-wall/${this.props.activityId}`;
   }
 
   /*
@@ -290,7 +283,7 @@ class ViewEditPost extends React.Component {
   onCancelEditClick() {
     dispatch(clearTempData(this.props.wallId, this.props.post.id));
     dispatch(removeInfoBox(this.props.wallId, this.props.post.id));
-    this.setState({editing: false});
+    dispatch(changeEditState(this.props.wallId, this.props.post.id, false));
   }
 
   /*
@@ -298,7 +291,7 @@ class ViewEditPost extends React.Component {
     Update internal component state with this and re-render.
   */
   onEditClick() {
-    this.setState({editing: true});
+    dispatch(changeEditState(this.props.wallId, this.props.post.id, true));
   }
 
   onDeleteClick() {

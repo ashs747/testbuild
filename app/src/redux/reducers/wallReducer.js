@@ -97,14 +97,11 @@ export const reducer = (state = defaultState, action) => {
           wall.posts = wall.posts.map(post => {
             if (post.id === action.payload.post.id) {
               post = action.payload.post
-              post['infoBox'] = {
-                msg: 'posted',
-                type: 'success'
-              };
               post['pending'] = false;
             }
             return post;
           });
+          window.location.href = `/#/connections-wall/${action.payload.activityId}`;
           return newState;
         case "REJECTED":
           wall.posts = wall.posts.map(post => {
@@ -136,6 +133,14 @@ export const reducer = (state = defaultState, action) => {
           post['tempEvidence'] = null;
           post['tempTitle'] = null;
           post['tempDescription'] = null;
+        }
+        return post;
+      });
+      return newState;
+    case 'CHANGE_EDIT_STATE':
+      wall.posts = wall.posts.map(post => {
+        if (post.id === action.payload.postID) {
+          post['editing'] = action.payload.editState;
         }
         return post;
       });

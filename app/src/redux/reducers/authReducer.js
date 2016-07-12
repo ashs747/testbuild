@@ -6,6 +6,16 @@ const initialState = {
   waitingForLogin: false
 };
 
+function getParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+    var results = regex.exec(url);
+    if (!results || !results[2]) {
+      return null;
+    }
+    return (results[2].replace(/\+/g, " "));
+}
+
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case 'LOGOUT':
@@ -13,8 +23,13 @@ export function reducer(state = initialState, action) {
       break;
 
     case UPDATE_PATH:
-      //*TODO: Move this out of the reducer - reducers should be pure functions */
-      window.scrollTo(0, 0);
+      if (action.payload.path) {
+        var viewPost = getParameterByName("viewPost", action.payload.path);
+      }
+      if (!viewPost) {
+        window.scrollTo(0, 0);
+      }
+
       return {...state, waitingForLogin: false};
 
     case 'COOKIE_AUTH_LOADED':
