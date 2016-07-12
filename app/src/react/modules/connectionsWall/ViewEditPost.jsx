@@ -13,6 +13,7 @@ class ViewEditPost extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.onEditClick = this.onEditClick.bind(this);
     this.onChange = this.onChange.bind(this);
     this.getEvidence = this.getEvidence.bind(this);
@@ -23,9 +24,15 @@ class ViewEditPost extends React.Component {
     this.onCancelEditClick = this.onCancelEditClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.post && nextProps.post && this.props.post.id !== nextProps.post.id) {
+      this.postUnmount(this.props.wallId, this.props.post.id);
+    }
+  }
+
   render() {
     if (!this.props.post) {
-      return <div>spinner</div>;
+      return <div />;
     }
 
     var post = this.props.post
@@ -253,6 +260,12 @@ class ViewEditPost extends React.Component {
     )
   }
 
+  postUnmount(wallId, postId) {
+    dispatch(clearTempData(wallId, postId));
+    dispatch(removeInfoBox(wallId, postId));
+    dispatch(changeEditState(wallId, postId, false));
+  }
+
   /*
     The onClick handler used to dispatch the update action
   */
@@ -281,9 +294,7 @@ class ViewEditPost extends React.Component {
     Update internal component state and re-render
   */
   onCancelEditClick() {
-    dispatch(clearTempData(this.props.wallId, this.props.post.id));
-    dispatch(removeInfoBox(this.props.wallId, this.props.post.id));
-    dispatch(changeEditState(this.props.wallId, this.props.post.id, false));
+    this.postUnmount(this.props.wallId, this.props.post.id);
   }
 
   /*

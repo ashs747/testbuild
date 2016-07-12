@@ -28,16 +28,12 @@ class ConnectionsWall extends React.Component {
       if (ref) {
         var el = findDOMNode(ref);
         var top = ($(el).offset().top);
-        $("html, body").animate({ scrollTop: `${top}px` })
+        $("html, body").stop();
+        $("html, body").animate({ scrollTop: `${top + 100}px` }, 500);
       }
+    } else {
+      window.scrollTo(0, 0);
     }
-    //var el = findDOMNode();
-    /*
-    setTimeout(() => {
-      var top = ($(el).position()).top;
-
-    }, 100);
-    */
   }
 
   render() {

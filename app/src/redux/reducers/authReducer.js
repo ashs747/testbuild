@@ -6,27 +6,21 @@ const initialState = {
   waitingForLogin: false
 };
 
-function getParameterByName(name, url) {
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
-  var results = regex.exec(url);
-  if (!results || !results[2]) {
-    return null;
-  }
-  return (results[2].replace(/\+/g, " "));
-}
-
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case 'LOGOUT':
       return {};
 
     case UPDATE_PATH:
-      var viewPost;
+      var overwriteScroll;
+
       if (action.payload.path) {
-        viewPost = getParameterByName("viewPost", action.payload.path);
+        if (action.payload.path.search("connections-wall") > 0) {
+          overwriteScroll = true;
+        }
       }
-      if (!viewPost) {
+
+      if (!overwriteScroll) {
         window.scrollTo(0, 0);
       }
 
