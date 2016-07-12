@@ -2,11 +2,55 @@ import React from 'react';
 import WallPost from './WallPost.jsx';
 import ViewEditPost from './ViewEditPost.jsx';
 import moment from 'moment-timezone';
+import {findDOMNode} from 'react-dom';
+import $ from 'jquery';
 
 class ConnectionsWall extends React.Component {
 
   constructor() {
     super();
+    this.buildViewEdit = this.buildViewEdit.bind(this);
+    this.mapPosts = this.mapPosts.bind(this);
+    this.animateToPos = this.animateToPos.bind(this);
+  }
+
+  componentDidMount() {
+    this.animateToPos();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps && prevProps.viewPost !== this.props.viewPost) {
+      this.animateToPos();
+    }
+  }
+
+  animateToPos() {
+    var page = $("html, body");
+    page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {
+      page.stop();
+    });
+    if (this.props.viewPost || this.props.viewPost === 0) {
+      var ref = this.refs[`wall-post-${this.props.viewPost}`];
+      if (ref) {
+        var el = findDOMNode(ref);
+        var top = ($(el).offset().top);
+        page.stop();
+        setTimeout(() => {
+          page.animate({ scrollTop: `${top + 100}px` }, 500);
+        }, 100);
+      } else {
+        page.stop();
+        setTimeout(() => {
+          page.animate({ scrollTop: $(window).scrollTop() - 100}, 500);
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  componentWillUnmount() {
+    $("html, body").off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {});
   }
 
   render() {
@@ -14,13 +58,8 @@ class ConnectionsWall extends React.Component {
       return <p>No Wall Found</p>;
     }
     const deadline = moment(this.props.wall.deadline).format('Do MMMM YYYY');
-    let posts = this.props.wall.posts;
-    let jsxPosts = posts.map(this.mapPosts.bind(null, this.props.currentUser, this.props.profile));
-    var editPosts = posts.map((post, i) => {
-      var usersPost = (post.owner && post.owner.id === this.props.currentUser);
-      return <ViewEditPost key={`post-${i}`} post={post} usersPost={usersPost} wallId={this.props.wall.id} supportUrl={this.props.supportUrl}/>
-    });
-    const wallContent = this.populateContent(editPosts, jsxPosts, this.props.profile);
+    const posts = this.props.wall.posts.map(this.mapPosts.bind(null, this.props.currentUser, this.props.profile, this.props.wall.activityId, this.props.viewPost));
+    const wallContent = this.populateContent(posts, this.props.profile, this.props.viewPost);
     return (
       <div className="connections-wall">
         {wallContent}
@@ -28,21 +67,17 @@ class ConnectionsWall extends React.Component {
     )
   }
 
-  populateContent(editPosts, jsxPosts, profile) {
-    const rowPosts = this.populateRows(jsxPosts, profile);
-    let wallContent = [];
-    for (let i = 0; i < rowPosts.length; i++) {
-      let row = [];
-      for (let j = 0 ; j < rowPosts[i].length; j++) {
-        row.push(rowPosts[i][j]);
-      }
-      wallContent.push (
+  populateContent(posts, profile, viewPost) {
+    const rowPosts = this.populateRows(posts, profile);
+    let wallContent = rowPosts.map((row, i) => {
+      var viewEdit = this.buildViewEdit(row);
+      return (
         <div key={`wall-post-row-${i}`} className="wall-post-row">
           {row}
-          {editPosts[i]}
+          {viewEdit}
         </div>
-      )
-    }
+      );
+    });
     return wallContent;
   }
 
@@ -75,10 +110,14 @@ class ConnectionsWall extends React.Component {
     }
   }
 
-  mapPosts(currentUser, profile, post, i) {
+  mapPosts(currentUser, profile, activityId, viewPost, post, i) {
     const postBelongsToUser = (currentUser === post.owner.id);
+    const postBeingViewed = (post.id === viewPost);
     return (
       <WallPost
+        id={post.id}
+        activityId={activityId}
+        postBeingViewed={postBeingViewed}
         key={`wall-post-${i}`}
         title={post.title}
         description={post.description}
@@ -90,8 +129,43 @@ class ConnectionsWall extends React.Component {
         postBelongsToUser={postBelongsToUser}
         profile={profile}
         pending={post.pending}
+        ref={`wall-post-${post.id}`}
+        postedOn={post.postedOn}
+        tempEvidence={post.tempEvidence}
       />
     );
+  }
+
+  buildViewEdit(row) {
+    var post;
+    for (let i = 0; i < row.length; i++) {
+      if (row[i].props.id === this.props.viewPost) {
+        post = row[i];
+        break;
+      }
+    }
+    if (post) {
+      let postObjs = this.props.wall.posts;
+      var postObj;
+      postObjs.forEach(post => {
+        if (post.id === this.props.viewPost) {
+          postObj = post;
+        }
+      });
+      if (postObj) {
+        let usersPost = this.props.currentUser === postObj.owner.id;
+        return (
+          <ViewEditPost
+            post={postObj}
+            usersPost={usersPost}
+            wallId={this.props.wall.id}
+            supportUrl={this.props.supportUrl}
+            activityId={this.props.wall.activityId}
+          />
+      );
+      }
+    }
+    return null;
   }
 }
 

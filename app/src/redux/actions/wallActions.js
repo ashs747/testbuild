@@ -1,4 +1,5 @@
 import {getAllWallsForProgramme, postEvidence} from '../services/wallService';
+import {updateMeta} from '../services/feedService';
 import store from '../store.js';
 
 export function getWallsForProgramme() {
@@ -63,7 +64,44 @@ export function clearTempData(wallID, postID) {
   }
 }
 
-export function postEvidenceAction(wallID, postID) {
+export function changeEditState(wallID, postID, editState) {
+  return {
+    type: 'CHANGE_EDIT_STATE',
+    payload: {
+      wallID, postID, editState
+    }
+  }
+}
+
+export function rotateImageAction(wallID, postID, fileID, meta) {
+  var dispatch = store.dispatch;
+  var payload = updateMeta(fileID, meta).then((file) => {
+    dispatch({
+      type: 'ROTATED_IMAGE',
+      status: 'RESOLVED',
+      payload: {
+        wallID, postID, file
+      }
+    });
+  }, (err) => {
+    dispatch({
+      type: 'ROTATED_IMAGE',
+      status: 'REJECTED',
+      payload: {
+        wallID, postID
+      }
+    });
+  });
+  return {
+    type: 'ROTATED_IMAGE',
+    status: 'PENDING',
+    payload: {
+      wallID, postID
+    }
+  }
+}
+
+export function postEvidenceAction(wallID, postID, activityId) {
   var dispatch = store.dispatch;
   var wall = store.getState().wall[wallID];
   var post;
@@ -83,7 +121,7 @@ export function postEvidenceAction(wallID, postID) {
       type: "POST_EVIDENCE",
       status: "RESOLVED",
       payload: {
-        post, wallID
+        post, wallID, activityId
       }
     });
   }, (err) => {

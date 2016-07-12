@@ -75,12 +75,28 @@
       }
     }
   }
-  .btn-delete {
+  .img-action-btn {
     padding: 18px 24px;
     top: calc(50% - 50px);
-    right: calc(40% - 98px);
+    height: 100px;
+    width: 100px;
     i {
       font-size: 64px;
+    }
+    img {
+      height: 55px;
+      width: 55px;
+    }
+  }
+  .btn-delete {
+    right: calc(40% - 80px);
+  }
+  .btn-rotate {
+    left: calc(40% - 80px);
+  }
+  .del-btn-only {
+    .btn-delete {
+      right: calc(50% - 50px);
     }
   }
 }

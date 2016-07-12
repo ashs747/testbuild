@@ -29,13 +29,17 @@ class ConnectionsWallView extends React.Component {
         }
       }
     }
-    let connectionsWall =
-    <ConnectionsWall
-      wall={wallObject}
-      currentUser={this.props.currentUser}
-      profile={this.props.profile}
-      supportUrl={this.props.supportUrl}
-      />
+    var viewPost = this.props.location.query.viewPost || 0;
+    viewPost = parseInt(viewPost, 10);
+    let connectionsWall = (
+      <ConnectionsWall
+        wall={wallObject}
+        currentUser={this.props.currentUser}
+        profile={this.props.profile}
+        supportUrl={this.props.supportUrl}
+        viewPost={viewPost}
+        />
+    );
     let top10 = (
       <Top10Widget wall={wallObject}/>
     );

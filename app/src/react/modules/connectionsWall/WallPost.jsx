@@ -14,7 +14,7 @@ class WallPost extends React.Component {
   }
 
   render() {
-    let buildWallPostFunction = (this.props.evidence) ? this.buildPostWithEvidence : this.buildPostWithoutEvidence;
+    let buildWallPostFunction = (this.props.postedOn) ? this.buildPostWithEvidence : this.buildPostWithoutEvidence;
     let wallPost = buildWallPostFunction();
     return wallPost;
   }
@@ -22,7 +22,7 @@ class WallPost extends React.Component {
   buildEvidenceComponent(evidence) {
     switch (evidence.type) {
       case "image":
-        return <div className="post-evidence"><ImageView layout="box-to-image" style={{ height:"100%", width:"100%"}} src={evidence.url}/></div>
+        return <div className="post-evidence"><ImageView layout="box-to-image" style={{height: "100%", width: "100%"}} src={evidence.url}/></div>
       case "video":
         return <div className="post-evidence"><Video url={evidence.url}/></div>
       default:
@@ -32,14 +32,19 @@ class WallPost extends React.Component {
 
   buildPostWithEvidence() {
     let userLiked = false;
-    this.props.likes.forEach(like => {if (this.props.currentUser === like) userLiked = true});
-    const postClass = classnames(`wall-post-${this.props.profile}`, 'wall-post', 'with-evidence', {'users-post': this.props.postBelongsToUser}, {'post-liked': userLiked});
+    this.props.likes.forEach(like => {
+      if (this.props.currentUser === like) {
+        userLiked = true
+      }
+    });
+    const postClass = classnames(`wall-post-${this.props.profile}`, 'wall-post', 'with-evidence', {'users-post': this.props.postBelongsToUser}, {'post-liked': userLiked}, {'being-viewed': this.props.postBeingViewed});
     const date = moment(this.props.date).format('DD.MM.YYYY');
-    const evidenceComponent = this.buildEvidenceComponent(this.props.evidence);
+    const evidence = this.props.tempEvidence || this.props.evidence;
+    const evidenceComponent = this.buildEvidenceComponent(evidence);
     const label = this.getUserLabel(this.props.postBelongsToUser);
     const profile = (this.props.owner.profilePic) ? this.props.owner.profilePic.url : "assets/img/profile-placeholder.jpg";
     return (
-      <div className={postClass}>
+      <div className={postClass} onClick={this.viewPost.bind(this, this.props.activityId, this.props.id)}>
         {label}
         {evidenceComponent}
         <h5>{this.props.title}</h5>
@@ -53,12 +58,12 @@ class WallPost extends React.Component {
   }
 
   buildPostWithoutEvidence() {
-    const postClass = classnames(`wall-post-${this.props.profile}`, 'wall-post', 'without-evidence', {'users-post': this.props.postBelongsToUser});
+    const postClass = classnames(`wall-post-${this.props.profile}`, 'wall-post', 'without-evidence', {'users-post': this.props.postBelongsToUser}, {'being-viewed': this.props.postBeingViewed});
     let uploadButton = (this.props.postBelongsToUser) ? <button className="upload-evidence">+ Upload</button> : null
     const label = this.getUserLabel(this.props.postBelongsToUser);
     const profile = (this.props.owner.profilePic) ? this.props.owner.profilePic.url : "assets/img/profile-placeholder.jpg";
     return (
-      <div className={postClass}>
+      <div className={postClass} onClick={this.viewPost.bind(this, this.props.activityId, this.props.id)}>
         {label}
         <div className="post-evidence">
           <img className="placeholder-image" src="http://res.cloudinary.com/strata/image/upload/v1467975107/awaiting-upload_wvdhdh.png"/>
@@ -75,6 +80,10 @@ class WallPost extends React.Component {
   getUserLabel(user) {
     let label = (user) ? <img className="users-post-label"src="http://res.cloudinary.com/strata/image/upload/v1467819173/connections-wall-you_uxihlm.png" /> : null;
     return label;
+  }
+
+  viewPost(activityId, postId) {
+    window.location.href = `/#/connections-wall/${activityId}?viewPost=${postId}`;
   }
 }
 
