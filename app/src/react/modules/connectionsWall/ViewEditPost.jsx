@@ -3,7 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment-timezone';
-import {updateWallPostField, userDeletedEvidence, removeInfoBox} from '../../../redux/actions/wallActions';
+import {updateWallPostField, userDeletedEvidence, removeInfoBox, postEvidenceAction, clearTempData} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
@@ -22,6 +22,9 @@ class ViewEditPost extends React.Component {
     this.getEvidence = this.getEvidence.bind(this);
     this.buildInfoBox = this.buildInfoBox.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.onFormSave = this.onFormSave.bind(this);
+    this.onCloseClick = this.onCloseClick.bind(this);
+    this.onCancelEditClick = this.onCancelEditClick.bind(this);
     this.state = {
       editing
     };
@@ -89,15 +92,33 @@ class ViewEditPost extends React.Component {
   buildEditPostForm(post) {
     const panel = (post.infoBox) ? this.buildInfoBox(post.infoBox) : null;
     const postClass = classnames("edit-post-form", "editing-post", {'short-textarea': panel});
+    const anchor = (post.pending) ? (
+      <a className="btn btn-publish"><img src="assets/img/ring-pink.svg" /></a>
+    ) : (
+      <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+    );
+    const cancel = (post.pending) ? (
+      <a className="btn btn-cancel"><img src="assets/img/ring.svg" /></a>
+    ) : (
+      <a className="btn btn-cancel" onClick={this.onCancelEditClick}>CANCEL</a>
+    );
+    var title =  post.tempTitle || post.title;
+    if (post.tempTitle === "") {
+      title = post.tempTitle;
+    }
+    var description = post.tempDescription || post.description;
+    if (post.tempDescription === "") {
+      description = post.tempDescription;
+    }
     return (
       <div className={postClass}>
         <h3>Edit your post</h3>
-        <input type="text" placeholder="Title" value={post.title} onChange={this.onChange.bind(null, "title")} />
+        <input disabled={post.pending} type="text" placeholder="Title" value={title} onChange={this.onChange.bind(null, "tempTitle")} />
         <textarea
-          disabled={this.props.pending}
-          value={post.description}
+          disabled={post.pending}
+          value={description}
           placeholder="Description"
-          onChange={this.onChange.bind(null, "description")}
+          onChange={this.onChange.bind(null, "tempDescription")}
         />
         <div className="likes-counter">
           <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
@@ -105,7 +126,8 @@ class ViewEditPost extends React.Component {
         </div>
         {panel}
         <div className="publish-button">
-          <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+          {cancel}
+          {anchor}
         </div>
       </div>
     )
@@ -118,19 +140,26 @@ class ViewEditPost extends React.Component {
   buildFirstPostForm(post) {
     const panel = (post.infoBox) ? this.buildInfoBox(post.infoBox) : null;
     const postClass = classnames("edit-post-form", "first-post", {'short-textarea': panel});
+    const anchor = (post.pending) ? (
+      <a className="btn btn-publish"><img src="assets/img/ring-pink.svg" /></a>
+    ) : (
+      <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+    );
+    const title = post.tempTitle || post.title;
+    const description = post.tempDescription || post.description;
     return (
       <div className={postClass}>
         <h3>Upload your post</h3>
-        <input type="text" placeholder="Title" value={post.title} onChange={this.onChange.bind(null, "title")} />
+        <input disabled={post.pending} type="text" placeholder="Title" value={title} onChange={this.onChange.bind(null, "tempTitle")} />
         <textarea
-          disabled={this.props.pending}
-          value={post.description}
+          disabled={post.pending}
+          value={description}
           placeholder="Description"
-          onChange={this.onChange.bind(null, "description")}
+          onChange={this.onChange.bind(null, "tempDescription")}
         />
         {panel}
         <div className="publish-button">
-          <a className="btn btn-publish" onClick={this.onFormSave}>PUBLISH</a>
+          {anchor}
         </div>
       </div>
     )
@@ -172,8 +201,12 @@ class ViewEditPost extends React.Component {
       case 'error':
         text = <p>There has been an error uploading your evidence. If the error persists, please <a target="_blank" href={this.props.supportUrl}>click here</a></p>;
         break;
-      default:
-        return null;
+      case 'no-evidence':
+        text = <p>You cannot submit your post without any evidence attached</p>;
+        break;
+      case 'posted':
+        text = <p>Post successfull!</p>;
+        break;
     }
     return (
       <div className={`panel panel-${infoBox.type}`}>
@@ -194,7 +227,7 @@ class ViewEditPost extends React.Component {
       display: "inline-block"
     };
 
-    var evidence = post.evidence || post.tempEvidence;
+    var evidence = post.evidence;
 
     if (!evidence) {
       if (this.props.usersPost) {
@@ -231,7 +264,8 @@ class ViewEditPost extends React.Component {
     The onClick handler used to dispatch the update action
   */
   onFormSave() {
-    console.log("Post update action");
+    dispatch(removeInfoBox(this.props.wallId, this.props.post.id));
+    dispatch(postEvidenceAction(this.props.wallId, this.props.post.id));
   }
 
   /*
@@ -246,7 +280,17 @@ class ViewEditPost extends React.Component {
     Dispatch an action to update the parent component with a viewPost: 0.
   */
   onCloseClick() {
-    console.log("Close post");
+
+  }
+
+  /*
+    When the user click to stop editing the post.
+    Update internal component state and re-render
+  */
+  onCancelEditClick() {
+    dispatch(clearTempData(this.props.wallId, this.props.post.id));
+    dispatch(removeInfoBox(this.props.wallId, this.props.post.id));
+    this.setState({editing: false});
   }
 
   /*

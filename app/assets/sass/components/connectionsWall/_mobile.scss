@@ -90,7 +90,7 @@
         font-size: 13px;
       }
     }
-    .upload-evidence{
+    .upload-evidence {
       text-transform: uppercase;
       font-size: 10px;
       font-weight: bold;
@@ -102,6 +102,10 @@
       background-color: $primaryColour;
     }
   }
+}
+
+.wall-post-row {
+  margin-bottom: 10px;
 }
 
 .top-10-widget {

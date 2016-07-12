@@ -85,11 +85,19 @@
       padding: 7px;
       resize: none;
     }
+    textarea:disabled, input:disabled {
+      background-color: rgb(235, 235, 228);
+    }
     textarea {
       height: 120px;
     }
     .publish-button {
       text-align: right;
+      img {
+        border: none;
+        height: 19px;
+        width: 19px;
+      }
     }
     .info-bar {
       .panel {
@@ -105,6 +113,12 @@
     }
     .btn-publish {
       background-color: $primaryColour;
+    }
+    .btn-cancel {
+      margin-right: 5px;
+      background-color: $secondaryColour;
+    }
+    .btn {
       color: $whiteBackground;
       border-radius: 1px;
       width: 105px;
@@ -141,7 +155,7 @@
         background-color: $primaryColour;
         border-radius: 50%;
         text-align: center;
-        margin-right: 5px;
+        
         display: inline-block;
         i {
           line-height: 32px;
