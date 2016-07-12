@@ -18,14 +18,7 @@ class AlternateModuleView extends React.Component {
     if (!module) {
       return <div />;
     }
-    let wallId;
-    for (let activity in module.activities) {
-      if (module.activities[activity].type === "Wall") {
-        wallId = module.activities[activity].id;
-      }
-    }
-    const wallObject = this.getWallObject(this.props.walls, wallId);
-
+    const wallObject = this.getWallObject(this.props.walls, module.activities);
     let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} accessToken={this.props.accessToken} supportUrl={this.props.supportUrl}/>;
     let items = module.files.map(file => {
       var reference = '#';
@@ -110,11 +103,12 @@ class AlternateModuleView extends React.Component {
     );
   }
 
-  getWallObject(walls, moduleId) {
+  getWallObject(walls, activities) {
+    const wallId = this.findFirstWallByActivityId(activities);
     let wallObject = null;
     for (let wall in walls) {
       if (walls.hasOwnProperty(wall)) {
-        if (walls[wall].activityId === moduleId) {
+        if (walls[wall].activityId === wallId) {
           wallObject = walls[wall];
         }
       }
@@ -130,6 +124,16 @@ class AlternateModuleView extends React.Component {
       }
     });
     return module;
+  }
+
+  findFirstWallByActivityId(activities){
+    let wallId = null;
+    for (let activity in activities) {
+      if (activities[activity].type === "Wall") {
+        wallId = activities[activity].id;
+      }
+    }
+    return wallId;
   }
 }
 
