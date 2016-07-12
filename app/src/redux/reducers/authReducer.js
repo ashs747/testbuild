@@ -7,24 +7,24 @@ const initialState = {
 };
 
 function getParameterByName(name, url) {
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
-    var results = regex.exec(url);
-    if (!results || !results[2]) {
-      return null;
-    }
-    return (results[2].replace(/\+/g, " "));
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+  var results = regex.exec(url);
+  if (!results || !results[2]) {
+    return null;
+  }
+  return (results[2].replace(/\+/g, " "));
 }
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case 'LOGOUT':
       return {};
-      break;
 
     case UPDATE_PATH:
+      var viewPost;
       if (action.payload.path) {
-        var viewPost = getParameterByName("viewPost", action.payload.path);
+        viewPost = getParameterByName("viewPost", action.payload.path);
       }
       if (!viewPost) {
         window.scrollTo(0, 0);

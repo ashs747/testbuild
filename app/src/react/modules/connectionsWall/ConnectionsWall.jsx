@@ -23,13 +23,21 @@ class ConnectionsWall extends React.Component {
   }
 
   animateToPos() {
-    if (this._wallPost && this.props.viewPost) {
-      var el = findDOMNode(this._wallPost);
-      setTimeout(() => {
-        var top = ($(el).position()).top;
+    if (this.props.viewPost) {
+      var ref = this.refs[`wall-post-${this.props.viewPost}`];
+      if (ref) {
+        var el = findDOMNode(ref);
+        var top = ($(el).offset().top);
         $("html, body").animate({ scrollTop: `${top}px` })
-      }, 100);
+      }
     }
+    //var el = findDOMNode();
+    /*
+    setTimeout(() => {
+      var top = ($(el).position()).top;
+
+    }, 100);
+    */
   }
 
   render() {
@@ -108,7 +116,7 @@ class ConnectionsWall extends React.Component {
         postBelongsToUser={postBelongsToUser}
         profile={profile}
         pending={post.pending}
-        ref={(c) => {this._wallPost = c}}
+        ref={`wall-post-${post.id}`}
       />
     );
   }
