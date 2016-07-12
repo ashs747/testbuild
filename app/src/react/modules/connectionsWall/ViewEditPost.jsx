@@ -247,10 +247,12 @@ class ViewEditPost extends React.Component {
     var rotateBtn;
     if (post.editing) {
       delBtn = <a className="img-action-btn btn-delete" onClick={this.onDeleteClick}><i className="fa fa-trash-o"></i></a>;
-      rotateBtn = <a className="img-action-btn btn-rotate" onClick={this.onRotateClick}><i className="fa fa-repeat"></i></a>;
+      if (evidence.type !== "video") {
+        rotateBtn = <a className="img-action-btn btn-rotate" onClick={this.onRotateClick}><i className="fa fa-repeat"></i></a>;
+      }
       if (post.pending) {
         delBtn = <a className="img-action-btn btn-delete"><img src="assets/img/ring.svg"/></a>;
-        rotateBtn = <a className="img-action-btn btn-rotate"><img src="assets/img/ring.svg"/></a>;
+        rotateBtn = (rotateBtn) ? <a className="img-action-btn btn-rotate"><img src="assets/img/ring.svg"/></a> : null;
       }
     }
     if (evidence.type === "image") {
@@ -262,9 +264,10 @@ class ViewEditPost extends React.Component {
     if (!content) {
       return null;
     }
+    var className = classnames("evidence-inner-wrapper", {'del-btn-only': !rotateBtn});
 
     return (
-      <div className="evidence-inner-wrapper">
+      <div className={className}>
         {content}
         {rotateBtn}
         {delBtn}

@@ -208,4 +208,9 @@
     height: 100%;
     position: relative;
   }
+  .del-btn-only {
+    .btn-delete {
+      right: calc(50% - 36px);
+    }
+  }
 }

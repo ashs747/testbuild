@@ -95,7 +95,7 @@ export const reducer = (state = defaultState, action) => {
     case 'REMOVE_WALL_EVIDENCE':
       wall.posts = wall.posts.map(post => {
         if (post.id === action.payload.postID) {
-          if (post['postedOn']) {
+          if (post['postedOn'] && !post['tempEvidence']) {
             post['tempEvidence'] = post['evidence'];
           }
           post['evidence'] = null;
@@ -162,6 +162,9 @@ export const reducer = (state = defaultState, action) => {
         case 'RESOLVED':
           wall.posts = wall.posts.map(post => {
             if (post.id === action.payload.postID) {
+              if (post['postedOn'] && !post['tempEvidence']) {
+                post['tempEvidence'] = post['evidence'];
+              }
               post['evidence'] = formatEvidence(action.payload.file);
               post['pending'] = false;
             }

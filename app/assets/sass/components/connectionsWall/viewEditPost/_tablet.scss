@@ -94,4 +94,9 @@
   .btn-rotate {
     left: calc(40% - 80px);
   }
+  .del-btn-only {
+    .btn-delete {
+      right: calc(50% - 50px);
+    }
+  }
 }

@@ -27,8 +27,8 @@ class ConnectionsWall extends React.Component {
   animateToPos() {
     var page = $("html, body");
     page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {
-       page.stop();
-     });
+      page.stop();
+    });
     if (this.props.viewPost || this.props.viewPost === 0) {
       var ref = this.refs[`wall-post-${this.props.viewPost}`];
       if (ref) {
