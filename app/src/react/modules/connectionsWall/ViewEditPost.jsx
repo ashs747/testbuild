@@ -3,7 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment-timezone';
-import {updateWallPostField, userDeletedEvidence, removeInfoBox, postEvidenceAction, clearTempData, changeEditState} from '../../../redux/actions/wallActions';
+import {updateWallPostField, userDeletedEvidence, removeInfoBox, postEvidenceAction, clearTempData, changeEditState, rotateImageAction} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
@@ -21,6 +21,7 @@ class ViewEditPost extends React.Component {
     this.onFormSave = this.onFormSave.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
     this.onCancelEditClick = this.onCancelEditClick.bind(this);
+    this.onRotateClick = this.onRotateClick.bind(this);
   }
 
   componentWillMount() {
@@ -242,10 +243,18 @@ class ViewEditPost extends React.Component {
     }
 
     var content;
-    var delBtn = (post.editing) ? (
-      <a className="btn-delete" onClick={this.onDeleteClick}><i className="fa fa-trash-o"></i></a>
-    ) : null;
-
+    var delBtn;
+    var rotateBtn;
+    if (post.editing) {
+      delBtn = <a className="img-action-btn btn-delete" onClick={this.onDeleteClick}><i className="fa fa-trash-o"></i></a>;
+      if (evidence.type !== "video") {
+        rotateBtn = <a className="img-action-btn btn-rotate" onClick={this.onRotateClick}><i className="fa fa-repeat"></i></a>;
+      }
+      if (post.pending) {
+        delBtn = <a className="img-action-btn btn-delete"><img src="assets/img/ring.svg"/></a>;
+        rotateBtn = (rotateBtn) ? <a className="img-action-btn btn-rotate"><img src="assets/img/ring.svg"/></a> : null;
+      }
+    }
     if (evidence.type === "image") {
       content = <ImageView src={evidence.url} layout="box-to-image" style={imageStyle} />;
     }
@@ -255,10 +264,12 @@ class ViewEditPost extends React.Component {
     if (!content) {
       return null;
     }
+    var className = classnames("evidence-inner-wrapper", {'del-btn-only': !rotateBtn});
 
     return (
-      <div className="evidence-inner-wrapper">
+      <div className={className}>
         {content}
+        {rotateBtn}
         {delBtn}
       </div>
     )
@@ -319,6 +330,27 @@ class ViewEditPost extends React.Component {
   onDeleteClick() {
     dispatch(removeInfoBox(this.props.wallId, this.props.post.id));
     dispatch(userDeletedEvidence(this.props.wallId, this.props.post.id));
+  }
+
+  onRotateClick() {
+    var evidence = this.props.post.evidence
+    var metadata = evidence.metadata;
+    /*
+      Default value is a rotation to 90, because if we dont have rotate or it's 0
+      we will be rotating to 90.
+    */
+    var rotate = 90;
+    for (var i in metadata) {
+      if (metadata[i].key === "rotate") {
+        rotate = (metadata[i].value === 270) ? 0 : metadata[i].value + 90;
+      }
+    }
+    let updatedMeta = {
+      metaData: {
+        rotate
+      }
+    };
+    dispatch(rotateImageAction(this.props.wallId, this.props.post.id, evidence.id, updatedMeta));
   }
 
 }

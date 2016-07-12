@@ -27,18 +27,22 @@ class ConnectionsWall extends React.Component {
   animateToPos() {
     var page = $("html, body");
     page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {
-       page.stop();
-     });
+      page.stop();
+    });
     if (this.props.viewPost || this.props.viewPost === 0) {
       var ref = this.refs[`wall-post-${this.props.viewPost}`];
       if (ref) {
         var el = findDOMNode(ref);
         var top = ($(el).offset().top);
         page.stop();
-        page.animate({ scrollTop: `${top + 100}px` }, 500);
+        setTimeout(() => {
+          page.animate({ scrollTop: `${top + 100}px` }, 500);
+        }, 100);
       } else {
         page.stop();
-        page.animate({ scrollTop: $(window).scrollTop() - 100}, 500);
+        setTimeout(() => {
+          page.animate({ scrollTop: $(window).scrollTop() - 100}, 500);
+        }, 100);
       }
     } else {
       window.scrollTo(0, 0);
@@ -46,7 +50,7 @@ class ConnectionsWall extends React.Component {
   }
 
   componentWillUnmount() {
-     $("html, body").off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {});
+    $("html, body").off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {});
   }
 
   render() {
