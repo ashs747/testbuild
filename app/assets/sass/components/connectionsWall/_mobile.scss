@@ -20,6 +20,7 @@
   }
 
   .wall-post {
+    cursor: pointer;
     text-align:center;
     background-color: $lightGreyBackground;
     min-height: 205px;
@@ -45,6 +46,11 @@
       background-color: $whiteBackground;
       border-color: #C2FF87;
       box-shadow: 0 0 7px #C2FF87;
+    }
+    &.being-viewed {
+      background-color: $whiteBackground;
+      border-color: #66d5ff;
+      box-shadow: 0 0 7px #66d5ff;
     }
     .post-evidence {
       margin-bottom: 10px;

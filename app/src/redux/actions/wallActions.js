@@ -63,7 +63,16 @@ export function clearTempData(wallID, postID) {
   }
 }
 
-export function postEvidenceAction(wallID, postID) {
+export function changeEditState(wallID, postID, editState) {
+  return {
+    type: 'CHANGE_EDIT_STATE',
+    payload: {
+      wallID, postID, editState
+    }
+  }
+}
+
+export function postEvidenceAction(wallID, postID, activityId) {
   var dispatch = store.dispatch;
   var wall = store.getState().wall[wallID];
   var post;
@@ -83,7 +92,7 @@ export function postEvidenceAction(wallID, postID) {
       type: "POST_EVIDENCE",
       status: "RESOLVED",
       payload: {
-        post, wallID
+        post, wallID, activityId
       }
     });
   }, (err) => {
