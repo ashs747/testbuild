@@ -1,4 +1,5 @@
 import {getAllWallsForProgramme, postEvidence} from '../services/wallService';
+import {updateMeta} from '../services/feedService';
 import store from '../store.js';
 
 export function getWallsForProgramme() {
@@ -68,6 +69,34 @@ export function changeEditState(wallID, postID, editState) {
     type: 'CHANGE_EDIT_STATE',
     payload: {
       wallID, postID, editState
+    }
+  }
+}
+
+export function rotateImageAction(wallID, postID, fileID, meta) {
+  var dispatch = store.dispatch;
+  var payload = updateMeta(fileID, meta).then((file) => {
+    dispatch({
+      type: 'ROTATED_IMAGE',
+      status: 'RESOLVED',
+      payload: {
+        wallID, postID, file
+      }
+    });
+  }, (err) => {
+    dispatch({
+      type: 'ROTATED_IMAGE',
+      status: 'REJECTED',
+      payload: {
+        wallID, postID
+      }
+    });
+  });
+  return {
+    type: 'ROTATED_IMAGE',
+    status: 'PENDING',
+    payload: {
+      wallID, postID
     }
   }
 }

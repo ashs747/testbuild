@@ -155,7 +155,7 @@
         background-color: $primaryColour;
         border-radius: 50%;
         text-align: center;
-        
+
         display: inline-block;
         i {
           line-height: 32px;
@@ -176,20 +176,32 @@
       }
     }
   }
-  .btn-delete {
+  .img-action-btn {
     z-index: 1;
     cursor: pointer;
     background-color: #4c6172;
-    padding: 13px 18px;
+    height: 74px;
+    width: 74px;
     border-radius: 100%;
     position: absolute;
     top: calc(50% - 38px);
-    right: calc(40% - 72px);
     i {
       color: $whiteBackground;
       font-size: 47px;
       text-align:center;
     }
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+  .btn-delete {
+    padding: 13px 18px;
+    right: calc(40% - 50px);
+  }
+  .btn-rotate {
+    padding: 13px 16px;
+    left: calc(40% - 50px);
   }
   .evidence-inner-wrapper {
     width: 100%;

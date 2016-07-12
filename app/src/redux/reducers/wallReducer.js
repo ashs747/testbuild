@@ -3,7 +3,8 @@ var defaultState = {};
 function formatEvidence(fileObj) {
   var file = fileObj.file;
   var formatFileObj = {
-    id: file.id
+    id: file.id,
+    metadata: file.metadata
   };
   switch (file.reference) {
     case "cloudinary":
@@ -14,11 +15,22 @@ function formatEvidence(fileObj) {
       formatFileObj.type = "video";
       break;
   }
+  var url;
+  var rotate;
   file.metadata.forEach(meta => {
     if (meta.key === "url") {
-      formatFileObj.url = meta.value;
+      url = meta.value;
+    }
+    if (meta.key === "rotate") {
+      rotate = meta.value;
     }
   });
+  if (rotate) {
+    var splitUrl = url.split("/");
+    splitUrl.splice(6, 0, `a_${rotate}`);
+    url = splitUrl.join("/");
+  }
+  formatFileObj.url = url;
   return formatFileObj;
 }
 
@@ -145,6 +157,29 @@ export const reducer = (state = defaultState, action) => {
         return post;
       });
       return newState;
+    case 'ROTATED_IMAGE':
+      switch (action.status) {
+        case 'RESOLVED':
+          wall.posts = wall.posts.map(post => {
+            if (post.id === action.payload.postID) {
+              post['evidence'] = formatEvidence(action.payload.file);
+              post['pending'] = false;
+            }
+            return post;
+          });
+          return newState;
+        case 'REJECTED':
+          return state;
+        case 'PENDING':
+          wall.posts = wall.posts.map(post => {
+            if (post.id === action.payload.postID) {
+              post['pending'] = true;
+            }
+            return post;
+          });
+          return newState;
+          return state;
+      }
     default:
       return state;
   }
