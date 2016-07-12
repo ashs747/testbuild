@@ -50,7 +50,7 @@ class ConnectionsWall extends React.Component {
   }
 
   componentWillUnmount() {
-     $("html, body").off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {});
+    $("html, body").off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {});
   }
 
   render() {
