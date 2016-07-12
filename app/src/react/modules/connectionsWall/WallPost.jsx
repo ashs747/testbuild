@@ -14,7 +14,7 @@ class WallPost extends React.Component {
   }
 
   render() {
-    let buildWallPostFunction = (this.props.evidence) ? this.buildPostWithEvidence : this.buildPostWithoutEvidence;
+    let buildWallPostFunction = (this.props.postedOn) ? this.buildPostWithEvidence : this.buildPostWithoutEvidence;
     let wallPost = buildWallPostFunction();
     return wallPost;
   }
@@ -39,7 +39,8 @@ class WallPost extends React.Component {
     });
     const postClass = classnames(`wall-post-${this.props.profile}`, 'wall-post', 'with-evidence', {'users-post': this.props.postBelongsToUser}, {'post-liked': userLiked}, {'being-viewed': this.props.postBeingViewed});
     const date = moment(this.props.date).format('DD.MM.YYYY');
-    const evidenceComponent = this.buildEvidenceComponent(this.props.evidence);
+    const evidence = this.props.evidence || this.props.tempEvidence;
+    const evidenceComponent = this.buildEvidenceComponent(evidence);
     const label = this.getUserLabel(this.props.postBelongsToUser);
     const profile = (this.props.owner.profilePic) ? this.props.owner.profilePic.url : "assets/img/profile-placeholder.jpg";
     return (

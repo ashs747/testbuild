@@ -13,7 +13,6 @@ class ViewEditPost extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.onEditClick = this.onEditClick.bind(this);
     this.onChange = this.onChange.bind(this);
     this.getEvidence = this.getEvidence.bind(this);
@@ -24,9 +23,14 @@ class ViewEditPost extends React.Component {
     this.onCancelEditClick = this.onCancelEditClick.bind(this);
   }
 
+  componentWillMount() {
+    this.checkForPreEditStatus(this.props);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.post && nextProps.post && this.props.post.id !== nextProps.post.id) {
       this.postUnmount(this.props.wallId, this.props.post.id);
+      this.checkForPreEditStatus(nextProps);
     }
   }
 
@@ -260,6 +264,12 @@ class ViewEditPost extends React.Component {
     )
   }
 
+  checkForPreEditStatus(props) {
+    if (props.post && !props.post.evidence && props.usersPost) {
+      dispatch(changeEditState(props.wallId, props.post.id, true));
+    }
+  }
+
   postUnmount(wallId, postId) {
     dispatch(clearTempData(wallId, postId));
     dispatch(removeInfoBox(wallId, postId));
@@ -286,7 +296,8 @@ class ViewEditPost extends React.Component {
     Dispatch an action to update the parent component with a viewPost: 0.
   */
   onCloseClick() {
-    window.location.href = `/#/connections-wall/${this.props.activityId}`;
+    this.postUnmount(this.props.wallId, this.props.post.id);
+    window.location.href = `/#/connections-wall/${this.props.activityId}?viewPost=0`;
   }
 
   /*

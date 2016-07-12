@@ -19,21 +19,34 @@ class ConnectionsWall extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.animateToPos();
+    if (prevProps && prevProps.viewPost !== this.props.viewPost) {
+      this.animateToPos();
+    }
   }
 
   animateToPos() {
-    if (this.props.viewPost) {
+    var page = $("html, body");
+    page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {
+       page.stop();
+     });
+    if (this.props.viewPost || this.props.viewPost === 0) {
       var ref = this.refs[`wall-post-${this.props.viewPost}`];
       if (ref) {
         var el = findDOMNode(ref);
         var top = ($(el).offset().top);
-        $("html, body").stop();
-        $("html, body").animate({ scrollTop: `${top + 100}px` }, 500);
+        page.stop();
+        page.animate({ scrollTop: `${top + 100}px` }, 500);
+      } else {
+        page.stop();
+        page.animate({ scrollTop: $(window).scrollTop() - 100}, 500);
       }
     } else {
       window.scrollTo(0, 0);
     }
+  }
+
+  componentWillUnmount() {
+     $("html, body").off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", () => {});
   }
 
   render() {
@@ -113,6 +126,8 @@ class ConnectionsWall extends React.Component {
         profile={profile}
         pending={post.pending}
         ref={`wall-post-${post.id}`}
+        postedOn={post.postedOn}
+        tempEvidence={post.tempEvidence}
       />
     );
   }

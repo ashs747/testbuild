@@ -101,7 +101,7 @@ export const reducer = (state = defaultState, action) => {
             }
             return post;
           });
-          window.location.href = `/#/connections-wall/${action.payload.activityId}`;
+          window.location.href = `/#/connections-wall/${action.payload.activityId}?viewPost=0`;
           return newState;
         case "REJECTED":
           wall.posts = wall.posts.map(post => {
