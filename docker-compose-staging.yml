@@ -7,6 +7,7 @@ services:
       - VIRTUAL_HOST=staging.rb.cirrus-connect.com
     networks:
       - web
+      
 networks:
   web:
     external:
