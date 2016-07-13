@@ -1,0 +1,13 @@
+version: "2"
+services:
+  rb-staging:
+    restart: always
+    image: 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rb:staging
+    environment:
+      - VIRTUAL_HOST=staging.rb.cirrus-connect.com
+    networks:
+      - web
+networks:
+  web:
+    external:
+      name: dockerizedbase_web
