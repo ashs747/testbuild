@@ -19,6 +19,9 @@ class ConnectionsWall extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (!prevProps.wall && this.props.wall) {
+      this.animateToPos();
+    }
     if (prevProps && prevProps.viewPost !== this.props.viewPost) {
       this.animateToPos();
     }
