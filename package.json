@@ -28,7 +28,8 @@
     "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.3",
     "underscore": "^1.8.3",
-    "xdomain": "^0.7.3"
+    "xdomain": "^0.7.3",
+    "envify": "^3.4.0"
   },
   "browser": {},
   "browserify-shim": {},
