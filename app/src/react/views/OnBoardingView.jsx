@@ -32,7 +32,7 @@ class OnBoarding extends React.Component {
       <div className="on-boarding login-background">
         <div className="header clearfix">
           <div className="header-logo">
-            <img src="assets/img/programme-logo.png" alt="logo" />
+            <img src="assets/img/rb-logo.png" alt="logo" />
           </div>
         </div>
         <div className="main">

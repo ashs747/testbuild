@@ -3,6 +3,8 @@ machine:
     version: 2.7.3
   node:
     version: 5.0.0
+  services:
+    - docker
 dependencies:
   pre:
     - rm -rf ~/.npm/cirrus
@@ -15,26 +17,43 @@ test:
     - npm install -g eslint babel-eslint bower gulp
     - npm rebuild node-sass
     - bower install
+    - export NODE_ENV=production
     - gulp build
 
-#deployment:
-#  nightlies:
-#    branch: develop
-#    commands:
-#      - pip install awscli
-#      - chmod +x ./docker/run.sh
-#      - ./docker/run.sh deployment $CIRCLE_SHA1 nightly
-#
-#  staging:
-#    branch: [/release-.*/, /hotfix-.*/]
-#    commands:
-#      - pip install awscli
-#      - chmod +x ./docker/run.sh
-#      - ./docker/run.sh deployment $CIRCLE_SHA1 staging
-#
+deployment:
+  nightlies:
+    branch: develop
+    commands:
+      - cp app/src/localConfig.js.nightly app/src/localConfig.js
+      - gulp build
+      - pip install awscli
+      - $(aws ecr get-login)
+      - docker build -t 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rb-portal:nightly .
+      - docker save 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rb-portal:nightly | bzip2 | ssh dockerremote@strataplatform.cirrus-connect.com 'bunzip2 | docker load'
+      - docker push 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rb-portal:nightly
+
+  staging:
+    branch: [/release-.*/, /hotfix-.*/]
+    commands:
+      - cp app/src/localConfig.js.staging app/src/localConfig.js
+      - gulp build
+      - pip install awscli
+      - $(aws ecr get-login)
+      - docker build -t 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rb-portal:staging .
+      - docker save 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rb-portal:staging | bzip2 | ssh dockerremote@strataplatform.cirrus-connect.com 'bunzip2 | docker load'
+      - docker push 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rb-portal:staging
+
 #  release:
 #    branch: master
 #    commands:
+#      - cp app/src/localConfig.js.prod app/src/localConfig.js
+#      - gulp build
 #      - pip install awscli
-#      - chmod +x ./docker/run.sh
-#      - ./docker/run.sh deployment $CIRCLE_SHA1 live
+#      - docker build -t 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rb-portal:production .
+#      - docker tag 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rbportal:production 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rbportal:$CIRCLE_BUILD_NUM
+#      - docker save 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rbportal:production | bzip2 | ssh dockerremote@strataplatform.cirrus-connect.com 'bunzip2 | docker load'
+#      - docker push 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rbportal:production
+#      - docker push 024847829446.dkr.ecr.eu-west-1.amazonaws.com/cirrusconnect/rbportal:$CIRCLE_BUILD_NUM
+
+
+

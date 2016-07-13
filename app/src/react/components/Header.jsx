@@ -25,11 +25,11 @@ class Header extends React.Component {
         <li id="sub-nav-module" className="sub-nav">
           <div className="sub-nav-content clearfix">
             <ul className="modules">
-              <a href="/#/module/1"><li><img src="assets/img/testmodule2.png"/><p>Inspiring Connector</p></li></a>
-              <a href="/#/module/2"><li><img src="assets/img/testmodule3.png"/><p>Ambassador for Change</p></li></a>
-              <a href="/#/module/3"><li><img src="assets/img/testmodule4.png"/><p>Agile Decision Maker</p></li></a>
-              <a href="/#/module/4"><li><img src="assets/img/testmodule1.png"/><p>People Leader</p></li></a>
-              <a href="/#/module/5"><li><img src="assets/img/testmodule5.png"/><p>Performance Driver</p></li></a>
+              <a href="/#/module/1"><li><img src=""/><p>Inspiring Connector</p></li></a>
+              <a href="/#/module/2"><li><img src=""/><p>Ambassador for Change</p></li></a>
+              <a href="/#/module/3"><li><img src=""/><p>Agile Decision Maker</p></li></a>
+              <a href="/#/module/4"><li><img src=""/><p>People Leader</p></li></a>
+
             </ul>
           </div>
         </li>
@@ -50,11 +50,11 @@ class Header extends React.Component {
 
     let mobileModuleNav = (
       <div className="sub-nav">
-        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule2.png"/><p>Inspiring Connector</p></li></a>
-        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule3.png"/><p>Ambassador for Change</p></li></a>
-        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule4.png"/><p>Agile Decision Maker</p></li></a>
-        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule1.png"/><p>People Leader</p></li></a>
-        <a href="/#/module/5"><li onClick={this.toggleMobileNav}><img src="assets/img/testmodule5.png"/><p>Performance Driver</p></li></a>
+        <a href="/#/module/1"><li onClick={this.toggleMobileNav}><img src=""/><p>Inspiring Connector</p></li></a>
+        <a href="/#/module/2"><li onClick={this.toggleMobileNav}><img src=""/><p>Ambassador for Change</p></li></a>
+        <a href="/#/module/3"><li onClick={this.toggleMobileNav}><img src=""/><p>Agile Decision Maker</p></li></a>
+        <a href="/#/module/4"><li onClick={this.toggleMobileNav}><img src=""/><p>People Leader</p></li></a>
+
       </div>
     );
 
@@ -91,8 +91,8 @@ class Header extends React.Component {
           return (
             <div className="small-nav">
               <div className="top-small-nav clearfix">
-                <div className="programme-logo">
-                  <img src="assets/img/programme-logo.png" />
+                <div className="rb-logo">
+                  <img src="assets/img/rb-logo.png" />
                 </div>
                 <div onClick={this.toggleMobileNav} className="nav-icon"><i className={mobileIcon}></i></div>
               </div>
@@ -105,7 +105,7 @@ class Header extends React.Component {
             <div className="full-nav">
               <div className="top-nav-bar clearfix">
                 <a href="/#/">
-                  <img className="programme-logo" src="assets/img/programme-logo.png" alt="logo" />
+                  <img className="rb-logo" src="assets/img/rb-logo.png" alt="logo" />
                 </a>
                 <div className="header-right">
                   <div className="links clearfix">

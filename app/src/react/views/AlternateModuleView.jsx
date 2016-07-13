@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
 import ResourceWidget from '../modules/resource/Widget.jsx';
+import Top10Widget from '../modules/connectionsWall/Top10Widget.jsx';
 import TabStack from '../legacy/TabStack.jsx';
 import LearningJourneyTable from '../modules/personalLearningJourney/LearningJourneyTable.jsx';
 import Carousel from '../components/Carousel.jsx';
@@ -17,6 +18,8 @@ class AlternateModuleView extends React.Component {
     if (!module) {
       return <div />;
     }
+    const wallId = this.findFirstWallByActivityId(module.activities);
+    const wallObject = this.getWallObject(this.props.walls, wallId);
     let ljt = <LearningJourneyTable journeyModule={module} smallTable={this.props.profile === "sm"} accessToken={this.props.accessToken} supportUrl={this.props.supportUrl}/>;
     let items = module.files.map(file => {
       var reference = '#';
@@ -53,7 +56,7 @@ class AlternateModuleView extends React.Component {
     );
     let connectionsWidget = (
       <div>
-        <div>Connections Wall Component</div>
+        <Top10Widget wall={wallObject}/>
         <a href="">
           <img className="connections-wall-image" href="" src=""/>
         </a>
@@ -89,7 +92,7 @@ class AlternateModuleView extends React.Component {
     })();
     return (
       <div className="module-view">
-        <div className="header-top clearfix" style={{backgroundImage: `url("assets/img/banner-${moduleSlug}.png")`}}>
+        <div className="header-top clearfix" style={{backgroundImage: `url("assets/img/banner-${moduleSlug}.jpg")`}}>
           <div className="icon">
             {icon}
           </div>
@@ -101,6 +104,18 @@ class AlternateModuleView extends React.Component {
     );
   }
 
+  getWallObject(walls, wallId) {
+    let wallObject = null;
+    for (let wall in walls) {
+      if (walls.hasOwnProperty(wall)) {
+        if (walls[wall].activityId === wallId) {
+          wallObject = walls[wall];
+        }
+      }
+    }
+    return wallObject;
+  }
+
   getModuleFromRouteId(modules, moduleNumber) {
     let module = null;
     _.mapObject(modules, (mod, key) => {
@@ -110,10 +125,21 @@ class AlternateModuleView extends React.Component {
     });
     return module;
   }
+
+  findFirstWallByActivityId(activities){
+    let wallId = null;
+    for (let activity in activities) {
+      if (activities[activity].type === "Wall") {
+        wallId = activities[activity].id;
+      }
+    }
+    return wallId;
+  }
 }
 
 function mapModuleProps(state) {
   return {
+    walls: state.wall,
     modules: state.learningJourney,
     profile: state.width.profile,
     accessToken: state.auth.access_token,

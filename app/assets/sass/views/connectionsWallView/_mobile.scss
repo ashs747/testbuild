@@ -1,0 +1,107 @@
+.connections-wall-view{
+  background-color: $whiteBackground;
+  h4 {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  .header {
+    padding: 30px 20px;
+    color: $secondaryFontColour;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    text-align: left;
+    .icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      background-color: $whiteBackground;
+      color: $secondaryFontColour;
+      border-radius: 50%;
+      font-size: 30px;
+      text-align: center;
+    }
+    i {
+      font-size: 60px;
+      line-height: 100px;
+    }
+    h4, h2 {
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+  .tab-bar {
+    .tab-btn {
+      width: 50%;
+    }
+  }
+  .main {
+    background-color: $lightGreyBackground;
+  }
+  .overview {
+    padding: 0;
+    h4 {
+      font-weight: 600;
+    }
+  }
+  .overview-inner {
+    padding: 5px;
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    h3:first-child {
+      margin-top: 0;
+    }
+    h5 {
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+  }
+  .row {
+    margin: 0;
+  }
+  .tab-btn {
+    width: 50%;
+  }
+  .view-stack {
+    padding: 10px 6px;
+  }
+  .activity-tabs {
+    padding:10px 8px;
+    background-color: #ECEDEE;
+    .heading{
+      background-color: #ECEDEE;
+      padding: 13px 20px;
+      .title, .sub-title{
+        font-size: 1em;
+        font-weight: bold;
+        color: $primaryFontColour;
+      }
+    }
+    .plj-small-row{
+      padding: 20px;
+      p:first-child a {
+        font-weight: bold;
+      }
+      p:first-child, p:nth-child(2) {
+        font-size: 1em;
+        margin-bottom: 10px;
+        * {
+          border-bottom: 1px solid $borderGrey;
+        }
+      }
+    }
+    .footer {
+      display: none;
+    }
+  }
+  .activity-content>p{
+    font-size: 13.4px;
+    line-height: 1.8em;
+  }
+}

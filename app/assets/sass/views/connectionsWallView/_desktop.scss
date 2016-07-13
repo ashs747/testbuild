@@ -1,0 +1,56 @@
+.connections-wall-view {
+  .view-stack {
+    padding: 25px 15px;
+  }
+  .activity-tabs {
+    padding: 15px;
+  }
+  .container-fluid {
+    background-color: #F6F7F7;
+    .row:first-child {
+      padding: 20px 10px;
+    }
+    .row:last-child {
+      background-color: $whiteBackground;
+    }
+  }
+  .header{
+    h4 {
+      font-size: 25px;
+      margin-bottom: 2px;
+      margin-top: 15px;
+    }
+    h2 {
+      font-size: 38px;
+    }
+  }
+  .learning-journey-module {
+    margin-bottom: 20px;
+    .footer{
+      display: none;
+    }
+    table .heading th {
+      border-radius: 0;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    td {
+      border-bottom: 1px solid $darkGreyBackground;
+    }
+    tbody {
+      background-color: #fff;
+      font-weight: bold;
+      .activity {
+        border-left: none;
+        text-align: center;
+        padding: 8px 0;
+      }
+      .status {
+        border-right: none;
+      }
+    }
+  }
+  .top-10-widget ul {
+    margin-bottom: 0;
+  }
+}

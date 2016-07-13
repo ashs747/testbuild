@@ -1,0 +1,242 @@
+.view-edit-post {
+  margin-top: 10px;
+  background-color: $connectionsWallLightGreen;
+  .evidence-wrapper {
+    width: 100%;
+    height: 250px;
+    padding: 12px 6px;
+  }
+  .form-wrapper {
+    background-color: $whiteBackground;
+    border-top: 2px solid $textAreaBorder;
+  }
+  .post-wrapper {
+    border: 1px solid $textAreaBorder;
+    position: relative;
+  }
+  .action-buttons {
+    position: absolute;
+    width: 100%;
+    top: 15px;
+    z-index: 1;
+  }
+  .circle {
+    width: 40px;
+    height: 40px;
+    background-color: $darkGreyBackground;
+    padding: 0;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    i {
+      color: $whiteBackground;
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+  .close-circle {
+    float: right;
+    right: 10px;
+  }
+  .edit-circle {
+    left: 10px;
+  }
+  .edit-button {
+    cursor: pointer;
+    height: 35px;
+    width: 80px;
+    border: 2px solid $primaryColour;
+    color: $primaryFontColour;
+    padding: 3px;
+    .edit-icon {
+      display: inline-block;
+      font-size: 20px;
+      margin-right: 10px;
+      margin-left: 5px;
+    }
+    span {
+      font-size: 10pt;
+      position: relative;
+      top: -1px;
+      font-weight: bold;
+    }
+  }
+  .video {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  .edit-post-form {
+    width: 100%;
+    padding: 20px 10px;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 19pt;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 8px;
+      display: block;
+      background-color: $textareaBackground;
+      border: 2px solid $textAreaBorder;
+      padding: 7px;
+      resize: none;
+    }
+    textarea:disabled, input:disabled {
+      background-color: rgb(235, 235, 228);
+    }
+    textarea {
+      height: 120px;
+    }
+    .publish-button {
+      text-align: right;
+      img {
+        border: none;
+        height: 19px;
+        width: 19px;
+      }
+    }
+    .info-bar {
+      .panel {
+        width: calc(100% - 120px);
+        margin-right: 15px;
+        margin-bottom: 0;
+        display: inline-block;
+        p {
+          font-size: 15px;
+          margin: 0;
+        }
+      }
+    }
+    .btn-publish {
+      background-color: $primaryColour;
+    }
+    .btn-cancel {
+      margin-right: 5px;
+      background-color: $secondaryColour;
+    }
+    .btn {
+      color: $whiteBackground;
+      border-radius: 1px;
+      width: 105px;
+      position: relative;
+      right: 0;
+    }
+    .user-name, .uploaded {
+      position: relative;
+      bottom: 5px;
+      margin-left: 7px;
+    }
+    .uploaded {
+      display: block;
+      margin-left: 40px;
+      bottom: 16px;
+    }
+    p {
+      margin-top: 0;
+    }
+    img {
+      border: 1px solid $darkGreyBackground;
+      border-radius: 50%;
+      height: 35px;
+      width: 35px;
+    }
+    .likes-counter {
+      display: inline-block;
+      b {
+        margin-left: 8px;
+      }
+      .likes-thumb {
+        height: 33px;
+        width: 33px;
+        background-color: #B2C3CB;
+        border-radius: 50%;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        i {
+          line-height: 32px;
+          font-size: 20px;
+          color: $whiteBackground;
+        }
+      }
+    }
+    &.editing-post {
+      .likes-counter {
+        position: absolute;
+        bottom: 20px;
+      }
+    }
+    &.not-uploaded {
+      b {
+        bottom: -2px;
+      }
+    }
+  }
+  .img-action-btn {
+    z-index: 1;
+    cursor: pointer;
+    background-color: #4c6172;
+    height: 74px;
+    width: 74px;
+    border-radius: 100%;
+    position: absolute;
+    top: calc(50% - 38px);
+    i {
+      color: $whiteBackground;
+      font-size: 47px;
+      text-align:center;
+    }
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+  .btn-delete {
+    padding: 13px 18px;
+    right: calc(40% - 50px);
+  }
+  .btn-rotate {
+    padding: 13px 16px;
+    left: calc(40% - 50px);
+  }
+  .evidence-inner-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .del-btn-only {
+    .btn-delete {
+      right: calc(50% - 36px);
+    }
+  }
+  &.users-post {
+    .edit-post-form {
+      .likes-counter {
+        .likes-thumb {
+          cursor: initial;
+          background-color: $whiteBackground;
+          i {
+            color: $secondaryColour;
+          }
+        }
+        b {
+          margin-left: 0;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  &.user-liked {
+    .edit-post-form {
+      .likes-counter {
+        .likes-thumb {
+          background-color: $primaryColour;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+.view-edit-post {
+  padding: 10px;
+  .post-wrapper {
+    height: 455px;
+    background-color: $connectionsWallLightGreen;
+    border: 2px solid $textAreaBorder;
+  }
+  .evidence-wrapper {
+    background-color: $whiteBackground;
+    float: left;
+    padding: 0;
+    width: 60%;
+    height: 100%;
+  }
+  .form-wrapper {
+    border: none;
+    float: left;
+    width: 40%;
+    height: 100%;
+  }
+  .action-buttons {
+    position: relative;
+  }
+  .edit-post-form {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    max-height:341px;
+    overflow: auto;
+    h3 {
+      margin-bottom: 17px;
+    }
+    input, textarea {
+      margin-bottom: 10px;
+    }
+    input {
+      height: 45px;
+    }
+    textarea {
+      height: 170px;
+    }
+    p {
+      position: relative;
+    }
+    .likes-counter {
+      position: absolute;
+      bottom: 15px;
+    }
+    .btn {
+      width: 80px;
+      font-size: 14px;
+      position: absolute;
+      bottom: 20px;
+    }
+    .btn-cancel {
+      right: 105px;
+    }
+    .btn-publish {
+      right: 25px;
+    }
+    .panel {
+      margin-bottom: 0;
+      width: 100%;
+      p {
+        margin: 0;
+      }
+    }
+    &.first-post {
+      max-height: 350px;
+    }
+    &.short-textarea {
+      padding-bottom: 0;
+      textarea {
+        height: 95px;
+      }
+    }
+  }
+  .img-action-btn {
+    padding: 18px 24px;
+    top: calc(50% - 50px);
+    height: 100px;
+    width: 100px;
+    i {
+      font-size: 64px;
+    }
+    img {
+      height: 55px;
+      width: 55px;
+    }
+  }
+  .btn-delete {
+    right: calc(40% - 80px);
+  }
+  .btn-rotate {
+    left: calc(40% - 80px);
+  }
+  .del-btn-only {
+    .btn-delete {
+      right: calc(50% - 50px);
+    }
+  }
+}

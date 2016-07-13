@@ -2,11 +2,11 @@ $hi_res: "(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx)";
 $body_font: "proxima-nova", Arial, Helvetica, sans-serif;
 
 //Main site colour
-$primaryColour: #1db7d4;
+$primaryColour: #ea3592;
 //Footer, top nav bar hover, panels on programme overview, tool hints & tips
-$secondaryColour: #1db7d4;
+$secondaryColour: #4C6172;
 //Main font colour
-$primaryFontColour: #292929;
+$primaryFontColour: #4C6172;
 //Page headings, learning journey table and message feed alternate text
 $secondaryFontColour: #454e58;
 //Used for all white font against dark corporate colours, useful for if we need
@@ -49,19 +49,27 @@ $messageBoardDateColour: #999999;
 //The colour in the background of the banners, used as a solid colour on tools
 $bannerBackgroundGrey: #E0DCD6;
 //The colour in the background of footer
-$siteFooter: #485155;
+$siteFooter: #4C6172;
 //The bacground colour of post and go buttons
-$postButton: #565abe;
+$postButton: #ea3592;
 //The colour used in the background of the navigation
 $navigationColour: #1db7d4 ;
 //The colour used in the background of the arrows used in the learning journey
-$learningJourney: #e80c79;
+$learningJourney: #ea3592;
 //The colour used for the font of the texts in learning journey
-$textColour:  #e80c79;
+$textColour:  #ea3592;
 //The colour used in the background of submenu
 $subMenu:  #0071ce  ;
 //The font colour used for the heading and underline in the messagefeed
-$messageName: #565abe;
+$messageName: #ea3592;
+//The border colour of the go to my cohort
+$goToAlz:#ea3592;
+//The font colour of the text and link inside the gotoalz
+$redLink:#4C6172;
+$connectionsWallLightGreen: #F6F9EE;
+$textareaBackground: #F6F8F7;
+$borderProfilePic:#4C6172;
+$textAreaBorder:#EDEEF0;
 
 
 

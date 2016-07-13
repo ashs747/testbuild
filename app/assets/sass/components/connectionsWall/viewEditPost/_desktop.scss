@@ -1,0 +1,49 @@
+.view-edit-post {
+  padding: 15px 30px;
+  .edit-post-form {
+    padding: 0 45px;
+    margin-top: 35px;
+    max-height: 301px;
+    .likes-counter {
+      bottom: 20px;
+    }
+    .btn-publish, .btn-cancel {
+      width: 105px;
+      font-size: 14px;
+      bottom: 20px;
+    }
+    .btn-publish {
+      right: 45px;
+    }
+    .btn-cancel {
+      right: 150px;
+    }
+    &.first-post {
+      max-height: 315px;
+    }
+  }
+  .img-action-btn {
+    padding: 22px 30px;
+    top: calc(50% - 52px);
+    height: 126px;
+    width: 126px;
+    i {
+      font-size: 80px;
+    }
+    img {
+      height: 70px;
+      width: 70px;
+    }
+  }
+  .btn-delete {
+    right: calc(40% - 80px);
+  }
+  .btn-rotate {
+    left: calc(40% - 80px);
+  }
+  .del-btn-only {
+    .btn-delete {
+      right: calc(50% - 80px);
+    }
+  }
+}

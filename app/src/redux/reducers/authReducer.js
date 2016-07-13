@@ -10,11 +10,20 @@ export function reducer(state = initialState, action) {
   switch (action.type) {
     case 'LOGOUT':
       return {};
-      break;
 
     case UPDATE_PATH:
-      //*TODO: Move this out of the reducer - reducers should be pure functions */
-      window.scrollTo(0, 0);
+      var overwriteScroll;
+
+      if (action.payload.path) {
+        if (action.payload.path.search("connections-wall") > 0) {
+          overwriteScroll = true;
+        }
+      }
+
+      if (!overwriteScroll) {
+        window.scrollTo(0, 0);
+      }
+
       return {...state, waitingForLogin: false};
 
     case 'COOKIE_AUTH_LOADED':

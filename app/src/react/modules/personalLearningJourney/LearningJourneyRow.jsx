@@ -47,6 +47,11 @@ class LearningJourneyRow extends React.Component {
       location = (location) ? location : "n/a";
     }
 
+    if (type === "Wall") {
+      date = <p>Deadline:<br/>{moment(activity.deadline).format('Do MMM YYYY')}</p>;
+      time = "n/a";
+    }
+
     let content = this.props.smallTable ? (
       <div className="plj-small-row clearfix">
         <p>{title}</p>
@@ -86,6 +91,7 @@ class LearningJourneyRow extends React.Component {
       case "missed": return (<div className="icon red"><i className="fa fa-times"></i></div>);
       case "no-attendance-marked": return null;
       case "completed": return (<div className="icon green"><i className="fa fa-check"></i></div>);
+      case "upload": return (<a className="btn btn-primary" href={`/#/connections-wall/${activity.id}?viewPost=${activity.postId}`}>Upload</a>);
       default: return null;
     }
   }
