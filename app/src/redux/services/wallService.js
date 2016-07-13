@@ -23,3 +23,7 @@ export const postEvidence = (post) => {
   };
   return request.post(`${apiRoot}api/wall/update-post/${post.id}`, data);
 };
+
+export const likePost = (postID) => {
+  return request.get(`${apiRoot}api/wall/post/likes/${postID}`);
+}

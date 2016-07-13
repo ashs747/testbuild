@@ -3,7 +3,7 @@ import ImageView from '../../components/ImageView.jsx';
 import Video from '../../components/Video.jsx';
 import TextArea from 'react-textarea-autosize';
 import moment from 'moment-timezone';
-import {updateWallPostField, userDeletedEvidence, removeInfoBox, postEvidenceAction, clearTempData, changeEditState, rotateImageAction} from '../../../redux/actions/wallActions';
+import {updateWallPostField, userDeletedEvidence, removeInfoBox, postEvidenceAction, clearTempData, changeEditState, rotateImageAction, userLikesPost} from '../../../redux/actions/wallActions';
 import store from '../../../redux/store';
 var dispatch = store.dispatch;
 import classnames from 'classnames';
@@ -22,6 +22,7 @@ class ViewEditPost extends React.Component {
     this.onCloseClick = this.onCloseClick.bind(this);
     this.onCancelEditClick = this.onCancelEditClick.bind(this);
     this.onRotateClick = this.onRotateClick.bind(this);
+    this.onLikeClick = this.onLikeClick.bind(this);
   }
 
   componentWillMount() {
@@ -46,8 +47,9 @@ class ViewEditPost extends React.Component {
       <a className="btn circle edit-circle" onClick={this.onEditClick}><i className="fa fa-pencil"/></a>
     ) : null;
     var postForm = this.buildPostForm(post, this.props.usersPost);
+    var editPostClass = classnames("view-edit-post", {'users-post': this.props.usersPost}, {'user-liked': this.props.userLikedPost});
     return (
-      <div className="view-edit-post">
+      <div className={editPostClass}>
         <div className="post-wrapper clearfix">
           <div className="evidence-wrapper">
             {evidence}
@@ -126,7 +128,9 @@ class ViewEditPost extends React.Component {
           onChange={this.onChange.bind(null, "tempDescription")}
         />
         <div className="likes-counter">
-          <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
+          <div className="likes-thumb">
+            <i className="fa fa-thumbs-o-up"/>
+          </div>
           <b>{post.likes.length}</b>
         </div>
         {panel}
@@ -181,7 +185,9 @@ class ViewEditPost extends React.Component {
     var title = (post.title) ? post.title : "Awaiting Upload";
     var likesWidget = (post.evidence) ? (
       <div className="likes-counter">
-        <div className="likes-thumb"><i className="fa fa-thumbs-o-up"/></div>
+        <div className="likes-thumb" onClick={this.onLikeClick}>
+          <i className="fa fa-thumbs-o-up"/>
+        </div>
         <b>{post.likes.length}</b>
       </div>
     ) : null;
@@ -351,6 +357,13 @@ class ViewEditPost extends React.Component {
       }
     };
     dispatch(rotateImageAction(this.props.wallId, this.props.post.id, evidence.id, updatedMeta));
+  }
+
+  /*
+    The action dispatched when a user clicks to like (or unlike) a post
+  */
+  onLikeClick() {
+    dispatch(userLikesPost(this.props.wallId, this.props.post.id));
   }
 
 }

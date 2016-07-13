@@ -59,34 +59,59 @@ class Top10Widget extends React.Component {
   }
 
   displaySortedPosts(posts){
-    let initRank = 1;
-    let sortedPostContent = posts.map((post, i) => {
+    let content = [];
+    let currentRank = 1;
+    for (var i = 0; i < posts.length; i++) {
       let trophy;
-      if (i === 0) {
-        trophy = <i className="fa fa-trophy"></i>
+      let equals = this.showEquals(posts, i) ?  "= " : ". ";
+      if (i > 0 && posts[i].likes.length < posts[i - 1].likes.length) {
+        currentRank++;
       }
-      if (i > 0) {
-        if (post.likes.length !== posts[i - 1].likes.length) {
-          initRank++;
-        }
+      if (currentRank === 1) {
+        trophy = <i className="fa fa-trophy"></i>;
       }
-      return (
+      content.push(
         <li key={`wall-post-${i}`}>
-          <div className="top-10-rank">{initRank}.</div>
+          <div className="top-10-rank">{currentRank}{equals}</div>
           <div className="top-10-name">
             <span>
-              {post.owner.forename} {post.owner.surname}
+              {posts[i].owner.forename} {posts[i].owner.surname}
             </span>
             {trophy}
           </div>
           <div className="top-10-likes">
             <div className="top-10-icon"><i className="fa fa-thumbs-o-up"></i></div>
-            <div>{post.likes.length}</div>
+            <div>{posts[i].likes.length}</div>
           </div>
         </li>
-      )
-    });
-    return sortedPostContent;
+      );
+    }
+    return content;
+  }
+
+  /*
+    Need to work out whether to show the equals sign next to the persons score
+  */
+  showEquals(posts, i) {
+    //If they are 1st (i === 0), check 2nd place for the same score
+    if (i === 0) {
+      if (posts[0].likes.length === posts[1].likes.length) {
+        return true;
+      }
+    }
+    //If they are between 2nd and last, need to check before and after
+    if (i > 0 && i < posts.length - 1) {
+      let j = i + 1;
+      if (posts[i].likes.length === posts[i - 1].likes.length || posts[i].likes.length === posts[j].likes.length) {
+        return true;
+      }
+    }
+    //If they are the last post, need to check only the post before
+    if (i === posts.length - 1) {
+      if (posts[i].likes.length === posts[i - 1].likes.length) {
+        return true;
+      }
+    }
   }
 }
 

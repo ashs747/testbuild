@@ -183,6 +183,28 @@ export const reducer = (state = defaultState, action) => {
           return newState;
           return state;
       }
+    case 'USER_LIKED_POST':
+      switch (action.status) {
+        case 'RESOLVED':
+          wall.posts = wall.posts.map(post => {
+            if (post.id === action.payload.postID) {
+              post = action.payload.post;
+            }
+            return post;
+          });
+          return newState;
+        case 'REJECTED':
+          return state;
+        case 'PENDING':
+          wall.posts = wall.posts.map(post => {
+            if (post.id === action.payload.postID) {
+              //
+            }
+            return post;
+          });
+          return newState;
+          return state;
+      }
     default:
       return state;
   }
