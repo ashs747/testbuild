@@ -147,15 +147,15 @@
     .likes-counter {
       display: inline-block;
       b {
-        margin-left: 5px;
+        margin-left: 8px;
       }
       .likes-thumb {
         height: 33px;
         width: 33px;
-        background-color: $primaryColour;
+        background-color: #B2C3CB;
         border-radius: 50%;
         text-align: center;
-
+        cursor: pointer;
         display: inline-block;
         i {
           line-height: 32px;
@@ -211,6 +211,32 @@
   .del-btn-only {
     .btn-delete {
       right: calc(50% - 36px);
+    }
+  }
+  &.users-post {
+    .edit-post-form {
+      .likes-counter {
+        .likes-thumb {
+          cursor: initial;
+          background-color: $whiteBackground;
+          i {
+            color: $secondaryColour;
+          }
+        }
+        b {
+          margin-left: 0;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  &.user-liked {
+    .edit-post-form {
+      .likes-counter {
+        .likes-thumb {
+          background-color: $primaryColour;
+        }
+      }
     }
   }
 }

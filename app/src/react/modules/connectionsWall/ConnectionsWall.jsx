@@ -19,6 +19,9 @@ class ConnectionsWall extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (!prevProps.wall && this.props.wall) {
+      this.animateToPos();
+    }
     if (prevProps && prevProps.viewPost !== this.props.viewPost) {
       this.animateToPos();
     }
@@ -154,6 +157,7 @@ class ConnectionsWall extends React.Component {
       });
       if (postObj) {
         let usersPost = this.props.currentUser === postObj.owner.id;
+        let userLikedPost = this.hasUserLikedPost(postObj, this.props.currentUser);
         return (
           <ViewEditPost
             post={postObj}
@@ -161,12 +165,23 @@ class ConnectionsWall extends React.Component {
             wallId={this.props.wall.id}
             supportUrl={this.props.supportUrl}
             activityId={this.props.wall.activityId}
+            userLikedPost={userLikedPost}
           />
       );
       }
     }
     return null;
   }
+
+  hasUserLikedPost(post, userId) {
+    for (var i = 0; i < post.likes.length; i++) {
+      if (post.likes[i] === userId) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
 
 export default ConnectionsWall;

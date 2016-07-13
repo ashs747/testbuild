@@ -1,4 +1,4 @@
-import {getAllWallsForProgramme, postEvidence} from '../services/wallService';
+import {getAllWallsForProgramme, postEvidence, likePost} from '../services/wallService';
 import {updateMeta} from '../services/feedService';
 import store from '../store.js';
 
@@ -69,6 +69,34 @@ export function changeEditState(wallID, postID, editState) {
     type: 'CHANGE_EDIT_STATE',
     payload: {
       wallID, postID, editState
+    }
+  }
+}
+
+export function userLikesPost(wallID, postID) {
+  var dispatch = store.dispatch;
+  var payload = likePost(postID).then((post) => {
+    dispatch({
+      type: 'USER_LIKED_POST',
+      status: 'RESOLVED',
+      payload: {
+        wallID, postID, post
+      }
+    });
+  }, () => {
+    dispatch({
+      type: 'USER_LIKED_POST',
+      status: 'REJECTED',
+      payload: {
+        wallID, postID
+      }
+    });
+  });
+  return {
+    type: 'USER_LIKED_POST',
+    status: 'PENDING',
+    payload: {
+      wallID, postID
     }
   }
 }
